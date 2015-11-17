@@ -2,6 +2,10 @@
 
 This repository contains an updated version of the UMN PhD Thesis Template.
 
+The rules for how a thesis must be formatted can be found here:
+
+http://www.grad.umn.edu/sites/grad.umn.edu/files/grad_content_460854_0.pdf
+
 ## Prerequisites
 
 On Ubuntu 14.04 you will need to enable the `universe` repository. You can do
