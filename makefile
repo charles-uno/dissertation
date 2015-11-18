@@ -20,7 +20,7 @@ all: $(MAIN_PDF)
 
 # Instructions to make the main pdf
 $(MAIN_PDF): ALWAYS_COMPILE $(MAIN_TEX) $(HELPER_FILES) $(PRELIMS) $(CHAPTERS) $(FIGURES)
-	$(LATEXMK) -pdf $(MAIN_TEX)
+	$(LATEXMK) -pdf $(MAIN_TEX) -halt-on-error
 
 # Clean up all the regeneratable files except for the final document (the .pdf)
 tidy:
