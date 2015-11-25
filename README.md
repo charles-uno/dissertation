@@ -6,6 +6,12 @@ The rules for how a thesis must be formatted can be found here:
 
 http://www.grad.umn.edu/sites/grad.umn.edu/files/grad_content_460854_0.pdf
 
+# LaTeX Math
+
+Recommended ways to handle equations, etc, in LaTeX. 
+
+ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf
+
 ## Prerequisites
 
 On Ubuntu 14.04 you will need to enable the `universe` repository. You can do
@@ -98,6 +104,8 @@ The way in which units are displayed can also be redefined, as has been done
 % Define a better looking eV by moving the V slightly left
 \DeclareSIUnit\electronvolt{e\hspace{-0.08em}V}
 ```
+
+Additional documentation and examples [here](http://ctan.sharelatex.com/tex-archive/macros/latex/contrib/siunitx/siunitx.pdf).
 
 ## `booktabs`
 
