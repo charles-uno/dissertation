@@ -10,25 +10,46 @@ It's called Tuna!
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\section{Nonorthogonal Dipole Coordinates}
+\section{Coordinate System}
 
-It's convenient to align our grid to the zeroth-order field. This allows us to decouple the parallel and perpendicular components of the permittivity and conductivity tendors. Traditional dipole coordinates are written as (using $r$, $\theta$, and $\phi$ in the usual spherical sense): 
+We use lowercase $x$, $y$, and $z$ to indicate field-aligned coordinates. The
+unit vector \zhat is aligned with the dipole field (pointing outward in the
+northern hemisphere and inward in the southern hemisphere), while \xhat and
+\yhat are perpendicular to the dipole field; \xhat lies in the meridinal plane,
+and \yhat in the azimuthal direction.
+
+But we don't actually do calculations in $x$, $y$, $z$. 
+
+It's convenient to align our grid to the zeroth-order field. This allows us to
+decouple the parallel and perpendicular components of the permittivity and
+conductivity tendors. Traditional dipole coordinates are written as (using $r$,
+$\theta$, and $\phi$ in the usual spherical sense): 
 \begin{align}
   \mu & = -\frac{\sin^2 \theta}{r} & \phi & = \phi & \nu & = \frac{\cos \theta}{r^2}
 \end{align}
 
-Unfortunately, these coordinates do not accommodate a fixed-height ionosphere. 
+Notably, $\mu$ is constant over a given field line -- it can also be written as
+$\frac{-1}{L}$, where $L$ is the McIlwain parameter. This makes it easy to
+specify inner and outer boudaries. On the other hand, the natural choice for
+boundaries in $\nu$ are the ionospheric current sheets. These sheets fall at 
+(more or less) constant altitude, but not constant $\nu$. 
 
-We renormalize, following the example of ... 
+Following the example of [Lysak 2004], $\nu$ can be rescaled to come to a
+constant value at the ionospheric boundary. 
 \begin{align}
   u^1 & = - \frac{R_I}{r} \sin^2 \theta & u^2 & = \phi & u^3 & = \frac{R_I^2}{r^2} \frac{\cos \theta}{\cos \theta_0}
 \end{align}
 
-Where $\theta_0$ is a field line's invariant colatitude; that is, the angle at which it intersects the ionosphere. 
+Here, $\theta_0$ is a field line's invariant colatitude; that is, the
+colatitude at which it intersects the ionosphere. 
 
-These new coordinates maintain their alignment to the zeroth-order magnetic field, while also accommodating the ionosphere. Note that $u^1$ is constant over each field line, $u^3 = 1$ where each field line intersects the ionosphere in the northern hemisphere, and $u^3 = -1$ where each field lline intersects the ionosphere in the southern hemisphere. 
+Note that $u^1$ is constant over each field line, $u^3 = 1$ where each field
+line intersects the ionosphere in the northern hemisphere, and $u^3 = -1$ where
+each field line intersects the ionosphere in the southern hemisphere. 
 
-The tradeoff is that these coordinates are not orthogonal, requiring a distinction between covariant and contravariant vector components. This point is discussed in detail in ...
+The tradeoff is that these coordinates are not orthogonal. As a result, a
+distinction must be made between covariant and contravariant coordinates. The
+distinction is discussed in detail in [differential geometry appendix].  
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -42,7 +63,6 @@ We don't explicitly resolve the azimuthal direction. Instead, we suppose that ev
 This is appropriate because we're looking at phenomena that are azimuthally localized. 
 
 It's perhaps better to think of the azimuthal direction in terms of a wavelength, rather than a modenumber. We don't actually care about periodicity. 
-
 Fields are all stored as complex numbers. The real component is at the slice. The imaginary component is offset from the slice by a phase of $\frac{\pi}{2}$. 
 
 % -----------------------------------------------------------------------------
@@ -133,8 +153,6 @@ A researcher in Sweden (?) came up with the same trick as Bob, and called it "an
 
 Look for, in Bob's papers, mentions of anomalous resistivity / Landau damping. 
 
-
-
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -157,11 +175,13 @@ Neumann means we specify the derivative at the boundary.
 
 We use Dirichlet for the E field and Neumann for the B field. 
 
-It's implemented through the differentiation and interpolation helper functions. 
+It's implemented through the differentiation and interpolation helper
+functions. 
 
 \subsection{Stability}
 
-We definitely have to be consistent about which fields are neumann and which are dirichlet. 
+We definitely have to be consistent about which fields are neumann and which are
+dirichlet. 
 
 \subsection{Parity Considerations}
 
@@ -169,9 +189,14 @@ Wigglies.
 
 Table listing odds and evens. 
 
-Note that we really have four grids which are only weakly coupled. Rather than using numerical diffusion to couple them (which is also a thing that people do?), we only use one of them. $B_3$ is computed only on even i and even k. If we need it anywhere else, we interpolate it. 
+Note that we really have four grids which are only weakly coupled. Rather than
+using numerical diffusion to couple them (which is also a thing that people
+do?), we only use one of them. $B_3$ is computed only on even i and even k. If
+we need it anywhere else, we interpolate it. 
 
-This means that BCs could be thought of as just off the grid. If a field doesn't try to use the value just off the grid to differentiate or interpolate a value at the edge, the boundary condition is not used. 
+This means that BCs could be thought of as just off the grid. If a field doesn't
+try to use the value just off the grid to differentiate or interpolate a value
+at the edge, the boundary condition is not used. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
