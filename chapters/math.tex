@@ -1,0 +1,113 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Work Out the Expected Waves
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Dispersion Relation}
+\label{math_chapter}
+
+We start with the equations used in the model, as described in \cref{model_equations_section}. 
+
+\begin{align}
+  \ddt \vec{B} &= -\curl{E} \\
+  \epsilon_\bot \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \left( \curl{B} \right)_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot \\
+  \epsilon_\parallel \ddt E_\parallel &= \frac{1}{\mu_0} \left( \curl{B} \right)_\parallel - J_\parallel \\
+  \frac{m \sigma_0}{n e^2} \ddt J_\parallel &= \sigma_0 E_\parallel - J_\parallel
+\end{align}
+
+We're looking for resonances. If we assume that everything (at least locally) goes as $\exp(i \vec{k} \cdot \vec{x} - i \omega t )$ then what do we find? 
+
+\begin{align}
+  - i \omega \vec{B} &= - i \vec{k} \times \vec{E} \\
+  - i \omega \epsilon_\bot \vec{E}_\bot &= \frac{1}{\mu_0} \left( - i \vec{k} \times \vec{B} \right)_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot \\
+  - i \omega \epsilon_\parallel E_\parallel &= \frac{1}{\mu_0} \left( - i \vec{k} \times \vec{B} \right)_\parallel - J_\parallel \\
+  - i \frac{m \omega \sigma_0}{n e^2} J_\parallel &= \sigma_0 E_\parallel - J_\parallel
+\end{align}
+
+With a bit of algebra, we can eliminate everything but the electric fields. 
+
+\begin{align}
+  0 &= - i \omega \epsilon_\bot \vec{E}_\bot - \frac{i}{\mu_0 \omega} \left( \vec{k} \times \vec{k} \times \vec{E} \right)_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot \\
+  0 &= - i \omega \epsilon_\parallel E_\parallel - \frac{i}{\mu_0 \omega} \left( \vec{k} \times \vec{k} \times \vec{E} \right)_\parallel - \sigma_\parallel E_\parallel
+\end{align}
+
+Note that $\sigma_\parallel = \sigma_0 / \left( 1 - i \frac{m \omega \sigma_0}{n e^2} \right)$. 
+
+Note that $\vec{k} \times \vec{k} \times \vec{E} = \vec{k} \vec{k} \cdot \vec{E} - k^2 \vec{E}$. In the electrostatic limit, $\vec{k} \cdot \vec{E} = 0$. 
+
+Say that $\theta$ is the angle between \zhat and $\hat{k}$. Parallel propagation is $\theta = 0$. 
+
+Without loss of generality, we can line up \zhat with the zeroth-order magnetic field, and \xhat with the perpendicular component of the wave vector. Then, rearranging a few constants and combining the equations, we get:
+
+\begin{align}
+  0 =& \mmm{ \frac{\epsilon_\bot}{\epsilon_0} }{0}{0}
+           {0}{ \frac{\epsilon_\bot}{\epsilon_0} }{0}
+           {0}{0}{ \frac{\epsilon_\parallel}{\epsilon_0} } \cdot \vec{E}
+       + \frac{c^2 k^2}{\omega^2} 
+       \mmm{\sin^2\theta}{0}{\sin \theta \cos \theta}
+           {0}{0}{0}
+           {\sin \theta \cos \theta}{0}{\cos^2 \theta} \cdot \vec{E} \\
+    & - \frac{c^2 k^2}{\omega^2} 
+       \mmm{1}{0}{0}
+           {0}{1}{0}
+           {0}{0}{1} \cdot \vec{E}
+       - \frac{i}{\epsilon_0 \omega}
+       \mmm{\sigma_P}{- \sigma_H}{0}
+           {\sigma_H}{\sigma_P}{0}
+           {0}{0}{\sigma_\parallel} \cdot \vec{E}
+\end{align}
+
+Maybe instead write this as...
+
+\begin{align}
+  \tensor{D} \cdot \vec{E} &= 0
+\end{align}
+
+In order to have solutions with nonzero $\vec{E}$, we need:
+
+\begin{align}
+  \left| \tensor{D} \right| &= 0
+\end{align}
+
+Where
+
+\begin{align}
+  \tensor{D} &= 
+  \mmm{ \frac{\epsilon_\bot}{\epsilon_0} }{0}{0}
+      {0}{ \frac{\epsilon_\bot}{\epsilon_0} }{0}
+      {0}{0}{ \frac{\epsilon_\parallel}{\epsilon_0} }
+  + \frac{c^2 k^2}{\omega^2} 
+  \mmm{\sin^2\theta}{0}{\sin \theta \cos \theta}
+      {0}{0}{0}
+      {\sin \theta \cos \theta}{0}{\cos^2 \theta}
+  - \frac{c^2 k^2}{\omega^2} 
+  \mmm{1}{0}{0}
+      {0}{1}{0}
+      {0}{0}{1}
+  - \frac{i}{\epsilon_0 \omega}
+  \mmm{\sigma_P}{- \sigma_H}{0}
+      {\sigma_H}{\sigma_P}{0}
+      {0}{0}{\sigma_\parallel}
+\end{align}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Electrostatic Limit}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

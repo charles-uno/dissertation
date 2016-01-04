@@ -34,25 +34,29 @@
 
 \linespread{1.3}
 
-% Compile only the chapters listed here
-\includeonly{
-    preliminaries/title,
-    chapters/science,
-    chapters/waves,
-    chapters/model,
-    chapters/results,
-    chapters/data,
-    chapters/conclusion,
-    chapters/app_geometry,
-    chapters/app_integrating,
-}
+% Compile only the chapters listed here. This may make the compile faster, but
+% it's not necessary. 
+%\includeonly{
+%    preliminaries/title,
+%    chapters/intro,
+%    chapters/model,
+%    chapters/math,
+%    chapters/results,
+%    chapters/data,
+%    chapters/conclusion,
+%    chapters/app_geometry,
+%    chapters/app_integrating,
+%}
 
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Mark this as a draft. 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Mark this as a draft. 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \draft
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -65,15 +69,17 @@
 % Title and other sections that come before the body of the document
 \include{preliminaries/title}
 
-\include{chapters/science}
-
-\include{chapters/waves}
+\include{chapters/intro}
 
 \include{chapters/model}
 
-\include{chapters/results}
+\include{chapters/math}
+
+\include{chapters/coupling}
 
 \include{chapters/data}
+
+\include{chapters/giant}
 
 \include{chapters/conclusion}
 
@@ -82,6 +88,7 @@
 
 % Appendices
 \appendix
+
 \include{chapters/app_geometry}
 
 \include{chapters/app_integrating}

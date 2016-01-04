@@ -5,11 +5,29 @@
 
 \newcommand{\Ampere}{Amp\`ere}
 
-\newcommand{\xhat}{\hat{x}}
-\newcommand{\yhat}{\hat{y}}
-\newcommand{\zhat}{\hat{z}}
+\newcommand{\xhat}{\ensuremath{\hat{x}}\xspace}
+\newcommand{\yhat}{\ensuremath{\hat{y}}\xspace}
+\newcommand{\zhat}{\ensuremath{\hat{z}}\xspace}
 
 \DeclareSIUnit\RE{R_E}
+
+\renewcommand{\vec}[1]{\underline{#1}}
+
+\newcommand{\tensor}[1]{\underline{\underline{#1}}}
+
+\newcommand{\dd}[1]{\ensuremath{ \frac{\partial}{\partial #1} }\xspace}
+
+\newcommand{\ddt}{\dd{t}\xspace}
+
+\newcommand{\curl}[1]{\ensuremath{ \nabla \times \vec{#1} }\xspace}
+
+\newcommand{\mmm}[9]{ \left[ \begin{array}{ccc}
+    #1 & #2 & #3 \\
+    #4 & #5 & #6 \\
+    #7 & #8 & #9
+  \end{array} \right] }
+
+
 
 
 

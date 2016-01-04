@@ -69,10 +69,14 @@ Fields are all stored as complex numbers. The real component is at the slice. Th
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \section{Maxwell's Equations and Ohm's Law}
+  \label{model_equations_section}
+
+
+
 
 We begin with \Ampere's Law, Faraday's Law, and Ohm's Law; respectively: 
 \begin{align}
-  \underline{ \underline{\epsilon} } \cdot \frac{\partial}{\partial t} \underline{E} & = \frac{1}{\mu_0} \nabla \times \underline{B} - \underline{j} \\
+  \tensor{\epsilon} \cdot \frac{\partial}{\partial t} \underline{E} & = \frac{1}{\mu_0} \nabla \times \underline{B} - \underline{j} \\
   \frac{\partial}{\partial t} \underline{B} & = - \nabla \times \underline{E} \\
   \underline{j} & = \underline{ \underline{\sigma} } \cdot \underline{E}
 \end{align}
