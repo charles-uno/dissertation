@@ -40,6 +40,16 @@ constant value at the ionospheric boundary.
   u^1 & = - \frac{R_I}{r} \sin^2 \theta & u^2 & = \phi & u^3 & = \frac{R_I^2}{r^2} \frac{\cos \theta}{\cos \theta_0}
 \end{align}
 
+
+\begin{align}
+  \label{def_jacobian}
+  D &= ... \\
+    &= \sqrt{ \frac{ g_{33} }{ g^{11} g^{22} } }
+\end{align}
+
+
+
+
 Here, $\theta_0$ is a field line's invariant colatitude; that is, the
 colatitude at which it intersects the ionosphere. 
 
@@ -68,8 +78,107 @@ Fields are all stored as complex numbers. The real component is at the slice. Th
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\section{Maxwell's Equations and Ohm's Law}
+\section{Maxwell's Equations}
   \label{model_equations_section}
+
+First, let's consider Faraday's Law. 
+
+\begin{align}
+  \ddt \vec{B} & = - \curl{E}
+\end{align}
+
+Written in generalized coordinates, we can write this as:
+
+\begin{align}
+  \ddt B^i & = -\frac{ \varepsilon^{ijk} }{D} \partial_j E_k
+\end{align}
+
+Where D is the determinant of the Jacobian matrix, as defined in \cref{def_jacobian}.
+
+Using the metric tensor to eliminate contravariant coordinates, we get: 
+
+\begin{align}
+  \ddt B_i & = -\frac{g_{ij}}{D} \varepsilon^{jkl} \partial_k E_l
+\end{align}
+
+Or...
+
+\begin{align}
+  \ddt B_1 & = -\frac{ g_{11} }{D} \left( \partial_2 E_3 - \partial_3 E_2 \right)
+               -\frac{ g_{13} }{D} \left( \partial_1 E_2 - \partial_2 E_1 \right) \\
+  \ddt B_2 & = -\frac{ g_{22} }{D} \left( \partial_3 E_1 - \partial_1 E_3 \right) \\
+  \ddt B_3 & = -\frac{ g_{31} }{D} \left( \partial_2 E_3 - \partial_3 E_2 \right)
+               -\frac{ g_{33} }{D} \left( \partial_1 E_2 - \partial_2 E_1 \right)
+\end{align}
+
+\Ampere's law is a bit more complicated. Let's break it into parallel and perpendicular components. 
+
+\begin{align}
+  \epsilon_\bot \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \left( \curl{B} \right)_\bot - \vec{J}_\bot \\
+  \epsilon_\parallel \ddt E_\parallel &= \frac{1}{\mu_0} \left( \curl{B} \right)_\parallel - J_\parallel
+\end{align}
+
+For the perpendicular component, the current ($J$) can be eliminated using Kirchhoff's formulation of Ohm's Law, $\vec{J} = \tensor{\sigma} \cdot \vec{E}$. 
+
+\begin{align}
+  \epsilon_\bot \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \left( \curl{B} \right)_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot
+\end{align}
+
+As noted earlier, \xhat and \yhat are the perpendicular directions to the zeroth-order magnetic field. Note also that we can rewrite this expression using the \Alfven speed, $\frac{1}{\mu_0 \epsilon_\bot} = v^2$. 
+
+\begin{align}
+  \ddt E_x &= v^2 \left( \curl{B} \right)_x - \frac{\sigma_P}{\epsilon_\bot} E_x + \frac{\sigma_H}{\epsilon_\bot} E_y \\
+  \ddt E_y &= v^2 \left( \curl{B} \right)_y - \frac{\sigma_H}{\epsilon_\bot} E_x - \frac{\sigma_P}{\epsilon_\bot} E_y
+\end{align}
+
+The Hall conductivity couples the two perpendicular electric field components. They can be disentangled by a change of variables, $E_\pm \equiv E_x \pm i E_y$. Components of $\curl{B}$ are defined analogously. Then, 
+
+\begin{align}
+  \ddt E_\pm &= v^2 \left( \curl{B} \right)_\pm + \left( \frac{\sigma_P}{\epsilon_\bot} \pm i \frac{\sigma_H}{\epsilon_\bot} \right) E_\pm
+\end{align}
+
+This can be solved with integrating factors. Setting $\alpha \equiv \frac{\sigma_P}{\epsilon_\bot} \pm i \frac{\sigma_H}{\epsilon_\bot}$...
+
+\begin{align}
+ \lr{ \ddt + \alpha } E_\pm &= v^2 \lr{ \curl{B} }_\pm
+\end{align}
+
+...
+
+\begin{align}
+  \exp \lr{ \alpha t } \lr{ \ddt + \alpha } E_\pm 
+  &= v^2 \exp \lr{ \alpha t } \lr{ \curl{B} }_\pm 
+\end{align}
+
+...
+
+\begin{align}
+  \ddt \lr{ E_\pm \exp \lr{ \alpha t } } &= v^2 \lr{ \curl{B} }_\pm \exp \lr{ \alpha t }
+\end{align}
+
+...
+
+\begin{align}
+  \displaystyle\int^{\dt}_0 dt \ddt \lr{ E_\pm \lr{t} \exp \lr{ \alpha t } }
+  &= \displaystyle\int_0^{\dt} dt v^2 \lr{ \curl{B} \lr{t} }_\pm \exp \lr{\alpha t}
+\end{align}
+
+...
+
+%\begin{align}
+%  E_\pm (\dt) \exp \left( \frac{\sigma_P}{\epsilon_\bot} \dt \pm i \frac{\sigma_H}{\epsilon_\bot} \dt \right) - E_\pm (0) &= \dt v^2 \left( \curl{B} ( {\scriptstyle\frac{\dt}{2}} ) \right)_\pm \exp \left( \frac{\sigma_P}{\epsilon_\bot} {\scriptstyle\frac{\dt}{2} \pm i \frac{\sigma_H}{\epsilon_\bot} \frac{\dt}{2}} \right)
+%\end{align}
+
+
+
+
+
+We use lowercase $x$, $y$, and $z$ to indicate field-aligned coordinates. The
+unit vector \zhat is aligned with the dipole field (pointing outward in the
+northern hemisphere and inward in the southern hemisphere), while \xhat and
+\yhat are perpendicular to the dipole field; \xhat lies in the meridinal plane,
+and \yhat in the azimuthal direction.
+
 
 
 
