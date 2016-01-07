@@ -11,6 +11,7 @@ It's called Tuna!
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \section{Coordinate System}
+  \label{model_grid_section}
 
 We use lowercase $x$, $y$, and $z$ to indicate field-aligned coordinates. The
 unit vector \zhat is aligned with the dipole field (pointing outward in the
@@ -40,15 +41,11 @@ constant value at the ionospheric boundary.
   u^1 & = - \frac{R_I}{r} \sin^2 \theta & u^2 & = \phi & u^3 & = \frac{R_I^2}{r^2} \frac{\cos \theta}{\cos \theta_0}
 \end{align}
 
-
 \begin{align}
   \label{def_jacobian}
   D &= ... \\
     &= \sqrt{ \frac{ g_{33} }{ g^{11} g^{22} } }
 \end{align}
-
-
-
 
 Here, $\theta_0$ is a field line's invariant colatitude; that is, the
 colatitude at which it intersects the ionosphere. 
@@ -60,11 +57,6 @@ each field line intersects the ionosphere in the southern hemisphere.
 The tradeoff is that these coordinates are not orthogonal. As a result, a
 distinction must be made between covariant and contravariant coordinates. The
 distinction is discussed in detail in [differential geometry appendix].  
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\section{Two and a Half Dimensions}
 
 Tuna's grid takes a slice through the meridinal plane. Either dayside or nightside. 
 
@@ -78,6 +70,41 @@ Fields are all stored as complex numbers. The real component is at the slice. Th
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
+\section{Ionospheric Profile}
+  \label{model_ionos_section}
+
+
+
+
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Driving with Current}
+  \label{model_driving_section}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
 \section{Maxwell's Equations}
   \label{model_equations_section}
 
@@ -87,89 +114,173 @@ First, let's consider Faraday's Law.
   \ddt \vec{B} & = - \curl{E}
 \end{align}
 
-Written in generalized coordinates, we can write this as:
+To reduce redundant computation, we compute the intermediate variable $\vec{C} \equiv \curl{E}$. After using the metric tensor to eliminate all contravariant field components, this can be written as:
+
+%\begin{align}
+%  \ddt B^i & = -\frac{ \varepsilon^{ijk} }{D} \partial_j E_k
+%\end{align}
+
+%\begin{align}
+%  \ddt B_1 & = - g_{11} C^1 - g_{13} C^3 \\
+%  \ddt B_2 & = - g_{22} C^2 \\
+%  \ddt B_3 & = - g_{31} C^1 - g_{33} C^3
+%\end{align}
 
 \begin{align}
-  \ddt B^i & = -\frac{ \varepsilon^{ijk} }{D} \partial_j E_k
+  B_1 \lr{\dt} & = B_1 \lr{0} - g_{11} C^1 \lrsmall{\frac{\dt}{2}} - g_{13} C^3 \lrsmall{\frac{\dt}{2}} \\
+  B_2 \lr{\dt} & = B_2 \lr{0} - g_{22} C^2 \lrsmall{\frac{\dt}{2}} \\
+  B_3 \lr{\dt} & = B_3 \lr{0} - g_{31} C^1 \lrsmall{\frac{\dt}{2}} - g_{33} C^3 \lrsmall{\frac{\dt}{2}}
 \end{align}
 
-Where D is the determinant of the Jacobian matrix, as defined in \cref{def_jacobian}.
-
-Using the metric tensor to eliminate contravariant coordinates, we get: 
+Where... 
 
 \begin{align}
-  \ddt B_i & = -\frac{g_{ij}}{D} \varepsilon^{jkl} \partial_k E_l
+  C^1 & = \frac{1}{D} \lr{ \partial_2 E_3 - \partial_3 E_2 } \\
+  C^2 & = \frac{1}{D} \lr{ \partial_3 E_1 - \partial_1 E_3 } \\
+  C^3 & = \frac{1}{D} \lr{ \partial_1 E_2 - \partial_2 E_1 }
 \end{align}
 
-Or...
+Here $D$ is the determinant of the Jacobian matrix, as defined in \cref{def_jacobian}. The half-step offset between electric and magnetic fields will become clear when looking at \Ampere's Law. 
 
-\begin{align}
-  \ddt B_1 & = -\frac{ g_{11} }{D} \left( \partial_2 E_3 - \partial_3 E_2 \right)
-               -\frac{ g_{13} }{D} \left( \partial_1 E_2 - \partial_2 E_1 \right) \\
-  \ddt B_2 & = -\frac{ g_{22} }{D} \left( \partial_3 E_1 - \partial_1 E_3 \right) \\
-  \ddt B_3 & = -\frac{ g_{31} }{D} \left( \partial_2 E_3 - \partial_3 E_2 \right)
-               -\frac{ g_{33} }{D} \left( \partial_1 E_2 - \partial_2 E_1 \right)
-\end{align}
+%\begin{align}
+%  C^i & \equiv \lr{ \curl{E} }^i = \frac{ \varepsilon^{ijk} }{D} \partial_j E_k
+%\end{align}
 
-\Ampere's law is a bit more complicated. Let's break it into parallel and perpendicular components. 
+%\begin{align}
+%  C^1 & = \frac{1}{D} \lr{ \partial_2 E_3 - \partial_3 E_2 } \\
+%  C^2 & = \frac{1}{D} \lr{ \partial_3 E_1 - \partial_1 E_3 } \\
+%  C^3 & = \frac{1}{D} \lr{ \partial_1 E_2 - \partial_2 E_1 }
+%\end{align}
+
+Let's break it into parallel and perpendicular components. 
 
 \begin{align}
   \epsilon_\bot \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \left( \curl{B} \right)_\bot - \vec{J}_\bot \\
   \epsilon_\parallel \ddt E_\parallel &= \frac{1}{\mu_0} \left( \curl{B} \right)_\parallel - J_\parallel
 \end{align}
 
-For the perpendicular component, the current ($J$) can be eliminated using Kirchhoff's formulation of Ohm's Law, $\vec{J} = \tensor{\sigma} \cdot \vec{E}$. 
+We split the perpendicular current into two terms: an Ohmic term, which we eliminate using Kirchoff's formulation of Ohm's law ($\vec{J} = \tensor{\sigma} \cdot \vec{E}$), and a driving component, as discussed in \cref{model_driving_section}. We take $\vec{J}_{drive} \cdot \zhat = 0$. 
 
 \begin{align}
-  \epsilon_\bot \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \left( \curl{B} \right)_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot
+  \epsilon_\bot \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \left( \curl{B} \right)_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot - \vec{J}_{drive} \\
+  \epsilon_\parallel \ddt E_\parallel &= \frac{1}{\mu_0} \left( \curl{B} \right)_\parallel - J_\parallel
 \end{align}
 
-As noted earlier, \xhat and \yhat are the perpendicular directions to the zeroth-order magnetic field. Note also that we can rewrite this expression using the \Alfven speed, $\frac{1}{\mu_0 \epsilon_\bot} = v^2$. 
+We rewrite this expression using the \Alfven speed, $v^2 \equiv \frac{1}{\mu_0 \epsilon_\bot}$. In addition, we take the shorthand $\vec{F} \equiv \curl{B} + \frac{1}{\epsilon_\bot} \vec{J}_{drive}$. 
 
 \begin{align}
-  \ddt E_x &= v^2 \left( \curl{B} \right)_x - \frac{\sigma_P}{\epsilon_\bot} E_x + \frac{\sigma_H}{\epsilon_\bot} E_y \\
-  \ddt E_y &= v^2 \left( \curl{B} \right)_y - \frac{\sigma_H}{\epsilon_\bot} E_x - \frac{\sigma_P}{\epsilon_\bot} E_y
+  \ddt \vec{E}_\bot &= v^2 \vec{F}_\bot - \frac{1}{\epsilon_\bot} \tensor{\sigma}_\bot \cdot \vec{E}_\bot
 \end{align}
 
-The Hall conductivity couples the two perpendicular electric field components. They can be disentangled by a change of variables, $E_\pm \equiv E_x \pm i E_y$. Components of $\curl{B}$ are defined analogously. Then, 
+Note that the $E_x$ and $E_y$ equations are coupled by the Hall conductivity in the ionosphere. They can be decoupled by a rotation, then solved using integrating factors. 
 
 \begin{align}
-  \ddt E_\pm &= v^2 \left( \curl{B} \right)_\pm + \left( \frac{\sigma_P}{\epsilon_\bot} \pm i \frac{\sigma_H}{\epsilon_\bot} \right) E_\pm
+  \ddt E_x &= v^2 F_x - \frac{\sigma_P}{\epsilon_\bot} E_x + \frac{\sigma_H}{\epsilon_\bot} E_y \\
+  \ddt E_y &= v^2 F_y - \frac{\sigma_H}{\epsilon_\bot} E_x - \frac{\sigma_P}{\epsilon_\bot} E_y
 \end{align}
 
-This can be solved with integrating factors. Setting $\alpha \equiv \frac{\sigma_P}{\epsilon_\bot} \pm i \frac{\sigma_H}{\epsilon_\bot}$...
+Let $E_\pm \equiv E_x \pm i E_y$ and $F_\pm \equiv F_x \pm i F_y$. Also define the integrating factor $\alpha_\pm \equiv \frac{\sigma_P}{\epsilon_\bot} \pm i \frac{\sigma_H}{\epsilon_\bot}$. 
 
 \begin{align}
- \lr{ \ddt + \alpha } E_\pm &= v^2 \lr{ \curl{B} }_\pm
-\end{align}
-
-...
-
-\begin{align}
-  \exp \lr{ \alpha t } \lr{ \ddt + \alpha } E_\pm 
-  &= v^2 \exp \lr{ \alpha t } \lr{ \curl{B} }_\pm 
+  \ddt E_\pm &= v^2 F_\pm + \alpha_\pm E_\pm
 \end{align}
 
 ...
 
 \begin{align}
-  \ddt \lr{ E_\pm \exp \lr{ \alpha t } } &= v^2 \lr{ \curl{B} }_\pm \exp \lr{ \alpha t }
+ \lr{ \ddt + \alpha_\pm } E_\pm &= v^2 F_\pm
 \end{align}
 
 ...
 
 \begin{align}
-  \displaystyle\int^{\dt}_0 dt \ddt \lr{ E_\pm \lr{t} \exp \lr{ \alpha t } }
-  &= \displaystyle\int_0^{\dt} dt v^2 \lr{ \curl{B} \lr{t} }_\pm \exp \lr{\alpha t}
+  \exp \lr{ \alpha_\pm t } \lr{ \ddt + \alpha_\pm } E_\pm 
+  &= v^2 \exp \lr{ \alpha_\pm t } F_\pm 
 \end{align}
 
 ...
+
+\begin{align}
+  \ddt \lr{ E_\pm \exp \lr{ \alpha_\pm t } } &= v^2 F_\pm \exp \lr{ \alpha_\pm t }
+\end{align}
+
+...
+
+\begin{align}
+  \displaystyle\int^{\dt}_0 dt \; \ddt \lr{ E_\pm \lr{t} \exp \lr{ \alpha_\pm t } }
+  &= \displaystyle\int_0^{\dt} dt \; v^2 F_\pm \lr{t} \exp \lr{\alpha_\pm t}
+\end{align}
+
+...
+
+\begin{align}
+  E_\pm \lr{\dt} \exp \lr{\alpha_\pm \dt} - E_\pm \lr{0} &= v^2 \dt F_\pm \lrsmall{ \frac{\dt}{2} } \exp \lrsmall{ \alpha_\pm \frac{\dt}{2} }
+\end{align}
+
+...
+
+\begin{align}
+  E_\pm \lr{\dt} &= E_\pm \lr{0} \exp \lr{-\alpha_\pm \dt} + v^2 \dt F_\pm \lrsmall{ \frac{\dt}{2} } \exp \lrsmall{ -\alpha_\pm \frac{\dt}{2} }
+\end{align}
+
+Casting this back into the $x$-$y$ basis, and collapsing the complex exponentials into sines and cosines, this can be written as:
+
+\begin{align}
+  \vec{E}_\bot \arg{\dt} &= 
+    \tensor{R} \argsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} \cdot \vec{E}_\bot \arg{0}
+      \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \dt}
+    + v^2 \dt \tensor{R} \argsmall{\frac{\sigma_H}{\epsilon_\bot} \frac{\dt}{2} } \cdot  F_\pm \argsmall{ \frac{\dt}{2} } \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \frac{\dt}{2} }
+\end{align}
+
+Where $\tensor{R}$ is the 2D rotation matrix: 
+
+\begin{align}
+  \tensor{R} \lr{\theta} & = \mm{\cos\theta}{-\sin\theta}{\sin\theta}{\cos\theta}
+\end{align}
+
+Mapping from physical coordinates to covariant coordinates, we arrive at...
+
+
+
+
+\begin{align}
+  \begin{split}
+    E_1 \arg{\dt} - \frac{g^{13}}{g^{11}} E_3 \arg{\dt}
+      =& E_1 \arg{0} \cos \argsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} 
+      \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \dt} \\
+    & + E_2 \arg{0} \sqrt{ \frac{g^{22}}{g^{11}} } 
+      \sin \argsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} 
+      \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \dt} \\
+    & + E_3 \arg{0} ...
+  \end{split} \\
+  \begin{split}
+    E_2 \arg{\dt}
+      =& E_1 \arg{0} \sqrt{ \frac{g^{11}}{g^{22}} } 
+      \sin \argsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} 
+      \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \dt} \\
+    & + E_2 \arg{0} \cos \argsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} 
+      \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \dt} \\
+    & + E_3 \arg{0} ...
+  \end{split}
+\end{align}
+
+
+
+
+
+
+
+
+
+
+Now we can map this back to $x$ and $y$ coordinates. Note that the imaginary components of $\alpha_\pm$ will cancel out to become sines and cosines. 
 
 %\begin{align}
-%  E_\pm (\dt) \exp \left( \frac{\sigma_P}{\epsilon_\bot} \dt \pm i \frac{\sigma_H}{\epsilon_\bot} \dt \right) - E_\pm (0) &= \dt v^2 \left( \curl{B} ( {\scriptstyle\frac{\dt}{2}} ) \right)_\pm \exp \left( \frac{\sigma_P}{\epsilon_\bot} {\scriptstyle\frac{\dt}{2} \pm i \frac{\sigma_H}{\epsilon_\bot} \frac{\dt}{2}} \right)
+% \vv{ E_x \lr{\dt} }{ E_y \lr{\dt} } &= \mm{\cos\lrsmall{\frac{\sigma_H}{\epsilon_\bot} \dt}}{-\sin\lrsmall{\frac{\sigma_H}{\epsilon_\bot} \dt}}{\sin\lrsmall{\frac{\sigma_H}{\epsilon_\bot} \dt}}{\cos\lrsmall{\frac{\sigma_H}{\epsilon_\bot} \dt}}
+%    \cdot \vv{ E_x \lr{0} }{ E_y \lr{0} } + v^2 \dt
+%  E_x (\dt) &= E_x \lr{0} \cos \lrsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} \exp \lrsmall{-\frac{\sigma_P}{\epsilon_\bot} \dt} 
+%+ v^2 \dt \lr{ \curl{B} \lrsmall{ \frac{\dt}{2} } }_\pm \exp \lrsmall{ -\alpha_\pm \frac{\dt}{2} }
 %\end{align}
-
-
 
 
 
@@ -178,29 +289,6 @@ unit vector \zhat is aligned with the dipole field (pointing outward in the
 northern hemisphere and inward in the southern hemisphere), while \xhat and
 \yhat are perpendicular to the dipole field; \xhat lies in the meridinal plane,
 and \yhat in the azimuthal direction.
-
-
-
-
-
-We begin with \Ampere's Law, Faraday's Law, and Ohm's Law; respectively: 
-\begin{align}
-  \tensor{\epsilon} \cdot \frac{\partial}{\partial t} \underline{E} & = \frac{1}{\mu_0} \nabla \times \underline{B} - \underline{j} \\
-  \frac{\partial}{\partial t} \underline{B} & = - \nabla \times \underline{E} \\
-  \underline{j} & = \underline{ \underline{\sigma} } \cdot \underline{E}
-\end{align}
-
-Note that we're looking at perturbations from the zeroth-order dipole field. 
-
-Use Ohm's law to eliminate $j$. 
-
-Write in terms of contravariant components. 
-
-Solve using integrating factors. 
-\begin{align}
-  \delta B^i & = -\frac{\delta t}{J} \varepsilon^{ijk} \partial_j E_k \\
-  ... & = ...
-\end{align}
 
 A characteristic time step for Tuna is $10^{-5} s$. As a result, the exponent $- \frac{\sigma_0 \delta t}{\epsilon_0}$ is, at most, in the thousands. Numbers that small can't be stored numerically, so $E_3$ is uniformly zero. 
 

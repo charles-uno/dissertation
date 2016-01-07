@@ -1,9 +1,9 @@
 
 
 
-\newcommand{\Alfven}{Alfv\'en}
+\newcommand{\Alfven}{Alfv\'en\xspace}
 
-\newcommand{\Ampere}{Amp\`ere}
+\newcommand{\Ampere}{Amp\`ere\xspace}
 
 \newcommand{\xhat}{\ensuremath{\hat{x}}\xspace}
 \newcommand{\yhat}{\ensuremath{\hat{y}}\xspace}
@@ -19,7 +19,7 @@
 
 \newcommand{\ddt}{\dd{t}\xspace}
 
-\newcommand{\dt}{\ensuremath{\delta \, t} \xspace}
+\newcommand{\dt}{\ensuremath{\delta \hspace{-0.1em} t} \xspace}
 
 \newcommand{\curl}[1]{\ensuremath{ \nabla \times \vec{#1} }\xspace}
 
@@ -27,11 +27,28 @@
 
 \newcommand{\lrsmall}[1]{ \left( {\scriptstyle #1} \right) }
 
+\renewcommand{\arg}[1]{\!\lr{#1}}
+
+\newcommand{\argsmall}[1]{\!\lrsmall{#1}}
+
+
+
 \newcommand{\mmm}[9]{ \left[ \begin{array}{ccc}
     #1 & #2 & #3 \\
     #4 & #5 & #6 \\
     #7 & #8 & #9
   \end{array} \right] }
+
+\newcommand{\mm}[4]{ \left[ \begin{array}{cc}
+    #1 & #2 \\
+    #3 & #4
+  \end{array} \right] }
+
+\newcommand{\vv}[2]{ \left[ \begin{array}{c}
+    #1 \\
+    #2
+  \end{array} \right] }
+
 
 
 
