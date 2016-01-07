@@ -241,8 +241,6 @@ Where $\tensor{R}$ is the 2D rotation matrix:
 Mapping from physical coordinates to covariant coordinates, we arrive at...
 
 
-
-
 \begin{align}
   \begin{split}
     E_1 \arg{\dt} - \frac{g^{13}}{g^{11}} E_3 \arg{\dt}
@@ -263,6 +261,84 @@ Mapping from physical coordinates to covariant coordinates, we arrive at...
     & + E_3 \arg{0} ...
   \end{split}
 \end{align}
+
+
+
+
+
+
+
+
+
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Boundary Conditions}
+
+At the inner and outer boundaries (that is, along the innermost and outermost field lines), as use Dirichlet and Neumann boundary conditions for electric and magnetic fields respectively. 
+
+These are implemented in the differentiation and (parity) interpolation functions. 
+
+Whenever we need to know the magnetic field just outside the grid boundary, we say that its value is the same as just inside the grid boundary, and its derivative is zero. Neumann. 
+
+Conversely, we say that the electric field just outside the grid goes to 0, allowing us to compute the derivative from the value just inside the grid. Dirichlet. 
+
+The more interesting boundary is at the ionosphere. 
+
+Per Maxwell's equations, $\div{B}=0$. We further assume that there are no currents flowing in the atmosphere, giving $\curl{B}=0$. These conditions together guarantee the existence of a scalar magnetic potential, $\Psi$, which satisfies Laplace's equation, $\nabla^2 \Psi = 0$ and $\vec{B} = \grad{\Psi}$. 
+
+Separating out the $r$ and $\phi$ components of Laplace's equation, the $\theta$ component of the equation can be written as a differential equation in terms of $u \equiv \cos\theta$: 
+
+\begin{align}
+  \frac{d}{d u} \lr{ \lr{1 - u^2} \frac{d}{d u} Y_\nu } - \frac{m^2}{1 - u^2} Y_\nu & = - \nu \lr{\nu + 1} Y_\nu
+\end{align}
+
+This can be solved numerically on our discrete grid, providing us with eigenvectors and eigenvalues ($Y_\nu$ and $\nu$ respectively). We can then write $\Psi$ in terms of those harmonics: 
+
+\begin{align}
+  \Psi \lr{r, \theta} = & \displaystyle\sum_\nu \lr{ \alpha_\nu r^\nu + \beta_\nu r^{-\nu-1} } Y_\nu \lr{\theta}
+\end{align}
+
+We will rearrange this expression in order to compute $\Psi$ each time step as a linear combination of the radial magnetic field values at $R_I$. 
+
+We defined $\vec{B} = \grad{\Psi}$, so $B_r = \dd{r} \Psi$. 
+
+
+
+The ground is perfectly conducting, so $B_r \lr{R_E} = 0$. 
+
+\begin{align}
+  \Psi \lr{r, \theta} = & \displaystyle\sum_\nu \lr{ \alpha_\nu r^\nu + \beta_\nu r^{-\nu-1} } Y_\nu \lr{\theta}
+\end{align}
+
+
+
+
+
+
+Where $\nu$ is a constant of separation... an eigenvalue. And $\alpha_\nu$ and $\beta_\nu$ are scalar constants. 
+
+And $Y_\nu$ satisfies the following expression, which we can solve numerically for eigenvalues $\nu$ on our discrete grid. Letting 
+
+\begin{align}
+  \frac{d}{d u} \lr{ \lr{1 - u^2} \frac{d}{d u} Y_\nu } - \frac{m^2}{1 - u^2} Y_\nu & = - \nu \lr{\nu + 1} Y_\nu
+\end{align}
+
+
+
+
+
+Here $m$ is the azimuthal modenumber
+For eigenvalue $\nu$ and azimuthal modenumber $m$. 
+
+
+
+
+
+
+
 
 
 
