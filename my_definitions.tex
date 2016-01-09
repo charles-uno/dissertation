@@ -1,64 +1,90 @@
 
 
-
+% Names with special characters. 
 \newcommand{\Alfven}{Alfv\'en\xspace}
-
 \newcommand{\Ampere}{Amp\`ere\xspace}
 
+% To make sure the capitalization is consistent. 
+\newcommand{\ohmlaw}{Ohm's Law\xspace}
+\newcommand{\amplaw}{\Ampere's Law\xspace}
+\newcommand{\farlaw}{Faraday's Law\xspace}
+
+
+
+
+% Field-aligned unit vectors. 
 \newcommand{\xhat}{\ensuremath{\hat{x}}\xspace}
 \newcommand{\yhat}{\ensuremath{\hat{y}}\xspace}
 \newcommand{\zhat}{\ensuremath{\hat{z}}\xspace}
 
-\DeclareSIUnit\RE{R_E}
+% Spherical unit vectors. 
+\newcommand{\rhat}{\ensuremath{\hat{r}}\xspace}
+\newcommand{\qhat}{\ensuremath{\hat{\theta}}\xspace}
+\newcommand{\fhat}{\ensuremath{\hat{\phi}}\xspace}
 
+% Use underlines for vectors and tensors. 
 \renewcommand{\vec}[1]{\underline{#1}}
-
 \newcommand{\tensor}[1]{\underline{\underline{#1}}}
 
+% Differential operators. 
 \newcommand{\dd}[1]{\ensuremath{ \frac{\partial}{\partial #1} }\xspace}
-
 \newcommand{\ddt}{\dd{t}\xspace}
-
-\newcommand{\dt}{\ensuremath{\delta \hspace{-0.1em} t} \xspace}
-
 \newcommand{\curl}[1]{\ensuremath{ \nabla \times \vec{#1} }\xspace}
 \renewcommand{\div}[1]{\ensuremath{ \nabla \cdot \vec{#1} }\xspace}
 \newcommand{\grad}[1]{\ensuremath{ \nabla #1 }\xspace}
 
+% Properly-scaled parentheses for grouping terms or for arguments. 
 \newcommand{\lr}[1]{ \left( #1 \right) }
-
 \newcommand{\lrsmall}[1]{ \left( {\scriptstyle #1} \right) }
-
 \renewcommand{\arg}[1]{\!\lr{#1}}
-
 \newcommand{\argsmall}[1]{\!\lrsmall{#1}}
+\newcommand{\lrb}[1]{ \left[ #1 \right] }
 
 
 
+
+
+
+
+
+% Define a better looking eV by moving the V slightly left
+\DeclareSIUnit\electronvolt{e\hspace{-0.08em}V}
+
+\DeclareSIUnit\RE{R_E}
+
+
+\newcommand{\dt}{\ensuremath{\delta \hspace{-0.1em} t} \xspace}
+
+
+
+% Azimuthal modenumber, typically indicated with a lowercase m. 
+\newcommand{\azm}{\ensuremath{m_{azimuthal}}\xspace}
+
+% Azimuthal modenumber, typically indicated with a lowercase m. 
+\newcommand{\me}{\ensuremath{m_{e}}\xspace}
+
+% Jacobian dererminant, typically indicated with a capital J, which we are using for current. 
+\newcommand{\jac}{\ensuremath{D}\xspace}
+
+
+% 3x3 matrix. 
 \newcommand{\mmm}[9]{ \left[ \begin{array}{ccc}
     #1 & #2 & #3 \\
     #4 & #5 & #6 \\
     #7 & #8 & #9
   \end{array} \right] }
 
+% 2x2 matrix. 
 \newcommand{\mm}[4]{ \left[ \begin{array}{cc}
     #1 & #2 \\
     #3 & #4
   \end{array} \right] }
 
+% 2x1 matrix, or 2-vector. 
 \newcommand{\vv}[2]{ \left[ \begin{array}{c}
     #1 \\
     #2
   \end{array} \right] }
-
-
-
-
-
-
-% Note: Do we want to squish dt together? Do we want to always have tiny spaces
-% between variables being multiplied together? 
-\newcommand{\deltat}{\delta \hspace{-0.1em} t}
 
 
 % Physics constants
@@ -67,5 +93,9 @@
 % Add space between rows of tables
 \newcommand{\spacerows}[1]{\renewcommand{\arraystretch}{#1}}
 
-% Define a better looking eV by moving the V slightly left
-\DeclareSIUnit\electronvolt{e\hspace{-0.08em}V}
+
+
+
+
+
+

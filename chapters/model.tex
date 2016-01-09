@@ -7,11 +7,18 @@
 
 It's called Tuna! 
 
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
+The code is linear! From here on, we're talking about perturbations from the zeroth-order magnetic field, which we assume to be an ideal dipole. This is a not-great assumption out towards the magnetopause. In practice, however, we mostly see wave activity around $L \lesssim \SI{7}{\RE}$, where the dipole approximation is pretty good. 
+
+% =============================================================================
+% =============================================================================
+% =============================================================================
 \section{Coordinate System}
   \label{model_grid_section}
+
+
+Important to align our grid with the dipole field line, since we have empirical data for parallel and perpendicular conductivity and electric constant. 
+
+Also important to take into account the effects of a constant-altitude ionosphere. It plays a significant role in the propagation of \Alfven waves. Also, going down to the ionosphere allows us to compute ground signatures. 
 
 We use lowercase $x$, $y$, and $z$ to indicate field-aligned coordinates. The
 unit vector \zhat is aligned with the dipole field (pointing outward in the
@@ -20,6 +27,26 @@ northern hemisphere and inward in the southern hemisphere), while \xhat and
 and \yhat in the azimuthal direction.
 
 But we don't actually do calculations in $x$, $y$, $z$. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Two and a Half Dimensions}
+
+We resolve the meridional plane, then say everything goes as $e^{i \azm \phi}$. 
+
+This prevents us from looking at the dayside and the nightside at the same time. 
+
+As long as we're looking at phenomena which are azimuthally localized, we should be fine. And, as we discussed in ???, Pc4 pulsations are localized in MLT. 
+
+This means we don't have to worry about derivatives in the azimuthal direction. We just use a factor of $i \azm$. 
+
+While we can't resolve the azimuthal direction, we can look at phase. Imaginary values correspond to an azimuthal offset compared to the (real) driving. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Nonorthogonal Dipole Grid}
 
 It's convenient to align our grid to the zeroth-order field. This allows us to
 decouple the parallel and perpendicular components of the permittivity and
@@ -35,16 +62,13 @@ specify inner and outer boudaries. On the other hand, the natural choice for
 boundaries in $\nu$ are the ionospheric current sheets. These sheets fall at 
 (more or less) constant altitude, but not constant $\nu$. 
 
-Following the example of [Lysak 2004], $\nu$ can be rescaled to come to a
+Following the example of (CITE Lysak 2004 !!!), $\nu$ can be rescaled to come to a
 constant value at the ionospheric boundary. 
 \begin{align}
-  u^1 & = - \frac{R_I}{r} \sin^2 \theta & u^2 & = \phi & u^3 & = \frac{R_I^2}{r^2} \frac{\cos \theta}{\cos \theta_0}
-\end{align}
-
-\begin{align}
-  \label{def_jacobian}
-  D &= ... \\
-    &= \sqrt{ \frac{ g_{33} }{ g^{11} g^{22} } }
+  \label{def_coords}
+  u^1 & = - \frac{R_I}{r} \sin^2 \theta & 
+  u^2 & = \phi &
+  u^3 & = \frac{R_I^2}{r^2} \frac{\cos \theta}{\cos \theta_0}
 \end{align}
 
 Here, $\theta_0$ is a field line's invariant colatitude; that is, the
@@ -54,206 +78,178 @@ Note that $u^1$ is constant over each field line, $u^3 = 1$ where each field
 line intersects the ionosphere in the northern hemisphere, and $u^3 = -1$ where
 each field line intersects the ionosphere in the southern hemisphere. 
 
-The tradeoff is that these coordinates are not orthogonal. As a result, a
-distinction must be made between covariant and contravariant coordinates. The
-distinction is discussed in detail in [differential geometry appendix].  
-
-Tuna's grid takes a slice through the meridinal plane. Either dayside or nightside. 
-
-We don't explicitly resolve the azimuthal direction. Instead, we suppose that everything valies as $\exp(i m \phi)$. 
-
-This is appropriate because we're looking at phenomena that are azimuthally localized. 
-
-It's perhaps better to think of the azimuthal direction in terms of a wavelength, rather than a modenumber. We don't actually care about periodicity. 
-Fields are all stored as complex numbers. The real component is at the slice. The imaginary component is offset from the slice by a phase of $\frac{\pi}{2}$. 
-
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
+\subsection{The Metric Tensor}
+
+The coordinates defined in \cref{def_coords} are field-aligned, and come to a constant value at the ionosphere. Those are some pretty nice properties. But they're not orthonormal. That means we have to distinguish between covariant and contravariant coordinates. 
+
+Compute covariant and contravariant basis vectors in terms of $u^i$...
+\begin{align}
+  \hat{e}_i & = \dd{u^i} \vec{x} & \hat{e}^i & = \dd{\vec{x}} u^i
+\end{align}
+
+Compute the metric tensor components in terms of the basis vectors... 
+\begin{align}
+  g_{ij} & = \hat{e}_i \cdot \hat{e}_j & g^{ij} & = \hat{e}^i \cdot \hat{e}^j
+\end{align}
+
+With a quick renormalization, we can map from these nonorthogonal coordinates to \xhat, \yhat, and \zhat. 
+\begin{align}
+  \xhat = \frac{ \hat{e}^1 }{ \sqrt{ g^{11} } } \equiv h_1 \hat{e}^1 &&
+  \yhat = \frac{ \hat{e}^2 }{ \sqrt{ g^{22} } } \equiv h_2 \hat{e}^2 &&
+  \zhat = \frac{ \hat{e}_3 }{ \sqrt{ g_{33} } } \equiv \frac{1}{h_3} \hat{e}_3
+\end{align}
+
+We can also map over to \rhat, \qhat, \fhat, though these expressions are only valid on the ionospheric boundary. 
+\begin{align}
+  \qhat = \frac{ \hat{e}_1 }{ \sqrt{ g_{11} } } \equiv \frac{1}{h_\theta} \hat{e}_1 &&
+  \fhat = \frac{ \hat{e}_2 }{ \sqrt{ g_{22} } } \equiv \frac{1}{h_\phi} \hat{e}_2 &&
+  \rhat = \frac{ \hat{e}^3 }{ \sqrt{ g^{33} } } \equiv h_r \hat{e}^3
+\end{align}
+
+In order to take derivatives with respect to these coordinates, we also need the determinant of the Jacobian matrix. 
+\begin{align}
+  \label{def_jacobian}
+  \jac &= \hat{e}_1 \lr{ \hat{e}_2 \times \hat{e}_3 } = h_1 h_2 h_3
+\end{align}
+
+It's possible (if tedious) to crunch out $g$, $h$, and $\jac$ in terms of $r$, $\theta$, and $\phi$. They're probably in an appendix somewhere. 
+
+% =============================================================================
+% =============================================================================
+% =============================================================================
 \section{Ionospheric Profile}
   \label{model_ionos_section}
 
+These profiles come from Kelley 1989. CITE!!!
 
-
-
-
+There are four profiles, corresponding to quiet day, quiet night, calm day, calm night. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
+\subsection{Conductivity}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Number Density and Mean Molecular Mass}
+
+Number density is the sum of a plasmaspheric profile and a ``auroral'' profile. 
+
+The mean molecular mass is based on eyeballing from... Bob's 2004 paper? He gives characteristic values at a few different altitudes. This has no visible effect on the code. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{\Alfven Speed}
+
+This section isn't about the electric constant, even though that's what we read in. If it were, we would have to talk about the Boris correction. That's a few sections later. 
+
+We have a profile that we read in, from Kelley. 
+
+We then add a density term. I guess Kelley's profile assumes low density, or was measured in a low density region? We use the number density discussed above, as well as the zeroth-order magnetic field strength, to compute the perpendicular electric constant. Then we use that to get the \Alfven speed. 
+
+The Ionospheric \Alfven Resonator (IAR) is definitely included in this model, but it's not super important in practice. IAR modes resonate at $\sim\SI{1}{\Hz}$ and our driving is two orders of magnitude slower. 
+
+% =============================================================================
+% =============================================================================
+% =============================================================================
 \section{Driving with Current}
   \label{model_driving_section}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+We have to get the energy in there somehow. Driving current is purely perpendicular. There is no component within the meridional plane (along the zeroth-order field or perpendicular to it). However, some effect is felt immediately on $E_x$ due to the Hall conductivity. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
+\subsection{Constraints on Compression}
+
+In the past, similar work has been done using compressional driving. 
+
+This constrains the values of \azm that can be looked at. At large \azm, \Alfven waves can't propagate across field lines. They become purely guided. 
+
+It's appropriate to drive with current because Pc4 pulsations are known to interact with energetic particles from the ring current and radiation belts. 
+
+Substorm injections can cause azimuthal asymmetry in the ring current. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Calibration using Sym-H}
+
+We look at Sym-H to get an idea of the appropriate scale for current driving. We look at a few storms. 1 June 2013. 17 March 2015. 22 June 2015. 17 March 2013. A few in October and November 2012. 
+
+We plot the power spectrum and basically do a fit for the top of the range of $\frac{1}{f}$ noise. This gives us a typical magnitude for oscillations on the order of a minute. 
+
+This doesn't give us a characteristic spatial extent for ring current modulations -- Sym-H is a global index -- but we can eyeball the size of current fluctuations. We know the approximate size of the ring current, so we can go from ground-based field signature to current density in space pretty easily. 
+
+There are a lot of parameters to play with. Since this is a linear code, we don't have to worry about ``sweet spots'' for nonlinear effects in the driving magnitude. And it doesn't look like the exact position or shape of the ring current has much qualitative effect on what we see. 
+
+Looking at SYMH. Fourier series out to a period of about a minute. The power spectrum (judging from June 1-3 2013) gives you ~$10^{-2} (T/minutes)$. We can hand-wave a mapping from SYMH to the ring current. 
+\begin{align}
+  B & = \frac{\mu_0 I}{2 R}
+\end{align}
+
+With $B \sim \SI{2}{\nano\tesla}$, $R \sim \SI{4}{\RE}$, $A \sim \SI{1}{\RE\squared}$, we end up with $J \sim \SI{e-4}{\micro\ampere/\meter\squared}$. 
+
+% =============================================================================
+% =============================================================================
+% =============================================================================
 \section{Maxwell's Equations}
   \label{model_equations_section}
 
-First, let's consider Faraday's Law. 
+The bulk of the model is just electric and magnetic fields sloshing back and forth according to Maxwell's equations. 
 
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Perpendicular Electric Field}
+
+Let's look at just the perpendicular component for the moment (with respect to the zeroth-order magnetic field). Recall that $\vec{B}$ and $\vec{E}$ are the first-order perturbations. 
 \begin{align}
-  \ddt \vec{B} & = - \curl{E}
+  \epsilon_\bot \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \left( \curl{B} \right)_\bot - \vec{J}_\bot
 \end{align}
 
-To reduce redundant computation, we compute the intermediate variable $\vec{C} \equiv \curl{E}$. After using the metric tensor to eliminate all contravariant field components, this can be written as:
-
-%\begin{align}
-%  \ddt B^i & = -\frac{ \varepsilon^{ijk} }{D} \partial_j E_k
-%\end{align}
-
-%\begin{align}
-%  \ddt B_1 & = - g_{11} C^1 - g_{13} C^3 \\
-%  \ddt B_2 & = - g_{22} C^2 \\
-%  \ddt B_3 & = - g_{31} C^1 - g_{33} C^3
-%\end{align}
-
+We split the current into two terms: an Ohmic term, which we eliminate using Kirchoff's formulation of \ohmlaw ($\vec{J} = \tensor{\sigma} \cdot \vec{E}$), and a driving component. 
 \begin{align}
-  B_1 \lr{\dt} & = B_1 \lr{0} - g_{11} C^1 \lrsmall{\frac{\dt}{2}} - g_{13} C^3 \lrsmall{\frac{\dt}{2}} \\
-  B_2 \lr{\dt} & = B_2 \lr{0} - g_{22} C^2 \lrsmall{\frac{\dt}{2}} \\
-  B_3 \lr{\dt} & = B_3 \lr{0} - g_{31} C^1 \lrsmall{\frac{\dt}{2}} - g_{33} C^3 \lrsmall{\frac{\dt}{2}}
+  \epsilon_\bot \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \left( \curl{B} \right)_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot - \vec{J}_{drive}
 \end{align}
 
-Where... 
-
-\begin{align}
-  C^1 & = \frac{1}{D} \lr{ \partial_2 E_3 - \partial_3 E_2 } \\
-  C^2 & = \frac{1}{D} \lr{ \partial_3 E_1 - \partial_1 E_3 } \\
-  C^3 & = \frac{1}{D} \lr{ \partial_1 E_2 - \partial_2 E_1 }
-\end{align}
-
-Here $D$ is the determinant of the Jacobian matrix, as defined in \cref{def_jacobian}. The half-step offset between electric and magnetic fields will become clear when looking at \Ampere's Law. 
-
-%\begin{align}
-%  C^i & \equiv \lr{ \curl{E} }^i = \frac{ \varepsilon^{ijk} }{D} \partial_j E_k
-%\end{align}
-
-%\begin{align}
-%  C^1 & = \frac{1}{D} \lr{ \partial_2 E_3 - \partial_3 E_2 } \\
-%  C^2 & = \frac{1}{D} \lr{ \partial_3 E_1 - \partial_1 E_3 } \\
-%  C^3 & = \frac{1}{D} \lr{ \partial_1 E_2 - \partial_2 E_1 }
-%\end{align}
-
-Let's break it into parallel and perpendicular components. 
-
-\begin{align}
-  \epsilon_\bot \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \left( \curl{B} \right)_\bot - \vec{J}_\bot \\
-  \epsilon_\parallel \ddt E_\parallel &= \frac{1}{\mu_0} \left( \curl{B} \right)_\parallel - J_\parallel
-\end{align}
-
-We split the perpendicular current into two terms: an Ohmic term, which we eliminate using Kirchoff's formulation of Ohm's law ($\vec{J} = \tensor{\sigma} \cdot \vec{E}$), and a driving component, as discussed in \cref{model_driving_section}. We take $\vec{J}_{drive} \cdot \zhat = 0$. 
-
-\begin{align}
-  \epsilon_\bot \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \left( \curl{B} \right)_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot - \vec{J}_{drive} \\
-  \epsilon_\parallel \ddt E_\parallel &= \frac{1}{\mu_0} \left( \curl{B} \right)_\parallel - J_\parallel
-\end{align}
-
-We rewrite this expression using the \Alfven speed, $v^2 \equiv \frac{1}{\mu_0 \epsilon_\bot}$. In addition, we take the shorthand $\vec{F} \equiv \curl{B} + \frac{1}{\epsilon_\bot} \vec{J}_{drive}$. 
-
+We rewrite this expression using the \Alfven speed, $v^2 \equiv \frac{1}{\mu_0 \epsilon_\bot}$. In addition, we take the shorthand $\vec{F} \equiv \curl{B} - \frac{1}{\epsilon_\bot} \vec{J}_{drive}$. 
 \begin{align}
   \ddt \vec{E}_\bot &= v^2 \vec{F}_\bot - \frac{1}{\epsilon_\bot} \tensor{\sigma}_\bot \cdot \vec{E}_\bot
 \end{align}
 
-Note that the $E_x$ and $E_y$ equations are coupled by the Hall conductivity in the ionosphere. They can be decoupled by a rotation, then solved using integrating factors. 
-
-\begin{align}
-  \ddt E_x &= v^2 F_x - \frac{\sigma_P}{\epsilon_\bot} E_x + \frac{\sigma_H}{\epsilon_\bot} E_y \\
-  \ddt E_y &= v^2 F_y - \frac{\sigma_H}{\epsilon_\bot} E_x - \frac{\sigma_P}{\epsilon_\bot} E_y
-\end{align}
-
-Let $E_\pm \equiv E_x \pm i E_y$ and $F_\pm \equiv F_x \pm i F_y$. Also define the integrating factor $\alpha_\pm \equiv \frac{\sigma_P}{\epsilon_\bot} \pm i \frac{\sigma_H}{\epsilon_\bot}$. 
-
-\begin{align}
-  \ddt E_\pm &= v^2 F_\pm + \alpha_\pm E_\pm
-\end{align}
-
-...
-
-\begin{align}
- \lr{ \ddt + \alpha_\pm } E_\pm &= v^2 F_\pm
-\end{align}
-
-...
-
-\begin{align}
-  \exp \lr{ \alpha_\pm t } \lr{ \ddt + \alpha_\pm } E_\pm 
-  &= v^2 \exp \lr{ \alpha_\pm t } F_\pm 
-\end{align}
-
-...
-
-\begin{align}
-  \ddt \lr{ E_\pm \exp \lr{ \alpha_\pm t } } &= v^2 F_\pm \exp \lr{ \alpha_\pm t }
-\end{align}
-
-...
-
-\begin{align}
-  \displaystyle\int^{\dt}_0 dt \; \ddt \lr{ E_\pm \lr{t} \exp \lr{ \alpha_\pm t } }
-  &= \displaystyle\int_0^{\dt} dt \; v^2 F_\pm \lr{t} \exp \lr{\alpha_\pm t}
-\end{align}
-
-...
-
-\begin{align}
-  E_\pm \lr{\dt} \exp \lr{\alpha_\pm \dt} - E_\pm \lr{0} &= v^2 \dt F_\pm \lrsmall{ \frac{\dt}{2} } \exp \lrsmall{ \alpha_\pm \frac{\dt}{2} }
-\end{align}
-
-...
-
-\begin{align}
-  E_\pm \lr{\dt} &= E_\pm \lr{0} \exp \lr{-\alpha_\pm \dt} + v^2 \dt F_\pm \lrsmall{ \frac{\dt}{2} } \exp \lrsmall{ -\alpha_\pm \frac{\dt}{2} }
-\end{align}
-
-Casting this back into the $x$-$y$ basis, and collapsing the complex exponentials into sines and cosines, this can be written as:
-
+Note that $E_x$ and $E_y$ are coupled by the Hall conductivity in the ionosphere. They can be decoupled by a rotation. The differential equation can then be solved using integrating factors. 
 \begin{align}
   \vec{E}_\bot \arg{\dt} &= 
     \tensor{R} \argsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} \cdot \vec{E}_\bot \arg{0}
       \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \dt}
-    + v^2 \dt \tensor{R} \argsmall{\frac{\sigma_H}{\epsilon_\bot} \frac{\dt}{2} } \cdot  F_\pm \argsmall{ \frac{\dt}{2} } \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \frac{\dt}{2} }
+    + v^2 \dt \tensor{R} \argsmall{\frac{\sigma_H}{\epsilon_\bot} \frac{\dt}{2} } \cdot  \vec{F}_\bot \argsmall{ \frac{\dt}{2} } \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \frac{\dt}{2} }
 \end{align}
 
-Where $\tensor{R}$ is the 2D rotation matrix: 
-
+Where $\tensor{R}$ is the 2D rotation matrix. In $x$-$y$ coordinates, that's...
 \begin{align}
   \tensor{R} \lr{\theta} & = \mm{\cos\theta}{-\sin\theta}{\sin\theta}{\cos\theta}
 \end{align}
 
-Mapping from physical coordinates to covariant coordinates, we arrive at...
-
-
+We map from physical coordinates. Then we use the metric tensor to eliminate any contravariant terms. This cuts down on memory use as well as computation time. 
 \begin{align}
   \begin{split}
     E_1 \arg{\dt} - \frac{g^{13}}{g^{11}} E_3 \arg{\dt}
-      =& E_1 \arg{0} \cos \argsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} 
-      \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \dt} \\
-    & + E_2 \arg{0} \sqrt{ \frac{g^{22}}{g^{11}} } 
-      \sin \argsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} 
-      \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \dt} \\
-    & + E_3 \arg{0} ...
+      & = E_1 \arg{0} \cos \argsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} 
+        \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \dt} \\
+      & + E_2 \arg{0} \sqrt{ \frac{g^{22}}{g^{11}} } 
+        \sin \argsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} 
+        \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \dt} \\
+      & + E_3 \arg{0} ...
   \end{split} \\
   \begin{split}
     E_2 \arg{\dt}
-      =& E_1 \arg{0} \sqrt{ \frac{g^{11}}{g^{22}} } 
+      & = E_1 \arg{0} \sqrt{ \frac{g^{11}}{g^{22}} } 
       \sin \argsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} 
       \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \dt} \\
     & + E_2 \arg{0} \cos \argsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} 
@@ -262,20 +258,156 @@ Mapping from physical coordinates to covariant coordinates, we arrive at...
   \end{split}
 \end{align}
 
+where 
 
+\begin{align}
+  F^1 & = \frac{\partial_2 B_3 - \partial_3 B_2}{\jac} &
+  F^2 & = \frac{\partial_3 B_1 - \partial_1 B_3}{\jac} - \frac{J^2_{drive}}{\epsilon_\bot} &
+  F^3 & = \frac{\partial_1 B_2 - \partial_2 B_1}{\jac}
+\end{align}
 
-
-
-
-
-
-
-
+Note that (due to the integrating factors) the electric and magnetic fields are offset by half a time step. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Boundary Conditions}
+\subsection{Parallel Electric Field and Parallel Current}
+
+Parallel \amplaw. 
+\begin{align}
+  \epsilon_\parallel \ddt E_\parallel &= \frac{1}{\mu_0} \lr{ \curl{B} }_\parallel - J_\parallel
+\end{align}
+
+If we follow the same approach as above, we can also solve with integrating factors. There isn't even any rotation. 
+\begin{align}
+  E_\parallel \arg{\dt} &= E_\parallel \arg{0}
+      \exp \argsmall{-\frac{\sigma_0}{\epsilon_\parallel} \dt}
+    + v^2 \dt F_\parallel \argsmall{ \frac{\dt}{2} } 
+    \exp \argsmall{-\frac{\sigma_0}{\epsilon_\parallel} \frac{\dt}{2} }
+\end{align}
+
+However, it turns out that the field-aligned conductivity is really big, and the parallel electric constant (assumed to be $\epsilon_0$) is pretty small. For each profile, we see $\frac{\sigma_0}{\epsilon_\parallel} \dt \gtrsim 10^3$. When the exponential is evaluated, it goes to zero. 
+
+So, the above expression can't be used to compute parallel electric fields. 
+
+We get around that by adding electron inertial effects to \ohmlaw. Recall that in generalized form, \ohmlaw is:
+\begin{align}
+  \vec{E} + \vec{U} \times \vec{B} & = 
+  \eta \vec{J} + \frac{\me}{n e^2} \lrb{
+    \ddt \vec{J} + \nabla \cdot \lr{ 
+      \vec{J} \, \vec{U} + \vec{U} \,\vec{J} +
+      \frac{1}{n e} \vec{J} \, \vec{J} } } +
+  \frac{1}{n e} \vec{J} \times \vec{B} -
+  \frac{1}{n e} \div{ \vec{P_e} }
+\end{align}
+
+We are using a cold, static plasma, so we get to ignore any terms with $\vec{U}$. We also skip the nonlinear terms... this can probably be justified through a scaling argument. 
+
+The parallel conductivity is much larger than the Pedersen and Hall conductivities, which is how we can justify keeping only the parallel component of this term. 
+
+After pulling the conductivity tensor out of the denominator, we are left with the same form as before, but with an added term representing electron intertia:
+\begin{align}
+  \ddt J_\parallel & = 
+    \frac{n e^2}{\me} E_\parallel -
+    \frac{n e^2}{\me \sigma_0} J_\parallel
+\end{align}
+
+Now we solve for $J_\parallel$ using integrating factors. 
+\begin{align}
+  J_\parallel \arg{\dt} & = 
+    J_\parallel \arg{0} \exp \argsmall{ -\frac{n e^2}{\me \sigma_0} \dt }
+    + \frac{n e^2}{\me} \dt \, E_\parallel \argsmall{\frac{\dt}{2}}  
+    \exp \argsmall{ -\frac{n e^2}{\me \sigma_0} \frac{\dt}{2} }
+\end{align}
+
+Or, in covariant terms, 
+\begin{align}
+  \begin{split}
+    J_3 \arg{\dt} & = 
+      J_3 \arg{0} \exp \argsmall{ -\frac{n e^2}{\me \sigma_0} \dt } \\
+      & + E_3 \argsmall{\frac{\dt}{2}} \frac{n e^2}{\me} \dt   
+      \exp \argsmall{ -\frac{n e^2}{\me \sigma_0} \frac{\dt}{2} }
+  \end{split}
+\end{align}
+
+We see the half-step offset again. The current lines up with the magnetic field. 
+
+The electron inertial term of \ohmlaw describes plasma oscillation, which (naturally) happen at the plasma frequency. We expect this to be unstable unless $\dt < \frac{1}{ \omega_{p e} }$. We're off, by a lot. 
+
+Reducing the time step by several orders of magnitude is not feasible. Much of what makes this model valuable is its speed -- the ability to conduct an ensemble of dozens of runs overnight -- and that would be lost if runs went from an hour to four days. This also risks instabilities of its own due to compounding numerical noise. 
+
+The solution is to implement a Boris correction, as introduced in (CITE BORIS 1970!!!). We increase $\epsilon_\parallel$ above its previous value of $\epsilon_0$. This essentially drops the speed of light and the plasma frequency -- potentially by several orders of magnitude -- while leaving their ratio, the electron inertial length, unchanged. This can easily reduce the speed of light to less than the \Alfven speed! 
+
+This is safe as long as we keep the plasma frequency well above Pc4 frequencies. This was shown in Lysak 2001 (CITE!!!). Also in Ronnmark (CITE!!!), who uses the nice term "anisotropic vacuum". 
+
+To briefly summarize Lysak's argument for why this is safe, start with the same equations as above. And assume that we're oscillating at some frequency $\omega$. Then we can evaluate the time derivatives in \amplaw and \ohmlaw. Note that we bring in the electron-ion collision frequency $\nu = \frac{n e^2}{\me \sigma_0}$
+\begin{align}
+  \epsilon_\parallel \ddt E_\parallel & = 
+    \frac{1}{\mu_0} \lr{ \curl{B} }_\parallel - J_\parallel &
+  \ddt J_\parallel & = 
+    \frac{n e^2}{\me} E_\parallel -
+    \nu J_\parallel
+\end{align}
+
+So with the electron inertial length defined per $\lambda^2 \equiv \frac{c^2}{\omega_p^2} = \frac{\me}{n e^2 \mu_0}$...
+
+\begin{align}
+  \lrb{ 1 - \frac{\omega^2 - i \omega \nu}{\omega_p^2} } E_\parallel & =
+  \lambda^2 \lr{\nu - i \omega} \lr{ \curl{B} }_\parallel
+\end{align}
+
+That is, as long as $\frac{\omega}{\omega_p^2} \ll 1$ and $\frac{\omega \nu}{\omega_p^2} \ll 1$ we should see no difference in the relative scales of the electric and magnetic fields. 
+
+Notably, without the electron inertial term, the perpendicular expression has no $i \omega$ on the right hand side of the expression. That's probably fine. The (effective?) perpendicular collision frequency is very large. (It can't be a real collision frequency... it goes to infinity when number density gets tiny! Note that the different conductivities actually have quite different expressions when derived from first principles.)
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Magnetic Field}
+
+Magnetic fields are straightforward. Start with \farlaw. 
+\begin{align}
+  \ddt \vec{B} & = - \curl{E}
+\end{align}
+
+In covariant terms, this can be written as...
+\begin{align}
+  B_1 \arg{\dt} & = B_1 \lr{0} - \dt g_{11} C^1 \argsmall{\frac{\dt}{2}} 
+    - \dt g_{13} C^3 \argsmall{\frac{\dt}{2}} \\
+  B_2 \arg{\dt} & = B_2 \lr{0} - \dt g_{22} C^2 \argsmall{\frac{\dt}{2}} \\
+  B_3 \arg{\dt} & = B_3 \lr{0} - \dt g_{31} C^1 \argsmall{\frac{\dt}{2}} 
+    - \dt g_{33} C^3 \argsmall{\frac{\dt}{2}}
+\end{align}
+
+Where we have defined $C \equiv \curl{E}$ in order to avoid computing the same derivatives for both $B_1$ and $B_3$. 
+\begin{align}
+  C^1 & = \frac{\partial_2 E_3 - \partial_3 E_2}{\jac} &
+  C^2 & = \frac{\partial_3 E_1 - \partial_1 E_3}{\jac} &
+  C^3 & = \frac{\partial_1 E_2 - \partial_2 E_1}{\jac} 
+\end{align}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Parity and Interpolation}
+
+Each field component is stored at only one parity in each direction. This is because of how curls line up. Adjacent values of $E_2$ just aren't really coupled to each other. 
+
+This means that computing all of the parities isn't just unnecessary -- it's potentially unstable. The odd-by-odd grid and the odd-by-even grid are only weakly coupled, especially at large $r$, so they can drift apart. This can lead to problems in places where they do care about one another. This is documented... where??? 
+
+This would be perfectly true if we were taking curls on an orthonormal grid, and if there was no Hall conductivity. As is, it's still pretty true. The contributions of off-parity terms tend to be small. 
+
+% =============================================================================
+% =============================================================================
+% =============================================================================
+\section{Boundary Conditions}
+
+The grid can't go on forever. There have to be special cases at the edges. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Interpolation and Differentiation}
 
 At the inner and outer boundaries (that is, along the innermost and outermost field lines), as use Dirichlet and Neumann boundary conditions for electric and magnetic fields respectively. 
 
@@ -285,18 +417,21 @@ Whenever we need to know the magnetic field just outside the grid boundary, we s
 
 Conversely, we say that the electric field just outside the grid goes to 0, allowing us to compute the derivative from the value just inside the grid. Dirichlet. 
 
-The more interesting boundary is at the ionosphere. 
+Dirichlet and Neumann could be flipped without much consequence. They're sorta arbitrary. But mixing up a term, so that they are no longer self-consistent, causes instability. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Coupling to the Atmosphere}
 
 Per Maxwell's equations, $\div{B}=0$. We further assume that there are no currents flowing in the atmosphere, giving $\curl{B}=0$. These conditions together guarantee the existence of a scalar magnetic potential, $\Psi$, which satisfies Laplace's equation, $\nabla^2 \Psi = 0$ and $\vec{B} = \grad{\Psi}$. 
 
 Separating out the $r$ and $\phi$ components of Laplace's equation, the $\theta$ component of the equation can be written as a differential equation in terms of $u \equiv \cos\theta$: 
-
 \begin{align}
   \frac{d}{d u} \lr{ \lr{1 - u^2} \frac{d}{d u} Y_\nu } - \frac{m^2}{1 - u^2} Y_\nu & = - \nu \lr{\nu + 1} Y_\nu
 \end{align}
 
 This can be solved numerically on our discrete grid, providing us with eigenvectors and eigenvalues ($Y_\nu$ and $\nu$ respectively). We can then write $\Psi$ in terms of those harmonics: 
-
 \begin{align}
   \Psi \lr{r, \theta} = & \displaystyle\sum_\nu \lr{ \alpha_\nu r^\nu + \beta_\nu r^{-\nu-1} } Y_\nu \lr{\theta}
 \end{align}
@@ -305,243 +440,25 @@ We will rearrange this expression in order to compute $\Psi$ each time step as a
 
 We defined $\vec{B} = \grad{\Psi}$, so $B_r = \dd{r} \Psi$. 
 
-
-
 The ground is perfectly conducting, so $B_r \lr{R_E} = 0$. 
 
-\begin{align}
-  \Psi \lr{r, \theta} = & \displaystyle\sum_\nu \lr{ \alpha_\nu r^\nu + \beta_\nu r^{-\nu-1} } Y_\nu \lr{\theta}
-\end{align}
+...
 
+We don't need to show algebra, but we should show the final expression. 
 
+...
 
+Jump condition over the ionospheric current sheet. This comes from integrating \amplaw... ?
 
 
-
-Where $\nu$ is a constant of separation... an eigenvalue. And $\alpha_\nu$ and $\beta_\nu$ are scalar constants. 
-
-And $Y_\nu$ satisfies the following expression, which we can solve numerically for eigenvalues $\nu$ on our discrete grid. Letting 
-
-\begin{align}
-  \frac{d}{d u} \lr{ \lr{1 - u^2} \frac{d}{d u} Y_\nu } - \frac{m^2}{1 - u^2} Y_\nu & = - \nu \lr{\nu + 1} Y_\nu
-\end{align}
-
-
-
-
-
-Here $m$ is the azimuthal modenumber
-For eigenvalue $\nu$ and azimuthal modenumber $m$. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Now we can map this back to $x$ and $y$ coordinates. Note that the imaginary components of $\alpha_\pm$ will cancel out to become sines and cosines. 
-
-%\begin{align}
-% \vv{ E_x \lr{\dt} }{ E_y \lr{\dt} } &= \mm{\cos\lrsmall{\frac{\sigma_H}{\epsilon_\bot} \dt}}{-\sin\lrsmall{\frac{\sigma_H}{\epsilon_\bot} \dt}}{\sin\lrsmall{\frac{\sigma_H}{\epsilon_\bot} \dt}}{\cos\lrsmall{\frac{\sigma_H}{\epsilon_\bot} \dt}}
-%    \cdot \vv{ E_x \lr{0} }{ E_y \lr{0} } + v^2 \dt
-%  E_x (\dt) &= E_x \lr{0} \cos \lrsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} \exp \lrsmall{-\frac{\sigma_P}{\epsilon_\bot} \dt} 
-%+ v^2 \dt \lr{ \curl{B} \lrsmall{ \frac{\dt}{2} } }_\pm \exp \lrsmall{ -\alpha_\pm \frac{\dt}{2} }
-%\end{align}
-
-
-
-We use lowercase $x$, $y$, and $z$ to indicate field-aligned coordinates. The
-unit vector \zhat is aligned with the dipole field (pointing outward in the
-northern hemisphere and inward in the southern hemisphere), while \xhat and
-\yhat are perpendicular to the dipole field; \xhat lies in the meridinal plane,
-and \yhat in the azimuthal direction.
-
-A characteristic time step for Tuna is $10^{-5} s$. As a result, the exponent $- \frac{\sigma_0 \delta t}{\epsilon_0}$ is, at most, in the thousands. Numbers that small can't be stored numerically, so $E_3$ is uniformly zero. 
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\subsection{Electron Inertial Contributions}
-
-Above, we took the common (simplified) version of Ohm's Law. The generalized form is:
-\begin{align}
-  \underline{E} +
-  \underline{U} \times \underline{B} & = 
-  \eta \underline{j} +
-  \frac{m}{n e^2} \Big[
-    \frac{\partial}{\partial t} \underline{j} +
-    \nabla \cdot \big( \underline{j} \underline{U} +
-    \underline{U} \underline{j} +
-    \frac{ \underline{j} \underline{j} }{n e} \big) 
-  \Big] +
-  \frac{1}{n e} \underline{j} \times \underline{B} -
-  \frac{1}{n e} \nabla \cdot \underline{ \underline{P_e} }
-\end{align}
-
-As before, we ignore the convective terms (since we're looking at a cold plasma), as well as the nonlinear terms (since Tuna is a linear code). 
-
-Note: we should probably justify that these terms are small, not juse that we don't feel like computing them. 
-
-Note: also talk about why we're only keeping the parallel contribution. It's the only one that's linear, AND it should be by far the largest. 
-
-After pulling the conductivity tensor out of the denominator, we are left with the same form as before, but with an added term representing electron intertia:
-\begin{align}
-  j_3 & =
-  \sigma_0 E_3 -
-  \frac{m}{n e^2} \frac{\partial}{\partial t} j_3
-\end{align}
-
-Or, equally: 
-\begin{align}
-  \frac{\partial}{\partial t} j_3 & = 
-  \frac{n e^2 \sigma_0}{m} E_3 - 
-  \frac{n e^2}{m} j_3
-\end{align}
-
-We can no longer solve for $E_3$ using integrating factors. Now we solve for it directly, and solve for $j_3$. 
-
-... (make sure these factors are lined up correctly). 
-
-Then we have 
-\begin{align}
-  j_3(\delta t) & = 
-  j_3(0) \exp \big( -\frac{n e^2}{m \sigma_0} \delta t \big) +  
-  \frac{\delta t}{2} \frac{n e^2}{m} E_3 
-    \big( \frac{\delta t}{2} \big) \exp \big( -\frac{n e^2}{m \sigma_0} \frac{\delta t}{2} \big)
-\end{align}
-
-There's a problem. For stability, we need $\delta t < \frac{1}{ \omega_{p e} }$. We're off by a lot. 
-
-The trick is to decrease $\epsilon_\parallel$, in effect lowering the speed of light. This is the Boris approximation (is that precisely true?). It's used in lots of codes, and discussed in ...
-
-Note also that this means we compute $j$ when we compute $B$. It's offset from the electric fields by half of a time step. 
-
-A researcher in Sweden (?) came up with the same trick as Bob, and called it "anisotropic vacuum." Show that a low speed of light -- even if it's lower than the \Alfven speed -- is allowed. Effects go as the square of $\omega/\omega_p$. 
-
-Look for, in Bob's papers, mentions of anomalous resistivity / Landau damping. 
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\section{Driving}
-
-Compressional driving can't penetrate at high $m$. 
-
-Pc4 constrains location and frequency. 
-
-Ring current determines frequency and power. 
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\section{Boundary Conditions}
-
-Dirichlet means we specify the value at the boundary. 
-
-Neumann means we specify the derivative at the boundary. 
-
-We use Dirichlet for the E field and Neumann for the B field. 
-
-It's implemented through the differentiation and interpolation helper
-functions. 
-
-\subsection{Stability}
-
-We definitely have to be consistent about which fields are neumann and which are
-dirichlet. 
-
-\subsection{Parity Considerations}
-
-Wigglies. 
-
-Table listing odds and evens. 
-
-Note that we really have four grids which are only weakly coupled. Rather than
-using numerical diffusion to couple them (which is also a thing that people
-do?), we only use one of them. $B_3$ is computed only on even i and even k. If
-we need it anywhere else, we interpolate it. 
-
-This means that BCs could be thought of as just off the grid. If a field doesn't
-try to use the value just off the grid to differentiate or interpolate a value
-at the edge, the boundary condition is not used. 
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\section{Coupling to the Atmosphere}
-
-Laplace's Equation. 
-
-Comparison to spherical harmonics. 
-
-Ionospheric jump condition. 
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\section{Parallel Electric Fields}
-
-Or, field aligned currents. 
-
-Boris approximation for stability. LFM, BATRUS use this? 
-
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\section{Discussion of Model Parameters}
-
-Ring current power spectrum. Find more storms to look at! 
-
-Some drive parameters don't really matter. Exact drive position, for example, in r and $\theta$? Boundary conditions (at least for the phenomena we care about)?
-
-We use SYMH to estimate the appropriate level of current for driving. We use some storms:
-
-June 1-3, 2013
-
-March 17, 2015
-
-June 22-23, 2015
-
-And there were some good ones in October and November 2012. 
-
-Looking at SYMH. Fourier series out to a period of about a minute. The power spectrum (judging from June 1-3 2013) gives you ~$10^{-2} (T/minutes)$. We can hand-wave a mapping from SYMH to the ring current. 
-\begin{align}
-  B & = \frac{\mu_0 I}{2 R}
-\end{align}
-
-With $B \sim \SI{2}{\nano\tesla}$, $R \sim \SI{4}{\RE}$, $A \sim \SI{1}{\RE\squared}$, we end up with $j \sim \SI{e-4}{\micro\ampere/\meter\squared}$. 
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
+% =============================================================================
+% =============================================================================
+% =============================================================================
 \section{Optimization of Model}
 
-Extensive precomputation of coefficients. 
+Get some MPI benchmarks for future work! Time to compute a million time steps versus time to broadcast a million time steps, as a function of grid size. This should imply a magic number where size overcomes the overhead from starting up communication. 
 
-Reduced memory demand? Not clear if this is still true when we're tracking C and F. 
-
-OpenMP. 
-
-MPI benchmarks. C++ vs Fortran. Can we get some plots for this? Even just 2 ranks, neglecting the atmosphere. 
-
-
-
-
-
-
-
-
+This doesn't actually belong here. 
 
 
 
