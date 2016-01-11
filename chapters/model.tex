@@ -95,6 +95,8 @@ Compute the metric tensor components in terms of the basis vectors...
   g_{ij} & = \hat{e}_i \cdot \hat{e}_j & g^{ij} & = \hat{e}^i \cdot \hat{e}^j
 \end{align}
 
+Note also $\hat{e}_i \cdot \hat{e}^j = \delta_i^j$. 
+
 With a quick renormalization, we can map from these nonorthogonal coordinates to \xhat, \yhat, and \zhat. 
 \begin{align}
   \xhat = \frac{ \hat{e}^1 }{ \sqrt{ g^{11} } } \equiv h_1 \hat{e}^1 &&
@@ -112,7 +114,7 @@ We can also map over to \rhat, \qhat, \fhat, though these expressions are only v
 In order to take derivatives with respect to these coordinates, we also need the determinant of the Jacobian matrix. 
 \begin{align}
   \label{def_jacobian}
-  \jac &= \hat{e}_1 \lr{ \hat{e}_2 \times \hat{e}_3 } = h_1 h_2 h_3
+  \jac &= \hat{e}_1 \cdot \lr{ \hat{e}_2 \times \hat{e}_3 } = h_1 h_2 h_3
 \end{align}
 
 It's possible (if tedious) to crunch out $g$, $h$, and $\jac$ in terms of $r$, $\theta$, and $\phi$. They're probably in an appendix somewhere. 
