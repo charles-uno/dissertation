@@ -364,6 +364,39 @@ That is, as long as $\frac{\omega}{\omega_p^2} \ll 1$ and $\frac{\omega \nu}{\om
 
 Notably, without the electron inertial term, the perpendicular expression has no $i \omega$ on the right hand side of the expression. That's probably fine. The (effective?) perpendicular collision frequency is very large. (It can't be a real collision frequency... it goes to infinity when number density gets tiny! Note that the different conductivities actually have quite different expressions when derived from first principles.)
 
+... rehashing the above a bit ... 
+
+Start with parallel \Ampere's Law and Ohm's Law, with electron inertia. 
+\begin{align}
+  \epsilon_\parallel \ddt E_\parallel & = 
+    \frac{1}{\mu_0} \lr{ \curl{B} }_\parallel
+    - J_\parallel
+  &
+  \ddt \vec{J} & = \frac{n e^2}{m} E_\parallel - \nu J_\parallel
+\end{align}
+
+Assume oscillation as $\exp\arg{ - i \omega t }$, evaluate time derivatives, and eliminate $J$. 
+\begin{align}
+  \label{criterion}
+  \lrb{ 1 - \frac{\omega^2 + i \omega \nu}{ \omega^2_\parallel } } E_\parallel & =
+    \lambda^2 \lr{ \nu - i \omega } \lr{ \curl{B} }_\parallel
+\end{align}
+
+Where $\lambda$, the electron inertial length, and $\omega_\parallel$, the potentially-Boris-adjusted plasma frequency, are given by: 
+\begin{align}
+  \lambda^2 \equiv \frac{c^2}{\omega^2_p} & = \frac{m}{n e^2 \mu_0}
+  &
+  \omega^2_\parallel \equiv \frac{n e^2}{m \epsilon_\parallel}
+\end{align}
+
+If parallel currents are included in the model, the time step must satisfy $\omega_\parallel \dt < 1$ for stability. This is a significant constraint. The time step computed from the \Alfven speed and grid geometry is typically on the order of $\SI{10}{\us}$; plasma timescale can be as small as $\SI{10}{\ns}$. Decreasing the time step by three orders of magnitude means turning a one-hour run into a six-week run. 
+
+The plasma timescales can be reduced by introducing a Boris factor; that is, by increasing the electric constant $\epsilon_\parallel$ above its usual value of $\epsilon_0$. This serves to reduce the speed of light and plasma frequency without affecting the electron inertial length. 
+
+The Boris factor is constrained by the ratio between $E_\parallel$ and $\lr{ \curl{B} }_\parallel$ defined in \cref{criterion}. Any change in $\lrb{ 1 - \frac{\omega^2 + i \omega \nu}{ \omega^2_\parallel } }$ would be expected to significantly affect model behavior. 
+
+As shown in \cref{boris_1}, there's room for a Boris factor of significant size. Even at a factor of $10^6$, $\left| \frac{\omega^2 + i \omega \nu}{ \omega^2_\parallel } \right| \lesssim 0.01$. 
+
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
