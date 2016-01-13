@@ -222,9 +222,9 @@ We split the current into two terms: an Ohmic term, which we eliminate using Kir
   \epsilon_\bot \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \left( \curl{B} \right)_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot - \vec{J}_{drive}
 \end{align}
 
-We rewrite this expression using the \Alfven speed, $v^2 \equiv \frac{1}{\mu_0 \epsilon_\bot}$. In addition, we take the shorthand $\vec{F} \equiv \curl{B} - \frac{1}{\epsilon_\bot} \vec{J}_{drive}$. 
+We rewrite this expression using the \Alfven speed, $\va^2 \equiv \frac{1}{\mu_0 \epsilon_\bot}$. In addition, we take the shorthand $\vec{F} \equiv \curl{B} - \frac{1}{\epsilon_\bot} \vec{J}_{drive}$. 
 \begin{align}
-  \ddt \vec{E}_\bot &= v^2 \vec{F}_\bot - \frac{1}{\epsilon_\bot} \tensor{\sigma}_\bot \cdot \vec{E}_\bot
+  \ddt \vec{E}_\bot &= \va^2 \vec{F}_\bot - \frac{1}{\epsilon_\bot} \tensor{\sigma}_\bot \cdot \vec{E}_\bot
 \end{align}
 
 Note that $E_x$ and $E_y$ are coupled by the Hall conductivity in the ionosphere. They can be decoupled by a rotation. The differential equation can then be solved using integrating factors. 
@@ -232,7 +232,7 @@ Note that $E_x$ and $E_y$ are coupled by the Hall conductivity in the ionosphere
   \vec{E}_\bot \arg{\dt} &= 
     \tensor{R} \argsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} \cdot \vec{E}_\bot \arg{0}
       \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \dt}
-    + v^2 \dt \tensor{R} \argsmall{\frac{\sigma_H}{\epsilon_\bot} \frac{\dt}{2} } \cdot  \vec{F}_\bot \argsmall{ \frac{\dt}{2} } \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \frac{\dt}{2} }
+    + \va^2 \dt \tensor{R} \argsmall{\frac{\sigma_H}{\epsilon_\bot} \frac{\dt}{2} } \cdot  \vec{F}_\bot \argsmall{ \frac{\dt}{2} } \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \frac{\dt}{2} }
 \end{align}
 
 Where $\tensor{R}$ is the 2D rotation matrix. In $x$-$y$ coordinates, that's...
@@ -286,7 +286,7 @@ If we follow the same approach as above, we can also solve with integrating fact
 \begin{align}
   E_\parallel \arg{\dt} &= E_\parallel \arg{0}
       \exp \argsmall{-\frac{\sigma_0}{\epsilon_\parallel} \dt}
-    + v^2 \dt F_\parallel \argsmall{ \frac{\dt}{2} } 
+    + \va^2 \dt F_\parallel \argsmall{ \frac{\dt}{2} } 
     \exp \argsmall{-\frac{\sigma_0}{\epsilon_\parallel} \frac{\dt}{2} }
 \end{align}
 
@@ -316,6 +316,8 @@ After pulling the conductivity tensor out of the denominator, we are left with t
     \frac{n e^2}{\me \sigma_0} J_\parallel
 \end{align}
 
+NOTE: MAYBE WE WANT TO WRITE THIS IN TERMS OF THE COLLISION RATE?
+
 Now we solve for $J_\parallel$ using integrating factors. 
 \begin{align}
   J_\parallel \arg{\dt} & = 
@@ -335,6 +337,8 @@ Or, in covariant terms,
 \end{align}
 
 We see the half-step offset again. The current lines up with the magnetic field. 
+
+NOTE: WE HAVE A SYMBOL NOW FOR THE BORIS PLASMA FREQUENCY. 
 
 The electron inertial term of \ohmlaw describes plasma oscillation, which (naturally) happen at the plasma frequency. We expect this to be unstable unless $\dt < \frac{1}{ \omega_{p e} }$. We're off, by a lot. 
 
@@ -382,20 +386,20 @@ Assume oscillation as $\exp\arg{ - i \omega t }$, evaluate time derivatives, and
     \lambda^2 \lr{ \nu - i \omega } \lr{ \curl{B} }_\parallel
 \end{align}
 
-Where $\lambda$, the electron inertial length, and $\omega_\parallel$, the potentially-Boris-adjusted plasma frequency, are given by: 
+Where $\lambda$, the electron inertial length, and \ob, the potentially-Boris-adjusted plasma frequency, are given by: 
 \begin{align}
   \lambda^2 \equiv \frac{c^2}{\omega^2_p} & = \frac{m}{n e^2 \mu_0}
   &
-  \omega^2_\parallel \equiv \frac{n e^2}{m \epsilon_\parallel}
+  \ob^2 \equiv \frac{n e^2}{m \eb}
 \end{align}
 
 If parallel currents are included in the model, the time step must satisfy $\omega_\parallel \dt < 1$ for stability. This is a significant constraint. The time step computed from the \Alfven speed and grid geometry is typically on the order of $\SI{10}{\us}$; plasma timescale can be as small as $\SI{10}{\ns}$. Decreasing the time step by three orders of magnitude means turning a one-hour run into a six-week run. 
 
 The plasma timescales can be reduced by introducing a Boris factor; that is, by increasing the electric constant $\epsilon_\parallel$ above its usual value of $\epsilon_0$. This serves to reduce the speed of light and plasma frequency without affecting the electron inertial length. 
 
-The Boris factor is constrained by the ratio between $E_\parallel$ and $\lr{ \curl{B} }_\parallel$ defined in \cref{criterion}. Any change in $\lrb{ 1 - \frac{\omega^2 + i \omega \nu}{ \omega^2_\parallel } }$ would be expected to significantly affect model behavior. 
+The Boris factor is constrained by the ratio between $E_\parallel$ and $\lr{ \curl{B} }_\parallel$ defined in \cref{criterion}. Any change in $\lrb{ 1 - \frac{\omega^2 + i \omega \nu}{ \ob^2 } }$ would be expected to significantly affect model behavior. 
 
-As shown in \cref{boris_1}, there's room for a Boris factor of significant size. Even at a factor of $10^6$, $\left| \frac{\omega^2 + i \omega \nu}{ \omega^2_\parallel } \right| \lesssim 0.01$. 
+As shown in (PLOT THE FREQUENCY RATIOS!!!), there's room for a Boris factor of significant size. Even at a factor of $10^6$, $\left| \frac{\omega^2 + i \omega \nu}{ \ob^2 } \right| \lesssim 0.01$. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------

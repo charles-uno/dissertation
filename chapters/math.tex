@@ -5,94 +5,236 @@
 \chapter{Dispersion Relation}
 \label{math_chapter}
 
-We start with the equations used in the model, as described in \cref{model_equations_section}. 
-
+We start with the equations used in the model, as described in \cref{model_equations_section}: \farlaw, \amplaw (split into parallel and perpendicular components), and \ohmlaw (with parallel electron inertia):  
 \begin{align}
-  \ddt \vec{B} &= -\curl{E} \\
-  \epsilon_\bot \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \left( \curl{B} \right)_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot \\
-  \epsilon_\parallel \ddt E_\parallel &= \frac{1}{\mu_0} \left( \curl{B} \right)_\parallel - J_\parallel \\
-  \frac{m \sigma_0}{n e^2} \ddt J_\parallel &= \sigma_0 E_\parallel - J_\parallel
+  \ddt \vec{B} = -\curl{E}
+\end{align}
+\begin{align}
+  \ep \ddt \vec{E}_\bot & = 
+    \frac{1}{\mu_0} \lr{ \curl{B} }_\bot - \vec{J}_\bot &
+  \eb \ddt E_\parallel & = 
+    \frac{1}{\mu_0} \lr{ \curl{B} }_\parallel - J_\parallel \\
+  0 & = 
+    \tensor{\sigma}_\bot \cdot \vec{E}_\bot - \vec{J}_\bot &
+  \ddt J_\parallel & = 
+    \frac{n e^2}{m} E_\parallel - \nu J_\parallel
 \end{align}
 
-We're looking for resonances. If we assume that everything (at least locally) goes as $\exp(i \vec{k} \cdot \vec{x} - i \omega t )$ then what do we find? 
-
+Suppose, at least locally, that $\vec{B}$, $\vec{E}$, and $\vec{J}$ go as $\exp(i \vec{k} \cdot \vec{x} - i \omega t )$. This allows us to evaluate derivatives and condense into one equation for the parallel electric field and one for the perpendicular electric field: 
 \begin{align}
-  - i \omega \vec{B} &= - i \vec{k} \times \vec{E} \\
-  - i \omega \epsilon_\bot \vec{E}_\bot &= \frac{1}{\mu_0} \left( - i \vec{k} \times \vec{B} \right)_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot \\
-  - i \omega \epsilon_\parallel E_\parallel &= \frac{1}{\mu_0} \left( - i \vec{k} \times \vec{B} \right)_\parallel - J_\parallel \\
-  - i \frac{m \omega \sigma_0}{n e^2} J_\parallel &= \sigma_0 E_\parallel - J_\parallel
+  0 & = \vec{E}_\bot 
+  + \frac{\va^2}{\omega^2} \lr{ \vec{k} \times \vec{k} \times \vec{E} }_\bot 
+  + \frac{i}{\ep \omega} \tensor{\sigma}_\bot \cdot \vec{E}_\bot 
+  \\
+  0 & = E_\parallel 
+  + \frac{\cb^2}{\omega^2} \lr{ \vec{k} \times \vec{k} \times \vec{E} }_\parallel
+  + \frac{i \ob^2 }{\omega \lr{\nu - i \omega} } E_\parallel
 \end{align}
 
-With a bit of algebra, we can eliminate everything but the electric fields. 
-
+As before, we use the \Alfven speed, the Boris-adjusted speed of light, and the Boris-adjusted plasma frequency; respectively,
 \begin{align}
-  0 &= - i \omega \epsilon_\bot \vec{E}_\bot - \frac{i}{\mu_0 \omega} \left( \vec{k} \times \vec{k} \times \vec{E} \right)_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot \\
-  0 &= - i \omega \epsilon_\parallel E_\parallel - \frac{i}{\mu_0 \omega} \left( \vec{k} \times \vec{k} \times \vec{E} \right)_\parallel - \sigma_\parallel E_\parallel
+  \va^2 & \equiv \frac{1}{\mu_0 \ep} &
+  \cb^2 & \equiv \frac{1}{\mu_0 \eb} &
+  \ob^2 & \equiv \frac{n e^2}{m \eb}
 \end{align}
 
-Note that $\sigma_\parallel = \sigma_0 / \left( 1 - i \frac{m \omega \sigma_0}{n e^2} \right)$. 
-
-Note that $\vec{k} \times \vec{k} \times \vec{E} = \vec{k} \vec{k} \cdot \vec{E} - k^2 \vec{E}$. In the electrostatic limit, $\vec{k} \cdot \vec{E} = 0$. 
-
-Say that $\theta$ is the angle between \zhat and $\hat{k}$. Parallel propagation is $\theta = 0$. 
-
-Without loss of generality, we can line up \zhat with the zeroth-order magnetic field, and \xhat with the perpendicular component of the wave vector. Then, rearranging a few constants and combining the equations, we get:
-
+Using the vector identity $\vec{k} \times \vec{k} \times \vec{E} = \vec{k} \, \vec{k} \cdot \vec{E} - k^2 \vec{E}$, the parallel and perpendicular equations can be combined into the usual dispersion tensor form. Without loss of generality, let \zhat lie along the zeroth order magnetic field, and $\vec{k}$ lie in the $x$-$z$ plane, with $\theta$ giving the angle between \zhat and $\vec{k}$. Then, 
 \begin{align}
-  0 =& \mmm{ \frac{\epsilon_\bot}{\epsilon_0} }{0}{0}
-           {0}{ \frac{\epsilon_\bot}{\epsilon_0} }{0}
-           {0}{0}{ \frac{\epsilon_\parallel}{\epsilon_0} } \cdot \vec{E}
-       + \frac{c^2 k^2}{\omega^2} 
-       \mmm{\sin^2\theta}{0}{\sin \theta \cos \theta}
-           {0}{0}{0}
-           {\sin \theta \cos \theta}{0}{\cos^2 \theta} \cdot \vec{E} \\
-    & - \frac{c^2 k^2}{\omega^2} 
-       \mmm{1}{0}{0}
-           {0}{1}{0}
-           {0}{0}{1} \cdot \vec{E}
-       - \frac{i}{\epsilon_0 \omega}
-       \mmm{\sigma_P}{- \sigma_H}{0}
-           {\sigma_H}{\sigma_P}{0}
-           {0}{0}{\sigma_\parallel} \cdot \vec{E}
+  \dispersiontensor \cdot \vec{E} = 0
 \end{align}
 
-Maybe instead write this as...
-
+where
 \begin{align}
-  \tensor{D} \cdot \vec{E} &= 0
+  \dispersiontensor & = \mmm{1}{0}{0}
+                            {0}{1}{0}
+                            {0}{0}{1}
+                      - \frac{k^2}{\omega^2} 
+                        \mmm{\va^2 \cos^2 \theta}{0}{-\va^2 \sin \theta \cos \theta}
+                            {0}{\va^2}{0}
+                            {-\cb^2 \sin \theta \cos \theta}{0}{\cb^2 \sin^2 \theta}
+                      + \frac{i}{\omega}
+                        \mmm{\spe}{-\she}{0}
+                            {\she}{\spe}{0}
+                            {0}{0}{ \frac{\ob^2}{\nu - i \omega} }
 \end{align}
 
-In order to have solutions with nonzero $\vec{E}$, we need:
+In order for nontrivial solutions to exist, we must have $\left| \dispersiontensor \right| = 0$. Unfortunately, that gives rise to a sixth-order polynomial in $\omega$. So we look at some limits. 
 
+% =============================================================================
+% =============================================================================
+% =============================================================================
+\section{Parallel Propagation Limit}
+
+As we are ostensibly looking at field line resonanced, we should expect waves to mostly be moving along magnetic field lines. If we take the alignment between the wave vector and the zeroth-order magnetic field to be exact, $\theta=0$, the dispersion relation simplifies to: 
 \begin{align}
-  \left| \tensor{D} \right| &= 0
+  \dispersiontensor_\parallel & = \mmm{1}{0}{0}
+                            {0}{1}{0}
+                            {0}{0}{1}
+                      - \frac{k^2}{\omega^2} 
+                        \mmm{\va^2}{0}{0}
+                            {0}{\va^2}{0}
+                            {0}{0}{0}
+                      + \frac{i}{\omega}
+                        \mmm{\spe}{-\she}{0}
+                            {\she}{\spe}{0}
+                            {0}{0}{ \frac{\ob^2}{\nu - i \omega} }
 \end{align}
 
-Where
+The above expression decouples the parallel and perpendicular components. 
 
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Parallel Component}
+
+With $\theta=0$, the parallel component of the determinant of $\dispersiontensor_\parallel$ is:
 \begin{align}
-  \tensor{D} &= 
-  \mmm{ \frac{\epsilon_\bot}{\epsilon_0} }{0}{0}
-      {0}{ \frac{\epsilon_\bot}{\epsilon_0} }{0}
-      {0}{0}{ \frac{\epsilon_\parallel}{\epsilon_0} }
-  + \frac{c^2 k^2}{\omega^2} 
-  \mmm{\sin^2\theta}{0}{\sin \theta \cos \theta}
-      {0}{0}{0}
-      {\sin \theta \cos \theta}{0}{\cos^2 \theta}
-  - \frac{c^2 k^2}{\omega^2} 
-  \mmm{1}{0}{0}
-      {0}{1}{0}
-      {0}{0}{1}
-  - \frac{i}{\epsilon_0 \omega}
-  \mmm{\sigma_P}{- \sigma_H}{0}
-      {\sigma_H}{\sigma_P}{0}
-      {0}{0}{\sigma_\parallel}
+  1 + \frac{i}{\omega} \frac{\ob^2}{\nu - i \omega} = 0
+\end{align}
+
+There is no $k$ dependence in this expression, so it doesn't really describe a wave, so much as a resonant frequency: 
+\begin{align}
+  \omega & = -\frac{i}{2} \lrb{ \nu \pm \sqrt{ \nu^2 - 4 \ob^2 } }
+\end{align}
+
+It makes sense to pull out the plasma frequency, since it's much larger than the collision frequency, even when the Boris factor is large. The one exception is a narrow strip at the bottom of the ionosphere. The wave won't exactly be hanging out there, since we assumed it's propagating along the field line. 
+\begin{align}
+  \omega & = \pm \ob - \frac{i \nu}{2} \pm ...
+\end{align}
+
+This is the plasma oscillation. It's allowed when the field-aligned conductivity is very large, and thus $\nu$ is small, which is pretty much everywhere but the ionospheric boundary. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Perpendicular Component}
+
+With $\theta=0$, the perpendicular component of the determinant of $\dispersiontensor_\parallel$ is:
+\begin{align}
+  \lr{ 1 - \frac{k^2 \va^2}{\omega^2} + \frac{i \sp}{\ep \omega} }^2
+  + \lr{ \frac{i \sh}{\ep \omega} }^2 & = 0
+\end{align}
+
+This can be solved in exact form. Note that the following is all four solutions; $\pm$ and $\opm$ are independent. 
+\begin{align}
+  \omega = \lr{ \frac{\pm \sh - i \sp}{2 \ep} } \opm \sqrt{ k^2 \va^2 + \lr{ \frac{\pm \sh - i \sp}{2 \ep} }^2 }
+\end{align}
+
+Similar to above, we can note that $k \va \gg \sp$, $\sh$ over the vast majority of the grid. The only exception, again, is right at the ionospheric boundary, where a field line resonance shouldn't be spending much time. So we are justified in expanding:
+\begin{align}
+  \omega = \opm k \va + \lr{ \frac{\pm \sh - i \sp}{2 \ep} } \opm ...
+\end{align}
+
+This is the \Alfven wave, with a bit of a shift from the ionospheric conductivity. 
+
+% =============================================================================
+% =============================================================================
+% =============================================================================
+\section{Perpendicular Propagation Limit}
+
+The ability of waves to propagate across field lines is also of interest. Let's look at what we see when $\theta = \frac{\pi}{2}$. 
+\begin{align}
+  \dispersiontensor_\bot & = \mmm{1}{0}{0}
+                            {0}{1}{0}
+                            {0}{0}{1}
+                      - \frac{k^2}{\omega^2} 
+                        \mmm{0}{0}{0}
+                            {0}{\va^2}{0}
+                            {0}{0}{\cb^2}
+                      + \frac{i}{\omega}
+                        \mmm{\spe}{-\she}{0}
+                            {\she}{\spe}{0}
+                            {0}{0}{ \frac{\ob^2}{\nu - i \omega} }
+\end{align}
+
+As in the parallel propagation case, the parallel and perpendicular components of the dispersion tensor determinant can be handled separately. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Parallel Component}
+
+The parallel component of the determinant of $\dispersiontensor_\bot$ is:
+\begin{align}
+  1 - \frac{k^2 \cb^2}{\omega^2} + \frac{i}{\omega} \frac{\ob^2}{\nu - i \omega} & = 0
+\end{align}
+
+This is a cubic. It can be solved exactly, but the roots are pretty gross. We need to look at the relative size of the terms so that we can expand responsibly. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Perpendicular Component}
+
+The parallel component of the determinant of $\dispersiontensor_\bot$ is:
+\begin{align}
+  \lr{ 1 + \frac{i \sp}{\ep \omega} }
+  \lr{ 1 - \frac{k^2 \va^2}{\omega^2} + \frac{i \sp}{\ep \omega} }
+  -
+  \lr{ \frac{\sh}{\ep \omega} }^2
+  & = 0
+\end{align}
+
+This is also a cubic, with similarly gross roots. 
+
+% =============================================================================
+% =============================================================================
+% =============================================================================
+\section{High Altitude Limit}
+
+The ionospheric profiles go up to an altitude of $\sim \SI{e4}{\km}$. Beyond that, we take $\sp \rightarrow 0$ and $\sh \rightarrow 0$ and $\nu \rightarrow 0$. Really, those quantities are pretty small above a few thousand kilometers. In that regime, we can keep an arbitrary propagation angle. 
+\begin{align}
+  \dispersiontensor_{??} & = \mmm{1}{0}{0}
+                            {0}{1}{0}
+                            {0}{0}{1}
+                      - \frac{k^2}{\omega^2} 
+                        \mmm{\va^2 \cos^2 \theta}{0}{-\va^2 \sin \theta \cos \theta}
+                            {0}{\va^2}{0}
+                            {-\cb^2 \sin \theta \cos \theta}{0}{\cb^2 \sin^2 \theta}
+                      - \frac{\ob^2}{\omega^2}
+                        \mmm{0}{0}{0}
+                            {0}{0}{0}
+                            {0}{0}{1}
+\end{align}
+
+In this case it's the $y$ component that decouples from the rest. Recall that's the direction perpendicular to both the zeroth-order magnetic field and the direction of propagation. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{$y$ Component}
+
+We start with... 
+\begin{align}
+  1 - \frac{k^2 \va^2}{\omega^2} & = 0
+\end{align}
+
+This can be rearranged to a familiar form, giving the \Alfven wave, as we found above. 
+\begin{align}
+  \omega^2 & = k^2 \va^2
 \end{align}
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\section{Electrostatic Limit}
+\subsection{$x$ and $z$ Components}
+
+We start with... 
+\begin{align}
+  \lr{ 1 - \frac{k^2 \va^2}{\omega^2} \cos^2 \theta }
+  \lr{ 1 - \frac{k^2 \cb^2}{\omega^2} \sin^2 \theta - \frac{\ob^2}{\omega^2} }
+  - 
+  \lr{ \frac{k^2 \va^2}{\omega^2} \sin \theta \cos \theta }
+  \lr{ \frac{k^2 \cb^2}{\omega^2} \sin \theta \cos \theta }
+  & = 0
+\end{align}
+
+Which is quadratic in $\omega^2$... though the expression is a bit long... 
+
+
+
+
+
 
 
 
