@@ -85,11 +85,11 @@ The above expression decouples the parallel and perpendicular components.
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Parallel Component}
+\subsection{Parallel Polarization}
 
-With $\theta=0$, the parallel component of the determinant of $\dispersiontensor_\parallel$ is:
+With $\theta=0$, the parallel component of the determinant of $\dispersiontensor_\parallel$ gives:
 \begin{align}
-  1 + \frac{i}{\omega} \frac{\ob^2}{\nu - i \omega} = 0
+  \omega^2 + i \nu \omega - \ob^2 = 0
 \end{align}
 
 There is no $k$ dependence in this expression, so it doesn't really describe a wave, so much as a resonant frequency: 
@@ -107,12 +107,14 @@ This is the plasma oscillation. It's allowed when the field-aligned conductivity
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Perpendicular Component}
+\subsection{Perpendicular Polarization}
 
-With $\theta=0$, the perpendicular component of the determinant of $\dispersiontensor_\parallel$ is:
+With $\theta=0$, the perpendicular component of the determinant of $\dispersiontensor_\parallel$ gives:
 \begin{align}
-  \lr{ 1 - \frac{k^2 \va^2}{\omega^2} + \frac{i \sp}{\ep \omega} }^2
-  + \lr{ \frac{i \sh}{\ep \omega} }^2 & = 0
+  \omega^4 + 2 i \frac{\sp}{\ep} \omega^3
+  - \lr{ 2 k^2 \va^2 + \frac{\sp^2 + \sh^2}{\ep^2} } \omega^2
+  - 2 i k^2 \va^2 \frac{\sp}{\ep} \omega
+  + k^4 \va^4 & = 0
 \end{align}
 
 This can be solved in exact form. Note that the following is all four solutions; $\pm$ and $\opm$ are independent. 
@@ -152,30 +154,62 @@ As in the parallel propagation case, the parallel and perpendicular components o
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Parallel Component}
+\subsection{Parallel Polarization}
 
-The parallel component of the determinant of $\dispersiontensor_\bot$ is:
+The parallel component of the determinant of $\dispersiontensor_\bot$ gives:
 \begin{align}
-  1 - \frac{k^2 \cb^2}{\omega^2} + \frac{i}{\omega} \frac{\ob^2}{\nu - i \omega} & = 0
+  \omega^3 + i \nu \omega^2
+  - \lr{ k^2 \cb^2 + \ob^2 } \omega
+  - i k^2 \cb^2 \nu & = 0
 \end{align}
 
-This is a cubic. It can be solved exactly, but the roots are pretty gross. We need to look at the relative size of the terms so that we can expand responsibly. 
+This is a cubic. It can be solved exactly, but the roots are pretty gross. 
 
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\subsection{Perpendicular Component}
-
-The parallel component of the determinant of $\dispersiontensor_\bot$ is:
+For almost all of the simulation domain, $\nu$ is small compared to $\ob$ and $k \cb$. This isn't true right at the ionospheric boundary. If we expand around small $\nu$, the positive real root is:
 \begin{align}
-  \lr{ 1 + \frac{i \sp}{\ep \omega} }
-  \lr{ 1 - \frac{k^2 \va^2}{\omega^2} + \frac{i \sp}{\ep \omega} }
-  -
-  \lr{ \frac{\sh}{\ep \omega} }^2
-  & = 0
+  \omega & = \sqrt{ \ob^2 + k^2 \cb^2 } - \frac{i}{2} \frac{\ob^2}{\ob^2 + k^2 \cb^2} \nu + ...
+\end{align}
+
+Since $\ob \gg k \cb$ this is the plasma oscillation again... 
+\begin{align}
+  \omega & = \ob + \frac{k^2 \cb^2}{2 \ob} + ...
+\end{align}
+
+On the other hand, expanding in large $\nu$ (which we expect to see right at the ionospheric boundary) we find a pair of real roots:
+\begin{align}
+  \omega & = \pm k \cb - \frac{i \ob^2}{2 \nu} + ...
+\end{align}
+
+This seems pretty suspect... we expect $\nu > \ob$ at the boundary, but we also expect our $\omega$ to be much less than $\ob$. It seems unlikely that the decay term will every vanish here. 
+
+If we expand the solution around large $\ob$, we get the plasma oscillation again. 
+\begin{align}
+  \omega & = \pm \ob - \frac{i \nu}{2} + ...
+\end{align}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Perpendicular Polarization}
+
+The parallel component of the determinant of $\dispersiontensor_\bot$ gives:
+\begin{align}
+  \omega^3 + 2 i \frac{\sp}{\ep} \omega^2
+  - \lr{ 2 k^2 \va^2 + \frac{\sp^2 + \sh^2}{\ep^2} } \omega
+   - i k^2 \va^2 \frac{\sp}{\ep} & = 0
 \end{align}
 
 This is also a cubic, with similarly gross roots. 
+
+Expanding in small conductivity, as we see at large distances, we get:
+\begin{align}
+  \omega & = \pm k \va - \frac{i \sp}{2 \ep} + ...
+\end{align}
+
+Expanding in large conductivity, as we see right at the ionospheric current sheet, gives:
+\begin{align}
+  \omega & = \pm \frac{\sh - i \sp}{\ep} + \frac{k^2 \va^2}{2 \sh / \ep} + ...
+\end{align}
 
 % =============================================================================
 % =============================================================================
@@ -202,14 +236,9 @@ In this case it's the $y$ component that decouples from the rest. Recall that's 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{$y$ Component}
+\subsection{$y$ Polarization}
 
-We start with... 
-\begin{align}
-  1 - \frac{k^2 \va^2}{\omega^2} & = 0
-\end{align}
-
-This can be rearranged to a familiar form, giving the \Alfven wave, as we found above. 
+Right away, we can pull out a familiar expression, the \Alfven wave. 
 \begin{align}
   \omega^2 & = k^2 \va^2
 \end{align}
@@ -217,22 +246,45 @@ This can be rearranged to a familiar form, giving the \Alfven wave, as we found 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{$x$ and $z$ Components}
+\subsection{$x$-$z$ Polarization}
 
-We start with... 
+The other two directions' components give:
 \begin{align}
-  \lr{ 1 - \frac{k^2 \va^2}{\omega^2} \cos^2 \theta }
-  \lr{ 1 - \frac{k^2 \cb^2}{\omega^2} \sin^2 \theta - \frac{\ob^2}{\omega^2} }
-  - 
-  \lr{ \frac{k^2 \va^2}{\omega^2} \sin \theta \cos \theta }
-  \lr{ \frac{k^2 \cb^2}{\omega^2} \sin \theta \cos \theta }
-  & = 0
+  \omega^4 
+  - \lr{ k^2 \va^2 \cos^2 \theta + k^2 \cb^2 \sin^2 \theta + \ob^2 } \omega^2
+  + k^2 \va^2 \cos^2 \theta \ob^2 & = 0
 \end{align}
 
-Which is quadratic in $\omega^2$... though the expression is a bit long... 
+Which is quadratic in $\omega^2$, and so can be solved directly, albeit for an ugly expression:
+\begin{align}
+  \omega^2 & = \frac{1}{2} \lr{ k^2 \va^2 \cos^2 \theta + k^2 \cb^2 \sin^2 \theta + \ob^2 }
+  \pm \sqrt{ \frac{1}{2} \lr{ k^2 \va^2 \cos^2 \theta + k^2 \cb^2 \sin^2 \theta + \ob^2 }^2 
+    - k^2 \va^2 \ob^2 \cos^2 \theta }
+\end{align}
 
+If we expand around small $\theta$ for nearly-parallel propagation, we see (making the reasonable assumption that $\ob^2 - k^2 \va^2 \ge 0$) the two roots simplify to...
+\begin{align}
+  \omega^2 & = k^2 \va^2 
+  - \frac{ k^2 \va^2 \lr{ \ob^2 + k^2 \cb^2 - k^2 \va^2 } }{\ob^2 - k^2 \va^2} \theta^2
+  + ... \\
+  \omega^2 & = \ob^2
+  - \frac{\ob^2 k^2 \cb^2}{\ob^2 - k^2 \va^2} \theta^2
+  + ...
+\end{align}
 
+It looks like we've rediscovered the plasma oscillation and the \Alfven wave. 
 
+On the other hand, if we expand $\theta$ around $\frac{\pi}{2}$ we see:
+\begin{align}
+  \omega^2 & = \frac{k^2 \va^2 \ob^2}{\ob^2 + k^2 \cb^2} \lr{ \theta - \frac{\pi}{2} }^2 
+    + ... \\
+  \omega^2 &= k^2 \cb^2 + \ob^2 
+  - \frac{ k^2 \cb^2 \lr{ \ob^2 + k^2 \cb^2 - k^2 \va^2 } }{\ob^2 + k^2 \cb^2} 
+  \lr{ \theta - \frac{\pi}{2} }^2
+  + ...
+\end{align}
+
+The first of these is very odd... $\omega \rightarrow 0$ as $\theta \rightarrow \frac{\pi}{2}$. The second seems to be the O mode. 
 
 
 
