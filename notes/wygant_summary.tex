@@ -1,0 +1,140 @@
+% Charles McEachern
+
+% Fall 2015
+
+% This is a template for writing a note to Bob in TeX. 
+
+\documentclass{article}
+
+% =============================================================================
+% ==================================== Package List Copied from Thesis Template
+% =============================================================================
+
+\usepackage{epsfig} % Allows the inclusion of eps files
+\usepackage{epic} % Enhanced picture mode
+\usepackage{eepic} % Extensions for epic
+\usepackage{units} % SI unit typesetting
+\usepackage{url} % URL handling
+\usepackage{longtable} % Tables that continue onto multiple pages
+\usepackage{mathrsfs} % Support for \mathscr script
+\usepackage{multirow} % Span rows in tables
+\usepackage{bigstrut} % Space struts in tables up and down
+\usepackage{amssymb} % AMS math symbols and helpers
+\usepackage{graphicx} % Enhanced graphics support
+\usepackage{setspace} % Adjust spacing in captions, single by default
+\usepackage{xspace} % Automatically adjusting space after macros
+\usepackage{amsmath} % \text, and other math formatting options
+\usepackage{siunitx} % \num{} formatting and SI unit formatting
+\usepackage{booktabs} % Enhanced tables with \toprule, etc.
+\usepackage{hyperref} % Add clickable links to other parts of the document
+\usepackage[noabbrev]{cleveref} % Automatically determine \cref type
+
+\usepackage{parskip} % http://ctan.org/pkg/parskip
+
+% Configure the siunitx package
+\sisetup{
+    group-separator = {,}, % Use , to separate groups of digits, like 12,345
+    list-final-separator = {, and } % Always use the serial comma in \SIlist
+}
+
+% Configure the cleveref package
+\newcommand{\creflastconjunction}{, and } % Always use the serial comma
+
+\linespread{1.3}
+
+% =============================================================================
+% ================================================================= Definitions
+% =============================================================================
+
+\input{../my_definitions}
+
+% =============================================================================
+% ======================================================== Document Starts Here
+% =============================================================================
+
+\begin{document}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Model Summary}
+
+We start with \farlaw, \amplaw (plus a driving term), and \ohmlaw (including electron inertial effects in the parallel direction). 
+\begin{align*}
+  \ddt \vec{B} & = - \curl{E}
+  &
+  \tensor{\epsilon} \cdot \ddt \vec{E} & = 
+    \frac{1}{\mu_0} \lr{ \curl{B} } - \vec{J}_{drive} - \vec{J}
+  \\
+  \vec{J}_\bot & = \tensor{\sigma}_\bot \cdot \vec{E}_\bot
+  &
+  \ddt J_\parallel & = \frac{n e^2}{\me} E_\parallel - \nu J_\parallel
+\end{align*}
+
+We use a two-dimensional dipole grid spanning $2 \lesssim L \lesssim 10$. Field lines end at a fixed altitude, taken to be the ionospheric current sheet, at $\sim \SI{100}{\km}$. 
+
+
+
+
+
+At the boundary, we assume an insulating atmosphere and a conducting Earth. This allows us to compute a scalar magnetic potential, $\Psi$. Each time step, we use $B_r$ to compute $\Psi$ in terms of spherical harmonics. We then use $\Psi$ to compute $B_\phi$ and $B_\theta$ at $R_E$ and $R_I$. From the jump in magnetic field over the ionospheric current sheet, we compute boundary values for the horizontal electric field. 
+\begin{align*}
+  \mu_0 \tensor{\Sigma} \cdot \vec{E} & = \hat{r} \times \Delta \! \vec{B} 
+\end{align*}
+
+We use static profiles for conductivity, \Alfven speed, number density, and so on. We have several profiles, allowing us to simulate the dayside or nightside during quiet or active times. 
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Model Strengths}
+
+This 
+
+
+
+
+
+
+
+
+
+
+
+%The parallel electric field, and all components of the magnetic field, are updated directly. Perpendicular currents are eliminated. Perpendicular electric fields and the parallel current are solved with integrating factors. 
+%\begin{align*}
+%  \vec{E}_\bot \! \arg{\dt} & = 
+%    \tensor{R} \argsmall{\frac{\sigma_H}{\epsilon_\bot} \dt} \cdot \vec{E}_\bot \! \arg{0}
+%      \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \dt}
+%    + \dt \tensor{R} \argsmall{\frac{\sigma_H}{\epsilon_\bot} \frac{\dt}{2} } \cdot  \vec{F}_\bot \! \argsmall{ \frac{\dt}{2} } \exp \argsmall{-\frac{\sigma_P}{\epsilon_\bot} \frac{\dt}{2} }
+%  \\
+%  J_\parallel \arg{\dt} & = 
+%    J_\parallel \arg{0} \exp \arg{ -\nu \dt }
+%    + \frac{n e^2}{\me} \dt \, E_\parallel \argsmall{\frac{\dt}{2}}  
+%    \exp \argsmall{ -\nu \frac{\dt}{2} }
+%\end{align*}
+
+%where
+%\begin{align*}
+%  \vec{F} \equiv \frac{1}{\mu_0 \epsilon_\bot} \curl{B} - \frac{1}{\epsilon_\bot} \vec{J}_{drive}
+%  \qquad \text{and} \qquad
+%  \tensor{R} \arg{\theta} \equiv \mm{\cos\theta}{-\sin\theta}{\sin\theta}{\cos\theta}
+%\end{align*}
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
