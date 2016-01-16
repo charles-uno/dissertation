@@ -71,11 +71,12 @@ We start with \farlaw, \amplaw (plus a driving term), and \ohmlaw (including ele
   \ddt J_\parallel & = \frac{n e^2}{\me} E_\parallel - \nu J_\parallel
 \end{align*}
 
-We use a two-dimensional dipole grid spanning $2 \lesssim L \lesssim 10$. Field lines end at a fixed altitude, taken to be the ionospheric current sheet, at $\sim \SI{100}{\km}$. 
-
-
-
-
+We use a two-dimensional dipole grid spanning $2 \lesssim L \lesssim 10$. Field lines end at a fixed altitude, taken to be the ionospheric current sheet, at $\sim \SI{100}{\km}$. Grid spacing is fine at the ionosphere and coarse at large distances. 
+\begin{figure}[h!]
+  \includegraphics[width=5in]{grid.png}
+  \caption{Illustration of the relative spacing of grid points along the dipole. }
+  \label{grid}
+\end{figure}
 
 At the boundary, we assume an insulating atmosphere and a conducting Earth. This allows us to compute a scalar magnetic potential, $\Psi$. Each time step, we use $B_r$ to compute $\Psi$ in terms of spherical harmonics. We then use $\Psi$ to compute $B_\phi$ and $B_\theta$ at $R_E$ and $R_I$. From the jump in magnetic field over the ionospheric current sheet, we compute boundary values for the horizontal electric field. 
 \begin{align*}
@@ -90,7 +91,7 @@ We use static profiles for conductivity, \Alfven speed, number density, and so o
 % -----------------------------------------------------------------------------
 \section{Model Strengths}
 
-This 
+Because we simulate an entire meridional slice of the inner magnetosphere (as opposed to only looking at a single field line, or neglecting the ionospheric conductivity), we are able to present a 
 
 
 
