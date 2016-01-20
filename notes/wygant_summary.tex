@@ -59,7 +59,7 @@
 % -----------------------------------------------------------------------------
 \section{Model Summary}
 
-We start with \farlaw, \amplaw (plus a driving term), and \ohmlaw (including electron inertial effects in the parallel direction). 
+We start with \farlaw, \amplaw, and \ohmlaw. Driving is delivered through an additional current term in \amplaw (usually sinusoidal). We consider electron inertial effects in the parallel component of \ohmlaw. 
 \begin{align*}
   \ddt \vec{B} & = - \curl{E}
   &
@@ -71,29 +71,100 @@ We start with \farlaw, \amplaw (plus a driving term), and \ohmlaw (including ele
   \ddt J_\parallel & = \frac{n e^2}{\me} E_\parallel - \nu J_\parallel
 \end{align*}
 
-We use a two-dimensional dipole grid spanning $2 \lesssim L \lesssim 10$. Field lines end at a fixed altitude, taken to be the ionospheric current sheet, at $\sim \SI{100}{\km}$. Grid spacing is fine at the ionosphere and coarse at large distances. 
-\begin{figure}[h!]
-  \includegraphics[width=5in]{grid.png}
-  \caption{Illustration of the relative spacing of grid points along the dipole. }
-  \label{grid}
-\end{figure}
+We use a two-dimensional dipole grid spanning $2 \lesssim L \lesssim 10$. Field lines end at a fixed altitude, taken to be the ionospheric current sheet, at an altitude of $\sim \SI{100}{\km}$. Grid spacing is fine at the ionosphere and coarse at large distances. 
+%\begin{figure}[h!]
+%  \includegraphics[width=5in]{grid.png}
+%  \caption{Illustration of the relative spacing of grid points along the dipole. }
+%  \label{grid}
+%\end{figure}
 
-At the boundary, we assume an insulating atmosphere and a conducting Earth. This allows us to compute a scalar magnetic potential, $\Psi$. Each time step, we use $B_r$ to compute $\Psi$ in terms of spherical harmonics. We then use $\Psi$ to compute $B_\phi$ and $B_\theta$ at $R_E$ and $R_I$. From the jump in magnetic field over the ionospheric current sheet, we compute boundary values for the horizontal electric field. 
+At the boundary, we assume an insulating atmosphere and a conducting Earth. This allows us to compute a scalar magnetic potential, $\Psi$, and from it $B_\phi$ and $B_\theta$ at $R_E$ and $R_I$. We use the jump in horizontal magnetic field over the ionospheric current sheet as a boundary condition on the horizontal electric field. %. Each time step, we use $B_r$ to compute $\Psi$ in terms of spherical harmonics. We then use $\Psi$ to compute $B_\phi$ and $B_\theta$ at $R_E$ and $R_I$. From the jump in magnetic field over the ionospheric current sheet, we compute boundary values for the horizontal electric field. 
 \begin{align*}
   \mu_0 \tensor{\Sigma} \cdot \vec{E} & = \hat{r} \times \Delta \! \vec{B} 
 \end{align*}
 
-We use static profiles for conductivity, \Alfven speed, number density, and so on. We have several profiles, allowing us to simulate the dayside or nightside during quiet or active times. 
+The simulation runs in two and a half dimensions, resolving a meridional slice of the magnetosphere. Perpendicular derivatives assume that all fields vary azimuthally per $\exp \arg{i m \phi}$. This should not be read as a periodic oscillation which continues all the way around the Earth. Rather, we selectively consider phenomena which are localized in MLT, and let $m$ dictate their azimuthal wavelength. The real component of a field is taken to be its value at our meridional slice, while the imaginary component is azimuthally phase shifted. %In practice, driving with azimuthal ``current'' (delivered to the azimuthal electric field) produces real poloidal field components ($B_x$ and $E_y$) and imaginary toroidal field components ($B_y$ and $E_x$). 
+
+We use static profiles for conductivity, \Alfven speed, number density, and so on. Different profiles are used to simulate the dayside or nightside during quiet or active times. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Model Uses}
+
+Past work with this model (or ones very much like it) have used compressional driving -- an enhancement of $B_z$ along the outer boundary -- to simulate ULF waves. Recent work (Jesse's 2010 thesis, Bob's 2013 paper) has focused in particular on IAR modes, frequencies $\sim \SI{1}{\s}$. 
+
+My work instead focuses on Pc4 pulsations -- field line resonances just outside the plasmasphere. Pc4s can exhibit large azimuthal modenumbers, which makes them hard to resolve in a fully 3D simulation. Additionally, high-$m$ \Alfven waves cannot be driven compressionally in this frequency range. As the azimuthal wavelength shrinks, the azimuthal wavenumber grows, and so does the minimum non-evanescent \Alfven wave frequency. 
+
+Ideally, the results from this model can be compared to the recent work by RBSP: ``Storm time occurrence and spatial distribution of Pc4 poloidal ULF waves in the inner magnetosphere: A Van Allen Probes statistical study'' by Dai et al, 2015. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Model Output}
+
+The model simulates electric fields, magnetic fields, and currents along the dipole grid, broken up into parallel, perpendicular, and azimuthal components. Horizontal magnetic fields are also computed at the top and bottom of the atmosphere. This data can be visualized in a handful of ways. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Snapshots in Time}
+
+We can produce snapshots in time of field evolution over the entire dipole. 
+
+These can also be animated (in principle). 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Ground Signatures}
+
+Contour plot. 
+
+Line plot at a single location. 
+
+
+
+
+
+\begin{figure}[h!]
+  \includegraphics[width=5in]{energy.png}
+  \caption{Poloidal-toroidal coupling depends on both modenumber and conductivity. }
+\end{figure}
+
+
+
 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\section{Model Strengths}
-
-Because we simulate an entire meridional slice of the inner magnetosphere (as opposed to only looking at a single field line, or neglecting the ionospheric conductivity), we are able to present a 
+\section{``In Situ'' Plots}
 
 
+
+
+We can follow the time evolution of field components at a small number of specific locations. 
+
+
+
+
+\begin{figure}[h!]
+  \includegraphics[width=5in]{insitu.png}
+  \caption{Magnetic fields over time for a stationary observer. }
+\end{figure}
+
+
+
+
+\begin{figure}[h!]
+  \includegraphics[width=5in]{insitu.png}
+  \caption{Magnetic fields over time for an observer moving at \SI{1}{\km/\s}. }
+\end{figure}
+
+
+
+Speed is a significant consideration with this model. Because many runs can be performed in a relatively short amount of time, we generally conduct an ensemble of similar runs rather than a single parge run. This helps us distinguish broad trends from individual oddities. 
 
 
 
