@@ -1,6 +1,6 @@
-LATEXMK=./latexmk/latexmk
+LATEXMK=../latexmk/latexmk
 
-all: note boris
+all: note
 
 note: note.tex
 	$(LATEXMK) -pdf note.tex -halt-on-error
