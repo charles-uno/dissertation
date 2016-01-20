@@ -31,6 +31,10 @@
 
 \usepackage{parskip} % http://ctan.org/pkg/parskip
 
+
+\usepackage{float} % Sometimes you want to tell LaTeX to put an image RIGHT HERE. 
+
+
 % Configure the siunitx package
 \sisetup{
     group-separator = {,}, % Use , to separate groups of digits, like 12,345
@@ -54,6 +58,9 @@
 
 \begin{document}
 
+
+Note: Some of the plots are badly proportioned, with titles or labels chopped off. I'm still working on optimizing the plotter for sheets of paper, rather than for powerpoints. Sorry! 
+
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -71,28 +78,28 @@ We start with \farlaw, \amplaw, and \ohmlaw. Driving is delivered through an add
   \ddt J_\parallel & = \frac{n e^2}{\me} E_\parallel - \nu J_\parallel
 \end{align*}
 
-We use a two-dimensional dipole grid spanning $2 \lesssim L \lesssim 10$. Field lines end at a fixed altitude, taken to be the ionospheric current sheet, at an altitude of $\sim \SI{100}{\km}$. Grid spacing is fine at the ionosphere and coarse at large distances. 
+We use a two-dimensional dipole grid spanning $2 \lesssim L \lesssim 10$. Field lines end at a fixed altitude of $\sim \SI{100}{\km}$, taken to be the ionospheric current sheet. 
 %\begin{figure}[h!]
 %  \includegraphics[width=5in]{grid.png}
 %  \caption{Illustration of the relative spacing of grid points along the dipole. }
 %  \label{grid}
 %\end{figure}
 
-At the boundary, we assume an insulating atmosphere and a conducting Earth. This allows us to compute a scalar magnetic potential, $\Psi$, and from it $B_\phi$ and $B_\theta$ at $R_E$ and $R_I$. We use the jump in horizontal magnetic field over the ionospheric current sheet as a boundary condition on the horizontal electric field. %. Each time step, we use $B_r$ to compute $\Psi$ in terms of spherical harmonics. We then use $\Psi$ to compute $B_\phi$ and $B_\theta$ at $R_E$ and $R_I$. From the jump in magnetic field over the ionospheric current sheet, we compute boundary values for the horizontal electric field. 
+At the boundary, we assume an insulating atmosphere and a conducting Earth. This allows us to compute an atmospheric magnetic potential, $\Psi$, and from it $B_\phi$ and $B_\theta$. We use the jump in horizontal magnetic field over the ionospheric current sheet as a boundary condition on the horizontal electric field. 
 \begin{align*}
   \mu_0 \tensor{\Sigma} \cdot \vec{E} & = \hat{r} \times \Delta \! \vec{B} 
 \end{align*}
 
 The simulation runs in two and a half dimensions, resolving a meridional slice of the magnetosphere. Perpendicular derivatives assume that all fields vary azimuthally per $\exp \arg{i m \phi}$. This should not be read as a periodic oscillation which continues all the way around the Earth. Rather, we selectively consider phenomena which are localized in MLT, and let $m$ dictate their azimuthal wavelength. The real component of a field is taken to be its value at our meridional slice, while the imaginary component is azimuthally phase shifted. %In practice, driving with azimuthal ``current'' (delivered to the azimuthal electric field) produces real poloidal field components ($B_x$ and $E_y$) and imaginary toroidal field components ($B_y$ and $E_x$). 
 
-We use static profiles for conductivity, \Alfven speed, number density, and so on. Different profiles are used to simulate the dayside or nightside during quiet or active times. 
+We use static profiles for conductivity, \Alfven speed, number density, and so on. Different profiles are used to simulate the dayside or nightside during quiet or active times. Runs go for just a few minutes, much too fast to worry about convective timescales. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \section{Model Uses}
 
-Past work with this model (or ones very much like it) have used compressional driving -- an enhancement of $B_z$ along the outer boundary -- to simulate ULF waves. Recent work (Jesse's 2010 thesis, Bob's 2013 paper) has focused in particular on IAR modes, frequencies $\sim \SI{1}{\s}$. 
+Past work with similar models has focused on compressional driving -- an enhancement of $B_z$ along the outer boundary -- to simulate ULF waves. Recent work (Jesse's 2010 thesis, Bob's 2013 paper) has focused in particular on IAR modes, frequencies $\sim \SI{1}{\s}$. 
 
 My work instead focuses on Pc4 pulsations -- field line resonances just outside the plasmasphere. Pc4s can exhibit large azimuthal modenumbers, which makes them hard to resolve in a fully 3D simulation. Additionally, high-$m$ \Alfven waves cannot be driven compressionally in this frequency range. As the azimuthal wavelength shrinks, the azimuthal wavenumber grows, and so does the minimum non-evanescent \Alfven wave frequency. 
 
@@ -105,66 +112,59 @@ Ideally, the results from this model can be compared to the recent work by RBSP:
 
 The model simulates electric fields, magnetic fields, and currents along the dipole grid, broken up into parallel, perpendicular, and azimuthal components. Horizontal magnetic fields are also computed at the top and bottom of the atmosphere. This data can be visualized in a handful of ways. 
 
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\section{Snapshots in Time}
-
-We can produce snapshots in time of field evolution over the entire dipole. 
-
-These can also be animated (in principle). 
+A significant selling point of this model is its speed. Many runs can be performed in a relatively short time. This allows us to perform ensembles of runs with similar parameters. Plotting them side-by-side allows us to distinguish broad trands from individual oddities. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\section{Ground Signatures}
+\subsection{``In Situ'' Plots}
 
-Contour plot. 
+In order to compare simulation data to RBSP observations, it's probably most effective to pretend that RBSP is flying through the simulation. We can choose a fixed grid location (or an ensemble of locations) and plot the fields seen there. 
+\begin{figure}[H]
+  \includegraphics[width=5in]{insitu_0kmps.png}
+  \caption{Magnetic fields over time for a stationary observer. }
+\end{figure}
 
-Line plot at a single location. 
+We can also have this observer ``move''. Motion in the plane can be simulated by taking a weighted average of the values seen at nearby grid points. Motion out of the plane can be faked with a rotation of $\exp \arg{ i m \frac{v t}{2 \pi r} }$. Notably, over the course of a few minutes, RBSP's velocity of $\lesssim \SI{10}{\km/\s}$ does not produce a significant phase shift. 
+\begin{figure}[H]
+  \includegraphics[width=5in]{insitu_10kmps.png}
+  \caption{Magnetic fields over time for an observer moving \SI{10}{\km/\s} in the azimuthal direction. }
+\end{figure}
 
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Magnetosphere Slices}
 
+We can look at a succession of snapshots of the same field(s) evolving over time. These can also be animated. This sort of plot gives a good overall sense of the magnetospheric response to driving. 
+\begin{figure}[H]
+  \includegraphics[width=5in, height=7in]{snapshots.pdf}
+  \caption{Whole-magnetosphere view of toroidal and poloidal Poynting flux at a succession of time steps. }
+\end{figure}
 
+Rather than showing different snapshots of the same run, a lattice of contour plots can also compare the same snapshot of different runs. For example, we can look at the response after a full drive period based on azimuthal modenumber and ionospheric profile. 
 
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Magnetosphere Evolution}
 
-\begin{figure}[h!]
+Similarly, we can integrate (for example) the electromagnetic energy over the magnetosphere and look at how that quantity evolves over time. This builds significantly on what Ian Mann looked at in his much-cited 1995 paper. 
+\begin{figure}[H]
   \includegraphics[width=5in]{energy.png}
   \caption{Poloidal-toroidal coupling depends on both modenumber and conductivity. }
 \end{figure}
 
-
-
-
-
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\section{``In Situ'' Plots}
+\subsection{Ground Signatures}
 
-
-
-
-We can follow the time evolution of field components at a small number of specific locations. 
-
-
-
-
-\begin{figure}[h!]
-  \includegraphics[width=5in]{insitu.png}
-  \caption{Magnetic fields over time for a stationary observer. }
+Because we solve for the magnetic scalar potential in the atmosphere, we can look at the ground signatures our magnetospheric waves produce. These can be plotted as lines, showing the time evolution of ground magnetic fields at a fixed point over time. They can also be plotted as contours, which allows us to see waves drifting across latitudes over time. 
+\begin{figure}[H]
+  \includegraphics[width=5in]{horizontal.pdf}
+  \caption{Horizontal magnetic fields at all latitudes, computed at the top and bottom of the atmospheric shell. }
 \end{figure}
-
-
-
-
-\begin{figure}[h!]
-  \includegraphics[width=5in]{insitu.png}
-  \caption{Magnetic fields over time for an observer moving at \SI{1}{\km/\s}. }
-\end{figure}
-
-
-
-Speed is a significant consideration with this model. Because many runs can be performed in a relatively short amount of time, we generally conduct an ensemble of similar runs rather than a single parge run. This helps us distinguish broad trends from individual oddities. 
 
 
 
