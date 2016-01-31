@@ -18,6 +18,7 @@
 % 11/23/2010 Fixed the problem where additional pages of Acknowledgement were not correctly numbered - Sriram Doraiswamy
 % 11/25/2010 Name of the advisor and Master of Arts or Science appears properly - Sriram Doraiswamy
 % 05/05/2015 - Moved the template into git; see `git log` for changes - Alex Gude
+% 01/30/2016 - All page numbers are now centered in the footer. - Charles McEachern
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -456,7 +457,7 @@
   \afterprefacetrue
   \c@page0 % set page counter so that next is 1
   \pagenumbering{arabic}
-  \pagestyle{topright}
+%  \pagestyle{topright}
 }
 
 \def\vita {

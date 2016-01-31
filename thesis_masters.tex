@@ -21,8 +21,12 @@
 \usepackage{hyperref} % Add clickable links to other parts of the document
 \usepackage[noabbrev]{cleveref} % Automatically determine \cref type
 
-\usepackage{parskip} % http://ctan.org/pkg/parskip
 
+\usepackage{doi} % Link to doi in the bibliography. 
+
+\usepackage{parskip} % http://ctan.org/pkg/parskip vskip instead of indent. 
+
+\usepackage{float} % Sometimes you want to tell LaTeX to put an image RIGHT HERE. 
 
 % Configure the siunitx package
 \sisetup{
@@ -63,9 +67,6 @@
 
 
 
-
-
-
 \begin{document}
 \bibliographystyle{hunsrt} % style of bibliography
 
@@ -74,17 +75,19 @@
 
 \include{chapters/intro}
 
+\include{chapters/pc4s}
+
 \include{chapters/math}
 
 \include{chapters/model}
 
 \include{chapters/inertia}
 
-\include{chapters/coupling}
+\include{chapters/bigm}
 
-\include{chapters/data}
+\include{chapters/pgs}
 
-\include{chapters/giant}
+\include{chapters/rbsp}
 
 \include{chapters/conclusion}
 
