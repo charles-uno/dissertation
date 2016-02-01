@@ -26,6 +26,7 @@ $(MAIN_PDF): ALWAYS_COMPILE $(MAIN_TEX) $(HELPER_FILES) $(PRELIMS) $(CHAPTERS) $
 tidy:
 	$(LATEXMK) -c $(MAIN_TEX)
 
-# Clean up all the regeneratable files, including the final document
+# Clean up all the regeneratable files, including the final document, and any temporary files. 
 clean:
 	$(LATEXMK) -C $(MAIN_TEX)
+	rm *~
