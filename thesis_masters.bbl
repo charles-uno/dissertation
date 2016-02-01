@@ -1,3 +1,27 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{dai_2013}
+Lei Dai, Kazue Takahashi, John~R. Wygant, Liu Chen, John Bonnell, Cynthia~A.
+  Cattell, Scott Thaller, Craig Kletzing, Charles~W. Smith, Robert~J.
+  MacDowall, Daniel~N. Baker, J.~Bernard Blake, Joseph Fennell, Seth
+  Claudepierre, Herbert~O. Funsten, Geoffrey~D. Reeves, and Harlan~E. Spence.
+\newblock Excitation of poloidal standing alfv{\'e}n waves through drift
+  resonance wave-particle interaction.
+\newblock {\em Geophys. Res. Lett.}, 40:4127–4132, 2013.
+
+\bibitem{dai_2015}
+Lei Dai, Kazue Takahashi, Robert Lysak, Chi Wang, John~R. Wygant, Craig
+  Kletzing, John Bonnell, Cynthia~A. Cattell, Charles~W. Smith, Robert~J.
+  MacDowall, Scott Thaller, Aaron Breneman, Xiangwei Tang, Xin Tao, and Lunjin
+  Chen.
+\newblock Storm time occurrence and spatial distribution of pc4 poloidal ulf
+  waves in the inner magnetosphere: A van allen probes statistical study.
+\newblock {\em J. Geophys. Res. Space Physics}, 120:4748–4762, 2015.
+
+\bibitem{lysak_2001}
+Robert~L. Lysak and Yan Song.
+\newblock A three-dimensional model of the propagation of alfv{\'e}n waves
+  through the auroral ionosphere: first results.
+\newblock {\em Adv. Space Res.}, 28:813--822, 2001.
 
 \end{thebibliography}
