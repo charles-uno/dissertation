@@ -5,6 +5,145 @@
 \chapter{Electron Inertial Effects}
 \label{ch_inertia}
 
+
+
+COPIED OVER FROM THE MODEL CHAPTER. 
+
+
+
+
+Parallel \amplaw. 
+\begin{align}
+  \epsilon_\parallel \ddt E_\parallel &= \frac{1}{\mu_0} \lr{ \curl{B} }_\parallel - J_\parallel
+\end{align}
+
+If we follow the same approach as above, we can also solve with integrating factors. There isn't even any rotation. 
+\begin{align}
+  E_\parallel \arg{\dt} &= E_\parallel \arg{0}
+      \exp \argsmall{-\frac{\sigma_0}{\epsilon_\parallel} \dt}
+    + \va^2 \dt F_\parallel \argsmall{ \frac{\dt}{2} } 
+    \exp \argsmall{-\frac{\sigma_0}{\epsilon_\parallel} \frac{\dt}{2} }
+\end{align}
+
+However, it turns out that the field-aligned conductivity is really big, and the parallel electric constant (assumed to be $\epsilon_0$) is pretty small. For each profile, we see $\frac{\sigma_0}{\epsilon_\parallel} \dt \gtrsim 10^3$. When the exponential is evaluated, it goes to zero. 
+
+So, the above expression can't be used to compute parallel electric fields. 
+
+We get around that by adding electron inertial effects to \ohmlaw. Recall that in generalized form, \ohmlaw is:
+\begin{align}
+  \vec{E} + \vec{U} \times \vec{B} & = 
+  \eta \vec{J} + \frac{\me}{n e^2} \lrb{
+    \ddt \vec{J} + \nabla \cdot \lr{ 
+      \vec{J} \, \vec{U} + \vec{U} \,\vec{J} +
+      \frac{1}{n e} \vec{J} \, \vec{J} } } +
+  \frac{1}{n e} \vec{J} \times \vec{B} -
+  \frac{1}{n e} \div{ \vec{P_e} }
+\end{align}
+
+We are using a cold, static plasma, so we get to ignore any terms with $\vec{U}$. We also skip the nonlinear terms... this can probably be justified through a scaling argument. 
+
+The parallel conductivity is much larger than the Pedersen and Hall conductivities, which is how we can justify keeping only the parallel component of this term. 
+
+After pulling the conductivity tensor out of the denominator, we are left with the same form as before, but with an added term representing electron intertia:
+\begin{align}
+  \ddt J_\parallel & = 
+    \frac{n e^2}{\me} E_\parallel -
+    \frac{n e^2}{\me \sigma_0} J_\parallel
+\end{align}
+
+NOTE: MAYBE WE WANT TO WRITE THIS IN TERMS OF THE COLLISION RATE?
+
+Now we solve for $J_\parallel$ using integrating factors. 
+\begin{align}
+  J_\parallel \arg{\dt} & = 
+    J_\parallel \arg{0} \exp \argsmall{ -\frac{n e^2}{\me \sigma_0} \dt }
+    + \frac{n e^2}{\me} \dt \, E_\parallel \argsmall{\frac{\dt}{2}}  
+    \exp \argsmall{ -\frac{n e^2}{\me \sigma_0} \frac{\dt}{2} }
+\end{align}
+
+Or, in covariant terms, 
+\begin{align}
+  \begin{split}
+    J_3 \arg{\dt} & = 
+      J_3 \arg{0} \exp \argsmall{ -\frac{n e^2}{\me \sigma_0} \dt } \\
+      & + E_3 \argsmall{\frac{\dt}{2}} \frac{n e^2}{\me} \dt   
+      \exp \argsmall{ -\frac{n e^2}{\me \sigma_0} \frac{\dt}{2} }
+  \end{split}
+\end{align}
+
+We see the half-step offset again. The current lines up with the magnetic field. 
+
+NOTE: WE HAVE A SYMBOL NOW FOR THE BORIS PLASMA FREQUENCY. 
+
+The electron inertial term of \ohmlaw describes plasma oscillation, which (naturally) happen at the plasma frequency. We expect this to be unstable unless $\dt < \frac{1}{ \omega_{p e} }$. We're off, by a lot. 
+
+Reducing the time step by several orders of magnitude is not feasible. Much of what makes this model valuable is its speed -- the ability to conduct an ensemble of dozens of runs overnight -- and that would be lost if runs went from an hour to four days. This also risks instabilities of its own due to compounding numerical noise. 
+
+The solution is to implement a Boris correction, as introduced in (CITE BORIS 1970!!!). We increase $\epsilon_\parallel$ above its previous value of $\epsilon_0$. This essentially drops the speed of light and the plasma frequency -- potentially by several orders of magnitude -- while leaving their ratio, the electron inertial length, unchanged. This can easily reduce the speed of light to less than the \Alfven speed! 
+
+This is safe as long as we keep the plasma frequency well above Pc4 frequencies. This was shown in Lysak 2001 (CITE!!!). Also in Ronnmark (CITE!!!), who uses the nice term "anisotropic vacuum". 
+
+To briefly summarize Lysak's argument for why this is safe, start with the same equations as above. And assume that we're oscillating at some frequency $\omega$. Then we can evaluate the time derivatives in \amplaw and \ohmlaw. Note that we bring in the electron-ion collision frequency $\nu = \frac{n e^2}{\me \sigma_0}$
+\begin{align}
+  \epsilon_\parallel \ddt E_\parallel & = 
+    \frac{1}{\mu_0} \lr{ \curl{B} }_\parallel - J_\parallel &
+  \ddt J_\parallel & = 
+    \frac{n e^2}{\me} E_\parallel -
+    \nu J_\parallel
+\end{align}
+
+So with the electron inertial length defined per $\lambda^2 \equiv \frac{c^2}{\omega_p^2} = \frac{\me}{n e^2 \mu_0}$...
+
+\begin{align}
+  \lrb{ 1 - \frac{\omega^2 - i \omega \nu}{\omega_p^2} } E_\parallel & =
+  \lambda^2 \lr{\nu - i \omega} \lr{ \curl{B} }_\parallel
+\end{align}
+
+That is, as long as $\frac{\omega}{\omega_p^2} \ll 1$ and $\frac{\omega \nu}{\omega_p^2} \ll 1$ we should see no difference in the relative scales of the electric and magnetic fields. 
+
+Notably, without the electron inertial term, the perpendicular expression has no $i \omega$ on the right hand side of the expression. That's probably fine. The (effective?) perpendicular collision frequency is very large. (It can't be a real collision frequency... it goes to infinity when number density gets tiny! Note that the different conductivities actually have quite different expressions when derived from first principles.)
+
+... rehashing the above a bit ... 
+
+Start with parallel \Ampere's Law and Ohm's Law, with electron inertia. 
+\begin{align}
+  \epsilon_\parallel \ddt E_\parallel & = 
+    \frac{1}{\mu_0} \lr{ \curl{B} }_\parallel
+    - J_\parallel
+  &
+  \ddt \vec{J} & = \frac{n e^2}{m} E_\parallel - \nu J_\parallel
+\end{align}
+
+Assume oscillation as $\exp\arg{ - i \omega t }$, evaluate time derivatives, and eliminate $J$. 
+\begin{align}
+  \label{criterion}
+  \lrb{ 1 - \frac{\omega^2 + i \omega \nu}{ \omega^2_\parallel } } E_\parallel & =
+    \lambda^2 \lr{ \nu - i \omega } \lr{ \curl{B} }_\parallel
+\end{align}
+
+Where $\lambda$, the electron inertial length, and \ob, the potentially-Boris-adjusted plasma frequency, are given by: 
+\begin{align}
+  \lambda^2 \equiv \frac{c^2}{\omega^2_p} & = \frac{m}{n e^2 \mu_0}
+  &
+  \ob^2 \equiv \frac{n e^2}{m \eb}
+\end{align}
+
+If parallel currents are included in the model, the time step must satisfy $\omega_\parallel \dt < 1$ for stability. This is a significant constraint. The time step computed from the \Alfven speed and grid geometry is typically on the order of $\SI{10}{\us}$; plasma timescale can be as small as $\SI{10}{\ns}$. Decreasing the time step by three orders of magnitude means turning a one-hour run into a six-week run. 
+
+The plasma timescales can be reduced by introducing a Boris factor; that is, by increasing the electric constant $\epsilon_\parallel$ above its usual value of $\epsilon_0$. This serves to reduce the speed of light and plasma frequency without affecting the electron inertial length. 
+
+The Boris factor is constrained by the ratio between $E_\parallel$ and $\lr{ \curl{B} }_\parallel$ defined in \cref{criterion}. Any change in $\lrb{ 1 - \frac{\omega^2 + i \omega \nu}{ \ob^2 } }$ would be expected to significantly affect model behavior. 
+
+As shown in (PLOT THE FREQUENCY RATIOS!!!), there's room for a Boris factor of significant size. Even at a factor of $10^6$, $\left| \frac{\omega^2 + i \omega \nu}{ \ob^2 } \right| \lesssim 0.01$. 
+
+
+
+
+
+
+
+
+
 % =============================================================================
 % =============================================================================
 % =============================================================================
