@@ -175,35 +175,58 @@ The Ionospheric \Alfven Resonator (IAR) is definitely included in this model, bu
 \section{Maxwell's Equations}
   \label{sec_eqns}
 
-The bulk of the model is just electric and magnetic fields sloshing back and forth according to \farlaw, \amplaw, and Kirchhoff's formulation of \ohmlaw; respectively:
-\begin{align}
-  \ddt \vec{B} &= - \curl{E} &
-  \tensor{\epsilon} \cdot \ddt \vec{E} &= \frac{1}{\mu_0} \curl{B} - \vec{J} &
-  \vec{J} &= \tensor{\sigma} \cdot \vec{E}
-\end{align}
-
-Or, using \ohmlaw to eliminate the explicit current dependence in \amplaw, we can write:
+Our model simulates the evolution of electric and magnetic fields in accordance with Maxwell's equations. Specifically, magnetic fields are advanced using \farlaw, and electric fields with \amplaw. We use Kirchhoff's formulation of \ohmlaw -- $\vec{J} = \tensor{\sigma} \cdot \vec{E}$ -- to eliminate the explicit current dependence in \amplaw. 
 \begin{align}
   \ddt \vec{B} &= - \curl{E} &
   \tensor{\epsilon} \cdot \ddt \vec{E} &= \frac{1}{\mu_0} \curl{B} - \tensor{\sigma} \cdot \vec{E}
 \end{align}
+
+TALK ABOUT PRECOMPUTING COEFFICIENTS. 
+
+TALK ABOUT HALF TIME STEP OFFSET?
+
+Working only in terms of the covariant basis decreases our model's memory demands -- only one version of each field must be stored -- while simultaneously improving performance. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Magnetic Field}
+
+\farlaw can be used to advance magnetic fields directly from the electric fields. In generalized coordinates, this is written
+\begin{align}
+  \ddt B^i &= -\frac{ \varepsilon^{ijk} }{\jac} \partial_j E_k \\
+\intertext{Or, eliminating contravariant terms, }
+  \label{farlaw_ijk}
+  \ddt B_i &= -\frac{ g_{ij} \varepsilon^{jkl} }{\jac} \partial_k E_l
+\end{align}
+
+Where summation is implied over repeated indeces, per Einstein's convention, and $\varepsilon^{ijk}$ is the Levi-Civita symbol \cite{einstein_1916}. 
+
+Written out explicitly, and excluding metric tensor elements which are uniformly zero, \cref{farlaw_ijk} takes the form
+\begin{align}
+  \ddt B_1 &= - \frac{ g_{11} }{\jac} \lr{ \partial_2 E_3 - \partial_3 E_2 } - \frac{ g_{13} }{\jac} \lr{ \partial_1 E_2 - \partial_2 E_1 } \\
+  \ddt B_2 &= - \frac{ g_{22} }{\jac} \lr{ \partial_3 E_1 - \partial_1 E_3 } \\
+  \ddt B_3 &= - \frac{ g_{31} }{\jac} \lr{ \partial_2 E_3 - \partial_3 E_2 } - \frac{ g_{33} }{\jac} \lr{ \partial_1 E_2 - \partial_2 E_1 }
+\end{align}
+
+DO WE WANT TO REALLY SPELL OUT WHAT THE COEFFICIENTS LOOK LIKE?
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Perpendicular Electric Field}
 
-Neither the permittivity tensor nor the conductivity tensor couples the parallel and perpendicular components of \amplaw, so we can consider them separately. Let's start with the perpendicular components. 
+Neither the permittivity tensor nor the conductivity tensor couples the parallel and perpendicular components of \amplaw, so we can consider them separately. The perpendicular equation takes the form
 \begin{align}
   \ep \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \lr{ \curl{B} }_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot
 \end{align}
 
-If we cast this expression in terms of the linear polarizations $E_x$ and $E_y$, we find them coupled by the Hall conductivity. However, the conductivity tensor is be diagonal when we write this expression in terms of the circular polarizations. Taking $E_\pm \equiv \frac{1}{ \sqrt{2} } \lr{E_x \pm i E_y}$, and defining components of \curl{B} analogously,
+If we cast this expression in terms of the linear polarizations $E_x$ and $E_y$, we find them to be coupled by the Hall conductivity. However, the conductivity tensor is be diagonal when we write this expression in terms of the circular polarizations. Taking $E_\pm \equiv \frac{1}{ \sqrt{2} } \lr{E_x \pm i E_y}$, and defining components of \curl{B} analogously, we have
 \begin{align}
   \ep \ddt E_\pm &= \frac{1}{\mu_0} \lr{ \curl{B} }_\pm - \lr{ \sp \pm i \sh } E_\pm
 \end{align}
 
-The circularly-polarized expressions can be solved using integrating factors. Rotating back into \x-\y coordinates, then, the solution is: 
+The differential equations for the two perpendicular electric field components, now decoupled, can be solved using integrating factors. 
 \begin{align}
   \label{eperp_tensor}
   \vec{E}_\bot^{ \mathrm{new} } &= 
@@ -218,6 +241,14 @@ Where $\va^2 \equiv \frac{1}{\mu_0 \ep}$ and $\tensor{R}$ is the rotation matrix
   \tensor{R} \arg{\theta} \equiv \mm{\cos\theta}{-\sin\theta}{\sin\theta}{\cos\theta}
 \end{align}
 
+... \\ \\
+
+... \\ \\
+
+
+
+
+
 The electric field values on the left and right side of \cref{eperp_tensor} are offset by a time step. The magnetic field, on the other hand, is off by half a time step. 
 
 Derivatives can't easily be taken in terms of \x, \y, and \z, so we map this expression into our covariant basis.
@@ -231,9 +262,6 @@ Derivatives can't easily be taken in terms of \x, \y, and \z, so we map this exp
 
 Where recall that $\lr{ \curl{B} }^i = \varepsilon^{ijk} \partial_j B_k$
 
-... \\ \\
-
-... \\ \\
 
 
 
