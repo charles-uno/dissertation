@@ -5,7 +5,24 @@
 \chapter{Numerical Model}
 \label{ch_model}
 
-It's called Tuna! 
+
+Two and a half dimensions. 
+
+Also there are computational constraints on resolving large $\azm$ in 3D. 
+
+This is a good model because...
+
+This model is novel because... (current driving, in particular). 
+
+We resolve the meridional plane, then say everything goes as $e^{i \azm \phi}$. 
+
+This prevents us from looking at the dayside and the nightside at the same time. 
+
+As long as we're looking at phenomena which are azimuthally localized, we should be fine. And, as we discussed in \cite{dai_2015}, Pc4 pulsations are localized in MLT. 
+
+This means we don't have to worry about derivatives in the azimuthal direction. We just use a factor of $i \azm$. 
+
+While we can't resolve the azimuthal direction, we can look at phase. Imaginary values correspond to an azimuthal offset compared to the (real) driving. 
 
 The code is linear! From here on, we're talking about perturbations from the zeroth-order magnetic field, which we assume to be an ideal dipole. This is a not-great assumption out towards the magnetopause. In practice, however, we mostly see wave activity around $L \lesssim \SI{7}{\RE}$, where the dipole approximation is pretty good. 
 
@@ -13,7 +30,7 @@ The code is linear! From here on, we're talking about perturbations from the zer
 % =============================================================================
 % =============================================================================
 \section{Coordinate System}
-  \label{model_grid_section}
+  \label{sec_coords}
 
 
 Important to align our grid with the dipole field line, since we have empirical data for parallel and perpendicular conductivity and electric constant. 
@@ -31,27 +48,15 @@ But we don't actually do calculations in $x$, $y$, $z$.
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Two and a Half Dimensions}
-
-We resolve the meridional plane, then say everything goes as $e^{i \azm \phi}$. 
-
-This prevents us from looking at the dayside and the nightside at the same time. 
-
-As long as we're looking at phenomena which are azimuthally localized, we should be fine. And, as we discussed in ???, Pc4 pulsations are localized in MLT. 
-
-This means we don't have to worry about derivatives in the azimuthal direction. We just use a factor of $i \azm$. 
-
-While we can't resolve the azimuthal direction, we can look at phase. Imaginary values correspond to an azimuthal offset compared to the (real) driving. 
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
 \subsection{Nonorthogonal Dipole Grid}
 
 It's convenient to align our grid to the zeroth-order field. This allows us to
 decouple the parallel and perpendicular components of the permittivity and
 conductivity tendors. Traditional dipole coordinates are written as (using $r$,
 $\theta$, and $\phi$ in the usual spherical sense): 
+
+CITE RADOSKI 1967 FOR THESE. 
+
 \begin{align}
   \mu & = -\frac{\sin^2 \theta}{r} & \phi & = \phi & \nu & = \frac{\cos \theta}{r^2}
 \end{align}
@@ -62,8 +67,10 @@ specify inner and outer boudaries. On the other hand, the natural choice for
 boundaries in $\nu$ are the ionospheric current sheets. These sheets fall at 
 (more or less) constant altitude, but not constant $\nu$. 
 
-Following the example of (CITE Lysak 2004 !!!), $\nu$ can be rescaled to come to a
+Following the example of \cite{lysak_2004}, $\nu$ can be rescaled to come to a
 constant value at the ionospheric boundary. 
+
+Note: this does not deform the field lines. It just renormalizes the coordinate we use to index from the northern foot point to the southern one. 
 \begin{align}
   \label{def_coords}
   u^1 & = - \frac{R_I}{r} \sin^2 \theta & 
@@ -72,7 +79,7 @@ constant value at the ionospheric boundary.
 \end{align}
 
 Here, $\theta_0$ is a field line's invariant colatitude; that is, the
-colatitude at which it intersects the ionosphere. 
+colatitude at which it intersects the ionosphere in the northern hemisphere. 
 
 Note that $u^1$ is constant over each field line, $u^3 = 1$ where each field
 line intersects the ionosphere in the northern hemisphere, and $u^3 = -1$ where
@@ -81,11 +88,16 @@ each field line intersects the ionosphere in the southern hemisphere.
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Mapping Between Bases}
+\subsection{Covariant and Contravariant Bases}
 
 The coordinates defined in \cref{def_coords} are field-aligned, and come to a constant value at the ionosphere. Those are some pretty nice properties. But they're not orthonormal. That means we have to distinguish between covariant and contravariant coordinates. 
 
-Compute covariant and contravariant basis vectors in terms of $u^i$...
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Metric Tensor and Jacobian Determinant}
+
+Compute covariant and contravariant basis vectors in terms of $u^i$... respectively... 
 \begin{align}
   \hat{e}_i & = \dd{u^i} \vec{x} & \hat{e}^i & = \dd{\vec{x}} u^i
 \end{align}
@@ -96,6 +108,17 @@ Compute the metric tensor components in terms of the basis vectors...
 \end{align}
 
 Note also $\hat{e}_i \cdot \hat{e}^j = \delta_i^j$. 
+
+In order to take derivatives with respect to these coordinates, we also need the determinant of the Jacobian matrix. 
+\begin{align}
+  \label{def_jacobian}
+  \jac &= \hat{e}_1 \cdot \lr{ \hat{e}_2 \times \hat{e}_3 } = h_1 h_2 h_3
+\end{align}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Mapping to Physical Coordinates}
 
 With a quick renormalization, we can map from these nonorthogonal coordinates to \xhat, \yhat, and \zhat. 
 \begin{align}
@@ -111,19 +134,13 @@ We can also map over to \rhat, \qhat, \fhat, though these expressions are only v
   \rhat = \frac{ \hat{e}^3 }{ \sqrt{ g^{33} } } \equiv h_r \hat{e}^3
 \end{align}
 
-In order to take derivatives with respect to these coordinates, we also need the determinant of the Jacobian matrix. 
-\begin{align}
-  \label{def_jacobian}
-  \jac &= \hat{e}_1 \cdot \lr{ \hat{e}_2 \times \hat{e}_3 } = h_1 h_2 h_3
-\end{align}
-
 It's possible (if tedious) to crunch out $g$, $h$, and $\jac$ in terms of $r$, $\theta$, and $\phi$. They're probably in an appendix somewhere. 
 
 % =============================================================================
 % =============================================================================
 % =============================================================================
 \section{Ionospheric Profile}
-  \label{model_ionos_section}
+  \label{sec_ionos}
 
 These profiles come from Kelley 1989. CITE!!!
 
@@ -156,11 +173,26 @@ We then add a density term. I guess Kelley's profile assumes low density, or was
 
 The Ionospheric \Alfven Resonator (IAR) is definitely included in this model, but it's not super important in practice. IAR modes resonate at $\sim\SI{1}{\Hz}$ and our driving is two orders of magnitude slower. 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 % =============================================================================
 % =============================================================================
 % =============================================================================
 \section{Driving with Current}
-  \label{model_driving_section}
+  \label{sec_driving}
 
 We have to get the energy in there somehow. Driving current is purely perpendicular. There is no component within the meridional plane (along the zeroth-order field or perpendicular to it). However, some effect is felt immediately on $E_x$ due to the Hall conductivity. 
 
@@ -203,7 +235,7 @@ With $B \sim \SI{2}{\nano\tesla}$, $R \sim \SI{4}{\RE}$, $A \sim \SI{1}{\RE\squa
 % =============================================================================
 % =============================================================================
 \section{Maxwell's Equations}
-  \label{model_equations_section}
+  \label{sec_eqns}
 
 The bulk of the model is just electric and magnetic fields sloshing back and forth according to Maxwell's equations. 
 
@@ -442,6 +474,8 @@ This would be perfectly true if we were taking curls on an orthonormal grid, and
 % =============================================================================
 % =============================================================================
 \section{Boundary Conditions}
+  \label{sec_bcs}
+
 
 The grid can't go on forever. There have to be special cases at the edges. 
 
