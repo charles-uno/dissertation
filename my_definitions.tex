@@ -1,6 +1,14 @@
 
 
 
+
+
+% show todo notes in red. 
+\newcommand{\todo}[1]{ \textcolor{red}{TODO: #1} }
+% hide todo notes. 
+%\newcommand{\todo}[1]{}
+
+
 % Names with special characters. 
 \newcommand{\Alfven}{Alfv\'en\xspace}
 \newcommand{\Ampere}{Amp\`ere\xspace}
@@ -61,11 +69,11 @@
 
 
 % Assignment operator for pseudocode. 
-\newcommand{\assign}{\ensuremath{\leftarrow}\xspace}
+\newcommand{\assign}{\ensuremath{\leftarrow} \xspace}
 
 
 % Azimuthal modenumber, typically indicated with a lowercase m. 
-\newcommand{\azm}{\ensuremath{m_{azimuthal}}\xspace}
+\newcommand{\azm}{\ensuremath{m} \xspace}
 
 % Azimuthal modenumber, typically indicated with a lowercase m. 
 \newcommand{\me}{\ensuremath{m_{e}}\xspace}
@@ -102,6 +110,9 @@
 \newcommand{\ez}{\ensuremath{\epsilon_0} \xspace}
 
 \newcommand{\mz}{\ensuremath{\mu_0} \xspace}
+\newcommand{\oomz}{\ensuremath{ \frac{1}{\mz} } \xspace}
+
+
 
 % Conductivities. 
 \newcommand{\sz}{\ensuremath{\sigma_0} \xspace}

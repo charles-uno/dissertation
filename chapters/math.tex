@@ -2,115 +2,111 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Compute the Dispersion Relation for Tuna
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Dispersion Relation}
+\chapter{Waves in Cold Resistive Plasmas}
 \label{ch_math}
 
-We start with the equations used in the model, as described in XXXXXXXXXX: \farlaw, \amplaw (split into parallel and perpendicular components), and \ohmlaw (with parallel electron inertia):  
+For the purposes of this work, it's reasonable to consider the magnetosphere to be a cold, static plasma. Even so-called ultra low frequency waves are still much faster than convective timescales. 
+
+\todo{Come up with a characteristic convective timescale or two, and cite it. }
+
+Linearlized \amplaw and \farlaw. The vector $\vec{B}$ is the perturbation to the zeroth-order magnetic field. 
 \begin{align}
-  \ddt \vec{B} = -\curl{E}
+  \ddt \vec{B} &= -\curl{E} & \tensor{\epsilon} \cdot \ddt \vec{E} &= \oomz \curl{B} - \vec{J}
 \end{align}
+
+\ohmlaw. Electron inertial effects are included in the parallel direction. See \cref{ch_inertia}. 
 \begin{align}
-  \ep \ddt \vec{E}_\bot & = 
-    \frac{1}{\mu_0} \lr{ \curl{B} }_\bot - \vec{J}_\bot &
-  \eb \ddt E_\parallel & = 
-    \frac{1}{\mu_0} \lr{ \curl{B} }_\parallel - J_\parallel \\
+  \frac{\me}{n e^2} \ddt J_\parallel & = 
+    \sz E_\parallel - J_\parallel &
   0 & = 
-    \tensor{\sigma}_\bot \cdot \vec{E}_\bot - \vec{J}_\bot &
-  \ddt J_\parallel & = 
-    \frac{n e^2}{m} E_\parallel - \nu J_\parallel
+    \tensor{\sigma}_\bot \cdot \vec{E}_\bot - \vec{J}_\bot
 \end{align}
 
-Suppose, at least locally, that $\vec{B}$, $\vec{E}$, and $\vec{J}$ go as $\exp(i \vec{k} \cdot \vec{x} - i \omega t )$. This allows us to evaluate derivatives and condense into one equation for the parallel electric field and one for the perpendicular electric field: 
-\begin{align}
-  0 & = \vec{E}_\bot 
-  + \frac{\va^2}{\omega^2} \lr{ \vec{k} \times \vec{k} \times \vec{E} }_\bot 
-  + \frac{i}{\ep \omega} \tensor{\sigma}_\bot \cdot \vec{E}_\bot 
-  \\
-  0 & = E_\parallel 
-  + \frac{\cb^2}{\omega^2} \lr{ \vec{k} \times \vec{k} \times \vec{E} }_\parallel
-  + \frac{i \ob^2 }{\omega \lr{\nu - i \omega} } E_\parallel
-\end{align}
+Suppose that the fields and currents are resonating as $\exp \arg{i \vec{k} \cdot \vec{x} - i \omega t }$. Evaluate the derivatives. Eliminate magnetic fields and currents. 
+\begin{alignat}{4}
+  \label{disp_para}
+  & 0 = E_\parallel && + \frac{c^2}{\omega^2} \lr{ \vec{k} \, \vec{k} \cdot \vec{E} - k^2 \vec{E} }_\parallel && + \frac{i \op^2 }{\omega \lr{\nu - i \omega} } && E_\parallel \\
+  \label{disp_perp}
+  & 0 = \vec{E}_\bot && + \frac{\va^2}{\omega^2} \lr{ \vec{k} \, \vec{k} \cdot \vec{E} - k^2 \vec{E} }_\bot && + \frac{i}{\ep \omega} \tensor{\sigma}_\bot \cdot && \vec{E}_\bot
+\end{alignat}
 
-As before, we use the \Alfven speed, the Boris-adjusted speed of light, and the Boris-adjusted plasma frequency; respectively,
+The above expression makes use of the vector identity $\vec{k} \times \vec{k} \times \vec{E} = \vec{k} \, \vec{k} \cdot \vec{E} - k^2 \vec{E}$. The \Alfven speed, speed of light, plasma frequency, and parallel conductivity are defined in the usual way: 
 \begin{align}
   \label{def_basics}
-  \va^2 & \equiv \frac{1}{\mu_0 \ep} &
-  \cb^2 & \equiv \frac{1}{\mu_0 \eb} &
-  \ob^2 & \equiv \frac{n e^2}{m \eb}
+  \va^2 & \equiv \frac{1}{\mz \ep} &
+  c^2 & \equiv \frac{1}{\mz \ez} &
+  \op^2 & \equiv \frac{n e^2}{\me \ez} &
+  \sz & \equiv \frac{n e^2}{\me \nu}
 \end{align}
 
-Using the vector identity $\vec{k} \times \vec{k} \times \vec{E} = \vec{k} \, \vec{k} \cdot \vec{E} - k^2 \vec{E}$, the parallel and perpendicular equations can be combined into the usual dispersion tensor form. Without loss of generality, let \zhat lie along the zeroth order magnetic field, and $\vec{k}$ lie in the $x$-$z$ plane, with $\theta$ giving the angle between \zhat and $\vec{k}$. Then, 
-\begin{align}
-  \dispersiontensor \cdot \vec{E} = 0
-\end{align}
+Without loss of generality, the wave vector $\vec{k}$ can be said to lie in the \x-\z plane; the distinction between the \x and \y directions is revisited in \cref{sec_math_implications}. Let $\theta$ be the angle between $\vec{k}$ and the zeroth-order magnetic field. 
 
-where
+Then \cref{disp_para,disp_perp} can be combined into the usual dispersion tensor form, $\dispersiontensor \cdot \vec{E} = 0$, where 
 \begin{align}
-  \dispersiontensor & = \mmm{1}{0}{0}
-                            {0}{1}{0}
-                            {0}{0}{1}
-                      - \frac{k^2}{\omega^2} 
-                        \mmm{\va^2 \cos^2 \theta}{0}{-\va^2 \sin \theta \cos \theta}
-                            {0}{\va^2}{0}
-                            {-\cb^2 \sin \theta \cos \theta}{0}{\cb^2 \sin^2 \theta}
+  \dispersiontensor & = \tensor{ \mathbb{I} }
+                      + \frac{k^2}{\omega^2} 
+                        \mmm{-\va^2 \cos^2 \theta}{0}{\va^2 \sin \theta \cos \theta}
+                            {0}{-\va^2}{0}
+                            {c^2 \sin \theta \cos \theta}{0}{-c^2 \sin^2 \theta}
                       + \frac{i}{\omega}
-                        \mmm{\spe}{-\she}{0}
-                            {\she}{\spe}{0}
-                            {0}{0}{ \frac{\ob^2}{\nu - i \omega} }
+                        \mmm{ \frac{\sp}{\ep} }{-\frac{\sh}{\ep} }{0}
+                            { \frac{\sh}{\ep} }{ \frac{\sp}{\ep} }{0}
+                            {0}{0}{ \frac{\op^2}{\nu - i \omega} }
 \end{align}
 
-In order for nontrivial solutions to exist, we must have $\left| \dispersiontensor \right| = 0$. Unfortunately, that gives rise to a sixth-order polynomial in $\omega$. So we look at some limits. 
+Nontrivial solutions exist only when $\left| \dispersiontensor \right| = 0$. This gives rise to a seventh-order polynomial in $\omega$, so it's necessary to consider limits of particular interest. 
 
 % =============================================================================
 % =============================================================================
 % =============================================================================
 \section{Parallel Propagation Limit}
 
-As we are ostensibly looking at field line resonanced, we should expect waves to mostly be moving along magnetic field lines. If we take the alignment between the wave vector and the zeroth-order magnetic field to be exact, $\theta=0$, the dispersion relation simplifies to: 
+Parallel propagation is a naive representation of a field line resonance; the wave vector moves energy along the field line. Taking $\theta=0$, $\dispersiontensor$ simplifies to
 \begin{align}
-  \dispersiontensor_\parallel & = \mmm{1}{0}{0}
+  \label{parallel_dispersion_tensor}
+  \dispersiontensor_\parallel & = \tensor{ \mathbb{I} }
+                      - \frac{k^2 \va^2}{\omega^2} 
+                        \mmm{1}{0}{0}
                             {0}{1}{0}
-                            {0}{0}{1}
-                      - \frac{k^2}{\omega^2} 
-                        \mmm{\va^2}{0}{0}
-                            {0}{\va^2}{0}
                             {0}{0}{0}
                       + \frac{i}{\omega}
-                        \mmm{\spe}{-\she}{0}
-                            {\she}{\spe}{0}
-                            {0}{0}{ \frac{\ob^2}{\nu - i \omega} }
+                        \mmm{ \frac{\sp}{\ep} }{-\frac{\sh}{\ep} }{0}
+                            { \frac{\sh}{\ep} }{ \frac{\sp}{\ep} }{0}
+                            {0}{0}{ \frac{\op^2}{\nu - i \omega} }
 \end{align}
 
-The above expression decouples the parallel and perpendicular components. 
+Conveniently, parallel and perpendicular polarizations are not coupled in \cref{parallel_dispersion_tensor}. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Parallel Polarization}
 
-With $\theta=0$, the parallel component of the determinant of $\dispersiontensor_\parallel$ gives:
+The parallel component of the determinant of \cref{parallel_dispersion_tensor} gives
 \begin{align}
-  \omega^2 + i \nu \omega - \ob^2 = 0
+  \omega^2 + i \nu \omega - \op^2 = 0
 \end{align}
 
-There is no $k$ dependence in this expression, so it doesn't really describe a wave, so much as a resonant frequency: 
+With no $k$ dependence this expression doesn't describe a wave per se, so much as a resonant frequency. Solving directly, 
 \begin{align}
-  \omega & = -\frac{i}{2} \lrb{ \nu \pm \sqrt{ \nu^2 - 4 \ob^2 } }
+  \omega & = -\frac{i \nu}{2} \pm \sqrt{ \op^2 - \frac{\nu^2}{4} }
 \end{align}
 
-It makes sense to pull out the plasma frequency, since it's much larger than the collision frequency, even when the Boris factor is large. The one exception is a narrow strip at the bottom of the ionosphere. The wave won't exactly be hanging out there, since we assumed it's propagating along the field line. 
+The plasma frequency significantly exceeds the collision frequency everywhere except a narrow strip at the ionospheric boundary of the model. Expanding in large $\op$ gives
 \begin{align}
-  \omega & = \pm \ob - \frac{i \nu}{2} \pm ...
+  \omega^2 & = \op^2 - i \nu \op + ...
 \end{align}
 
-This is the plasma oscillation. It's allowed when the field-aligned conductivity is very large, and thus $\nu$ is small, which is pretty much everywhere but the ionospheric boundary. 
+\todo{Actually, double-check this. How does $\nu$ compare to $\op$ at the ionospheric boundary when there is no Boris factor? }
+
+This is the plasma oscillation. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Perpendicular Polarization}
 
-With $\theta=0$, the perpendicular component of the determinant of $\dispersiontensor_\parallel$ gives:
+The perpendicular components of the determinant of \cref{parallel_dispersion_tensor} give
 \begin{align}
   \omega^4 + 2 i \frac{\sp}{\ep} \omega^3
   - \lr{ 2 k^2 \va^2 + \frac{\sp^2 + \sh^2}{\ep^2} } \omega^2
@@ -118,128 +114,112 @@ With $\theta=0$, the perpendicular component of the determinant of $\dispersiont
   + k^4 \va^4 & = 0
 \end{align}
 
-This can be solved in exact form. Note that the following is all four solutions; $\pm$ and $\opm$ are independent. 
+This can be solved in exact form. Noting that $\pm$ and $\opm$ are independent,
 \begin{align}
   \omega = \lr{ \frac{\pm \sh - i \sp}{2 \ep} } \opm \sqrt{ k^2 \va^2 + \lr{ \frac{\pm \sh - i \sp}{2 \ep} }^2 }
 \end{align}
 
-Similar to above, we can note that $k \va \gg \sp$, $\sh$ over the vast majority of the grid. The only exception, again, is right at the ionospheric boundary, where a field line resonance shouldn't be spending much time. So we are justified in expanding:
+Over the vast majority of a field line, $k \va \gg \frac{\sp}{\ep}$ and $k \va \gg \frac{\sh}{\ep}$. 
 \begin{align}
-  \omega = \opm k \va + \lr{ \frac{\pm \sh - i \sp}{2 \ep} } \opm ...
+  \omega^2 = k^2 \va^2 \opm k \va \frac{\sh \pm i \sp}{\ep} + ...
 \end{align}
 
-This is the \Alfven wave, with a bit of a shift from the ionospheric conductivity. 
+This is the \Alfven wave, evidently split by the ionospheric conductivity, propagating along the zeroth-order magnetic field line. 
 
 % =============================================================================
 % =============================================================================
 % =============================================================================
 \section{Perpendicular Propagation Limit}
 
-The ability of waves to propagate across field lines is also of interest. Let's look at what we see when $\theta = \frac{\pi}{2}$. 
+A wave's ability to propagate across field lines is also of interest. When $\theta = \frac{\pi}{2}$, $\dispersiontensor$ simplifies to
 \begin{align}
-  \dispersiontensor_\bot & = \mmm{1}{0}{0}
-                            {0}{1}{0}
-                            {0}{0}{1}
+  \label{perp_dispersion_tensor}
+  \dispersiontensor_\bot & = \tensor{ \mathbb{I} }
                       - \frac{k^2}{\omega^2} 
                         \mmm{0}{0}{0}
                             {0}{\va^2}{0}
-                            {0}{0}{\cb^2}
+                            {0}{0}{c^2}
                       + \frac{i}{\omega}
-                        \mmm{\spe}{-\she}{0}
-                            {\she}{\spe}{0}
-                            {0}{0}{ \frac{\ob^2}{\nu - i \omega} }
+                        \mmm{ \frac{\sp}{\ep} }{-\frac{\sh}{\ep} }{0}
+                            { \frac{\sh}{\ep} }{ \frac{\sp}{\ep} }{0}
+                            {0}{0}{ \frac{\op^2}{\nu - i \omega} }
 \end{align}
 
-As in the parallel propagation case, the parallel and perpendicular components of the dispersion tensor determinant can be handled separately. 
+As in the parallel propagation case, the parallel and perpendicular components of the determinant are decoupled. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Parallel Polarization}
 
-The parallel component of the determinant of $\dispersiontensor_\bot$ gives:
+The parallel component of the determinant of \cref{perp_dispersion_tensor} gives
 \begin{align}
   \omega^3 + i \nu \omega^2
-  - \lr{ k^2 \cb^2 + \ob^2 } \omega
-  - i k^2 \cb^2 \nu & = 0
+  - \lr{ k^2 c^2 + \op^2 } \omega
+  - i k^2 c^2 \nu & = 0
 \end{align}
 
-This is a cubic. It can be solved exactly, but the roots are pretty gross. 
+The above expression can be solved exactly, but the resulting expressions are too long to be useful. 
 
-For almost all of the simulation domain, $\nu$ is small compared to $\ob$ and $k \cb$. This isn't true right at the ionospheric boundary. If we expand around small $\nu$, the positive real root is:
+Expanding the solution in large $\op$ gives the O mode: a compressional wave with a parallel electric field. 
 \begin{align}
-  \omega & = \sqrt{ \ob^2 + k^2 \cb^2 } - \frac{i}{2} \frac{\ob^2}{\ob^2 + k^2 \cb^2} \nu + ...
+  \omega^2 & = k^2 c^2 + \op^2 - i \nu \op + ...
 \end{align}
 
-Since $\ob \gg k \cb$ this is the plasma oscillation again... 
-\begin{align}
-  \omega & = \ob + \frac{k^2 \cb^2}{2 \ob} + ...
-\end{align}
-
-On the other hand, expanding in large $\nu$ (which we expect to see right at the ionospheric boundary) we find a pair of real roots:
-\begin{align}
-  \omega & = \pm k \cb - \frac{i \ob^2}{2 \nu} + ...
-\end{align}
-
-This seems pretty suspect... we expect $\nu > \ob$ at the boundary, but we also expect our $\omega$ to be much less than $\ob$. It seems unlikely that the decay term will every vanish here. 
-
-If we expand the solution around large $\ob$, we get the plasma oscillation again. 
-\begin{align}
-  \omega & = \pm \ob - \frac{i \nu}{2} + ...
-\end{align}
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Perpendicular Polarization}
 
-The parallel component of the determinant of $\dispersiontensor_\bot$ gives:
+The perpendicular components of the determinant of \cref{perp_dispersion_tensor} give
 \begin{align}
   \omega^3 + 2 i \frac{\sp}{\ep} \omega^2
   - \lr{ 2 k^2 \va^2 + \frac{\sp^2 + \sh^2}{\ep^2} } \omega
    - i k^2 \va^2 \frac{\sp}{\ep} & = 0
 \end{align}
 
-This is also a cubic, with similarly gross roots. 
+Again, the roots of the cubic are impractically long. 
 
-Expanding in small conductivity, as we see at large distances, we get:
+Expanding in large conductivity, as is expected near the ionospheric boundary, gives
 \begin{align}
-  \omega & = \pm k \va - \frac{i \sp}{2 \ep} + ...
+  \omega^2 & = k^2 \va^2 + \lr{ \frac{\sh \pm i \sp}{\ep} }^2 + ...
+\intertext{Whereas expanding in small conductivity, as is expected far from the boundary, gives}
+  \omega^2 & = k^2 \va^2 \pm i k \va \frac{\sp}{\ep} + ...
 \end{align}
 
-Expanding in large conductivity, as we see right at the ionospheric current sheet, gives:
-\begin{align}
-  \omega & = \frac{\pm\sh - i \sp}{\ep} + \frac{k^2 \va^2}{2 \sh / \ep} + ...
-\end{align}
+Both of which are \Alfven waves. 
 
 % =============================================================================
 % =============================================================================
 % =============================================================================
 \section{High Altitude Limit}
 
-The ionospheric profiles go up to an altitude of $\sim \SI{e4}{\km}$. Beyond that, we take $\sp \rightarrow 0$ and $\sh \rightarrow 0$ and $\nu \rightarrow 0$. Really, those quantities are pretty small above a few thousand kilometers. In that regime, we can keep an arbitrary propagation angle. 
+At high altitude, where the density is very low compared to the ionosphere, it's reasonable to approximate $\sp \rightarrow 0$ and $\sh \rightarrow 0$ and $\nu \rightarrow 0$. 
+
+In this case, $\dispersiontensor$ simplifies to
+
 \begin{align}
-  \dispersiontensor_{??} & = \mmm{1}{0}{0}
-                            {0}{1}{0}
-                            {0}{0}{1}
+  \label{high_dispersion_tensor}
+  \dispersiontensor_{\infty} & = \tensor{ \mathbb{I} }
                       - \frac{k^2}{\omega^2} 
                         \mmm{\va^2 \cos^2 \theta}{0}{-\va^2 \sin \theta \cos \theta}
                             {0}{\va^2}{0}
-                            {-\cb^2 \sin \theta \cos \theta}{0}{\cb^2 \sin^2 \theta}
-                      - \frac{\ob^2}{\omega^2}
+                            {-c^2 \sin \theta \cos \theta}{0}{c^2 \sin^2 \theta}
+                      - \frac{\op^2}{\omega^2}
                         \mmm{0}{0}{0}
                             {0}{0}{0}
                             {0}{0}{1}
 \end{align}
 
-In this case it's the $y$ component that decouples from the rest. Recall that's the direction perpendicular to both the zeroth-order magnetic field and the direction of propagation. 
+In this case it's the azimuthal polarization that decouples from the other two. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{$y$ Polarization}
+\subsection{Azimuthal Polarization}
 
-Right away, we can pull out a familiar expression, the \Alfven wave. 
+The azimuthal component of the determinant of \cref{high_dispersion_tensor} simply gives the \Alfven wave. 
 \begin{align}
   \omega^2 & = k^2 \va^2
 \end{align}
@@ -247,57 +227,52 @@ Right away, we can pull out a familiar expression, the \Alfven wave.
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{$x$-$z$ Polarization}
+\subsection{Meridional Polarization}
 
-The other two directions' components give:
+The components of the determinant of \cref{high_dispersion_tensor} which fall in the meridional plane give, taking $k_\bot \equiv k \sin \theta$ and $k_\parallel \equiv k \cos \theta$,
 \begin{align}
   \omega^4 
-  - \lr{ k^2 \va^2 \cos^2 \theta + k^2 \cb^2 \sin^2 \theta + \ob^2 } \omega^2
-  + k^2 \va^2 \cos^2 \theta \ob^2 & = 0
+  - \lr{ k_\parallel^2 \va^2 + k_\bot^2 c^2 + \op^2 } \omega^2
+  + k_\parallel^2 \va^2 \op^2  & = 0
 \end{align}
 
-Which is quadratic in $\omega^2$, and so can be solved directly, albeit for an ugly expression:
+The above expression is quadratic in $\omega^2$, and thus can be solved directly. 
 \begin{align}
-  \omega^2 & = \frac{1}{2} \lr{ k^2 \va^2 \cos^2 \theta + k^2 \cb^2 \sin^2 \theta + \ob^2 }
-  \pm \sqrt{ \frac{1}{2} \lr{ k^2 \va^2 \cos^2 \theta + k^2 \cb^2 \sin^2 \theta + \ob^2 }^2 
-    - k^2 \va^2 \ob^2 \cos^2 \theta }
+  \omega^2 & = \frac{1}{2} \lr{ k_\parallel^2 \va^2 + k_\bot^2 c^2 + \op^2 }
+  \pm \sqrt{ \frac{1}{4} \lr{ k_\parallel^2 \va^2 + k_\bot^2 c^2 + \op^2 }^2 
+    - k_\parallel^2 \va^2 \op^2 }
 \end{align}
 
-If we expand around small $\theta$ for nearly-parallel propagation, we see (making the reasonable assumption that $\ob^2 - k^2 \va^2 \ge 0$) the two roots simplify to...
+Noting that $\op$ is very large, the two roots simplify to
 \begin{align}
-  \omega^2 & = k^2 \va^2 
-  - \frac{ k^2 \va^2 \lr{ \ob^2 + k^2 \cb^2 - k^2 \va^2 } }{\ob^2 - k^2 \va^2} \theta^2
-  + ... \\
-  \omega^2 & = \ob^2
-  - \frac{\ob^2 k^2 \cb^2}{\ob^2 - k^2 \va^2} \theta^2
-  + ...
+  \omega^2 & = k_\parallel^2 \va^2 + ... \\
+  \omega^2 & = k_\parallel^2 \va^2 + k_\bot^2 c^2 + \op^2 + ...
 \end{align}
 
-It looks like we've rediscovered the plasma oscillation and the \Alfven wave. 
+% =============================================================================
+% =============================================================================
+% =============================================================================
+\section{Implications for This Work}
+  \label{sec_math_implications}
 
-On the other hand, if we expand $\theta$ around $\frac{\pi}{2}$ we see:
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Mode Coupling}
+
+\todo{Have we got enough/appropriate math here to talk about how $\sh$ rotates fields at the ionosphere? Doubtful. }
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{High Modenumber Cutoff}
+
+As $\azm$ becomes large, it puts a lower bound on the modenumber, and thus on the frequency. For an \Alfven wave, $\omega^2 = k^2 \va^2$,
 \begin{align}
-  \omega^2 & = \frac{k^2 \va^2 \ob^2}{\ob^2 + k^2 \cb^2} \lr{ \theta - \frac{\pi}{2} }^2 
-    + ... \\
-  \omega^2 &= k^2 \cb^2 + \ob^2 
-  - \frac{ k^2 \cb^2 \lr{ \ob^2 + k^2 \cb^2 - k^2 \va^2 } }{\ob^2 + k^2 \cb^2} 
-  \lr{ \theta - \frac{\pi}{2} }^2
-  + ...
+  k \ge k_\phi = \frac{\azm}{2 \pi r} \qquad \text{so} \qquad \omega \ge \frac{\azm}{2 \pi r} \va
 \end{align}
 
-The first of these is very odd... $\omega \rightarrow 0$ as $\theta \rightarrow \frac{\pi}{2}$. The second seems to be the O mode. 
-
-
-
-
-
-
-
-
-
-
-
-
+Any wave with a frequency below this threshold will become evanescent. 
 
 
 

@@ -27,6 +27,8 @@ While the model does not resolve field structure in the azimuthal direction, it 
 
 The code is linear! From here on, all magnetic fields are a first-order perturbation over the zeroth-order dipole field. This is a not-great assumption out towards the magnetopause. In practice, however, most activity is within $L \sim \SI{7}{\RE}$, where the dipole approximation is pretty good. 
 
+THE DRIVER AND PLOTTER ARE SIGNIFICANT TOO. MAYBE HAVE AN APPENDIX ABOUT THE DRIVER AND PLOTTER. "USING TUNA"?
+
 % =============================================================================
 % =============================================================================
 % =============================================================================
@@ -350,7 +352,7 @@ We have to get the energy in there somehow. Driving current is purely perpendicu
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Constraints on Compression}
+\subsection{Outer Boundary Compression}
 
 In the past, similar work has been done using compressional driving. 
 
@@ -365,7 +367,7 @@ Substorm injections can cause azimuthal asymmetry in the ring current.
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Calibration using Sym-H}
+\subsection{Ring Current Modulation}
 
 We look at Sym-H to get an idea of the appropriate scale for current driving. We look at a few storms. 1 June 2013. 17 March 2015. 22 June 2015. 17 March 2013. A few in October and November 2012. 
 
@@ -394,7 +396,7 @@ The grid can't go on forever. There have to be special cases at the edges.
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Interpolation and Differentiation}
+\subsection{Parity and Interpolation}
 
 At the inner and outer boundaries (that is, along the innermost and outermost field lines), as use Dirichlet and Neumann boundary conditions for electric and magnetic fields respectively. 
 
@@ -405,12 +407,6 @@ Whenever we need to know the magnetic field just outside the grid boundary, we s
 Conversely, we say that the electric field just outside the grid goes to 0, allowing us to compute the derivative from the value just inside the grid. Dirichlet. 
 
 Dirichlet and Neumann could be flipped without much consequence. They're sorta arbitrary. But mixing up a term, so that they are no longer self-consistent, causes instability. 
-
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\subsection{Parity and Interpolation}
 
 Each field component is stored at only one parity in each direction. This is because of how curls line up. Adjacent values of $E_2$ just aren't really coupled to each other. 
 
@@ -451,17 +447,4 @@ We don't need to show algebra, but we should show the final expression.
 ...
 
 Jump condition over the ionospheric current sheet. This comes from integrating \amplaw... ?
-
-% =============================================================================
-% =============================================================================
-% =============================================================================
-\section{Optimization of Model}
-
-Get some MPI benchmarks for future work! Time to compute a million time steps versus time to broadcast a million time steps, as a function of grid size. This should imply a magic number where size overcomes the overhead from starting up communication. 
-
-This doesn't actually belong here. 
-
-
-
-
 
