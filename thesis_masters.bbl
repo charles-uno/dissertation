@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{dai_2013}
 Lei Dai, Kazue Takahashi, John~R. Wygant, Liu Chen, John Bonnell, Cynthia~A.
@@ -24,30 +24,54 @@ Robert~L. Lysak and Yan Song.
   through the auroral ionosphere: first results.
 \newblock {\em Adv. Space Res.}, 28:813--822, 2001.
 
-\bibitem{lysak_2004}
-Robert~L. Lysak.
-\newblock Magnetosphere-ionosphere coupling by alfv{\'e}n waves at
-  midlatitudes.
-\newblock {\em J. Geophys. Res.}, 109, 2004.
-
-\bibitem{radoski_1967_coords}
-Henry~R. Radoski.
-\newblock A note on oscillating field lines.
-\newblock {\em J. Geophys. Res.}, 72(1), 1967.
+\bibitem{engebretson_1987}
+M.~J. Engebretson, L.~J. Zanetti, T.~A. Potemra, W.~Baumjohann, H.~L{\: u}hr,
+  and M.~H. Acuna.
+\newblock Simultaneous observation of pc 3–4 pulsations in the solar wind and
+  in the earth's magnetosphere.
+\newblock {\em J. Geophys. Res. Space Physics}, 92:10053--10062, 1987.
 
 \bibitem{lysak_2013}
 Robert~L. Lysak, Colin~L. Waters, and Murray~D. Sciffer.
 \newblock Modeling of the ionospheric alfv{\'e}n resonator in dipolar geometry.
 \newblock {\em J. Geophys. Res. Space Physics}, 118, 2013.
 
-\bibitem{kelley_1989}
-Michael~C. Kelley.
-\newblock {\em The Earth's Ionosphere}.
-\newblock Academic Press, San Diego, second edition, 1989.
+\bibitem{radoski_1967_coords}
+Henry~R. Radoski.
+\newblock A note on oscillating field lines.
+\newblock {\em J. Geophys. Res.}, 72(1), 1967.
+
+\bibitem{proehl_2002}
+Jeffrey~A. Proehl, William Lotko, Igor Kouznetsov, and Shireen~D. Geimer.
+\newblock Ultralow-frequency magnetohydrodynamics in boundary-constrained
+  geomagnetic flux coordinates.
+\newblock {\em J. Geophys. Res.}, 107(A9):1225, 2002.
+
+\bibitem{lysak_2004}
+Robert~L. Lysak.
+\newblock Magnetosphere-ionosphere coupling by alfv{\'e}n waves at
+  midlatitudes.
+\newblock {\em J. Geophys. Res.}, 109, 2004.
+
+\bibitem{dhaeseleer_1991}
+W.~D. D'haeseleer, W.~N. G. Hitchon J.~D. Callen, and J.~L. Shohet.
+\newblock {\em Flux Coordinates and Magnetic Field Structure}.
+\newblock Springer-Verlag, New York, 1991.
 
 \bibitem{einstein_1916}
 A.~Einstein.
 \newblock Die grundlage der allgemeinen relativit{\: a}tstheorie.
 \newblock {\em Ann. Phys.}, 354:769--822, 1916.
+
+\bibitem{kelley_1989}
+Michael~C. Kelley.
+\newblock {\em The Earth's Ionosphere}.
+\newblock Academic Press, San Diego, second edition, 1989.
+
+\bibitem{hall_2015}
+Brian~C. Hall.
+\newblock {\em Lie Groups, Lie Algebras, and Representations}.
+\newblock Graduate Texts in Mathematics. Springer, New York, second edition,
+  2015.
 
 \end{thebibliography}

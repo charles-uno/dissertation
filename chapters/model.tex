@@ -5,29 +5,25 @@
 \chapter{Numerical Model}
 \label{ch_model}
 
-PASSIVE VOICE. 
+The model works in two and a half dimensions. A meridional slice of the magnetosphere is resolved. Fields are presumed to vary azimuthally according to a fixed modenumber \azm. Derivatives in $\phi$ are replaced by $i \azm$. Imaginary field values indicate a phase shift in the azimuthal direction. 
 
-Two and a half dimensions. 
+The use of a fixed modenumber allows a dramatic decrease in computational cost. Waves with very high azimuthal modenumber are prohibitively expensive to simulate since they can only be resolved if grid resolution is very fine in the azimuthal direction. 
 
-Also there are computational constraints on resolving large $\azm$ in 3D. 
+\todo{Has anyone actually talked about computational expense as a constraint on high-\azm simulations?}
 
-This is a good model because...
+This prevents the simultaneous consideration of dayside and nightside phenomena, but is fine for azimuthally-localized waves. As was shown by \cite{engebretson_1987}, and recently confirmed in detail by \cite{dai_2015}, Pc4 pulsations are generally confined to just a few hours MLT on the dayside. 
 
-This model is novel because... (current driving, in particular). 
+Driving with a compressional pulse from the outer boundary of a simulation is typical. This model also includes a novel driving mechanism: perturbations to the ring current. 
 
-The model resolves the meridional plane; azimuthally, everything goes as $e^{i \azm \phi}$. 
+The code is linear. All magnetic fields are a first-order perturbation over the zeroth-order dipole field. This is a not-great assumption out towards the magnetopause. In practice, however, most activity is within $L \sim \SI{7}{\RE}$, where the dipole approximation is pretty good. 
 
-This prevents the simultaneous consideration of dayside and nightside. 
+Models with height-resolved ionospheres are a very recent development. Lysak presented his in 2013\cite{lysak_2013}. 
 
-As long as simulations are limited to azimuthally localized phenomena, this should be no problem. And, as discussed in \cite{dai_2015}, Pc4 pulsations are localized in MLT. 
+Ground signatures are fairly recent as well. 
 
-This means derivatives in the azimuthal direction are simply replaced with a factor of $i \azm$. 
+\todo{Some ground signature work as far back as Greifinger and Greifinger in 1968, but there's been steady advancement. Lysak and Song, in 2006, were the first to work out ground signatures without the assumption of a single-frequency wave. }
 
-While the model does not resolve field structure in the azimuthal direction, it does keep track of phase. Imaginary values correspond to an azimuthal offset compared to the (real) driving. 
-
-The code is linear! From here on, all magnetic fields are a first-order perturbation over the zeroth-order dipole field. This is a not-great assumption out towards the magnetopause. In practice, however, most activity is within $L \sim \SI{7}{\RE}$, where the dipole approximation is pretty good. 
-
-THE DRIVER AND PLOTTER ARE SIGNIFICANT TOO. MAYBE HAVE AN APPENDIX ABOUT THE DRIVER AND PLOTTER. "USING TUNA"?
+\todo{The support software -- the driver and the plotter -- are significant too. Do they go in a section? In an appendix? }
 
 % =============================================================================
 % =============================================================================
@@ -35,79 +31,86 @@ THE DRIVER AND PLOTTER ARE SIGNIFICANT TOO. MAYBE HAVE AN APPENDIX ABOUT THE DRI
 \section{Coordinate System}
   \label{sec_coords}
 
+When referring to fields in place, it's convenient to use lowercase\footnote{ Not to be confused with uppercase \X, \Y, and \Z, which orient relative to the sun; see \cref{ch_intro} } \x, \y, and \z in their usual dipolar sense. The unit vector \zhat is aligned with the dipole field (pointing outward in the northern hemisphere and inward in the southern hemisphere), while \xhat is perpendicular to \zhat within the meridional plane and \yhat points in the azimuthal direction. 
 
-Important to align the grid with the dipole field line. The allows the model to take advantage of the tabulated conductivity and permittivity values which break into parallel and perpendicular components. 
+\todo{Double-check the signs for \x (radially inward or outward at the equator?) and \y (east or west?). }
 
-Also important to take into account the effects of a constant-altitude ionosphere. It plays a significant role in the propagation of \Alfven waves. Also, going down to the ionosphere allows the computation of ground signatures. 
+\todo{Wait... are \x, \y, and \z the same as Radoski's coordinates? }
 
-Lowercase $x$, $y$, and $z$ are used to indicate field-aligned coordinates. The
-unit vector \zhat is aligned with the dipole field (pointing outward in the
-northern hemisphere and inward in the southern hemisphere), while \xhat and
-\yhat are perpendicular to the dipole field; \xhat lies in the meridinal plane,
-and \yhat in the azimuthal direction.
+It's convenient to align the grid with the zeroth-order magnetic field, which is presumed to be a perfect dipole. Field line resonances (such as Pc4 pulsations) are guided by magnetic field lines. 
 
-Dipole coordinates are convenient for a discussion of the results, but they're not orthonormal, which makes it difficult to take derivatives with respect to them. For that, we use a coordinate basis introduced by Lysak in \cite{lysak_2004}. 
+\todo{Who showed that ULF waves can be guided? Cite them. }
 
-%It's convenient to align the grid to the zeroth-order field. This allows us to
-%decouple the parallel and perpendicular components of the permittivity and
-%conductivity tendors. Traditional dipole coordinates are written as (using $r$,
-%$\theta$, and $\phi$ in the usual spherical sense): 
+\todo{Discuss, in Future Work, how the grid would be generalized. }
 
-The traditional dipole coordinates come from \cite{radoski_1967_coords}. 
+Radoski did theoretical work in the following dipole coordinates\cite{radoski_1967_coords}. 
 \begin{align}
-  \mu & = -\frac{\sin^2 \theta}{r} & \phi & = \phi & \nu & = \frac{\cos \theta}{r^2}
+  \label{radoski_coords}
+  \radx & = -\frac{\sin^2 \theta}{r} & \rady & = \phi & \radz & = \frac{\cos \theta}{r^2}
 \end{align}
 
-Notably, $\mu$ is constant over a given field line -- it can also be written as
-$\frac{-1}{L}$, where $L$ is the McIlwain parameter. This makes it easy to
-specify inner and outer boudaries. On the other hand, the natural choice for
-boundaries in $\nu$ are the ionospheric current sheets. These sheets fall at 
-(more or less) constant altitude, but not constant $\nu$. 
+\todo{The symbol $\nu$ is overused. Reserve it for collision frequency. Use something else here. }
 
-Following the example of \cite{lysak_2004}, $\nu$ can be rescaled to come to a
-constant value at the ionospheric boundary. 
+It's also convenient to take into account the effects of the ionosphere, the lower boundary of which is governed by gravity, and thus has a more-or-less constant altitude. If the above coordinates are used, no line of constant $\radz$ coincides with the ionosphere, at least not over a significant range of latitudes. 
 
-Note: this does not deform the field lines. It just renormalizes the coordinate used to index from the northern foot point to the southern one. 
+\todo{"The ionosphere is important for \Alfven waves." Cite this. }
+
+In order to accommodate dipole field lines as well as a fixed-altitude ionosphere, a nonorthogonal grid is necessary. Such a grid was worked out numerically by Proehl\cite{proehl_2002}, then formalized analytically by Lysak\cite{lysak_2004}:
 \begin{align}
   \label{def_coords}
-  u^1 & = - \frac{R_I}{r} \sin^2 \theta & 
-  u^2 & = \phi &
-  u^3 & = \frac{R_I^2}{r^2} \frac{\cos \theta}{\cos \theta_0}
+  \lysakx & = - \frac{R_I}{r} \sin^2 \theta & 
+  \lysaky & = \phi &
+  \lysakz & = \frac{R_I^2}{r^2} \frac{\cos \theta}{\cos \theta_0}
 \end{align}
 
-Here, $\theta_0$ is a field line's invariant colatitude; that is, the
-colatitude at which it intersects the ionosphere in the northern hemisphere. 
+The term $R_I$ indicates the ionosphere's position relative to Earth's center. It's generally taken to be \SI{1}{\RE} + \SI{100}{\km}. 
 
-Note that $u^1$ is constant over each field line, $u^3 = 1$ where each field
-line intersects the ionosphere in the northern hemisphere, and $u^3 = -1$ where
-each field line intersects the ionosphere in the southern hemisphere. 
+Like \radx and \rady, the coordinates \lysakx and \lysaky index a field line. However, compared to \radz, \lysakz has been renormalized by $\cos \theta_0$, where $\theta_0$ is the colatitude where each field line intersects the ionosphere in the northern hemisphere. As a result, for all field lines, $\lysakz = \pm 1$ at the northern and southern foot points. 
+
+In terms of the McIlwain parameter, $\lysakx = -\frac{R_I}{L}$, and $\cos \theta_0 = \sqrt{ 1 - \frac{R_I}{L} }$
+
+Compared to \cref{radoski_coords}, \cref{def_coords} represents a renormalization of indexing along each field line. The field lines themselves are not deformed. 
+
+\todo{Explain how we set up the grid. It should only take a paragraph or two -- it doesn't need its own section. }
+
+\todo{Plot of the grid setup! }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Covariant and Contravariant Bases}
+  \label{sec_basis}
 
-The coordinates defined in \cref{def_coords} are field-aligned, and come to a constant value at the ionosphere. Those are some pretty nice properties. But they're not orthonormal. That means it's necessary distinguish between covariant and contravariant coordinates. 
+The coordinates defined in \cref{def_coords} are not orthonormal. As a result, it's necessary to consider covariant and contravariant basis vectors separately. 
 
-% From Lysak 2004: 
-% As discussed by Proehl et al. [2002], the equations (1) and (2) can be cast into these coordinates using the contravariant and covariant basis vectors. The contravariant basis vectors are defined by e normal to the planes defined by ui = constant (and so are sometimes called the normal basis vectors). The covariant basis vectors are defined by ei = @ir, where @i will be used to denote @/@ui curve, i.e., the curve defined by the other two coordinates being constant. Thus these are referred to as the tangential basis vectors. Note that these are not unit vectors, but they are reciprocal to each other in the sense that e Applying these definitions to the coordinates given equation (11), we find the following: i = rui and represent vectors that are. These vectors are tangent to the ui coordinate i ej = dj. 
+Covariant basis vectors $e_i \equiv \dd{\lysaki} \vec{x}$ are normal to the curve defined by constant $\lysaki$. 
 
-Compute covariant and contravariant basis vectors in terms of $u^i$... respectively... 
+Contravariant basis vectors $e^i \equiv \dd{ \vec{x} } \lysaki$ are tangent to the coordinate curve. Equally, they're normal to the plane defined by constant $\lysakj$ for all $j \ne i$. 
+
+The basis vectors are reciprocal to one another\cite{dhaeseleer_1991}, and can be used to define the metric tensor $g$. 
 \begin{align}
-  \hat{e}_i & = \dd{u^i} \vec{x} & \hat{e}^i & = \dd{\vec{x}} u^i
+  \label{metric_basics}
+  \hat{e}^i \cdot \hat{e}_j &= \delta^i_j & \hat{e}_i \cdot \hat{e}_j &= g_{ij} & \hat{e}^i \cdot \hat{e}^j &= g^{ij}
 \end{align}
 
-Compute the metric tensor components in terms of the basis vectors... 
+Note $\delta^i_j$ is the Kronecker delta, $\varepsilon^{ijk}$ is the Levi-Civita symbol, and summation is implied over repeated indeces per Einstein's convention\cite{einstein_1916}. 
+
+The metric tensor is used to map between the covariant and contravariant representations of a vector
 \begin{align}
-  g_{ij} & = \hat{e}_i \cdot \hat{e}_j & g^{ij} & = \hat{e}^i \cdot \hat{e}^j
+  \label{metric_usage}
+  A_i &= g_{ij} A^j & A^i &= g^{ij} A_j && \text{where} & A_i &\equiv \vec{A} \cdot \hat{e}_i &  A^i &\equiv \vec{A} \cdot \hat{e}^i
 \end{align}
 
-Note also $\hat{e}_i \cdot \hat{e}^j = \delta_i^j$. 
-
-In order to take derivatives with respect to these coordinates, we also need the determinant of the Jacobian matrix. 
+The Jacobian, used for mapping differential volume elements between bases, can be expressed as the square root of the determinant of the metric tensor. 
 \begin{align}
   \label{def_jacobian}
-  \jac &= \hat{e}_1 \cdot \lr{ \hat{e}_2 \times \hat{e}_3 } = h_1 h_2 h_3
+  \jac &= \sqrt{ \varepsilon^{ijk} g_{1i} g_{2j} g_{3k} } && \text{where} & \jac d\lysakx d\lysaky d\lysakz &= dV
+\end{align}
+
+This quantity is also used when expressing a curl or cross product in generalized coordinates. 
+\begin{align}
+  \label{jacobian_usage}
+  \lr{ \curl{A} }^i &= \frac{ \varepsilon^{ijk} }{\jac} \dd{\lysakj} A_k & \lr{ \cross{A}{B} }^i &= \frac{ \varepsilon^{ijk} }{\jac} A_j B_k
 \end{align}
 
 % -----------------------------------------------------------------------------
@@ -115,23 +118,25 @@ In order to take derivatives with respect to these coordinates, we also need the
 % -----------------------------------------------------------------------------
 \subsection{Mapping to Physical Coordinates}
 
-With a quick renormalization, we can map from these nonorthogonal coordinates to \xhat, \yhat, and \zhat. 
+The full expression for the basis vectors, metric tensor, and Jacobian determinant discussed in \cref{sec_basis} can be found in the appendix of \cite{lysak_2004}. 
+
+\todo{These expressions should probably be written out an in appendix here too...}
+
+The basis vectors can be renormalized to produce unit vectors along the dipole coordinates \x, \y, and \z. 
 \begin{align}
-  \label{def_h123}
-  \xhat = \frac{ \hat{e}^1 }{ \sqrt{ g^{11} } } \equiv h_1 \hat{e}^1 &&
-  \yhat = \frac{ \hat{e}^2 }{ \sqrt{ g^{22} } } \equiv h_2 \hat{e}^2 &&
-  \zhat = \frac{ \hat{e}_3 }{ \sqrt{ g_{33} } } \equiv \frac{1}{h_3} \hat{e}_3
+  \label{def_xyz_directions}
+  \xhat &= \frac{1}{ \sqrt{ g^{11} } } \hat{e}^1 &
+  \yhat &= \frac{1}{ \sqrt{ g^{22} } } \hat{e}^2 &
+  \zhat &= \frac{1}{ \sqrt{ g_{33} } } \hat{e}_3
 \end{align}
 
-We can also map over to \rhat, \qhat, \fhat, though these expressions are only valid on the ionospheric boundary. 
+In addition, this coordinate system provides horizontal and radial unit vectors. Note that \cref{def_rqf_directions} is valid only at the ionospheric boundary. 
 \begin{align}
-  \label{def_rqf}
-  \qhat = \frac{ \hat{e}_1 }{ \sqrt{ g_{11} } } \equiv \frac{1}{h_\theta} \hat{e}_1 &&
-  \fhat = \frac{ \hat{e}_2 }{ \sqrt{ g_{22} } } \equiv \frac{1}{h_\phi} \hat{e}_2 &&
-  \rhat = \frac{ \hat{e}^3 }{ \sqrt{ g^{33} } } \equiv h_r \hat{e}^3
+  \label{def_rqf_directions}
+  \qhat &= \frac{1}{ \sqrt{ g_{11} } } \hat{e}_1 &
+  \fhat &= \frac{1}{ \sqrt{ g_{22} } } \hat{e}_2 &
+  \rhat &= \frac{1}{ \sqrt{ g^{33} } } \hat{e}^3
 \end{align}
-
-It's possible (if tedious) to crunch out $g$, $h$, and $\jac$ in terms of $r$, $\theta$, and $\phi$. They're probably in an appendix somewhere. 
 
 % =============================================================================
 % =============================================================================
@@ -139,43 +144,66 @@ It's possible (if tedious) to crunch out $g$, $h$, and $\jac$ in terms of $r$, $
 \section{Ionospheric Profile}
   \label{sec_ionos}
 
-These profiles come from \cite{lysak_2013}, or maybe \cite{kelley_1989}. 
+The ionospheric profiles used in this model are based on values tabulated in the Appendix B of Kelley's book\cite{kelley_1989}. They were adapted by Lysak\cite{lysak_2013} to take into account the effect of the magnetosphere's latitude-dependent density profile. 
 
-Simulations are carried out using four profiles: quiet day, quiet night, active day, active night. 
+Simulations are carried out using four profiles: active day, quiet day, active night, quiet night. 
 
-Cold static plasma. 
+Profiles are static for the duration of a simulation. Even so-called ultra low frequency waves are still much faster than convective timescales. 
+
+\todo{Come up with a characteristic convective timescale or two, and cite it. }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Conductivity}
 
+The conductivity profiles used in this model are the tabulated values from \cite{kelley_1989}, rescaled by Lysak\cite{lysak_2013} to account for the increased mean molecular mass at low altitudes. 
+\begin{align}
+  \sp &= \displaystyle\sum_s \frac{n_s q_s^2}{m_s} \frac{\nu_s}{\nu_s^2 + \Omega_s^2} &
+  \sh &= -\displaystyle\sum_s \frac{n_s q_s^2}{m_s} \frac{\Omega_s}{\nu_s^2 + \Omega_s^2} &
+  \sz &= \displaystyle\sum_s \frac{n_s q_s^2}{m_s \nu_s}
+\end{align}
+
+Each profile is resolved to an altitude of about $\SI{1e4}{\km}$, and include well-resolved $E$, $F_1$, and $F_2$ layers. 
+
+\todo{Talk about the ionospheric layers, probably in the introduction. }
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/sigma.pdf}
     \caption[Ionospheric Conductivity Profiles]{
-      Ionospheric conductivity profiles, from \cite{lysak_2013}, or maybe \cite{kelley_1989}. 
+      Ionospheric conductivity profiles, adapted by Lysak\cite{lysak_2013} from Appendix B of Kelley's textbook\cite{kelley_1989}. 
     }
     \label{fig_sigma}
 \end{figure}
-
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{\Alfven Speed}
 
-Number density is the sum of a plasmaspheric profile and a ``auroral'' profile. 
+The \Alfven speed is computed from Kelley's low-density profile, modified to take into account the local density. The density, in turn, is the sum of a plasmaspheric profile and a high-latitude auroral profile. 
+\begin{align}
+  \ep &= \text{(low-density tabulated value)} + \frac{ n \bar{m} }{B_0^2}
+\end{align}
 
-The mean molecular mass is based on eyeballing from \cite{lysak_2004}. He gives characteristic values at a few different altitudes. This has no visible effect on the code. 
+\todo{What's a clean way of showing the low-density \ep that we read in? }
 
-This section isn't about the electric constant, even though that's what we read in. If it were, we would have to talk about the Boris correction. That's a few sections later. 
+\todo{Above the profile, Bob scales the value that's read in as $r^5$ or something. Is there a citation for that? }
 
-The low-density electric constant is read in from Bob/Kelley. It's then adjusted in accordance with the zeroth-order magnetic field strength and the local number density. The \Alfven speed is computed from $\va^2 \equiv \frac{1}{\mu_0 \ep}$. 
+Where $\bar{m}$ is the ambient mean molecular mass and $B_0$ is the zeroth-order magnetic field strength, $B_0 = \SI{3.11e4}{\nano\tesla} \lr{ \frac{R_E}{r} }^3 \sqrt{ 1 + 3 \cos^2 \theta }$. Note that \SI{3.11e4}{\nano\tesla} is the value of the Earth's magnetic field at the equator on Earth's surface. 
 
-The Ionospheric \Alfven Resonator (IAR) is definitely included in this model, but it's not super important in practice. IAR modes resonate at $\sim\SI{1}{\Hz}$ and our driving is two orders of magnitude slower. 
+\todo{Cite this number? }
 
-NOTE: DO WE HAVE TO WORRY ABOUT PLASMA OSCILLATION IN THE IAR? 
+Note that we do not scale the electric constant to units of $\ez$. 
+
+The \Alfven speed is then computed per \cref{def_basics}, $\va^2 \equiv \frac{1}{\mz \ep}$. 
+
+\todo{Put up a plot of the four \Alfven speed profiles. Show the dipole, or zoom in on the ionosphere? }
+
+\todo{Shouldn't the \Alfven speed profiles be brought up early on, since they're necessary for discussions about evanescence at large \azm in \cref{ch_math}? }
+
+\todo{Explain in this section how we figure out the time step. }
 
 % =============================================================================
 % =============================================================================
@@ -185,161 +213,160 @@ NOTE: DO WE HAVE TO WORRY ABOUT PLASMA OSCILLATION IN THE IAR?
 
 The model simulates the evolution of electric and magnetic fields in accordance with Maxwell's equations. Specifically, magnetic fields are advanced using \farlaw, and electric fields with \amplaw. Kirchhoff's formulation of \ohmlaw ($\vec{J} = \tensor{\sigma} \cdot \vec{E}$) is used to eliminate the explicit current dependence in \amplaw. 
 \begin{align}
+  \label{def_eqns}
   \ddt \vec{B} &= - \curl{E} &
   \tensor{\epsilon} \cdot \ddt \vec{E} &= \frac{1}{\mu_0} \curl{B} - \tensor{\sigma} \cdot \vec{E}
 \end{align}
 
-TALK ABOUT PRECOMPUTING COEFFICIENTS. 
-
-TALK ABOUT HALF TIME STEP OFFSET?
-
-Working only in terms of the covariant basis decreases our model's memory demands -- only one version of each field must be stored -- while simultaneously improving performance. 
-
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Magnetic Field}
+\subsection{Notation and Optimization}
 
-Note that the \assign operator in \cref{def_assign} is used to indicate assignment, not equality. The values on the left hand side are new, and those on the right are old. New and old magnetic field values are offset by \dt. Electric field values are spaced halfway between them; compared to a magnetic field value, the electric field is either ahead or behind by $\frac{\dt}{2}$. 
+Algebra is carried out on paper, producing expressions where each field value is a linear combination of previous field values. These coefficients are computed before the main loop begins. This offers a significant reduction in floating point operations each iteration. 
 
-In essence, this allows (with the reasonable assumption that the right hand side is varying slowly compared to \dt)
+The \assign operator is used to indicate assignment, rather than equality. Values on the left are new, and those on the right are old. New and old magnetic field values are offset by \dt; electric field values staggered by $\frac{\dt}{2}$. As an example of this notation, \cref{def_assign} integrates \farlaw over a time step, assuming that the curl of the electric field varies slowly compared to \dt: 
 \begin{align}
-  \ddt \vec{B} &= - \curl{E} \\
-  \displaystyle\int_0^{\dt} dt \, \ddt \vec{B} &= - \displaystyle\int_0^{\dt} dt \, \curl{E} \\ 
-  \left. \vec{B} \right|_{\dt} - \left. \vec{B} \right|_0 &= \left. - \dt \, \curl{E} \right|_{ \frac{\dt}{2} } \\
-\intertext{Which we now write with the help of the \assign operator as}
   \label{def_assign}
+  \begin{split}
+  \int_0^{\dt} dt \, \ddt \vec{B} &= - \displaystyle\int_0^{\dt} dt \, \curl{E} \\ 
+  \left. \vec{B} \right|_{\dt} - \left. \vec{B} \right|_0 &= \left. - \dt \, \curl{E} \right|_{ \frac{\dt}{2} } \\
   \vec{B} &\assign \vec{B} - \dt \, \curl{E}
-\end{align}
-
-In generalized coordinates, this looks like
-\begin{align}
-  \ddt B^i &= -\frac{ \varepsilon^{ijk} }{\jac} \partial_j E_k \\
-\intertext{Or, eliminating contravariant terms, }
-  \label{farlaw_ijk}
-  \ddt B_i &= -\frac{ g_{ij} \varepsilon^{jkl} }{\jac} \partial_k E_l
-\end{align}
-
-Where summation is implied over repeated indeces, per Einstein's convention, and $\varepsilon^{ijk}$ is the Levi-Civita symbol \cite{einstein_1916}. 
-
-Written out explicitly, and excluding metric tensor elements which are uniformly zero, \cref{farlaw_ijk} takes the form
-\begin{align}
-  \ddt B_1 &= - \frac{ g_{11} }{\jac} \lr{ \partial_2 E_3 - \partial_3 E_2 } - \frac{ g_{13} }{\jac} \lr{ \partial_1 E_2 - \partial_2 E_1 } \\
-  \ddt B_2 &= - \frac{ g_{22} }{\jac} \lr{ \partial_3 E_1 - \partial_1 E_3 } \\
-  \ddt B_3 &= - \frac{ g_{31} }{\jac} \lr{ \partial_2 E_3 - \partial_3 E_2 } - \frac{ g_{33} }{\jac} \lr{ \partial_1 E_2 - \partial_2 E_1 }
-\end{align}
-
-OR MAYBE
-\begin{align}
-  B_1 &\assign B_1 - \frac{g_{11} \dt}{\jac} \lr{ \partial_2 E_3 - \partial_3 E_2 } - \frac{g_{13} \dt}{\jac} \lr{ \partial_1 E_2 - \partial_2 E_1 } \\
-  B_2 &\assign B_2 - \frac{g_{22} \dt}{\jac} \lr{ \partial_3 E_1 - \partial_1 E_3 } \\
-  B_3 &\assign B_3 - \frac{g_{31} \dt}{\jac} \lr{ \partial_2 E_3 - \partial_3 E_2 } - \frac{g_{33} \dt}{\jac} \lr{ \partial_1 E_2 - \partial_2 E_1 }
-\end{align}
-
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\subsection{Parallel Electric Field}
-
-The conductivity tensor couples the two perpendicular electric field components to one another, but doesn't couple them to the parallel electric field. As a result, the parallel component of \amplaw can be considered on its own. 
-\begin{align}
-  \label{amp_para}
-  \ez \ddt E_\parallel &= \frac{1}{\mz} \lr{ \curl{B} }_\parallel - \sz E_\parallel
-\end{align}
-
-Assuming that $\lr{ \curl{B} }_\parallel$ varies slowly compared to \dt -- which it does, by construction -- \cref{amp_para} can be solved using integrating factors. 
-\begin{align}
-  E_\parallel &\assign E_\parallel \exp \arg{ \tfrac{- \sz \dt}{\ez} } + c^2 \dt \lr{ \curl{B} }_\parallel \exp \arg{ \tfrac{- \sz \dt}{2 \ez} }
-\end{align}
-
-Where of course $c^2 \equiv \frac{1}{\mz \ez}$. 
-
-Note that $\lr{ \curl{B} }_\parallel$ is proportional to $\lr{ \curl{B} }_3$, and thus depends on both $\lr{ \curl{B} }^1$ and $\lr{ \curl{B} }^3$. Then in covariant terms
-\begin{align}
-  E_3 &\assign E_3 \exp \arg{ \tfrac{- \sz \dt}{\ez} } + c^2 \dt \lr{ g_{31} \frac{\partial_2 B_3 - \partial_3 B_2}{\jac} +  g_{33} \frac{\partial_1 B_2 - \partial_2 B_1}{\jac} } \exp \arg{ \tfrac{- \sz \dt}{2 \ez} }
-\end{align}
-
-
-
-
-For the aforementioned ionospheric profiles and time steps, $\frac{\sz \dt}{\ez}$ is never smaller than $10^3$. As a result, $\exp \arg{ \frac{- \sz \dt}{\ez} }$ is far too small to be stored in a double precision variable. That is, this simulation takes $E_\parallel$ to be uniformly zero. 
-
-THIS MEANS THAT WE CAN'T TALK AT ALL ABOUT FIELD-ALIGNED CURRENTS. 
-
-NOTE THAT WE WILL GET INTO THIS MORE IN \cref{ch_inertia}. 
-
-Not unrelatedly, $\frac{\sz}{\ez}$ can also be written as $\frac{\op^2}{\nu}$; recall from \cref{def_basics} that the plasma frequency \op is given by $\op^2 \equiv \frac{n e^2}{\me \ez}$, and that the parallel conductivity $\sz$ is given by $\sz \equiv \frac{n e^2}{\me \nu}$ for collision frequency $\nu$. 
-
-The plasma frequency is REALLY FAST. Near the ionospheric boundary the collision frequency is also pretty fast compared to the waves we're looking at, but not enough to overcome $\op^2$. 
-
-
-
-
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\subsection{Perpendicular Electric Field}
-
-The perpendicular electric field components are coupled by the conductivity tensor. 
-
-... \\
-
-
-\begin{align}
-  \label{amp_perp}
-  \ep \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \lr{ \curl{B} }_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot
-\end{align}
-
-Cast in terms of the linear polarizations $E_x$ and $E_y$, this is a pair of coupled differential equations. However, in a circularly-polarized basis, the conductivity tensor is diagonal. Taking $E_\pm \equiv \frac{1}{ \sqrt{2} } \lr{E_x \pm i E_y}$, and defining components of \curl{B} analogously, \cref{amp_perp} can be written
-\begin{align}
-  \ep \ddt E_\pm &= \frac{1}{\mu_0} \lr{ \curl{B} }_\pm - \lr{ \sp \pm i \sh } E_\pm
-\end{align}
-
-Using integrating factors, and recalling $\va^2 \equiv \frac{1}{\mu_0 \ep}$, the new values of $E_\pm$ can be separated from the old. 
-\begin{align}
-  E_\pm &\assign E_\pm \exp \arg{- \tfrac{\sp \pm i \sh}{\ep} \dt} + \va^2 \dt \lr{ \curl{B} }_\pm \exp \arg{ - \tfrac{\sp \pm i \sh}{\ep} \tfrac{\dt}{2} }
-\end{align}
-
-As in \cref{def_assign}, \assign indicates that the left hand side is new, and the right hand side is old, with electric and magnetic fields offset from one another by $\frac{\dt}{2}$. 
-
-Rotating from circular polarization to linear causes the imaginary terms within each exponential to cancel out, leaving sines and cosines. The expression can then be written
-\begin{align}
-  \label{eperp_tensor}
-  \vec{E}_\bot &\assign 
-  \tensor{R} \arg{ \tfrac{- \sh \dt}{\ep} } \cdot
-  \vec{E}_\bot \exp \arg{ \tfrac{- \sp \dt}{\ep} } +
-  \va^2 \dt \tensor{R} \arg{ \tfrac{- \sh \dt}{2 \ep} } \cdot
-  \lr{ \curl{B} }_\bot \exp \arg{ \tfrac{- \sp \dt}{2 \ep} }
-\end{align}
-
-Where $\tensor{R}$ is the rotation matrix
-\begin{align}
-  \tensor{R} \arg{\theta} \equiv \mm{\cos\theta}{-\sin\theta}{\sin\theta}{\cos\theta}
-\end{align}
-
-This expression can then be mapped from the physical basis to the covariant basis, per \cref{def_h123}, to enable the evaluation of derivatives. Note that $E_x$ is parallel to $E^1$, which must then be expressed in terms of $E_1$ and $E_3$. This adds several terms to the expression. 
-\begin{align}
-  \begin{split}
-    \label{e1_final}
-    E_1 + \frac{ g^{13} }{ g^{11} } E_3 &\assign 
-      \lr{ E_1 + \frac{ g^{13} }{ g^{11} } E_3 } \cos \arg{ \tfrac{- \sh \dt}{\ep} } \exp \arg{ \tfrac{- \sp \dt}{\ep} } \\
-    & + \sqrt{ \frac{ g^{22} }{ g^{11} } } E_2 \sin \arg{ \tfrac{- \sh \dt}{\ep} } \exp \arg{ \tfrac{- \sp \dt}{\ep} } \\
-    & + \frac{1}{ g^{11} } \frac{ \partial_2 B_3 - \partial_3 B_2 }{\jac} \cos \arg{ \tfrac{- \sh \dt}{2 \ep} } \exp \arg{ \tfrac{- \sp \dt}{2 \ep} } \\
-    & + \sqrt{ \frac{1}{ g^{11} g^{22} } } \frac{ \partial_3 B_1 - \partial_1 B_3 }{\jac} \sin \arg{ \tfrac{- \sh \dt}{2 \ep} } \exp \arg{ \tfrac{- \sp \dt}{2 \ep} }
-  \end{split} \\
-  \begin{split}
-    \label{e2_final}
-    E_2 &\assign 
-      - \sqrt{ \frac{ g^{11} }{ g^{22} } } \lr{ E_1 + \frac{ g^{13} }{ g^{11} } E_3 } \sin \arg{ \tfrac{- \sh \dt}{\ep} } \exp \arg{ \tfrac{- \sp \dt}{\ep} } \\
-    & + E_2 \cos \arg{ \tfrac{- \sh \dt}{\ep} } \exp \arg{ \tfrac{- \sp \dt}{\ep} } \\
-    & - \sqrt{ \frac{1}{ g^{11} g^{22} } } \frac{ \partial_2 B_3 - \partial_3 B_2 }{\jac} \sin \arg{ \tfrac{- \sh \dt}{2 \ep} } \exp \arg{ \tfrac{- \sp \dt}{2 \ep} } \\
-    & + \frac{ \partial_3 B_1 - \partial_1 B_3 }{\jac} \cos \arg{ \tfrac{- \sh \dt}{2 \ep} } \exp \arg{ \tfrac{- \sp \dt}{2 \ep} }
   \end{split}
 \end{align}
 
-The $E_3$ dependence on the right hand side of \cref{e1_final} is resolved using the known value of $E_3$. Note that $E_3$ is parallel to $E_\parallel$, so decoupling them algebraically is trivial. 
+It's also beneficial to store the curl of each field, rather than take derivatives on the fly. The following sections make use of the shorthand $\vec{C} \equiv \curl{E}$ and $\vec{F} \equiv \curl{B}$. Or, recalling \cref{jacobian_usage}, 
+\begin{align}
+  \label{def_curls}
+  C^i & = \frac{ \varepsilon^{ijk} }{\jac} \dd{\lysakj} E_k &
+  F^i & = \frac{ \varepsilon^{ijk} }{\jac} \dd{\lysakj} B_k
+\end{align}
+
+Only covariant field components are stored. Only contravariant curl components are stored. This cuts down on memory use, while also eliminating the time spent rotating between bases; those operations are built into the precomputed coefficients. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Magnetic Fields}
+
+Taking advantage of the shorthand defined in \cref{def_curls}, \farlaw is simply written
+\begin{align}
+  \label{farlaw_ijk}
+  \ddt B^i &= - C^i
+\end{align}
+
+Or, using the metric tensor to cast the magnetic field in terms of its covariant components, and writing out each coefficient explicitly,
+\begin{align}
+  \begin{split}
+  B_1 &\assign B_1 - g_{11} \, \dt \, C^1 - g_{13} \, \dt \, C^3 \\
+  B_2 &\assign B_2 - g_{22} \, \dt \, C^2 \\
+  B_3 &\assign B_3 - g_{31} \, \dt \, C^1 - g_{33} \, \dt \, C^3
+  \end{split}
+\end{align}
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Electric Fields}
+
+\amplaw, can be solved with integrating factors. From \cref{def_eqns}, 
+\begin{align}
+  \tensor{\epsilon} \cdot \ddt \vec{E} &= \frac{1}{\mu_0} \curl{B} - \tensor{\sigma} \cdot \vec{E}
+\end{align}
+
+The permittivity tensor is diagonal, and so can be trivially inverted. 
+\begin{align}
+  \label{amp_tensor}
+  \lr{ \tensor{\Omega} + \tensor{ \mathbb{I} } \ddt } \cdot \vec{E} &= \tensor{v}^2 \cdot \vec{F}
+\end{align}
+
+Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates, 
+\begin{align}
+  \tensor{v}^2 &\equiv \frac{1}{\mz} \tensor{\epsilon}^{-1} = 
+    \mmm{\va^2}{0}{0}
+        {0}{\va^2}{0}
+        {0}{0}{c^2}
+  && \text{and} &
+  \tensor{\Omega} &\equiv \tensor{\epsilon}^{-1} \cdot \tensor{\sigma} = 
+    \mmm{ \frac{\sp}{\ep} }{ -\frac{\sh}{\ep} }{0}
+        { \frac{\sh}{\ep} }{ \frac{\sp}{\ep} }{0}
+        {0}{0}{ \frac{\sz}{\ez} } 
+\end{align}
+
+Using integrating factors, \cref{amp_tensor} gives
+\begin{align}
+  \vec{E} &\assign \exp \arg{ -\tensor{\Omega} \; \dt } \cdot \vec{E} + \dt \, \tensor{v}^2 \cdot \exp \arg{ -\tensor{\Omega} \; \tfrac{\dt}{2} } \cdot \vec{F}
+\end{align}
+
+\todo{Do we need to be careful here about the difference between a matrix and a tensor? }
+
+The tensor exponential can be evaluated by considering the diagonal and off-diagonal terms separately. 
+\begin{align}
+  \tensor{\Omega} &= \tensor{\Omega}'
+    + \frac{\sh}{\ep} 
+    \mmm{0}{-1}{0}
+        {1}{0}{0}
+        {0}{0}{0} && \text{where} &
+  \tensor{\Omega}' &=
+    \mmm{ \frac{\sp}{\ep} }{0}{0}
+        {0}{ \frac{\sp}{\ep} }{0}
+        {0}{0}{ \frac{\sz}{\ez} }
+\end{align}
+
+Note that tensors are remarkably well-behaved when exponentiated\cite{hall_2015}, particularly since $\tensor{\Omega}'$ is diagonal, and thus they commute. 
+\begin{align}
+  \exp \arg{ \tensor{T} } &= \displaystyle\sum_n \frac{1}{ n! } \tensor{T}^n && \text{and} & \exp \arg{ \tensor{T} + \tensor{T}' } &= \exp \arg{ \tensor{T} } \exp \arg{ \tensor{T}' }
+\end{align}
+
+The off-diagonal terms collapse into sines and cosines, indicating a rotation about \z. 
+\begin{align}
+  \label{amp_final}
+  \vec{E} &\assign \exp \arg{ -\tensor{\Omega}' \; \dt } \cdot \tensor{R}_z \arg{ \tfrac{-\sh \dt}{\ep} } \cdot \vec{E}
+   + \dt \, \tensor{v}^2 \cdot \exp \arg{ -\tensor{\Omega}' \; \tfrac{\dt}{2} } \cdot \tensor{R}_z \arg{ \tfrac{-\sh \dt}{2 \ep} } \cdot \vec{F}
+\end{align}
+
+Where 
+\begin{align}
+  \tensor{R}_z \arg{\theta} &= 
+  \mmm{\cos\theta}{-\sin\theta}{0}
+      {\sin\theta}{\cos\theta}{0}
+      {0}{0}{1}
+\end{align}
+
+The parallel term of term of \cref{amp_final} is simply
+\begin{align}
+  \label{amp_para}
+  E_\parallel \assign E_\parallel \exp \arg{ \tfrac{- \sz \dt}{\ez} } + c^2 \dt F_\parallel \exp \arg{ \tfrac{- \sz \dt}{2 \ez} }
+\end{align}
+
+For the aforementioned ionospheric profiles and time steps, $\frac{\sz \dt}{\ez}$ is never smaller than $10^3$. As a result, $\exp \arg{ - \frac{\sz \dt}{\ez} }$ is far too small to be stored in a double precision variable. That is, this simulation takes $E_\parallel$ (and, equally, $E_3$) to be uniformly zero. 
+
+This, obviously, precludes any discussion of parallel electric fields or parallel currents. These topics are revisited in \cref{ch_inertia}. 
+
+Not unrelatedly, recalling the definition of the plasma frequency and parallel conductivity from \cref{def_basics}, $\frac{\sz}{\ez}$ can also be written $\frac{\op^2}{\nu}$. 
+
+The plasma frequency is very fast. 
+
+The perpendicular components of \cref{amp_final}, mapped from the physical basis to the contravariant basis (per \cref{def_xyz_directions}) to the covariant basis (per \cref{metric_usage}), give
+\begin{alignat}{6}
+  \label{e1_final}
+  & E_1 + \frac{ g^{13} }{ g^{11} } && E_3 \assign &&   && E_1 && \cos \arg{ \tfrac{- \sh \dt}{\ep} } \exp \arg{ \tfrac{- \sp \dt}{\ep} } &&  \notag \\
+  &                                 &&             && + && E_2 && \sin \arg{ \tfrac{- \sh \dt}{\ep} } \exp \arg{ \tfrac{- \sp \dt}{\ep} } &&  \sqrt{ \frac{ g^{22} }{ g^{11} } } \notag \\
+  &                                 &&             && + && E_3 && \cos \arg{ \tfrac{- \sh \dt}{\ep} } \exp \arg{ \tfrac{- \sp \dt}{\ep} } &&  \frac{ g^{13} }{ g^{11} } \\
+  &                                 &&             && + && F^1 && \cos \arg{ \tfrac{- \sh \dt}{2\ep} } \exp \arg{ \tfrac{- \sp \dt}{2\ep} } &&  \frac{\va^2 \dt}{ g^{11} } \notag \\
+  &                                 &&             && + && F^2 && \sin \arg{ \tfrac{- \sh \dt}{2\ep} } \exp \arg{ \tfrac{- \sp \dt}{2\ep} } &&  \frac{\va^2 \dt}{ \sqrt{ g^{11} g^{22} } } \notag \\
+  \intertext{and}
+  \label{e2_final}
+  & && E_2 \assign && - && E_1 && \sin \arg{ \tfrac{- \sh \dt}{\ep} } \exp \arg{ \tfrac{- \sp \dt}{\ep} } &&  \sqrt{ \frac{ g^{11} }{ g^{22} } } \notag \\
+  & &&             && + && E_2 && \cos \arg{ \tfrac{- \sh \dt}{\ep} } \exp \arg{ \tfrac{- \sp \dt}{\ep} } &&  \notag \\
+  & &&             && - && E_3 && \sin \arg{ \tfrac{- \sh \dt}{\ep} } \exp \arg{ \tfrac{- \sp \dt}{\ep} } &&  \frac{ g^{13} }{ \sqrt{ g^{11} g^{22} } } \\
+  & &&             && - && F^1 && \sin \arg{ \tfrac{- \sh \dt}{2\ep} } \exp \arg{ \tfrac{- \sp \dt}{2\ep} } &&  \frac{\va^2 \dt}{ \sqrt{ g^{11} g^{22} } } \notag \\
+  & &&             && + && F^2 && \cos \arg{ \tfrac{- \sh \dt}{2\ep} } \exp \arg{ \tfrac{- \sp \dt}{2\ep} } &&  \frac{\va^2 \dt}{ g^{22} } \notag
+\end{alignat}
+
+The $E_3$ terms can be ignored at present, but \cref{ch_inertia} references back to them. 
+
 
 % =============================================================================
 % =============================================================================
@@ -347,27 +374,92 @@ The $E_3$ dependence on the right hand side of \cref{e1_final} is resolved using
 \section{Driving}
   \label{sec_driving}
 
-We have to get the energy in there somehow. Driving current is purely perpendicular. There is no component within the meridional plane (along the zeroth-order field or perpendicular to it). However, some effect is felt immediately on $E_x$ due to the Hall conductivity. 
+If no energy is added, the simulation is pretty boring. Everything just stays zero. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Outer Boundary Compression}
 
-In the past, similar work has been done using compressional driving. 
+Driving from the outer boundary is the traditional way to do it. 
 
-This constrains the values of \azm that can be looked at. At large \azm, \Alfven waves can't propagate across field lines. They become purely guided. 
+\todo{Cite and briefly explain past work done with compressional driving. This is what most of Bob's papers are, right? }
 
-We can do some runs to show that this is the case. Can we also get it to fall out of the dispersion relation? The one from the previous chapter, not the generic \Alfven wave one. 
+As discussed in \cref{sec_math_implications}, \Alfven waves become guided when the azimuthal modenumber is large. The energy all stays close to the outer boundary. No field line resonances of significant strength are created within the magnetosphere. 
 
-It's appropriate to drive with current because Pc4 pulsations are known to interact with energetic particles from the ring current and radiation belts. 
+\todo{Show a plot of compressional driving, maybe day and night, as \azm increases. Mean energy density over time? Something that shows the recession of waves away from the middle of the simulation. }
 
-Substorm injections can cause azimuthal asymmetry in the ring current. 
+Compressional driving is applied by setting the value of $B_3$ at the outer boundary. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Ring Current Modulation}
+
+Pc4 pulsations with high azimuthal modenumber are known to be driven from within the magnetosphere, such as through drift-resonant interactions with energetic radiation belt and ring current particles. 
+
+\todo{Cite. }
+
+Substorm injection can cause localized ring current behavior. 
+
+\todo{UNH was looking at this at AGU. Check if they have published yet. }
+
+During geomagnetically active times, the ring current is a dynamic region. It's easy to imagine localized perturbations. 
+
+It's difficult to estimate how large such perturbations might be. The following is a kludgey estimate. 
+
+\todo{Plot of Sym-H and its Fourier modes. Estimate of the size of modulation that would be expected around \SI{10}{\mHz}. From that, eyeball the size of the perturbation and convert it to \si{\uA/\meter\squared} }
+
+Current driving is applied by adding an additional current term. \amplaw becomes
+\begin{align}
+  \tensor{\epsilon} \cdot \ddt \vec{E} &= \frac{1}{\mu_0} \curl{B} - \tensor{\sigma} \cdot \vec{E} - \vec{J}_{drive}
+\end{align}
+
+And this driving term is absorbed into the curl by revising \cref{def_curls} from $\vec{F} \equiv \curl{B}$ to $\vec{F} \equiv \curl{B} - \vec{J}_{drive}$. (As a result, \cref{e1_final,e2_final} do not change.)
+
+
+
+
+... \\
+
+... \\
+
+... \\
+
+
+
+
+
+%\begin{align}
+%  \label{amp_perp}
+%  \ep \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \lr{ \curl{B} }_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot
+%\end{align}
+
+%Cast in terms of the linear polarizations $E_x$ and $E_y$, this is a pair of coupled differential equations. However, in a circularly-polarized basis, the conductivity tensor is diagonal. Taking $E_\pm \equiv \frac{1}{ \sqrt{2} } \lr{E_x \pm i E_y}$, and defining components of \curl{B} analogously, \cref{amp_perp} can be written
+%\begin{align}
+%  \ep \ddt E_\pm &= \frac{1}{\mu_0} \lr{ \curl{B} }_\pm - \lr{ \sp \pm i \sh } E_\pm
+%\end{align}
+
+%Using integrating factors, and recalling $\va^2 \equiv \frac{1}{\mu_0 \ep}$, the new values of $E_\pm$ can be separated from the old. 
+%\begin{align}
+%  E_\pm &\assign E_\pm \exp \arg{- \tfrac{\sp \pm i \sh}{\ep} \dt} + \va^2 \dt \lr{ \curl{B} }_\pm \exp \arg{ - \tfrac{\sp \pm i \sh}{\ep} \tfrac{\dt}{2} }
+%\end{align}
+
+%Rotating from circular polarization to linear causes the imaginary terms within each exponential to cancel out, leaving sines and cosines. The expression can then be written
+%\begin{align}
+%  \label{eperp_tensor}
+%  \vec{E}_\bot &\assign 
+%  \tensor{R} \arg{ \tfrac{- \sh \dt}{\ep} } \cdot
+%  \vec{E}_\bot \exp \arg{ \tfrac{- \sp \dt}{\ep} } +
+%  \va^2 \dt \tensor{R} \arg{ \tfrac{- \sh \dt}{2 \ep} } \cdot
+%  \lr{ \curl{B} }_\bot \exp \arg{ \tfrac{- \sp \dt}{2 \ep} }
+%\end{align}
+
+%Where $\tensor{R}$ is the rotation matrix
+%\begin{align}
+%  \tensor{R} \arg{\theta} \equiv \mm{\cos\theta}{-\sin\theta}{\sin\theta}{\cos\theta}
+%\end{align}
+
 
 We look at Sym-H to get an idea of the appropriate scale for current driving. We look at a few storms. 1 June 2013. 17 March 2015. 22 June 2015. 17 March 2013. A few in October and November 2012. 
 

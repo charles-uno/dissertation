@@ -18,6 +18,18 @@
 \newcommand{\amplaw}{\Ampere's Law\xspace}
 \newcommand{\farlaw}{Faraday's Law\xspace}
 
+% What should Radoski's dipole coordinates be named? \nu is overused. 
+\newcommand{\radx}{\ensuremath{\mu} \xspace}
+\newcommand{\rady}{\ensuremath{\phi} \xspace}
+\newcommand{\radz}{\ensuremath{\nu} \xspace}
+
+% What should Lysak's coordinates be named? I don't love u1 u2 u3. 
+\newcommand{\lysaki}{\ensuremath{u^i} \xspace}
+\newcommand{\lysakj}{\ensuremath{u^j} \xspace}
+\newcommand{\lysakx}{\ensuremath{u^1} \xspace}
+\newcommand{\lysaky}{\ensuremath{u^2} \xspace}
+\newcommand{\lysakz}{\ensuremath{u^3} \xspace}
+
 % Coordinate names... these should probably be italicized? 
 \newcommand{\x}{\ensuremath{x}\xspace}
 \newcommand{\y}{\ensuremath{y}\xspace}
@@ -43,7 +55,9 @@
 % Differential operators. 
 \newcommand{\dd}[1]{\ensuremath{ \frac{\partial}{\partial #1} }\xspace}
 \newcommand{\ddt}{\dd{t}\xspace}
-\newcommand{\curl}[1]{\ensuremath{ \nabla \times \vec{#1} }\xspace}
+\newcommand{\cross}[2]{\ensuremath{ \vec{#1} \! \times \! \vec{#2} }\xspace}
+\newcommand{\curl}[1]{\ensuremath{ \nabla \! \times \! \vec{#1} } \xspace}
+
 \renewcommand{\div}[1]{\ensuremath{ \nabla \cdot \vec{#1} }\xspace}
 \newcommand{\grad}[1]{\ensuremath{ \nabla #1 }\xspace}
 
@@ -79,7 +93,7 @@
 \newcommand{\me}{\ensuremath{m_{e}}\xspace}
 
 % Jacobian dererminant, typically indicated with a capital J, which we are using for current. 
-\newcommand{\jac}{\ensuremath{D}\xspace}
+\newcommand{\jac}{\ensuremath{G}\xspace}
 
 % Dispersion tensor, typically indicated with... a capital D?
 \newcommand{\dispersiontensor}{\tensor{T}\xspace}
