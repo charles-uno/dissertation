@@ -7,6 +7,8 @@
 
 The model works in two and a half dimensions. A meridional slice of the magnetosphere is resolved. Fields are presumed to vary azimuthally according to a fixed modenumber \azm. Derivatives in $\phi$ are replaced by $i \azm$. Imaginary field values indicate a phase shift in the azimuthal direction. 
 
+\todo{Note that Lysak's 2013 paper\cite{lysak_2013} was 2.5D. }
+
 The use of a fixed modenumber allows a dramatic decrease in computational cost. Waves with very high azimuthal modenumber are prohibitively expensive to simulate since they can only be resolved if grid resolution is very fine in the azimuthal direction. 
 
 \todo{Has anyone actually talked about computational expense as a constraint on high-\azm simulations?}
@@ -24,6 +26,14 @@ Ground signatures are fairly recent as well.
 \todo{Some ground signature work as far back as Greifinger and Greifinger in 1968, but there's been steady advancement. Lysak and Song, in 2006, were the first to work out ground signatures without the assumption of a single-frequency wave. }
 
 \todo{The support software -- the driver and the plotter -- are significant too. Do they go in a section? In an appendix? }
+
+\todo{Past FLR simulations focused on a single mode, didn't account well for the ionosphere, etc. Lee and Lysak 1989, 1990, 1991, Rankin et al 1993, 1995, 1999, Tikhonchuk and Rankin 2000, 2002. }
+
+\todo{Past work that got ground signatures (without latitude-dependent zenith angle) Greifinger and Greifinger 1968, 1973, Hughes 1974, Sciffer and Waters 2002, Sciffer et al 2005. Better computation of ground signatures... Waters and Sciffer 2008, Sciffer and Waters 2011, Woodroffe and Lysak 2012. }
+
+Note that the model uses \si{\mega\meter}, \si{\second}, \si{\mega\coulomb}, and \si{\gram} as the fundamental units of length, time, charge, and mass respectively. As a result, electric field is measured in \si{\mV/\meter}, magnetic field is measured in \si{\nano\tesla}, and Poynting flux is measured in \si{\mW/\meter\squared}. 
+
+
 
 % =============================================================================
 % =============================================================================
@@ -52,6 +62,11 @@ Radoski did theoretical work in the following dipole coordinates\cite{radoski_19
 \todo{The symbol $\nu$ is overused. Reserve it for collision frequency. Use something else here. }
 
 It's also convenient to take into account the effects of the ionosphere, the lower boundary of which is governed by gravity, and thus has a more-or-less constant altitude. If the above coordinates are used, no line of constant $\radz$ coincides with the ionosphere, at least not over a significant range of latitudes. 
+
+Many previous works have used an effective ionosphere of nonuniform altitude. 
+
+\todo{Figure out which previous works are worth citing here. Options include Radoski 1967, Lee and Lysak 1989, 1991, Rankin et al 1993, 1994, Streltsov and Lotko 1995, 1999. }
+
 
 \todo{"The ionosphere is important for \Alfven waves." Cite this. }
 
@@ -145,6 +160,8 @@ In addition, this coordinate system provides horizontal and radial unit vectors.
   \label{sec_ionos}
 
 The ionospheric profiles used in this model are based on values tabulated in the Appendix B of Kelley's book\cite{kelley_1989}. They were adapted by Lysak\cite{lysak_2013} to take into account the effect of the magnetosphere's latitude-dependent density profile. 
+
+Mean molecular mass of \SI{28}{\amu} at \SI{100}{\km}, \SI{16}{\amu} around \SI{400}{\km}, down to \SI{1}{\amu} above \SI{1400}{\km}. 
 
 Simulations are carried out using four profiles: active day, quiet day, active night, quiet night. 
 
@@ -408,7 +425,13 @@ During geomagnetically active times, the ring current is a dynamic region. It's 
 
 It's difficult to estimate how large such perturbations might be. The following is a kludgey estimate. 
 
-\todo{Plot of Sym-H and its Fourier modes. Estimate of the size of modulation that would be expected around \SI{10}{\mHz}. From that, eyeball the size of the perturbation and convert it to \si{\uA/\meter\squared} }
+\todo{Plot of Sym-H and its Fourier modes. }
+
+The noise suggests that a Fourier component with a period of about \SI{1}{\minute} could have an amplitude around \SI{e-3}{\nano\tesla}. 
+
+If the driving is delivered at $L=5$, with a standard deviation of \SI{0.5}{\RE} in the radial direction and \SI{5}{\degree} angularly, that corresponds to a current density of about \SI{4e-4}{\uA/\meter\squared}. 
+
+\todo{What electric field magnitude does this correspond to? }
 
 Current driving is applied by adding an additional current term. \amplaw becomes
 \begin{align}
@@ -506,6 +529,7 @@ This means that computing all of the parities isn't just unnecessary -- it's pot
 
 This would be perfectly true if we were taking curls on an orthonormal grid, and if there was no Hall conductivity. As is, it's still pretty true. The contributions of off-parity terms tend to be small. 
 
+\todo{Bob notes, in talking about forward/backward differences at the boundary, that the boundary can cause nonphysical reflections, but that they are in practice not relevant to the results. }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -539,4 +563,10 @@ We don't need to show algebra, but we should show the final expression.
 ...
 
 Jump condition over the ionospheric current sheet. This comes from integrating \amplaw... ?
+
+\todo{Bob's citations for the ionospheric jump conditions: Fujita and Tamao 1988, Yosikawa and Itonaga 1996, 2000, Lysak and Song 2001, Sciffer and Waters 2002. }
+
+
+
+
 
