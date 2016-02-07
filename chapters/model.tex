@@ -561,8 +561,7 @@ At the ground, field values are purely output.
 
 Horizontal magnetic field values at the top of the ionosphere, on the other hand, are used as boundary conditions. Assuming there is no vertical component to the ionospheric current sheet, the electric field values at the ionospheric edge of the grid are dictated by the jump in horizontal magnetic field between the bottom of the grid and the top of the atmosphere. 
 \begin{align}
-  \tensor{\Sigma} \cdot \vec{E} &= \oomz \hat{r} \! \times \! \lr{ \vec{B}_I - \nabla \Psi_I } \\
-  \tensor{\Sigma} \cdot \vec{E} &= \oomz \hat{r} \! \times \! \lr{ \displaystyle\lim_{r \rightarrow R_I^+} \vec{B} - \displaystyle\lim_{r \rightarrow R_I^-} \vec{B} }
+  \mz \, \tensor{\Sigma} \cdot \vec{E} &= \left. \displaystyle\lim_{\dr \rightarrow 0} \, \hat{r} \! \times \! \vec{B} \, \right|^{R_I + \dr}_{R_I - \dr}
 \end{align}
 
 \todo{Bob's citations for the ionospheric jump conditions: Fujita and Tamao 1988, Yosikawa and Itonaga 1996, 2000, Lysak and Song 2001, Sciffer and Waters 2002. It basically comes from integrating \amplaw, so half a dozen citations seems like overkill. }
