@@ -7,6 +7,43 @@
 
 \todo{Bob mentions something about electron inertia or pressure being in his 2011 paper. }
 
+The model described in \cref{ch_model} has the notable omission of parallel electric fields and parallel currents. That situation can be remedied by the addition of the electron inertial term in \ohmlaw. 
+
+Old parallel electric field formulation. Recall $\vec{F} \equiv \curl{B}$. 
+\begin{align}
+  \ez \ddt E_\parallel &= \frac{1}{\mu_0} F_\parallel - \sz E_\parallel
+\end{align}
+
+New parallel electric field formulation. The parallel current must now be tracked explicitly. 
+\begin{align}
+  \ez \ddt E_\parallel &= \frac{1}{\mu_0} F_\parallel - J_\parallel &
+  \ddt J_\parallel &= \frac{n e^2}{m} E_\parallel - \nu J_\parallel
+\end{align}
+
+In the new formulation, $J_\parallel$ (equally, $J_3$) is solved with integrating factors and $E_\parallel$ ($E_3$) can be advanced directly. 
+\begin{align}
+  \begin{split}
+  E_3 &\assign E_3 + c^2 \dt \, \lr{ g_{31} F^1 + g_{33} F^3 } - \frac{\dt}{\ez} J_3 \\
+  J_3 &\assign J_3 \exp \arg{ - \nu \dt } + \frac{n e^2}{m} \dt \, E_3 \exp \arg{ -\nu \tfrac{\dt}{2} }
+  \end{split}
+\end{align}
+
+Recall that the electric and magnetic fields are staggered by half a time step. The current is defined with the magnetic fields, offset from the electric fields. 
+
+
+
+
+
+... \\
+
+... \\
+
+... \\
+
+
+
+
+
 COPIED OVER FROM THE MODEL CHAPTER. 
 
 
