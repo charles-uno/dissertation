@@ -74,4 +74,15 @@ Brian~C. Hall.
 \newblock Graduate Texts in Mathematics. Springer, New York, second edition,
   2015.
 
+\bibitem{boris_1970}
+Jay~P. Boris.
+\newblock A physically motivated solution of the alfv{\'e}n problem.
+\newblock {\em NRL Memorandum Report}, 2167, 1970.
+
+\bibitem{ronnmark_2000}
+Kjell R{\:o}nnmark and Maria Hamrin.
+\newblock Auroral electron acceleration by alfv{\'e}n waves and electrostatic
+  fields.
+\newblock {\em J. Geophys. Res.}, 105:25333--25344, 2000.
+
 \end{thebibliography}
