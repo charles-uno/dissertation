@@ -51,6 +51,8 @@ It's convenient to align the grid with the zeroth-order magnetic field, which is
 
 \todo{Who showed that ULF waves can be guided? Cite them. }
 
+A typical outermost field line has an equatorial radius of \SI{10}{\RE}. At this point, the ideal dipole approximation is suspect, particularly on the dayside. In practice, however, most wave activity is concentrated around $L \sim \num{7}$. 
+
 \todo{Discuss, in Future Work, how the grid would be generalized. }
 
 Radoski did theoretical work in the following dipole coordinates\cite{radoski_1967_coords}. 
@@ -193,6 +195,8 @@ Each profile is resolved to an altitude of about $\SI{1e4}{\km}$, and include we
     }
     \label{fig_sigma}
 \end{figure}
+
+\todo{What is the height-interated conductivity for each profile? }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -353,11 +357,16 @@ Where
 
 The parallel term of term of \cref{amp_final} is simply
 \begin{align}
-  \label{amp_para}
   E_\parallel \assign E_\parallel \exp \arg{ \tfrac{- \sz \dt}{\ez} } + c^2 \dt F_\parallel \exp \arg{ \tfrac{- \sz \dt}{2 \ez} }
 \end{align}
 
-For the aforementioned ionospheric profiles and time steps, $\frac{\sz \dt}{\ez}$ is never smaller than $10^3$. As a result, $\exp \arg{ - \frac{\sz \dt}{\ez} }$ is far too small to be stored in a double precision variable. That is, this simulation takes $E_\parallel$ (and, equally, $E_3$) to be uniformly zero. 
+Or, in covariant terms, 
+\begin{align}
+  \label{amp_para}
+  E_3 \assign E_3 \exp \arg{ \tfrac{- \sz \dt}{\ez} } + c^2 \dt \lr{ g_{31} F^1 + g_{33} F^3 } \exp \arg{ \tfrac{- \sz \dt}{2 \ez} }
+\end{align}
+
+For the ionospheric profiles and time steps employed by this model, $\frac{\sz \dt}{\ez}$ is never smaller than $10^3$. As a result, $\exp \arg{ \frac{- \sz \dt}{\ez} }$ is far too small to be stored in a double precision variable. That is, this simulation takes $E_\parallel$ (and, equally, $E_3$) to be uniformly zero. 
 
 This, obviously, precludes any discussion of parallel electric fields or parallel currents. These topics are revisited in \cref{ch_inertia}. 
 
@@ -384,7 +393,6 @@ The perpendicular components of \cref{amp_final}, mapped from the physical basis
 
 The $E_3$ terms can be ignored at present, but \cref{ch_inertia} references back to them. 
 
-
 % =============================================================================
 % =============================================================================
 % =============================================================================
@@ -408,6 +416,10 @@ As discussed in \cref{sec_math_implications}, \Alfven waves become guided when t
 
 Compressional driving is applied by setting the value of $B_3$ at the outer boundary. 
 
+A compression might reasonably be expected to drive waves with long azimuthal wavelengths. However, there is some indication that waves with short azimuthal wavelength can be driven as well, such as through Kelvin-Helmholtz interactions. 
+
+\todo{Find this claim again and cite it. }
+
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -425,11 +437,13 @@ During geomagnetically active times, the ring current is a dynamic region. It's 
 
 It's difficult to estimate how large such perturbations might be. The following is a kludgey estimate. 
 
-\todo{Plot of Sym-H and its Fourier modes. }
+\todo{Plot of Sym-H and its Fourier modes. 1 June 2013. 17 March 2015. 22 June 2015. 17 March 2013. Fit at the ``top'' of the $\frac{1}{f}$ noise. (``Pink noise''?) }
+
+Sym-H is like Dst, but with greater time resolution. 
 
 The noise suggests that a Fourier component with a period of about \SI{1}{\minute} could have an amplitude around \SI{e-3}{\nano\tesla}. 
 
-If the driving is delivered at $L=5$, with a standard deviation of \SI{0.5}{\RE} in the radial direction and \SI{5}{\degree} angularly, that corresponds to a current density of about \SI{4e-4}{\uA/\meter\squared}. 
+If the driving is delivered at $L=5$, with a standard deviation of \SI{0.5}{\RE} in the radial direction and \SI{5}{\degree} angularly, that corresponds to a current density of about \SI{4e-4}{\uA/\meter\squared}. This comes from approximating the ring current as a ring of current. Of course, Sym-H is measured at Earth's surface, not at the center of the ring; this gives a geometric factor of about two. 
 
 \todo{What electric field magnitude does this correspond to? }
 
@@ -440,64 +454,13 @@ Current driving is applied by adding an additional current term. \amplaw becomes
 
 And this driving term is absorbed into the curl by revising \cref{def_curls} from $\vec{F} \equiv \curl{B}$ to $\vec{F} \equiv \curl{B} - \vec{J}_{drive}$. (As a result, \cref{e1_final,e2_final} do not change.)
 
+Notably, Sym-H is a global quantity; it's not ideally suited for making estimates of localized inhomogeneity. 
 
+Furthermore, Sym-H has a time resolution of \SI{1}{\minute}. It can hardly be said to carry information about oscillations at frequencies of less than two minutes. 
 
+Sym-H gives no way to estimate azimuthal modenumber. That's based on Pc4 observations. Dai\cite{dai_2015} observed modenumbers approaching \num{100}. 
 
-... \\
-
-... \\
-
-... \\
-
-
-
-
-
-%\begin{align}
-%  \label{amp_perp}
-%  \ep \ddt \vec{E}_\bot &= \frac{1}{\mu_0} \lr{ \curl{B} }_\bot - \tensor{\sigma}_\bot \cdot \vec{E}_\bot
-%\end{align}
-
-%Cast in terms of the linear polarizations $E_x$ and $E_y$, this is a pair of coupled differential equations. However, in a circularly-polarized basis, the conductivity tensor is diagonal. Taking $E_\pm \equiv \frac{1}{ \sqrt{2} } \lr{E_x \pm i E_y}$, and defining components of \curl{B} analogously, \cref{amp_perp} can be written
-%\begin{align}
-%  \ep \ddt E_\pm &= \frac{1}{\mu_0} \lr{ \curl{B} }_\pm - \lr{ \sp \pm i \sh } E_\pm
-%\end{align}
-
-%Using integrating factors, and recalling $\va^2 \equiv \frac{1}{\mu_0 \ep}$, the new values of $E_\pm$ can be separated from the old. 
-%\begin{align}
-%  E_\pm &\assign E_\pm \exp \arg{- \tfrac{\sp \pm i \sh}{\ep} \dt} + \va^2 \dt \lr{ \curl{B} }_\pm \exp \arg{ - \tfrac{\sp \pm i \sh}{\ep} \tfrac{\dt}{2} }
-%\end{align}
-
-%Rotating from circular polarization to linear causes the imaginary terms within each exponential to cancel out, leaving sines and cosines. The expression can then be written
-%\begin{align}
-%  \label{eperp_tensor}
-%  \vec{E}_\bot &\assign 
-%  \tensor{R} \arg{ \tfrac{- \sh \dt}{\ep} } \cdot
-%  \vec{E}_\bot \exp \arg{ \tfrac{- \sp \dt}{\ep} } +
-%  \va^2 \dt \tensor{R} \arg{ \tfrac{- \sh \dt}{2 \ep} } \cdot
-%  \lr{ \curl{B} }_\bot \exp \arg{ \tfrac{- \sp \dt}{2 \ep} }
-%\end{align}
-
-%Where $\tensor{R}$ is the rotation matrix
-%\begin{align}
-%  \tensor{R} \arg{\theta} \equiv \mm{\cos\theta}{-\sin\theta}{\sin\theta}{\cos\theta}
-%\end{align}
-
-
-We look at Sym-H to get an idea of the appropriate scale for current driving. We look at a few storms. 1 June 2013. 17 March 2015. 22 June 2015. 17 March 2013. A few in October and November 2012. 
-
-We plot the power spectrum and basically do a fit for the top of the range of $\frac{1}{f}$ noise. This gives us a typical magnitude for oscillations on the order of a minute. 
-
-This doesn't give us a characteristic spatial extent for ring current modulations -- Sym-H is a global index -- but we can eyeball the size of current fluctuations. We know the approximate size of the ring current, so we can go from ground-based field signature to current density in space pretty easily. 
-
-There are a lot of parameters to play with. Since this is a linear code, we don't have to worry about ``sweet spots'' for nonlinear effects in the driving magnitude. And it doesn't look like the exact position or shape of the ring current has much qualitative effect on what we see. 
-
-Looking at SYMH. Fourier series out to a period of about a minute. The power spectrum (judging from June 1-3 2013) gives you ~$10^{-2} (T/minutes)$. We can hand-wave a mapping from SYMH to the ring current. 
-\begin{align}
-  B & = \frac{\mu_0 I}{2 R}
-\end{align}
-
-With $B \sim \SI{2}{\nano\tesla}$, $R \sim \SI{4}{\RE}$, $A \sim \SI{1}{\RE\squared}$, we end up with $J \sim \SI{e-4}{\micro\ampere/\meter\squared}$. 
+A kludgey estimate is better than no estimate. 
 
 % =============================================================================
 % =============================================================================
@@ -505,68 +468,103 @@ With $B \sim \SI{2}{\nano\tesla}$, $R \sim \SI{4}{\RE}$, $A \sim \SI{1}{\RE\squa
 \section{Boundary Conditions}
   \label{sec_bcs}
 
-
 The grid can't go on forever. There have to be special cases at the edges. 
+
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Parity and Interpolation}
 
-At the inner and outer boundaries (that is, along the innermost and outermost field lines), as use Dirichlet and Neumann boundary conditions for electric and magnetic fields respectively. 
+Computation takes place on a staggered grid. 
 
-These are implemented in the differentiation and (parity) interpolation functions. 
+Field values are offset to ensure that most differences are centered. For example, $\ddt B_2$ depends on $\dd{\lysakx} E_3$ and $\dd{\lysakz} E_1$. If $B_2$ is defined at even $i$, $E_3$ is defined at odd $i$, so that $B_2$ is defined on the same grid points as $\frac{ E_3 \lrb{i+1} - E_3 \lrb{i-1} }{ \lysakx \lrb{i+1} - \lysakx \lrb{i-1} }$. 
 
-Whenever we need to know the magnetic field just outside the grid boundary, we say that its value is the same as just inside the grid boundary, and its derivative is zero. Neumann. 
+\todo{Make sure the example uses the currect parities. }
 
-Conversely, we say that the electric field just outside the grid goes to 0, allowing us to compute the derivative from the value just inside the grid. Dirichlet. 
+\todo{Find a citation for the wigglies that occur if field values are defined on all grid points, due to the weak coupling. This problem is apparently well-known. }
 
-Dirichlet and Neumann could be flipped without much consequence. They're sorta arbitrary. But mixing up a term, so that they are no longer self-consistent, causes instability. 
+Values are sometimes needed off-parity. $E_1$ and $E_2$ are not defined at the same grid locations, but they are coupled directly by the Hall conductivity. And $B_1$ and $B_3$ are coupled by the non-orthogonality of the grid. When off-parity values are needed, they are interpolated from their neighbors. 
 
-Each field component is stored at only one parity in each direction. This is because of how curls line up. Adjacent values of $E_2$ just aren't really coupled to each other. 
+Differentiation and interpolation are good to second order on the nonuniform grid. Like the coefficients for Maxwell's equations, differentiation and interpolation weights are computed during setup to save time during iteration. 
 
-This means that computing all of the parities isn't just unnecessary -- it's potentially unstable. The odd-by-odd grid and the odd-by-even grid are only weakly coupled, especially at large $r$, so they can drift apart. This can lead to problems in places where they do care about one another. This is documented... where??? 
+Electric fields go to zero at the innermost and outermost field lines (Dirichlet boundary conditions). Magnetic fields have zero derivative (Neumann boundary conditions). For components not defined at the exact boundary, these rules are applied when differentiating or interpolating; they set the effective value just outside the grid. 
 
-This would be perfectly true if we were taking curls on an orthonormal grid, and if there was no Hall conductivity. As is, it's still pretty true. The contributions of off-parity terms tend to be small. 
+These boundary conditions can in principle cause nonphysical reflection at the boundary. In practice, that is not an issue. Wave activity is concentrated well away from the boundaries. In fact, reversing the Dirichlet and Neumann boundary conditions has little effect. 
 
-\todo{Bob notes, in talking about forward/backward differences at the boundary, that the boundary can cause nonphysical reflections, but that they are in practice not relevant to the results. }
+(Of course, an inconsistent boundary condition -- like using the same boundary condition for a field and its derivative -- causes instability.)
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Coupling to the Atmosphere}
 
-% note that, per lysak 2004, we are assuming no vertical current through the ionospheric current sheet. 
+Conditions at the ionospheric boundaries are set by coupling to the atmosphere. This also allows the computation of ground fields. 
 
-Per Maxwell's equations, $\div{B}=0$. We further assume that there are no currents flowing in the atmosphere, giving $\curl{B}=0$. These conditions together guarantee the existence of a scalar magnetic potential, $\Psi$, which satisfies Laplace's equation, $\nabla^2 \Psi = 0$ and $\vec{B} = \grad{\Psi}$. 
+It's reasonable to approximate the atmosphere as a perfect insulator, giving $\curl{B}=0$. Combining with $\div{B}=0$ per Maxwell's equations, ensures the existence of a scalar magnetic potential $\Psi$ such that $\vec{B}=\grad{\Psi}$ and $\Psi$ satisfies Laplace's equation, $\nabla^2 \Psi = 0$. 
 
-Separating out the $r$ and $\phi$ components of Laplace's equation, the $\theta$ component of the equation can be written as a differential equation in terms of $u \equiv \cos\theta$: 
+Laplace's equation can be solved analytically; in spherical coordinates, the solutions are spherical harmonics. However, a numerical solution is preferrable to ensure orthonormality on a discrete (and incomplete -- there are no grid points at the poles or equator) grid. After separating out the radial and azimuthal dependence in the usual way, the latitudinal component of Laplace's equation (in terms of $s \equiv - \sin^2 \theta$) is
 \begin{align}
-  \frac{d}{d u} \lr{ \lr{1 - u^2} \frac{d}{d u} Y_\nu } - \frac{m^2}{1 - u^2} Y_\nu & = - \nu \lr{\nu + 1} Y_\nu
+  \label{laplace}
+  \lr{ 4 s^2 + 4s } \frac{d^2}{ds^2} Y_\ell + \lr{ 4 + 6 s } \frac{d}{ds} Y_\ell - \frac{\azm^2}{s} Y_\ell &= \ell \lr{ \ell + 1 } Y_\ell
 \end{align}
 
-This can be solved numerically on our discrete grid, providing us with eigenvectors and eigenvalues ($Y_\nu$ and $\nu$ respectively). We can then write $\Psi$ in terms of those harmonics: 
+Using centered differences to express the derivatives, \cref{laplace} is a system of linear equations, one per field line. It can be solved numerically for eigenvalues $\ell \lr{\ell + 1}$ and eigenvectors (harmonics) $Y_\ell$. In terms of those harmonics, and noting that the model uses a fixed azimuthal modenumber \azm, $\Psi$ between $R_E$ and $R_I$ can be expressed
 \begin{align}
-  \Psi \lr{r, \theta} = & \displaystyle\sum_\nu \lr{ \alpha_\nu r^\nu + \beta_\nu r^{-\nu-1} } Y_\nu \lr{\theta}
+  \label{psi_expansion}
+  \Psi \arg{r, \theta, \phi} &= \displaystyle\sum_\ell \lr{ \alpha_\ell \, r^\ell + \beta_\ell \, r^{-\ell - 1} } Y_\ell \arg{\theta} \exp \arg{i \azm \phi}
 \end{align}
 
-We will rearrange this expression in order to compute $\Psi$ each time step as a linear combination of the radial magnetic field values at $R_I$. 
+As a boundary condition for $\Psi$, Earth's crust is assumed to be a perfect conductor, forcing the magnetic field at the boundary to be perfectly horizontal. That is, $B_r = \dd{r} \Psi = 0$. Then, noting that the harmonics $Y_\ell$ are orthonormal (so each term of the sum must be zero), 
+\begin{align}
+  \label{beta_solution}
+  \beta_\ell &= \frac{\ell}{\ell + 1} R_E^{2 \ell + 1} \alpha_\ell
+\end{align}
 
-We defined $\vec{B} = \grad{\Psi}$, so $B_r = \dd{r} \Psi$. 
+Note that the explicit $\phi$ dependence has been dropped. The entire simulation shares a fixed modenumber, so it's sufficient to find $\Psi$ at $\phi=0$. 
 
-The ground is perfectly conducting, so $B_r \lr{R_E} = 0$. 
+At the top of the atmosphere, the radial magnetic field is again used as a boundary condition, this time to compute the weights $\alpha_\ell$. 
 
-...
+\todo{Something something thin horizontal current sheet at $R_I$. }
 
-We don't need to show algebra, but we should show the final expression. 
+Taking the shorthand $\lambda_I \equiv \frac{R_E}{R_I} \sim \num{0.975}$
+\begin{align}
+  B_r &= \displaystyle\sum_\ell \ell \, \alpha_\ell \, R_I^{\ell-1} \, \lr{ 1 - \lambda_I^{2 \ell - 1} } Y_\ell
+\end{align}
 
-...
+\todo{Settle on good notation for taking the inner product of harmonics. It's a vector in the sense that it's a one-dimensional array of values, but not in the physical sense. Indexing -- $B_r\lrb{i}$ -- also seems awkward. }
 
-Jump condition over the ionospheric current sheet. This comes from integrating \amplaw... ?
+The sum can be collapsed by ``integrating" over a harmonic. The inverse harmonics are obtained by inverting the eigenvector matrix. Then $Y_\ell \cdot Y_{\ell'}^{-1} = \delta_{\ell \ell'}$ by construction. 
+\begin{align}
+  \label{alpha_solution}
+  \alpha_\ell &= \frac{ 1 }{\ell \, R_I^{\ell-1} } \frac{ B_r \cdot Y_\ell^{-1} }{ 1 + \lambda_I^{2 \ell + 1} }
+\end{align}
 
-\todo{Bob's citations for the ionospheric jump conditions: Fujita and Tamao 1988, Yosikawa and Itonaga 1996, 2000, Lysak and Song 2001, Sciffer and Waters 2002. }
+Combining \cref{psi_expansion,beta_solution,alpha_solution} allows the expression of $\Psi$ at the top and bottom of the atmosphere as a linear function of the radial magnetic field at the boundary. 
+\begin{align}
+  \label{psi_final}
+  \begin{split}
+  \Psi_E &= \displaystyle\sum_\ell Y_\ell \; \frac{R_I}{\ell} \frac{ \frac{2 \ell - 1}{\ell - 1} \lambda^\ell }{ 1 - \lambda_I^{2 \ell + 1} } B_r \cdot Y_\ell^{-1} \\
+  \Psi_I &= \displaystyle\sum_\ell Y_\ell \; \frac{R_I}{\ell} \frac{ 1 + \frac{\ell}{\ell - 1} \lambda_I^{2 \ell + 1} }{ 1 - \lambda_I^{2 \ell + 1} } B_r \cdot Y_\ell^{-1}
+  \end{split}
+\end{align}
 
+Magnetic fields are evaluated from $\Psi$ per 
+\begin{align}
+  B_1 &= \dd{\lysakx} \Psi &
+  B_2 &= \dd{\lysaky} \Psi
+\end{align}
 
+Note that $B_1$ and $B_2$ are horizontal; per \cref{def_rqf_directions}, they are proportional to $B_\theta$ and $B_\phi$ respectively. 
 
+At the ground, field values are purely output. 
+
+Horizontal magnetic field values at the top of the ionosphere, on the other hand, are used as boundary conditions. Assuming there is no vertical component to the ionospheric current sheet, the electric field values at the ionospheric edge of the grid are dictated by the jump in horizontal magnetic field between the bottom of the grid and the top of the atmosphere. 
+\begin{align}
+  \tensor{\Sigma} \cdot \vec{E} &= \oomz \hat{r} \! \times \! \lr{ \vec{B}_I - \nabla \Psi_I } \\
+  \tensor{\Sigma} \cdot \vec{E} &= \oomz \hat{r} \! \times \! \lr{ \displaystyle\lim_{r \rightarrow R_I^+} \vec{B} - \displaystyle\lim_{r \rightarrow R_I^-} \vec{B} }
+\end{align}
+
+\todo{Bob's citations for the ionospheric jump conditions: Fujita and Tamao 1988, Yosikawa and Itonaga 1996, 2000, Lysak and Song 2001, Sciffer and Waters 2002. It basically comes from integrating \amplaw, so half a dozen citations seems like overkill. }
 
 
