@@ -30,7 +30,7 @@ Robert~L. Lysak, Colin~L. Waters, and Murray~D. Sciffer.
 \newblock {\em J. Geophys. Res. Space Physics}, 118, 2013.
 
 \bibitem{engebretson_1987}
-M.~J. Engebretson, L.~J. Zanetti, T.~A. Potemra, W.~Baumjohann, H.~L{\: u}hr,
+M.~J. Engebretson, L.~J. Zanetti, T.~A. Potemra, W.~Baumjohann, H.~L{\"u}hr,
   and M.~H. Acuna.
 \newblock Simultaneous observation of pc 3–4 pulsations in the solar wind and
   in the earth's magnetosphere.
@@ -60,7 +60,7 @@ W.~D. D'haeseleer, W.~N. G. Hitchon J.~D. Callen, and J.~L. Shohet.
 
 \bibitem{einstein_1916}
 A.~Einstein.
-\newblock Die grundlage der allgemeinen relativit{\: a}tstheorie.
+\newblock Die grundlage der allgemeinen relativit{\"a}tstheorie.
 \newblock {\em Ann. Phys.}, 354:769--822, 1916.
 
 \bibitem{kelley_1989}
@@ -80,9 +80,26 @@ Jay~P. Boris.
 \newblock {\em NRL Memorandum Report}, 2167, 1970.
 
 \bibitem{ronnmark_2000}
-Kjell R{\:o}nnmark and Maria Hamrin.
+Kjell R{\"o}nnmark and Maria Hamrin.
 \newblock Auroral electron acceleration by alfv{\'e}n waves and electrostatic
   fields.
 \newblock {\em J. Geophys. Res.}, 105:25333--25344, 2000.
+
+\bibitem{radoski_1974}
+Henry~R. Radoski.
+\newblock A theory of latitude dependent geomagnetic micropulsations: The
+  asymptotic fields.
+\newblock {\em J. Geophys. Res.}, 79, 1974.
+
+\bibitem{ding_1995}
+D.~Q. Ding, R.~E. Denton, M.~K. Hudson, and R.~L. Lysak.
+\newblock An mhd simulation study of the poloidal mode field line resonance in
+  the earth's dipole magnetosphere.
+\newblock {\em J. Geophys. Res.}, 100:63--77, 1995.
+
+\bibitem{mann_1995}
+Ian~R. Mann and Andrew~N. Wright.
+\newblock Finite lifetimes of ideal poloidal alfv{\'e}n waves.
+\newblock {\em J. Geophys. Res.}, 100:23677--23686, 1995.
 
 \end{thebibliography}
