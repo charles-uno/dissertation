@@ -422,7 +422,14 @@ Driving from the outer boundary is the traditional way to do it.
 
 As discussed in \cref{sec_math_implications}, \Alfven waves become guided when the azimuthal modenumber is large. The energy all stays close to the outer boundary. No field line resonances of significant strength are created within the magnetosphere. 
 
-\todo{Show a plot of compressional driving, maybe day and night, as \azm increases. Mean energy density over time? Something that shows the recession of waves away from the middle of the simulation. }
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/Stor_B_2.pdf}
+    \caption[Decreasing Penetration with Increasing Modenumber]{
+      When the azimuthal modenumber is small, energy delivered through compression of the outer boundary is able to propagate across field lines and stimulate field line resonances in the inner magnetosphere. However, as modenumber increases, \Alfven waves become increasingly guided. As a result, energy delivered at the outer boundary cannot penetrate to the inner magnetosphere. 
+    }
+    \label{fig_Stor_B_2}
+\end{figure}
 
 Compressional driving is applied by setting the value of $B_3$ at the outer boundary. 
 
