@@ -591,26 +591,13 @@ Horizontal magnetic field values at the top of the ionosphere, on the other hand
 \todo{Bob's citations for the ionospheric jump conditions: Fujita and Tamao 1988, Yosikawa and Itonaga 1996, 2000, Lysak and Song 2001, Sciffer and Waters 2002. It basically comes from integrating \amplaw, so half a dozen citations seems like overkill. }
 
 The harmonic breakdown of $\Psi$ also allows for the calculation of how much energy is leeched by the atmosphere. 
+\begin{align}
+  B_r &= \dd{r} \Psi &
+  B_\theta &= \frac{1}{r} \dd{\theta} \Psi &
+  B_\phi &= \frac{1}{r \sin\theta} \dd{\phi} \Psi
+\end{align}  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\todo{Plug \cref{psi_expansion,beta_solution} into these expressions, then that into $u = \frac{1}{2 \mz} \left| \vec{B} \right|^2 $, then integrate from $R_E$ to $R_I$ and in angle. }
 
 
 
