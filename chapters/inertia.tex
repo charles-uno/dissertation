@@ -5,7 +5,7 @@
 \chapter{Electron Inertial Effects}
 \label{ch_inertia}
 
-\todo{Bob mentions something about electron inertia or pressure being in his 2011 paper. }
+\todo{Note that Bob's 2011 paper\cite{lysak_2011} had inertial effects. }
 
 The model described in \cref{ch_model} has the notable omission of parallel electric fields and parallel currents. That situation can be remedied by the addition of the electron inertial term in \ohmlaw. 
 
@@ -51,11 +51,7 @@ As noted in \cref{sec_e}, the plasma frequency is very large. Much larger than $
 
 The time step dictated by the \Alfven speed and grid spacing is typically on the order of $\SI{10}{\us}$, while the plasma frequency can be as small as $\SI{10}{\ns}$. 
 
-But there is another way into Mordor. There's a path, and some stairs and then a tunnel. 
-
-The plasma frequency (and the speed of light) can be decreased by taking an artificially large value for \ez. 
-
-Such approximations have been staples of numerical MHD models since Boris' work in 1970\cite{boris_1970}.
+The plasma frequency (and the speed of light) can be decreased by taking an artificially large value for \ez. Such approximations have been staples of numerical MHD models since Boris' work in 1970\cite{boris_1970}.
 
 Lysak and Song\cite{lysak_2001} demonstrate the validity of such an approximation. To paraphrase their work, take \cref{def_inertia} and suppose that $E_\parallel$ and $J_\parallel$ are oscillating at a frequency $\omega$. Then,
 \begin{align}
@@ -74,7 +70,7 @@ For the purposes of simulating ultra low frequency waves, \cref{boris_criterion}
 
 \todo{Ronnmark\cite{ronnmark_2000} calls this ``anisotropic vacuum.'' }
 
-\todo{Show a plot of these frequency ratios in the ionosphere? }
+\todo{Plot of these frequency ratios in the ionosphere? }
 
 \todo{Generalized \ohmlaw, in case we decide we need it. Could talk through why all of the other terms are OK to neglect.  
 \begin{align}
@@ -88,37 +84,71 @@ For the purposes of simulating ultra low frequency waves, \cref{boris_criterion}
 \end{align}
 }
 
-
 % =============================================================================
 % =============================================================================
 % =============================================================================
 \section{Effect on the Simulation}
 
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/B_1_004_016mHz.pdf}
-    \caption[Magnetic Field Comparison With and Without Electron Inertial Effects]{}
+    \caption[Magnetic Field Comparison With and Without Electron Inertial Effects]{
+      The addition of electron inertial effects, with no other changes to the model, does not visible change the output. In a way, this is reassuring, since the alternative is to cast doubt on past work. 
+    }
     \label{fig_B_1_004_016mHz}
 \end{figure}
-
-
 
 % =============================================================================
 % =============================================================================
 % =============================================================================
 \section{Field-Aligned Current}
+  \label{sec_fac}
+
+Parallel electric fields and field-aligned currents are overwhelmingly imaginary, indicating an azimuthal offset compared to the driving. This is in line with \farlaw. The toroidal magnetic field $B_y$ is imaginary, so $\partial_x B_y$ is also imaginary. The poloidal magnetic field $B_x$ is real, but azimuthal derivatives are taken with a factor of $i \azm$, so $\partial_y B_x$ is imaginary. 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{figures/JS_1_16mHz.pdf}
-    \caption[Field-Aligned Current and the Toroidal Mode: Active Day]{}
-    \label{fig_JS_1_16mHz}
+    \includegraphics[width=\textwidth]{figures/JS_1_016mHz.pdf}
+    \caption[Field-Aligned Current and Poynting Flux at $R_I$: Active Day, \SI{16}{mHz} Current]{
+      While the (complex) phase of the field-aligned current is aligned with that of the toroidal mode, its magnitude shows no such preference. When a toroidal wave carries Poynting flux to the ionosphere, field-aligned currents are created. When the Poynting flux is carried by a poloidal mode, currents are also created. The field-aligned current signature at the ionospheric boundary matches closely to the sum of the poloidal and toroidal Poynting flux signatures. 
+    }
+    \label{fig_JS_1_016mHz}
+\end{figure}
+
+\todo{Notably, while the net Poynting flux is downward almost everywhere, field-aligned currents alternate between upward and downward flow. Perhaps this has to do with Poynting flux being a quadratic quantity while current is linear? Check the phases of the electric and magnetic fields. }
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/JE_1_016mHz.pdf}
+    \caption[Ionospheric Power Density: Active Day, \SI{16}{mHz} Current]{
+      While field-aligned currents can be of significant size, they are not particularly good at depositing energy in the ionosphere. Energy deposited by the Poynting flux matches closely with Joule dissipation from the perpendicular currents -- energy conservation! -- while $J_\parallel E_\parallel$ is smaller by several orders of magnitude. 
+    }
+    \label{fig_JE_1_016mHz}
 \end{figure}
 
 % =============================================================================
 % =============================================================================
 % =============================================================================
 \section{Inertial Length Scales}
+
+A typical run has maximum $E_y$ on the order of \SI{10}{\mV/\meter\squared} and maximum $E_z$ on the order of \SI{e-3}{\mV/\meter\squared}. The two components could still have similar effects depending on their spatial scales. 
+
+At the ionospheric boundary, signatures in $E_y$ can vary on length scales of about \SI{1}{\degree}. This gives $\dd{x} E_y \dt \sim \SI{e-3}{nT/\second}$. 
+
+The usual grid can't resolve features much smaller than that. This means that the model isn't capturing any features on the electron inertial length scale, $\frac{c}{\op}$, which bottoms out around $\SI{e-1}{\km}$ inside the plasmasphere, and $\SI{1}{\km}$ outside it. 
+
+The very small $E_z$ values being seen are unlikely to dominate $E_x$, but if inertial length scales were resolved in the perpendicular direction then $\dd{x} E_z \dt$ could be as large as \SI{e-4}{nT/\second}. 
+
+Resolving electron inertial lengths is computationally very expensive. 
+
+The range of $L$ values is decreased from \SIrange{2}{10}{\RE} to \SIrange{5}{7}{\RE}. The number of grid points in the perpendicular direction is increased by a factor of five. This drops the time step by an order of magnitude -- smaller zones have smaller crossing times! 
+
+All in all, a run that resolves inertial length scales is a factor of 100 more expensive than one that doesn't. 
+
+\todo{Several such runs are going right now. They should finish over the weekend. Then we can see what our tiny grid spacing buys us! }
+
+
+
 
 
