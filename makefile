@@ -30,3 +30,6 @@ tidy:
 clean:
 	$(LATEXMK) -C $(MAIN_TEX)
 	rm *~
+
+force:
+	$(LATEXMK) -pdf $(MAIN_TEX) -f
