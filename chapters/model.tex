@@ -91,7 +91,19 @@ Compared to \cref{radoski_coords}, \cref{def_coords} represents a renormalizatio
 
 \todo{Explain how we set up the grid. It should only take a paragraph or two -- it doesn't need its own section. }
 
-\todo{Plot of the grid setup! }
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/grid.pdf}
+    \caption[Nonorthogonal Dipole Grid]{
+      The model's nonorthorthogonal dipole grid. Only every fifth point is shown in each direction. The grid resolution is highest near the ionosphere and lowest at large distances. The high concentration of grid points at the inner edge of the equator is a consequence of renormalizing the grid spacing with $\cos\theta_0$; whereas Radoski's dipole coordinates come to a singularity at the center of the Earth, Lysak's coordinates converge at the equatorial ionosphere. 
+    }
+    \label{fig_grid}
+\end{figure}
+
+
+
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -209,6 +221,8 @@ The \Alfven speed is computed from Kelley's low-density profile, modified to tak
   \ep &= \text{(low-density tabulated value)} + \frac{ n \bar{m} }{B_0^2}
 \end{align}
 
+\todo{What's a clean way of showing the low-density \ep that we read in? }
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/va.pdf}
@@ -217,8 +231,6 @@ The \Alfven speed is computed from Kelley's low-density profile, modified to tak
     }
     \label{fig_va}
 \end{figure}
-
-\todo{What's a clean way of showing the low-density \ep that we read in? }
 
 \todo{Above the profile, Bob scales the value that's read in as $r^5$ or something. Is there a citation for that? }
 
@@ -230,11 +242,20 @@ Note that we do not scale the electric constant to units of $\ez$.
 
 The \Alfven speed is then computed per \cref{def_basics}, $\va^2 \equiv \frac{1}{\mz \ep}$. 
 
-\todo{Put up a plot of the four \Alfven speed profiles. Show the dipole, or zoom in on the ionosphere? }
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fa.pdf}
+    \caption[\Alfven Bounce Frequency Profiles]{
+      \Alfven bounce frequency profiles, computed by integrating the the \Alfven speed back and forth over a field line. $f_A = \lrb{ \oint \frac{dz}{v_A} }^{-1}$. Dotted lines indicate the Pc4 frequency range, \SIrange{7}{25}{\mHz}. In each profile, the effect of the plasmapause is clearly visible, centered at $L=4$. Field lines just inside and just outside the plasmapause appear susceptible to resonance in the Pc4 band. 
+    }
+    \label{fig_fa}
+\end{figure}
+
+\todo{Talk about how the size of the plasmasphere can be adjusted, and \SI{4}{\RE} is just a typical value. }
 
 \todo{Shouldn't the \Alfven speed profiles be brought up early on, since they're necessary for discussions about evanescence at large \azm in \cref{ch_math}? }
 
-\todo{Explain in this section how we figure out the time step. }
+\todo{Explain how the \Alfven speed constrains the time step. }
 
 % =============================================================================
 % =============================================================================
