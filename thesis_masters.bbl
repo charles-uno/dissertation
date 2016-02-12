@@ -104,8 +104,9 @@ R.~L. Lysak and A.~Yoshikawa.
   2006.
 
 \bibitem{waters_2013}
-On the coupling of fast and shear alfv{\'e}n wave modes by the ionospheric hall
-  conductance.
+C.~L. Waters, R.~L. Lysak, and M.~D. Sciffer.
+\newblock On the coupling of fast and shear alfv{\'e}n wave modes by the
+  ionospheric hall conductance.
 \newblock {\em Earth Planets Space}, 65:385--396, 2013.
 
 \bibitem{lysak_2004}
@@ -185,5 +186,11 @@ D.~Q. Ding, R.~E. Denton, M.~K. Hudson, and R.~L. Lysak.
 \newblock An mhd simulation study of the poloidal mode field line resonance in
   the earth's dipole magnetosphere.
 \newblock {\em J. Geophys. Res.}, 100:63--77, 1995.
+
+\bibitem{takahashi_2011}
+Kazue Takahashi, Karl-Heinz Glassmeier, Vassilis Angelopoulos, John Bonnell,
+  Yukitoshi Nishimura, Howard~J. Singer, and Christopher~T. Russell.
+\newblock Multisatellite observations of a giant pulsation event.
+\newblock {\em J. Geophys. Res.}, 116:A11223, 2011.
 
 \end{thebibliography}

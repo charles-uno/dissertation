@@ -2,61 +2,24 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Simulations of Giant Pulsations
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Evolution of Giant Pulsations}
-\label{ch_pgs}
+\chapter{Relevance to Giant Pulsations}
+  \label{ch_pgs}
 
+Giant pulsations are (probably\cite{takahashi_2011}) fundamental mode poloidal Pc4 pulsations with frequencies around \SI{10}{\mHz} and azimuthal modenumbers around \num{20}. They are large, and can sometimes be observed on the ground. 
 
+This model -- with its so-far sinusoudal driving -- isn't able to comment on the fact that giant pulsations tend to be near-monochromatic. 
 
-% =============================================================================
-% =============================================================================
-% =============================================================================
-\section{Drifting Ground Signatures}
+However, just about everything else about giant pulsations lines up with what the model shows... in fact, this might not even be its own chapter. It might be a section of \cref{ch_lifetimes}. 
 
-In this model, azimuthal offset is indicated by complex phase per $\exp \arg{i \azm \phi}$. 
+Giant pulsations tend to have modenumbers around 20. This is exactly what we would expect. Very low modenumbers rotate from the poloidal mode to the toroidal mode very quickly. Even with ongoing driving and high conductivity, no satisfying poloidal resonance could be produced with an azimuthal modenumber of order unity. 
 
-For the most part, each field exhibits a uniform phase. Poloidal electric and magnetic fields are overwhelmingly real. Toroidal electric and magnetic fields are overwhelmingly imaginary. 
+Giant pulsations are not observed with very high modenumbers, on the other hand, because high-\azm waves are screened out by the ionosphere. This was shown theoretically\cite{hughes_1976} in the seventies. Recent observations indicate the same; in 2013, Takahashi\cite{takahashi_2013} had a multispacecraft observation of a poloidal Pc4 with $\azm \gtrsim 70$. No ground signature. This model gives consistent results. 
 
-\todo{Get typical phase ranges. }
+\todo{Show some ground signatures. They're weak for high-\azm runs. }
 
-The north-south component of the magnetic ground signatures is uniformly imaginary. By comparing to \cref{fig_BqE_J_1} it's clear that the ostensibly real regions in \cref{fig_BqE_phase_J_1} are an illusion; they coincide with near-zero field magnitudes. 
+Giant pulsations often drift azimuthally. This model can't resolve azimuthal drift directly, of course, but can fake it by looking at complex phase. 
 
-Note that in \cref{fig_BqE_phase_J_1,fig_BfE_phase_J_1}, phase is defined as: $\, \arctan \left| \frac{ \mathbb{I}\mathrm{m} \, B }{ \mathbb{R}\mathrm{e} \, B } \right|$. 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/BqE_J_1.pdf}
-    \caption[North-South Ground Signatures: Active Day]{}
-    \label{fig_BqE_J_1}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/BqE_phase_J_1.pdf}
-    \caption[North-South Ground Signature Phases: Active Day]{}
-    \label{fig_BqE_phase_J_1}
-\end{figure}
-
-In contrast, the phase of the east-west aligned magnetic field evolves visibly over the course of an oscillation. This is particularly evident in the third row, $m=16$. The effect is present at latitudes where the field intensity is high (though not the highest). 
-
-%The near-peak-amplitude phase rotation for \SI{100}{\mHz} driving at $m=16$ can be eyeballed around $\frac{\pi}{8}$ in half a wave period (\SI{50}{\second}). This corresponds to $\sim \SI{0.3}{\deg/\second}$. This is within an order of magnitude of Glassmeier's\cite{glassmeier_1999} much-cited event, which had a horizontal phase speed of $\SI{0.135}{\degree/\second}$. 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/BfE_J_1.pdf}
-    \caption[East-West Ground Signatures: Active Day]{}
-    \label{fig_BfE_J_1}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/BfE_phase_J_1.pdf}
-    \caption[East-West Ground Signature Phases: Active Day]{}
-    \label{fig_BfE_phase_J_1}
-\end{figure}
-
-
-
-
+I have seen some indication of complex phase rotation in ground magnetic fields, indicating horizontal motion on the order of $\SI{e-1}{\degree/\second}$. But it's not clear if it's real. For the bulk of the simulation, poloidal fields are completely real and toroidal fields are completely imaginary. That gets a bit muddled at the ionosphere due to the Hall conductivity. I haven't quite figured out where the complex phase of the ground signatures fits into that picture. 
 
 
 
