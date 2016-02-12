@@ -3,24 +3,32 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Finite Poloidal Lifetimes}
-\label{ch_lifetimes}
+  \label{ch_lifetimes}
 
-This is why we do 2.5D... you can't resolve these effects in a 3D model. It's too expensive. 
+Radoski\cite{radoski_1974} looked at \Alfven waves, using a cylindrical coordinate system to emulate an ``unwrapped'' dipole. He argued that poloidal waves should rotate to the toroidal mode over time, and that the rotation would not go the other way. 
 
-\todo{Do we see a difference between \vec{k} (momentum) and the group velocity? Poynting flux will always be pretty much along the field line, since $B_3$ is small and $E_3$ is zero, but the wave vector need not be. This is a question of coupling/converting to compressional waves, I guess. }
+Mann\cite{mann_1995} performed some wave-in-a-box simulations and found the rotation time to be linear in modenumber: $\tau = \frac{d \lambda}{d \omega_A'}$, where $\lambda = \frac{\azm}{2 \pi r}$ and $\omega_A'$ is the spatial derivative of the \Alfven bounce frequency. Soon afterwards\cite{mann_1997}, he supported his simulations analytically. 
 
-\todo{Look at McKenzie and Westphal. Waves incident on the bow shock, etc, at weird angles. }
+Ding\cite{ding_1995} ran simulations more-or-less concurrent with Mann's. Ding saw a rotation from poloidal to toroidal... then back again. It seems that the reversal was a spatial resolution issue. 
 
-\todo{Look at the E to B ratio. Compare to the \Alfven speed and to the height-integrated Pedersen conductivity. }
+The aforementioned models made significant simplifying assumptions in terms of geometry and boundary conditions. Neither included an ionosphere. 
+
+Following up on this work in 3D is unlikely. Large azimuthal modenumbers are expensive to resolve, and the whole point of this result is that large modenumbers behave differently from small ones. 
+
+%\todo{Do we see a difference between \vec{k} (momentum) and the group velocity? Poynting flux will always be pretty much along the field line, since $B_3$ is small and $E_3$ is zero, but the wave vector need not be. This is a question of coupling/converting to compressional waves, I guess. }
+
+%\todo{Look at McKenzie and Westphal. Waves incident on the bow shock, etc, at weird angles. }
+
+%\todo{Look at the E to B ratio. Compare to the \Alfven speed and to the height-integrated Pedersen conductivity. }
 
 % =============================================================================
 % =============================================================================
 % =============================================================================
-\section{Finite Poloidal Lifetimes}
+\section{Rotation of Energy}
 
-Radoski 1974 \cite{radoski_1974}. Ding 1995\cite{ding_1995}. Mann 1995\cite{mann_1995}. 
+Generally speaking, the following results are in agreement with previous results. Driving is applied to the azimuthal electric field, driving the fundamental poloidal mode. In \cref{fig_UP_UT_J_1,fig_UP_UT_J_2}, energy builds up in the poloidal fields over numerous driving cycles, then rotates from the poloidal fields to the toroidal. Simulations with large modenumber show a slower rotation. 
 
-\todo{Look at Mann's poloidal lifetime, $\dd{\omega_A'} \lambda$ where $\lambda \sim \frac{\azm}{2 \pi r}$. }
+However, the same is not really true in \cref{fig_UP_UT_J_3,fig_UP_UT_J_4}. The driving is still applied to the fundamental poloidal mode, but there's no resonance. The driving adds energy. The resistive ionosphere sucks it out. And then the system is back where it started. It looks like a damped driven oscillator, not a resonant system. 
 
 \begin{figure}[H]
     \centering
@@ -53,9 +61,9 @@ Radoski 1974 \cite{radoski_1974}. Ding 1995\cite{ding_1995}. Mann 1995\cite{mann
 % =============================================================================
 % =============================================================================
 % =============================================================================
-\section{Development of Fine Structure}
+\section{Resonance Feasibility}
 
-\todo{These plots are very pretty, but it's not clear that they do a good job of communicating the important information. }
+At low azimuthal modenumber, the poloidal mode just doesn't resonate. Even on the dayside, where the conductivity is high, energy rotates over to the toroidal mode too fast to see much poloidal activity. 
 
 \begin{figure}[H]
     \centering
