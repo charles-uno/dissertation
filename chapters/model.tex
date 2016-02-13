@@ -12,7 +12,7 @@ The model works in two and a half dimensions. A meridional slice of the magnetos
 
 The use of a fixed modenumber allows a dramatic decrease in computational cost. Waves with very high azimuthal modenumber are prohibitively expensive to simulate since they can only be resolved if grid resolution is very fine in the azimuthal direction. 
 
-\todo{Has anyone actually talked about computational expense as a constraint on high-\azm simulations?}
+\todo{Can we find a citation where someone explicitly talks about the computational cost of high-\azm simulations? Or is it just obvious Nyquist? }
 
 This prevents the simultaneous consideration of dayside and nightside phenomena, but is fine for azimuthally-localized waves. As was shown by \cite{engebretson_1987}, and recently confirmed in detail by \cite{dai_2015}, Pc4 pulsations are generally confined to just a few hours MLT on the dayside. 
 
@@ -24,7 +24,7 @@ Models with height-resolved ionospheres are a very recent development. Lysak pre
 
 Ground signatures are fairly recent as well. 
 
-\todo{Some ground signature work as far back as Greifinger and Greifinger in 1968, but there's been steady advancement. Lysak and Song, in 2006, were the first to work out ground signatures without the assumption of a single-frequency wave. }
+\todo{Some ground signature work as far back as Greifinger and Greifinger in 1968\cite{greifinger_1968}, but there's been steady advancement. Lysak and Song, in 2006, were the first to work out ground signatures without the assumption of a single-frequency wave. }
 
 \todo{The support software -- the driver and the plotter -- are significant too. Do they go in a section? In an appendix? }
 
@@ -32,9 +32,7 @@ Ground signatures are fairly recent as well.
 
 \todo{Past work that got ground signatures (without latitude-dependent zenith angle) Greifinger and Greifinger 1968, 1973, Hughes 1974, Sciffer and Waters 2002, Sciffer et al 2005. Better computation of ground signatures... Waters and Sciffer 2008, Sciffer and Waters 2011, Woodroffe and Lysak 2012. }
 
-Note that the model uses \si{\mega\meter}, \si{\second}, \si{\mega\coulomb}, and \si{\gram} as the fundamental units of length, time, charge, and mass respectively. As a result, electric field is measured in \si{\mV/\meter}, magnetic field is measured in \si{\nano\tesla}, and Poynting flux is measured in \si{\mW/\meter\squared}. 
-
-
+Note that the model uses megameters, seconds, megacoulombs, and grams as the fundamental units of length, time, charge, and mass respectively. As a result, electric field is measured in \si{\mV/\meter}, magnetic field is measured in \si{\nano\tesla}, and Poynting flux is measured in \si{\mW/\meter\squared}. The electric constant is expressed in \si{\milli\farad/\meter}, not in units of \ez, not that it really matters. 
 
 % =============================================================================
 % =============================================================================
@@ -50,11 +48,9 @@ When referring to fields in place, it's convenient to use lowercase\footnote{ No
 
 It's convenient to align the grid with the zeroth-order magnetic field, which is presumed to be a perfect dipole. Field line resonances (such as Pc4 pulsations) are guided by magnetic field lines. 
 
-\todo{Who showed that ULF waves can be guided? Cite them. }
+\todo{``ULF waves can be guided.'' Cite. }
 
 A typical outermost field line has an equatorial radius of \SI{10}{\RE}. At this point, the ideal dipole approximation is suspect, particularly on the dayside. In practice, however, most wave activity is concentrated around $L \sim \num{7}$. 
-
-\todo{Discuss, in Future Work, how the grid would be generalized. }
 
 Radoski did theoretical work in the following dipole coordinates\cite{radoski_1967_coords}. 
 \begin{align}
@@ -70,8 +66,7 @@ Many previous works have used an effective ionosphere of nonuniform altitude.
 
 \todo{Figure out which previous works are worth citing here. Options include Radoski 1967, Lee and Lysak 1989, 1991, Rankin et al 1993, 1994, Streltsov and Lotko 1995, 1999. }
 
-
-\todo{"The ionosphere is important for \Alfven waves." Cite this. }
+\todo{``The ionosphere is important for \Alfven waves'' Cite? }
 
 In order to accommodate dipole field lines as well as a fixed-altitude ionosphere, a nonorthogonal grid is necessary. Such a grid was worked out numerically by Proehl\cite{proehl_2002}, then formalized analytically by Lysak\cite{lysak_2004}:
 \begin{align}
@@ -91,8 +86,6 @@ Compared to \cref{radoski_coords}, \cref{def_coords} represents a renormalizatio
 
 \todo{Explain how we set up the grid. It should only take a paragraph or two -- it doesn't need its own section. }
 
-
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/grid.pdf}
@@ -102,9 +95,6 @@ Compared to \cref{radoski_coords}, \cref{def_coords} represents a renormalizatio
     \label{fig_grid}
 \end{figure}
 
-
-
-
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -113,9 +103,9 @@ Compared to \cref{radoski_coords}, \cref{def_coords} represents a renormalizatio
 
 The coordinates defined in \cref{def_coords} are not orthonormal. As a result, it's necessary to consider covariant and contravariant basis vectors separately. 
 
-Covariant basis vectors $e_i \equiv \dd{\lysaki} \vec{x}$ are normal to the curve defined by constant $\lysaki$. 
+Covariant basis vectors $\hat{e}_i \equiv \dd{\lysaki} \vec{x}$ are normal to the curve defined by constant $\lysaki$. 
 
-Contravariant basis vectors $e^i \equiv \dd{ \vec{x} } \lysaki$ are tangent to the coordinate curve. Equally, they're normal to the plane defined by constant $\lysakj$ for all $j \ne i$. 
+Contravariant basis vectors $\hat{e}^i \equiv \dd{ \vec{x} } \lysaki$ are tangent to the coordinate curve. Equally, they're normal to the plane defined by constant $\lysakj$ for all $j \ne i$. 
 
 The basis vectors are reciprocal to one another\cite{dhaeseleer_1991}, and can be used to define the metric tensor $g$. 
 \begin{align}
@@ -128,13 +118,21 @@ Note $\delta^i_j$ is the Kronecker delta, $\varepsilon^{ijk}$ is the Levi-Civita
 The metric tensor is used to map between the covariant and contravariant representations of a vector
 \begin{align}
   \label{metric_usage}
-  A_i &= g_{ij} A^j & A^i &= g^{ij} A_j && \text{where} & A_i &\equiv \vec{A} \cdot \hat{e}_i &  A^i &\equiv \vec{A} \cdot \hat{e}^i
+  A_i &= g_{ij} A^j &
+  & \text{and} &
+  A^i &= g^{ij} A_j &
+  & \text{where} &
+  A_i &\equiv \vec{A} \cdot \hat{e}_i &
+  & \text{and} &
+  A^i &\equiv \vec{A} \cdot \hat{e}^i
 \end{align}
 
 The Jacobian, used for mapping differential volume elements between bases, can be expressed as the square root of the determinant of the metric tensor. 
 \begin{align}
   \label{def_jacobian}
-  \jac &= \sqrt{ \varepsilon^{ijk} g_{1i} g_{2j} g_{3k} } && \text{where} & \jac d\lysakx d\lysaky d\lysakz &= dV
+  \jac d\lysakx d\lysaky d\lysakz &= dV &
+  & \text{where} &
+  \jac &= \sqrt{ \varepsilon^{ijk} g_{1i} g_{2j} g_{3k} }
 \end{align}
 
 This quantity is also used when expressing a curl or cross product in generalized coordinates. 
@@ -189,14 +187,14 @@ Profiles are static for the duration of a simulation. Even so-called ultra low f
 % -----------------------------------------------------------------------------
 \subsection{Conductivity}
 
-The conductivity profiles used in this model are the tabulated values from \cite{kelley_1989}, rescaled by Lysak\cite{lysak_2013} to account for the increased mean molecular mass at low altitudes. 
+The effects of mean molecular mass on conductivity are computed per the usual definitions. 
 \begin{align}
   \sp &= \displaystyle\sum_s \frac{n_s q_s^2}{m_s} \frac{\nu_s}{\nu_s^2 + \Omega_s^2} &
   \sh &= -\displaystyle\sum_s \frac{n_s q_s^2}{m_s} \frac{\Omega_s}{\nu_s^2 + \Omega_s^2} &
   \sz &= \displaystyle\sum_s \frac{n_s q_s^2}{m_s \nu_s}
 \end{align}
 
-Each profile is resolved to an altitude of about $\SI{1e4}{\km}$, and include well-resolved $E$, $F_1$, and $F_2$ layers. 
+Each profile is resolved to an altitude of about $\SI{e4}{\km}$, and include well-resolved $E$, $F_1$, and $F_2$ layers. 
 
 \todo{Talk about the ionospheric layers, probably in the introduction. }
 
@@ -223,6 +221,12 @@ The \Alfven speed is computed from Kelley's low-density profile, modified to tak
 
 \todo{What's a clean way of showing the low-density \ep that we read in? }
 
+\todo{Does Kelley list the electric constant or the \Alfven speed? }
+
+Where $\bar{m}$ is the ambient mean molecular mass and $B_0$ is the zeroth-order magnetic field strength, $B_0 = \SI{3.11e4}{\nano\tesla} \lr{ \frac{R_E}{r} }^3 \sqrt{ 1 + 3 \cos^2 \theta }$. Note that \SI{3.11e4}{\nano\tesla} is the value of the Earth's magnetic field at the equator on Earth's surface. 
+
+\todo{Cite this number? }
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/va.pdf}
@@ -234,13 +238,7 @@ The \Alfven speed is computed from Kelley's low-density profile, modified to tak
 
 \todo{Above the profile, Bob scales the value that's read in as $r^5$ or something. Is there a citation for that? }
 
-Where $\bar{m}$ is the ambient mean molecular mass and $B_0$ is the zeroth-order magnetic field strength, $B_0 = \SI{3.11e4}{\nano\tesla} \lr{ \frac{R_E}{r} }^3 \sqrt{ 1 + 3 \cos^2 \theta }$. Note that \SI{3.11e4}{\nano\tesla} is the value of the Earth's magnetic field at the equator on Earth's surface. 
-
-\todo{Cite this number? }
-
-Note that we do not scale the electric constant to units of $\ez$. 
-
-The \Alfven speed is then computed per \cref{def_basics}, $\va^2 \equiv \frac{1}{\mz \ep}$. 
+The \Alfven speed is then computed per $\va^2 \equiv \frac{1}{\mz \ep}$. 
 
 \begin{figure}[H]
     \centering
@@ -252,8 +250,6 @@ The \Alfven speed is then computed per \cref{def_basics}, $\va^2 \equiv \frac{1}
 \end{figure}
 
 \todo{Talk about how the size of the plasmasphere can be adjusted, and \SI{4}{\RE} is just a typical value. }
-
-\todo{Shouldn't the \Alfven speed profiles be brought up early on, since they're necessary for discussions about evanescence at large \azm in \cref{ch_math}? }
 
 \todo{Explain how the \Alfven speed constrains the time step. }
 
@@ -281,7 +277,7 @@ The \assign operator is used to indicate assignment, rather than equality. Value
 \begin{align}
   \label{def_assign}
   \begin{split}
-  \int_0^{\dt} dt \, \ddt \vec{B} &= - \displaystyle\int_0^{\dt} dt \, \curl{E} \\ 
+  \int_0^{\dt} \! dt \, \ddt \vec{B} &= - \displaystyle\int_0^{\dt} \! dt \, \curl{E} \\ 
   \left. \vec{B} \right|_{\dt} - \left. \vec{B} \right|_0 &= \left. - \dt \, \curl{E} \right|_{ \frac{\dt}{2} } \\
   \vec{B} &\assign \vec{B} - \dt \, \curl{E}
   \end{split}
@@ -294,7 +290,7 @@ It's also beneficial to store the curl of each field, rather than take derivativ
   F^i & = \frac{ \varepsilon^{ijk} }{\jac} \dd{\lysakj} B_k
 \end{align}
 
-Only covariant field components are stored. Only contravariant curl components are stored. This cuts down on memory use, while also eliminating the time spent rotating between bases; those operations are built into the precomputed coefficients. 
+Only covariant field components are stored. Only contravariant curl components are stored. This cuts down on memory use, while also eliminating the time spent rotating between bases; rotations between covariant and contravariant bases are built into the precomputed coefficients. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -328,7 +324,7 @@ Or, using the metric tensor to cast the magnetic field in terms of its covariant
   \tensor{\epsilon} \cdot \ddt \vec{E} &= \frac{1}{\mu_0} \curl{B} - \tensor{\sigma} \cdot \vec{E}
 \end{align}
 
-The permittivity tensor is diagonal, and so can be trivially inverted. 
+The permittivity tensor can be trivially inverted. 
 \begin{align}
   \label{amp_tensor}
   \lr{ \tensor{\Omega} + \tensor{ \mathbb{I} } \ddt } \cdot \vec{E} &= \tensor{v}^2 \cdot \vec{F}
@@ -367,9 +363,11 @@ The tensor exponential can be evaluated by considering the diagonal and off-diag
         {0}{0}{ \frac{\sz}{\ez} }
 \end{align}
 
-Note that tensors are remarkably well-behaved when exponentiated\cite{hall_2015}, particularly since $\tensor{\Omega}'$ is diagonal, and thus they commute. 
+Note that tensors are remarkably well-behaved when exponentiated\cite{hall_2015}. Because $\tensor{\Omega}'$ is diagonal, and thus the two commute,  
 \begin{align}
-  \exp \arg{ \tensor{T} } &= \displaystyle\sum_n \frac{1}{ n! } \tensor{T}^n && \text{and} & \exp \arg{ \tensor{T} + \tensor{T}' } &= \exp \arg{ \tensor{T} } \exp \arg{ \tensor{T}' }
+  \exp \arg{ \tensor{T} } &= \displaystyle\sum_n \frac{1}{ n! } \tensor{T}^n &
+  & \text{and} &
+  \exp \arg{ \tensor{T} + \tensor{T}' } &= \exp \arg{ \tensor{T} } \exp \arg{ \tensor{T}' }
 \end{align}
 
 The off-diagonal terms collapse into sines and cosines, indicating a rotation about \z. 
@@ -398,7 +396,7 @@ Or, in covariant terms,
   E_3 \assign E_3 \exp \arg{ \tfrac{- \sz \dt}{\ez} } + c^2 \dt \lr{ g_{31} F^1 + g_{33} F^3 } \exp \arg{ \tfrac{- \sz \dt}{2 \ez} }
 \end{align}
 
-For the ionospheric profiles and time steps employed by this model, $\frac{\sz \dt}{\ez}$ is never smaller than $10^3$. As a result, $\exp \arg{ \frac{- \sz \dt}{\ez} }$ is far too small to be stored in a double precision variable. That is, this simulation takes $E_\parallel$ (and, equally, $E_3$) to be uniformly zero. 
+For the ionospheric profiles and time steps employed by this model, $\frac{\sz \dt}{\ez}$ is never smaller than $10^3$. As a result, $\exp \arg{ \frac{- \sz \dt}{\ez} }$ is far too small to be stored in a double precision variable. That is, this simulation takes $E_\parallel$ (and, as a result, $E_3$) to be uniformly zero. 
 
 This, obviously, precludes any discussion of parallel electric fields or parallel currents. These topics are revisited in \cref{ch_inertia}. 
 
@@ -440,9 +438,11 @@ If no energy is added, the simulation is pretty boring. Everything just stays ze
 
 Driving from the outer boundary is the traditional way to do it. 
 
-\todo{Cite and briefly explain past work done with compressional driving. This is what most of Bob's papers are, right? }
+\todo{Cite and briefly explain past work done with compressional driving. }
 
 As discussed in \cref{sec_math_implications}, \Alfven waves become guided when the azimuthal modenumber is large. The energy all stays close to the outer boundary. No field line resonances of significant strength are created within the magnetosphere. 
+
+\todo{Should the model be presented first, or the dispersion relation? It's natural to talk about the ionospheric profiles when presenting the model, which the dispersion relation relies upon. But it's convenient, here, to be able to talk about how \Alfven waves become guided at large \azm. That probably means that the math should go first, and the ionospheric profiles should be squeezed in somewhere earlier. }
 
 \begin{figure}[H]
     \centering

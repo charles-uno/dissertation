@@ -21,7 +21,7 @@ New parallel electric field formulation. The parallel current must now be tracke
   \ddt J_\parallel &= \frac{n e^2}{m} E_\parallel - \nu J_\parallel
 \end{align}
 
-In the new formulation, $J_\parallel$ (equally, $J_3$) is solved with integrating factors and $E_\parallel$ ($E_3$) can be advanced directly. 
+In the new formulation, $J_\parallel$ (proportional to $J_3$) is solved with integrating factors and $E_\parallel$ ($E_3$) can be advanced directly. 
 \begin{align}
   \begin{split}
   E_3 &\assign E_3 + c^2 \dt \, \lr{ g_{31} F^1 + g_{33} F^3 } - \frac{\dt}{\ez} J_3 \\
@@ -35,6 +35,7 @@ Recall that the electric and magnetic fields are staggered by half a time step. 
 % =============================================================================
 % =============================================================================
 \section{The Boris Approximation}
+  \label{sec_boris}
 
 Note that 
 \begin{align}
@@ -104,18 +105,28 @@ For the purposes of simulating ultra low frequency waves, \cref{boris_criterion}
 \section{Field-Aligned Current}
   \label{sec_fac}
 
-Parallel electric fields and field-aligned currents are overwhelmingly imaginary, indicating an azimuthal offset compared to the driving. This is in line with \farlaw. The toroidal magnetic field $B_y$ is imaginary, so $\partial_x B_y$ is also imaginary. The poloidal magnetic field $B_x$ is real, but azimuthal derivatives are taken with a factor of $i \azm$, so $\partial_y B_x$ is imaginary. 
+Over the bulk of the simulation, each field is overwhelmingly real or imaginary. Driving is injected into the real poloidal electric field, giving real $E_x$ and $B_y$ (and real $B_z$, at least for low \azm... at large \azm, the compressional magnetic field becomes very small). Toroidal components -- $E_x$ and $B_y$ -- are imaginary, indicating an azimuthal offset. 
+
+This comes from the curls in \farlaw and \amplaw; a derivative in the azimuthal direction comes with a factor of $i$. 
+
+By that reasoning, it seems that the parallel electric field $E_z$ should line up with the toroidal mode. 
+
+The distinction between real and imaginary fields gets muddled at the ionosphere, since (imaginary) $E_x$ and (real) $E_y$ are coupled by the Hall conductivity. 
+
+The finer points are still being worked out. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/JS_1_016mHz.pdf}
     \caption[Field-Aligned Current and Poynting Flux at the Ionosphere]{
-      While the (complex) phase of the field-aligned current is aligned with that of the toroidal mode, its magnitude shows no such preference. When a toroidal wave carries Poynting flux to the ionosphere, field-aligned currents are created. When the Poynting flux is carried by a poloidal mode, currents are also created. The field-aligned current signature at the ionospheric boundary matches closely to the sum of the poloidal and toroidal Poynting flux signatures. 
+      Perhaps unsurprisingly, field-aligned current structures at the ionospheric bounadry line up with Poynting flux structures. The imaginary component of the current lines up with the (imaginary) toroidal Poynting flux, while the real current lines up with the poloidal Poynting flux. 
     }
     \label{fig_JS_1_016mHz}
 \end{figure}
 
 \todo{Notably, while the net Poynting flux is downward almost everywhere, field-aligned currents alternate between upward and downward flow. Perhaps this has to do with Poynting flux being a quadratic quantity while current is linear? Check the phases of the electric and magnetic fields. }
+
+The ``wigglies'' visible in the lower-left corner of \cref{fig_JS_1_016mHz} suggests overcorrection due to an improperly-coarse grid. See \cref{sec_lengths}. 
 
 
 \begin{figure}[H]
@@ -131,18 +142,21 @@ Parallel electric fields and field-aligned currents are overwhelmingly imaginary
 % =============================================================================
 % =============================================================================
 \section{Inertial Length Scales}
+  \label{sec_lengths}
 
-A typical run has maximum $E_y$ on the order of \SI{10}{\mV/\meter\squared} and maximum $E_z$ on the order of \SI{e-3}{\mV/\meter\squared}. The two components could still have similar effects depending on their spatial scales. 
+A typical run has maximum $E_y$ on the order of \SI{10}{\mV/\meter\squared} and maximum $E_z$ on the order of \SI{e-3}{\mV/\meter\squared}. Notably, however, it's the electric field derivative that affects the magnetic field, not its magnitude. 
 
 At the ionospheric boundary, signatures in $E_y$ can vary on length scales of about \SI{1}{\degree}. This gives $\dd{x} E_y \dt \sim \SI{e-3}{nT/\second}$. 
 
-The usual grid can't resolve features much smaller than that. This means that the model isn't capturing any features on the electron inertial length scale, $\frac{c}{\op}$, which bottoms out around $\SI{e-1}{\km}$ inside the plasmasphere, and $\SI{1}{\km}$ outside it. 
+The usual grid can't resolve features much smaller than that. But, recall from \cref{sec_boris}, that simulations now include plasma oscillation, for which the characteristic length scale is the electron inertial length, $\frac{c}{\op}$. 
+
+The electron inertial length bottoms out below $\SI{e-1}{\km}$ inside the plasmasphere, and $\SI{1}{\km}$ outside it. 
 
 The very small $E_z$ values being seen are unlikely to dominate $E_x$, but if inertial length scales were resolved in the perpendicular direction then $\dd{x} E_z \dt$ could be as large as \SI{e-4}{nT/\second}. 
 
 Resolving electron inertial lengths is computationally very expensive. 
 
-The range of $L$ values is decreased from \SIrange{2}{10}{\RE} to \SIrange{5}{7}{\RE}. The number of grid points in the perpendicular direction is increased by a factor of five. This drops the time step by an order of magnitude -- smaller zones have smaller crossing times! 
+The range of $L$ values is decreased from \SIrange{2}{10}{\RE} down to \SIrange{5}{7}{\RE}. The number of grid points in the perpendicular direction is increased by a factor of five. This drops the time step by an order of magnitude -- smaller zones have smaller crossing times! 
 
 All in all, a run that resolves inertial length scales is a factor of 100 more expensive than one that doesn't. 
 
