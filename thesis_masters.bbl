@@ -1,5 +1,117 @@
 \begin{thebibliography}{10}
 
+\bibitem{birkeland_1901}
+K.~Birkeland.
+\newblock Exp{\'e}dition norv{\'e}gienne de 1899-1900 pour l'{\'e}tude des
+  aurores bor{\'e}ales.
+\newblock {\em Mat. Naturvidensk. Kl.}, KI(I), 1901.
+
+\bibitem{boris_1970}
+J.~P. Boris.
+\newblock A physically motivated solution of the alfv{\'e}n problem.
+\newblock {\em NRL Memorandum Report}, 2167, 1970.
+
+\bibitem{brekke_1987}
+A.~Brekke, T.~Feder, and S.~Berger.
+\newblock Pc4 giant pulsations recorded in troms{\o}, 1929-1985.
+\newblock {\em Journal of Atmospheric and Terrestrial Physics},
+  49(10):1027--1032, 1987.
+
+\bibitem{cummings_1969}
+W.~D. Cummings, R.~J. O'Sullivan, and P.~J. Coleman.
+\newblock Standing alfv{\'e}n waves in the magnetosphere.
+\newblock {\em J. Geophys. Res.}, 74(3):778--793, 1969.
+
+\bibitem{dai_2015}
+L.~Dai, K.~Takahashi, R.~Lysak, C.~Wang, J.~R. Wygant, C.~Kletzing, J.~Bonnell,
+  C.~A. Cattell, C.~W. Smith, R.~J. MacDowall, S.~Thaller, A.~Breneman,
+  X.~Tang, X.~Tao, and L.~Chen.
+\newblock Storm time occurrence and spatial distribution of pc4 poloidal ulf
+  waves in the inner magnetosphere: A van allen probes statistical study.
+\newblock {\em J. Geophys. Res. Space Physics}, 120:4748--4762, 2015.
+
+\bibitem{dai_2013}
+L.~Dai, K.~Takahashi, J.~R. Wygant, L.~Chen, J.~Bonnell, C.~A. Cattell,
+  S.~Thaller, C.~Kletzing, C.~W. Smith, R.~J. MacDowall, D.~N. Baker, J.~B.
+  Blake, J.~Fennell, S.~Claudepierre, H.~O. Funsten, G.~D. Reeves, and H.~E.
+  Spence.
+\newblock Excitation of poloidal standing alfv{\'e}n waves through drift
+  resonance wave-particle interaction.
+\newblock {\em Geophys. Res. Lett.}, 40:4127--4132, 2013.
+
+\bibitem{dhaeseleer_1991}
+W.~D. D'haeseleer, W.~N. G. H. J.~D. Callen, and J.~L. Shohet.
+\newblock {\em Flux Coordinates and Magnetic Field Structure}.
+\newblock Springer-Verlag, New York, 1991.
+
+\bibitem{ding_1995}
+D.~Q. Ding, R.~E. Denton, M.~K. Hudson, and R.~L. Lysak.
+\newblock An mhd simulation study of the poloidal mode field line resonance in
+  the earth's dipole magnetosphere.
+\newblock {\em J. Geophys. Res.}, 100:63--77, 1995.
+
+\bibitem{dungey_1954}
+J.~W. Dungey.
+\newblock The attenuation of alfv{\'e}n waves.
+\newblock {\em J. Geophys. Res.}, 59(3):323--328, 1954.
+
+\bibitem{einstein_1916}
+A.~Einstein.
+\newblock Die grundlage der allgemeinen relativit{\"a}tstheorie.
+\newblock {\em Ann. Phys.}, 354:769--822, 1916.
+
+\bibitem{engebretson_1987}
+M.~J. Engebretson, L.~J. Zanetti, T.~A. Potemra, W.~Baumjohann, H.~L{\"u}hr,
+  and M.~H. Acuna.
+\newblock Simultaneous observation of pc 3–4 pulsations in the solar wind and
+  in the earth's magnetosphere.
+\newblock {\em J. Geophys. Res. Space Physics}, 92:10053--10062, 1987.
+
+\bibitem{fujita_1988}
+S.~Fujita and T.~Tamao.
+\newblock Duct propagation of hydromagnetic waves in the upper ionosphere, 1,
+  electromagnetic field disturbances in high latitudes associated with
+  localized incidence of a shear alfv{\'e}n wave.
+\newblock {\em J. Geophys. Res.}, 93(A12):14665, 1988.
+
+\bibitem{glassmeier_1980}
+K.-H. Glassmeier.
+\newblock Magnetometer array observations of a giant pulsation event.
+\newblock {\em Journal of Geophysics Zeitschrift Geophysik}, 48:127--138, 1980.
+
+\bibitem{green_1979}
+C.~A. Green.
+\newblock Observations of pg pulsations in the northern auroral zone and at
+  lower latitude conjugate regions.
+\newblock {\em Planetary and Space Science}, 27(1):63--77, 1979.
+
+\bibitem{green_1985}
+C.~A. Green.
+\newblock Giant pulsations in the plasmasphere.
+\newblock {\em Planetary and Space Science}, 33(10):1155--1168, 1985.
+
+\bibitem{greifinger_1968}
+C.~Greifinger and P.~S. Greifinger.
+\newblock Theory of hydromagnetic propagation in the ionospheric waveguide.
+\newblock {\em J. Geophys. Res.}, 73(23):7473--7490, 1968.
+
+\bibitem{hall_2015}
+B.~C. Hall.
+\newblock {\em Lie Groups, Lie Algebras, and Representations}.
+\newblock Graduate Texts in Mathematics. Springer, New York, second edition,
+  2015.
+
+\bibitem{hillebrand_1982}
+O.~Hillebrand, J.~Muench, and R.~L. McPherron.
+\newblock Ground-satellite correlative study of a giant pulsation event.
+\newblock {\em Journal of Geophysics Zeitschrift Geophysik}, 51:129--140, 1982.
+
+\bibitem{hughes_1974}
+W.~J. Hughes.
+\newblock The effect of the atmosphere and ionosphere on long period
+  magnetospheric micropulsations.
+\newblock {\em Planet. Space Sci.}, 22:1157--1172, 1974.
+
 \bibitem{hughes_1994}
 W.~J. Hughes.
 \newblock Magnetospheric ulf waves: A tutorial with a historical perspective.
@@ -8,39 +120,11 @@ W.~J. Hughes.
   {\em Geophys. Monogr.}, pages 1--12. American Geophysical Union, Washington,
   DC, 1994.
 
-\bibitem{dungey_1954}
-J.~W. Dungey.
-\newblock The attenuation of alfv{\'e}n waves.
-\newblock {\em J. Geophys. Res.}, 59(3):323--328, 1954.
-
 \bibitem{hughes_1976}
 W.~J. Hughes and D.~J. Southwood.
 \newblock The screening of micropulsation signals by the atmosphere and
   ionosphere.
 \newblock {\em J. Geophys. Res.}, 81(19):3234--3240, 1976.
-
-\bibitem{takahashi_2013}
-Kazue Takahashi, Michael~D. Hartinger, Vassilis Angelopoulos, Karl-Heinz
-  Glassmeier, and Howard~J. Singer.
-\newblock Multispacecraft observations of fundamental poloidal waves without
-  ground magnetic signatures.
-\newblock {\em J. Geophys. Res. Space Physics}, 118:4319--4334, 2013.
-
-\bibitem{dai_2015}
-Lei Dai, Kazue Takahashi, Robert Lysak, Chi Wang, John~R. Wygant, Craig
-  Kletzing, John Bonnell, Cynthia~A. Cattell, Charles~W. Smith, Robert~J.
-  MacDowall, Scott Thaller, Aaron Breneman, Xiangwei Tang, Xin Tao, and Lunjin
-  Chen.
-\newblock Storm time occurrence and spatial distribution of pc4 poloidal ulf
-  waves in the inner magnetosphere: A van allen probes statistical study.
-\newblock {\em J. Geophys. Res. Space Physics}, 120:4748–4762, 2015.
-
-\bibitem{engebretson_1987}
-M.~J. Engebretson, L.~J. Zanetti, T.~A. Potemra, W.~Baumjohann, H.~L{\"u}hr,
-  and M.~H. Acuna.
-\newblock Simultaneous observation of pc 3–4 pulsations in the solar wind and
-  in the earth's magnetosphere.
-\newblock {\em J. Geophys. Res. Space Physics}, 92:10053--10062, 1987.
 
 \bibitem{jaynes_2015}
 A.~N. Jaynes, M.~R. Lessard, K.~Takahashi, A.~F. Ali, D.~M. Malaspina, R.~G.
@@ -50,48 +134,31 @@ A.~N. Jaynes, M.~R. Lessard, K.~Takahashi, A.~F. Ali, D.~M. Malaspina, R.~G.
   aurora observed by the van allen probes and ground-based systems.
 \newblock {\em J. Geophys. Res. Space Physics}, 120:8749–8761, 2015.
 
-\bibitem{southwood_1976}
-D.~J. Southwood.
-\newblock A general approach to low-frequency instability in the ring current
-  plasma.
-\newblock {\em J. Geophys. Res.}, 81(19):3340--3348, 1976.
+\bibitem{kelley_1989}
+M.~C. Kelley.
+\newblock {\em The Earth's Ionosphere}.
+\newblock Academic Press, San Diego, second edition, 1989.
 
-\bibitem{hughes_1974}
-W.~J. Hughes.
-\newblock The effect of the atmosphere and ionosphere on long period
-  magnetospheric micropulsations.
-\newblock {\em Planet. Space Sci.}, 22:1157--1172, 1974.
+\bibitem{lysak_2004}
+R.~L. Lysak.
+\newblock Magnetosphere-ionosphere coupling by alfv{\'e}n waves at
+  midlatitudes.
+\newblock {\em J. Geophys. Res.}, 109, 2004.
 
-\bibitem{greifinger_1968}
-Carl Greifinger and Phyllis~S. Greifinger.
-\newblock Theory of hydromagnetic propagation in the ionospheric waveguide.
-\newblock {\em J. Geophys. Res.}, 73(23):7473--7490, 1968.
+\bibitem{lysak_2001}
+R.~L. Lysak and Y.~Song.
+\newblock A three-dimensional model of the propagation of alfv{\'e}n waves
+  through the auroral ionosphere: first results.
+\newblock {\em Adv. Space Res.}, 28:813--822, 2001.
 
-\bibitem{fujita_1988}
-Shigeru Fujita and Tsutomu Tamao.
-\newblock Duct propagation of hydromagnetic waves in the upper ionosphere, 1,
-  electromagnetic field disturbances in high latitudes associated with
-  localized incidence of a shear alfv{\'e}n wave.
-\newblock {\em J. Geophys. Res.}, 93(A12):14665, 1988.
-
-\bibitem{radoski_1974}
-Henry~R. Radoski.
-\newblock A theory of latitude dependent geomagnetic micropulsations: The
-  asymptotic fields.
-\newblock {\em J. Geophys. Res.}, 79, 1974.
-
-\bibitem{mann_1995}
-Ian~R. Mann and Andrew~N. Wright.
-\newblock Finite lifetimes of ideal poloidal alfv{\'e}n waves.
-\newblock {\em J. Geophys. Res.}, 100:23677--23686, 1995.
-
-\bibitem{mann_1997}
-Ian~R. Mann, Andrew~N. Wright, and Alan~W. Hood.
-\newblock Multiple-timescales analysis of ideal poloidal alfv{\'e}n waves.
-\newblock {\em J. Geophys. Res.}, 102(A2):2381--2390, 1997.
+\bibitem{lysak_2011}
+R.~L. Lysak and Y.~Song.
+\newblock Development of parallel electric fields at the plasma sheet boundary
+  layer.
+\newblock {\em J. Geophys. Res. Space Physics}, 116, 2011.
 
 \bibitem{lysak_2013}
-Robert~L. Lysak, Colin~L. Waters, and Murray~D. Sciffer.
+R.~L. Lysak, C.~L. Waters, and M.~D. Sciffer.
 \newblock Modeling of the ionospheric alfv{\'e}n resonator in dipolar geometry.
 \newblock {\em J. Geophys. Res. Space Physics}, 118, 2013.
 
@@ -103,17 +170,99 @@ R.~L. Lysak and A.~Yoshikawa.
   {\em Geophys. Monogr.}, page 289. American Geophysical Union, Washington, DC,
   2006.
 
+\bibitem{mann_1995}
+I.~R. Mann and A.~N. Wright.
+\newblock Finite lifetimes of ideal poloidal alfv{\'e}n waves.
+\newblock {\em J. Geophys. Res.}, 100:23677--23686, 1995.
+
+\bibitem{mann_1997}
+I.~R. Mann, A.~N. Wright, and A.~W. Hood.
+\newblock Multiple-timescales analysis of ideal poloidal alfv{\'e}n waves.
+\newblock {\em J. Geophys. Res.}, 102(A2):2381--2390, 1997.
+
+\bibitem{motoba_2015}
+T.~Motoba, K.~Takahashi, J.~V. Rodriguez, and C.~T. Russell.
+\newblock Giant pulsations on the afternoonside: Geostationary satellite and
+  ground observations.
+\newblock {\em J. Geophys. Res. Space Physics}, 120:8350--8367, 2015.
+
+\bibitem{nasa_cdaweb}
+NASA.
+\newblock Coordinated data analysis (workshop) web.
+
+\bibitem{poulter_1983}
+E.~M. Poulter, W.~Allan, E.~Nielsen, and K.-H. Glassmeier.
+\newblock Stare radar observations of a pg pulsation.
+\newblock {\em J. Geophys. Res.}, 88(A7):5668, 1983.
+
+\bibitem{proehl_2002}
+J.~A. Proehl, W.~Lotko, I.~Kouznetsov, and S.~D. Geimer.
+\newblock Ultralow-frequency magnetohydrodynamics in boundary-constrained
+  geomagnetic flux coordinates.
+\newblock {\em J. Geophys. Res.}, 107(A9):1225, 2002.
+
+\bibitem{radoski_1967_coords}
+H.~R. Radoski.
+\newblock A note on oscillating field lines.
+\newblock {\em J. Geophys. Res.}, 72(1), 1967.
+
+\bibitem{radoski_1974}
+H.~R. Radoski.
+\newblock A theory of latitude dependent geomagnetic micropulsations: The
+  asymptotic fields.
+\newblock {\em J. Geophys. Res.}, 79, 1974.
+
+\bibitem{ronnmark_2000}
+K.~R{\"o}nnmark and M.~Hamrin.
+\newblock Auroral electron acceleration by alfv{\'e}n waves and electrostatic
+  fields.
+\newblock {\em J. Geophys. Res.}, 105:25333--25344, 2000.
+
+\bibitem{rostoker_1979}
+G.~Rostoker, H.-L. Lam, and J.~V. Olson.
+\newblock Pc 4 giant pulsations in the morning sector.
+\newblock {\em J. Geophys. Res.}, 84(A9):5153, 1979.
+
+\bibitem{southwood_1976}
+D.~J. Southwood.
+\newblock A general approach to low-frequency instability in the ring current
+  plasma.
+\newblock {\em J. Geophys. Res.}, 81(19):3340--3348, 1976.
+
+\bibitem{takahashi_2011}
+K.~Takahashi, K.-H. Glassmeier, V.~Angelopoulos, J.~Bonnell, Y.~Nishimura,
+  H.~J. Singer, and C.~T. Russell.
+\newblock Multisatellite observations of a giant pulsation event.
+\newblock {\em J. Geophys. Res.}, 116:A11223, 2011.
+
+\bibitem{takahashi_2013}
+K.~Takahashi, M.~D. Hartinger, V.~Angelopoulos, K.-H. Glassmeier, and H.~J.
+  Singer.
+\newblock Multispacecraft observations of fundamental poloidal waves without
+  ground magnetic signatures.
+\newblock {\em J. Geophys. Res. Space Physics}, 118:4319--4334, 2013.
+
+\bibitem{takahashi_1984}
+K.~Takahashi and R.~L. McPherron.
+\newblock Standing hydromagnetic oscillations in the magnetosphere.
+\newblock {\em Planetary and Space Science}, 32:1343--1359, 1984.
+
+\bibitem{takahashi_1992}
+K.~Takahashi, N.~Sato, J.~Warnecke, H.~L{\''u}hr, H.~E. Spence, and
+  Y.~Tonegawa.
+\newblock On the standing wave mode of giant pulsations.
+\newblock {\em J. Geophys. Res. Space Physics}, 97(A7):10717--10732, 1992.
+
+\bibitem{thompson_2001}
+S.~M. Thompson and M.~G. Kivelson.
+\newblock New evidence for the origin of giant pulsations.
+\newblock {\em J. Geophys. Res.}, 106(A10):21237--21253, 2001.
+
 \bibitem{waters_2013}
 C.~L. Waters, R.~L. Lysak, and M.~D. Sciffer.
 \newblock On the coupling of fast and shear alfv{\'e}n wave modes by the
   ionospheric hall conductance.
 \newblock {\em Earth Planets Space}, 65:385--396, 2013.
-
-\bibitem{lysak_2004}
-Robert~L. Lysak.
-\newblock Magnetosphere-ionosphere coupling by alfv{\'e}n waves at
-  midlatitudes.
-\newblock {\em J. Geophys. Res.}, 109, 2004.
 
 \bibitem{woodroffe_2012}
 J.~R. Woodroffe and R.~L. Lysak.
@@ -121,76 +270,5 @@ J.~R. Woodroffe and R.~L. Lysak.
   resonator: Characteristics and implications for the interpretation of ground
   magnetic fields.
 \newblock {\em J. Geophys. Res.}, 117:A03223, 2012.
-
-\bibitem{radoski_1967_coords}
-Henry~R. Radoski.
-\newblock A note on oscillating field lines.
-\newblock {\em J. Geophys. Res.}, 72(1), 1967.
-
-\bibitem{proehl_2002}
-Jeffrey~A. Proehl, William Lotko, Igor Kouznetsov, and Shireen~D. Geimer.
-\newblock Ultralow-frequency magnetohydrodynamics in boundary-constrained
-  geomagnetic flux coordinates.
-\newblock {\em J. Geophys. Res.}, 107(A9):1225, 2002.
-
-\bibitem{dhaeseleer_1991}
-W.~D. D'haeseleer, W.~N. G. Hitchon J.~D. Callen, and J.~L. Shohet.
-\newblock {\em Flux Coordinates and Magnetic Field Structure}.
-\newblock Springer-Verlag, New York, 1991.
-
-\bibitem{einstein_1916}
-A.~Einstein.
-\newblock Die grundlage der allgemeinen relativit{\"a}tstheorie.
-\newblock {\em Ann. Phys.}, 354:769--822, 1916.
-
-\bibitem{kelley_1989}
-Michael~C. Kelley.
-\newblock {\em The Earth's Ionosphere}.
-\newblock Academic Press, San Diego, second edition, 1989.
-
-\bibitem{hall_2015}
-Brian~C. Hall.
-\newblock {\em Lie Groups, Lie Algebras, and Representations}.
-\newblock Graduate Texts in Mathematics. Springer, New York, second edition,
-  2015.
-
-\bibitem{nasa_cdaweb}
-NASA.
-\newblock Coordinated data analysis (workshop) web.
-
-\bibitem{lysak_2011}
-Robert~L. Lysak and Yan Song.
-\newblock Development of parallel electric fields at the plasma sheet boundary
-  layer.
-\newblock {\em J. Geophys. Res. Space Physics}, 116, 2011.
-
-\bibitem{boris_1970}
-Jay~P. Boris.
-\newblock A physically motivated solution of the alfv{\'e}n problem.
-\newblock {\em NRL Memorandum Report}, 2167, 1970.
-
-\bibitem{lysak_2001}
-Robert~L. Lysak and Yan Song.
-\newblock A three-dimensional model of the propagation of alfv{\'e}n waves
-  through the auroral ionosphere: first results.
-\newblock {\em Adv. Space Res.}, 28:813--822, 2001.
-
-\bibitem{ronnmark_2000}
-Kjell R{\"o}nnmark and Maria Hamrin.
-\newblock Auroral electron acceleration by alfv{\'e}n waves and electrostatic
-  fields.
-\newblock {\em J. Geophys. Res.}, 105:25333--25344, 2000.
-
-\bibitem{ding_1995}
-D.~Q. Ding, R.~E. Denton, M.~K. Hudson, and R.~L. Lysak.
-\newblock An mhd simulation study of the poloidal mode field line resonance in
-  the earth's dipole magnetosphere.
-\newblock {\em J. Geophys. Res.}, 100:63--77, 1995.
-
-\bibitem{takahashi_2011}
-Kazue Takahashi, Karl-Heinz Glassmeier, Vassilis Angelopoulos, John Bonnell,
-  Yukitoshi Nishimura, Howard~J. Singer, and Christopher~T. Russell.
-\newblock Multisatellite observations of a giant pulsation event.
-\newblock {\em J. Geophys. Res.}, 116:A11223, 2011.
 
 \end{thebibliography}
