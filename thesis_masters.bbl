@@ -139,6 +139,12 @@ K.-H. Glassmeier.
 \newblock Magnetometer array observations of a giant pulsation event.
 \newblock {\em Journal of Geophysics Zeitschrift Geophysik}, 48:127--138, 1980.
 
+\bibitem{glassmeier_1999}
+K.-H. Glassmeier, S.~Buchert, U.~Motschmann, A.~Korth, and A.~Pedersen.
+\newblock Concerning the generation of geomagnetic giant pulsations by
+  drift-bounce resonance ring current instabilities.
+\newblock {\em Ann. Geophysicae}, 17:338--350, 1999.
+
 \bibitem{glassmeier_2004}
 K.-H. Glassmeier, D.~Klimushkin, C.~Othmer, and P.~Mager.
 \newblock {ULF} waves at mercury: Earth, the giants, and their little brother
@@ -381,6 +387,11 @@ J.~A. Proehl, W.~Lotko, I.~Kouznetsov, and S.~D. Geimer.
 \newblock Ultralow-frequency magnetohydrodynamics in boundary-constrained
   geomagnetic flux coordinates.
 \newblock {\em J. Geophys. Res.}, 107(A9):1225, 2002.
+
+\bibitem{radoski_1967_poloidal}
+H.~R. Radoski.
+\newblock Highly asymmetric {MHD} resonances: the guided poloidal mode.
+\newblock {\em J. Geophys. Res.}, 72(15), 1967.
 
 \bibitem{radoski_1967_coords}
 H.~R. Radoski.
