@@ -31,6 +31,8 @@ In the new formulation, $J_\parallel$ (proportional to $J_3$) is solved with int
 
 Recall that the electric and magnetic fields are staggered by half a time step. The current is defined with the magnetic fields, offset from the electric fields. 
 
+\todo{Note that \cref{ch_azm,ch_rbsp} don't use inertial effects. we just look at them here as a proof of concept. Resolving inertial length scales is too expensive, and not resolving them can easily lead to instability. }
+
 % =============================================================================
 % =============================================================================
 % =============================================================================
@@ -70,6 +72,8 @@ Here $\frac{c}{\op}$ is the electron inertial length. While the speed of light a
 For the purposes of simulating ultra low frequency waves, \cref{boris_criterion} allows perhaps-implausibly large Boris factors; even increasing \ez by a factor of \num{e6} gives $\left| \frac{\omega^2 + i \omega \nu}{ \op^2 } \right| \lesssim 0.01$. At that point, in some places, the speed of light is significantly slower than the \Alfven speed. 
 
 \todo{Ronnmark\cite{ronnmark_2000} calls this ``anisotropic vacuum.'' }
+
+\todo{This is common in other models... very high ionosphere, low speed of light, whatever. Cite LFM or something? }
 
 \todo{Plot of these frequency ratios in the ionosphere? }
 

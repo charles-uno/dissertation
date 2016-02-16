@@ -3,10 +3,15 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Numerical Model}
-\label{ch_model}
+  \label{ch_model}
+
+\todo{Sketch out this chapter. What does 2.5 dimensions mean? Why is it an appropriate approach to this problem? Why is this model in particular a good fit? What previous similar work has been done? What's novel about this mode? }
+
+\todo{Also 2.5D: Waters 2013\cite{waters_2013}. }
+
+Waters\cite{waters_2013} cites Olson\cite{olson_1978} with reference to modenumber. 
 
 The model works in two and a half dimensions. A meridional slice of the magnetosphere is resolved. Fields are presumed to vary azimuthally according to a fixed modenumber \azm. Derivatives in $\phi$ are replaced by $i \azm$. Imaginary field values indicate a phase shift in the azimuthal direction. 
-
 
 \todo{From Bob's 2013 paper\cite{lysak_2013} (which was also 2.5D): ``The shear \Alfven and compressional fast mode waves can be coupled not only by the Hall conductivity but also by inhomogeneities in the background plasma, which are unavoidable in a realistic magnetosphere [e.g., Lysak and Yoshikawa, 2006\cite{lysak_2006}; Waters et al., 2012\cite{waters_2013}]. This coupling requires a finite wave vector component in the azimuthal direction, i.e., a finite $m$ in the context of the present model. Because of the $\exp \arg{ i m \phi}$ dependence assumed in this model, the coupling from the inhomogeneity enters as an imaginary part of the coupled wave fields with respect to the initial fields, whereas the Hall conductivity appears in phase with the initial fields. Thus, although a fully three-dimensional model can give a more complete picture of wave propagation [e.g., Lysak, 2004\cite{lysak_2004}; Woodroffe and Lysak, 2012\cite{woodroffe_2012}], the present two-dimensional model serves to illustrate the nature of this coupling.''}
 
@@ -39,6 +44,14 @@ Note that the model uses megameters, seconds, megacoulombs, and grams as the fun
 % =============================================================================
 \section{Coordinate System}
   \label{sec_coords}
+
+\todo{Call radoski's coordinates x, y, and z (footnote an acknowledgement that he used different letters). }
+
+\todo{table for vocabulary. xhat is radial. footnote in how that's the convention, since satellites mostly observe near the equator, even though it's very much not radial near the ionosphere. Or call it crosswise? }
+
+Uniform spacing in u1. Geometric spacing in u3. important to reduce the smaller scale, since everything gets squished together at the ionosphere. But also note that the \Alfven speed is fast there, so this affects the time step! Typical is 3 percent, but in some cases this is adjusted for stability. 
+
+We only have the contravariant coordinates, so we can only take covariant derivatives. That's why we keep covariant fields and contravariant curl components. 
 
 When referring to fields in place, it's convenient to use lowercase\footnote{ Not to be confused with uppercase \X, \Y, and \Z, which orient relative to the sun; see \cref{ch_intro} } \x, \y, and \z in their usual dipolar sense. The unit vector \zhat is aligned with the dipole field (pointing outward in the northern hemisphere and inward in the southern hemisphere), while \xhat is perpendicular to \zhat within the meridional plane and \yhat points in the azimuthal direction. 
 
@@ -107,6 +120,16 @@ Covariant basis vectors $\hat{e}_i \equiv \dd{\lysaki} \vec{x}$ are normal to th
 
 Contravariant basis vectors $\hat{e}^i \equiv \dd{ \vec{x} } \lysaki$ are tangent to the coordinate curve. Equally, they're normal to the plane defined by constant $\lysakj$ for all $j \ne i$. 
 
+
+
+
+%Covariant basis vectors $\hat{\varv}_i \equiv \dd{\lysaki} \vec{x}$ are normal to the curve defined by constant $\lysaki$. 
+
+%Contravariant basis vectors $\hat{\varv}^i \equiv \dd{ \vec{x} } \lysaki$ are tangent to the coordinate curve. Equally, they're normal to the plane defined by constant $\lysakj$ for all $j \ne i$. 
+
+
+
+
 The basis vectors are reciprocal to one another\cite{dhaeseleer_1991}, and can be used to define the metric tensor $g$. 
 \begin{align}
   \label{metric_basics}
@@ -172,6 +195,9 @@ In addition, this coordinate system provides horizontal and radial unit vectors.
 \section{Ionospheric Profile}
   \label{sec_ionos}
 
+\todo{Just refer back to the profiles we show in chapters 1 and 2(?). We don't need to explain how to read in a profile and map it to a grid. }
+
+
 The ionospheric profiles used in this model are based on values tabulated in the Appendix B of Kelley's book\cite{kelley_1989}. They were adapted by Lysak\cite{lysak_2013} to take into account the effect of the magnetosphere's latitude-dependent density profile. 
 
 Mean molecular mass of \SI{28}{\amu} at \SI{100}{\km}, \SI{16}{\amu} around \SI{400}{\km}, down to \SI{1}{\amu} above \SI{1400}{\km}. 
@@ -225,7 +251,7 @@ The \Alfven speed is computed from Kelley's low-density profile, modified to tak
 
 Where $\bar{m}$ is the ambient mean molecular mass and $B_0$ is the zeroth-order magnetic field strength, $B_0 = \SI{3.11e4}{\nano\tesla} \lr{ \frac{R_E}{r} }^3 \sqrt{ 1 + 3 \cos^2 \theta }$. Note that \SI{3.11e4}{\nano\tesla} is the value of the Earth's magnetic field at the equator on Earth's surface. 
 
-\todo{Cite this number? }
+\todo{Cite this number? Jesse just says it's a ``representative'' number. He uses \SI{30}{\micro\tesla}. }
 
 \begin{figure}[H]
     \centering
@@ -258,6 +284,8 @@ The \Alfven speed is then computed per $\va^2 \equiv \frac{1}{\mz \ep}$.
 % =============================================================================
 \section{Maxwell's Equations}
   \label{sec_eqns}
+
+\todo{Talk about linearized differentiation and interpolation here. That means we also talk about the leapfrog grid. Waters\cite{waters_2013} cites Taflove and Hagness, an electrodynamics textbook. ``leapfrog technique for time iteration.''}
 
 The model simulates the evolution of electric and magnetic fields in accordance with Maxwell's equations. Specifically, magnetic fields are advanced using \farlaw, and electric fields with \amplaw. Kirchhoff's formulation of \ohmlaw ($\vec{J} = \tensor{\sigma} \cdot \vec{E}$) is used to eliminate the explicit current dependence in \amplaw. 
 \begin{align}
@@ -467,6 +495,8 @@ A compression might reasonably be expected to drive waves with long azimuthal wa
 Pc4 pulsations with high azimuthal modenumber are known to be driven from within the magnetosphere, such as through drift-resonant interactions with energetic radiation belt and ring current particles. 
 
 \todo{Cite. }
+
+\todo{Careful with units! Is this nT, or nT/mHz, or what? }
 
 Substorm injection can cause localized ring current behavior. 
 

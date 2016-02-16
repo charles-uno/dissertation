@@ -9,6 +9,8 @@ This chapter is the real moneymaker.
 
 The overarching motivation for this work is that Pc4 pulsations vary in interesting ways with respect to azimuthal modenumber, and that prior models have been unable to give a good picture of that behavior. 
 
+\todo{Do we every check E/B against $\Sigma_P / \mz$? }
+
 % =============================================================================
 % =============================================================================
 % =============================================================================
@@ -127,9 +129,31 @@ While this model makes no particular distinction between a giant pulsation and a
 
 Giant pulsations aren't seen at small \azm. As shown in \cref{sec_lifetimes}, low-\azm poloidal modes rotate to the toroidal mode too quickly to resonate effectively, even in the case of continuous driving at a locally-resonant frequency. The sweet spot seems to be around $\azm = 20$, more or less the same point where resonance becomes visible in \cref{fig_ucolor_pol_022mHz}. Admittedly, giant pulsations are typically closer to \SI{10}{\mHz} than \SI{22}{\mHz}. It seems likely that qualitatively similar results would be encountered if the driving were moved to an $L$-shell with a bounce time of \SI{10}{\mHz}. 
 
-(Giant pulsations are seen at very large \azm, though not on the ground\cite{takahashi_2013}, due to damping by the ionosphere.)
+Giant pulsations are seen at very large \azm, though not on the ground\cite{takahashi_2013}, due to damping by the ionosphere. 
 
-\todo{Show some ground signatures. They get weak as \azm gets large. }
+Giant pulsations are most common on the dayside (particularly the morningside), during geomagnetically quiet times. Giant pulsation ground signatures are noted for their predisposition towards east-west polarization. 
+
+In \cref{fig_BfE_016mHz}, the strongest east-west ground signatures is obtained on the geomagnetically quiet dayside, at \azm of 16 and 32. 
+
+This seems to be a giant pulsation ``sweet spot'': the poloidal mode becomes stronger as \azm increases, but the ionospheric damping also increases. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/BfE_016mHz.pdf}
+    \caption[East-West Ground Magnetic Fields: 16mHz]{
+      The east-west component of magnetic ground signatures is peaked on the geomagnetically quiet dayside, at modenumbers around 16 to 32. This coincides nicely with observations of giant pulsations. 
+    }
+    \label{fig_BfE_016mHz}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/BqE_016mHz.pdf}
+    \caption[North-South Ground Magnetic Fields: 16mHz]{
+      Like the east-west component shown in \cref{fig_BfE_016mHz}, the north-south ground signature is strongest on the quiet dayside; however, unlike the east-west component, the north-south component is weak when the modenumber is large. 
+    }
+    \label{fig_BqE_016mHz}
+\end{figure}
 
 Giant pulsations are monochromatic, and can be accompanied by ``multiharmonic toroidal waves''\cite{takahashi_2011}. Per \cref{sec_shells}, this is about what would be expected from a mishmash of poloidal driving. Poloidal modes of all frequencies rotate into the toroidal mode; resonant poloidal modes resonate; non-resonant poloidal modes become evanescent. 
 
@@ -176,7 +200,6 @@ Maybe it's a timing issue? A relationship between the bounce time (which is more
     }
     \label{fig_U_BE_022mHz}
 \end{figure}
-
 
 
 
