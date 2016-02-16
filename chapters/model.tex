@@ -9,8 +9,6 @@
 
 \todo{Also 2.5D: Waters 2013\cite{waters_2013}. And Waters 2008\cite{waters_2008}. }
 
-
-
 Waters\cite{waters_2013} cites Olson\cite{olson_1978} with reference to modenumber. 
 
 The model works in two and a half dimensions. A meridional slice of the magnetosphere is resolved. Fields are presumed to vary azimuthally according to a fixed modenumber \azm. Derivatives in $\phi$ are replaced by $i \azm$. Imaginary field values indicate a phase shift in the azimuthal direction. 
@@ -47,43 +45,27 @@ Note that the model uses megameters, seconds, megacoulombs, and grams as the fun
 \section{Coordinate System}
   \label{sec_coords}
 
-\todo{Call radoski's coordinates x, y, and z (footnote an acknowledgement that he used different letters). }
+\todo{Past work which could be cited for geometry examples: Radoski 1967, Lee and Lysak 1989, 1991, Rankin et al 1993, 1994, Streltsov and Lotko 1995, 1999. }
 
-\todo{table for vocabulary. xhat is radial. footnote in how that's the convention, since satellites mostly observe near the equator, even though it's very much not radial near the ionosphere. Or call it crosswise? }
-
-Uniform spacing in u1. Geometric spacing in u3. important to reduce the smaller scale, since everything gets squished together at the ionosphere. But also note that the \Alfven speed is fast there, so this affects the time step! Typical is 3 percent, but in some cases this is adjusted for stability. 
-
-We only have the contravariant coordinates, so we can only take covariant derivatives. That's why we keep covariant fields and contravariant curl components. 
-
-When referring to fields in place, it's convenient to use lowercase\footnote{ Not to be confused with uppercase \X, \Y, and \Z, which orient relative to the sun; see \cref{ch_intro} } \x, \y, and \z in their usual dipolar sense. The unit vector \zhat is aligned with the dipole field (pointing outward in the northern hemisphere and inward in the southern hemisphere), while \xhat is perpendicular to \zhat within the meridional plane and \yhat points in the azimuthal direction. 
-
-\todo{Double-check the signs for \x (radially inward or outward at the equator?) and \y (east or west?). }
-
-\todo{Wait... are \x, \y, and \z the same as Radoski's coordinates? }
-
-It's convenient to align the grid with the zeroth-order magnetic field, which is presumed to be a perfect dipole. Field line resonances (such as Pc4 pulsations) are guided by magnetic field lines. 
-
-\todo{``ULF waves can be guided.'' Cite. }
-
-A typical outermost field line has an equatorial radius of \SI{10}{\RE}. At this point, the ideal dipole approximation is suspect, particularly on the dayside. In practice, however, most wave activity is concentrated around $L \sim \num{7}$. 
-
-Radoski did theoretical work in the following dipole coordinates\cite{radoski_1967_coords}. 
+FLRs have traditionally been modeled by straightening the field lines into a rectangular configuration\cite{dungey_1954,mann_1995}, by unrolling the azimuthal coordinate into a cylindrical coordinate system\cite{radoski_1974}, or through the use of dipole coordinates\cite{radoski_1967_coords}\footnote{The dipole coordinates \radx, \rady\ and \radz are perhaps more commonly named $\mu$, $\phi$, and $\nu$ respectively; however, in the present work, $\mu$ and $\nu$ take other meanings.}:
 \begin{align}
   \label{radoski_coords}
-  \radx & = -\frac{\sin^2 \theta}{r} & \rady & = \phi & \radz & = \frac{\cos \theta}{r^2}
+  \radx &\equiv -\frac{\sin^2 \theta}{r} &
+  \rady &\equiv \phi &
+  \radz &\equiv \frac{\cos \theta}{r^2}
 \end{align}
 
-\todo{The symbol $\nu$ is overused. Reserve it for collision frequency. Use something else here. }
+Where $r$, $\theta$, and $\phi$ take on their usual spherical meanings of radial distance, colatitude, and azimuthal angle respectively. 
 
-It's also convenient to take into account the effects of the ionosphere, the lower boundary of which is governed by gravity, and thus has a more-or-less constant altitude. If the above coordinates are used, no line of constant $\radz$ coincides with the ionosphere, at least not over a significant range of latitudes. 
+The dipole coordinate \radx is constant over each equipotential shell\footnote{In fact, \radx is inversely proportional to the McIlwain parameter.}, \rady is azimuthal angle, and \radz indexes each field line from south to north. The unit vectors \xhat, \yhat, and \zhat point in the crosswise\footnote{In the context of in situ measurements taken near the equatorial plane, \xhat is referred to as the radial direction; however, the present work extends the dipole grid to low altitudes, where it can be more horizontal than vertical. The term ``crosswise'' is meant to indicate that \xhat is defined by the cross product of \yhat and \zhat.} (radially outward at the equator), azimuthal (eastward), and parallel (northward at the equator) directions respectively. 
 
-Many previous works have used an effective ionosphere of nonuniform altitude. 
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Differential Geometry}
+  \label{sec_geometry}
 
-\todo{Figure out which previous works are worth citing here. Options include Radoski 1967, Lee and Lysak 1989, 1991, Rankin et al 1993, 1994, Streltsov and Lotko 1995, 1999. }
-
-\todo{``The ionosphere is important for \Alfven waves'' Cite? }
-
-In order to accommodate dipole field lines as well as a fixed-altitude ionosphere, a nonorthogonal grid is necessary. Such a grid was worked out numerically by Proehl\cite{proehl_2002}, then formalized analytically by Lysak\cite{lysak_2004}:
+Notably, the dipole coordinates \radx, \rady, and \radz are normal to one another. While mathematically convenient, they do not readily accommodate a fixed-altitude boundary at the ionosphere, nor do they allow the dipole magnetic field to intersect the boundary at an oblique angle, as Earth's field does. As a solution, a nonorthogonal set of dipole coordinates was developed numerically by Proehl\cite{proehl_2002}, then formalized analytically by Lysak\cite{lysak_2004} in terms of their contravariant components:
 \begin{align}
   \label{def_coords}
   \lysakx & = - \frac{R_I}{r} \sin^2 \theta & 
@@ -91,58 +73,27 @@ In order to accommodate dipole field lines as well as a fixed-altitude ionospher
   \lysakz & = \frac{R_I^2}{r^2} \frac{\cos \theta}{\cos \theta_0}
 \end{align}
 
-The term $R_I$ indicates the ionosphere's position relative to Earth's center. It's generally taken to be \SI{1}{\RE} + \SI{100}{\km}. 
+Above, $R_I$ is the position of the ionosphere relative to Earth's center; it's typically taken to be \SI{1}{\RE} + \SI{100}{\km}. 
 
-Like \radx and \rady, the coordinates \lysakx and \lysaky index a field line. However, compared to \radz, \lysakz has been renormalized by $\cos \theta_0$, where $\theta_0$ is the colatitude where each field line intersects the ionosphere in the northern hemisphere. As a result, for all field lines, $\lysakz = \pm 1$ at the northern and southern foot points. 
+Like the dipole coordinates \radx, \rady, and \radz, Lysak's coordinates \lysakx, \lysaky, and \lysakz correspond to $L$-shell, azimuthal angle, and position along a field line respectively. However, compared to \radz, \lysakz has been renormalized using the invariant colatitude\footnote{The invariant colatitude is the colatitude $\theta$ at which a field line intersects the ionosphere. It is related to the McIlwain parameter by $\cos\theta_0 \equiv \sqrt{1 - \frac{R_I}{L}}$. } $\theta_0$. As a result, \lysakz takes the value \num[retain-explicit-plus]{+1} at the northern ionospheric boundary and \num{-1} at the southern ionospheric boundary for all \lysakx and \lysaky. 
 
-In terms of the McIlwain parameter, $\lysakx = -\frac{R_I}{L}$, and $\cos \theta_0 = \sqrt{ 1 - \frac{R_I}{L} }$
-
-Compared to \cref{radoski_coords}, \cref{def_coords} represents a renormalization of indexing along each field line. The field lines themselves are not deformed. 
-
-\todo{Explain how we set up the grid. It should only take a paragraph or two -- it doesn't need its own section. }
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/grid.pdf}
-    \caption[Nonorthogonal Dipole Grid]{
-      The model's nonorthorthogonal dipole grid. Only every fifth point is shown in each direction. The grid resolution is highest near the ionosphere and lowest at large distances. The high concentration of grid points at the inner edge of the equator is a consequence of renormalizing the grid spacing with $\cos\theta_0$; whereas Radoski's dipole coordinates come to a singularity at the center of the Earth, Lysak's coordinates converge at the equatorial ionosphere. 
-    }
-    \label{fig_grid}
-\end{figure}
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\subsection{Covariant and Contravariant Bases}
-  \label{sec_basis}
-
-The coordinates defined in \cref{def_coords} are not orthonormal. As a result, it's necessary to consider covariant and contravariant basis vectors separately. 
-
-Covariant basis vectors $\hat{e}_i \equiv \dd{\lysaki} \vec{x}$ are normal to the curve defined by constant $\lysaki$. 
-
-Contravariant basis vectors $\hat{e}^i \equiv \dd{ \vec{x} } \lysaki$ are tangent to the coordinate curve. Equally, they're normal to the plane defined by constant $\lysakj$ for all $j \ne i$. 
-
-
-
-
-%Covariant basis vectors $\hat{\varv}_i \equiv \dd{\lysaki} \vec{x}$ are normal to the curve defined by constant $\lysaki$. 
-
-%Contravariant basis vectors $\hat{\varv}^i \equiv \dd{ \vec{x} } \lysaki$ are tangent to the coordinate curve. Equally, they're normal to the plane defined by constant $\lysakj$ for all $j \ne i$. 
-
-
-
-
-The basis vectors are reciprocal to one another\cite{dhaeseleer_1991}, and can be used to define the metric tensor $g$. 
+Because Lysak's coordinate system is not orthogonal\footnote{Curves of constant \lysakx and curves of constant \lysakz can intersect at non-right angles. }, it's necessary to consider covariant and contravariant basis vectors separately. 
 \begin{align}
-  \label{metric_basics}
-  \hat{e}^i \cdot \hat{e}_j &= \delta^i_j & \hat{e}_i \cdot \hat{e}_j &= g_{ij} & \hat{e}^i \cdot \hat{e}^j &= g^{ij}
+  \hat{e}_i & \equiv \dd{\lysaki} \vec{r} &
+  \hat{e}^i & \equiv \dd{ \vec{r} } \lysaki
 \end{align}
 
-Note $\delta^i_j$ is the Kronecker delta, $\varepsilon^{ijk}$ is the Levi-Civita symbol, and summation is implied over repeated indeces per Einstein's convention\cite{einstein_1916}. 
-
-The metric tensor is used to map between the covariant and contravariant representations of a vector
+Covariant basis vectors $\hat{e}_i$ are normal to the curve defined by constant $\lysaki$, while contravariant basis vectors $\hat{e}^i$ are tangent to the coordinate curve (or, equivalently, $\hat{e}^i$ is normal to the plane defined by constant $u^j$ for all $j \ne i$). These vectors are reciprocal\footnote{The symbol $\delta^i_j$ is the Kronecker delta; the present work also makes use of the Levi-Civita symbol $\varepsilon^{ijk}$ and Einstein's convention of implied summation over repeated indeces\cite{einstein_1916}. } to one another, and can be combined to give components of the metric tensor $g$\cite{dhaeseleer_1991}. 
 \begin{align}
-  \label{metric_usage}
+  \label{def_metric}
+  \hat{e}^i \cdot \hat{e}_j &= \delta^i_j &
+  g_{ij} &\equiv \hat{e}_i \cdot \hat{e}_j &
+  g^{ij} &\equiv \hat{e}^i \cdot \hat{e}^j 
+\end{align}
+
+The metric tensor allows rotation between covariant and contravariant representations of vectors. 
+\begin{align}
+  \label{metric}
   A_i &= g_{ij} A^j &
   & \text{and} &
   A^i &= g^{ij} A_j &
@@ -152,30 +103,17 @@ The metric tensor is used to map between the covariant and contravariant represe
   A^i &\equiv \vec{A} \cdot \hat{e}^i
 \end{align}
 
-The Jacobian, used for mapping differential volume elements between bases, can be expressed as the square root of the determinant of the metric tensor. 
+In addition, the determinant of the metric tensor is used to define cross products and curls\footnote{The quantity \jac is called the Jacobian determinant. It's sometimes denoted using the letter $J$, which the present work reserves for current.}. 
 \begin{align}
-  \label{def_jacobian}
-  \jac d\lysakx d\lysaky d\lysakz &= dV &
+  \label{jacobian}
+  \lr{ \cross{A}{B} }^i &= \frac{ \varepsilon^{ijk} }{\jac} A_j B_k &
+  & \text{and} &
+  \lr{ \curl{A} }^i &= \frac{ \varepsilon^{ijk} }{\jac} \dd{\lysakj} A_k &
   & \text{where} &
-  \jac &= \sqrt{ \varepsilon^{ijk} g_{1i} g_{2j} g_{3k} }
+  \jac &= \sqrt{ \det g }
 \end{align}
 
-This quantity is also used when expressing a curl or cross product in generalized coordinates. 
-\begin{align}
-  \label{jacobian_usage}
-  \lr{ \curl{A} }^i &= \frac{ \varepsilon^{ijk} }{\jac} \dd{\lysakj} A_k & \lr{ \cross{A}{B} }^i &= \frac{ \varepsilon^{ijk} }{\jac} A_j B_k
-\end{align}
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\subsection{Mapping to Physical Coordinates}
-
-The full expression for the basis vectors, metric tensor, and Jacobian determinant discussed in \cref{sec_basis} can be found in the appendix of \cite{lysak_2004}. 
-
-\todo{These expressions should probably be written out an in appendix here too...}
-
-The basis vectors can be renormalized to produce unit vectors along the dipole coordinates \x, \y, and \z. 
+Explicit forms of the basis vectors and metric tensor can be found in the appendix of \cite{lysak_2004}. At present, it's sufficient to note the mapping between Lysak's basis vectors and the usual dipole unit vectors. 
 \begin{align}
   \label{def_xyz_directions}
   \xhat &= \frac{1}{ \sqrt{ g^{11} } } \hat{e}^1 &
@@ -183,7 +121,7 @@ The basis vectors can be renormalized to produce unit vectors along the dipole c
   \zhat &= \frac{1}{ \sqrt{ g_{33} } } \hat{e}_3
 \end{align}
 
-In addition, this coordinate system provides horizontal and radial unit vectors. Note that \cref{def_rqf_directions} is valid only at the ionospheric boundary. 
+The basis vectors can also be mapped to the spherical unit vectors, though \cref{def_rqf_directions} is valid only at the ionospheric boundary. 
 \begin{align}
   \label{def_rqf_directions}
   \qhat &= \frac{1}{ \sqrt{ g_{11} } } \hat{e}_1 &
@@ -191,95 +129,31 @@ In addition, this coordinate system provides horizontal and radial unit vectors.
   \rhat &= \frac{1}{ \sqrt{ g^{33} } } \hat{e}^3
 \end{align}
 
-% =============================================================================
-% =============================================================================
-% =============================================================================
-\section{Ionospheric Profile}
-  \label{sec_ionos}
-
-\todo{Just refer back to the profiles we show in chapters 1 and 2(?). We don't need to explain how to read in a profile and map it to a grid. }
-
-
-The ionospheric profiles used in this model are based on values tabulated in the Appendix B of Kelley's book\cite{kelley_1989}. They were adapted by Lysak\cite{lysak_2013} to take into account the effect of the magnetosphere's latitude-dependent density profile. 
-
-Mean molecular mass of \SI{28}{\amu} at \SI{100}{\km}, \SI{16}{\amu} around \SI{400}{\km}, down to \SI{1}{\amu} above \SI{1400}{\km}. 
-
-Simulations are carried out using four profiles: active day, quiet day, active night, quiet night. 
-
-Profiles are static for the duration of a simulation. Even so-called ultra low frequency waves are still much faster than convective timescales. 
-
-\todo{Come up with a characteristic convective timescale or two, and cite it. }
-
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Conductivity}
+\subsection{Numerical Application}
 
-The effects of mean molecular mass on conductivity are computed per the usual definitions. 
-\begin{align}
-  \sp &= \displaystyle\sum_s \frac{n_s q_s^2}{m_s} \frac{\nu_s}{\nu_s^2 + \Omega_s^2} &
-  \sh &= -\displaystyle\sum_s \frac{n_s q_s^2}{m_s} \frac{\Omega_s}{\nu_s^2 + \Omega_s^2} &
-  \sz &= \displaystyle\sum_s \frac{n_s q_s^2}{m_s \nu_s}
-\end{align}
+The coordinates converge at the equatorial ionosphere, so an inner boundary is necessary to maintain finite grid spacing. It's typically placed at $L=2$. The outer boundary is at $L=10$. The dipole approximation of Earth's magnetic field is tenuous at the outer boundary (particularly on the dayside); however, in practice, wave activity is localized inside $L\sim7$. The grid is spaced uniformly in \lysakx, which gives finer resolution close to Earth and coarser resolution at large distances. 
 
-Each profile is resolved to an altitude of about $\SI{e4}{\km}$, and include well-resolved $E$, $F_1$, and $F_2$ layers. 
+Spacing in \lysakz is set by placing grid points along the outermost field line. The points are closest together at the ionosphere, and grow towards the equator. The spacing increases in a geometric fashion, typically by \SI{3}{\percent}. 
 
-\todo{Talk about the ionospheric layers, probably in the introduction. }
+Most simulations take the grid to be 150 points in \lysakx by 350 points in \lysakz. The result is a resolution on the order of \SI{10}{\km} at the ionosphere, which increases to the order of \SI{e3}{\km} at the midpoint of the outermost field line. 
+
+There are no grid points in \lysaky, of course, because of the two and a half dimensional nature of the model. Fields are assumed to vary as $\exp \arg{i \azm \lysaky}$, so derivatives with respect to \lysaky are equivalent to a factor of $i \azm$. In effect, this means that the real component of each field is azimuthally in phase with the (purely real) driving, while imaginary values represent behavior that is azimuthally offset. 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{figures/sigma.pdf}
-    \caption[Ionospheric Conductivity Profiles]{
-      Ionospheric conductivity profiles, adapted by Lysak\cite{lysak_2013} from Appendix B of Kelley's textbook\cite{kelley_1989}. 
+    \includegraphics[width=\textwidth]{figures/grid.pdf}
+    \caption[Nonorthogonal Dipole Grid]{
+      The model's nonorthorthogonal dipole grid. Every fifth point is shown in each direction. The high concentration of grid points near Earth's equator is a consequence of the coordinate system, which converges at the equatorial ionosphere. 
     }
-    \label{fig_sigma}
+    \label{fig_grid}
 \end{figure}
 
-\todo{What is the height-interated conductivity for each profile? }
+The simulation's time step is set based on the grid spacing. As is the convention, \dt is set to match the smallest \Alfven zone crossing time, scaled down by a Courant factor (typically 0.1). It bears noting that the smallest crossing time need not correspond to the smallest zone; recall from \cref{fig_va} that the \Alfven speed is very high in the Ionospheric \Alfven Resonator. 
 
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\subsection{\Alfven Speed}
-
-The \Alfven speed is computed from Kelley's low-density profile, modified to take into account the local density. The density, in turn, is the sum of a plasmaspheric profile and a high-latitude auroral profile. 
-\begin{align}
-  \ep &= \text{(low-density tabulated value)} + \frac{ n \bar{m} }{B_0^2}
-\end{align}
-
-\todo{What's a clean way of showing the low-density \ep that we read in? }
-
-\todo{Does Kelley list the electric constant or the \Alfven speed? }
-
-Where $\bar{m}$ is the ambient mean molecular mass and $B_0$ is the zeroth-order magnetic field strength, $B_0 = \SI{3.11e4}{\nano\tesla} \lr{ \frac{R_E}{r} }^3 \sqrt{ 1 + 3 \cos^2 \theta }$. Note that \SI{3.11e4}{\nano\tesla} is the value of the Earth's magnetic field at the equator on Earth's surface. 
-
-\todo{Cite this number? Jesse just says it's a ``representative'' number. He uses \SI{30}{\micro\tesla}. }
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/va.pdf}
-    \caption[\Alfven Speed Profiles]{
-      \Alfven speed profiles, adapted by Lysak\cite{lysak_2013} from Appendix B of Kelley's textbook\cite{kelley_1989}. 
-    }
-    \label{fig_va}
-\end{figure}
-
-\todo{Above the profile, Bob scales the value that's read in as $r^5$ or something. Is there a citation for that? }
-
-The \Alfven speed is then computed per $\va^2 \equiv \frac{1}{\mz \ep}$. 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/fa.pdf}
-    \caption[\Alfven Bounce Frequency Profiles]{
-      \Alfven bounce frequency profiles, computed by integrating the the \Alfven speed back and forth over a field line. $f_A = \lrb{ \oint \frac{dz}{v_A} }^{-1}$. Dotted lines indicate the Pc4 frequency range, \SIrange{7}{25}{\mHz}. In each profile, the effect of the plasmapause is clearly visible, centered at $L=4$. Field lines just inside and just outside the plasmapause appear susceptible to resonance in the Pc4 band. 
-    }
-    \label{fig_fa}
-\end{figure}
-
-\todo{Talk about how the size of the plasmasphere can be adjusted, and \SI{4}{\RE} is just a typical value. }
-
-\todo{Explain how the \Alfven speed constrains the time step. }
+\todo{Do we need a citation for how time steps are set based on crossing times? }
 
 % =============================================================================
 % =============================================================================
@@ -287,9 +161,7 @@ The \Alfven speed is then computed per $\va^2 \equiv \frac{1}{\mz \ep}$.
 \section{Maxwell's Equations}
   \label{sec_eqns}
 
-\todo{Talk about linearized differentiation and interpolation here. That means we also talk about the leapfrog grid. Waters\cite{waters_2013} cites Taflove and Hagness, an electrodynamics textbook. ``leapfrog technique for time iteration.''}
-
-The model simulates the evolution of electric and magnetic fields in accordance with Maxwell's equations. Specifically, magnetic fields are advanced using \farlaw, and electric fields with \amplaw. Kirchhoff's formulation of \ohmlaw ($\vec{J} = \tensor{\sigma} \cdot \vec{E}$) is used to eliminate the explicit current dependence in \amplaw. 
+\todo{Introduce \farlaw and \amplaw, respectively, after using Kirchhoff's formulation of \ohmlaw ($\vec{J} = \tensor{\sigma} \cdot \vec{E}$) to eliminate explicit curl dependence... which will be revisited in \cref{ch_inertia}. }
 \begin{align}
   \label{def_eqns}
   \ddt \vec{B} &= - \curl{E} &
@@ -299,42 +171,48 @@ The model simulates the evolution of electric and magnetic fields in accordance 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Notation and Optimization}
+\subsection{Linearization and Optimization}
+  \label{sec_optimization}
 
-Algebra is carried out on paper, producing expressions where each field value is a linear combination of previous field values. These coefficients are computed before the main loop begins. This offers a significant reduction in floating point operations each iteration. 
+\todo{Leapfrog grid (for which Waters\cite{waters_2013} cites Taflove and Hagness, an electrodynamics textbook). Talk about the grid parity as well as the offset in time. }
 
-The \assign operator is used to indicate assignment, rather than equality. Values on the left are new, and those on the right are old. New and old magnetic field values are offset by \dt; electric field values staggered by $\frac{\dt}{2}$. As an example of this notation, \cref{def_assign} integrates \farlaw over a time step, assuming that the curl of the electric field varies slowly compared to \dt: 
-\begin{align}
-  \label{def_assign}
-  \begin{split}
-  \int_0^{\dt} \! dt \, \ddt \vec{B} &= - \displaystyle\int_0^{\dt} \! dt \, \curl{E} \\ 
-  \left. \vec{B} \right|_{\dt} - \left. \vec{B} \right|_0 &= \left. - \dt \, \curl{E} \right|_{ \frac{\dt}{2} } \\
-  \vec{B} &\assign \vec{B} - \dt \, \curl{E}
-  \end{split}
-\end{align}
+%\begin{align}
+%  \label{def_assign}
+%  \begin{split}
+%  \int_0^{\dt} \! dt \, \ddt \vec{B} &= - \displaystyle\int_0^{\dt} \! dt \, \curl{E} \\ 
+%  \left. \vec{B} \right|_{\dt} - \left. \vec{B} \right|_0 &= \left. - \dt \, \curl{E} \right|_{ \frac{\dt}{2} } \\
+%  \vec{B} &\assign \vec{B} - \dt \, \curl{E}
+%  \end{split}
+%\end{align}
 
-It's also beneficial to store the curl of each field, rather than take derivatives on the fly. The following sections make use of the shorthand $\vec{C} \equiv \curl{E}$ and $\vec{F} \equiv \curl{B}$. Or, recalling \cref{jacobian_usage}, 
+\todo{Precomputation of coefficients. }
+
+\todo{Curl shorthand, \vec{C} and \vec{F}. Recalling \cref{jacobian}, }
 \begin{align}
   \label{def_curls}
   C^i & = \frac{ \varepsilon^{ijk} }{\jac} \dd{\lysakj} E_k &
   F^i & = \frac{ \varepsilon^{ijk} }{\jac} \dd{\lysakj} B_k
 \end{align}
 
-Only covariant field components are stored. Only contravariant curl components are stored. This cuts down on memory use, while also eliminating the time spent rotating between bases; rotations between covariant and contravariant bases are built into the precomputed coefficients. 
+\todo{OpenMP. }
+
+\todo{Keeping only covariant field components and contravariant curl components, since we only use contravariant coordinates. }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Magnetic Fields}
+  \label{sec_b}
 
-Taking advantage of the shorthand defined in \cref{def_curls}, \farlaw is simply written
+Taking the shorthand introduced in \cref{def_curls}, \farlaw can simply be written: 
 \begin{align}
   \label{farlaw_ijk}
   \ddt B^i &= - C^i
 \end{align}
 
-Or, using the metric tensor to cast the magnetic field in terms of its covariant components, and writing out each coefficient explicitly,
+Writing each component out explicitly, and using the metric tensor (per \cref{metric}) to eliminate contravariant magnetic field components, \cref{farlaw_ijk} becomes:
 \begin{align}
+  \label{farlaw_final}
   \begin{split}
   B_1 &\assign B_1 - g_{11} \, \dt \, C^1 - g_{13} \, \dt \, C^3 \\
   B_2 &\assign B_2 - g_{22} \, \dt \, C^2 \\
@@ -342,12 +220,38 @@ Or, using the metric tensor to cast the magnetic field in terms of its covariant
   \end{split}
 \end{align}
 
+Note that the \assign operator is used in \cref{farlaw_final} to indicate assignment, rather than equality. Terms on the left are new, while those on the right are old. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Electric Fields}
   \label{sec_e}
+
+In \amplaw (per \cref{def_eqns}), the time derivative of the electric field depends on the electric field itself. As a result, it's best approached with integrating factors. 
+
+To briefly 
+
+
+
+
+
+
+
+
+Since \amplaw (\cref{def_eqns}) expresses the electric field time derivative in terms of the electric field itself, it must be solved with integrating factors. 
+
+
+Noting the shorthand introduced in \cref{def_curls}, 
+
+
+
+
+... \\
+
+... \\
+
+... \\
 
 \amplaw, can be solved with integrating factors. From \cref{def_eqns}, 
 \begin{align}
@@ -434,7 +338,7 @@ Not unrelatedly, recalling the definition of the plasma frequency and parallel c
 
 The plasma frequency is very fast. 
 
-The perpendicular components of \cref{amp_final}, mapped from the physical basis to the contravariant basis (per \cref{def_xyz_directions}) to the covariant basis (per \cref{metric_usage}), give
+The perpendicular components of \cref{amp_final}, mapped from the physical basis to the contravariant basis (per \cref{def_xyz_directions}) to the covariant basis (per \cref{metric}), give
 \begin{alignat}{6}
   \label{e1_final}
   & E_1 + \frac{ g^{13} }{ g^{11} } && E_3 \assign &&   && E_1 && \cos \arg{ \tfrac{- \sh \dt}{\ep} } \exp \arg{ \tfrac{- \sp \dt}{\ep} } &&  \notag \\
@@ -452,6 +356,20 @@ The perpendicular components of \cref{amp_final}, mapped from the physical basis
 \end{alignat}
 
 The $E_3$ terms can be ignored at present, but \cref{ch_inertia} references back to them. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 % =============================================================================
 % =============================================================================
@@ -660,6 +578,95 @@ The harmonic breakdown of $\Psi$ also allows for the calculation of how much ene
 
 
 
+
+% =============================================================================
+% =============================================================================
+% =============================================================================
+\section{Ionospheric Profile}
+  \label{sec_ionos}
+
+\todo{Just refer back to the profiles we show in chapters 1 and 2(?). We don't need to explain how to read in a profile and map it to a grid. }
+
+The ionospheric profiles used in this model are based on values tabulated in the Appendix B of Kelley's book\cite{kelley_1989}. They were adapted by Lysak\cite{lysak_2013} to take into account the effect of the magnetosphere's latitude-dependent density profile. 
+
+Mean molecular mass of \SI{28}{\amu} at \SI{100}{\km}, \SI{16}{\amu} around \SI{400}{\km}, down to \SI{1}{\amu} above \SI{1400}{\km}. 
+
+Simulations are carried out using four profiles: active day, quiet day, active night, quiet night. 
+
+Profiles are static for the duration of a simulation. Even so-called ultra low frequency waves are still much faster than convective timescales. 
+
+\todo{Come up with a characteristic convective timescale or two, and cite it. }
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Conductivity}
+
+The effects of mean molecular mass on conductivity are computed per the usual definitions. 
+\begin{align}
+  \sp &= \displaystyle\sum_s \frac{n_s q_s^2}{m_s} \frac{\nu_s}{\nu_s^2 + \Omega_s^2} &
+  \sh &= -\displaystyle\sum_s \frac{n_s q_s^2}{m_s} \frac{\Omega_s}{\nu_s^2 + \Omega_s^2} &
+  \sz &= \displaystyle\sum_s \frac{n_s q_s^2}{m_s \nu_s}
+\end{align}
+
+Each profile is resolved to an altitude of about $\SI{e4}{\km}$, and include well-resolved $E$, $F_1$, and $F_2$ layers. 
+
+\todo{Talk about the ionospheric layers, probably in the introduction. }
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/sigma.pdf}
+    \caption[Ionospheric Conductivity Profiles]{
+      Ionospheric conductivity profiles, adapted by Lysak\cite{lysak_2013} from Appendix B of Kelley's textbook\cite{kelley_1989}. 
+    }
+    \label{fig_sigma}
+\end{figure}
+
+\todo{What is the height-interated conductivity for each profile? }
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{\Alfven Speed}
+
+The \Alfven speed is computed from Kelley's low-density profile, modified to take into account the local density. The density, in turn, is the sum of a plasmaspheric profile and a high-latitude auroral profile. 
+\begin{align}
+  \ep &= \text{(low-density tabulated value)} + \frac{ n \bar{m} }{B_0^2}
+\end{align}
+
+\todo{What's a clean way of showing the low-density \ep that we read in? }
+
+\todo{Does Kelley list the electric constant or the \Alfven speed? }
+
+Where $\bar{m}$ is the ambient mean molecular mass and $B_0$ is the zeroth-order magnetic field strength, $B_0 = \SI{3.11e4}{\nano\tesla} \lr{ \frac{R_E}{r} }^3 \sqrt{ 1 + 3 \cos^2 \theta }$. Note that \SI{3.11e4}{\nano\tesla} is the value of the Earth's magnetic field at the equator on Earth's surface. 
+
+\todo{Cite this number? Jesse just says it's a ``representative'' number. He uses \SI{30}{\micro\tesla}. }
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/va.pdf}
+    \caption[\Alfven Speed Profiles]{
+      \Alfven speed profiles, adapted by Lysak\cite{lysak_2013} from Appendix B of Kelley's textbook\cite{kelley_1989}. 
+    }
+    \label{fig_va}
+\end{figure}
+
+\todo{Above the profile, Bob scales the value that's read in as $r^5$ or something. Is there a citation for that? }
+
+The \Alfven speed is then computed per $\va^2 \equiv \frac{1}{\mz \ep}$. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fa.pdf}
+    \caption[\Alfven Bounce Frequency Profiles]{
+      \Alfven bounce frequency profiles, computed by integrating the the \Alfven speed back and forth over a field line. $f_A = \lrb{ \oint \frac{dz}{v_A} }^{-1}$. Dotted lines indicate the Pc4 frequency range, \SIrange{7}{25}{\mHz}. In each profile, the effect of the plasmapause is clearly visible, centered at $L=4$. Field lines just inside and just outside the plasmapause appear susceptible to resonance in the Pc4 band. 
+    }
+    \label{fig_fa}
+\end{figure}
+
+\todo{Talk about how the size of the plasmasphere can be adjusted, and \SI{4}{\RE} is just a typical value. }
+
+\todo{Explain how the \Alfven speed constrains the time step. }
 
 
 
