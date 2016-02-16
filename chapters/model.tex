@@ -7,7 +7,9 @@
 
 \todo{Sketch out this chapter. What does 2.5 dimensions mean? Why is it an appropriate approach to this problem? Why is this model in particular a good fit? What previous similar work has been done? What's novel about this mode? }
 
-\todo{Also 2.5D: Waters 2013\cite{waters_2013}. }
+\todo{Also 2.5D: Waters 2013\cite{waters_2013}. And Waters 2008\cite{waters_2008}. }
+
+
 
 Waters\cite{waters_2013} cites Olson\cite{olson_1978} with reference to modenumber. 
 
@@ -590,6 +592,8 @@ Using centered differences to express the derivatives, \cref{laplace} is a syste
   \label{psi_expansion}
   \Psi \arg{r, \theta, \phi} &= \displaystyle\sum_\ell \lr{ \alpha_\ell \, r^\ell + \beta_\ell \, r^{-\ell - 1} } Y_\ell \arg{\theta} \exp \arg{i \azm \phi}
 \end{align}
+
+\todo{Conductivity tensor at the ionosphere comes from\cite{lysak_2004}. }
 
 As a boundary condition for $\Psi$, Earth's crust is assumed to be a perfect conductor, forcing the magnetic field at the boundary to be perfectly horizontal. That is, $B_r = \dd{r} \Psi = 0$. Then, noting that the harmonics $Y_\ell$ are orthonormal (so each term of the sum must be zero), 
 \begin{align}

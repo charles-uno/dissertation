@@ -1,5 +1,14 @@
 \begin{thebibliography}{10}
 
+\bibitem{anderson_1994}
+B.~J. Anderson.
+\newblock An overview of spacecraft observations of 10s to 600s period magnetic
+  pulsations in {Earth's} magnetosphere.
+\newblock In M.~J. Engebretson, K.~Takahashi, and M.~Scholer, editors, {\em
+  Solar Wind Sources of Magnetospheric Ultra-Low-Frequency Waves}, volume~81 of
+  {\em Geophys. Monogr.}, pages 25--43. American Geophysical Union, Washington,
+  DC, 1994.
+
 \bibitem{anderson_1990}
 B.~J. Anderson, M.~J. Engebretson, S.~P. Rounds, L.~J. Zanetti, and T.~A.
   Potemra.
@@ -196,6 +205,11 @@ W.~J. Hughes, D.~J. Southwood, B.~Mauk, R.~L. McPherron, and J.~N. Barfield.
   distribution.
 \newblock {\em Nature}, 275(5675):43--45, 1978.
 
+\bibitem{jacobs_1964}
+J.~A. Jacobs, Y.~Kato, S.~Matsushita, and V.~A. Troitskaya.
+\newblock Classification of geomagnetic micropulsations.
+\newblock {\em J. Geophys. Res.}, 69(1):180--181, 1964.
+
 \bibitem{jaynes_2015}
 A.~N. Jaynes, M.~R. Lessard, K.~Takahashi, A.~F. Ali, D.~M. Malaspina, R.~G.
   Michell, E.~L. Spanswick, D.~N. Baker, J.~B. Blake, C.~Cully, E.~F. Donovan,
@@ -203,6 +217,13 @@ A.~N. Jaynes, M.~R. Lessard, K.~Takahashi, A.~F. Ali, D.~M. Malaspina, R.~G.
 \newblock Correlated {Pc4–5} {ULF} waves, whistler-mode chorus, and pulsating
   aurora observed by the {Van Allen Probes} and ground-based systems.
 \newblock {\em J. Geophys. Res. Space Physics}, 120:8749–8761, 2015.
+
+\bibitem{kato_1956}
+Y.~Kato and T.~Tsutomu.
+\newblock Hydromagnetic oscillations in a conducting medium with hall
+  couduct-ivity under the uniform magnetic field.
+\newblock {\em Science reports of the Tohoku University. Ser. 5, Geophysics},
+  7(3):147--164, 1956.
 
 \bibitem{kelley_1989}
 M.~C. Kelley.
@@ -242,6 +263,12 @@ A.~S. Leonovich and V.~A. Mazur.
   magnetosphere.
 \newblock {\em J. Geophys. Res.}, 105(A12):27707--27715, 2000.
 
+\bibitem{liu_2013}
+W.~Liu, J.~B. Cao, X.~Li, T.~E. Sarris, Q.-G. Zong, M.~Hartinger, K.~Takahashi,
+  H.~Zhang, Q.~Q. Shi, and V.~Angelopoulos.
+\newblock Poloidal {ULF} wave observed in the plasmasphere boundary layer.
+\newblock {\em J. Geophys. Res. Space Physics}, 118(7):4298--4307, 2013.
+
 \bibitem{liu_2009}
 W.~Liu, T.~E. Sarris, X.~Li, S.~R. Elkington, R.~Ergun, V.~Angelopoulos,
   J.~Bonnell, and K.~H. Glassmeier.
@@ -261,6 +288,11 @@ R.~L. Lysak.
 \newblock Magnetosphere-ionosphere coupling by {Alfv{\'e}n} waves at
   midlatitudes.
 \newblock {\em J. Geophys. Res.}, 109, 2004.
+
+\bibitem{lysak_1992}
+R.~L. Lysak and D.~hun Lee.
+\newblock Response of the dipole magnetosphere to pressure pulses.
+\newblock {\em Geophys. Res. Lett.}, 19(9):937--940, 1992.
 
 \bibitem{lysak_2001}
 R.~L. Lysak and Y.~Song.
@@ -445,6 +477,12 @@ K.~Takahashi, N.~Sato, J.~Warnecke, H.~L{\''u}hr, H.~E. Spence, and
 \newblock On the standing wave mode of giant pulsations.
 \newblock {\em J. Geophys. Res. Space Physics}, 97(A7):10717--10732, 1992.
 
+\bibitem{tamao_1965}
+T.~Tamao.
+\newblock Transmission and coupling resonance of hydromagnetic disturbances in
+  the non-uniform {Earth's} magnetosphere.
+\newblock {\em Sci. Rept. Tohoku Univ.}, 17(2):43, 1965.
+
 \bibitem{thompson_2001}
 S.~M. Thompson and M.~G. Kivelson.
 \newblock New evidence for the origin of giant pulsations.
@@ -461,6 +499,12 @@ C.~L. Waters, R.~L. Lysak, and M.~D. Sciffer.
 \newblock On the coupling of fast and shear {Alfv{\'e}n} wave modes by the
   ionospheric {Hall} conductance.
 \newblock {\em Earth Planets Space}, 65:385--396, 2013.
+
+\bibitem{waters_2008}
+C.~L. Waters and M.~D. Sciffer.
+\newblock Field line resonant frequencies and ionospheric conductance: Results
+  from a 2-d {MHD} model.
+\newblock {\em J. Geophys. Res.}, 113(A5), 2008.
 
 \bibitem{woodroffe_2012}
 J.~R. Woodroffe and R.~L. Lysak.
