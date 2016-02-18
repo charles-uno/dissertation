@@ -3,7 +3,7 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{The Near-Earth Environment}
-\label{ch_intro}
+  \label{ch_intro}
 
 \todo{Sketch out the goneral structure of the magnetosphere, from the ionospheric current sheet (is this too generous?) to the magnetopause (a real current sheet). Talk about where gravity dominates, where field line curvature becomes apparent, and where the moon sits in all this. }
 
@@ -89,6 +89,7 @@ At Earth's orbit, the solar magnetic field makes more-or-less a \SI{45}{\degree}
 % =============================================================================
 % =============================================================================
 \section{The Ionosphere}
+  \label{sec_ionos}
 
 Pedersen, Hall, and field-aligned conductivity. Do we want to get into two-cell convection? Region 1 and 2 current? 
 
@@ -106,7 +107,14 @@ Precipitation. Inverted V.
 
 \todo{Scott's thesis has a TON of detail. How much does Jesse show? }
 
-\todo{Put the profiles from Kelley here. Redo them so that the (nonphysical) bottom threshold is cut off. }
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/sigma.pdf}
+    \caption[Ionospheric Conductivity Profiles]{
+      Ionospheric conductivity profiles, adapted by Lysak\cite{lysak_2013} from Appendix B of Kelley's textbook\cite{kelley_1989}. 
+    }
+    \label{fig_sigma}
+\end{figure}
 
 % =============================================================================
 % =============================================================================
@@ -150,6 +158,28 @@ What causes a storm.
 Storm effects: outer magnetosphere, inner magnetosphere, on the ground.
 
 
+
+
+
+
+The ionospheric profiles used in this model are based on values tabulated in the Appendix B of Kelley's book\cite{kelley_1989}. They were adapted by Lysak\cite{lysak_2013} to take into account the effect of the magnetosphere's latitude-dependent density profile. 
+
+Mean molecular mass of \SI{28}{\amu} at \SI{100}{\km}, \SI{16}{\amu} around \SI{400}{\km}, down to \SI{1}{\amu} above \SI{1400}{\km}. 
+
+Simulations are carried out using four profiles: active day, quiet day, active night, quiet night. 
+
+Profiles are static for the duration of a simulation. Even so-called ultra low frequency waves are still much faster than convective timescales. 
+
+\todo{Come up with a characteristic convective timescale or two, and cite it. }
+
+The effects of mean molecular mass on conductivity are computed per the usual definitions. 
+\begin{align}
+  \sp &= \displaystyle\sum_s \frac{n_s q_s^2}{m_s} \frac{\nu_s}{\nu_s^2 + \Omega_s^2} &
+  \sh &= -\displaystyle\sum_s \frac{n_s q_s^2}{m_s} \frac{\Omega_s}{\nu_s^2 + \Omega_s^2} &
+  \sz &= \displaystyle\sum_s \frac{n_s q_s^2}{m_s \nu_s}
+\end{align}
+
+Each profile is resolved to an altitude of about $\SI{e4}{\km}$, and include well-resolved $E$, $F_1$, and $F_2$ layers. 
 
 
 

@@ -256,3 +256,45 @@ Fundamental poloidal mode is drift resonance, not drift bounce\cite{poulter_1983
 Pgs are most common during solar minimum, perhaps because of decreased mass loading of heavy ions\cite{denton_2011}. 
 
 
+
+The \Alfven speed is computed from Kelley's low-density profile, modified to take into account the local density. The density, in turn, is the sum of a plasmaspheric profile and a high-latitude auroral profile. 
+\begin{align}
+  \ep &= \text{(low-density tabulated value)} + \frac{ n \bar{m} }{B_0^2}
+\end{align}
+
+\todo{What's a clean way of showing the low-density \ep that we read in? }
+
+\todo{Does Kelley list the electric constant or the \Alfven speed? }
+
+Where $\bar{m}$ is the ambient mean molecular mass and $B_0$ is the zeroth-order magnetic field strength, $B_0 = \SI{3.11e4}{\nano\tesla} \lr{ \frac{R_E}{r} }^3 \sqrt{ 1 + 3 \cos^2 \theta }$. Note that \SI{3.11e4}{\nano\tesla} is the value of the Earth's magnetic field at the equator on Earth's surface. 
+
+\todo{Cite this number? Jesse just says it's a ``representative'' number. He uses \SI{30}{\micro\tesla}. }
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/va.pdf}
+    \caption[\Alfven Speed Profiles]{
+      \Alfven speed profiles, adapted by Lysak\cite{lysak_2013} from Appendix B of Kelley's textbook\cite{kelley_1989}. 
+    }
+    \label{fig_va}
+\end{figure}
+
+\todo{Above the profile, Bob scales the value that's read in as $r^5$ or something. Is there a citation for that? }
+
+The \Alfven speed is then computed per $\va^2 \equiv \frac{1}{\mz \ep}$. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fa.pdf}
+    \caption[\Alfven Bounce Frequency Profiles]{
+      \Alfven bounce frequency profiles, computed by integrating the the \Alfven speed back and forth over a field line. $f_A = \lrb{ \oint \frac{dz}{v_A} }^{-1}$. Dotted lines indicate the Pc4 frequency range, \SIrange{7}{25}{\mHz}. In each profile, the effect of the plasmapause is clearly visible, centered at $L=4$. Field lines just inside and just outside the plasmapause appear susceptible to resonance in the Pc4 band. 
+    }
+    \label{fig_fa}
+\end{figure}
+
+\todo{Talk about how the size of the plasmasphere can be adjusted, and \SI{4}{\RE} is just a typical value. }
+
+\todo{Explain how the \Alfven speed constrains the time step. }
+
+
+
