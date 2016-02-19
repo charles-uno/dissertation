@@ -11,6 +11,11 @@
 
 The model described in \cref{ch_model} has the notable omission of parallel electric fields and parallel currents. That situation can be remedied by the addition of the electron inertial term in \ohmlaw. 
 
+% =============================================================================
+% =============================================================================
+% =============================================================================
+\section{Modifying the Model}
+
 Old parallel electric field formulation. Recall $\vec{F} \equiv \curl{B}$. 
 \begin{align}
   \ez \ddt E_\parallel &= \frac{1}{\mu_0} F_\parallel - \sz E_\parallel
@@ -33,12 +38,12 @@ In the new formulation, $J_\parallel$ (proportional to $J_3$) is solved with int
 
 Recall that the electric and magnetic fields are staggered by half a time step. The current is defined with the magnetic fields, offset from the electric fields. 
 
-\todo{Note that \cref{ch_azm,ch_rbsp} don't use inertial effects. we just look at them here as a proof of concept. Resolving inertial length scales is too expensive, and not resolving them can easily lead to instability. }
+\todo{Note that simulations discussed in \cref{ch_azm,ch_rbsp} do not include inertial effects. we just look at them here as a proof of concept. Resolving inertial length scales is too expensive, and not resolving them can easily lead to instability. }
 
-% =============================================================================
-% =============================================================================
-% =============================================================================
-\section{The Boris Approximation}
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{The Boris Approximation}
   \label{sec_boris}
 
 Note that 
@@ -77,39 +82,76 @@ For the purposes of simulating ultra low frequency waves, \cref{boris_criterion}
 
 \todo{This is common in other models... very high ionosphere, low speed of light, whatever. Cite LFM or something? }
 
-\todo{Plot of these frequency ratios in the ionosphere? }
+\todo{The plasma frequency is very fast compared to the waves we're driving. }
 
-\todo{Generalized \ohmlaw, in case we decide we need it. Could talk through why all of the other terms are OK to neglect.  
-\begin{align}
-  \vec{E} + \cross{U}{B} & = 
-  \eta \vec{J} + \tfrac{\me}{n e^2} \lrb{
-    \tfrac{\partial}{\partial t} \vec{J} + \nabla \cdot \lr{ 
-      \vec{J} \, \vec{U} + \vec{U} \,\vec{J} +
-      \tfrac{1}{n e} \vec{J} \, \vec{J} } } +
-  \tfrac{1}{n e} \cross{J}{B} -
-  \tfrac{1}{n e} \div{ \vec{P_e} }
-\end{align}
-}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/op.pdf}
+    \caption[Plasma Frequency Profile]{
+      The plasma frequency reaches a peak value just under \SI{e7}{\radian/\second} near the equator. Outside the plasmasphere, its value is closer to \SI{e4}{\radian/\second}.  
+    }
+    \label{fig_op}
+\end{figure}
 
-% =============================================================================
-% =============================================================================
-% =============================================================================
-\section{Effect on the Simulation}
+
+%\todo{Generalized \ohmlaw, in case we decide we need it. Could talk through why all of the other terms are OK to neglect.  
+%\begin{align}
+%  \vec{E} + \cross{U}{B} & = 
+%  \eta \vec{J} + \tfrac{\me}{n e^2} \lrb{
+%    \tfrac{\partial}{\partial t} \vec{J} + \nabla \cdot \lr{ 
+%      \vec{J} \, \vec{U} + \vec{U} \,\vec{J} +
+%      \tfrac{1}{n e} \vec{J} \, \vec{J} } } +
+%  \tfrac{1}{n e} \cross{J}{B} -
+%  \tfrac{1}{n e} \div{ \vec{P_e} }
+%\end{align}
+%}
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Effects are Small}
+
+Even side-by-side, the magnetic fields in an otherwise-identical run are not visibly affected by the addition of electron inertial effects. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/B_1_004_016mHz.pdf}
-    \caption[Magnetic Field Comparison With and Without Electron Inertial Effects]{
+    \caption[Magnetic Fields With and Without Electron Inertia]{
       The addition of electron inertial effects, with no other changes to the model, does not visible change the output. In a way, this is reassuring, since the alternative is to cast doubt on past work. 
     }
     \label{fig_B_1_004_016mHz}
 \end{figure}
 
+\todo{This is because the parallel electric fields are very small. }
+
+With a bit of algebra, the meridional components of the dispersion tensor from \cref{sec_high_alt} provide a comparison of the parallel and perpendicular electric field magnitudes.
+\begin{align}
+  \frac{E_\parallel}{E_\bot} &= \frac{- k_\parallel k_\bot c^2 }{ \omega^2 - k_\bot^2 c^2 - \op^2 } \sim \frac{k^2 c^2 }{\op^2}
+\end{align}
+
+The electron inertial length $\frac{c}{\op}$ is on the order of \SI{1}{\km}, smaller than the wavelength of a field line resonance by four orders of magnitude. That is, at high altitude, the parallel electric field is expected to be smaller than the perpendicular electric field by a factor of \num{e8} -- perhaps more, depending on how closely the wave vector is aligned to the magnetic field. That seems fine -- note that \cref{fig_E_2_016_010mHz} shows that max $E_\parallel$ is 4 to 5 orders larger than max $E_\bot$... plus high altitude is the parallel field's minimum and the perpendicular field's maximum. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/E_2_016_010mHz.pdf}
+    \caption[Electric Field Snapshots]{
+      Parallel electric fields are smaller than perpendicular electric fields by at least four orders of magnitude.
+    }
+    \label{fig_E_2_016_010mHz}
+\end{figure}
+
 % =============================================================================
 % =============================================================================
 % =============================================================================
-\section{Field-Aligned Current}
+\section{Field-Aligned Currents}
   \label{sec_fac}
+
+
+
+
+
+
 
 Over the bulk of the simulation, each field is overwhelmingly real or imaginary. Driving is injected into the real poloidal electric field, giving real $E_x$ and $B_y$ (and real $B_z$, at least for low \azm... at large \azm, the compressional magnetic field becomes very small). Toroidal components -- $E_x$ and $B_y$ -- are imaginary, indicating an azimuthal offset. 
 
@@ -149,6 +191,19 @@ The ``wigglies'' visible in the lower-left corner of \cref{fig_JS_1_016mHz} sugg
 % =============================================================================
 \section{Inertial Length Scales}
   \label{sec_lengths}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/Ez_inertial_length.pdf}
+    \caption[Parallel Electric Fields by Perpendicular Grid Resolution]{
+      The parallel electric field develops significant structure when the perpendicular grid resolution is smaller than the electron inertial length. Unfortunately, such runs are prohibitively expensive. The lower panel -- which still fails to resolve wave structure properly -- represents a 100-fold increase in computational time. 
+    }
+    \label{fig_Ez_inertial_length}
+\end{figure}
+
+
+
+
 
 A typical run has maximum $E_y$ on the order of \SI{10}{\mV/\meter} and maximum $E_z$ on the order of \SI{e-3}{\mV/\meter}. Notably, however, it's the electric field derivative that affects the magnetic field, not its magnitude. 
 
