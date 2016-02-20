@@ -60,6 +60,22 @@ On the nightside, the same isn't true in any meaningful way. Dissipation seems t
 
 There is evidence that the rotation is still trying to happen. At low \azm, energy is distributed between the poloidal and toroidal mode before dissipating; at high \azm, the energy dissipates straight out of the poloidal mode, never having had a chance to rotate. 
 
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{High Conductivity}
+
+\todo{Let's do a 4x7 plot, but not model by model. The columns should be 13mHz, 16mHz, 19mHz, 22mHz. Stick with the same model. }
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Low Conductivity}
+
+\todo{Let's do a 4x7 plot, but not model by model. The columns should be 13mHz, 16mHz, 19mHz, 22mHz. Stick with the same model. }
+
+
 % =============================================================================
 % =============================================================================
 % =============================================================================
@@ -82,6 +98,16 @@ In no case does the poloidal mode demonstrate the ability to move energy across 
 
 On the other hand, the toroidal mode does resonate, even if the driving isn't resonant (though in that case the response is of course stronger). The toroidal mode transports energy across field lines until it encounters resonance, then accumulates energy there. Often, resonances are seen in multiple locations due to the non-monotonic \Alfven bounce frequency (recall \cref{fig_fa}) as a function of $L$. 
 
+
+
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Resonant Driving}
+
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/ucolor_pol_022mHz.pdf}
@@ -99,6 +125,13 @@ On the other hand, the toroidal mode does resonate, even if the driving isn't re
     }
     \label{fig_ucolor_pol_010mHz}
 \end{figure}
+
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Nonresonant Driving}
 
 \begin{figure}[H]
     \centering
@@ -118,6 +151,7 @@ On the other hand, the toroidal mode does resonate, even if the driving isn't re
     \label{fig_ucolor_tor_010mHz}
 \end{figure}
 
+
 % =============================================================================
 % =============================================================================
 % =============================================================================
@@ -136,6 +170,11 @@ Giant pulsations are most common on the dayside (particularly the morningside), 
 In \cref{fig_BfE_016mHz}, the strongest east-west ground signatures is obtained on the geomagnetically quiet dayside, at \azm of 16 and 32. 
 
 This seems to be a giant pulsation ``sweet spot'': the poloidal mode becomes stronger as \azm increases, but the ionospheric damping also increases. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Ground Signatures}
 
 \begin{figure}[H]
     \centering
@@ -159,47 +198,50 @@ Giant pulsations are monochromatic, and can be accompanied by ``multiharmonic to
 
 Giant pulsations often drift azimuthally. This model can't resolve azimuthal drift directly, of course, but can fake it by looking at complex phase. There has been some indication (not shown) of complex phase rotation in ground magnetic fields. However, at the boundary, it's difficult to disentangle which values are imaginary to indicate an azimuthal offset, and which are imaginary because of Hall coupling. Investigation is ongoing. 
 
+
+
+
+
 % =============================================================================
 % =============================================================================
 % =============================================================================
-\section{Electromagnetic Energy Gap}
+%\section{Electromagnetic Energy Gap}
 
-\todo{A preliminary search (and asking Bob) has not turned up anyone looking at this before, so it's hard to provide context. }
+%\todo{A preliminary search (and asking Bob) has not turned up anyone looking at this before, so it's hard to provide context. }
 
-Above, we considered the decay of energy from the poloidal mode to the toroidal mode. A natural follow up is, are there any other surprising trends in the distribution of energy?
+%Above, we considered the decay of energy from the poloidal mode to the toroidal mode. A natural follow up is, are there any other surprising trends in the distribution of energy?
 
-As it turns out, yes!
+%As it turns out, yes!
 
-In cases where the driving frequency does not line up with the local bounce frequency, energy doesn't accumulate particularly well in either the poloidal or the toroidal mode. Like a damped-driven oscillator, the system's behavior follows the input. 
+%In cases where the driving frequency does not line up with the local bounce frequency, energy doesn't accumulate particularly well in either the poloidal or the toroidal mode. Like a damped-driven oscillator, the system's behavior follows the input. 
 
-At low \azm, what energy there is divides itself more-or-less equally between the electric and magnetic fields. 
+%At low \azm, what energy there is divides itself more-or-less equally between the electric and magnetic fields. 
 
-As \azm increases, oddly, a gap appears. When the conductivity is high, the magnetic field holds more energy than the electric field. The disparity can be up to a factor of $\sim \num{3}$; that is, \SI{75}{\percent}. of the energy in the magnetic field, and \SI{25}{\percent} in the electric field. When conductivity is low, the opposite happens: energy concentrates in the electric field. 
+%As \azm increases, oddly, a gap appears. When the conductivity is high, the magnetic field holds more energy than the electric field. The disparity can be up to a factor of $\sim \num{3}$; that is, \SI{75}{\percent}. of the energy in the magnetic field, and \SI{25}{\percent} in the electric field. When conductivity is low, the opposite happens: energy concentrates in the electric field. 
 
-This lines up somewhat with what might be expected. When conductivity is low, it takes a larger electric field to induce the same current, and thus the same magnetic field. But it's not clear why this disparity only appears at large \azm, or why it does not appear when the driving is resonant. 
+%This lines up somewhat with what might be expected. When conductivity is low, it takes a larger electric field to induce the same current, and thus the same magnetic field. But it's not clear why this disparity only appears at large \azm, or why it does not appear when the driving is resonant. 
 
-Maybe it's a timing issue? A relationship between the bounce time (which is more or less indepedent of \azm) and the rotation time (which depends on \azm). 
+%Maybe it's a timing issue? A relationship between the bounce time (which is more or less indepedent of \azm) and the rotation time (which depends on \azm). 
 
-\todo{How is the compressional magnetic field brought into these calculations? It exists only at small \azm. It's never particularly large, it also gets added to the zeroth-order field before squaring. }
+%\todo{How is the compressional magnetic field brought into these calculations? It exists only at small \azm. It's never particularly large, it also gets added to the zeroth-order field before squaring. }
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/U_BE_010mHz.pdf}
-    \caption[Current-Driven Electric and Magnetic Energy: 10mHz]{
-      In the absence of resonant driving, a disparity emerges at large \azm between the energy in the magnetic field and the energy in the electric field. The sign of the difference depends on the ionospheric conductivity. 
-    }
-    \label{fig_U_BE_010mHz}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{figures/U_BE_010mHz.pdf}
+%    \caption[Current-Driven Electric and Magnetic Energy: 10mHz]{
+%      In the absence of resonant driving, a disparity emerges at large \azm between the energy in the magnetic field and the energy in the electric field. The sign of the difference depends on the ionospheric conductivity. 
+%    }
+%    \label{fig_U_BE_010mHz}
+%\end{figure}
 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/U_BE_022mHz.pdf}
-    \caption[Current-Driven Electric and Magnetic Energy: 22mHz]{
-      When driving is resonant, energy is distributed almost exactly half-and-half between the electric and magnetic fields, regardless of \azm. The rightmost profile still shows a gap, likely because the ionospheric conductivity in that model is low enough that nothing ever resonates. 
-    }
-    \label{fig_U_BE_022mHz}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{figures/U_BE_022mHz.pdf}
+%    \caption[Current-Driven Electric and Magnetic Energy: 22mHz]{
+%      When driving is resonant, energy is distributed almost exactly half-and-half between the electric and magnetic fields, regardless of \azm. The rightmost profile still shows a gap, likely because the ionospheric conductivity in that model is low enough that nothing ever resonates. 
+%    }
+%    \label{fig_U_BE_022mHz}
+%\end{figure}
 
 
 
