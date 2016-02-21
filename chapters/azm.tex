@@ -5,11 +5,15 @@
 \chapter{Large Modenumber Effects}
   \label{ch_azm}
 
-This chapter is the real moneymaker. 
+\todo{This chapter is the real moneymaker. The overarching motivation for this work is that Pc4 pulsations vary in interesting ways with respect to azimuthal modenumber, and that prior models have been unable to give a good picture of that behavior. }
 
-The overarching motivation for this work is that Pc4 pulsations vary in interesting ways with respect to azimuthal modenumber, and that prior models have been unable to give a good picture of that behavior. 
+%\todo{Do we every check E/B against $\Sigma_P / \mz$? }
 
-\todo{Do we every check E/B against $\Sigma_P / \mz$? }
+%\todo{Do we see a difference between \vec{k} (momentum) and the group velocity? Poynting flux will always be pretty much along the field line, since $B_3$ is small and $E_3$ is zero, but the wave vector need not be. This is a question of coupling/converting to compressional waves, I guess. }
+
+%\todo{Look at McKenzie and Westphal. Waves incident on the bow shock, etc, at weird angles. }
+
+%\todo{Look at the E to B ratio. Compare to the \Alfven speed and to the height-integrated Pedersen conductivity. }
 
 % =============================================================================
 % =============================================================================
@@ -35,58 +39,59 @@ That is, the results below offer a significantly higher level of realism than an
 
 A dedicated 3D treatment of this problem is unlikely at present. Large azimuthal modenumbers are expensive to compute. That's the whole point! 
 
-%\todo{Do we see a difference between \vec{k} (momentum) and the group velocity? Poynting flux will always be pretty much along the field line, since $B_3$ is small and $E_3$ is zero, but the wave vector need not be. This is a question of coupling/converting to compressional waves, I guess. }
-
-%\todo{Look at McKenzie and Westphal. Waves incident on the bow shock, etc, at weird angles. }
-
-%\todo{Look at the E to B ratio. Compare to the \Alfven speed and to the height-integrated Pedersen conductivity. }
-
-The energy is obtained by integrating (using the Jacobian to handle the grid properly) $U = \int dU = \int u \, dV$. Values are the log (base 10) of that, in the slightly odd units of gigajoules per radian. A factof of 2$\pi$ wouldn't change anything, of course, but it seems inappropriate to integrate all the way around the sphere when Pc4s are longitudinally localized (a fact which was an important part of justifying a 2.5D approach). 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/U_PT_022mHz.pdf}
-    \caption[Current-Driven Poloidal and Toroidal Energy: 22mHz]{
-      Driving is applied to the poloidal electric field. Over time, the energy rotates from the poloidal mode to the toroidal. The rotation time is affected by the azimuthal modenumber. Ionospheric conductivity also plays an important role. 
-    }
-    \label{fig_U_PT_022mHz}
-\end{figure}
-
-In \cref{fig_U_PT_022mHz}, the rotation of energy from the poloidal mode to the toroidal mode is clear. Driving is strictly poloidal, yet the toroidal mode accumulates energy over time, and doesn't appear to give it back. The rotation happens faster for low-\azm simulations, qualitatively consistent with Mann's result; the time at which poloidal and toroidal energies are equal seems to even be linear in \azm, at he predicted (for well-behaved runs, at least). 
-
-At least, that's the case on the dayside, where the ionosphere is highly conducting. 
-
-On the nightside, the same isn't true in any meaningful way. Dissipation seems to outstrip rotation. Energy does not accumulate over numerous driving periods, as would be expected in resonance; it follows the driving up and down, as a damped-driven oscillator. 
-
-There is evidence that the rotation is still trying to happen. At low \azm, energy is distributed between the poloidal and toroidal mode before dissipating; at high \azm, the energy dissipates straight out of the poloidal mode, never having had a chance to rotate. 
+The energy is obtained by integrating (using the Jacobian to handle the grid properly) $U = \int dU = \int u \, dV$. Values are the log (base 10) of that, in the slightly odd units of gigajoules per radian. A factor of $2\pi$ wouldn't change anything, of course, but it seems inappropriate to integrate all the way around the sphere when Pc4s are longitudinally localized (a fact which was an important part of justifying a 2.5D approach). 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{High Conductivity}
 
-\todo{Let's do a 4x7 plot, but not model by model. The columns should be 13mHz, 16mHz, 19mHz, 22mHz. Stick with the same model. }
+In \cref{fig_U_PT_day}, the rotation of energy from the poloidal mode to the toroidal mode is clear. Driving is strictly poloidal, yet the toroidal mode accumulates energy over time, and doesn't appear to give it back. The rotation happens faster for low-\azm simulations, qualitatively consistent with Mann's result; the time at which poloidal and toroidal energies are equal seems to even be linear in \azm, in line with his result. 
 
+At least, this is the case on the dayside, where the ionosphere is highly conductive. 
+
+\todo{PLOT: UP and UT, Model 2 (?), $\{ f = \SI{13}{\mHz}, \SI{16}{\mHz}, \SI{19}{\mHz}, \SI{22}{\mHz}\} \times \{ \azm=1, 2, 4, 8, 16, 32, 64 \}$ }
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/U_PT_022mHz.pdf}
+    \caption[Poloidal and Toroidal Energy: Quiet Day]{
+      Driving is applied to the poloidal electric field. Over time, the energy rotates from the poloidal mode to the toroidal. The rotation rate is affected by the azimuthal modenumber. 
+    }
+    \label{fig_U_PT_day}
+\end{figure}
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Low Conductivity}
 
-\todo{Let's do a 4x7 plot, but not model by model. The columns should be 13mHz, 16mHz, 19mHz, 22mHz. Stick with the same model. }
+\todo{PLOT: UP and UT, Model 3 (?), $\{ f = \SI{13}{\mHz}, \SI{16}{\mHz}, \SI{19}{\mHz}, \SI{22}{\mHz}\} \times \{ \azm=1, 2, 4, 8, 16, 32, 64 \}$ }
 
+The picture on the nightside (where the ionospheric conductivity is low) is significantly different from the dayside (where it's high). 
+
+Dissipation seems to outstrip rotation. Energy does not accumulate over numerous driving periods, as would be expected in resonance; it follows the driving up and down, as a damped-driven oscillator. 
+
+There is evidence that the rotation is still trying to happen. At low \azm, energy is distributed between the poloidal and toroidal mode before dissipating; at high \azm, the energy dissipates straight out of the poloidal mode, never having had a chance to rotate. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/U_PT_022mHz.pdf}
+    \caption[Poloidal and Toroidal Energy: Quiet Night]{
+      Driving is applied to the poloidal electric field. There is some rotation of energy to the toroidal mode (and less at high azimuthal modenumber), but the low ionospheric conductivity prevents energy from accumulating over time. 
+    }
+    \label{fig_U_PT_night}
+\end{figure}
 
 % =============================================================================
 % =============================================================================
 % =============================================================================
-\section{Resonant Shells}
+\section{Spatial Distribution of Energy}
   \label{sec_shells}
 
-Looking a bit deeper, it's possible to comment on the structure of the poloidal and toroidal modes, not just their magnitudes. 
+Looking a bit deeper, it's possible to comment on the structure of the poloidal and toroidal modes, not just their magnitudes. The following commentary addresses the dayside; on the nightside, there's never much by the way of resonance. 
 
-(The following commentary applies to the dayside; on the nightside, there's never much by the way of resonance.)
-
-In \cref{fig_ucolor_pol_022mHz,fig_ucolor_pol_010mHz,fig_ucolor_tor_022mHz,fig_ucolor_tor_010mHz}, electromagnetic energy is binned by field line, averaged over volume (again, with respect to the Jacobian), and plotted as contours. All plots share a color scale. 
+In \cref{fig_resonant_driving,fig_nonresonant_driving}, electromagnetic energy is binned by field line, averaged over volume (again, with respect to the Jacobian), and plotted as contours. All plots share a color scale. 
 
 The poloidal mode and the toroidal mode exhibit qualitatively different behavior, related to the fact that energy rotates from poloidal to toroidal, and not back. 
 
@@ -98,59 +103,37 @@ In no case does the poloidal mode demonstrate the ability to move energy across 
 
 On the other hand, the toroidal mode does resonate, even if the driving isn't resonant (though in that case the response is of course stronger). The toroidal mode transports energy across field lines until it encounters resonance, then accumulates energy there. Often, resonances are seen in multiple locations due to the non-monotonic \Alfven bounce frequency (recall \cref{fig_fa}) as a function of $L$. 
 
-
-
-
-
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Resonant Driving}
 
+\todo{PLOT: U contours. Model 2 (?), $f = \SI{19}{\mHz}$ (?) $\{ u_P, u_T \} \times \{ \azm=1, 4, 16, 64 \}$ }
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/ucolor_pol_022mHz.pdf}
-    \caption[Poloidal Energy Density by L-Shell: 22mHz]{
-      If \azm is small, energy rotates to the toroidal mode too fast to form a poloidal resonance. If \azm is large, the \Alfven wave is guided, so it resonates only if the driving frequency lines up with the resonant frequency where it's applied. The result is just one big -- or perhaps even giant -- pulsation. 
+    \caption[Poloidal and Toroidal Energy Distribution: Resonant Driving]{
+      If \azm is small, energy rotates to the toroidal mode too fast to form a poloidal resonance. If \azm is large, the \Alfven wave is guided, so it resonates only if the driving frequency lines up with the resonant frequency where it's applied. The result is just one big -- or perhaps even giant -- pulsation. If the driving lines up with a nearby field line, the toroidal mode goes crazy! Resonance inside the plasmasphere. Resonance at the plasmapause. Resonance at the driving location. And (weak) attempt at a higher harmonic further out. 
     }
-    \label{fig_ucolor_pol_022mHz}
+    \label{fig_resonant_driving}
 \end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/ucolor_pol_010mHz.pdf}
-    \caption[Poloidal Energy Density by L-Shell: 10mHz]{
-      When the driving frequency doesn't line up with the location where it's delivered, there's basically no response. There is no movement of energy to a resonant field line, so no energy can accumulate over the course of multiple rounds of driving. 
-    }
-    \label{fig_ucolor_pol_010mHz}
-\end{figure}
-
-
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{Nonresonant Driving}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/ucolor_tor_022mHz.pdf}
-    \caption[Toroidal Energy Density by L-Shell: 22mHz]{
-      If the driving lines up with a nearby field line, the toroidal mode goes crazy! Resonance inside the plasmasphere. Resonance at the plasmapause. Resonance at the driving location. And (weak) attempt at a higher harmonic further out. 
-    }
-    \label{fig_ucolor_tor_022mHz}
-\end{figure}
+\todo{PLOT: U contours. Model 2 (?), $f = \SI{10}{\mHz}$ (?) $\{ u_P, u_T \} \times \{ \azm=1, 4, 16, 64 \}$ }
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/ucolor_tor_010mHz.pdf}
-    \caption[Toroidal Energy Density by L-Shell: 10mHz]{
-      Even when not driven resonantly, the toroidal mode still makes the best of its situation. It steals what energy it can from the poloidal mode, carries it to the resonant $L$-shell, and gets to work. (In contrast, recall from \cref{fig_ucolor_pol_010mHz}, in this situation the poloidal mode just does not accumulate energy.)
+    \caption[Poloidal and Toroidal Energy Distribution: Resonant Driving]{
+      When the driving frequency doesn't line up with the location where it's delivered, there's basically no response. There is no movement of energy to a resonant field line, so no energy can accumulate over the course of multiple rounds of driving. Even when not driven resonantly, the toroidal mode still makes the best of its situation. It steals what energy it can from the poloidal mode, carries it to the resonant $L$-shell, and gets to work. (In contrast, recall from \cref{fig_resonant_driving}, in this situation the poloidal mode just does not accumulate energy.)
     }
-    \label{fig_ucolor_tor_010mHz}
+    \label{fig_nonresonant_driving}
 \end{figure}
-
 
 % =============================================================================
 % =============================================================================
@@ -161,13 +144,13 @@ Giant pulsations are (probably\cite{takahashi_2011}) fundamental mode poloidal P
 
 While this model makes no particular distinction between a giant pulsation and any other Pc4, the above results do line up with giant pulsation observations. 
 
-Giant pulsations aren't seen at small \azm. As shown in \cref{sec_lifetimes}, low-\azm poloidal modes rotate to the toroidal mode too quickly to resonate effectively, even in the case of continuous driving at a locally-resonant frequency. The sweet spot seems to be around $\azm = 20$, more or less the same point where resonance becomes visible in \cref{fig_ucolor_pol_022mHz}. Admittedly, giant pulsations are typically closer to \SI{10}{\mHz} than \SI{22}{\mHz}. It seems likely that qualitatively similar results would be encountered if the driving were moved to an $L$-shell with a bounce time of \SI{10}{\mHz}. 
+Giant pulsations aren't seen at small \azm. As shown in \cref{sec_lifetimes}, low-\azm poloidal modes rotate to the toroidal mode too quickly to resonate effectively, even in the case of continuous driving at a locally-resonant frequency. The sweet spot seems to be around $\azm = 20$, more or less the same point where resonance becomes visible in \cref{fig_resonant_driving}. Admittedly, giant pulsations are typically closer to \SI{10}{\mHz} than \SI{22}{\mHz}. It seems likely that qualitatively similar results would be encountered if the driving were moved to an $L$-shell with a bounce time of \SI{10}{\mHz}. 
 
 Giant pulsations are seen at very large \azm, though not on the ground\cite{takahashi_2013}, due to damping by the ionosphere. 
 
 Giant pulsations are most common on the dayside (particularly the morningside), during geomagnetically quiet times. Giant pulsation ground signatures are noted for their predisposition towards east-west polarization. 
 
-In \cref{fig_BfE_016mHz}, the strongest east-west ground signatures is obtained on the geomagnetically quiet dayside, at \azm of 16 and 32. 
+In \cref{fig_ground_signatures}, the strongest east-west ground signatures is obtained on the geomagnetically quiet dayside, at \azm of 16 and 32. 
 
 This seems to be a giant pulsation ``sweet spot'': the poloidal mode becomes stronger as \azm increases, but the ionospheric damping also increases. 
 
@@ -176,30 +159,20 @@ This seems to be a giant pulsation ``sweet spot'': the poloidal mode becomes str
 % -----------------------------------------------------------------------------
 \subsection{Ground Signatures}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/BfE_016mHz.pdf}
-    \caption[East-West Ground Magnetic Fields: 16mHz]{
-      The east-west component of magnetic ground signatures is peaked on the geomagnetically quiet dayside, at modenumbers around 16 to 32. This coincides nicely with observations of giant pulsations. 
-    }
-    \label{fig_BfE_016mHz}
-\end{figure}
+\todo{PLOT: B contours at the ground. $f = \SI{16}{\mHz}$ (?) $\{ \text{model} 1 B_\theta, \text{model} 2 B_\theta, \text{model} 1 B_\phi, \text{model} 2 B_\phi \} \times \{ \azm=1, 2, 4, 8, 16, 32, 64 \}$ }
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{figures/BqE_016mHz.pdf}
-    \caption[North-South Ground Magnetic Fields: 16mHz]{
-      Like the east-west component shown in \cref{fig_BfE_016mHz}, the north-south ground signature is strongest on the quiet dayside; however, unlike the east-west component, the north-south component is weak when the modenumber is large. 
+    \includegraphics[width=\textwidth]{figures/BfE_016mHz.pdf}
+    \caption[Dayside Ground Magnetic Fields]{
+      The east-west component of magnetic ground signatures is peaked on the geomagnetically quiet dayside, at modenumbers around 16 to 32. This coincides nicely with observations of giant pulsations. Like the east-west component, the north-south ground signature is strongest on the quiet dayside; however, unlike the east-west component, the north-south component is weak when the modenumber is large. 
     }
-    \label{fig_BqE_016mHz}
+    \label{fig_ground_signatures}
 \end{figure}
 
 Giant pulsations are monochromatic, and can be accompanied by ``multiharmonic toroidal waves''\cite{takahashi_2011}. Per \cref{sec_shells}, this is about what would be expected from a mishmash of poloidal driving. Poloidal modes of all frequencies rotate into the toroidal mode; resonant poloidal modes resonate; non-resonant poloidal modes become evanescent. 
 
 Giant pulsations often drift azimuthally. This model can't resolve azimuthal drift directly, of course, but can fake it by looking at complex phase. There has been some indication (not shown) of complex phase rotation in ground magnetic fields. However, at the boundary, it's difficult to disentangle which values are imaginary to indicate an azimuthal offset, and which are imaginary because of Hall coupling. Investigation is ongoing. 
-
-
-
 
 
 % =============================================================================
