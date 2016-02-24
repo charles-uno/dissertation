@@ -449,10 +449,10 @@ The atmospheric magnetic field is computed as a linear combination of harmonics.
 Laplace's equation can be solved analytically; however, a numerical solution is preferrable to ensure orthonormality on a discrete and incomplete\footnote{As discussed in \cref{sec_coords}, the grid is constrained to finite $L$, which excludes the equator as well as the poles. } grid. After separating out the radial and azimuthal dependence in the usual way, the latitudinal component of Laplace's equation can be written in terms of $s \equiv - \sin^2 \theta$: 
 \begin{align}
   \label{laplace}
-  \lr{ 4 s^2 + 4s } \frac{d^2}{ds^2} Y_\ell + \lr{ 4 + 6 s } \frac{d}{ds} Y_\ell - \frac{\azm^2}{s} Y_\ell &= \ell \lr{ \ell + 1 } Y_\ell
+  \lr{ 4 s^2 + 4s } \frac{d^2}{ds^2} Y_\ell + \lr{ 4 + 6 s } \frac{d}{ds} Y_\ell - \frac{\azm^2}{s} Y_\ell &= \ell \, \lr{ \ell + 1 } Y_\ell
 \end{align}
 
-Using centered differences to linearize the derivatives, \cref{laplace} becomes a system of coupled linear equations, one per field line. It can be solved numerically for eigenvalues $\ell \lr{\ell + 1}$ and eigenvectors\footnote{The eigenvectors are not vectors in the same sense as \vec{B} and \vec{E}, of course; rather, they are scalar functions of $\theta$ defined on a discrete grid.} $Y_\ell$\footnote{Solving Laplace's equation analytically results in spherical harmonics indexed by both $\ell$ and \azm, the separation constants for $\theta$ and $\phi$ respectively. In two and a half dimensions, $\phi$ is not explicitly resolved, so \azm is set manually.}. In terms of the harmonics $Y_\ell$, $\Psi$ between the Earth's surface and the top of the atmosphere can be written
+Using centered differences to linearize the derivatives, \cref{laplace} becomes a system of coupled linear equations, one per field line. It can be solved numerically for eigenvalues $\ell \, \lr{\ell + 1}$ and eigenvectors\footnote{The eigenvectors are not vectors in the same sense as \vec{B} and \vec{E}, of course; rather, they are scalar functions of $\theta$ defined on a discrete grid. } $Y_\ell$\footnote{Solving Laplace's equation analytically results in spherical harmonics indexed by both $\ell$ and \azm, the separation constants for $\theta$ and $\phi$ respectively. In two and a half dimensions, $\phi$ is not explicitly resolved, so \azm is set manually.}. In terms of the harmonics $Y_\ell$, $\Psi$ between the Earth's surface and the top of the atmosphere can be written
 \begin{align}
   \label{psi_expansion}
   \Psi \arg{r, \theta} &= \displaystyle\sum_\ell \lr{ a_\ell \, r^\ell + b_\ell \, r^{-\ell - 1} } Y_\ell \arg{\theta}
@@ -466,18 +466,16 @@ As a boundary condition for $\Psi$, Earth is assumed to be a perfect conductor. 
 
 The current sheet at the top of the atmosphere has been assumed to be horizontal, so the radial component of the magnetic field must be the same just above and just below it. Taking the radial derivative of \cref{psi_expansion} at the top of the atmosphere, and eliminating $b_\ell$ with \cref{beta_solution}, gives
 \begin{align}
-  B_r &= \displaystyle\sum_\ell \ell \, \alpha_\ell \, R_I^{\ell-1} \, \lr{ 1 - \lambda_I^{2 \ell - 1} } Y_\ell &
+  B_r &= \displaystyle\sum_\ell \ell \, a_\ell \, R_I^{\ell-1} \, \lr{ 1 - \lambda_I^{2 \ell + 1} } Y_\ell &
   & \text{where} &
   \lambda_I &\equiv \frac{R_E}{R_I} \sim \num{0.975}
 \end{align}
 
-The summation can be collapsed by ``integrating'' over a harmonic. Inverse harmonics can be obtained by inverting the eigenvector matrix. Then $Y_\ell \cdot Y_{\ell'}^{-1} = \delta_{\ell \ell'}$ by construction. 
+The summation can be collapsed by ``integrating'' over a harmonic\footnote{Because the functions are defined on a discrete grid, their inner product is not an integral, but a sum: $B_r \cdot Y_\ell^{-1} \equiv \displaystyle\sum_i B_r [i] \; Y_\ell^{-1} \! [i] $. }. Inverse harmonics can be obtained by inverting the eigenvector matrix. Then $Y_\ell \cdot Y_{\ell'}^{-1} = \delta_{\ell \ell'}$ by construction. 
 \begin{align}
   \label{alpha_solution}
-  \alpha_\ell &= \frac{ 1 }{\ell \, R_I^{\ell-1} } \frac{ B_r \cdot Y_\ell^{-1} }{ 1 + \lambda_I^{2 \ell + 1} }
+  a_\ell &= \frac{ 1 }{\ell \, R_I^{\ell-1} } \frac{ B_r \cdot Y_\ell^{-1} }{ 1 - \lambda_I^{2 \ell + 1} }
 \end{align}
-
-\todo{A dot product doesn't seem like great notation for the inner product of this sort of ``vector.'' What are better options? }
 
 Combining \cref{psi_expansion,beta_solution,alpha_solution} allows the expression of $\Psi$ at the top and bottom of the atmosphere as a linear combination of radial magnetic field components at the bottom of the ionosphere. 
 \begin{align}
@@ -494,6 +492,6 @@ Horizontal magnetic fields are obtained by taking derivatives of $\Psi$.
   B_2 &= \dd{\lysaky} \Psi
 \end{align}
 
-Horizontal magnetic field values at the top of the atmosphere are used to impose boundary conditions on the electric fields at the bottom of the ionosphere, per \cref{eatm_final}. Those at Earth's surface are valuable because they allow a direct comparison between model output and ground magnetometer data. 
+Horizontal magnetic field values at the top of the atmosphere are used to impose boundary conditions on the electric fields at the bottom of the ionosphere, per \cref{eatm_final}. Those at Earth's surface are valuable because they allow a direct comparison between model output and ground magnetometer data, after being mapped to physical coordinates per \cref{def_rqf_directions}. 
 
 

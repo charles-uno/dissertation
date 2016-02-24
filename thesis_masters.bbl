@@ -1,4 +1,4 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{100}
 
 \bibitem{anderson_1994}
 B.~J. Anderson.
@@ -15,6 +15,12 @@ B.~J. Anderson, M.~J. Engebretson, S.~P. Rounds, L.~J. Zanetti, and T.~A.
 \newblock A statistical study of {Pc} 3-5 pulsations observed by the
   {AMPTE}/{CCE} magnetic fields experiment, 1. occurrence distributions.
 \newblock {\em J. Geophys. Res.}, 95(A7):10495, 1990.
+
+\bibitem{arthur_1981}
+C.~W. Arthur and R.~L. McPherron.
+\newblock The statistical character of {Pc} 4 magnetic pulsations at
+  synchronous orbit.
+\newblock {\em J. Geophys. Res.}, 86(A3):1325, 1981.
 
 \bibitem{birkeland_1901}
 K.~Birkeland.
@@ -33,11 +39,28 @@ A.~Brekke, T.~Feder, and S.~Berger.
 \newblock {\em Journal of Atmospheric and Terrestrial Physics},
   49(10):1027--1032, 1987.
 
+\bibitem{chan_1994}
+A.~A. Chan, M.~Xia, and L.~Chen.
+\newblock Anisotropic alfv{\'e}n-ballooning modes in {Earth}'s magnetosphere.
+\newblock {\em J. Geophys. Res. Space Physics}, 99(A9):17351--17366, 1994.
+
 \bibitem{chen_1974}
 L.~Chen and A.~Hasegawa.
 \newblock A theory of long-period magnetic pulsations: 1. steady state
   excitation of field line resonance.
 \newblock {\em J. Geophys. Res.}, 79(7):1024--1032, 1974.
+
+\bibitem{chen_1991}
+L.~Chen and A.~Hasegawa.
+\newblock Kinetic theory of geomagnetic pulsations: 1. internal excitations by
+  energetic particles.
+\newblock {\em J. Geophys. Res.}, 96(A2):1503, 1991.
+
+\bibitem{cheng_1994}
+C.~Z. Cheng and Q.~Qian.
+\newblock Theory of ballooning-mirror instabilities for anisotropic pressure
+  plasmas in the magnetosphere.
+\newblock {\em J. Geophys. Res.}, 99(A6):11193, 1994.
 
 \bibitem{cummings_1969}
 W.~D. Cummings, R.~J. O'Sullivan, and P.~J. Coleman.
@@ -72,6 +95,12 @@ A.~W. Degeling, R.~Rankin, and Q.-G. Zong.
 \newblock Modeling radiation belt electron acceleration by {ULF} fast mode
   waves, launched by solar wind dynamic pressure fluctuations.
 \newblock {\em J. Geophys. Res. Space Physics}, 119(11):8916--8928, 2014.
+
+\bibitem{denton_2011}
+R.~E. Denton, M.~F. Thomsen, K.~Takahashi, R.~R. Anderson, and H.~J. Singer.
+\newblock Solar cycle dependence of bulk ion composition at geosynchronous
+  orbit.
+\newblock {\em J. Geophys. Res.}, 116(A3), 2011.
 
 \bibitem{dhaeseleer_1991}
 W.~D. D'haeseleer, W.~N. G. H. J.~D. Callen, and J.~L. Shohet.
@@ -127,6 +156,12 @@ M.~J. Engebretson, L.~J. Zanetti, T.~A. Potemra, D.~M. Klumpar, R.~J.
   equator during quiet times.
 \newblock {\em J. Geophys. Res.}, 93(A11):12795, 1988.
 
+\bibitem{eriksson_2005}
+P.~T.~I. Eriksson, L.~G. Blomberg, A.~D.~M. Walker, and K.-H. Glassmeier.
+\newblock Poloidal {ULF} oscillations in the dayside magnetosphere: a {Cluster}
+  study.
+\newblock {\em Ann. Geophys.}, 23(7):2679--2686, 2005.
+
 \bibitem{fujita_1988}
 S.~Fujita and T.~Tamao.
 \newblock Duct propagation of hydromagnetic waves in the upper ionosphere, 1,
@@ -137,7 +172,13 @@ S.~Fujita and T.~Tamao.
 \bibitem{glassmeier_1980}
 K.-H. Glassmeier.
 \newblock Magnetometer array observations of a giant pulsation event.
-\newblock {\em Journal of Geophysics Zeitschrift Geophysik}, 48:127--138, 1980.
+\newblock {\em J. Geophys.}, 48:127--138, 1980.
+
+\bibitem{glassmeier_1984}
+K.-H. Glassmeier.
+\newblock On the influence of ionospheres with non-uniform conductivity
+  distribution on hydromagnetic waves.
+\newblock {\em J. Geophys.}, 54(2):125--137, 1984.
 
 \bibitem{glassmeier_1999}
 K.-H. Glassmeier, S.~Buchert, U.~Motschmann, A.~Korth, and A.~Pedersen.
@@ -150,6 +191,12 @@ K.-H. Glassmeier, D.~Klimushkin, C.~Othmer, and P.~Mager.
 \newblock {ULF} waves at mercury: Earth, the giants, and their little brother
   compared.
 \newblock {\em Advances in Space Research}, 33(11):1875--1883, 2004.
+
+\bibitem{glassmeier_2000}
+K.-H. Glassmeier and M.~Stellmacher.
+\newblock Concerning the local time asymmetry of {Pc5} wave power at the ground
+  and field line resonance widths.
+\newblock {\em J. Geophys. Res.}, 105(A8):18847--18855, 2000.
 
 \bibitem{green_1979}
 C.~A. Green.
@@ -167,6 +214,12 @@ C.~Greifinger and P.~S. Greifinger.
 \newblock Theory of hydromagnetic propagation in the ionospheric waveguide.
 \newblock {\em J. Geophys. Res.}, 73(23):7473--7490, 1968.
 
+\bibitem{haerendel_1999}
+G.~Haerendel, W.~Baumjohann, E.~Georgescu, R.~Nakamura, L.~M. Kistler,
+  B.~Klecker, H.~Kucharek, A.~Vaivads, T.~Mukai, and S.~Kokubun.
+\newblock High-beta plasma blobs in the morningside plasma sheet.
+\newblock {\em Ann. Geophys.}, 17(12):1592--1601, 1999.
+
 \bibitem{hall_2015}
 B.~C. Hall.
 \newblock {\em Lie Groups, Lie Algebras, and Representations}.
@@ -179,6 +232,11 @@ Y.~X. Hao, Q.-G. Zong, Y.~F. Wang, X.-Z. Zhou, H.~Zhang, S.~Y. Fu, Z.~Y. Pu,
 \newblock Interactions of energetic electrons with {ULF} waves triggered by
   interplanetary shock: Van allen probes observations in the magnetotail.
 \newblock {\em J. Geophys. Res. Space Physics}, 119(10):8262--8273, 2014.
+
+\bibitem{hasegawa_1971}
+A.~Hasegawa.
+\newblock Drift-wave instability at the plasmapause.
+\newblock {\em J. Geophys. Res.}, 76(22):5361--5364, 1971.
 
 \bibitem{hillebrand_1982}
 O.~Hillebrand, J.~Muench, and R.~L. McPherron.
@@ -242,6 +300,14 @@ R.~L. Kessel.
   the ground.
 \newblock {\em J. Geophys. Res.}, 113(A4), 2008.
 
+\bibitem{kivelson_2006}
+M.~G. Kivelson.
+\newblock Ulf waves from the ionosphere to the outer planets.
+\newblock In K.~Takahashi, P.~J. Chi, R.~E. Denton, and R.~L. Lysak, editors,
+  {\em Magnetospheric {ULF} Waves: Synthesis and New Directions}, volume 169 of
+  {\em Geophys. Monogr.}, pages 11--30. American Geophysical Union, Washington,
+  DC, 2006.
+
 \bibitem{klimushkin_1998}
 D.~Y. Klimushkin.
 \newblock Resonators for hydromagnetic waves in the magnetosphere.
@@ -252,6 +318,18 @@ D.~Y. Klimushkin, P.~N. Mager, and K.-H. Glassmeier.
 \newblock Toroidal and poloidal {Alfv{\'e}n} waves with arbitrary azimuthal
   wavenumbers in a finite pressure plasma in the earth's magnetosphere.
 \newblock {\em Annales Geophysicae}, 22(1):267--287, 2004.
+
+\bibitem{kokubun_1980}
+S.~Kokubun.
+\newblock Observations of {Pc} pulsations in the magnetosphere:
+  Satellite-ground correlation.
+\newblock {\em J. Geomagn. Geoelec}, 32(Supplement2):SII17--SII39, 1980.
+
+\bibitem{kokubun_1989}
+S.~Kokubun, K.~N. Erickson, T.~A. Fritz, and R.~L. McPherron.
+\newblock Local time asymmetry of {Pc} 4-5 pulsations and associated particle
+  modulations at synchronous orbit.
+\newblock {\em J. Geophys. Res.}, 94(A6):6607--6625, 1989.
 
 \bibitem{lee_1998}
 D.-H. Lee.
@@ -365,6 +443,12 @@ J.~V. Olson and G.~Rostoker.
 \newblock Longitudinal phase variations of {Pc} 4-5 micropulsations.
 \newblock {\em J. Geophys. Res. Space Physics}, 83(A6):2481--2488, 1978.
 
+\bibitem{ozeke_2001}
+L.~G. Ozeke and I.~R. Mann.
+\newblock Modeling the properties of high-m {Alfv{\'e}n} waves driven by the
+  drift-bounce resonance mechanism.
+\newblock {\em J. Geophys. Res.}, 106(A8):15583--15597, 2001.
+
 \bibitem{ozeke_2008}
 L.~G. Ozeke and I.~R. Mann.
 \newblock Energization of radiation belt electrons by ring current ion driven
@@ -426,6 +510,13 @@ C.~T. Russell, J.~G. Luhmann, T.~J. Odera, and W.~F. Stuart.
   dependence of the {IMF} cone angle effect.
 \newblock {\em Geophys. Res. Lett.}, 10(8):663--666, 1983.
 
+\bibitem{sibeck_2012}
+D.~G. Sibeck, G.~Korotova, D.~L. Turner, V.~Angelopoulos, K.-H. Gla{\ss}meier,
+  and J.~P. McFadden.
+\newblock Frequency doubling and field-aligned ion streaming in a long-period
+  poloidal pulsation.
+\newblock {\em J. Geophys. Res.}, 117(A11), 2012.
+
 \bibitem{singer_1982}
 H.~J. Singer, W.~J. Hughes, and C.~T. Russell.
 \newblock Standing hydromagnetic waves observed by {ISEE} 1 and 2: Radial
@@ -462,6 +553,12 @@ K.~Takahashi, R.~E. Denton, W.~Kurth, C.~Kletzing, J.~Wygant, J.~Bonnell,
 \newblock Externally driven plasmaspheric {ULF} waves observed by the {Van
   Allen Probes}.
 \newblock {\em J. Geophys. Res. Space Physics}, 120(1):526--552, 2015.
+
+\bibitem{takahashi_1987}
+K.~Takahashi, J.~F. Fennell, E.~Amata, and P.~R. Higbie.
+\newblock Field-aligned structure of the storm time {Pc} 5 wave of november
+  14--15, 1979.
+\newblock {\em J. Geophys. Res.}, 92(A6):5857, 1987.
 
 \bibitem{takahashi_2011}
 K.~Takahashi, K.-H. Glassmeier, V.~Angelopoulos, J.~Bonnell, Y.~Nishimura,
@@ -510,6 +607,12 @@ W.~Tu, S.~R. Elkington, X.~Li, W.~Liu, and J.~Bonnell.
   based on global {MHD} simulation and spacecraft measurements.
 \newblock {\em J. Geophys. Res.}, 117(A10), 2012.
 
+\bibitem{vaivads_2001}
+A.~Vaivads, W.~Baumjohann, G.~Haerendel, R.~Nakamura, H.~Kucharek, B.~Klecker,
+  M.~R. Lessard, L.~M. Kistler, T.~Mukai, and A.~Nishida.
+\newblock Compressional {Pc5} type pulsations in the morningside plasma sheet.
+\newblock {\em Ann. Geophys.}, 19(3):311--320, 2001.
+
 \bibitem{waters_2013}
 C.~L. Waters, R.~L. Lysak, and M.~D. Sciffer.
 \newblock On the coupling of fast and shear {Alfv{\'e}n} wave modes by the
@@ -528,6 +631,26 @@ J.~R. Woodroffe and R.~L. Lysak.
   resonator: Characteristics and implications for the interpretation of ground
   magnetic fields.
 \newblock {\em J. Geophys. Res.}, 117:A03223, 2012.
+
+\bibitem{wright_1999}
+D.~M. Wright and T.~K. Yeoman.
+\newblock High-latitude {HF} doppler observations of {ULF} waves: 2. waves with
+  small spatial scale sizes.
+\newblock {\em Ann. Geophys.}, 17(7):868--876, 1999.
+
+\bibitem{yang_2010}
+B.~Yang, Q.-G. Zong, Y.~F. Wang, S.~Y. Fu, P.~Song, H.~S. Fu, A.~Korth,
+  T.~Tian, and H.~Reme.
+\newblock Cluster observations of simultaneous resonant interactions of {ULF}
+  waves with energetic electrons and thermal ion species in the inner
+  magnetosphere.
+\newblock {\em J. Geophys. Res.}, 115(A2), 2010.
+
+\bibitem{yeoman_2001}
+T.~K. Yeoman and D.~M. Wright.
+\newblock {ULF} waves with drift resonance and drift-bounce resonance energy
+  sources as observed in artificially-induced {HF} radar backscatter.
+\newblock {\em Ann. Geophys.}, 19(2):159--170, 2001.
 
 \bibitem{zong_2007}
 Q.-G. Zong, X.-Z. Zhou, X.~Li, P.~Song, S.~Y. Fu, D.~N. Baker, Z.~Y. Pu, T.~A.
