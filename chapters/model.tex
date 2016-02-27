@@ -5,6 +5,8 @@
 \chapter{Numerical Model}
   \label{ch_model}
 
+\todo{This model allows arbitrary driving/propagating waveform, absorption, refraction, phase/group delay, frequency shift, polarization, faraday rotation\cite{simpson_2004,samimi_2015}. }
+
 \todo{Sketch out this chapter. What does 2.5 dimensions mean? Why is it an appropriate approach to this problem? Why is this model in particular a good fit? What previous similar work has been done? What's novel about this mode? }
 
 \todo{Also 2.5D: Waters 2013\cite{waters_2013}. And Waters 2008\cite{waters_2008}. }
@@ -242,6 +244,8 @@ Note that the \assign operator is used in \cref{farlaw_final} to indicate assign
   \label{sec_e}
 
 \amplaw, as formulated in \cref{def_eqns}, presents a nontrivial differential equation. Not only are the electric field values coupled to their own derivatives, but the crosswise and azimuthal components of the equation are coupled by the Hall terms in the conductivity tensor. 
+
+\todo{``The derivative of \vec{J} depends on the future value of \vec{j}.'' }
 
 Fortunately, the permittivity tensor can be easily inverted, allowing a solution by integrating factor. Recalling the shorthand introduced in \cref{def_curls},
 \begin{align}
