@@ -209,6 +209,11 @@ C.~A. Green.
 \newblock Giant pulsations in the plasmasphere.
 \newblock {\em Planetary and Space Science}, 33(10):1155--1168, 1985.
 
+\bibitem{green_2006}
+J.~L. Green and S.~Boardsen.
+\newblock Duration and extent of the great auroral storm of 1859.
+\newblock {\em Advances in Space Research}, 38(2):130--135, 2006.
+
 \bibitem{greifinger_1968}
 C.~Greifinger and P.~S. Greifinger.
 \newblock Theory of hydromagnetic propagation in the ionospheric waveguide.
@@ -428,6 +433,11 @@ I.~R. Mann, A.~N. Wright, and A.~W. Hood.
 \newblock Multiple-timescales analysis of ideal poloidal {Alfv{\'e}n} waves.
 \newblock {\em J. Geophys. Res.}, 102(A2):2381--2390, 1997.
 
+\bibitem{lloyds_2013}
+T.~Maynard, N.~Smith, S.~Gonzalez, et~al.
+\newblock Solar storm risk to the {North American} electric grid.
+\newblock 2013.
+
 \bibitem{motoba_2015}
 T.~Motoba, K.~Takahashi, J.~V. Rodriguez, and C.~T. Russell.
 \newblock Giant pulsations on the afternoonside: Geostationary satellite and
@@ -437,6 +447,10 @@ T.~Motoba, K.~Takahashi, J.~V. Rodriguez, and C.~T. Russell.
 \bibitem{nasa_cdaweb}
 NASA.
 \newblock Coordinated data analysis (workshop) web.
+
+\bibitem{nasa_2012}
+NASA.
+\newblock Near miss: The solar superstorm of july 2012.
 
 \bibitem{olson_1978}
 J.~V. Olson and G.~Rostoker.

@@ -15,7 +15,7 @@ Phenomenological. The boundaries are fuzzy since sometimes we want to talk about
 
 Pi2: ``Clearly linked to substorm disturbances and other impulsive dynamics are the irregularly shaped waves in the 7--25-mHz band referred to as Pi2. Recent work on these waves suggests that their periodicity reflects the spectrum of global mode excitations of the plasmasphere but there is a competing proposal that the dominant frequencies are imposed by the modulated flows in the magnetotail.''\cite{kivelson_2006}
 
-
+To talk about field line resonance, we need to talk about adiabatic invariants. 
 
 
 \begin{longtable}{ @{\extracolsep{\fill}} cccccccc @{\extracolsep{\fill}} }
@@ -403,7 +403,7 @@ In \cref{disp}, the expression in parentheses is the dispersion tensor, $\disper
 
 \todo{Parallel propagation is ineresting because it's a naive representation of a field line resonance. Perpendicular propagation is interesting because the movement of energy across field lines is a topic of particular interest. In both cases, the cross terms in $\vec{k} \, \vec{k}$ vanish, decoupling the parallel and perpendicular polarizations. }
 
-\todo{Without loss of generality, the wave vector $\vec{k}$ is presumed to lie in the \x-\z plane. The distinction between the azimuthal and crosswise directions is revisited in \cref{sec_math_implications}. }
+\todo{Without loss of generality, the wave vector $\vec{k}$ is presumed to lie in the \x-\z plane. The distinction between the azimuthal and crosswise directions is revisited later. }
 
 \todo{ACTUALLY: does this even matter? If we keep $\phi$ in there in addition to $\theta$, does it cancel out? Seems like it should. }
 
@@ -517,7 +517,7 @@ The second expression of \cref{perpendicular_math_setup} can also be solved dire
 
 In the limit of large radial distance, where the density is very low, it's reasonable to neglect the Pedersen conductivity, the Hall conductivity, and the collision rate. 
 
-Without loss of generality, the wave vector $\vec{k}$ can be presumed to lie in the \x-\z plane\footnote{The azimuthal-propagation case is discussed in \cref{sec_math_implications}}. 
+Without loss of generality, the wave vector $\vec{k}$ can be presumed to lie in the \x-\z plane\footnote{\todo{The azimuthal-propagation case is discussed in XXX.}}. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -578,32 +578,32 @@ Noting that $\op$ is very large, the two roots simplify to
 %\end{align}
 
 
-% =============================================================================
-% =============================================================================
-% =============================================================================
-\subsection{Implications for This Work}
-  \label{sec_math_implications}
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-%\subsection{Mode Coupling}
-
-\todo{Have we got enough/appropriate math here to talk about how $\sh$ rotates fields at the ionosphere? Doubtful. }
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-%\subsection{High Modenumber Cutoff}
-
-As $\azm$ becomes large, it puts a lower bound on the modenumber, and thus on the frequency. For an \Alfven wave, $\omega^2 = k^2 \va^2$,
-\begin{align}
-  k \ge k_\phi = \frac{\azm}{2 \pi r} \qquad \text{so} \qquad \omega \ge \frac{\azm}{2 \pi r} \va
-\end{align}
-
-Any wave with a frequency below this threshold will become evanescent. 
-
-\todo{This point is pretty important. It's revisited in \cref{sec_driving}. }
+%% =============================================================================
+%% =============================================================================
+%% =============================================================================
+%\subsection{Implications for This Work}
+%  \label{sec_math_implications}
+%
+%% -----------------------------------------------------------------------------
+%% -----------------------------------------------------------------------------
+%% -----------------------------------------------------------------------------
+%%\subsection{Mode Coupling}
+%
+%\todo{Have we got enough/appropriate math here to talk about how $\sh$ rotates fields at the ionosphere? Doubtful. }
+%
+%% -----------------------------------------------------------------------------
+%% -----------------------------------------------------------------------------
+%% -----------------------------------------------------------------------------
+%%\subsection{High Modenumber Cutoff}
+%
+%As $\azm$ becomes large, it puts a lower bound on the modenumber, and thus on the frequency. For an \Alfven wave, $\omega^2 = k^2 \va^2$,
+%\begin{align}
+%  k \ge k_\phi = \frac{\azm}{2 \pi r} \qquad \text{so} \qquad \omega \ge \frac{\azm}{2 \pi r} \va
+%\end{align}
+%
+%Any wave with a frequency below this threshold will become evanescent. 
+%
+%\todo{This point is pretty important. It's revisited in \cref{sec_driving}. }
 
 
 
