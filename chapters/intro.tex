@@ -2,7 +2,7 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Survey of the Near-Earth Environment
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{The Near-Earth Environment}
+\chapter{Introduction}
   \label{ch_intro}
 
 The 1850s were a pivotal time in human history. The United States spiraled toward the American Civil War, which would abolish slavery and consolidate the power of the federal government. A slew of conflicts in Southern Europe, such as the Austro-Sardinian War, led to the unification of modern Italy. China was beset by Western powers in the Second Opium War, while simultaneously fighting the Taiping Civil War, one of the bloodiest conflicts in human history. Origin of Species was published, the first transatlantic telegraph cable was laid, and modern epidemiology was developed in response to a Cholera outbreak in London. 
@@ -22,8 +22,7 @@ The study of space weather revolves around the transfer of energy from the Sun t
 % =============================================================================
 % =============================================================================
 % =============================================================================
-\section{Steady State}
-
+\section{The Near-Earth Environment}
 
 \todo{Sketch out the goneral structure of the magnetosphere, from the ionospheric current sheet (is this too generous?) to the magnetopause (a real current sheet). Talk about where gravity dominates, where field line curvature becomes apparent, and where the moon sits in all this. }
 
@@ -269,20 +268,11 @@ Precipitation. Inverted V.
 % -----------------------------------------------------------------------------
 \subsection{Substorms}
 
-
-
-
-
 Storms! CMEs, etc. 
 
 What causes a storm. 
 
 Storm effects: outer magnetosphere, inner magnetosphere, on the ground.
-
-
-
-
-
 
 The ionospheric profiles used in this model are based on values tabulated in the Appendix B of Kelley's book\cite{kelley_1989}. They were adapted by Lysak\cite{lysak_2013} to take into account the effect of the magnetosphere's latitude-dependent density profile. 
 
@@ -311,5 +301,277 @@ Each profile is resolved to an altitude of about $\SI{e4}{\km}$, and include wel
 
 
 
+
+% =============================================================================
+% =============================================================================
+% =============================================================================
+\section{Field Line Resonance}
+
+
+
+
+
+
+\todo{Haven't read this paper yet, but it looks fun: \cite{glassmeier_2004}. }
+
+\todo{Fishbone instability? }
+
+\todo{Lab \Alfven waves as LASP? }
+
+The motion of a charged particle in a dipole field can be described in terms of three fundamental motions. First is cyclotron motion: a particle orbits around a magnetic field line. Second is bounce motion: while orbiting, the particle moves along the field line like a bead on a string, back and forth between the northern and southern hemispheres\footnote{As a particle approaches Earth, it experiences an ever-stronger magnetic field. The particle's perpendicular kinetic energy increases in proportion with the magnetic field in order to conserve its first adiabatic invariant. When the perpendicular kinetic energy can no longer increase -- that is, when the parallel kinetic energy is zero -- the particle bounces back. (If the parallel kinetic energy is sufficiently large, the particle doesn't bounce; it precipitates into the atmosphere.)}. Third is drift motion: as particles orbit and bounce, they also experience a net azimuthal motion\footnote{Particle drift is a consequence of the gradient-curvature drift in Earth's curved, nonuniform magnetic field.}
+
+\todo{Electron cyclotron frequency is on the order of $\sim \SI{1}{\MHz}$ in the ionosphere, and more like $\sim \SI{1}{\kHz}$ in the magnetosphere. Much faster than drift or bounce timescales. Ion cyclotron frequency... down by a factor of $\frac{\me}{\mp}$. }
+
+\todo{Bounce timescales are faster closer to Earth (where the field lines are short) and slower further out. Something like \SIrange{10}{100}{\second}. Bounce timescales depend only on velocity, right? }
+
+\todo{Drift timescales vary significantly based on particle energy. Dai\cite{dai_2013} showed a nice example of \SI{100}{\kilo\eV} ions drifting with a period of $\sim \SI{100}{\s}$. Bounce and drift timescales can overlap -- this turns out to be important. This doesn't depend on mass, right? Just kinetic energy. }
+
+\todo{Electromagnetic waves are oscillating all over the place in the magnetosphere. When wave oscillation frequency lines up with a particle's cyclotron, bounce, and/or drift period, there can be an ongoing energy exchange between the wave and the particle. Wave-particle interaction. Analogy: a surfer moves along with a wave in the ocean, continuously gaining energy from it. Particles, by ``surfing'' on electromagnetic waves, can become energized as well as radially displaced. This is a significant energy transport mechanism. }
+
+\todo{Any waves with frequencies of $\SIrange{e-3}{1}{\Hz}$ are termed ULF waves -- ultra low frequency. ULF waves are furthermore categorized in terms of their morphological characteristics. Pc waves are continuous (exhibiting a fairly consistent waveform over a large number of wave periods) while Pi are irregular; the waves are further partitioned into frequency bands. See \cref{tab_iaga}. }
+
+\todo{These are Jacobs' original ranges... but are they really reflective of the jargon still used? It's weird that these ranges bottom out so far below 1000s. }
+
+\begin{longtable}{ @{\extracolsep{\fill}} cccccccc @{\extracolsep{\fill}} }
+  \caption[IAGA Magnetic Pulsation Frequency Bands]{IAGA Magnetic Pulsation Frequency Bands\cite{jacobs_1964}}
+  \label{tab_iaga} \\
+
+  \toprule
+  &
+  Pc1 &
+  Pc2 &
+  Pc3 &
+  Pc4 &
+  Pc5 &
+  Pi1 &
+  Pi2 \\
+  \midrule
+  \endfirsthead
+
+  % Footer for the end of the table
+  \bottomrule
+  \endlastfoot
+
+  Period (\si{\second}) &
+  0.2--5 &
+  5--10 &
+  10--45 &
+  45--150 &
+  150--600 &
+  1--40 &
+  40--150 \\
+
+  Frequency (\si{\mHz})&
+  200--5000 &
+  100--200 &
+  22--100 &
+  7--22 &
+  2--7 &
+  25--1000 &
+  7--25 \\
+
+\end{longtable}
+
+\todo{While the IAGA characterizations are based on wave morphology, they do a decent job of deliniating between the different underlying physical processes as well. Pi2 pulsations (irregular waves with periods of a minute or two) tend to be excited on the nightside; they are associated with substorm onset (though the processes that give rise to Pi2s -- and their relation to substorm onset -- remains controversial). Pc1 and Pc2 pulsations tend to be EMIC (electromagnetic ion cyclotron) waves near the ion gyrofrequency, which are important for the precipitation of electrons (?). }
+
+Pi2: ``Clearly linked to substorm disturbances and other impulsive dynamics are the irregularly shaped waves in the 7--25-mHz band referred to as Pi2. Recent work on these waves suggests that their periodicity reflects the spectrum of global mode excitations of the plasmasphere but there is a competing proposal that the dominant frequencies are imposed by the modulated flows in the magnetotail.''\cite{kivelson_2006}
+
+\todo{The present work is specifically concerned with field line resonances near the plasmapause. These waves fall in the Pc4 range, with frequencies around \SI{10}{\mHz}\footnote{Notably, field line resonances can also fall within the Pc3 and Pc5 ranges. }. }
+
+
+
+
+
+
+The study of field line resonance dates back to Dungey's seminal work in 1954\cite{dungey_1954}, which describes the possibility of an \Alfven wave bouncing back and forth along a magnetic field line.
+
+\todo{Field line resonance is an important energy transport mechanism! }
+
+Drift resonance happens when the bounce frequency of an \Alfven wave between the northern and southern ionospheres matches the bounce frequency of nearby particles. It allows the energization of ring current and radiation belt particles through drift and drift-bounce resonance\cite{elkington_1999,mann_2013,ozeke_2008,southwood_1976}. By multiple wave-particle interactions, poloidal ULF waves [FLRs] can lead to radial diffusion of radiation belt particles\cite{elkington_2003,ozeke_2012,tu_2012}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/va.pdf}
+    \caption[\Alfven Speed Profiles]{
+      \Alfven speed profiles, adapted by Lysak\cite{lysak_2013} from Appendix B of Kelley's textbook\cite{kelley_1989}. 
+    }
+    \label{fig_va}
+\end{figure}
+
+\todo{Above the profile, Bob scales the value that's read in as $r^5$ or something. Is there a citation for that? }
+
+The \Alfven speed is then computed per $\va^2 \equiv \frac{1}{\mz \ep}$. 
+
+The \Alfven speed is computed from Kelley's low-density profile, modified to take into account the local density. The density, in turn, is the sum of a plasmaspheric profile and a high-latitude auroral profile. 
+\begin{align}
+  \ep &= \text{(low-density tabulated value)} + \frac{ n \bar{m} }{B_0^2}
+\end{align}
+
+Where $\bar{m}$ is the ambient mean molecular mass and $B_0$ is the zeroth-order magnetic field strength, $B_0 = \SI{3.11e4}{\nano\tesla} \lr{ \frac{R_E}{r} }^3 \sqrt{ 1 + 3 \cos^2 \theta }$. Note that \SI{3.11e4}{\nano\tesla} is the value of the Earth's magnetic field at the equator on Earth's surface. 
+
+\todo{Does Kelley list the electric constant or the \Alfven speed? }
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fa.pdf}
+    \caption[\Alfven Bounce Frequency Profiles]{
+      \Alfven bounce frequency profiles, computed by integrating the the \Alfven speed back and forth over a field line. $f_A = \lrb{ \oint \frac{dz}{v_A} }^{-1}$. Dotted lines indicate the Pc4 frequency range, \SIrange{7}{25}{\mHz}. In each profile, the effect of the plasmapause is clearly visible, centered at $L=4$. Field lines just inside and just outside the plasmapause appear susceptible to resonance in the Pc4 band. 
+    }
+    \label{fig_fa}
+\end{figure}
+
+\todo{Talk about how the size of the plasmasphere can be adjusted, and \SI{4}{\RE} is just a typical value. }
+
+ULF waves have been shown to correlate with pulsating aurora and with chorus\cite{jaynes_2015}. It's believed that (in the case presented) substorm injection drove Pc4-5 pulsations, which modulated chorus waves, which pitch-angle scattered electrons with energies on the order of \SI{10}{\kilo\eV}. 
+
+\todo{Early observations of field line resonance. }
+
+Ground signatures in the Pc4 range identified in the 1930s\cite{angenheister_1931}. Decades later, simultaneous observations at conjugate foot points of the same field line showed FLR structure\cite{sigura_1961}. And looked at their structure (?) \cite{nagata_1963}. 
+
+\todo{Modern observations -- how do we justify using a 2.5D model? Localization in MLT. }
+
+Pc4 pulsations are radially localized, per multiple satellite observations\cite{engebretson_1992}, and spread no more than about 8 hours MLT. They peak around $L$ of 5 to 6, with lower occurrence rate 2.5 to 9\cite{anderson_1990,liu_2009}.
+
+\todo{Radial localization. }
+
+The plasmapause -- representing a sharp change in \Alfven speed -- is important for ULF waves. Waves are trapped and scattered by the effective potential well, analogous to \Schrodinger's equation\cite{lee_1998,lee_1999,dai_2009}. This has been shown theoretically\cite{klimushkin_1998,leonovich_2000,klimushkin_2004,mager_2013} (most recent is \cite{mager_2013}) and observationally\cite{takahashi_2009,takahashi_2010}. 
+
+\todo{On the generation of FLRs: }
+
+Compressional waves come from the outer boundary, propagating across field lines\cite{lysak_1992}. 
+
+Compressional driving doesn't preclude drift or drift-bounce resonance\cite{zong_2007,zong_2009}. 
+
+Plasmapause refilling may cause onset of the instability that drives noncompressional Pc4s\cite{engebretson_1992,liu_2013}. 
+
+Low \azm is compressional\cite{hughes_1994}. Drivers may include KH at the magnetopause\cite{chen_1974,southwood_1974,liu_2011}, variations in solar wind pressure (such as interplanetary shocks)\cite{zong_2007,zong_2009,hao_2014,degeling_2014,kessel_2008}, and waves in the foreshock region\cite{russell_1983,takahashi_2015}. 
+
+AMPTE/CCE data has shown a correlation between poloidal Pc4 activity and intense ring current flux near the equator\cite{engebretson_1988}. Poloidal Pc4s may be caused by phase space gradients\cite{dai_2013}. Fundamental standing waves are possibly excited by drift resonance of ions with energy around \SI{100}{\kilo\eV}\cite{thompson_2001,dai_2013}.
+
+``To summarize, the general buffetting of the magnetosphere by variations in the solar wind dynamic pressure, or perhaps by sporadic magnetic reconnection, provides a broad band energy source to the magnetosphere. The magnetospheric cavity as a whole rings at its own eigenfrequencies, thus transporting energy at just those frequencies to field lines deep in the magnetosphere. Those field lines whose eigenfrequencies match one of the cavity eigenfrequencies couple to the cavity mode and resonate strongly, producing the classical field line resonance signature.\cite{hughes_1994}'' 
+
+``It is unclear whether other generation mechanisms of fundamental standing waves such as drift wave instability\cite{green_1979} can explain the localization of Pgs in local time (LT).''\cite{motoba_2015}
+
+\todo{Observational constraints for ground-based work on FLRs: }
+
+High-modenumber ULF pulsations are damped by the ionosphere, making it more difficult to observe them on the ground\cite{hughes_1976}. Small structures are also damped; resonances narrower than $\sim \SI{100}{km}$ aren't visible on the ground. See also Glassmeier and Stellmacher, 2000 (about small latitude), and Wright and Yeoman, 1999, Yeoman and Wright, 2001 about large \azm. 
+
+Second harmonic poloidal waves -- as most of \cite{dai_2015}'s events are -- are unlikely to cause a Pg event on the ground\cite{takahashi_1992}. 
+
+It's perhaps not surprising that, finding events based on ground signatures, \azm would skew low. High-\azm waves can't penetrate the ionosphere. Multi-spacecraft observation of a ULF wave with very high modenumber (70+) and no apparent ground signature\cite{takahashi_2013}. 
+
+\todo{The ionosphere is important: }
+
+A Hall-conducting ionosphere reflects ULF waves\cite{hughes_1974}. 
+
+Poloidal and toroidal ULF polarizations are treated differently by the ionosphere\cite{greifinger_1968} (more recently, \cite{fujita_1988}).  
+
+\todo{Theoretical consideration of decay vs propagation, by frequency. Lysak and Yoshikawa 2006. }
+
+\Alfven waves with small latitudinal scale\cite{glassmeier_2000} or high \azm\cite{wright_1999,yeoman_2001} are screened by the ionosphere. Attenuation factor from \cite{hughes_1976} and \cite{glassmeier_1984} DID NOT PRINT PROPERLY. LOOK IT UP. 
+
+Typical magnitude is order of a few nT, and a few mV/m\cite{takahashi_2013}. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Structure and Jargon}
+
+\todo{Poloidal and toroidal, fundamental mode and second harmonic... make sure this vocabulary is inescapably clear! }
+
+Drift-wave instability\cite{hasegawa_1971,green_1979,green_1985} is also a possibility for exciting fundamental poloidal waves, though it requires cold plasma, so it could only happen in the plasmasphere. 
+
+Fundamental poloidal mode is drift resonance, not drift bounce\cite{poulter_1983}. 
+
+Pc5 waves peak around $L$ of 7 to 9, too far out for RBSP\cite{anderson_1990,liu_2009}. Poloidal Pc4 pulsations are common inside and outside the plasmapause. Plasmapause peaks at 4.8--5 RE and 5.8--6RE\cite{dai_2015}. 
+
+Because the inner magnetosphere is low-$\beta$ (that is, magnetic pressure dominates thermal pressure), the strength of the compressional-poloidal coupling indicates \azm\cite{hughes_1994}. 
+
+At high \azm, the poloidal mode decouples from the compressional mode\cite{hughes_1994} and becomes guided\cite{cummings_1969}. 
+
+Most observed guided waves are second harmonic excited by the drift-bounce resonance\cite{hughes_1978,singer_1982,takahashi_1990}. Fundamental modes, driven by drift resonance, are rarer, but have been observed\cite{dai_2013}. The energy of the resonant particle gives \azm, recall $\omega - \azm \omega_d = 0$ or something\cite{ozeke_2001}. 
+
+A recent survey of Van Allen Probe data showed that Pc4 pulsations -- the poloidal ones, at least -- occur primarily during geomagnetically active times, near the plasmapause, over just a handful of hours of dayside MLT\cite{dai_2015}. This confirmed and refined older work\cite{engebretson_1987}. 
+
+In the example shown of a fundamental mode poloidal Pc4, and in the example of a higher harmonic Pc4, a mishmash of toroidal activity is present. \cite{dai_2015}, figure 8 and 9 respectively. 
+
+Compressional poloidal Pc4 pulsations are much more common during storms, but not particularly sensitive to storm phase. Noncompressional ones occur primarily during recovery\cite{dai_2015,rostoker_1979,engebretson_1992,anderson_1994}. Note that Dai\cite{dai_2015} was pretty generous about what counted as a storm... anything that hits \SI{-30}{\nano\tesla}. So \cite{motoba_2015} may not have counted the same way when they found no particular correlation with storm phase. 
+\todo{Fishbone instability. McGuire 1983, Chen 1984. Similar phenomenon, but for lab plasmas. }
+
+An ideal poloidal mode decays to the toroidal mode in the presence of curved magnetic field lines\cite{radoski_1974} or a gradient in the \Alfven speed\cite{mann_1995}. The time is proportional to the azimuthal wavenumber\cite{mann_1995}. An analytical follow-up agreed with the numerical work\cite{mann_1997}. 
+
+\todo{Mann gives the poloidal-to-toroidal decay time to be $\tau = \frac{d \lambda}{d \omega_A'}$, where $\lambda = \frac{\azm}{2 \pi r}$ and $\omega_A'$ is the spatial derivative of the \Alfven bounce frequency, but this doesn't seem to line up. When $\tau$ is computed using our \Alfven bounce frequencies, the result is much less than \SI{1}{\second}. Double-checking is necessary. }
+
+\cite{cummings_1969}: Standing \Alfven waves in the magnetosphere. Theoretical fundamental toroidal and poloidal modes can vary by up to \SI{30}{\percent} in frequency. 
+
+Second harmonic: Br leads Ea by 90 degrees. Fundamental mode: Br lags Ea by 90 degrees. DEPENDS ON SIGN OF MLAT. \cite{dai_2015}
+
+Low-\azm waves tend to be more muddled... driven by broadband sources rather than resonance\cite{dai_2015}. 
+
+Drift resonance is the fundamental mode. Drift-bounce is higher harmonics\cite{dai_2015}. 
+
+\todo{Do the unambiguous Pc4 events in \cite{takahashi_2011} and \cite{dai_2013} also have a mishmash of toroidal activity? }
+
+Fundamental mode is rare. Of 390 noncompressional events, Dai identified 19 to be clearly fundamental mode and 197 to be clearly second harmonic\cite{dai_2015}. 
+
+Fast and shear (toroidal and poloidal) modes are coupled by nonzero Hall conductivity\cite{kato_1956}. 
+
+Shear mode incident on the ionosphere, pederson current closes FAC, Hall current then generates a fast mode wave which may be detected in space or on the ground\cite{tamao_1965}. 
+
+Toroidal mode is usually associated with external driving\cite{chen_1974,southwood_1974}. 
+
+Guided poloidal wave arises as \azm goes to infinity\cite{radoski_1967_poloidal}. 
+
+Observations show that the poloidal mode is most excited in the second harmonic\cite{cummings_1969,hughes_1978,arthur_1981,singer_1982,takahashi_1984,engebretson_1988} even when there is a strong compressional component\cite{takahashi_1987,haerendel_1999,vaivads_2001,sibeck_2012}. 
+
+Theoretical justifications for why the second harmonic would be preferrentially excited in the ring current environment\cite{southwood_1976,chen_1991,cheng_1994,chan_1994}. 
+
+Observations of odd-mode poloidal waves... possible fundamental\cite{yang_2010,eriksson_2005}.
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Giant Pulsations}
+
+First Pg observation\cite{birkeland_1901}. 
+
+Pgs are most common during solar minimum, perhaps because of decreased mass loading of heavy ions\cite{denton_2011}. 
+
+Observations in space indicate that Pgs are fundamental poloidal mode\cite{kokubun_1980,hillebrand_1982,kokubun_1989,takahashi_1992,glassmeier_1999}. 
+
+Pgs are rare\cite{brekke_1987}. Most Pgs observed on the ground have \azm in the range 16 to 35\cite{takahashi_1992}. Motoba\cite{motoba_2015} found \azm valuse in the range 10 to 15 for a sample of Pgs. Previous studies\cite{rostoker_1979,glassmeier_1980,hillebrand_1982,poulter_1983} are in general agreement that Pg modenumbers fall into the range 16 to 35. 
+
+Nishida\cite{nishida_1964_screening} (or maybe \cite{nishida_1964_impulses}) shows a 90 degree rotation as a long-period \Alfven wave passes through the ionosphere. That would translate a poloidal resonance in space to an east-west ground signature. 
+
+\cite{motoba_2015} suggests that Pgs originate from the fundamental poloidal mode waves at all local times. 
+
+``Pgs maybe a manifestation of a small subset of fundamental poloidal waves excited in the magnetopause.'' \cite{takahashi_2013}
+
+It seems to be the convention to find a Pg event on the ground, then look at satellite data. That's certainly what was done in \cite{motoba_2015}. 
+
+Per \cite{motoba_2015}, most Pg events happen around $L=7$, but some do happen near the plasmapause, as seen(?) by \cite{green_1985}. 
+
+``The AL distribution shown in Figure 14c are consistent with the findings of \cite{rostoker_1979} that Pgs occur as the magnetosphere recovers from previous activities (substorms).''\cite{motoba_2015} Finds this to be reasonable because it's ``very likely'' that energetic ions injected into the inner magnetosphere from the magnetotail provide energy to Pgs. 
+
+Analysis of GOES data from 2008 to 2013 shows about 100 Pg events. They are concentrated on the morningside. No particular correlation with storm phase\cite{motoba_2015}. 
+
+Recall compressional poloidal Pc4s are mostly during storm time, and noncompressional are mostly specifically during late recovery\cite{dai_2015}. Only 19 fundamental poloidal mode examples were identified from the 390 noncompressional poloidal events. 
+
+Another past study: \cite{takahashi_1984}. Satellite data is surveyed and classified by polarization, harmonic, wavenumber, etc, in order to determine the mechanisms for generating \Alfven waves. Old, but still pretty representative, according to Motoba\cite{motoba_2015}. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{The Present Work}
+
+\todo{What's going on with the MLT localization of Pc4 pulsations? Is there something spooky going on with the driving? Maybe the ionosphere just kills FLRs on the nightside! }
+
+\todo{What's so special about Pgs? How rare are they, really, compared to fundamental poloidal modes in general? How does that line up with the occurrence rate of nice, sinusoidal waveforms in second-harmonic Pc4s? That is, is there something special about Pgs, or do they just live in a ``sweet spot'' with respect to constraints on observation and resonance? }
+
+\todo{The goal here is to clarify and unify several constraints on the viability and observability of FLRs. }
+
+``It is not clear why noncompressional [high-\azm] Pc4 poloidal waves, which are presumably driven by instability within the magnetosphere, preferrentially occur on the dayside.\cite{dai_2015}''
+
+``Pgs maybe a manifestation of a small subset of fundamental poloidal waves excited in the magnetopause.'' \cite{takahashi_2013}
 
 

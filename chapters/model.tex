@@ -252,7 +252,7 @@ Fortunately, the permittivity tensor can be easily inverted, allowing a solution
   \label{int_fac_0}
   \tensor{\epsilon} \cdot \ddt \vec{E} &= \frac{1}{\mu_0} \vec{F} - \tensor{\sigma} \cdot \vec{E} &
   & \text{becomes} &
-  \lr{ \tensor{\Omega} + \tensor{ \mathbb{I} } \ddt } \cdot \vec{E} &= \vec{V}^2 \cdot \vec{F}
+  \lr{ \tensor{\Omega} + \tensor{ \mathbb{I} } \ddt } \cdot \vec{E} &= \tensor{V}^2 \cdot \vec{F}
 \end{align}
 
 Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates\footnote{Note the parallel component of the present definition of $\tensor{\Omega}$ differs slightly from that used in \cref{sec_math}.}, 
@@ -428,7 +428,7 @@ These boundary conditions can in principle cause nonphysical reflections at the 
 Between the top of the neutral atmosphere and the bottom of the ionosphere, the model includes a thin, horizontal current sheet representing the ionosphere's $E$ layer\cite{lysak_2004}. By integrating \amplaw over the layer, it can be shown\cite{fujita_1988} that the horizontal electric field values at the edge of the grid are determined by the jump in the horizontal magnetic fields:
 \begin{align}
   \label{jump_condition}
-  \tensor{\Sigma} \cdot \vec{E} &= \displaystyle\lim_{\dr \rightarrow 0} \, \left[ \, \frac{1}{\mz} \hat{r} \! \times \! \vec{B} \, \right|^{R_I + \dr}_{R_I - \dr}
+  \tensor{\Sigma} \cdot \vec{E} &= \frac{1}{\mz} \, \displaystyle\lim_{\dr \rightarrow 0} \, \bigg[ \, \hat{r} \! \times \! \vec{B} \, \bigg|^{R_I + \dr}_{R_I - \dr}
 \end{align}
 
 Like the height-resolved conductivities in \cref{sec_e}, the tensor $\tensor{\Sigma}$ is based on Kelley's\cite{kelley_1989} conductivity profiles. Parallel, Pedersen, and Hall conductivities are integrated from Earth's surface to the ionospheric boundary, then arranged (in $\theta$-$\phi$ coordinates) as\cite{lysak_2004}:
@@ -443,8 +443,8 @@ An expression for the horizontal electric fields at the boundary can be obtained
 \begin{align}
   \label{eatm_final}
   \begin{alignedat}{6}
-  & E_1 \assign \frac{1}{\mz \Sigma} \bigg[ &- & \Sigma_{\theta\phi} && B_1   && - \sqrt{ \frac{ g_{11} }{ g_{22} } }&&\Sigma_{\phi\phi} && B_2 \bigg|^{R_I + \dr}_{R_I - \dr} \\
-  & E_2 \assign \frac{1}{\mz \Sigma} \bigg[ &\sqrt{ \frac{ g_{22} }{ g_{11} } } & \Sigma_{\theta\theta} && B_1 && +  &&\Sigma_{\phi\theta} && B_2 \bigg|^{R_I + \dr}_{R_I - \dr}
+  & E_1 \assign \frac{1}{\mz \Sigma} \, \displaystyle\lim_{\dr \rightarrow 0} \, \bigg[ \, &- & \Sigma_{\theta\phi} && B_1   && - \sqrt{ \frac{ g_{11} }{ g_{22} } }&&\Sigma_{\phi\phi} && B_2 \, \bigg|^{R_I + \dr}_{R_I - \dr} \\
+  & E_2 \assign \frac{1}{\mz \Sigma} \, \displaystyle\lim_{\dr \rightarrow 0} \, \bigg[ \, &\sqrt{ \frac{ g_{22} }{ g_{11} } } & \Sigma_{\theta\theta} && B_1 && +  &&\Sigma_{\phi\theta} && B_2 \, \bigg|^{R_I + \dr}_{R_I - \dr}
   \end{alignedat}
 \end{align}
 
