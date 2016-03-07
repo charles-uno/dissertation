@@ -457,11 +457,6 @@ A.~Nishida.
 \newblock Ionospheric screening effect and storm sudden commencement.
 \newblock {\em Journal of Geophysical Research}, 69(9):1861--1874, 1964.
 
-\bibitem{nishida_1964_impulses}
-A.~Nishida and L.~J. Cahill.
-\newblock Sudden impulses in the magnetosphere observed by explorer 12.
-\newblock {\em Journal of Geophysical Research}, 69(11):2243--2255, 1964.
-
 \bibitem{olson_1978}
 J.~V. Olson and G.~Rostoker.
 \newblock Longitudinal phase variations of {Pc} 4-5 micropulsations.
@@ -489,6 +484,11 @@ L.~G. Ozeke, I.~R. Mann, K.~R. Murphy, I.~J. Rae, D.~K. Milling, S.~R.
 G.~Paschmann, S.~Haaland, and R.~Treumann, editors.
 \newblock {\em Auroral Plasma Physics}, volume~15.
 \newblock Kluwer Academic Publishers, 2003.
+
+\bibitem{pesnell_2016}
+W.~D. Pesnell.
+\newblock Predictions of solar cycle 24: How are we doing?
+\newblock {\em Space Weather}, 14(1):10--21, 2016.
 
 \bibitem{poulter_1983}
 E.~M. Poulter, W.~Allan, E.~Nielsen, and K.-H. Glassmeier.
@@ -648,6 +648,12 @@ A.~Vaivads, W.~Baumjohann, G.~Haerendel, R.~Nakamura, H.~Kucharek, B.~Klecker,
   M.~R. Lessard, L.~M. Kistler, T.~Mukai, and A.~Nishida.
 \newblock Compressional {Pc5} type pulsations in the morningside plasma sheet.
 \newblock {\em Ann. Geophys.}, 19(3):311--320, 2001.
+
+\bibitem{veldkamp_1960}
+J.~Veldkamp.
+\newblock A giant geomagnetic pulsation.
+\newblock {\em Journal of Atmospheric and Terrestrial Physics}, 17(4):320--324,
+  1960.
 
 \bibitem{waters_2013}
 C.~L. Waters, R.~L. Lysak, and M.~D. Sciffer.
