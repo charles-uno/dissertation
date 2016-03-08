@@ -4,49 +4,64 @@
 % =============================================================================
 \section{Something Something Results}
 
+\todo{Collections of events at a single ground observatory (near \SI{66}{\degree}) over significant periods of time: }
+
 Brekke\cite{brekke_1987} looked at 523 giant pulsation events recorded at Troms{\o}, Norway, from 1929 to 1985. This spanned several solar cycles. 
 
 Rolf\cite{rolf_1931} collected 28 events between 1921 and 1930 at Abisko. 
 
-Sucksdorf\cite{sucksdorf_1939} got 150 events between 1914 and 1938 in Sodankyl{\"a}. 
+Sucksdorf\cite{sucksdorff_1939} got 150 events between 1914 and 1938 in Sodankyl{\"a}. 
 
-Harang\cite{harang_1941}. 97 events from 1929 to 1941. Also Troms{\o}. 
+Harang\cite{harang_1941}. 97 events from 1929 to 1941. Also Troms{\o}. Note that this may have been limited by the war! 
 
-This comes out to ... events over ... years. That's about ... giant pulsations per year, observed on the ground. 
+This comes out to something like ... events over ... years. That's about ... giant pulsations per year, observed on the ground. 
 
-\todo{Note that it's a bit tricky to compare ground observations to in situ observations. Large-\azm events won't make it through the ionosphere. }
+\todo{Collections of events at an array of ground observatories: }
 
-\todo{How strong does an event need to be on the ground, or in the sky, to count as a giant pulsation? }
+Chisham and Orr\cite{chisham_1991} found 34 events from 1984 to 1987 using the EISCAT magnetometer array in scandanavia. About \SI{5}{\degree} in MLT, decent coverage from \SIrange{63}{67}{\degree} mlat. This coincides with a solar minimum. 
 
-These observations were all recorded at single points on the ground, with magnetic latitude near \SI{66}{\degree}. 
+Motoba, in 2015, recorded 105 giant pulsation events. The observations were carried out by a number of ground magnetometers spanning $\sim \SI{90}{\degree}$ in local time and ranging roughly \SIrange{60}{70}{\degree} magnetic latitude\cite{motoba_2015}. This was mostly during a period of low solar activity, so we expect a high count. 
 
-Velkamp\cite{veldkamp_1960} looked at a single large event and showed that, at best, it was visible over a span of \SI{5}{\degree} in magnetic latitude. This is consistent (?) with the 29 February 2012 event discussed in detail by Motoba\cite{motoba_2015}. 
+\todo{Estimate of the size of an event's footprint:}
+
+Velkamp\cite{veldkamp_1960} looked at a single large event and showed that, at best, it was visible over a span of \SI{5}{\degree} in magnetic latitude. 
+
+This is seemingly consistent with the 29 February 2012 event discussed in detail by Motoba\cite{motoba_2015} -- Motoba shows some data, but doesn't discuss this aspect in detail. 
+
+Takahashi\cite{takahashi_2011} computes a FWHM of about 1 in L, or \SI{2}{\degree} magnetic latitude. 
+
+\todo{Tying that in to RBSP observations? }
+
+Note that it's a bit tricky to compare ground observations to in situ observations. Large-\azm events won't make it through the ionosphere. 
+
+There should be no bias with respect to MLT between a ground magnetometer and RBSP. Dai's analysis was specifically chosen to take advantage of the fact that RBSP's orbit had precessed all the way around the Earth. No preferred direction. And mlat shouldn't cause issues... these are FLRs, after all. 
+
+How strong does an event need to be on the ground, or in the sky, to count as a giant pulsation? Motoba 2015\cite{motoba_2015} has an event which tops out on the order of \SI{10}{\nT} on the ground. It's more like \SI{5}{\mV/\m} in situ. Takahashi\cite{takahashi_2011} has similar values. 
+
+Note that Takahashi\cite{takahashi_2013} has shown that it's OK to call something a giant pulsation even if it's not visible on the ground... though, obviously, we are comparing to ground magnetometer data for occurrence rate. 
 
 If peak Pg observations are at $\SI{66}{\degree}$ mlat, that corresponds to $L = 6$. Then let's suppose that peak Pg viewing is $\SI{5}{\degree}$ wide -- estimating from the work of Velkamp and Motoba. That means RBSP should see lots of Pgs when it's between $L = 5.2$ andn $L = 7.1$. Well, \SI{7.1}{\RE} is outside its apogee, but the probes spend a fair amount of time outside $L = 5.2$, since they are moving pretty slowly at that point. 
 
-In addition, there should be no bias between an orbiting satellite and a ground-based magnetometer. Dai's analysis was specifically chosen to take advantage of the fact that RBSP's orbit had precessed all the way around the Earth. No preferred direction. 
+Giant pulsations have been shown to be more numerous in times of low solar activity. That was the whole point of Brekke's seminal 1987 paper, and it's consistent with what we show in \cref{sec_pgs}. The RBSP observations occur during peak solar times, though it's an anemic solar peak\cite{pesnell_2016}. 
 
-\todo{How much time does each RBSP probe spend outside $L = 5.2$? }
+\todo{How much time does RBSP spend outside of $L = 5.2$ (for a range of \SI{5}{\degree})? How about $L = 5.6$ to $L = 6.5$ (for FWHM of \SI{2}{\degree}? }
 
-\todo{How many Pgs, then, should we expect to see? }
+Each RBSP probe spends about \SI{30}{\percent} of its orbit between $L = 5.6$ and $L = 6.5$. 
 
-\todo{How many fundamental mode poloidal Pc4 events can we find? They don't need to be pretty. They do need to have clear spectra. }
+RBSP-A and RBSP-B count as two observers. In one $\sim 5$ cases out of hundreds do they simultaneously observe a poloidal Pc4 event (although, most notably for the 2012 event which \cite{dai_2013} considers in detail), both probes do fly through the same apparent event several hours apart from one another. 
 
-\todo{If we relax the \SI{15}{\degree} assumption to, say, \SI{5}{\degree}, how many events do we get? If we assume the probe's spin axis is uncorrelated to the harmonic mode of the event (which it should be!) when how many events do we ``see''? }
-
-\todo{How many events do we see that could pass for Pgs? Note that \cite{takahashi_2013} has shown that it's OK to call something a giant pulsation even if it doesn't have a ground signature. }
-
-Motoba, in 2015, recorded 105 giant pulsation events. The observations were carried out by a number of ground magnetometers spanning $\sim \SI{90}{\degree}$ in local time and ranging roughly \SIrange{60}{70}{\degree} magnetic latitude\cite{motoba_2015}. 
-
-Giant pulsations have been shown to be more numerous in times of low solar activity. That was the whole point of Brekke's seminal 1987 paper, and it's consistent with what we show in \cref{sec_pgs}. 
-
-The RBSP observations occur during peak solar times, though it's an anemic solar peak\cite{pesnell_2016}. 
-
-RBSP-A and RBSP-B count as two observers. In one $\sim 5$ cases out of hundreds do they simultaneously observe a poloidal Pc4 event (although, most notably for the 2012 event which \cite{dai_2013} considers in detail, both probes do fly through the same apparent event several hours apart from one another. 
+The duration of Dai's survey is October 2012 to June 2014. Scaled by 2 probes, each of which is present in the peak Pg lshells 30\% of the time, that comes out to almost exactly one year. 
 
 
 
 
+
+
+\todo{How many fundamental mode poloidal events do we see? How many could pass for giant pulsations? How many should we expect to see? }
+
+\todo{How weird is it for a fundamental mode poloidal Pc4 to be monochromatic? }
+
+\todo{How weird is it for a fundamental mode poloidal Pc4 to be stronger than \SI{5}{\mV/\m} at the equator? }
 
 
 % -----------------------------------------------------------------------------

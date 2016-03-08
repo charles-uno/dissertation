@@ -1,5 +1,10 @@
 \begin{thebibliography}{100}
 
+\bibitem{akasofu_1964}
+S.-I. Akasofu.
+\newblock The development of the auroral substorm.
+\newblock {\em Planetary and Space Science}, 12(4):273--282, 1964.
+
 \bibitem{anderson_1994}
 B.~J. Anderson.
 \newblock An overview of spacecraft observations of 10s to 600s period magnetic
@@ -61,6 +66,11 @@ C.~Z. Cheng and Q.~Qian.
 \newblock Theory of ballooning-mirror instabilities for anisotropic pressure
   plasmas in the magnetosphere.
 \newblock {\em J. Geophys. Res.}, 99(A6):11193, 1994.
+
+\bibitem{chisham_1991}
+G.~Chisham and D.~Orr.
+\newblock Statistical studies of giant pulsations (pgs): Harmonic mode.
+\newblock {\em Planetary and Space Science}, 39(7):999--1006, 1991.
 
 \bibitem{cummings_1969}
 W.~D. Cummings, R.~J. O'Sullivan, and P.~J. Coleman.
@@ -365,6 +375,13 @@ W.~Liu, T.~E. Sarris, X.~Li, S.~R. Elkington, R.~Ergun, V.~Angelopoulos,
   pulsations in the inner magnetosphere: A statistical study.
 \newblock {\em J. Geophys. Res.}, 114(A12), 2009.
 
+\bibitem{liu_2010}
+W.~Liu, T.~E. Sarris, X.~Li, R.~Ergun, V.~Angelopoulos, J.~Bonnell, and K.~H.
+  Glassmeier.
+\newblock Solar wind influence on {Pc4} and {Pc5} {ULF} wave activity in the
+  inner magnetosphere.
+\newblock {\em J. Geophys. Res.}, 115(A12), 2010.
+
 \bibitem{liu_2011}
 W.~Liu, T.~E. Sarris, X.~Li, Q.-G. Zong, R.~Ergun, V.~Angelopoulos, and K.~H.
   Glassmeier.
@@ -437,6 +454,12 @@ I.~R. Mann, A.~N. Wright, and A.~W. Hood.
 T.~Maynard, N.~Smith, S.~Gonzalez, et~al.
 \newblock Solar storm risk to the {North American} electric grid.
 \newblock 2013.
+
+\bibitem{mcpherron_1973_substorms}
+R.~L. McPherron, G.~K. Parks, D.~S. Colburn, and M.~D. Montgomery.
+\newblock Satellite studies of magnetospheric substorms on august 15, 1968: 2.
+  solar wind and outer magnetosphere.
+\newblock {\em J. Geophys. Res.}, 78(16):3054--3061, 1973.
 
 \bibitem{motoba_2015}
 T.~Motoba, K.~Takahashi, J.~V. Rodriguez, and C.~T. Russell.
@@ -517,6 +540,11 @@ H.~R. Radoski.
   asymptotic fields.
 \newblock {\em J. Geophys. Res.}, 79, 1974.
 
+\bibitem{rolf_1931}
+B.~Rolf.
+\newblock Giant micropulsations at abisko.
+\newblock {\em J. Geophys. Res.}, 36(1):9, 1931.
+
 \bibitem{ronnmark_2000}
 K.~R{\"o}nnmark and M.~Hamrin.
 \newblock Auroral electron acceleration by {Alfv{\'e}n} waves and electrostatic
@@ -569,6 +597,12 @@ D.~J. Southwood.
 \newblock A general approach to low-frequency instability in the ring current
   plasma.
 \newblock {\em J. Geophys. Res.}, 81(19):3340--3348, 1976.
+
+\bibitem{sucksdorff_1939}
+E.~Sucksdorff.
+\newblock Giant pulsations recorded at sodankylä during 1914–1938.
+\newblock {\em Terrestrial Magnetism and Atmospheric Electricity},
+  44(2):157--170, 1939.
 
 \bibitem{takahashi_2009}
 K.~Takahashi, D.~Berube, D.-H. Lee, J.~Goldstein, H.~J. Singer, F.~Honary, and
