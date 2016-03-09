@@ -1,10 +1,10 @@
 LATEXMK=./latexmk/latexmk
 
 # Various dependencies
-MAIN=thesis
+MAIN=dissertation
 MAIN_PDF=$(MAIN).pdf
 MAIN_TEX=$(MAIN).tex
-HELPER_FILES= makefile mnthesis.cls thesis.bib
+HELPER_FILES= makefile mnthesis.cls $(MAIN).bib
 PRELIMS:=$(wildcard preliminaries/*.tex)
 CHAPTERS:=$(wildcard chapters/*.tex)
 FIGURES := $(wildcard figures/*)
@@ -26,10 +26,13 @@ $(MAIN_PDF): ALWAYS_COMPILE $(MAIN_TEX) $(HELPER_FILES) $(PRELIMS) $(CHAPTERS) $
 tidy:
 	$(LATEXMK) -c $(MAIN_TEX)
 
-# Clean up all the regeneratable files, including the final document, and any temporary files. 
+# Clean up all the regeneratable files, including the final document, and any
+# temporary files. Don't echo the commands, don't print the LaTeXmk version
+# number, and don't complain if there are no temporary files to clean up. 
 clean:
-	$(LATEXMK) -C $(MAIN_TEX)
-	rm *~
+	@ echo 'Cleaning up.'
+	@- $(LATEXMK) -C $(MAIN_TEX) &> /dev/null || True
+	@- rm *~ || True
 
 force:
 	$(LATEXMK) -pdf $(MAIN_TEX) -f
