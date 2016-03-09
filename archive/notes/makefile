@@ -1,4 +1,4 @@
-LATEXMK=../latexmk/latexmk
+LATEXMK=../../latexmk/latexmk
 
 all: note
 

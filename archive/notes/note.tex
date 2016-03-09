@@ -1,0 +1,518 @@
+% Charles McEachern
+
+% Fall 2015
+
+% This is a template for writing a note to Bob in TeX. 
+
+\documentclass{article}
+
+% =============================================================================
+% ==================================== Package List Copied from Thesis Template
+% =============================================================================
+
+\usepackage{epsfig} % Allows the inclusion of eps files
+\usepackage{epic} % Enhanced picture mode
+\usepackage{eepic} % Extensions for epic
+\usepackage{units} % SI unit typesetting
+\usepackage{url} % URL handling
+\usepackage{longtable} % Tables that continue onto multiple pages
+\usepackage{mathrsfs} % Support for \mathscr script
+\usepackage{multirow} % Span rows in tables
+\usepackage{bigstrut} % Space struts in tables up and down
+\usepackage{amssymb} % AMS math symbols and helpers
+\usepackage{graphicx} % Enhanced graphics support
+\usepackage{setspace} % Adjust spacing in captions, single by default
+\usepackage{xspace} % Automatically adjusting space after macros
+\usepackage{amsmath} % \text, and other math formatting options
+\usepackage{siunitx} % \num{} formatting and SI unit formatting
+\usepackage{booktabs} % Enhanced tables with \toprule, etc.
+\usepackage{hyperref} % Add clickable links to other parts of the document
+\usepackage[noabbrev]{cleveref} % Automatically determine \cref type
+
+% Configure the siunitx package
+\sisetup{
+    group-separator = {,}, % Use , to separate groups of digits, like 12,345
+    list-final-separator = {, and } % Always use the serial comma in \SIlist
+}
+
+% Configure the cleveref package
+\newcommand{\creflastconjunction}{, and } % Always use the serial comma
+
+\linespread{1.3}
+
+% =============================================================================
+% ================================================================= Definitions
+% =============================================================================
+
+\newcommand{\Alfven}{Alfv\'en\xspace}
+
+\newcommand{\Ampere}{Amp\`ere\xspace}
+
+% =============================================================================
+% ======================================================== Document Starts Here
+% =============================================================================
+
+\begin{document}
+
+
+
+
+\section{Stuff to Copy-Paste for AGU Poster}
+
+
+
+\begin{align*}
+  \omega^2 & = k^2 v_A^2 \qquad
+  \mathrm{so} \qquad 
+  \omega_{min}^2 = k_\bot^2 v_A^2 \qquad
+  \mathrm{or} \qquad
+  \omega_{min} \sim \frac{m}{2 \pi r} v_A
+\end{align*}
+
+
+\begin{align*}
+  \omega^2 & = k^2 v_A^2 \qquad
+  \mathrm{so} \qquad 
+  \omega_{min}^2 = k_\bot^2 v_A^2 \qquad
+  \mathrm{or} \qquad
+  f_{min} = \frac{m \, v_A}{r}
+\end{align*}
+
+
+
+
+\begin{align*}
+  0 & = \sigma_\parallel E_\parallel - J_\parallel \;\;
+  \rightarrow \;\;
+  \frac{m \sigma_\parallel}{n e^2} \frac{\partial}{\partial t} J_\parallel = 
+  \sigma_\parallel E_\parallel - J_\parallel \qquad
+  \mathrm{with} \qquad
+  \epsilon_0 \;\;
+  \rightarrow \;\;
+  \epsilon_\parallel
+\end{align*}
+
+
+
+
+
+
+Perpendicular Ampere’s law, after using Ohm’s law to eliminate current. 
+\begin{align*}
+  E_\parallel \! ( \delta t )& = 
+    E_\parallel \! ( 0 ) \exp ( {\scriptstyle -\frac{\sigma_0 \delta t}{\epsilon_0} } ) \; +\;  
+    \delta t \, 
+    F_\parallel \! ( {\scriptstyle \frac{\delta t}{2} } ) 
+    \exp ( {\scriptstyle -\frac{\sigma_0 \delta t}{2 \epsilon_0} } )
+\end{align*}
+
+
+
+
+Maxwell’s equations, all on one line (probably better for the poster)
+\begin{align*}
+  \frac{\partial}{\partial t} \underline{B} =
+  - \nabla \times \underline{E} \qquad ; \qquad
+  \underline{ \underline{\epsilon} } \cdot \frac{\partial}{\partial t} \underline{E} =
+  \frac{1}{\mu_0} \nabla \times \underline{B} - 
+  \underline{J}_{drive} - 
+  \underline{J} \qquad ; \qquad
+  0 =
+  \underline{ \underline{\sigma} } \cdot \underline{E} - \underline{J}
+\end{align*}
+
+
+
+Perpendicular Ampere’s law, after using Ohm’s law to eliminate current. 
+\begin{align*}
+  \epsilon_\bot \frac{\partial}{\partial t} \underline{E}_\bot &=
+  \underbrace{
+  \left[ \frac{1}{\mu_0} \nabla \times \underline{B} - \underline{J}_{drive} \right]_\bot 
+  }_{ \underline{F}_\bot } - 
+  \underline{ \underline{\sigma} }_\bot \! \cdot \underline{E}_\bot \qquad ; \qquad
+  \underline{ \underline{R} }( \theta ) & = 
+  \left[
+  \begin{array}{cc}
+    \cos\theta & -\sin\theta \\
+    \sin\theta & \cos\theta \\
+  \end{array}
+  \right]
+\end{align*}
+
+
+
+Perpendicular Ampere’s law, after using Ohm’s law to eliminate current. 
+\begin{align*}
+  \epsilon_\bot \frac{\partial}{\partial t} \underline{E}_\bot &=
+  \underbrace{
+  \left[ \frac{1}{\mu_0} \nabla \times \underline{B} - \underline{J}_{drive} \right]_\bot 
+  }_{ \underline{F}_\bot } - 
+  \underline{ \underline{\sigma} }_\bot \! \cdot \underline{E}_\bot
+\end{align*}
+
+
+
+
+Solution using integrating factors. 
+\begin{align*}
+  \underline{E}_\bot \! ( \delta t )& = \underline{ \underline{R} } 
+    ( {\scriptstyle \frac{\sigma_H \delta t}{\epsilon_\bot} } ) \cdot 
+    \underline{E}_\bot \! ( 0 ) \exp ( {\scriptstyle -\frac{\sigma_P \delta t}{\epsilon_\bot} } ) \; +\;  
+    \delta t \, \underline{ \underline{R} } 
+    ( {\scriptstyle \frac{\sigma_H \delta t}{2 \epsilon_\bot} } ) \cdot
+    \underline{F}_\bot \! ( {\scriptstyle \frac{\delta t}{2} } ) 
+    \exp ( {\scriptstyle -\frac{\sigma_P \delta t}{2 \epsilon_\bot} } )
+\end{align*}
+
+
+
+Definition of a rotation matrix
+\begin{align*}
+  \underline{ \underline{R} }( \theta ) & = 
+  \left[
+  \begin{array}{cc}
+    \cos\theta & -\sin\theta \\
+    \sin\theta & \cos\theta \\
+  \end{array}
+  \right]
+\end{align*}
+
+
+
+Explanation of breaking down the atmospheric magnetic field into harmonics
+\begin{align*}
+  \nabla \cdot \underline{B} = 0 \qquad 
+  \mathrm{and} \qquad 
+  \nabla \times \underline{B} = 0 \qquad 
+  \mathrm{so} \qquad 
+  \nabla^2 \Psi = 0 \qquad
+  \mathrm{where} \qquad
+  \nabla \Psi = \underline{B}
+\end{align*}
+
+
+
+Atmospheric jump condition
+\begin{align*}
+  \mu_0 \, \underline{ \underline{\Sigma} } \cdot \underline{E} & = 
+  \hat{r} \times \Delta \underline{B}
+\end{align*}
+This is present in Lysak 2013. Integrating Ampere’s law over the atmosphere? 
+
+
+
+
+Probably don't need anything past here... \\ 
+
+
+
+Maxwell’s equations, one per line. 
+\begin{align*}
+  \frac{\partial}{\partial t} \underline{B} &=
+  - \nabla \times \underline{E} \\
+  \underline{ \underline{\epsilon} } \cdot \frac{\partial}{\partial t} \underline{E} &=
+  \frac{1}{\mu_0} \nabla \times \underline{B} - 
+  \underline{J}_{drive} - 
+  \underline{J} \\
+  0 & =
+  \underline{ \underline{\sigma} } \cdot \underline{E} - \underline{J}
+\end{align*}
+
+
+
+\begin{align*}
+  \frac{\partial}{\partial t} \underline{B} &=
+    -\nabla \times \underline{E} & 
+  \underline{ \underline{\epsilon} } \cdot \frac{\partial}{\partial t} \underline{E} &=
+    \frac{1}{\mu_0} \nabla \times \underline{B} - \underline{J}_D - \underline{J}_O &
+  0 &=
+    \underline{ \underline{\sigma} } \cdot \underline{E} - \underline{J}_O
+\end{align*}
+
+
+
+
+\begin{align*}
+  \underline{ \underline{\epsilon} } \cdot \frac{\partial}{\partial t} \underline{E} &=
+    \left[ \frac{1}{\mu_0} \nabla \times \underline{B} - 
+    \underline{J}_D \right] - 
+    \underline{ \underline{\sigma} } \cdot \underline{E}
+\end{align*}
+
+
+
+Junk follows...
+
+
+
+\begin{align*}
+  \epsilon_\bot \frac{\partial}{\partial t} \underline{E}_\bot &=
+    \left( \frac{1}{\mu_0} \nabla \times \underline{B} - 
+    \underline{J}_D \right)_\bot - 
+    \underline{ \underline{\sigma} }_\bot \cdot \underline{E}_\bot
+\end{align*}
+
+
+
+
+
+
+\begin{align*}
+  \epsilon_\bot \frac{\partial}{\partial t} \underline{E}_\bot &=
+    \underbrace{ \left( \frac{1}{\mu_0} \nabla \times \underline{B} - 
+    \underline{J}_D \right)_\bot }_{ \underline{F}_\bot } - 
+    \underline{ \underline{\sigma} }_\bot \cdot \underline{E}_\bot
+\end{align*}
+
+
+
+
+\begin{align*}
+  \underline{E}_\bot \! \left( \delta t \right) &= 
+    \underline{ \underline{R} } \left( \frac{ \sigma_H \, \delta t }{\epsilon_\bot} \right) \cdot
+    \underline{E}_\bot \! \left( 0 \right) \;
+      \exp \left( - \frac{ \sigma_P \, \delta t }{\epsilon_\bot} \right) + 
+    \underline{ \underline{R} } \left( \frac{\sigma_H \, \delta t}{2 \epsilon_\bot} \right) \cdot
+    \delta t \, \underline{F}_\bot \! \left( \frac{\delta t}{2} \right) \; \exp \left( - \frac{ \sigma_P \, \delta t }{ 2 \epsilon_\bot} \right)
+\end{align*}
+
+
+
+
+
+
+\begin{align*}
+  \underline{ \underline{R} } \left( \theta \right) & = 
+    \left( \begin{array}{cc}
+    \cos\theta & -\sin\theta \\
+    \sin\theta & \cos\theta \end{array} \right)
+\end{align*}
+
+
+
+
+
+
+
+
+\begin{align*}
+  \frac{\partial}{\partial t} \underline{B} &=
+    -\nabla \times \underline{E} & 
+  \underline{ \underline{\epsilon} } \cdot \frac{\partial}{\partial t} \underline{E} &=
+    \frac{1}{\mu_0} \nabla \times \underline{B} - \underline{J} &
+  0 &=
+    \underline{ \underline{\sigma} } \cdot \underline{E} - \underline{J}
+\end{align*}
+
+
+
+
+
+
+\begin{align*}
+  \underline{ \underline{\epsilon} } \cdot \frac{\partial}{\partial t} \underline{E} &=
+    \frac{1}{\mu_0} \nabla \times \underline{B} - 
+    \underline{J}_D - 
+    \underline{J}_O
+\end{align*}
+
+
+\begin{align*}
+  \underline{ \underline{\epsilon} } \cdot \frac{\partial}{\partial t} \underline{E} &=
+    \frac{1}{\mu_0} \nabla \times \underline{B} - 
+    \underline{J}_{D} - 
+    \underline{ \underline{\sigma} } \cdot \underline{E}
+\end{align*}
+
+
+\begin{align*}
+  \underline{ \underline{\epsilon} } \cdot \frac{\partial}{\partial t} \underline{E} &=
+    \underbrace{ \frac{1}{\mu_0} \nabla \times \underline{B} - 
+    \underline{J}_{Drive} }_{ \underline{F} } - 
+    \underline{ \underline{\sigma} } \cdot \underline{E}
+\end{align*}
+
+
+
+
+
+\begin{align*}
+  f = \underbrace{x^3}_\textrm{text 1} + \underbrace{2}_\textrm{text 2}
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Dispersion Relation Setup}
+
+Start with Faraday's Law, \Ampere's Law, and Ohm's Law. Break the latter two
+into parallel and perpendicular components. 
+\begin{align}
+  \frac{\partial}{\partial t} \underline{B} &= -\nabla \times \underline{E} \\
+  \epsilon_\bot \frac{\partial}{\partial t} \underline{E}_\bot &= 
+    \frac{1}{\mu_0} \left( \nabla \times \underline{B} \right)_\bot -
+    \underline{J}_\bot \\
+  \epsilon_\parallel \frac{\partial}{\partial t} E_\parallel & = 
+    \frac{1}{\mu_0} \left( \nabla \times \underline{B} \right)_\parallel -
+    J_\parallel \\
+  \label{ohm_perp}
+  0 & = \underline{\underline{\sigma}}_\bot \cdot \underline{E}_\bot - 
+    \underline{J}_\bot \\
+  \label{ohm_par}
+  \frac{m \sigma_0}{n e^2} \frac{\partial}{\partial t} J_\parallel & = 
+    \sigma_0 E_\parallel - J_\parallel
+\end{align}
+
+Note that we include the electron inertial effects in \cref{ohm_par}, the 
+parallel component of Ohm's Law, but not in \cref{ohm_perp}, the perpendicular 
+components. This is justified by the fact that the parallel conductivity is 
+much larger than the perpendicular conductivity. Velocity- and 
+temperature-dependent terms are neglected completely; we are concerned with 
+waves much faster than convective timescales. 
+
+We're looking for plane wave solutions: fields which (at least locally) evolve 
+with $\exp ( i \underline{k} \cdot \underline{x} - i \omega t)$. That lets us 
+evaluate the spatial and temporal derivatives in the above equations. 
+
+First, we use Ohm's Law to eliminate $\underline{J}$. 
+\begin{align}
+  \label{new_faraday}
+  - i \omega \underline{B} &= - i \underline{k} \times \underline{E} \\
+  \label{new_perp}
+  - i \omega \epsilon_\bot \underline{E}_\bot &= 
+    \frac{i}{\mu_0} \left( \underline{k} \times \underline{B} \right)_\bot -
+    \underline{\underline{\sigma}}_\bot \cdot \underline{E}_\bot \\
+  \label{new_par}
+  - i \omega \epsilon_\parallel E_\parallel & = 
+    \frac{i}{\mu_0} \left( \underline{k} \times \underline{B} 
+      \right)_\parallel -
+    \frac{\sigma_0}{1 - \frac{i \omega m \sigma_0}{n e^2}} E_\parallel
+\end{align}
+
+To eliminate $\underline{B}$, we take the curl of \cref{new_faraday} and 
+substitute into \cref{new_perp,new_par}. Note that 
+$\underline{k} \times \underline{k} \times \underline{E}$ 
+can be written as 
+$\underline{k} \big( \underline{k} \cdot \underline{E} \big) - k^2 
+\underline{E}$, 
+and 
+$\underline{k} \cdot \underline{E} = 0$ 
+in the case of quasi-neutrality. 
+\begin{align}
+  - i \omega \epsilon_\bot \underline{E}_\bot &= 
+    \frac{i k_\bot^2}{\mu_0 \omega} 
+      \underline{E}_\bot -
+    \underline{\underline{\sigma}}_\bot \cdot \underline{E}_\bot \\
+  - i \omega \epsilon_\parallel E_\parallel & = 
+    \frac{i k_\parallel^2}{\mu_0 \omega} E_\parallel -
+    \frac{\sigma_0}{1 - \frac{i \omega m \sigma_0}{n e^2}} E_\parallel
+\end{align}
+
+Taking $c_\parallel^2 \equiv \frac{1}{\mu_0 \epsilon_\parallel}$ (where 
+$\epsilon_\parallel$ is maybe not the same as $\epsilon_0$), and using 
+$\sigma_\parallel$ to represent 
+$\frac{\sigma_0}{1 - \frac{i \omega m \sigma_0}{n e^2}}$, 
+we rearrange these to:
+\begin{align}
+  \label{perp_final}
+  \left[ \frac{k_\bot c^2}{\omega^2} \underline{\underline{\mathbb{I}}} - 
+    \frac{\epsilon_\bot}{\epsilon_0} \underline{\underline{\mathbb{I}}} - 
+    \frac{i}{\epsilon_0 \omega} \underline{\underline{\sigma}}_\bot \right] 
+    \cdot \underline{E}_\bot &= 0 \\
+  \label{par_final}
+  \left[ \frac{k_\parallel c_\parallel^2}{\omega^2} - 
+    1 - 
+    \frac{i}{\epsilon_\parallel \omega} \sigma_\parallel \right] 
+    E_\parallel &= 0
+\end{align}
+
+To obtain a dispersion relation, we combine \cref{perp_final,par_final} into 
+an equation of the form $\underline{\underline{D}} \cdot \underline{E} = 0$, 
+then solve for $| \underline{\underline{D}} | = 0$. Conveniently, with the 
+parallel and perpendicular components decoupled, we can take shortcut: 
+\begin{align}
+  \left( \frac{k_\parallel c_\parallel^2}{\omega^2} - 1 - 
+    \frac{i}{\epsilon_\parallel \omega} \sigma_\parallel \right)
+    \left| \frac{k_\bot c^2}{\omega^2} \mathbb{I} - 
+    \frac{\epsilon_\bot}{\epsilon_0} \mathbb{I} - 
+    \frac{i}{\epsilon_0 \omega} \underline{\underline{\sigma}}_\bot \right| 
+      &= 0
+\end{align}
+
+\section{Easy Roots}
+
+Before getting into the perpendicular tensor, let's take a look at the easy 
+roots. These (supposing they exist and are physical) will suggest wave modes 
+with nonzero parallel electric field components. 
+\begin{align}
+  \label{easy_roots}
+  \frac{k_\parallel c_\parallel^2}{\omega^2} - 1 - 
+    \frac{i}{\epsilon_\parallel \omega} \sigma_\parallel &= 0
+\end{align}
+
+Due to the $\omega$ dependence in $\sigma_\parallel$, this is actually quartic 
+in $\omega$ (and sadly \emph{not} quadratic in $\omega^2$). However, it's 
+quadratic in two regimes, both of which are of interest. 
+
+\subsection{Small $\sigma_0$ Limit}
+
+Near the ionospheric boundary of the simulation, for $\omega$ in the ULF 
+range, we find $\frac{\omega m \sigma_0}{n e^2}$ as small as $10^{-5}$, so 
+$\sigma_\parallel \approx \sigma_0$. That is, in this regime, the electron 
+inertial term is not significant. 
+
+In this limit, solutions to \cref{easy_roots} are given by:
+\begin{align}
+  \omega &= - \frac{i \sigma_0}{2 \epsilon_\parallel} \left( 1 \pm 
+    \sqrt{ 1 - 
+      \frac{4 c_\parallel^2 k_\parallel^2 \epsilon_\parallel^2}{\sigma_0^2}
+    } \right)
+\end{align}
+
+In the limit where 
+$\frac{c_\parallel k_\parallel \epsilon_\parallel}{\sigma_0}$ is very large, 
+this becomes $\omega = c_\parallel k_\parallel$. However, we are not at that 
+limit; we see $\frac{c \epsilon_0}{\sigma_0} \sim \SI{1}{\meter}$. As a 
+result, the mode described by this dispersion relation is negative and 
+imaginary (that is, evanescent). 
+
+\subsection{Large $\sigma_0$ Limit}
+
+Far from the ionosphere, $\sigma_0$ becomes very large, so 
+$\sigma_\parallel \approx \frac{i n e^2}{\omega m}$. Plugging that in, 
+\cref{easy_roots} simplifies to:
+\begin{align}
+  \omega^2 &= c_\parallel^2 k_\parallel^2 + \omega_{p \parallel}^2
+\end{align}
+
+This looks like the plain old electromagnetic wave, but it's polarized (at 
+least in part) along the magnetic field. That makes it... the O-mode?
+
+\section{Hard Roots}
+
+To be continued... 
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
