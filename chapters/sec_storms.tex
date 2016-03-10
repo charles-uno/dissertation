@@ -4,6 +4,14 @@
 \section{Geomagnetic Disturbances}
   \label{sec_storms}
 
+The quiet geomagnetic behavior described in \cref{sec_environment} is punctuated by 
+
+
+
+
+
+
+
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -21,26 +29,6 @@ Storms! CMEs, etc.
 What causes a storm. 
 
 Storm effects: outer magnetosphere, inner magnetosphere, on the ground.
-
-The ionospheric profiles used in this model are based on values tabulated in the Appendix B of Kelley's book\cite{kelley_1989}. They were adapted by Lysak\cite{lysak_2013} to take into account the effect of the magnetosphere's latitude-dependent density profile. 
-
-Mean molecular mass of \SI{28}{\amu} at \SI{100}{\km}, \SI{16}{\amu} around \SI{400}{\km}, down to \SI{1}{\amu} above \SI{1400}{\km}. 
-
-Simulations are carried out using four profiles: active day, quiet day, active night, quiet night. 
-
-Profiles are static for the duration of a simulation. Even so-called ultra low frequency waves are still much faster than convective timescales. 
-
-\todo{Come up with a characteristic convective timescale or two, and cite it. }
-
-The effects of mean molecular mass on conductivity are computed per the usual definitions. 
-\begin{align}
-  \sp &= \displaystyle\sum_s \frac{n_s q_s^2}{m_s} \frac{\nu_s}{\nu_s^2 + \Omega_s^2} &
-  \sh &= -\displaystyle\sum_s \frac{n_s q_s^2}{m_s} \frac{\Omega_s}{\nu_s^2 + \Omega_s^2} &
-  \sz &= \displaystyle\sum_s \frac{n_s q_s^2}{m_s \nu_s}
-\end{align}
-
-Each profile is resolved to an altitude of about $\SI{e4}{\km}$, and include well-resolved $E$, $F_1$, and $F_2$ layers. 
-
 
 
 

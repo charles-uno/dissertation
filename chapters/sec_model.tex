@@ -416,7 +416,24 @@ Between the top of the neutral atmosphere and the bottom of the ionosphere, the 
   \tensor{\Sigma} \cdot \vec{E} &= \frac{1}{\mz} \, \displaystyle\lim_{\dr \rightarrow 0} \, \bigg[ \, \hat{r} \! \times \! \vec{B} \, \bigg|^{R_I + \dr}_{R_I - \dr}
 \end{align}
 
-Like the height-resolved conductivities in \cref{sec_eqns}, the tensor $\tensor{\Sigma}$ is based on Kelley's\cite{kelley_1989} conductivity profiles. Parallel, Pedersen, and Hall conductivities are integrated from Earth's surface to the ionospheric boundary, then arranged (in $\theta$-$\phi$ coordinates) as\cite{lysak_2004}:
+Like the height-resolved conductivities in \cref{sec_eqns}, the tensor $\tensor{\Sigma}$ is based on Kelley's\cite{kelley_1989} conductivity profiles. 
+
+\begin{longtable}{ @{\extracolsep{\fill}} lrrr @{\extracolsep{\fill}} }
+  \caption[Integrated Atmospheric Conductivity]{Integrated Atmospheric Conductivity (\si{\S})}
+  \label{tab_sigma_atm} \\
+  \toprule
+  & $\Sigma_0$ & $\Sigma_P$ & $\Sigma_H$ \\
+  \midrule
+  \endfirsthead
+  \bottomrule
+  \endlastfoot
+  Active Day   & 424 & 0.65 & 6.03 \\
+  Quiet Day    & 284 & 0.44 & 4.02 \\
+  Active Night &   9 & 0.01 & 0.12 \\
+  Quiet Night  &   9 & 0.01 & 0.12 \\
+\end{longtable}
+
+Parallel, Pedersen, and Hall conductivities are integrated from Earth's surface to the ionospheric boundary, then arranged (in $\theta$-$\phi$ coordinates) as\cite{lysak_2004}:
 \begin{align}
   \label{def_sigma}
   \tensor{\Sigma} &\equiv \mm{ \frac{\Sigma_0 \Sigma_P}{ \Sigma_0 \cos^2 \alpha + \Sigma_P \sin^2 \alpha } }{ \frac{-\Sigma_0 \Sigma_H}{ \Sigma_0 \cos^2 \alpha + \Sigma_P \sin^2 \alpha } }
