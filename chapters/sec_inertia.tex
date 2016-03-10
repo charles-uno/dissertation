@@ -1,12 +1,27 @@
-
+% =============================================================================
+% =============================================================================
+% =============================================================================
 \section{Electron Inertial Effects}
-\label{sec_inertia}
+  \label{sec_inertia}
 
-\todo{Note that Bob's 2011 paper\cite{lysak_2011} had inertial effects. }
+As laid out in \cref{sec_tuna}, Tuna resolves neither parallel currents nor parallel electric fields. This limits the model's applicability to \todo{direct acceleration of particles? double layers? \Alfven{}ic aurorae? } and other topics closely related to field line resonance. 
 
-\todo{Parallel electric fields and field-aligned currents are topics of particular interest. }
+Parallel currents and electric fields can be added to Tuna through the consideration of electron inertial effects in \ohmlaw:
+\begin{align}
+  0 &= \sz E_z - J_z & \text{becomes} & & \ddt J_z &= \frac{n e^2}{\me} E_z - \nu J_z
+\end{align}
 
-The model described in \cref{sec_tuna} has the notable omission of parallel electric fields and parallel currents. That situation can be remedied by the addition of the electron inertial term in \ohmlaw. 
+With the addition of the electron inertial term, it is necessary to track the parallel current independent of the parallel electric field\footnote{The parallel current $J_z$ is defined on the same points of the Yee grid as $E_z$. It is offset in time by half of a time step. }. Solving by integrating factors gives
+\begin{align}
+  J_3 &\assign J_3 \, \exp \arg{ - \nu \dt } + \dt \, \frac{n e^2}{\me} E_3 \, \exp \arg{ -\nu \tfrac{\dt}{2} }
+\end{align}
+
+From there, the parallel electric field can be updated directly; \cref{e3_final} is replaced by the following: 
+\begin{align}
+  E_3 &\assign E_3 + c^2 \dt \, \lr{ g_{31} F^1 + g_{33} F^3 } - \frac{\dt}{\ez} J_3
+\end{align}
+
+The present section explores the complications that arise from the addition of the electron inertial term to \ohmlaw, as well as a few results that may be gleaned despite those complications. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -14,86 +29,46 @@ The model described in \cref{sec_tuna} has the notable omission of parallel elec
 \subsection{The Boris Correction}
   \label{sec_boris}
 
-
-
-
-Old parallel electric field formulation. Recall $\vec{F} \equiv \curl{B}$. 
+With the addition of the electron inertial term, a cyclical dependence appears between \amplaw and \ohmlaw:
 \begin{align}
-  \ez \ddt E_\parallel &= \frac{1}{\mu_0} F_\parallel - \sz E_\parallel
-\end{align}
-
-New parallel electric field formulation. The parallel current must now be tracked explicitly. 
-\begin{align}
-  \label{def_inertia}
-  \ez \ddt E_\parallel &= \frac{1}{\mu_0} F_\parallel - J_\parallel &
-  \ddt J_\parallel &= \frac{n e^2}{m} E_\parallel - \nu J_\parallel
-\end{align}
-
-In the new formulation, $J_\parallel$ (proportional to $J_3$) is solved with integrating factors and $E_\parallel$ ($E_3$) can be advanced directly. 
-\begin{align}
-  \begin{split}
-  E_3 &\assign E_3 + c^2 \dt \, \lr{ g_{31} F^1 + g_{33} F^3 } - \frac{\dt}{\ez} J_3 \\
-  J_3 &\assign J_3 \exp \arg{ - \nu \dt } + \frac{n e^2}{m} \dt \, E_3 \exp \arg{ -\nu \tfrac{\dt}{2} }
-  \end{split}
-\end{align}
-
-Recall that the electric and magnetic fields are staggered by half a time step. The current is defined with the magnetic fields, offset from the electric fields. 
-
-\todo{Note that simulations discussed in \cref{ch_azm,ch_rbsp} do not include inertial effects. we just look at them here as a proof of concept. Resolving inertial length scales is too expensive, and not resolving them can easily lead to instability. }
-
-
-
-
-
-Note that 
-\begin{align}
-  \ddt E_\parallel &\sim -\frac{1}{\ez} J_\parallel &
+  \ddt E_z &\sim -\frac{1}{\ez} J_z &
   & \text{and} & 
-  \ddt J_\parallel &\sim \frac{n e^2}{\me} E_\parallel &
+  \ddt J_z &\sim \frac{n e^2}{\me} E_z &
   & \text{so} &
-  \frac{ \partial^2 }{ \partial t^2 } E_\parallel &\sim -\op^2 E_\parallel
+  \frac{ \partial^2 }{ \partial t^2 } E_z &\sim -\op^2 E_z
 \end{align}
 
-That is, the addition of the electron inertial term in \ohmlaw allows plasma oscillations. 
+That is, electron inertial effects come hand in hand with the plasma oscillation. 
 
-As noted in \cref{sec_eqns}, the plasma frequency is very large. Much larger than $\frac{1}{\dt}$. But $\op \dt < 1$ is necessary for stability. In order to accommodate that condition, the time step in some runs would need to be dropped by three orders of magnitude; a simulation slated for one hour would suddenly take six weeks to complete. 
-
-\todo{This is a big deal! It's an additional constraint on the time step, in addition to the \Alfven crossing time. }
-
-The time step dictated by the \Alfven speed and grid spacing is typically on the order of $\SI{10}{\us}$, while the plasma frequency can be as small as $\SI{10}{\ns}$. 
-
-The plasma frequency (and the speed of light) can be decreased by taking an artificially large value for \ez. Such approximations have been staples of numerical MHD models since Boris' work in 1970\cite{boris_1970}.
-
-Lysak and Song\cite{lysak_2001} demonstrate the validity of such an approximation. To paraphrase their work, take \cref{def_inertia} and suppose that $E_\parallel$ and $J_\parallel$ are oscillating at a frequency $\omega$. Then,
-\begin{align}
-  - i \omega \ez E_\parallel &= \oomz F_\parallel - J_\parallel & - i \omega J_\parallel &= \frac{n e^2}{\me} E_\parallel - \nu J_\parallel
-\end{align}
-
-So
-\begin{align}
-  \label{boris_criterion}
-  \lr{ 1 - \frac{\omega^2 - i \nu \omega}{\op^2} } E_\parallel &= \frac{c^2}{\op^2} \lr{ \nu - i \omega } F_\parallel
-\end{align}
-
-Here $\frac{c}{\op}$ is the electron inertial length. While the speed of light and the plasma frequency each depend on \ez, their ratio does not. So long as $\lr{ 1 - \frac{\omega^2 - i \nu \omega}{\op^2} } \sim 1$, a change in \ez should not affect model behavior. 
-
-For the purposes of simulating ultra low frequency waves, \cref{boris_criterion} allows perhaps-implausibly large Boris factors; even increasing \ez by a factor of \num{e6} gives $\left| \frac{\omega^2 + i \omega \nu}{ \op^2 } \right| \lesssim 0.01$. At that point, in some places, the speed of light is significantly slower than the \Alfven speed. 
-
-\todo{Ronnmark\cite{ronnmark_2000} calls this ``anisotropic vacuum.'' }
-
-\todo{This is common in other models... very high ionosphere, low speed of light, whatever. Cite LFM or something? }
-
-\todo{The plasma frequency is very fast compared to the waves we're driving. }
-
-\begin{figure}[H]
+\begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/op.pdf}
     \caption[Plasma Frequency Profile]{
-      The plasma frequency reaches a peak value just under \SI{e7}{\radian/\second} near the equator. Outside the plasmasphere, its value is closer to \SI{e4}{\radian/\second}.  
+      The plasma frequency reaches a peak value just under \SI{e7}{\radian/\second} near the equator. Outside the plasmasphere, its value is closer to \SI{e5}{\radian/\second}. It's far too fast to be resolved by Tuna's usual time step.  
     }
     \label{fig_op}
 \end{figure}
 
+As mentioned in \cref{sec_math} and shown in \cref{fig_op}, plasma oscillation is quite fast -- several orders of magnitude smaller than Tuna's time step as determined in \cref{sec_coords} (\about\SI{10}{\us}). This poses a conundrum. At Tuna's usual time step, the plasma oscillation becomes unstable within seconds\footnote{\todo{The plasma oscillation is unstable at large time steps because of overcorrection. For stability, $\op \dt < 1$ is necessary. }}. On the other hand, reducing the time step by three orders of magnitude to resolve the plasma oscillation is computationally infeasible; a run previously slated for an hour would now require six weeks to complete. 
+
+As it happens, this problem can be solved by artificially increasing the parallel electric constant above its usual value of \ez. Doing so lowers both the speed of light and the plasma frequency within the simulation. 
+
+This technique -- and others like it -- has been widespread in numerical modeling since it was presented by Boris in 1970\cite{boris_1970}. More recently, Lysak and Song considered its use specifically for the case of electron inertial effects\cite{lysak_2001}. The following paraphrases their argument. 
+
+Supposing that the current and electric field are oscillating at frequency $\omega$, the parallel components of \amplaw and \ohmlaw can be written
+\begin{align}
+  - i \omega \ez E_z &= \oomz F_z - J_z & - i \omega J_z &= \frac{n e^2}{\me} E_z - \nu J_z
+\end{align}
+
+Then, eliminating the current, the parallel electric field can be related to the curl of the magnetic field by
+\begin{align}
+  \label{boris_criterion}
+  \lr{ 1 - \frac{\omega^2 - i \nu \omega}{\op^2} } E_z &= \frac{c^2}{\op^2} \lr{ \nu - i \omega } F_z
+\end{align}
+
+In \cref{boris_criterion}, $\frac{c}{\op}$ is the electron inertial length. While the speed of light and the plasma frequency each depend on \ez, their ratio does not. This allows an estimation of how much the model should be affected by an artificially-large electric constant (and thus an artificially-small plasma frequency): so long as $\frac{\omega^2 - i \nu \omega}{\op^2}$ remains small compared to unity, the model should behave faithfully. 
+
+For waves with periods of a minute or so, even perhaps-implausibly large Boris factors are allowed; for example, increasing \ez by a factor of \num{e6} gives $\left| \frac{\omega^2 + i \omega \nu}{ \op^2 } \right| \lesssim 0.01$. %In some places, this causes the speed of light to fall below the \Alfven speed; R{\"o}nnmark\cite{ronnmark_2000} terms this behavior ``anisotropic vacuum.''
 
 %\todo{Generalized \ohmlaw, in case we decide we need it. Could talk through why all of the other terms are OK to neglect.  
 %\begin{align}
@@ -110,8 +85,45 @@ For the purposes of simulating ultra low frequency waves, \cref{boris_criterion}
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Parallel Electric Fields}
+\subsection{Parallel Currents and Electric Fields}
   \label{sec_inertia_fields}
+
+As discussed in \cref{sec_math}, parallel electric fields in this regime are expected to be several orders of magnitude smaller than the perpendicular electric fields. 
+
+\todo{Even side by side, magnetic fields are not affected. The parallel electric fields are large compared to zero, but small compared to the perpendicular electric fields. }
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/electric_field_snapshots.pdf}
+    \caption[Electric Field Snapshots]{
+      Parallel electric fields are smaller than perpendicular electric fields by at least four orders of magnitude. This is a significant increase compared to runs without electron inertial effects (which take parallel electric fields to be uniformly zero). 
+    }
+    \label{fig_electric_field_snapshots}
+\end{figure}
+
+\todo{It's interesting to note the structure. Whereas the poloidal and toroidal electric fields have an antinode at the equator, the parallel electric field has an antinode. }
+
+
+
+
+
+
+
+The electron inertial length $\frac{c}{\op}$ is on the order of \SI{1}{\km}, smaller than the wavelength of a field line resonance by three or four orders of magnitude. That is, at high altitude, the parallel electric field is expected to be smaller than the perpendicular electric field by a factor of \num{e7} -- perhaps more, depending on how closely the wave vector is aligned to the magnetic field. That seems fine -- note that \cref{fig_electric_field_snapshots} shows that max $E_\parallel$ is 4 to 5 orders larger than max $E_\bot$... plus high altitude is the parallel field's minimum and the perpendicular field's maximum. 
+
+
+
+
+
+
+
+
+
+With a bit of algebra, the meridional components of the dispersion tensor from \cref{sec_high_alt} provide a comparison of the parallel and perpendicular electric field magnitudes.
+\begin{align}
+  \frac{E_\parallel}{E_\bot} &= \frac{- k_\parallel k_\bot c^2 }{ \omega^2 - k_\bot^2 c^2 - \op^2 } \sim \frac{k^2 c^2 }{\op^2}
+\end{align}
+
 
 
 
@@ -147,16 +159,6 @@ With a bit of algebra, the meridional components of the dispersion tensor from \
   \frac{E_\parallel}{E_\bot} &= \frac{- k_\parallel k_\bot c^2 }{ \omega^2 - k_\bot^2 c^2 - \op^2 } \sim \frac{k^2 c^2 }{\op^2}
 \end{align}
 
-The electron inertial length $\frac{c}{\op}$ is on the order of \SI{1}{\km}, smaller than the wavelength of a field line resonance by three or four orders of magnitude. That is, at high altitude, the parallel electric field is expected to be smaller than the perpendicular electric field by a factor of \num{e7} -- perhaps more, depending on how closely the wave vector is aligned to the magnetic field. That seems fine -- note that \cref{fig_E_2_016_010mHz} shows that max $E_\parallel$ is 4 to 5 orders larger than max $E_\bot$... plus high altitude is the parallel field's minimum and the perpendicular field's maximum. 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/E_2_016_010mHz.pdf}
-    \caption[Parallel Electric Field Snapshots]{
-      Parallel electric fields are smaller than perpendicular electric fields by at least four orders of magnitude.
-    }
-    \label{fig_E_2_016_010mHz}
-\end{figure}
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
