@@ -31,8 +31,8 @@ tidy:
 # number, and don't complain if there are no temporary files to clean up. 
 clean:
 	@ echo 'Cleaning up.'
-	@- $(LATEXMK) -C $(MAIN_TEX) &> /dev/null || True
-	@- rm *~ || True
+	@- $(LATEXMK) -C $(MAIN_TEX) &> /dev/null || true
+	@- rm *~ || true
 
 force:
 	$(LATEXMK) -pdf $(MAIN_TEX) -f
