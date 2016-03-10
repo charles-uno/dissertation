@@ -81,10 +81,12 @@
 % Title and other sections that come before the body of the document
 \include{preliminaries/title}
 
+\begingroup\let\clearpage\relax
 \include{chapters/ch_intro}
   \include{chapters/sec_environment}
   \include{chapters/sec_storms}
   \include{chapters/sec_flrs}
+\endgroup
 
 \include{chapters/ch_model}
   \include{chapters/sec_dispersion}

@@ -3,15 +3,35 @@
 % =============================================================================
 \section{The Near-Earth Environment}
 
-From Earth's surface up to about $\sim\SI{100}{\km}$, the atmosphere is a well-behaved fluid: a collisional ensemble of neutral atoms. However, beyond there, its behavior changes dramatically. As altitude increases, solar ultraviolet radiation becomes more intense, which ionizes atmospheric atoms. Density also decreases, slowing collisional recombination. Whereas the neutral atmosphere is held against Earth's surface by gravity, the behavior of charged particles is dominated by Earth's geomagnetic field... and the electromagnetic disturbances created as that field is hammered by the solar wind. 
 
-The present section outlines the general structure of Earth's magnetosphere, with particular emphasis given to matters closely related to field line resonance. 
+From Earth's surface to about \SI{100}{\km}, the atmosphere is a well-behaved fluid: a collisional ensemble of neutral atoms. However, beyond there, its behavior changes dramatically. As altitude increases, solar ultraviolet radiation becomes more intense, which ionizes atmospheric atoms. Density also decreases, slowing collisional recombination. Whereas the neutral atmosphere is held against Earth's surface by gravity, the behavior of charged particles is dominated by Earth's geomagnetic field... and the electromagnetic disturbances created as that field is hammered by the solar wind. 
+
+\todo{Neutral density is larger than charged particle density (?) but it doesn't matter because mean free path is huge. }
+
+The present section outlines the structure of the magnetosphere; that is, the region of space governed primarily by Earth's magnetic field. Particular emphasis is placed on structures which relate closely to field line resonance. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \subsection{The Outer Magnetosphere}
 
+During quiet times\footnote{Geomagnetically active times are the topic of \cref{sec_storms}}, the behavior of the magnetosphere is driven by the solar wind: a hot, rarefied, fast-moving solar outflow threaded by the Sun's magnetic field\footnote{Usual solar wind velocities, densities, and temperatures fall on the order of \SI{100}{\km/\s}, \SI{10}{\percc}, and \SI{1}{\keV} respectively. At Earth's orbit, the Sun's magnetic field has a magnitude around \SI{1}{\nT}. }. 
+
+The magnetosphere's outer boundary represents a balance between the solar wind dynamic pressure and the magnetic pressure of Earth's dipole field. On the dayside, the dipole is compressed, pushing the magnetopause to within \SI{10}{\RE}\footnote{Distances in the magnetosphere are typically measured in units of Earth radii: $\SI{1}{\RE} \equiv \SI{6378}{\km}$. } of Earth. The nightside magnetosphere is stretched into a long tail which may exceed \SI{50}{\RE} in width and \SI{100}{\RE} in length. 
+
+Consistent with \amplaw, the interplanetary magnetic field is separated from the magnetosphere by a current sheet: the magnetopause. On the dayside, the magnetopause current flows duskward; on the nightside, it flows dawnward around the magnetotail. 
+
+Plasma within the tail is cool (\about\SI{100}{\eV})and rarefied (\about\SI{e-2}{\percc}). Earth's dipole is significantly deformed in the magnetotail; the magnetic field in the northern lobe of the tail points more-or-less Earthward, and vice versa. The two lobes are divided by the plasma sheet, which is comparably hot (\about\SI{1}{\keV}) and dense (\about\SI{1}{\percc}); the plasma sheet carries a duskward current which connects to the magnetopause current. 
+
+In the outer magnetosphere, an important distinction exists between open and closed magnetic field lines. Closed field lines, such as those in the plasma sheet, have both ends connected to the magnetic dynamo at Earth's core. Open field lines, such as those in the tail lobes, meet Earth at only one end; the other end connects to the interplanetary magnetic field. 
+
+\todo{Open vs closed field lines. }
+
+\todo{Magnetic flux freezing. }
+
+\todo{Reconnection. Slow accumulation of energy in the tail. }
+
+In the outer magnetosphere (as well as most of the inner magnetosphere), collisions are so infrequent that magnetic flux is said to be ``frozen in'' to the plasma. Charged particles move freely along magnetic field lines, but cannot cross from one line to another. Compression of the magnetic field is synonymous with compression of the ambient plasma. 
 
 
 
@@ -22,17 +42,12 @@ The present section outlines the general structure of Earth's magnetosphere, wit
 
 
 
-Significant deformation by the solar wind. 
 
-Bow shock. 
 
-Magnetopause. Current sheet consistent with \amplaw. 
 
-Plasma sheet and PSBL. 
 
-Tail and tail lobes. 
 
-Reconnection. 
+
 
 
 
@@ -45,26 +60,13 @@ Reconnection.
 
 ... \\ \\
 
-6.6RE is geosynchronous. 
-
-60RE is the moon. 
-
-Tail goes back to 100RE or so. 
-
-\todo{Sketch out the goneral structure of the magnetosphere, from the ionospheric current sheet (is this too generous?) to the magnetopause (a real current sheet). Talk about where gravity dominates, where field line curvature becomes apparent, and where the moon sits in all this. }
-
 From \cite{paschmann_2003}: ``In the thermosphere, the solar ultraviolet (UV) light and energetic particles precipitating from the magnetosphere produce ionization increasing with altitude. At the same time the particle density is low enough to make the recombination times of the ionized atoms and molecules sufficiently long to allow a significant fraction of the gas to remain ionized. This produces a conducting layer of the atmosphere known as the ionosphere. The ionosphere begins at $\sim\SI{65}{\km}$, has a peak plasma density between 200 and 300 km, and eventually merges with magnetospheric regions $\sim$1000--2000 km altitudes.''
 
 The ionospheric E region is collisionally coupled to the neutrals. This decouples the ion and electron drifts, allowing currents to flow perpendicular to the magnetic field. 
 
 \todo{\Alfven waves couple the magnetosphere to the ionosphere\cite{paschmann_2003}. Waves travel down the field line, accelerating particles to match the magnetospheric driver (for example, increased flow velocity as a result of enhanced reconnection). Bounces off of the ionosphere. May also bounce off the driver. Builds up drag and brings about equilibrium. }
 
-
-At 10**5 km, the bow shock. On the dayside, at least. Balance between Earth's magnetic field and that of the sun. Another current sheet... This one far more intense.
-
-Still less than halfway to the moon. That's 3e5 km.
-
-This with is concerned with the behavior of electromagnetic waves that propagate inside the magnetosheath, but outside the ionosphere; in fact, they play a significant role in the transport of energy from the former to the latter. 
+This work is concerned with the behavior of electromagnetic waves that propagate inside the magnetosheath, but outside the ionosphere; in fact, they play a significant role in the transport of energy from the former to the latter. 
 
 Free electron density... Still mostly neutrals, but collisions are so rare that they don't matter. At x, the mean free path of a neutral atom is comparable to... 
 
@@ -72,10 +74,8 @@ Free electron density... Still mostly neutrals, but collisions are so rare that 
 
 %Heliosphere, Magnetosphere, Ionosphere, Atmosphere?
 
-%Typical solar wind density is $\sim$ \SI{5}{/\cm\cubed}. Typical solar wind velocity at Earth is \SIrange{e2}{e3}{\km/\s}. Typical solar wind particle energy is \SIrange{1}{10}{\kilo\eV}. Density can vary by $\sim$3 orders of magnitude, and velocity by one, during times of high solar activity. CMEs can also mess with the north/south component of the interplanetary magnetic field. 
+%Typical solar wind density is $\sim$ \SI{5}{\percc}. Typical solar wind velocity at Earth is \SIrange{e2}{e3}{\km/\s}. Typical solar wind particle energy is \SIrange{1}{10}{\kilo\eV}. Density can vary by $\sim$3 orders of magnitude, and velocity by one, during times of high solar activity. CMEs can also mess with the north/south component of the interplanetary magnetic field. 
 
-At Earth's orbit, the solar magnetic field makes more-or-less a \SI{45}{\degree} angle with the \X axis. 
-\footnote{Uppercase \X, \Y, and \Z are used to indicate GSE coordinates: \X points from the Earth to the Sun; \Y is perpendicular to \X in the Sun's ecliptic plane, pointing duskwards; \Z points north, out of the ecliptic plane. In later chapters, lowercase \x, \y, and \z are used to define a more-or-less analogous corodinate system with respect to Earth. }
 
 % Solar wind is what deforms Earth's magnetic field to form the magnetosphere. 
 
