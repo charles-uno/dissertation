@@ -532,24 +532,12 @@ C.~T. Russell, J.~G. Luhmann, T.~J. Odera, and W.~F. Stuart.
   dependence of the {IMF} cone angle effect.
 \newblock {\em Geophys. Res. Lett.}, 10(8):663--666, 1983.
 
-\bibitem{samimi_2015}
-A.~Samimi and J.~J. Simpson.
-\newblock An efficient 3-d {FDTD} model of electromagnetic wave propagation in
-  magnetized plasma.
-\newblock {\em {IEEE} Trans. Antennas Propagat.}, 63(1):269--279, 2015.
-
 \bibitem{sibeck_2012}
 D.~G. Sibeck, G.~Korotova, D.~L. Turner, V.~Angelopoulos, K.-H. Gla{\ss}meier,
   and J.~P. McFadden.
 \newblock Frequency doubling and field-aligned ion streaming in a long-period
   poloidal pulsation.
 \newblock {\em J. Geophys. Res.}, 117(A11), 2012.
-
-\bibitem{simpson_2004}
-J.~Simpson and A.~Taflove.
-\newblock Three-dimensional {FDTD} modeling of impulsive {ELF} propagation
-  about the earth-sphere.
-\newblock {\em {IEEE} Trans. Antennas Propagat.}, 52(2):443--451, 2004.
 
 \bibitem{singer_1982}
 H.~J. Singer, W.~J. Hughes, and C.~T. Russell.

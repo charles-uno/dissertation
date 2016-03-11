@@ -44,7 +44,7 @@ That is, electron inertial effects come hand in hand with the plasma oscillation
     \centering
     \includegraphics[width=\textwidth]{figures/op.pdf}
     \caption[Plasma Frequency Profile]{
-      The plasma frequency reaches a peak value just under \SI{e7}{\radian/\second} near the equator. Outside the plasmasphere, its value is closer to \SI{e5}{\radian/\second}. It's far too fast to be resolved by Tuna's usual time step.  
+      The plasma frequency reaches a peak value just under \SI{e6}{\Hz} near the equator. Outside the plasmasphere, its value is closer to \SI{e4}{\Hz}, which is still not well-resolved by Tuna's usual time step.  
     }
     \label{fig_op}
 \end{figure}
@@ -134,6 +134,7 @@ As discussed in \cref{sec_math}, parallel electric fields in this regime are exp
 
 
 
+
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/power_density.pdf}
@@ -142,6 +143,15 @@ As discussed in \cref{sec_math}, parallel electric fields in this regime are exp
     }
     \label{fig_power_density}
 \end{figure}
+
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Inertial Length Scales}
+  \label{sec_lengths}
+
 
 \begin{figure}[!htb]
     \centering
@@ -155,10 +165,11 @@ As discussed in \cref{sec_math}, parallel electric fields in this regime are exp
 
 
 
+\todo{We do a few runs which sorta resolve the electron inertial length. It's about \SI{2}{\km}, and we get resolution down to \SI{0.7}{\km}. This is a factor of ten increase in resolution, and an additional factor of ten decrease in the time step (due to the drop in \Alfven crossing time). It's not enough. FIG is clearly not well-resolved. Those wigglies are probably about to cause a crash. }
 
 
 
-
+test reference: \cref{fig_inertial_length} \cref{fig_power_density}
 
 \todo{Note, again, that only the figures in the present chapter include electron inertia. Those in \cref{ch_results,ch_rbsp} do not, for the sake of stability and computational cost. }
 
@@ -186,19 +197,12 @@ The ``wigglies'' visible in the lower-left corner of \cref{fig_current_poynting_
 
 \todo{Field-aligned currents can be of significant size, but they're not particularly good at depositing energy in the ionosphere. As would be expected from energy conservation, $\nabla \cdot \vec{S}$ closely resembles $\vec{J} \cdot \vec{E}$, but only a vanishingly small portion of that is due to $J_z E_z$. }
 
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\subsection{Inertial Length Scales}
-  \label{sec_lengths}
-
 \todo{Are we really computing the electric fields faithfully? As touched on in \cref{sec_inertia_fields}, the perpendicular wavelength is important for determining the strength of the parallel electric field. This is because everything depends on derivatives, not magnitudes. }
 
 \todo{A typical run has maximum perpendicular electric field on the order of \SI{10}{\mV/\meter}. Maybe a bit more. Field structures vary on the order of as little as $\sim\SI{1}{\degree}$. That could give up to $\curl{E} \sim \SI{e2}{nT/\second}$. In comparison parallel electric fields max out around \SI{e-3}{\mV/\meter}. If that varies as a scale of the inertial length -- as we expect, recalling \cref{sec_boris} -- that's order of \SI{1}{\km}, it could give $\curl{E} \sim \SI{1}{nT/\second}$. Plausibly large enough to have a visible effect. Note that the electron inertial length only needs to be resolved in the perpendicular direction, since that's where we're taking curls of the parallel electric field... which is the only quantity expected to change significantly (to lowest order) as a result of electron inertial effects. }
 
 \todo{This poses a significant computational cost. Within the plasmasphere, the inertial length is on the order of \SI{0.1}{\km}. That's two-plus orders of magnitude smaller than the present grid. Moving the inner boundary from $L=2$ to $L=5$ makes up half of that. }
 
-\todo{We do a few runs which sorta resolve the electron inertial length. It's about \SI{2}{\km}, and we get resolution down to \SI{0.7}{\km}. This is a factor of ten increase in resolution, and an additional factor of ten decrease in the time step (due to the drop in \Alfven crossing time). It's not enough. \cref{fig_inertial_length} is clearly not well-resolved. Those wigglies are probably about to cause a crash. }
 
 \todo{The moral of the present section is that proper handling of electron inertial effects will probably show additional structure at small scales... but that simulating those structures is computationally expensive in terms of computational expense, even in 2.5D. }
 

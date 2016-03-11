@@ -32,7 +32,7 @@ tidy:
 clean:
 	@ echo 'Cleaning up.'
 	@- $(LATEXMK) -C $(MAIN_TEX) &> /dev/null ||:
-	@- rm *~ chapters/*~ ||:
+	@- rm *~ chapters/*~ &> /dev/null ||:
 
 force:
 	$(LATEXMK) -pdf $(MAIN_TEX) -f

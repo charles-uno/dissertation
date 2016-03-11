@@ -83,7 +83,7 @@ The metric tensor allows rotation between covariant and contravariant representa
 In addition, the determinant of the metric tensor ($g \equiv \det \tensor{g}$) is used to define cross products and curls\footnote{The quantity \jac is called the Jacobian determinant. It's sometimes denoted using the letter $J$, which the present work reserves for current.}. 
 \begin{align}
   \label{jacobian}
-  \lr{ \vec{A} \! \times \! \vec{B} }^i &= \frac{ \varepsilon^{ijk} }{\jac} A_j B_k &
+  \lr{ \vec{A} \times \vec{B} }^i &= \frac{ \varepsilon^{ijk} }{\jac} A_j B_k &
   & \text{and} &
   \lr{ \curl{A} }^i &= \frac{ \varepsilon^{ijk} }{\jac} \dd{\lysakj} A_k &
   & \text{where} &
@@ -125,6 +125,30 @@ There are no grid points in \lysaky due to the two-and-a-half-dimensional nature
 
 The simulation's time step is set based on the grid spacing. As is the convention, \dt is set to match the smallest \Alfven zone crossing time, scaled down by a Courant factor (typically 0.1). It bears noting that the smallest crossing time need not correspond to the smallest zone; the \Alfven speed peaks several thousand kilometers above Earth's surface, in the so-called Ionospheric \Alfven Resonator\cite{lysak_2013}. A typical time step is on the order of \SI{e-5}{\second}. 
 
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Driving}
+  \label{sec_driving}
+
+%\todo{This model allows arbitrary driving/propagating waveform, absorption, refraction, phase/group delay, frequency shift, polarization, faraday rotation\cite{simpson_2004,samimi_2015}. }
+
+Models similar to Tuna have traditionally been driven using compression at the outer boundary\cite{lysak_2004,lysak_2013,waters_2008,waters_2013}. Such driving can be envisioned as a proxy for solar wind compression, Kelvin-Helmholtz effects at the magnetopause, and so on. However, because of the constraints imposed by the dispersion relation for \Alfven waves\footnote{See \cref{sec_implications}. }, simulations driven from the outer boundary are constrained to the consideration of waves with low azimuthal modenumber (equivalently, large azimuthal wavelength). 
+
+This issue is demonstrated in \cref{fig_bdrive}. At low modenumber, energy delivered at the outer boundary is able to propagate across field lines in order to stimulate resonances in the inner magnetosphere. However, as modenumber increases, \Alfven waves become increasingly guided, and the inner magnetosphere is unaffected by perturbations at the outer boundary. 
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/bdrive.pdf}
+    \caption[Decreasing Penetration with Increasing Modenumber]{
+      Each cell presents the mean energy density over the course of a \SI{300}{\s} run, as a function of position, due to compressional driving at the outer boundary. Azimuthal modenumber varies by row, and ionospheric conditions vary by column. For runs with small azimuthal modenumber, it's clear that energy is able to propagate across field lines and stimulate wave activity in the inner magnetosphere. When the modenumber is large, energy is unable to penetrate to the inner magnetosphere. Notably, the large values on the bottom row should be taken with a grain of salt; it's not clear that the model's results are reliable when waves are continuously forced against the boundary. 
+    }
+    \label{fig_bdrive}
+\end{figure}
+
+In order to simulate high-modenumber \Alfven waves in the inner magnetosphere -- such as giant pulsations -- a new driving mechanism is necessary. Perturbation of the ring current is a natural choice, as \Alfven waves in the Pc4 range are known to interact with ring current particles through drift and drift-bounce resonances. 
+
+Particularly during and after geomagnetic storms, the ring current is a dynamic region. It's easy to imagine the formation of localized inhomogeneities. It's more difficult to quantify them. Satellites make point measurements, and storm-time indeces integrate over the entire globe. Neither is well-suited to describe, for example, the magnitude of a ring current perturbation spread across just a few hours MLT. 
 
 
 
@@ -132,8 +156,51 @@ The simulation's time step is set based on the grid spacing. As is the conventio
 
 
 
+Tuna's fixed modenumber (which effectively gives the azimuthal extent of the ring current perturbation) is based on recent observations of Pc4 pulsations and giant pulsations by Dai\cite{dai_2015} and Takahashi\cite{takahashi_2013}. 
 
 
+
+
+
+However, it's difficult to estimate the magnitude of such perturbations, or their spatial extent. 
+
+
+
+
+\todo{The present work, as a result, focuses mostly on simulations driven from within the magnetosphere. }
+
+
+\todo{Pc4 pulsations with high azimuthal modenumber have been shown to originate within the magnetosphere, such as through drift-resonant interactions with energetic radiation belt and ring current particles. Substorm injection can cause localized ring current behavior. }
+
+\todo{During and after geomagnetically active times, the ring current is a dynamic region. It's easy to imagine localized perturbations, though difficult to estimate their scale. The following is a kludgey estimate -- better than no estimate at all! }
+
+\todo{The Sym-H storm index\cite{nasa_cdaweb} measures magnetic perturbations on Earth's surface due to ring current activity. It's measured once per minute\footnote{Dst, the more commonly used storm index, is measured hourly. }, so Fourier amplitudes in the Pc4 range cannot be measured directly. However, they can be inferred by fitting the pink noise distribution. \cref{fig_symh} shows a Fourier series of the June 2013 storm and its recovery, along with its Fourier series coefficients. The red line shows a fit along the maximum of the Fourier coefficients. }
+
+\todo{Note that Sym-H is global and we're looking at localized perturbations! This is a conservative estimate, because it's averaged over the entire globe. Information on modenumbers comes from observations by Dai\cite{dai_2015} and Takahashi\cite{takahashi_2013}, both of whom have seen fundamental-mode Pc4 pulsations with modenumbers of $\sim\num{70}$. }
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/symh.pdf}
+    \caption[Sym-H Fourier Components for June 2013 Storm ]{
+      The Sym-H storm index\cite{nasa_cdaweb} measures magnetic perturbations on Earth's surface due to ring current activity. The amplitude of oscillations in the Pc4 range is estimated by fitting the Fourier amplitudes of the June 2013 storm. 
+    }
+    \label{fig_symh}
+\end{figure}
+
+\todo{$\tilde{B} \arg{f} \sim \SI{e-2}{\nano\tesla} \lr{ \frac{ \SI{20}{\mHz} }{f} }$. }
+
+\todo{An oscillation with a period of about a minute could have an amplitude on the order of \SI{e-2}{\nano\tesla}. }
+
+\todo{Driving is typically delivered at $L=5$, with a Gaussian spread of \SI{0.5}{\RE} radially and \SI{5}{\degree} in latitude. Estimating the geometric factors from the size of the ring current, and from the fact that Sym-H is measured at Earth's surface rather than at the center of the ring, this gives current density on the order of \SI{e-4}{\uA/\meter\squared}. }
+
+\todo{The driving current is applied by splitting the current in \amplaw into an Ohmic term and a driving term: 
+\begin{align}
+  \tensor{\epsilon} \cdot \ddt \vec{E} &= \frac{1}{\mu_0} \curl{B} - \tensor{\sigma} \cdot \vec{E} - \vec{J}_{drive}
+\end{align}
+\cref{def_curls} is then ammended so that $\vec{F} \equiv \curl{B} - \vec{J}_{drive}$. As a result, no changes are necessary to \cref{e1_final,e2_final,e3_final}. 
+}
+
+\todo{Effective peak driving electric field is... }
 
 
 
@@ -306,79 +373,6 @@ The perpendicular components of \cref{amp_final}, mapped from the dipole basis t
 
 Note that the $E_3$ terms can be ignored at present. They are referenced in \cref{sec_inertia}. 
 
-
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\subsection{Driving}
-  \label{sec_driving}
-
-
-
-\todo{This model allows arbitrary driving/propagating waveform, absorption, refraction, phase/group delay, frequency shift, polarization, faraday rotation\cite{simpson_2004,samimi_2015}. }
-
-\todo{If no energy is added, the simulation is pretty boring. Everything just stays zero. }
-
-
-
-
-\todo{It's traditional to drive from the outer boundary. Cite some examples. It's an analog for solar wind conditions. The analogy is clear at low modenumbers (large azimuthal wavelengths), but is plausible at high modenumber (small azimuthal wavelengths) as well, due to KH waves on the magnetopause, for example. }
-
-\todo{As discussed in \cref{sec_flrs} and again in XXX, \Alfven waves become guided as the azimuthal modenumber becomes large. Energy delivered at the outer boundary, as a result, is unable to propagate across field lines to stimulate resonances in the inner magnetosphere.}
-
-\todo{Compressional driving is applied by setting the value of $B_3$ at the boundary. A typical scale is \SI{10}{\nano\tesla}. }
-
-\todo{\cref{fig_bdrive} demonstrates this issue. Note that the large values on the bottom row should be taken with a grain of salt; it's not clear that the simulation is reliable when waves are continuously forced against the boundary. }
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/bdrive.pdf}
-    \caption[Decreasing Penetration with Increasing Modenumber]{
-      When the azimuthal modneumber is small, energy delivered through compression at the outer boundary propagates across field lines to stimulate resonances in the inner magnetosphere. However, as modenumber increases, \Alfven waves become increasingly guided. As a result, the inner magnetosphere is unaffected by perturbations at the outer boundary. 
-    }
-    \label{fig_bdrive}
-\end{figure}
-
-\todo{The present work, as a result, focuses mostly on simulations driven from within the magnetosphere. }
-
-
-
-
-
-
-\todo{Pc4 pulsations with high azimuthal modenumber have been shown to originate within the magnetosphere, such as through drift-resonant interactions with energetic radiation belt and ring current particles. Substorm injection can cause localized ring current behavior. }
-
-\todo{During and after geomagnetically active times, the ring current is a dynamic region. It's easy to imagine localized perturbations, though difficult to estimate their scale. The following is a kludgey estimate -- better than no estimate at all! }
-
-\todo{The Sym-H storm index\cite{nasa_cdaweb} measures magnetic perturbations on Earth's surface due to ring current activity. It's measured once per minute\footnote{Dst, the more commonly used storm index, is measured hourly. }, so Fourier amplitudes in the Pc4 range cannot be measured directly. However, they can be inferred by fitting the pink noise distribution. \cref{fig_symh} shows a Fourier series of the June 2013 storm and its recovery, along with its Fourier series coefficients. The red line shows a fit along the maximum of the Fourier coefficients. }
-
-\todo{Note that Sym-H is global and we're looking at localized perturbations! This is a conservative estimate, because it's averaged over the entire globe. Information on modenumbers comes from observations by Dai\cite{dai_2015} and Takahashi\cite{takahashi_2013}, both of whom have seen fundamental-mode Pc4 pulsations with modenumbers of $\sim\num{70}$. }
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/symh.pdf}
-    \caption[Sym-H Fourier Components for June 2013 Storm ]{
-      The Sym-H storm index\cite{nasa_cdaweb} measures magnetic perturbations on Earth's surface due to ring current activity. The amplitude of oscillations in the Pc4 range is estimated by fitting the Fourier amplitudes of the June 2013 storm. 
-    }
-    \label{fig_symh}
-\end{figure}
-
-\todo{$\tilde{B} \arg{f} \sim \SI{e-2}{\nano\tesla} \lr{ \frac{ \SI{20}{\mHz} }{f} }$. }
-
-\todo{An oscillation with a period of about a minute could have an amplitude on the order of \SI{e-2}{\nano\tesla}. }
-
-\todo{Driving is typically delivered at $L=5$, with a Gaussian spread of \SI{0.5}{\RE} radially and \SI{5}{\degree} in latitude. Estimating the geometric factors from the size of the ring current, and from the fact that Sym-H is measured at Earth's surface rather than at the center of the ring, this gives current density on the order of \SI{e-4}{\uA/\meter\squared}. }
-
-\todo{The driving current is applied by splitting the current in \amplaw into an Ohmic term and a driving term: 
-\begin{align}
-  \tensor{\epsilon} \cdot \ddt \vec{E} &= \frac{1}{\mu_0} \curl{B} - \tensor{\sigma} \cdot \vec{E} - \vec{J}_{drive}
-\end{align}
-\cref{def_curls} is then ammended so that $\vec{F} \equiv \curl{B} - \vec{J}_{drive}$. As a result, no changes are necessary to \cref{e1_final,e2_final,e3_final}. 
-}
-
-\todo{Effective peak driving electric field is... }
-
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -405,7 +399,7 @@ These boundary conditions can in principle cause nonphysical reflections at the 
 Between the top of the neutral atmosphere and the bottom of the ionosphere, the model includes a thin, horizontal current sheet representing the ionosphere's $E$ layer\cite{lysak_2004}. By integrating \amplaw over the layer, it can be shown\cite{fujita_1988} that the horizontal electric field values at the edge of the grid are determined by the jump in the horizontal magnetic fields:
 \begin{align}
   \label{jump_condition}
-  \tensor{\Sigma} \cdot \vec{E} &= \frac{1}{\mz} \, \displaystyle\lim_{\dr \rightarrow 0} \, \bigg[ \, \hat{r} \! \times \! \vec{B} \, \bigg|^{R_I + \dr}_{R_I - \dr}
+  \tensor{\Sigma} \cdot \vec{E} &= \frac{1}{\mz} \, \displaystyle\lim_{\dr \rightarrow 0} \, \bigg[ \, \hat{r} \times \vec{B} \, \bigg|^{R_I + \dr}_{R_I - \dr}
 \end{align}
 
 Like the height-resolved conductivities in \cref{sec_eqns}, the tensor $\tensor{\Sigma}$ is based on Kelley's\cite{kelley_1989} conductivity profiles. 
