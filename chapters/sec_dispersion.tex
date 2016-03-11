@@ -1,61 +1,49 @@
-
-
 % =============================================================================
 % =============================================================================
 % =============================================================================
 \section{Dispersion Relation}
   \label{sec_math}
 
-\todo{Sketch out what a dispersion relation is, why it works, why it's interesting. }
+Before delving into the implementation of the numerical model, it's instructive to consider the fundamental equations of waves in a cold, resistive plasma. 
 
-\todo{Explain that the inclusion of conductivity is novel. }
-
-\todo{This chapter works out the sorts of waves that might be expected in the numerical model. It starts with the same equations that are used by the model -- Maxwell's equations and \ohmlaw. The resulting dispersion relation is too high-ordered for a direct solution, so several limits of interest are considered. } 
-
-\todo{At this end of this chapter, there will be a discussion of what is specifically interesting about the findings. That doesn't really exist yet. Or... actually, should we discuss interesting things as we find them? Note that we find $\omega^2 = k^2 \va^2$ several times. }
-
-Cold, linearlized \amplaw and \farlaw. The vector $\vec{B}$ is the perturbation to the zeroth-order magnetic field. 
+The evolution of electric and magnetic fields is governed by \amplaw and \farlaw. Notably, the present work takes the linearized versions of Maxwell's equations; the vectors \vec{E} and \vec{B} indicate perturbations above the zeroth-order magnetic field. 
 \begin{align}
-  \ddt \vec{B} &= -\curl{E} & \tensor{\epsilon} \cdot \ddt \vec{E} &= \oomz \curl{B} - \vec{J}
+  \label{math_maxwells}
+  \tensor{\epsilon} \cdot \ddt \vec{E} &= \oomz \curl{B} - \vec{J} & \ddt \vec{B} &= -\curl{E}
 \end{align}
 
-\ohmlaw. Electron inertial effects are included in the parallel direction. See \cref{sec_inertia}. 
+Current follows \ohmlaw. For currents perpendicular to the background magnetic field, Kirchhoff's formulation is sufficient. Conductivity is much higher along the magnetic field lines\footnote{The dipole coordinate system is defined rigorously in \cref{sec_coords}; at present, it's sufficient to take \zhat parallel to the zeroth-order magnetic field, and \xhat and \yhat perpendicular to \zhat (and to each other). }, so it's appropriate to also include the electron inertial term\footnote{Electron inertial effects are not included in the model described in \cref{sec_tuna}, or in the results in \cref{ch_results}; however, their implementation and impact are explored in \cref{sec_inertia}. }. 
 \begin{align}
-  \frac{\me}{n e^2} \ddt J_\parallel & = 
-    \sz E_\parallel - J_\parallel &
-  0 & = 
-    \tensor{\sigma}_\bot \cdot \vec{E}_\bot - \vec{J}_\bot
+  \label{math_ohms}
+  0 &= \tensor{\sigma}_\bot \cdot \vec{E}_\bot - \vec{J}_\bot &
+  \frac{\me}{n e^2} \ddt J_z &= \sz E_z - J_z
 \end{align}
 
-Suppose that the fields and currents are resonating as $\exp \arg{i \vec{k} \cdot \vec{x} - i \omega t }$. Evaluate the derivatives. Eliminate magnetic fields and currents. 
+The derivatives in \cref{math_maxwells,math_ohms} can be evaluated by performing a Fourier transform. They can then be combined, eliminating the magnetic field and current terms. 
 \begin{align}
   \label{disp_setup}
 \begin{alignedat}{4}
-%  \label{disp_para}
-  & 0 = E_\parallel && + \frac{c^2}{\omega^2} \lr{ \vec{k} \, \vec{k} \cdot \vec{E} - k^2 \vec{E} }_\parallel && + \frac{i \op^2 }{\omega \lr{\nu - i \omega} } && E_\parallel \\
-%  \label{disp_perp}
-  & 0 = \vec{E}_\bot && + \frac{\va^2}{\omega^2} \lr{ \vec{k} \, \vec{k} \cdot \vec{E} - k^2 \vec{E} }_\bot && + \frac{i}{\ep \omega} \tensor{\sigma}_\bot \cdot && \vec{E}_\bot
+  & 0 = \vec{E}_\bot && + \frac{\va^2}{\omega^2} \lr{ \vec{k} \times \vec{k} \times \vec{E} }_\bot && + \frac{i}{\ep \omega} \tensor{\sigma}_\bot \cdot && \vec{E}_\bot \\
+  & 0 = E_z && + \frac{c^2}{\omega^2} \lr{ \vec{k} \times \vec{k} \times \vec{E} }_z && + \frac{i \op^2 }{\omega \lr{\nu - i \omega} } && E_z
 \end{alignedat}
 \end{align}
 
-The above expression makes use of the vector identity $\vec{k} \times \vec{k} \times \vec{E} = \vec{k} \, \vec{k} \cdot \vec{E} - k^2 \vec{E}$. The \Alfven speed, speed of light, plasma frequency, and parallel conductivity are defined in the usual way: 
+The speed of light, \Alfven speed (including the displacement current correction), plasma frequency, and parallel conductivity are defined in the usual way: 
 \begin{align}
   \label{def_basics}
-  \va^2 & \equiv \frac{1}{\mz \ep} &
   c^2 & \equiv \frac{1}{\mz \ez} &
+  \va^2 & \equiv \frac{1}{\mz \ep} &
   \op^2 & \equiv \frac{n e^2}{\me \ez} &
   \sz & \equiv \frac{n e^2}{\me \nu}
 \end{align}
 
-Note that this definition of the \Alfven speed takes into account the displacement current correction which is important when \va approaches $c$. 
-
-\cref{disp_setup} is then assembled into the usual dispersion tensor form:
+Using the vector identity $\vec{k} \times \vec{k} \times \vec{E} = \vec{k} \, \vec{k} \cdot \vec{E} - k^2 \vec{E}$, \cref{disp_setup} can be reassembled into a single expression, 
 \begin{align}
   \label{disp}
   0 &= \lr{ \tensor{ \mathbb{I} } + \frac{1}{\omega^2} \tensor{V}^2 \cdot \vec{k} \, \vec{k} - \frac{k^2}{\omega^2} \tensor{V}^2 + \frac{i}{\omega} \tensor{\Omega} } \cdot \vec{E}
 \end{align}
 
-Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates, 
+Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates\footnote{Note that the present definition of \tensor{\Omega} differs slightly from that used in \cref{sec_eqns}. }, 
 \begin{align}
   \tensor{V}^2 &\equiv 
     \mmm{\va^2}{0}{0}
@@ -69,6 +57,16 @@ Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates
 \end{align}
 
 In \cref{disp}, the expression in parentheses is the dispersion tensor. Nontrivial solutions exist only when its determinant is zero. This gives rise to a seventh-order polynomial in $\omega$, so rather than a direct solution it's necessary to consider limits of specific interest. 
+
+
+
+
+... \\ \\ \\
+
+
+
+
+
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
