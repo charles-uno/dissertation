@@ -8,10 +8,10 @@ As laid out in \cref{sec_tuna}, Tuna resolves neither parallel currents nor para
 
 Parallel currents and electric fields can be added to Tuna through the consideration of electron inertial effects in \ohmlaw:
 \begin{align}
-  0 &= \sz E_z - J_z & \text{becomes} & & \ddt J_z &= \frac{n e^2}{\me} E_z - \nu J_z
+  0 &= \sz E_z - J_z & \text{becomes} & & \frac{1}{\nu} \ddt J_z &= \sz E_z - J_z
 \end{align}
 
-With the addition of the electron inertial term, it is necessary to track the parallel current independent of the parallel electric field\footnote{The parallel current $J_z$ is defined on the same points of the Yee grid as $E_z$. It is offset in time by half of a time step. }. Solving by integrating factors gives
+With the addition of the electron inertial term, it is necessary to track the parallel current independent of the parallel electric field\footnote{The parallel current $J_z$ is defined on the same points of the Yee grid as $E_z$. It is offset in time by half of a time step. }. Solving by integrating factors\footnote{The integrating factors technique is laid out explicitly for \amplaw in \cref{sec_eqns}. } gives
 \begin{align}
   J_3 &\assign J_3 \, \exp \arg{ - \nu \dt } + \dt \, \frac{n e^2}{\me} E_3 \, \exp \arg{ -\nu \tfrac{\dt}{2} }
 \end{align}
@@ -49,7 +49,7 @@ That is, electron inertial effects come hand in hand with the plasma oscillation
     \label{fig_op}
 \end{figure}
 
-As mentioned in \cref{sec_math} and shown in \cref{fig_op}, plasma oscillation is quite fast -- several orders of magnitude smaller than Tuna's time step as determined in \cref{sec_coords} (\about\SI{10}{\us}). This poses a conundrum. At Tuna's usual time step, the plasma oscillation becomes unstable within seconds\footnote{\todo{The plasma oscillation is unstable at large time steps because of overcorrection. For stability, $\op \dt < 1$ is necessary. }}. On the other hand, reducing the time step by three orders of magnitude to resolve the plasma oscillation is computationally infeasible; a run previously slated for an hour would now require six weeks to complete. 
+As mentioned in \cref{sec_math} and shown in \cref{fig_op}, plasma oscillation is quite fast -- several orders of magnitude smaller than Tuna's time step as determined in \cref{sec_coords} (\about\SI{10}{\us}). This poses a conundrum. At Tuna's usual time step, the plasma oscillation becomes unstable within seconds\footnote{\todo{The plasma oscillation is unstable at large time steps because of overcorrection. For stability, $\op \dt < 1$ is necessary. }}. On the other hand, reducing the time step by three orders of magnitude to resolve the plasma oscillation is computationally infeasible; a run slated for an hour would require six weeks to complete. 
 
 As it happens, this problem can be solved by artificially increasing the parallel electric constant above its usual value of \ez. Doing so lowers both the speed of light and the plasma frequency within the simulation. 
 
@@ -57,13 +57,13 @@ This technique -- and others like it -- has been widespread in numerical modelin
 
 Supposing that the current and electric field are oscillating at frequency $\omega$, the parallel components of \amplaw and \ohmlaw can be written
 \begin{align}
-  - i \omega \ez E_z &= \oomz F_z - J_z & - i \omega J_z &= \frac{n e^2}{\me} E_z - \nu J_z
+  - i \omega \ez E_z &= \oomz \lr{ \, \curl{B} \, }_z - J_z & - \frac{i \omega}{\nu} J_z &= \sz E_z - J_z
 \end{align}
 
-Then, eliminating the current, the parallel electric field can be related to the curl of the magnetic field by
+Then, eliminating the current, the parallel electric field can be related to the curl of the magnetic field by\footnote{From \cref{def_basics}, $c^2 \equiv \frac{1}{\mz \ez}$ and $\sz \equiv \frac{n e^2}{\me \nu}$ and $\op^2 \equiv \frac{n e^2}{\me \ez}$. }
 \begin{align}
   \label{boris_criterion}
-  \lr{ 1 - \frac{\omega^2 - i \nu \omega}{\op^2} } E_z &= \frac{c^2}{\op^2} \lr{ \nu - i \omega } F_z
+  \lr{ 1 - \frac{\omega^2 - i \nu \omega}{\op^2} } E_z &= \frac{c^2}{\op^2} \lr{ \nu - i \omega } \lr{ \, \curl{B} \, }_z
 \end{align}
 
 In \cref{boris_criterion}, $\frac{c}{\op}$ is the electron inertial length. While the speed of light and the plasma frequency each depend on \ez, their ratio does not. This allows an estimation of how much the model should be affected by an artificially-large electric constant (and thus an artificially-small plasma frequency): so long as $\frac{\omega^2 - i \nu \omega}{\op^2}$ remains small compared to unity, the model should behave faithfully. 
@@ -88,63 +88,58 @@ For waves with periods of a minute or so, even perhaps-implausibly large Boris f
 \subsection{Parallel Currents and Electric Fields}
   \label{sec_inertia_fields}
 
-%\todo{Parallel electric fields, supposedly, only appear at high altitude. \cite{marklund_1997,carlson_1998}. }
-
-%\todo{Integrate up a parallel electric field to see the potential difference. Compare to the relation seen by \cite{olsson_1996}, $J_\parallel \sim \Psi_\parallel$ by a proportionality constant of \SIrange{e-8}{e-10}{\S/\meter\squared}. }
-
-As discussed in \cref{sec_math}, parallel electric fields in this regime are expected to be several orders of magnitude smaller than the perpendicular electric fields. 
-
-\todo{Simulations show this to be the case. Parallel electric fields are large compared to zero, of course, but small compared to the perpendicular electric fields. }
-
-\todo{Even side by side, no difference is apparent in the magnetic fields between runs with and without electron inertial effects. This is what we expect: $\ddt \vec{B} = -\curl{E}$, so the magnetic fields are coupled to the parallel and perpendicular electric fields with equal weight. The parallel electric fields are orders of magnitude smaller, so their effect on the magnetic field is four orders of magnitude less. }
-
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=\textwidth]{figures/B_1_004_016mHz.pdf}
-%    \caption[Magnetic Fields With and Without Electron Inertia]{
-%      The addition of electron inertial effects, with no other changes to the model, does not visible change the output. In a way, this is reassuring, since the alternative is to cast doubt on past work. 
-%    }
-%    \label{fig_B_1_004_016mHz}
-%\end{figure}
-
-\todo{This is good -- it means that we aren't casting doubt on past results, and on the results presented in \cref{ch_results}, which do not use electron inertial effects. }
-
+As discussed in \cref{sec_implications}, parallel electric fields in this regime are expected to be six or more orders of magnitude smaller than the perpendicular electric fields. Numerical results show general agreement: in \cref{fig_electric_field_snapshots}, the parallel electric field appears comparable to its perpendicular counterparts only after its been scaled up by six orders of magnitude. 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/electric_field_snapshots.pdf}
+    \includegraphics[width=\textwidth]{figures/placeholder.jpg}
     \caption[Electric Field Snapshots]{
-      Parallel electric fields are smaller than perpendicular electric fields by at least four orders of magnitude. This is a significant increase compared to runs without electron inertial effects (which take parallel electric fields to be uniformly zero), but not enough to appreciably affect $\curl{E}$. 
+      Parallel electric fields are smaller than perpendicular electric fields by about six orders of magnitude. As a result, parallel electric fields do not contribute significantly to $\curl{E}$ in \farlaw. 
     }
     \label{fig_electric_field_snapshots}
 \end{figure}
 
-\todo{It's interesting to note the structure. Whereas the poloidal and toroidal electric fields have an antinode at the equator, the parallel electric field has an antinode. }
+As such, the inclusion of electron inertial effects does not appreciably impact the simulation's gross behavior; in \farlaw, \curl{E} is essentially unaffected. Side by side snapshots of the magnetic fields in runs carried out with and without electron inertial effects are not visibly distinguishable\footnote{In a sense, this is reassuring. It ensures that the present section does not cast doubt on the results presented in \cref{ch_results}, where electron inertial effects are neglected. }
 
+Even if there is no significant feedback through \farlaw, it's informative to consider the structures that arise in parallel currents and electric fields driven by perturbations in the ring current. 
 
+For example, the parallel electric field is at its maximum value in the ionosphere. This makes its structure qualitatively resemble the Poynting flux than the perpendicular electric field components. 
 
+It is furthermore notable that the parallel electric field (and the parallel current that comes from it) exhibits real and imaginary components of comparable magnitude. 
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/current_poynting_flux.pdf}
     \caption[Current and Poynting Flux at the Ionosphere]{
-      Perhaps unsurprisingly, field-aligned current structures at the ionospheric boundary line up with Poynting flux structures. The imaginary component of the current lines up with the toroidal Poynting flux (which is the product of imaginary $E_x$ and imaginary $B_y$), while the real current lines up with the poloidal Poynting flux ($E_y$ and $B_x$ are real). 
+      \todo{Perhaps unsurprisingly, field-aligned current structures at the ionospheric boundary line up with Poynting flux structures. The imaginary component of the current lines up with the toroidal Poynting flux (which is the product of imaginary $E_x$ and imaginary $B_y$), while the real current lines up with the poloidal Poynting flux ($E_y$ and $B_x$ are real). }
     }
     \label{fig_current_poynting_flux}
 \end{figure}
 
+As mentioned in \cref{sec_tuna}, each field's real component gives its behavior in the meridional plane where the (real) driving is delivered, while imaginary components are representative of waves offset in the azimuthal direction. The Hall conductivity in the ionosphere muddles this relationship somewhat by directly coupling the perpendicular electric field components to one another; even so, the poloidal field components ($B_x$, $E_y$, and $B_z$) are overwhelmingly real while toroidal components ($E_x$ and $B_y$) are overwhelmingly imaginary. 
 
+The parallel electric field and current defy this pattern. The real current scales more or less proportionally with the poloidal Poynting flux, and its imaginary component scales comparably with the toroidal Poynting flux. Rather than being preferrentially coupled to one mode or the other, parallel currents seem to arise wherever energy is moving along the background magnetic field. 
 
+It bears noting further that the Poynting flux waveforms are rectified -- they primarily carry energy Earthward. The current, on the other hand, alternates between upward and downward flow. This effect presumably arises because the current is a linear quantity while the Poynting flux is quadratic: the electric and magnetic fields that make it up oscillate in phase, so their product is positive even when they are negative. 
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/power_density.pdf}
     \caption[Power Density at the Ionosphere]{
-      While field-aligned currents can be of significant size, they are not particularly good at depositing energy in the ionosphere. Energy deposited by the Poynting flux matches closely with Joule dissipation from the perpendicular currents -- energy conservation! -- while $J_\parallel E_\parallel$ is smaller by several orders of magnitude. 
+      \todo{While field-aligned currents can be of significant size, they are not particularly good at depositing energy in the ionosphere. Energy deposited by the Poynting flux matches closely with Joule dissipation from the perpendicular currents -- energy conservation! -- while $J_\parallel E_\parallel$ is smaller by several orders of magnitude. }
     }
     \label{fig_power_density}
 \end{figure}
 
+It's also possible to consider the effect of parallel currents and electric fields on the ionosphere's energy budget, per Poynting's theorem:
+\begin{align}
+  -\ddt u &= \div{E} + \vec{J} \cdot \vec{E}
+\end{align}
 
+As shown in \cref{fig_power_density}, little energy transfer in the ionosphere is mediated by perpendicular components of the Poynting flux. The parallel component of $\vec{J} \cdot \vec{E}$ is comparably unimportant. The energy deposited in the ionosphre by the Poynting flux matches closely with the energy lost to Joule dissipation -- as it should, to conserve energy -- but according to the model, parallel currents and electric fields do not contribute significantly. 
+
+%\todo{Parallel electric fields, supposedly, only appear at high altitude. \cite{marklund_1997,carlson_1998}. }
+
+%\todo{Integrate up a parallel electric field to see the potential difference. Compare to the relation seen by \cite{olsson_1996}, $J_\parallel \sim \Psi_\parallel$ by a proportionality constant of \SIrange{e-8}{e-10}{\S/\meter\squared}. }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
