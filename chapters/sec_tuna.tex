@@ -146,68 +146,30 @@ This issue is demonstrated in \cref{fig_bdrive}. At low modenumber, energy deliv
     \label{fig_bdrive}
 \end{figure}
 
-In order to simulate high-modenumber \Alfven waves in the inner magnetosphere -- such as giant pulsations -- a new driving mechanism is necessary. Perturbation of the ring current is a natural choice, as \Alfven waves in the Pc4 range are known to interact with ring current particles through drift and drift-bounce resonances. 
+In order to simulate high-modenumber \Alfven waves in the inner magnetosphere -- such as giant pulsations -- a new driving mechanism is necessary. Perturbation of the ring current is a natural choice, as \Alfven waves in the Pc4 range are known to interact with ring current particles through drift and drift-bounce resonances. The ring current is a dynamic region, particularly during and after geomagnetic storms; it's easy to imagine the formation of localized inhomogeneities. 
 
-Particularly during and after geomagnetic storms, the ring current is a dynamic region. It's easy to imagine the formation of localized inhomogeneities. It's more difficult to quantify them. Satellites make point measurements, and storm-time indeces integrate over the entire globe. Neither is well-suited to describe, for example, the magnitude of a ring current perturbation spread across just a few hours MLT. 
+In order to estimate an appropriate magnitude for perturbations of the ring current, the Sym-H storm index is used. The index is measured once per minute, and so cannot directly detect ring current modulations in the Pc4 frequency range. Instead, the index is transformed into the frequency domain, allowing a fit of its pink noise\footnote{Pink noise, also called $\frac{1}{f}$ noise, refers to the power law decay present in the Fourier transforms of all manner of physical signals. }. 
 
+As shown in \cref{fig_symh}, a Fourier transform of the Sym-H index (taken here from the June 2013 storm) suggests that magnetic field perturbations at Earth's surface due to ring current activity in the Pc4 frequency range could be up to the order of \SI{e-2}{\nT}. Supposing that the ring current is centered around \SI{5}{\RE} geocentric, that corresponds to a current on the order of \SI{0.1}{\mega\ampere}. Tuna's driving is spread using a Gaussian profile in \lysakx (typically centered at $L=5$) and \lysakz (typically centered just off the equator), with a characteristic area of \SI{1}{\RE}$^2$; this gives a current density on the order of \SI{e-4}{\uA/\meter\squared}. 
 
+\todo{Admittedly, estimating the strength of localized perturbations using Sym-H -- an index averaged over the entire globe -- is a bit of a kludge. }
 
+% Note: Not sure why \squared is allowed in some \SI calls but not others... \SI{1}{\RE\squared} throws a \sigma_P in between the R_E and the ^2. For now, we just circumvent the issue. 
 
-
-
-
-Tuna's fixed modenumber (which effectively gives the azimuthal extent of the ring current perturbation) is based on recent observations of Pc4 pulsations and giant pulsations by Dai\cite{dai_2015} and Takahashi\cite{takahashi_2013}. 
-
-
-
-
-
-However, it's difficult to estimate the magnitude of such perturbations, or their spatial extent. 
-
-
-
-
-\todo{The present work, as a result, focuses mostly on simulations driven from within the magnetosphere. }
-
-
-\todo{Pc4 pulsations with high azimuthal modenumber have been shown to originate within the magnetosphere, such as through drift-resonant interactions with energetic radiation belt and ring current particles. Substorm injection can cause localized ring current behavior. }
-
-\todo{During and after geomagnetically active times, the ring current is a dynamic region. It's easy to imagine localized perturbations, though difficult to estimate their scale. The following is a kludgey estimate -- better than no estimate at all! }
-
-\todo{The Sym-H storm index\cite{nasa_cdaweb} measures magnetic perturbations on Earth's surface due to ring current activity. It's measured once per minute\footnote{Dst, the more commonly used storm index, is measured hourly. }, so Fourier amplitudes in the Pc4 range cannot be measured directly. However, they can be inferred by fitting the pink noise distribution. \cref{fig_symh} shows a Fourier series of the June 2013 storm and its recovery, along with its Fourier series coefficients. The red line shows a fit along the maximum of the Fourier coefficients. }
-
-\todo{Note that Sym-H is global and we're looking at localized perturbations! This is a conservative estimate, because it's averaged over the entire globe. Information on modenumbers comes from observations by Dai\cite{dai_2015} and Takahashi\cite{takahashi_2013}, both of whom have seen fundamental-mode Pc4 pulsations with modenumbers of $\sim\num{70}$. }
-
-\begin{figure}[H]
+\begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/symh.pdf}
-    \caption[Sym-H Fourier Components for June 2013 Storm ]{
-      The Sym-H storm index\cite{nasa_cdaweb} measures magnetic perturbations on Earth's surface due to ring current activity. The amplitude of oscillations in the Pc4 range is estimated by fitting the Fourier amplitudes of the June 2013 storm. 
+    \caption[Sym-H for June 2013 Storm]{
+      The Sym-H storm index\cite{nasa_cdaweb} measures magnetic perturbations on Earth's surface due to ring current activity. The amplitude of oscillations in the Pc4 range is estimated by fitting the pink noise in its Fourier transform. 
     }
     \label{fig_symh}
 \end{figure}
 
-\todo{$\tilde{B} \arg{f} \sim \SI{e-2}{\nano\tesla} \lr{ \frac{ \SI{20}{\mHz} }{f} }$. }
+In situ observations of Pc4 pulsations and giant pulsations have shown waves with modenumbers across the range $1 \lesssim \azm \lesssim 100$\cite{dai_2013,dai_2015,takahashi_2013}. Simulations are carried out across that range, corresponding to ring current perturbations with azimuthal extent as small as \SI{0.5}{\RE}. 
 
-\todo{An oscillation with a period of about a minute could have an amplitude on the order of \SI{e-2}{\nano\tesla}. }
+\todo{Driving is sinusoidal. }
 
-\todo{Driving is typically delivered at $L=5$, with a Gaussian spread of \SI{0.5}{\RE} radially and \SI{5}{\degree} in latitude. Estimating the geometric factors from the size of the ring current, and from the fact that Sym-H is measured at Earth's surface rather than at the center of the ring, this gives current density on the order of \SI{e-4}{\uA/\meter\squared}. }
-
-\todo{The driving current is applied by splitting the current in \amplaw into an Ohmic term and a driving term: 
-\begin{align}
-  \tensor{\epsilon} \cdot \ddt \vec{E} &= \frac{1}{\mu_0} \curl{B} - \tensor{\sigma} \cdot \vec{E} - \vec{J}_{drive}
-\end{align}
-\cref{def_curls} is then ammended so that $\vec{F} \equiv \curl{B} - \vec{J}_{drive}$. As a result, no changes are necessary to \cref{e1_final,e2_final,e3_final}. 
-}
-
-\todo{Effective peak driving electric field is... }
-
-
-
-
-
-
-
+\todo{In case it's not clear: \cref{ch_results} discusses ONLY simulations using ring current driving. The only compressional driving we look at is \cref{fig_bdrive}. }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -215,59 +177,33 @@ However, it's difficult to estimate the magnitude of such perturbations, or thei
 \subsection{Maxwell's Equations}
   \label{sec_eqns}
 
-\todo{Introduce \farlaw and \amplaw, respectively, after using Kirchhoff's formulation of \ohmlaw ($\vec{J} = \tensor{\sigma} \cdot \vec{E}$) to eliminate explicit curl dependence... which is revisited in \cref{sec_inertia}. }
+% OpenMP. This doesn't really fit. Is it important enough to mention somewhere? Or is this just part of how coding works? 
+
+Tuna simulates the evolution of electromagnetic waves in accordance with \amplaw and \farlaw. Computation is carried out on a Yee grid\cite{yee_1966}: electric fields and magnetic fields are offset by half a time step, and each field component is defined on either odd or even grid points in each dimension to ensure that curls are computed using centered differences. 
+
+%\todo{Leapfrog grid (for which Waters\cite{waters_2013} cites Taflove and Hagness, an electrodynamics textbook). Talk about the grid parity as well as the offset in time. }
+
+The Ohmic current in \amplaw is replaced with $\; \tensor{\sigma} \cdot \vec{E}\; $ per Kirchhoff's formulation of \ohmlaw. Then, taking \vec{J} to represent the driving current discussed in \cref{sec_driving}, Maxwell's equations can be written 
 \begin{align}
   \label{def_eqns}
   \ddt \vec{B} &= - \curl{E} &
-  \tensor{\epsilon} \cdot \ddt \vec{E} &= \frac{1}{\mu_0} \curl{B} - \tensor{\sigma} \cdot \vec{E}
+  \tensor{\epsilon} \cdot \ddt \vec{E} &= \frac{1}{\mu_0} \curl{B} - \vec{J} - \tensor{\sigma} \cdot \vec{E}
 \end{align}
 
-\todo{Explain that we'll start in \x-\y-\z coordinates -- crosswise, azimuthal, and parallel -- then map to the nonorthogonal basis at the very end. Otherwise it's necessary to carry around geometric factors. }
-
-\todo{Leapfrog grid (for which Waters\cite{waters_2013} cites Taflove and Hagness, an electrodynamics textbook). Talk about the grid parity as well as the offset in time. }
-
-%Field values are offset to ensure that most differences are centered. For example, $\ddt B_2$ depends on $\dd{\lysakx} E_3$ and $\dd{\lysakz} E_1$. If $B_2$ is defined at even $i$, $E_3$ is defined at odd $i$, so that $B_2$ is defined on the same grid points as $\frac{ E_3 \lrb{i+1} - E_3 \lrb{i-1} }{ \lysakx \lrb{i+1} - \lysakx \lrb{i-1} }$. 
-
-%\todo{Make sure the example uses the currect parities. }
-
-%\todo{Find a citation for the wigglies that occur if field values are defined on all grid points, due to the weak coupling. This problem is apparently well-known. }
-
-%Values are sometimes needed off-parity. $E_1$ and $E_2$ are not defined at the same grid locations, but they are coupled directly by the Hall conductivity. And $B_1$ and $B_3$ are coupled by the non-orthogonality of the grid. When off-parity values are needed, they are interpolated from their neighbors. 
-
-%Differentiation and interpolation are good to second order on the nonuniform grid. Like the coefficients for Maxwell's equations, differentiation and interpolation weights are computed during setup to save time during iteration. 
-
-%\begin{align}
-%  \label{def_assign}
-%  \begin{split}
-%  \int_0^{\dt} \! dt \, \ddt \vec{B} &= - \displaystyle\int_0^{\dt} \! dt \, \curl{E} \\ 
-%  \left. \vec{B} \right|_{\dt} - \left. \vec{B} \right|_0 &= \left. - \dt \, \curl{E} \right|_{ \frac{\dt}{2} } \\
-%  \vec{B} &\assign \vec{B} - \dt \, \curl{E}
-%  \end{split}
-%\end{align}
-
-\todo{Precomputation of coefficients. }
-
-\todo{Curl shorthand, \vec{C} and \vec{F}. Recalling \cref{jacobian}, }
+It is convenient to introduce shorthand for the curl of each field: $\vec{C} \equiv \curl{E}$ and $\vec{F} \equiv \curl{B} - \mz \vec{J}$. Or, recalling \cref{jacobian}, 
 \begin{align}
   \label{def_curls}
   C^i & = \frac{ \varepsilon^{ijk} }{\jac} \dd{\lysakj} E_k &
-  F^i & = \frac{ \varepsilon^{ijk} }{\jac} \dd{\lysakj} B_k
+  F^i & = \frac{ \varepsilon^{ijk} }{\jac} \dd{\lysakj} B_k - J^i
 \end{align}
 
-\todo{OpenMP. }
-
-\todo{Keeping only covariant field components and contravariant curl components, since we only use contravariant coordinates. }
-
-
-
-
-Taking the shorthand introduced in \cref{def_curls}, \farlaw can simply be written: 
+In these terms, \farlaw can simply be written:
 \begin{align}
   \label{farlaw_ijk}
   \ddt B^i &= - C^i
 \end{align}
 
-Writing each component out explicitly, and using the metric tensor (per \cref{metric}) to eliminate contravariant magnetic field components, \cref{farlaw_ijk} becomes:
+Writing each component out explicitly, and using the metric tensor (per \cref{metric}) to eliminate contravariant magnetic field components\footnote{Fields are stored only in terms of their covariant components, and curls in terms of their contravariant components. This reduces Tuna's memory footprint (since each field need not be stored twice) as well as its computational cost (since time need not be spent rotating between bases). As a result, Tuna's solutions to Maxwell's equations are linear expressions whose coefficients are a mishmash of physical constants and geometric factors. To save time, each coefficient is computed once and stored, rather than being multiplied out from scratch with each time step. }, \cref{farlaw_ijk} becomes:
 \begin{align}
   \label{farlaw_final}
   \begin{split}
@@ -279,16 +215,7 @@ Writing each component out explicitly, and using the metric tensor (per \cref{me
 
 Note that the \assign operator is used in \cref{farlaw_final} to indicate assignment, rather than equality. Terms on the left are new, while those on the right are old. 
 
-
-
-
-
-
-\amplaw, as formulated in \cref{def_eqns}, presents a nontrivial differential equation. Not only are the electric field values coupled to their own derivatives, but the crosswise and azimuthal components of the equation are coupled by the Hall terms in the conductivity tensor. 
-
-\todo{``The derivative of \vec{J} depends on the future value of \vec{j}.'' }
-
-Fortunately, the permittivity tensor can be easily inverted, allowing a solution by integrating factor. Recalling the shorthand introduced in \cref{def_curls},
+Unlike \farlaw, \amplaw cannot be trivially solved. Not only does the derivative of \vec{E} depend on its own future value, but the crosswise and azimuthal components of the equation are coupled by the Hall terms in the conductivity tensor. Fortunately, the electric tensor can be inverted, allowing a solution by integrating factors:
 \begin{align}
   \label{int_fac_0}
   \tensor{\epsilon} \cdot \ddt \vec{E} &= \frac{1}{\mu_0} \vec{F} - \tensor{\sigma} \cdot \vec{E} &
@@ -309,7 +236,7 @@ Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates
         {0}{0}{ \frac{\sz}{\ez} } 
 \end{align}
 
-Multiplying through by $\exp \arg{ \tensor{\Omega} \, t }$ and applying the product rule, \cref{int_fac_0} becomes\footnote{Tensor exponentiation is analogous to scalar exponentiation\cite{hall_2015}: $\exp \arg{ \tensor{T} } \equiv \displaystyle\sum_n \frac{1}{ n! } \tensor{T}^n$.}
+Multiplying through by $\exp \arg{ \tensor{\Omega} \, t }$ and applying the product rule, \cref{int_fac_0} becomes\footnote{Tensor exponentiation is analogous to scalar exponentiation\cite{hall_2015}: $\exp \arg{ \tensor{T} } \equiv \displaystyle\sum_n \frac{1}{ n! } \tensor{T}^n$. }
 \begin{align}
   \label{int_fac_1}
   \ddt \Big( \exp \arg{\tensor{\Omega} \, t} \cdot \vec{E} \, \Big) &= \exp \arg{\tensor{\Omega} \, t} \cdot \vec{V}^2 \cdot \vec{F}
@@ -321,11 +248,11 @@ Multiplying through by $\exp \arg{ \tensor{\Omega} \, t }$ and applying the prod
   \vec{E} &\assign \exp \arg{ -\tensor{\Omega} \, \dt } \cdot \vec{E} + \dt \, \exp \arg{ -\tensor{\Omega} \, \tfrac{\dt}{2} } \cdot \tensor{V}^2 \cdot \vec{F}
 \end{align}
 
-The tensor exponential can be evaluated by splitting $\tensor{\Omega}$ into the sum of its diagonal and Hall components\footnote{As long as the tensors $\tensor{T}$ and $\tensor{T}'$ commute -- which is guaranteed if either is diagonal -- $\exp \arg{ \tensor{T} + \tensor{T}' } = \exp \arg{ \tensor{T} } \exp \arg{ \tensor{T}' }$. }. The Hall exponential condenses into sines and cosines, giving a rotation around the magnetic field line. 
+The tensor exponential can be evaluated by splitting $\tensor{\Omega}$ into the sum of its diagonal and Hall components\footnote{As long as the tensors $\tensor{S}$ and $\tensor{T}$ commute, $\exp \arg{ \tensor{S} + \tensor{T} } = \exp \arg{ \tensor{S} } \exp \arg{ \tensor{T} }$. }. The Hall exponential condenses into sines and cosines, giving a rotation around the magnetic field line. 
 \begin{align}
   \label{amp_final}
-  \vec{E} &\assign \exp \arg{ -\tensor{\Omega}_D \; \dt } \cdot \tensor{R}_z \arg{ \tfrac{-\sh \dt}{\ep} } \cdot \vec{E}
-   + \dt \, \tensor{V}^2 \cdot \exp \arg{ -\tensor{\Omega}_D \; \tfrac{\dt}{2} } \cdot \tensor{R}_z \arg{ \tfrac{-\sh \dt}{2 \ep} } \cdot \vec{F}
+  \vec{E} &\assign \exp \arg{ -\tensor{\Omega}' \; \dt } \cdot \tensor{R}_z \arg{ \tfrac{-\sh \dt}{\ep} } \cdot \vec{E}
+   + \dt \, \tensor{V}^2 \cdot \exp \arg{ -\tensor{\Omega}' \; \tfrac{\dt}{2} } \cdot \tensor{R}_z \arg{ \tfrac{-\sh \dt}{2 \ep} } \cdot \vec{F}
 \end{align}
 
 Where 
@@ -335,7 +262,7 @@ Where
       {\sin\theta}{\cos\theta}{0}
       {0}{0}{1} &
   & \text{and} &
-  \tensor{\Omega}_D &\equiv
+  \tensor{\Omega}' &\equiv
     \mmm{ \frac{\sp}{\ep} }{0}{0}
         {0}{ \frac{\sp}{\ep} }{0}
         {0}{0}{ \frac{\sz}{\ez} }
@@ -343,18 +270,18 @@ Where
 
 The parallel component of term of \cref{amp_final} is simply
 \begin{align}
-  E_\parallel \assign E_\parallel \exp \arg{ \tfrac{- \sz \dt}{\ez} } + c^2 \dt F_\parallel \exp \arg{ \tfrac{- \sz \dt}{2 \ez} }
+  E_z \assign E_z \exp \arg{ \tfrac{- \sz \dt}{\ez} } + c^2 \dt F_z \exp \arg{ \tfrac{- \sz \dt}{2 \ez} }
 \end{align}
 
-Or, in covariant terms, 
+Or, using \cref{def_xyz_directions} to map to the covariant basis, 
 \begin{align}
   \label{e3_final}
   E_3 \assign E_3 \exp \arg{ \tfrac{- \sz \dt}{\ez} } + c^2 \dt \lr{ g_{31} F^1 + g_{33} F^3 } \exp \arg{ \tfrac{- \sz \dt}{2 \ez} }
 \end{align}
 
-Using the conductivity profiles introduced in \cref{sec_ionos}, the minimum value of $\frac{\sz \dt}{\ez}$ is on the order of \num{e3}, making $\exp \arg{ \frac{- \sz \dt}{\ez} }$ far too small to be stored in a double precision variable\footnote{Not coincidentally, $\frac{\sz}{\ez}$ can also be written $\frac{\op^2}{\nu}$. At the ionosphere, the collision frequency $\nu$ is fast compared to the frequency of a ULF wave... but it's still slow compared to the plasma frequency.}. That is, this model takes $E_3$ (and, proportionally, $E_\parallel$) to be uniformly zero. This issue is revisited in \cref{sec_inertia}. 
+Tuna's conductivity profile gives a minimum value of $\frac{\sz \dt}{\ez}$ on the order of \num{e3}, making $\exp \arg{ \frac{- \sz \dt}{\ez} }$ far too small to be stored in a double precision variable\footnote{Not coincidentally, $\frac{\sz}{\ez}$ can also be written $\frac{\op^2}{\nu}$. At the ionosphere, the collision frequency $\nu$ is fast compared to field line resonance timescales, but it's still slow compared to the plasma frequency.}. That is, this model takes $E_3$ (and, proportionally, $E_z$) to be uniformly zero. This issue is revisited in \cref{sec_inertia}. 
 
-The perpendicular components of \cref{amp_final}, mapped from the dipole basis to the covariant basis using \cref{def_xyz_directions} and \cref{metric}, give the expressions: 
+The perpendicular components of \cref{amp_final} give the expressions: 
 \begin{alignat}{6}
   \label{e1_final}
   & E_1 + \frac{ g^{13} }{ g^{11} } && E_3 \assign &&   && E_1 && \cos \arg{ \tfrac{- \sh \dt}{\ep} } \exp \arg{ \tfrac{- \sp \dt}{\ep} } &&  \notag \\
@@ -371,7 +298,45 @@ The perpendicular components of \cref{amp_final}, mapped from the dipole basis t
   & &&             && + && F^2 && \cos \arg{ \tfrac{- \sh \dt}{2\ep} } \exp \arg{ \tfrac{- \sp \dt}{2\ep} } &&  \frac{\va^2 \dt}{ g^{22} } \notag
 \end{alignat}
 
-Note that the $E_3$ terms can be ignored at present. They are referenced in \cref{sec_inertia}. 
+The $E_3$ terms in \cref{e1_final,e2_final} can be ignored at present. They are revisited in \cref{sec_inertia}. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Ionospheric Profile}
+  \label{sec_tuna_ionos}
+
+\todo{Write this section! It can be short, but probably not short enough to stick in the middle of \cref{sec_eqns}. }
+
+Tuna uses static\footnote{Even so-called ultra low frequency waves like Pc4 pulsations evolve very quickly compared to convective timescales in the magnetosphere. }, height-resolved profiles for the electric tensor and the conductivity tensor. Values are based on those found in Appendix B of Kelley\cite{kelley_1989}, and have been adapted\cite{lysak_2013} to take into account the effects of the plasmasphere. Ionospheric profiles are used to distinguish the dayside magnetosphere from the nightside, and times of high solar activity from quiet times. Conductivity profiles are shown in \cref{fig_sigma}; the \Alfven speed profile is shown in \cref{fig_va}.  
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/sigma.pdf}
+    \caption[Ionospheric Conductivity Profiles]{
+      Ionospheric conductivity profiles, adapted by Lysak\cite{lysak_2013} from Appendix B of Kelley's textbook\cite{kelley_1989}. These profiles allow Tuna to simulate the magnetosphere's response under a variety of conditions. 
+    }
+    \label{fig_sigma}
+\end{figure}
+
+%Field values are offset to ensure that most differences are centered. For example, $\ddt B_2$ depends on $\dd{\lysakx} E_3$ and $\dd{\lysakz} E_1$. If $B_2$ is defined at even $i$, $E_3$ is defined at odd $i$, so that $B_2$ is defined on the same grid points as $\frac{ E_3 \lrb{i+1} - E_3 \lrb{i-1} }{ \lysakx \lrb{i+1} - \lysakx \lrb{i-1} }$. 
+
+%\todo{Make sure the example uses the currect parities. }
+
+%\todo{Find a citation for the wigglies that occur if field values are defined on all grid points, due to the weak coupling. This problem is apparently well-known. }
+
+%Values are sometimes needed off-parity. $E_1$ and $E_2$ are not defined at the same grid locations, but they are coupled directly by the Hall conductivity. And $B_1$ and $B_3$ are coupled by the non-orthogonality of the grid. When off-parity values are needed, they are interpolated from their neighbors. 
+
+%Differentiation and interpolation are good to second order on the nonuniform grid. Like the coefficients for Maxwell's equations, differentiation and interpolation weights are computed during setup to save time during iteration. 
+
+%\begin{align}
+%  \label{def_assign}
+%  \begin{split}
+%  \int_0^{\dt} \! dt \, \ddt \vec{B} &= - \displaystyle\int_0^{\dt} \! dt \, \curl{E} \\ 
+%  \left. \vec{B} \right|_{\dt} - \left. \vec{B} \right|_0 &= \left. - \dt \, \curl{E} \right|_{ \frac{\dt}{2} } \\
+%  \vec{B} &\assign \vec{B} - \dt \, \curl{E}
+%  \end{split}
+%\end{align}
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -379,22 +344,13 @@ Note that the $E_3$ terms can be ignored at present. They are referenced in \cre
 \subsection{Boundary Conditions}
   \label{sec_bcs}
 
-\todo{The grid can't go on forever. There have to be special cases at the edges. }
+\todo{Some ground signature work as far back as Greifinger and Greifinger in 1968\cite{greifinger_1968}, but there's been steady advancement. Lysak and Song, in 2006, were the first to work out ground signatures without the assumption of a single-frequency wave. }
 
-
-
-
-
-
-\todo{Recall that parity was already discussed. }
+\todo{Past work that got ground signatures (without latitude-dependent zenith angle) Greifinger and Greifinger 1968, 1973, Hughes 1974, Sciffer and Waters 2002, Sciffer et al 2005. Better computation of ground signatures... Waters and Sciffer 2008, Sciffer and Waters 2011, Woodroffe and Lysak 2012. }
 
 Dirichlet and Neumann boundary conditions are applied to the electric field components and magnetic field components respectively. That is, electric fields are forced to go to zero at the inner and outer boundaries, and magnetic fields are forced to have a zero derivative normal to the inner and outer boundaries. 
 
 These boundary conditions can in principle cause nonphysical reflections at the boundary\footnote{See, for example, the bottom row of \cref{fig_bdrive}. }. However, in practice, wave activity is concentrated well within the simulation domain. Simulation results are robust under an exchange of Dirichlet and Neumann boundary conditions (though a self-inconsistent set of boundary condidtions, such as applying Neumann boundary conditions to $B_1$ but Dirichlet boundary conditions to $B_3$, quickly causes instability). 
-
-
-
-
 
 Between the top of the neutral atmosphere and the bottom of the ionosphere, the model includes a thin, horizontal current sheet representing the ionosphere's $E$ layer\cite{lysak_2004}. By integrating \amplaw over the layer, it can be shown\cite{fujita_1988} that the horizontal electric field values at the edge of the grid are determined by the jump in the horizontal magnetic fields:
 \begin{align}
@@ -402,7 +358,13 @@ Between the top of the neutral atmosphere and the bottom of the ionosphere, the 
   \tensor{\Sigma} \cdot \vec{E} &= \frac{1}{\mz} \, \displaystyle\lim_{\dr \rightarrow 0} \, \bigg[ \, \hat{r} \times \vec{B} \, \bigg|^{R_I + \dr}_{R_I - \dr}
 \end{align}
 
-Like the height-resolved conductivities in \cref{sec_eqns}, the tensor $\tensor{\Sigma}$ is based on Kelley's\cite{kelley_1989} conductivity profiles. 
+The integrated conductivity tensor $\tensor{\Sigma}$ can be written in $\theta$-$\phi$ coordinates as\cite{lysak_2004}:
+\begin{align}
+  \label{def_sigma}
+  \tensor{\Sigma} &\equiv \mm{ \frac{\Sigma_0 \Sigma_P}{ \Sigma_0 \cos^2 \alpha + \Sigma_P \sin^2 \alpha } }{ \frac{-\Sigma_0 \Sigma_H}{ \Sigma_0 \cos^2 \alpha + \Sigma_P \sin^2 \alpha } }
+                             { \frac{\Sigma_0 \Sigma_H}{ \Sigma_0 \cos^2 \alpha + \Sigma_P \sin^2 \alpha } }{ \Sigma_P + \frac{\Sigma_H^2 \sin^2 \alpha}{ \Sigma_0 \cos^2 \alpha + \Sigma_P \sin^2 \alpha } } \end{align}
+
+Where $\alpha$ is the angle between the magnetic field and the vertical direction, given by $\cos \alpha \equiv \frac{ -2 \cos \theta }{ \sqrt{1 + 3 \cos^2\theta} }$, and $\Sigma_P$, $\Sigma_H$, and $\Sigma_0$ are the height-integrated Pedersen, Hall, and parallel conductivities respectively. Their values are determined by integrating Kelley's\cite{kelley_1989} conductivity profiles from Earth's surface to the ionospheric boundary; values are shown in \cref{tab_sigma_atm}. 
 
 \begin{longtable}{ @{\extracolsep{\fill}} lrrr @{\extracolsep{\fill}} }
   \caption[Integrated Atmospheric Conductivity]{Integrated Atmospheric Conductivity (\si{\S})}
@@ -418,14 +380,6 @@ Like the height-resolved conductivities in \cref{sec_eqns}, the tensor $\tensor{
   Active Night &   9 & 0.01 & 0.12 \\
   Quiet Night  &   9 & 0.01 & 0.12 \\
 \end{longtable}
-
-Parallel, Pedersen, and Hall conductivities are integrated from Earth's surface to the ionospheric boundary, then arranged (in $\theta$-$\phi$ coordinates) as\cite{lysak_2004}:
-\begin{align}
-  \label{def_sigma}
-  \tensor{\Sigma} &\equiv \mm{ \frac{\Sigma_0 \Sigma_P}{ \Sigma_0 \cos^2 \alpha + \Sigma_P \sin^2 \alpha } }{ \frac{-\Sigma_0 \Sigma_H}{ \Sigma_0 \cos^2 \alpha + \Sigma_P \sin^2 \alpha } }
-                             { \frac{\Sigma_0 \Sigma_H}{ \Sigma_0 \cos^2 \alpha + \Sigma_P \sin^2 \alpha } }{ \Sigma_P + \frac{\Sigma_H^2 \sin^2 \alpha}{ \Sigma_0 \cos^2 \alpha + \Sigma_P \sin^2 \alpha } } \end{align}
-
-Where $\alpha$ is the angle between the magnetic field and the vertical direction, given by $\cos \alpha \equiv \frac{ -2 \cos \theta }{ \sqrt{1 + 3 \cos^2\theta} }$. 
 
 An expression for the horizontal electric fields at the boundary can be obtained by inverting \cref{jump_condition}. After mapping to covariant coordinates per \cref{def_rqf_directions}, and taking $\Sigma \equiv \det \tensor{\Sigma}$,
 \begin{align}
@@ -444,7 +398,7 @@ Laplace's equation can be solved analytically; however, a numerical solution is 
   \lr{ 4 s^2 + 4s } \frac{d^2}{ds^2} Y_\ell + \lr{ 4 + 6 s } \frac{d}{ds} Y_\ell - \frac{\azm^2}{s} Y_\ell &= \ell \, \lr{ \ell + 1 } Y_\ell
 \end{align}
 
-Using centered differences to linearize the derivatives, \cref{laplace} becomes a system of coupled linear equations, one per field line. It can be solved numerically for eigenvalues $\ell \, \lr{\ell + 1}$ and eigenvectors\footnote{The eigenvectors are not vectors in the same sense as \vec{B} and \vec{E}, of course; rather, they are scalar functions of $\theta$ defined on a discrete grid. } $Y_\ell$\footnote{Solving Laplace's equation analytically results in spherical harmonics indexed by both $\ell$ and \azm, the separation constants for $\theta$ and $\phi$ respectively. In two and a half dimensions, $\phi$ is not explicitly resolved, so \azm is set manually.}. In terms of the harmonics $Y_\ell$, $\Psi$ between the Earth's surface and the top of the atmosphere can be written
+Using centered differences to linearize the derivatives, \cref{laplace} becomes a system of coupled linear equations, one per field line. It can be solved numerically for eigenvalues $\ell \, \lr{\ell + 1}$ and eigenfunctions $Y_\ell$\footnote{Solving Laplace's equation analytically results in spherical harmonics indexed by both $\ell$ and \azm, the separation constants for $\theta$ and $\phi$ respectively. In two and a half dimensions, $\phi$ is not explicitly resolved, so \azm is set manually.}. In terms of the harmonics $Y_\ell$, $\Psi$ between the Earth's surface and the top of the atmosphere can be written
 \begin{align}
   \label{psi_expansion}
   \Psi \arg{r, \theta} &= \displaystyle\sum_\ell \lr{ a_\ell \, r^\ell + b_\ell \, r^{-\ell - 1} } Y_\ell \arg{\theta}
@@ -456,7 +410,7 @@ As a boundary condition for $\Psi$, Earth is assumed to be a perfect conductor. 
   b_\ell &= \frac{\ell}{\ell + 1} R_E^{2 \ell + 1} a_\ell
 \end{align}
 
-The current sheet at the top of the atmosphere has been assumed to be horizontal, so the radial component of the magnetic field must be the same just above and just below it. Taking the radial derivative of \cref{psi_expansion} at the top of the atmosphere, and eliminating $b_\ell$ with \cref{beta_solution}, gives
+The current sheet at the top of the atmosphere is assumed to be horizontal, so the radial component of the magnetic field must be the same just above and just below it. Taking the radial derivative of \cref{psi_expansion} at the top of the atmosphere, and eliminating $b_\ell$ with \cref{beta_solution}, gives
 \begin{align}
   B_r &= \displaystyle\sum_\ell \ell \, a_\ell \, R_I^{\ell-1} \, \lr{ 1 - \lambda_I^{2 \ell + 1} } Y_\ell &
   & \text{where} &
@@ -486,9 +440,5 @@ Horizontal magnetic fields are obtained by taking derivatives of $\Psi$.
 
 Horizontal magnetic field values at the top of the atmosphere are used to impose boundary conditions on the electric fields at the bottom of the ionosphere, per \cref{eatm_final}. Those at Earth's surface are valuable because they allow a direct comparison between model output and ground magnetometer data, after being mapped to physical coordinates per \cref{def_rqf_directions}. 
 
-
-\todo{Some ground signature work as far back as Greifinger and Greifinger in 1968\cite{greifinger_1968}, but there's been steady advancement. Lysak and Song, in 2006, were the first to work out ground signatures without the assumption of a single-frequency wave. }
-
-\todo{Past work that got ground signatures (without latitude-dependent zenith angle) Greifinger and Greifinger 1968, 1973, Hughes 1974, Sciffer and Waters 2002, Sciffer et al 2005. Better computation of ground signatures... Waters and Sciffer 2008, Sciffer and Waters 2011, Woodroffe and Lysak 2012. }
 
 

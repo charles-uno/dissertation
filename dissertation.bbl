@@ -673,6 +673,12 @@ B.~Yang, Q.-G. Zong, Y.~F. Wang, S.~Y. Fu, P.~Song, H.~S. Fu, A.~Korth,
   magnetosphere.
 \newblock {\em J. Geophys. Res.}, 115(A2), 2010.
 
+\bibitem{yee_1966}
+K.~Yee.
+\newblock Numerical solution of initial boundary value problems involving
+  maxwell's equations in isotropic media.
+\newblock {\em IEEE Trans. Antennas Propagat.}, 14(3), 1966.
+
 \bibitem{yeoman_2001}
 T.~K. Yeoman and D.~M. Wright.
 \newblock {ULF} waves with drift resonance and drift-bounce resonance energy
