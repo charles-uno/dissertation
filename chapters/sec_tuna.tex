@@ -28,12 +28,41 @@ Perhaps the most exciting feature of Tuna is its novel driving mechanism: ring c
 \subsection{Physical Parameter Profiles}
   \label{sec_tuna_ionos}
 
-\todo{Zeroth order magnetic field. }
+Tuna models Earth's magnetic field to be an ideal dipole:
 \begin{align}
   \vec{B}_0 &= \SI{3.1e4}{\nT} \lr{ \frac{R_E}{r} }^3 \lr{ 2 \cos\theta \, \hat{r} - \sin\theta \, \hat{\theta} }
 \end{align}
 
-\todo{Height-resolved conductivity profiles: \cref{fig_sigma}. }
+Number density is taken to be the sum of an inverse-radial-dependent auroral profile and a plasmaspheric profile dependent on the $L$-shell\cite{lysak_2013}. 
+\begin{align}
+  n &= n_{AZ} \frac{ r_{AZ} }{r} + 
+  n_{PS} \exp \arg{ \frac{-L}{ L_{PS} } } \lr{ \frac{1}{2} - \frac{1}{2} \tanh \frac{ L - L_{PP} }{ \dL_{PP} } }
+\end{align}
+
+Where typical values are $n_{AZ} = \SI{10}{\percc}$ (the number density at the base of the auroral zone), $r_{AZ} = \SI{1}{\RE}$ (the scale height of the auroral density distribution), $n_{PS} = \SI{e4}{\percc}$ (the number density at the base of the plasmasphere), $L_{PS} = \SI{1.1}{\RE}$ (the scale $L$ of the plasmasphere), $L_{PP} = 4$ (the $L$ value of the plasmapause), and $\dL_{PP} = 0.1$ (the thickness of the plasmapause, in $L$). 
+
+The perpendicular component of the electric tensor, \ep, is computed based on Kelley's\cite{kelley_1989} tabulated low-density values, $\epsilon_K$, which are adjusted to take into account the effects of high density in the plasmapause. 
+\begin{align}
+  \ep &= \epsilon_K + \frac{M n}{B_0^2}
+\end{align}
+
+Where $M$ is the mean molecular mass, which is large (\about\SI{28}{\amu}) at \SI{100}{\km} altitude, then drops quickly (down to \SI{1}{\amu} by \about\SI{1000}{\km})\cite{lysak_2013}. 
+
+The \Alfven speed profile is computed from the perpendicular electric constant in the usual way, $\va^2 \equiv \frac{1}{\mz \ep}$. This form takes into account the effect of the displacement current, which becomes important in regions where the \Alfven speed approaches the speed of light. 
+
+While the density profile is held constant for all runs discussed in the present work, the \Alfven speed profile is not. Four different for the low-density perpendicular electric constant $\epsilon_K$, corresponding to the differing ionospheric conditions between the dayside and the nightside, and between the high and low points in the solar cycle. These differences are visible in \cref{fig_va}, particularly in the size of the ionospheric \Alfven resonator (the peak in \Alfven speed in the high-latitude ionosphere). 
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/va.pdf}
+    \caption[\Alfven Speed Profiles]{
+      \Alfven speed profiles, adapted by Lysak\cite{lysak_2013} from Appendix B of Kelley's textbook\cite{kelley_1989}. 
+    }
+    \label{fig_va}
+\end{figure}
+
+Ionospheric conductivity profiles are also based on values tabulated by Kelley, adjusted by Lysak\cite{lysak_2013} to take into account the abundance of heavy ions near the Earthward boundary. Pedersen, Hall, and parallel conductivities are each resolved by altitude, as shown in \cref{fig_sigma}. 
+
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/sigma.pdf}
@@ -43,26 +72,7 @@ Perhaps the most exciting feature of Tuna is its novel driving mechanism: ring c
     \label{fig_sigma}
 \end{figure}
 
-\todo{Number density profile. }
-\begin{align}
-  n &= n_{AZ} \frac{ r_{AZ} }{r} + 
-  n_{PS} \exp \arg{ \frac{-L}{ L_{PS} } } \lr{ \frac{1}{2} - \frac{1}{2} \tanh \frac{ L - L_{PP} }{ \dL_{PP} } }
-\end{align}
-
-\todo{Electric constant. Mean molecular mass $M$ should maybe be $m_p$ or $\bar{m}$ or something. }
-\begin{align}
-  \ep &= \epsilon_K + \frac{M n}{B_0^2}
-\end{align}
-
-\todo{\Alfven speed profile: \cref{fig_va}. }
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/va.pdf}
-    \caption[\Alfven Speed Profiles]{
-      \Alfven speed profiles, adapted by Lysak\cite{lysak_2013} from Appendix B of Kelley's textbook\cite{kelley_1989}. 
-    }
-    \label{fig_va}
-\end{figure}
+Tuna's physical parameter profiles are static over the course of each run. Even so-called ultra low frequency waves like Pc4 pulsations are fast compared to convective timescales in the magnetosphere. 
 
 %Tuna uses static\footnote{Even so-called ultra low frequency waves like Pc4 pulsations evolve very quickly compared to convective timescales in the magnetosphere. }, height-resolved profiles for the electric tensor and the conductivity tensor. Values are based on those found in Appendix B of Kelley\cite{kelley_1989}, and have been adapted\cite{lysak_2013} to take into account the effects of the plasmasphere. Ionospheric profiles are used to distinguish the dayside magnetosphere from the nightside, and times of high solar activity from quiet times. Conductivity profiles are shown in \cref{fig_sigma}; the \Alfven speed profile is shown in \cref{fig_va}.  
 
@@ -300,7 +310,8 @@ Multiplying through by $\exp \arg{ \tensor{\Omega} \, t }$ and applying the prod
   \vec{E} &\assign \exp \arg{ -\tensor{\Omega} \, \dt } \cdot \vec{E} + \dt \, \exp \arg{ -\tensor{\Omega} \, \tfrac{\dt}{2} } \cdot \tensor{V}^2 \cdot \vec{F}
 \end{align}
 
-The tensor exponential can be evaluated by splitting $\tensor{\Omega}$ into the sum of its diagonal and Hall components\footnote{As long as the tensors $\tensor{S}$ and $\tensor{T}$ commute, $\exp \arg{ \tensor{S} + \tensor{T} } = \exp \arg{ \tensor{S} } \exp \arg{ \tensor{T} }$. }. The Hall exponential condenses into sines and cosines, giving a rotation around the magnetic field line. 
+The tensor exponential can be evaluated by splitting $\tensor{\Omega}$ into the sum of its diagonal and Hall components
+\footnote{For tensors, $\exp \arg{ \tensor{S} + \tensor{T} } = \exp \arg{ \tensor{S} } \exp \arg{ \tensor{T} }$ as long as $\tensor{S} \cdot \tensor{T} = \tensor{T} \cdot \tensor{S}$. }. The Hall exponential condenses into sines and cosines, giving a rotation around the magnetic field line. 
 \begin{align}
   \label{amp_final}
   \vec{E} &\assign \exp \arg{ -\tensor{\Omega}' \; \dt } \cdot \tensor{R}_z \arg{ \tfrac{-\sh \dt}{\ep} } \cdot \vec{E}
@@ -366,6 +377,8 @@ Dirichlet and Neumann boundary conditions are applied to the electric field comp
 
 These boundary conditions can in principle cause nonphysical reflections at the boundary\footnote{See, for example, the bottom row of \cref{fig_bdrive}. }. However, in practice, wave activity is concentrated well within the simulation domain. Simulation results are robust under an exchange of Dirichlet and Neumann boundary conditions (though a self-inconsistent set of boundary condidtions, such as applying Neumann boundary conditions to $B_1$ but Dirichlet boundary conditions to $B_3$, quickly causes instability). 
 
+The Earthward boundary conditions are as follows. 
+
 Between the top of the neutral atmosphere and the bottom of the ionosphere, the model includes a thin, horizontal current sheet representing the ionosphere's $E$ layer\cite{lysak_2004}. By integrating \amplaw over the layer, it can be shown\cite{fujita_1988} that the horizontal electric field values at the edge of the grid are determined by the jump in the horizontal magnetic fields:
 \begin{align}
   \label{jump_condition}
@@ -415,7 +428,8 @@ Laplace's equation can be solved analytically; however, a numerical solution is 
 Using centered differences to linearize the derivatives, \cref{laplace} becomes a system of coupled linear equations, one per field line. It can be solved numerically for eigenvalues $\ell \, \lr{\ell + 1}$ and eigenfunctions $Y_\ell$\footnote{Solving Laplace's equation analytically results in spherical harmonics indexed by both $\ell$ and \azm, the separation constants for $\theta$ and $\phi$ respectively. In two and a half dimensions, $\phi$ is not explicitly resolved, so \azm is set manually.}. In terms of the harmonics $Y_\ell$, $\Psi$ between the Earth's surface and the top of the atmosphere can be written
 \begin{align}
   \label{psi_expansion}
-  \Psi \arg{r, \theta} &= \displaystyle\sum_\ell \lr{ a_\ell \, r^\ell + b_\ell \, r^{-\ell - 1} } Y_\ell \arg{\theta}
+  \Psi &= \displaystyle\sum_\ell \lr{ a_\ell \, r^\ell + b_\ell \, r^{-\ell - 1} } Y_\ell
+%  \Psi \arg{r, \theta} &= \displaystyle\sum_\ell \lr{ a_\ell \, r^\ell + b_\ell \, r^{-\ell - 1} } Y_\ell \arg{\theta}
 \end{align}
 
 As a boundary condition for $\Psi$, Earth is assumed to be a perfect conductor. This forces the magnetic field at Earth's surface to be horizontal; that is, $B_r = \dd{r} \Psi = 0$. Noting that solutions to Laplace's equation are orthonormal, each element of the sum in \cref{psi_expansion} must be independently zero at $R_E$. This allows the coefficients $a_\ell$ and $b_\ell$ to be expressed in terms of one another. 
@@ -426,23 +440,23 @@ As a boundary condition for $\Psi$, Earth is assumed to be a perfect conductor. 
 
 The current sheet at the top of the atmosphere is assumed to be horizontal, so the radial component of the magnetic field must be the same just above and just below it. Taking the radial derivative of \cref{psi_expansion} at the top of the atmosphere, and eliminating $b_\ell$ with \cref{beta_solution}, gives
 \begin{align}
-  B_r &= \displaystyle\sum_\ell \ell \, a_\ell \, R_I^{\ell-1} \, \lr{ 1 - \lambda_I^{2 \ell + 1} } Y_\ell &
+  B_r &= \displaystyle\sum_\ell \ell \, a_\ell \, R_I^{\ell-1} \, \lr{ 1 - \lambda^{2 \ell + 1} } Y_\ell &
   & \text{where} &
-  \lambda_I &\equiv \frac{R_E}{R_I} \sim \num{0.975}
+  \lambda &\equiv \frac{R_E}{R_I} \sim \num{0.975}
 \end{align}
 
 The summation can be collapsed by ``integrating'' over a harmonic\footnote{Because the functions are defined on a discrete grid, their inner product is not an integral, but a sum: $B_r \cdot Y_\ell^{-1} \equiv \displaystyle\sum_i B_r [i] \; Y_\ell^{-1} \! [i] $. }. Inverse harmonics can be obtained by inverting the eigenvector matrix. Then $Y_\ell \cdot Y_{\ell'}^{-1} = \delta_{\ell \ell'}$ by construction. 
 \begin{align}
   \label{alpha_solution}
-  a_\ell &= \frac{ 1 }{\ell \, R_I^{\ell-1} } \frac{ B_r \cdot Y_\ell^{-1} }{ 1 - \lambda_I^{2 \ell + 1} }
+  a_\ell &= \frac{ 1 }{\ell \, R_I^{\ell-1} } \frac{ B_r \cdot Y_\ell^{-1} }{ 1 - \lambda^{2 \ell + 1} }
 \end{align}
 
 Combining \cref{psi_expansion,beta_solution,alpha_solution} allows the expression of $\Psi$ at the top and bottom of the atmosphere as a linear combination of radial magnetic field components at the bottom of the ionosphere. 
 \begin{align}
   \label{psi_final}
   \begin{split}
-  \Psi_E &= \displaystyle\sum_\ell Y_\ell \; \frac{R_I}{\ell} \frac{ \frac{2 \ell - 1}{\ell - 1} \lambda^\ell }{ 1 - \lambda_I^{2 \ell + 1} } B_r \cdot Y_\ell^{-1} \\
-  \Psi_I &= \displaystyle\sum_\ell Y_\ell \; \frac{R_I}{\ell} \frac{ 1 + \frac{\ell}{\ell - 1} \lambda_I^{2 \ell + 1} }{ 1 - \lambda_I^{2 \ell + 1} } B_r \cdot Y_\ell^{-1}
+  \Psi_E &= \displaystyle\sum_\ell Y_\ell \; \frac{R_I}{ \ell \, \lr{\ell - 1} } \frac{ \lr{2 \ell - 1} \, \lambda^\ell }{ 1 - \lambda^{2 \ell + 1} } B_r \cdot Y_\ell^{-1} \\
+  \Psi_I &= \displaystyle\sum_\ell Y_\ell \; \frac{R_I}{ \ell \, \lr{\ell - 1} } \frac{ \lr{\ell - 1} + \ell \, \lambda^{2 \ell + 1} }{ 1 - \lambda^{2 \ell + 1} } B_r \cdot Y_\ell^{-1}
   \end{split}
 \end{align}
 
