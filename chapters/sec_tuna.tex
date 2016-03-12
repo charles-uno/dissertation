@@ -25,6 +25,50 @@ Perhaps the most exciting feature of Tuna is its novel driving mechanism: ring c
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
+\subsection{Physical Parameter Profiles}
+  \label{sec_tuna_ionos}
+
+\todo{Zeroth order magnetic field. }
+\begin{align}
+  \vec{B}_0 &= \SI{3.1e4}{\nT} \lr{ \frac{R_E}{r} }^3 \lr{ 2 \cos\theta \, \hat{r} - \sin\theta \, \hat{\theta} }
+\end{align}
+
+\todo{Height-resolved conductivity profiles: \cref{fig_sigma}. }
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/sigma.pdf}
+    \caption[Ionospheric Conductivity Profiles]{
+      Ionospheric conductivity profiles, adapted by Lysak\cite{lysak_2013} from Appendix B of Kelley's textbook\cite{kelley_1989}. These profiles allow Tuna to simulate the magnetosphere's response under a variety of conditions. 
+    }
+    \label{fig_sigma}
+\end{figure}
+
+\todo{Number density profile. }
+\begin{align}
+  n &= n_{AZ} \frac{ r_{AZ} }{r} + 
+  n_{PS} \exp \arg{ \frac{-L}{ L_{PS} } } \lr{ \frac{1}{2} - \frac{1}{2} \tanh \frac{ L - L_{PP} }{ \dL_{PP} } }
+\end{align}
+
+\todo{Electric constant. Mean molecular mass $M$ should maybe be $m_p$ or $\bar{m}$ or something. }
+\begin{align}
+  \ep &= \epsilon_K + \frac{M n}{B_0^2}
+\end{align}
+
+\todo{\Alfven speed profile: \cref{fig_va}. }
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/va.pdf}
+    \caption[\Alfven Speed Profiles]{
+      \Alfven speed profiles, adapted by Lysak\cite{lysak_2013} from Appendix B of Kelley's textbook\cite{kelley_1989}. 
+    }
+    \label{fig_va}
+\end{figure}
+
+%Tuna uses static\footnote{Even so-called ultra low frequency waves like Pc4 pulsations evolve very quickly compared to convective timescales in the magnetosphere. }, height-resolved profiles for the electric tensor and the conductivity tensor. Values are based on those found in Appendix B of Kelley\cite{kelley_1989}, and have been adapted\cite{lysak_2013} to take into account the effects of the plasmasphere. Ionospheric profiles are used to distinguish the dayside magnetosphere from the nightside, and times of high solar activity from quiet times. Conductivity profiles are shown in \cref{fig_sigma}; the \Alfven speed profile is shown in \cref{fig_va}.  
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
 \subsection{Coordinate System}
   \label{sec_coords}
 
@@ -80,14 +124,14 @@ The metric tensor allows rotation between covariant and contravariant representa
   A^i &\equiv \vec{A} \cdot \hat{e}^i
 \end{align}
 
-In addition, the determinant of the metric tensor ($g \equiv \det \tensor{g}$) is used to define cross products and curls\footnote{The quantity \jac is called the Jacobian determinant. It's sometimes denoted using the letter $J$, which the present work reserves for current.}. 
+In addition, the determinant of the metric tensor is used to define cross products and curls\footnote{The square root of the determinant of the metric tensor is called the Jacobian. It's sometimes denoted using the letter $J$, which the present work reserves for current.}. 
 \begin{align}
   \label{jacobian}
   \lr{ \vec{A} \times \vec{B} }^i &= \frac{ \varepsilon^{ijk} }{\jac} A_j B_k &
   & \text{and} &
   \lr{ \curl{A} }^i &= \frac{ \varepsilon^{ijk} }{\jac} \dd{\lysakj} A_k &
   & \text{where} &
-  \jac &= \sqrt{g}
+  g \equiv \det \tensor{g}
 \end{align}
 
 Explicit forms of the basis vectors and metric tensor can be found in the appendix of Lysak's 2004 paper\cite{lysak_2004}. At present, it's sufficient to note the mapping between Lysak's basis vectors and the usual dipole unit vectors\footnote{\todo{Do these need to be written out? Referring people to the code, which will be in a public Git repository, is also a possibility. }}. 
@@ -182,6 +226,14 @@ In situ observations of Pc4 pulsations and giant pulsations have shown waves wit
 Tuna simulates the evolution of electromagnetic waves in accordance with \amplaw and \farlaw. Computation is carried out on a Yee grid\cite{yee_1966}: electric fields and magnetic fields are offset by half a time step, and each field component is defined on either odd or even grid points in each dimension to ensure that curls are computed using centered differences. 
 
 %\todo{Leapfrog grid (for which Waters\cite{waters_2013} cites Taflove and Hagness, an electrodynamics textbook). Talk about the grid parity as well as the offset in time. }
+
+%Field values are offset to ensure that most differences are centered. For example, $\ddt B_2$ depends on $\dd{\lysakx} E_3$ and $\dd{\lysakz} E_1$. If $B_2$ is defined at even $i$, $E_3$ is defined at odd $i$, so that $B_2$ is defined on the same grid points as $\frac{ E_3 \lrb{i+1} - E_3 \lrb{i-1} }{ \lysakx \lrb{i+1} - \lysakx \lrb{i-1} }$. 
+
+%\todo{Make sure the example uses the currect parities. }
+
+%Values are sometimes needed off-parity. $E_1$ and $E_2$ are not defined at the same grid locations, but they are coupled directly by the Hall conductivity. And $B_1$ and $B_3$ are coupled by the non-orthogonality of the grid. When off-parity values are needed, they are interpolated from their neighbors. 
+
+%Differentiation and interpolation are good to second order on the nonuniform grid. Like the coefficients for Maxwell's equations, differentiation and interpolation weights are computed during setup to save time during iteration. 
 
 The Ohmic current in \amplaw is replaced with $\; \tensor{\sigma} \cdot \vec{E}\; $ per Kirchhoff's formulation of \ohmlaw. Then, taking \vec{J} to represent the driving current discussed in \cref{sec_driving}, Maxwell's equations can be written 
 \begin{align}
@@ -299,44 +351,6 @@ The perpendicular components of \cref{amp_final} give the expressions:
 \end{alignat}
 
 The $E_3$ terms in \cref{e1_final,e2_final} can be ignored at present. They are revisited in \cref{sec_inertia}. 
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\subsection{Ionospheric Profile}
-  \label{sec_tuna_ionos}
-
-\todo{Write this section! It can be short, but probably not short enough to stick in the middle of \cref{sec_eqns}. }
-
-Tuna uses static\footnote{Even so-called ultra low frequency waves like Pc4 pulsations evolve very quickly compared to convective timescales in the magnetosphere. }, height-resolved profiles for the electric tensor and the conductivity tensor. Values are based on those found in Appendix B of Kelley\cite{kelley_1989}, and have been adapted\cite{lysak_2013} to take into account the effects of the plasmasphere. Ionospheric profiles are used to distinguish the dayside magnetosphere from the nightside, and times of high solar activity from quiet times. Conductivity profiles are shown in \cref{fig_sigma}; the \Alfven speed profile is shown in \cref{fig_va}.  
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/sigma.pdf}
-    \caption[Ionospheric Conductivity Profiles]{
-      Ionospheric conductivity profiles, adapted by Lysak\cite{lysak_2013} from Appendix B of Kelley's textbook\cite{kelley_1989}. These profiles allow Tuna to simulate the magnetosphere's response under a variety of conditions. 
-    }
-    \label{fig_sigma}
-\end{figure}
-
-%Field values are offset to ensure that most differences are centered. For example, $\ddt B_2$ depends on $\dd{\lysakx} E_3$ and $\dd{\lysakz} E_1$. If $B_2$ is defined at even $i$, $E_3$ is defined at odd $i$, so that $B_2$ is defined on the same grid points as $\frac{ E_3 \lrb{i+1} - E_3 \lrb{i-1} }{ \lysakx \lrb{i+1} - \lysakx \lrb{i-1} }$. 
-
-%\todo{Make sure the example uses the currect parities. }
-
-%\todo{Find a citation for the wigglies that occur if field values are defined on all grid points, due to the weak coupling. This problem is apparently well-known. }
-
-%Values are sometimes needed off-parity. $E_1$ and $E_2$ are not defined at the same grid locations, but they are coupled directly by the Hall conductivity. And $B_1$ and $B_3$ are coupled by the non-orthogonality of the grid. When off-parity values are needed, they are interpolated from their neighbors. 
-
-%Differentiation and interpolation are good to second order on the nonuniform grid. Like the coefficients for Maxwell's equations, differentiation and interpolation weights are computed during setup to save time during iteration. 
-
-%\begin{align}
-%  \label{def_assign}
-%  \begin{split}
-%  \int_0^{\dt} \! dt \, \ddt \vec{B} &= - \displaystyle\int_0^{\dt} \! dt \, \curl{E} \\ 
-%  \left. \vec{B} \right|_{\dt} - \left. \vec{B} \right|_0 &= \left. - \dt \, \curl{E} \right|_{ \frac{\dt}{2} } \\
-%  \vec{B} &\assign \vec{B} - \dt \, \curl{E}
-%  \end{split}
-%\end{align}
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
