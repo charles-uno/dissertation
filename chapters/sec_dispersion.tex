@@ -58,6 +58,64 @@ Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates
 
 In \cref{disp}, the expression in parentheses is the dispersion tensor. Nontrivial solutions exist only when its determinant is zero. This gives rise to a seventh-order polynomial in $\omega$, so rather than a direct solution it's necessary to consider limits of specific interest. 
 
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Parallel Propagation}
+  \label{sec_par}
+
+\todo{Parallel propation -- \vec{k} aligned exactly with \zhat -- is a cartoon version of field line resonance. }
+
+In the parallel propagation limit, the wave vector \vec{k} is taken to lie along the \z axis. In that case, the parallel and perpendicular components of the determinant of the dispersion tensor are decoupled, and can be considered separately. 
+
+The parallel-polarized term gives
+\begin{align}
+  % Parallel propagation, parallel polarization. 
+  0 &= \omega^2 + i \nu \omega - \op^2 &
+  & \text{so} &
+  a &= b
+\end{align}
+
+This expression can be solved directly, though it's more informative when expanded in large $\op$. 
+
+\todo{Write out intermediate step. }
+
+Both expressions in \cref{parallel_math_setup} can be solved directly, though the solution to the (cubic) perpendicular propagation case is too long to be useful. After expanding with respect to a very large plasma frequency, the solutions can be written (for parallel and perpendicular propagation respectively): 
+\begin{align}
+  % Parallel propagation, parallel polarization. 
+  \omega^2 & = \op^2 - i \nu \op + ... \\
+\end{align}
+
+The first expression in \cref{parallel_math_final} -- describing the parallel-polarized component of a parallel-propagating wave -- doesn't describe a wave at all; there's no dependence on the wave vector $k$. Instead, it describes the plasma oscillation. The second expression is the O mode: a compressional wave, oscillating just above the plasma frequency, with a parallel electric field. 
+
+The perpendicular factors of the dispersion tensor's determinant, in the cases of parallel and perpendicular propagation respectively, are: 
+\begin{align}
+  % Parallel propagation, perpendicular polarization. 
+  0 &= \omega^4 + 2 i \frac{\sp}{\ep} \omega^3
+  - \lr{ 2 k^2 \va^2 + \frac{\sp^2 + \sh^2}{\ep^2} } \omega^2
+  - 2 i k^2 \va^2 \frac{\sp}{\ep} \omega
+  + k^4 \va^4 \\
+\end{align}
+
+First expression of \cref{perpendicular_math_setup} can be solved directly. Noting that $\pm$ and $\opm$ are independent,
+\begin{align}
+  % Parallel propagation, perpendicular polarization. 
+  \omega = \lr{ \frac{\pm \sh - i \sp}{2 \ep} } \opm \sqrt{ k^2 \va^2 + \lr{ \frac{\pm \sh - i \sp}{2 \ep} }^2 }
+\end{align}
+
+This wave is propagating along the field line, so the Pedersen and Hall conductivities are small for the vast majority of its trajectory. Expanding, then, gives
+\begin{align}
+  % Parallel propagation, perpendicular polarization. 
+  \omega^2 = k^2 \va^2 \opm k \va \frac{\sh \pm i \sp}{\ep} + ...
+\end{align}
+
+
+
+
+
+
+
+
 
 
 
