@@ -58,155 +58,116 @@ Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates
 
 In \cref{disp}, the expression in parentheses is the dispersion tensor. Nontrivial solutions exist only when its determinant is zero. This gives rise to a seventh-order polynomial in $\omega$, so rather than a direct solution it's necessary to consider limits of specific interest. 
 
+\todo{Without loss of generality, the wave vector \vec{k} may be taken to lie in the \x-\z plane -- that is, with $k_y = 0$. The distinction between the two perpendicular directions is discussed in \cref{sec_implications}. }
+
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Parallel Propagation}
+\subsection{Guided Propagation}
   \label{sec_par}
 
-\todo{Parallel propation -- \vec{k} aligned exactly with \zhat -- is a cartoon version of field line resonance. }
+The wave vector of a field line resonance aligns closely to the background magnetic field. By supposing that the two align exactly (that is, taking $k_x = 0$), the parallel and perpendicular components  of the dispersion relation are decoupled. 
 
-In the parallel propagation limit, the wave vector \vec{k} is taken to lie along the \z axis. In that case, the parallel and perpendicular components of the determinant of the dispersion tensor are decoupled, and can be considered separately. 
-
-The parallel-polarized term gives
+The parallel-polarized component is quadratic, and thus can be solved directly. 
 \begin{align}
+  \label{par_par_setup}
   % Parallel propagation, parallel polarization. 
   0 &= \omega^2 + i \nu \omega - \op^2 &
   & \text{so} &
-  a &= b
+  \omega &= -\frac{i \nu}{2} \pm \sqrt{ \op^2 - \frac{\nu^2}{4} }
 \end{align}
 
-This expression can be solved directly, though it's more informative when expanded in large $\op$. 
+It bears noting that the plasma frequency is large -- not just compared to Pc4 frequencies, but even compared to the collision frequencies in the ionosphere\footnote{The collision frequency may match or exceed the plasma frequency for a thin slice at the bottom of the ionosphere, where the density of neutral atoms is large; however, it falls off quickly. Above an altitude of \SI{200}{\km}, conservatively\cite{nicolet_1953}, the plasma frequency exceeds the collision frequency by an order of magnitude or more. }. 
 
-\todo{Write out intermediate step. }
-
-Both expressions in \cref{parallel_math_setup} can be solved directly, though the solution to the (cubic) perpendicular propagation case is too long to be useful. After expanding with respect to a very large plasma frequency, the solutions can be written (for parallel and perpendicular propagation respectively): 
+Expanding \cref{par_par_setup} with respect to large \op, the dispersion relation becomes
 \begin{align}
+  \label{par_par_final}
   % Parallel propagation, parallel polarization. 
-  \omega^2 & = \op^2 - i \nu \op + ... \\
+  % Parallel propagation, parallel polarization. 
+  \omega^2 & = \op^2 \pm i \nu \op + ...
 \end{align}
 
-The first expression in \cref{parallel_math_final} -- describing the parallel-polarized component of a parallel-propagating wave -- doesn't describe a wave at all; there's no dependence on the wave vector $k$. Instead, it describes the plasma oscillation. The second expression is the O mode: a compressional wave, oscillating just above the plasma frequency, with a parallel electric field. 
+\cref{par_par_final} can hardly be called a wave, as it does not depend on the wave vector \vec{k}. Rather, it is the plasma oscillation\footnote{The plasma oscillation is also called the Langmuir wave, after Irving Langmuir. }: electrons vibrating in response to a charge separation along the background magnetic field. 
 
-The perpendicular factors of the dispersion tensor's determinant, in the cases of parallel and perpendicular propagation respectively, are: 
+The plasma oscillation is of little interest to the study of field line resonance. The two phenomena are separated by six orders of magnitude in frequency. Nevertheless, the topic is revisited in \cref{sec_inertia}. 
+
+The perpendicular components of the dispersion relation give an expression quartic in $\omega$. 
 \begin{align}
+  \label{par_perp_setup}
   % Parallel propagation, perpendicular polarization. 
   0 &= \omega^4 + 2 i \frac{\sp}{\ep} \omega^3
-  - \lr{ 2 k^2 \va^2 + \frac{\sp^2 + \sh^2}{\ep^2} } \omega^2
-  - 2 i k^2 \va^2 \frac{\sp}{\ep} \omega
-  + k^4 \va^4 \\
+  - \lr{ 2 k_z^2 \va^2 + \frac{\sp^2 + \sh^2}{\ep^2} } \omega^2
+  - 2 i k_z^2 \va^2 \frac{\sp}{\ep} \omega
+  + k_z^4 \va^4
 \end{align}
 
-First expression of \cref{perpendicular_math_setup} can be solved directly. Noting that $\pm$ and $\opm$ are independent,
+Like the parallel-polarized component above, \cref{par_perp_setup} can be solved directly. Noting that $\pm$ and $\opm$ are independent,
 \begin{align}
   % Parallel propagation, perpendicular polarization. 
-  \omega = \lr{ \frac{\pm \sh - i \sp}{2 \ep} } \opm \sqrt{ k^2 \va^2 + \lr{ \frac{\pm \sh - i \sp}{2 \ep} }^2 }
+  \omega = \lr{ \frac{\pm \sh - i \sp}{2 \ep} } \opm \sqrt{ k_z^2 \va^2 + \lr{ \frac{\pm \sh - i \sp}{2 \ep} }^2 }
 \end{align}
 
-This wave is propagating along the field line, so the Pedersen and Hall conductivities are small for the vast majority of its trajectory. Expanding, then, gives
+Also like the parallel-polarized component, the exact solution is less useful than its Taylor expansion. The Pedersen and Hall conductivities are large near the ionospheric boundary, but fall off quickly; for the vast majority of the field line, the ratios $\frac{\sp}{\ep}$ and $\frac{\sh}{\ep}$ are small compared to field line resonance frequencies. Expanding with respect to small conductivity gives
 \begin{align}
+  \label{par_perp_final}
   % Parallel propagation, perpendicular polarization. 
-  \omega^2 = k^2 \va^2 \opm k \va \frac{\sh \pm i \sp}{\ep} + ...
+  \omega^2 = k_z^2 \va^2 \opm k_z \va \frac{\sh \pm i \sp}{\ep} + ...
 \end{align}
 
+This is the \Alfven wave, with a shift to its frequency due to the conductivity of the ionosphere. It travels along the background magnetic field like a bead on a string, with electric and magnetic field perturbations perpendicular to the magnetic field line (and to one another). 
 
-
-
-
-
-
-
-
-
-
-... \\ \\ \\
-
-
-
-
-
+\todo{Jesse calls this the magnetosonic wave, and uses ``\Alfven wave'' for the other one! } 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Parallel or Perpendicular Propagation}
-  \label{sec_par_perp}
+\subsection{Compressional Propagation}
+  \label{sec_perp}
 
-\todo{Parallel propagation is ineresting because it's a naive representation of a field line resonance. Perpendicular propagation is interesting because the movement of energy across field lines is a topic of particular interest. In both cases, the cross terms in $\vec{k} \, \vec{k}$ vanish, decoupling the parallel and perpendicular polarizations. }
+\todo{Is it fair to say ``compressional'' to mean ``perpendicular'' in terms of propagation? It would be nice to have different jargon for the propagation directions and the polarization directions. }
 
-\todo{Without loss of generality, the wave vector $\vec{k}$ is presumed to lie in the \x-\z plane. The distinction between the azimuthal and crosswise directions is revisited later. }
+The partner to guided motion is compressional motion; in order for energy to move across field lines, the wave vector must have a component perpendicular to \zhat. If the wave vector is completely perpendicular to the magnetic field line ($k_z = 0$), the parallel and perpendicular components of the dispersion relation decouple, as in \cref{sec_par}. 
 
-\todo{ACTUALLY: does this even matter? If we keep $\phi$ in there in addition to $\theta$, does it cancel out? Seems like it should. }
-
-%\subsection{Parallel Polarization}
-
-In the parallel and perpendicular propagation limits respectively, the parallel factors of the determinants of \dispersiontensor are:
+The parallel-polarized component of the dispersion relation is
 \begin{align}
-  \label{parallel_math_setup}
-  \begin{split}
-  % Parallel propagation, parallel polarization. 
-  0 &= \omega^2 + i \nu \omega - \op^2 \\
+  \label{perp_par_setup}
   % Perpendicular propagation, parallel polarization. 
   0 &= \omega^3 + i \nu \omega^2
-  - \lr{ k^2 c^2 + \op^2 } \omega
-  - i k^2 c^2 \nu
-  \end{split}
+  - \lr{ k_x^2 c^2 + \op^2 } \omega
+  - i k_x^2 c^2 \nu
 \end{align}
 
-Both expressions in \cref{parallel_math_setup} can be solved directly, though the solution to the (cubic) perpendicular propagation case is too long to be useful. After expanding with respect to a very large plasma frequency, the solutions can be written (for parallel and perpendicular propagation respectively): 
+\cref{perp_par_setup} can be solved directly, though its solution (as a cubic) is far too long to be useful. Expanding with respect to the large plasma frequency, gives
 \begin{align}
   \label{parallel_math_final}
-  \begin{split}
-  % Parallel propagation, parallel polarization. 
-  \omega^2 & = \op^2 - i \nu \op + ... \\
   % Perpendicular propagation, parallel polarization. 
   \omega^2 & = k^2 c^2 + \op^2 - i \nu \op + ...
-  \end{split}
 \end{align}
 
-The first expression in \cref{parallel_math_final} -- describing the parallel-polarized component of a parallel-propagating wave -- doesn't describe a wave at all; there's no dependence on the wave vector $k$. Instead, it describes the plasma oscillation. The second expression is the O mode: a compressional wave, oscillating just above the plasma frequency, with a parallel electric field. 
+This is the O mode, a compressional wave with an electric field perturbation along the background magnetic field. Like the plasma oscillation discussed in \cref{sec_par}, its frequency is very large compared to that of a field line resonance. 
 
-The perpendicular factors of the dispersion tensor's determinant, in the cases of parallel and perpendicular propagation respectively, are: 
+The perpendicular-polarized component of the compressional dispersion relation is also cubic. 
 \begin{align}
-  \label{perpendicular_math_setup}
-  \begin{split}
-  % Parallel propagation, perpendicular polarization. 
-  0 &= \omega^4 + 2 i \frac{\sp}{\ep} \omega^3
-  - \lr{ 2 k^2 \va^2 + \frac{\sp^2 + \sh^2}{\ep^2} } \omega^2
-  - 2 i k^2 \va^2 \frac{\sp}{\ep} \omega
-  + k^4 \va^4 \\
+  \label{perp_perp_setup}
   % Perpendicular propagation, perpendicular polarization. 
   0 &= \omega^3 + 2 i \frac{\sp}{\ep} \omega^2
-  - \lr{ 2 k^2 \va^2 + \frac{\sp^2 + \sh^2}{\ep^2} } \omega
-   - i k^2 \va^2 \frac{\sp}{\ep}
-  \end{split}
+  - \lr{ 2 k_x^2 \va^2 + \frac{\sp^2 + \sh^2}{\ep^2} } \omega
+   - i k_x^2 \va^2 \frac{\sp}{\ep}
 \end{align}
 
-First expression of \cref{perpendicular_math_setup} can be solved directly. Noting that $\pm$ and $\opm$ are independent,
+A wave moving across magnetic field lines near the ionospheric boundary will encounter large $\frac{\sp}{\ep}$ and $\frac{\sh}{\ep}$, while at moderate to high altitudes those ratios will be small. Solving \cref{perp_perp_setup} in those two limits respectively gives: 
 \begin{align}
-  % Parallel propagation, perpendicular polarization. 
-  \omega = \lr{ \frac{\pm \sh - i \sp}{2 \ep} } \opm \sqrt{ k^2 \va^2 + \lr{ \frac{\pm \sh - i \sp}{2 \ep} }^2 }
-\end{align}
-
-This wave is propagating along the field line, so the Pedersen and Hall conductivities are small for the vast majority of its trajectory. Expanding, then, gives
-\begin{align}
-  \label{perp_final_z}
-  % Parallel propagation, perpendicular polarization. 
-  \omega^2 = k^2 \va^2 \opm k \va \frac{\sh \pm i \sp}{\ep} + ...
-\end{align}
-
-The second expression of \cref{perpendicular_math_setup} can also be solved directly, though its roots are impractically long. They are expanded with respect to small conductivities (as would be seen by a perpendicular-propagating wave at high altitude) and at large conductivity (representing the perpendicular-propagating wave within the ionosphere). Respectively, 
-\begin{align}
-  \label{perp_final_x}
-  \begin{split}
+  \label{perp_perp_final}
+%  \begin{split}
   % Perpendicular propagation, perpendicular polarization. Small conductivity. 
-  \omega^2 & = k^2 \va^2 \pm i k \va \frac{\sp}{\ep} + ... \\
+  \omega^2 & = k_x^2 \va^2 \pm i k_x \va \frac{\sp}{\ep} + ... &
+  & \text{and} &
   % Perpendicular propagation, perpendicular polarization. Large conductivity. 
-  \omega^2 & = k^2 \va^2 + \lr{ \frac{\sh \pm i \sp}{\ep} }^2 + ...
-  \end{split}
+  \omega^2 & = k_x^2 \va^2 + \lr{ \frac{\sh \pm i \sp}{\ep} }^2 + ...
+%  \end{split}
 \end{align}
 
-\cref{perp_final_z,perp_final_x} describe \Alfven waves: waves traveling at the \Alfven speed (shifted by the ionospheric conductivity) with electric fields perturbations perpendicular to the zeroth-order magnetic field.  
+\todo{These expressions are both the same sort of wave, obviously, with shifts in frequency due to the ionospheric conductivity. Double check terminology; is it still an \Alfven wave if it's propagating across magnetic field lines, or does a different name become more correct? Electric field perturbation is still perpendicular to the background magnetic field. }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -214,41 +175,36 @@ The second expression of \cref{perpendicular_math_setup} can also be solved dire
 \subsection{High Altitude Limit}
   \label{sec_high_alt}
 
-In the limit of large radial distance, where the density is very low, it's reasonable to neglect the Pedersen conductivity, the Hall conductivity, and the collision rate. 
+In the limit of large radial distance, it's reasonable to take the collision frequency to zero; doing so also neglects the Pedersen and Hall conductivities. 
 
-Without loss of generality, the wave vector $\vec{k}$ can be presumed to lie in the \x-\z plane\footnote{\todo{The azimuthal-propagation case is discussed in XXX.}}. 
-
-Whereas in \cref{sec_par_perp} the parallel component of the determinant of the dispersion tensor could be factored out, the high altitude limit decouples the azimuthal component from those in the meridional plane. The azimuthal component gives, simply, 
+Whereas in \cref{sec_par,sec_perp} it was the parallel-polarized component of the dispersion relation that factored out from the other two, the high altitude limit decouples the component polarized out of the \x-\z plane. The \yhat-polarized dispersion relation is simply:
 \begin{align}
   \omega^2 & = k^2 \va^2
 \end{align}
 
-This solution is analogous to the results in \cref{sec_par_perp}: a wave propagating at the \Alfven speed, with electric field perturbation perpendicular to both the zeroth-order magnetic field and the wave vector. 
+This solution is analogous to \cref{par_perp_final,perp_perp_final}. The electric field perturbation is perpendicular to both the background magnetic field and the wave vector (though those two evidently need not be perpendicular to one another). 
 
-The meridional components of the determinant of the high-altitude limit of the dispersion tensor give: 
+The other two components of the high altitude dispersion tensor give an expression quadratic in $\omega^2$:
 \begin{align}
-  \label{high_meridional_setup}
+  \label{high_setup}
   0 &= \omega^4 
-  - \lr{ k_\parallel^2 \va^2 + k_\bot^2 c^2 + \op^2 } \omega^2
-  + k_\parallel^2 \va^2 \op^2
+  - \lr{ k_x^2 c^2 + k_z^2 \va^2 + \op^2 } \omega^2
+  + k_z^2 \va^2 \op^2
 \end{align}
 
-Where $k_\parallel$ and $k_\bot$ are the parallel and crosswise components of the wave vector. The a
-
-\cref{high_meridional_setup} is quadratic in $\omega^2$. Its solution is
+Which can be solved for
 \begin{align}
-  \omega^2 & = \frac{1}{2} \lr{ k_\parallel^2 \va^2 + k_\bot^2 c^2 + \op^2 }
-  \pm \sqrt{ \frac{1}{4} \lr{ k_\parallel^2 \va^2 + k_\bot^2 c^2 + \op^2 }^2 
-    - k_\parallel^2 \va^2 \op^2 }
+  \omega^2 & = \frac{1}{2} \lr{ k_x^2 c^2 + k_z^2 \va^2 + \op^2 }
+  \pm \sqrt{ \frac{1}{4} \lr{ k_x^2 c^2 + k_z^2 \va^2 + \op^2 }^2 
+    - k_z^2 \va^2 \op^2 }
 \end{align}
 
-Noting that $\op$ is very large, the two roots simplify to
+Noting again that $\op$ is very large, the two roots can be expanded to
 \begin{align}
-  \label{high_meridional_final}
-  \begin{split}
-  \omega^2 & = k_\parallel^2 \va^2 + ... \\
-  \omega^2 & = k_\parallel^2 \va^2 + k_\bot^2 c^2 + \op^2 + ...
-  \end{split}
+  \label{high_final}
+  \omega^2 & = k_z^2 \va^2 \, \lr{ 1 + \frac{ k_x^2 c^2 + k_z^2 \va^2 }{\op^2} }+ ... &
+  & \text{and} & 
+  \omega^2 & = k_x^2 c^2 + k_z^2 \va^2 + \op^2 + ...
 \end{align}
 
 \todo{The first part looks like an \Alfven wave. The second is faster than the plasma frequency, so we don't really care about it. }
@@ -256,30 +212,36 @@ Noting that $\op$ is very large, the two roots simplify to
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Something Something Implications}
+\subsection{Implications to the Present Work}
   \label{sec_implications}
 
-\todo{High \azm limit. }
+The present section's findings carry three significant implications for the present work. 
 
-\todo{Hall conductivity? }
+First -- with the exception of the plasma oscillation, which is revisited in \cref{sec_inertia} -- waves are expected to propagate at the \Alfven speed. This, in combination with the grid configuration, will constrain the time step that can be used to model them numerically. The time step must be sufficiently small that information traveling at the \Alfven speed cannot ``skip over'' entire grid cells\footnote{As is the convention, the time step is scaled down from the smallest \Alfven zone crossing time by a Courant factor, typically 0.1, meaning that it takes at least ten time steps to cross a grid cell. }
 
-\todo{Waves moving at the \Alfven speed constrain time step. }
-
-
-
-The electron inertial length $\frac{c}{\op}$ is on the order of \SI{1}{\km}, smaller than the wavelength of a field line resonance by three or four orders of magnitude. That is, at high altitude, the parallel electric field is expected to be smaller than the perpendicular electric field by a factor of \num{e7} -- perhaps more, depending on how closely the wave vector is aligned to the magnetic field. That seems fine -- note that \cref{fig_electric_field_snapshots} shows that max $E_\parallel$ is 4 to 5 orders larger than max $E_\bot$... plus high altitude is the parallel field's minimum and the perpendicular field's maximum. 
-
-
-
-With a bit of algebra, the meridional components of the dispersion tensor from \cref{sec_high_alt} provide a comparison of the parallel and perpendicular electric field magnitudes.
+Second, the results of the present section allow an estimate of the magnitude of parallel electric field that might be expected from a field line resonance compared to its perpendicular electric field. Between the full dispersion tenfor form in \cref{disp} and the \Alfven wave described by \cref{high_final}, 
 \begin{align}
-  \frac{E_\parallel}{E_\bot} &= \frac{- k_\parallel k_\bot c^2 }{ \omega^2 - k_\bot^2 c^2 - \op^2 } \sim \frac{k^2 c^2 }{\op^2}
+  \left| \frac{E_z}{E_x} \right| &= \frac{ k_x k_z c^2 }{ \omega^2 - k_x^2 c^2 - \op^2 } \sim \frac{k^2 c^2 }{\op^2}
 \end{align}
 
+In essence, the relative magnitudes of the parallel and perpendicular electric fields should be in proportion to the square of the relative magnitudes of the electron inertial length (\SIrange{1}{100}{\km}, depending on altitude) and the wavelength (\about\SI{e5}{\km}). That is, parallel electric fields should be smaller than the perpendicular electric fields by six or more orders of magnitude. 
 
+Finally, the dispersion relations shown above indicate how the behavior of a field line resonance should behave as the azimuthal modenumber becomes large. 
 
+Whereas the shear \Alfven wave's dispersion relation depends only on the parallel component of the wave vector, the compressional \Alfven wave depends on its magnitude: $\omega^2 = k^2 \va^2$. If the frequency is smaller than $k \va$, the wave will become evanescent. The wave vector's magnitude can be no smaller than its smallest component, however, and the azimuthal component scales with the azimuthal modenumber: $k_y \sim \frac{2 \pi \azm}{r}$. 
 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/placeholder.jpg}
+    \caption[Compressional \Alfven Wave Cutoff Frequencies]{
+      Using the \Alfven speed profile described in \cref{sec_tuna_ionos}, and taking $k_y \sim \frac{2 \pi \azm}{r}$ as a lower bound for the magnitude of the wave vector, the above figure demonstrates the lowest frequency at which compressional \Alfven waves may propagate as a function of position and \azm. 
+    }
+    \label{fig_cutoff}
+\end{figure}
 
+This imposes a frequency cutoff on compressional \Alfven waves which scales with the azimuthal modenumber. At small values of \azm, most of the magnetosphere is conducive to compressional \Alfven waves in the Pc4 frequency range. As \azm increases, and the wave vector with it, the inner magnetosphere becomes increasingly inaccessible to them. 
+
+\todo{Create this figure, obviously. Plot for \azm of 1, 8, 64 (arranged horizontally). Log scale in mHz. Title ``Compressional \Alfven Cutoff Frequency''}
 
 
 

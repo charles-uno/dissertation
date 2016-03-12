@@ -199,6 +199,12 @@ The ``wigglies'' visible in the lower-left corner of \cref{fig_current_poynting_
 
 \todo{Are we really computing the electric fields faithfully? As touched on in \cref{sec_inertia_fields}, the perpendicular wavelength is important for determining the strength of the parallel electric field. This is because everything depends on derivatives, not magnitudes. }
 
+
+The electron inertial length $\frac{c}{\op}$ is on the order of \SI{1}{\km}, smaller than the wavelength of a field line resonance by three or four orders of magnitude. That is, at high altitude, the parallel electric field is expected to be smaller than the perpendicular electric field by a factor of \num{e7} -- perhaps more, depending on how closely the wave vector is aligned to the magnetic field. That seems fine -- note that \cref{fig_electric_field_snapshots} shows that max $E_\parallel$ is 4 to 5 orders larger than max $E_\bot$... plus high altitude is the parallel field's minimum and the perpendicular field's maximum. 
+
+
+
+
 \todo{A typical run has maximum perpendicular electric field on the order of \SI{10}{\mV/\meter}. Maybe a bit more. Field structures vary on the order of as little as $\sim\SI{1}{\degree}$. That could give up to $\curl{E} \sim \SI{e2}{nT/\second}$. In comparison parallel electric fields max out around \SI{e-3}{\mV/\meter}. If that varies as a scale of the inertial length -- as we expect, recalling \cref{sec_boris} -- that's order of \SI{1}{\km}, it could give $\curl{E} \sim \SI{1}{nT/\second}$. Plausibly large enough to have a visible effect. Note that the electron inertial length only needs to be resolved in the perpendicular direction, since that's where we're taking curls of the parallel electric field... which is the only quantity expected to change significantly (to lowest order) as a result of electron inertial effects. }
 
 \todo{This poses a significant computational cost. Within the plasmasphere, the inertial length is on the order of \SI{0.1}{\km}. That's two-plus orders of magnitude smaller than the present grid. Moving the inner boundary from $L=2$ to $L=5$ makes up half of that. }
