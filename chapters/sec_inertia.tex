@@ -49,7 +49,7 @@ That is, electron inertial effects come hand in hand with the plasma oscillation
     \label{fig_op}
 \end{figure}
 
-As mentioned in \cref{sec_math} and shown in \cref{fig_op}, plasma oscillation is quite fast -- several orders of magnitude smaller than Tuna's time step as determined in \cref{sec_coords} (\about\SI{10}{\us}). This poses a conundrum. At Tuna's usual time step, the plasma oscillation becomes unstable within seconds\footnote{\todo{The plasma oscillation is unstable at large time steps because of overcorrection. For stability, $\op \dt < 1$ is necessary. }}. On the other hand, reducing the time step by three orders of magnitude to resolve the plasma oscillation is computationally infeasible; a run slated for an hour would require six weeks to complete. 
+As mentioned in \cref{sec_math} and shown in \cref{fig_op}, plasma oscillation is quite fast -- several orders of magnitude smaller than Tuna's time step as determined in \cref{sec_coords} (\about\SI{10}{\us}). This poses a conundrum. At Tuna's usual time step, the plasma oscillation becomes unstable within seconds\footnote{For stability, $\op \dt < 1$ is necessary. }. On the other hand, reducing the time step by three orders of magnitude to resolve the plasma oscillation is computationally infeasible; a run slated for an hour would require six weeks to complete. 
 
 As it happens, this problem can be solved by artificially increasing the parallel electric constant above its usual value of \ez. Doing so lowers both the speed of light and the plasma frequency within the simulation. 
 
@@ -110,7 +110,7 @@ It is furthermore notable that the parallel electric field (and the parallel cur
     \centering
     \includegraphics[width=\textwidth]{figures/current_poynting_flux.pdf}
     \caption[Current and Poynting Flux at the Ionosphere]{
-      \todo{Perhaps unsurprisingly, field-aligned current structures at the ionospheric boundary line up with Poynting flux structures. The imaginary component of the current lines up with the toroidal Poynting flux (which is the product of imaginary $E_x$ and imaginary $B_y$), while the real current lines up with the poloidal Poynting flux ($E_y$ and $B_x$ are real). }
+      Perhaps unsurprisingly, field-aligned current structures at the ionospheric boundary line up with Poynting flux structures. The imaginary component of the current lines up with the toroidal Poynting flux (which is the product of imaginary $E_x$ and imaginary $B_y^*$), while the real current lines up with the poloidal Poynting flux ($E_y$ and $B_x^*$ are real).
     }
     \label{fig_current_poynting_flux}
 \end{figure}
@@ -125,7 +125,7 @@ It bears noting further that the Poynting flux waveforms are rectified -- they p
     \centering
     \includegraphics[width=\textwidth]{figures/power_density.pdf}
     \caption[Power Density at the Ionosphere]{
-      \todo{While field-aligned currents can be of significant size, they are not particularly good at depositing energy in the ionosphere. Energy deposited by the Poynting flux matches closely with Joule dissipation from the perpendicular currents -- energy conservation! -- while $J_\parallel E_\parallel$ is smaller by several orders of magnitude. }
+      While field-aligned currents can be of significant size, they are not particularly good at depositing energy in the ionosphere. Energy deposited by the Poynting flux matches closely with Joule dissipation from the perpendicular currents, while $J_z E_z$ is smaller by several orders of magnitude. 
     }
     \label{fig_power_density}
 \end{figure}
@@ -147,6 +147,13 @@ As shown in \cref{fig_power_density}, little energy transfer in the ionosphere i
 \subsection{Inertial Length Scales}
   \label{sec_lengths}
 
+It's not quite fair to compare the parallel and perpendicular contributions to \curl{E} as was done in the previous section. Perpendicular electric fields are on the order of \SI{1}{\mV/\m}, with wavelengths on the order of \SI{e5}{\km}; they give rise to magnetic field gradients around \SI{0.1}{\nT/\s}. Parallel electric fields, closer to \SI{e-6}{\mV/\m}, would need to vary over length scales of \SI{0.1}{\km} to match with that. 
+
+Such scales are believable. The characteristic length scale of the plasma oscillation is the electron inertial length, $\frac{c}{\op}$, which is on the order of \SI{1}{\km} in the auroral ionosphere and \SI{0.1}{\km} in the low-altitude plasmasphere. However, such lengths are not resolved by Tuna's usual grid; its resolution bottoms out closer to \SI{10}{\km}. 
+
+That is, with the inclusion of electron inertial effects, Tuna's grid is not sufficiently fine to resolve all of the waves expected to be present. The model is prone to instability as a result; see, for example, the ``wigglies'' in the bottom row of \cref{fig_current_poynting_flux} (in the previous section). 
+
+\cref{fig_inertial_length} shows a run with perpendicular resolution smaller than the electron inertial length, side by side with an analogous run on the usual grid. In order to carry out the inertial-scale run, several concessions were made to computational cost. The run simulates only a duration of \SI{100}{\s} (other results in previous sections and in \cref{ch_results} show \SI{300}{\s}), and the grid covers only the auroral latitudes from $L=5$ to $L=7$. 
 
 \begin{figure}[!htb]
     \centering
@@ -157,54 +164,11 @@ As shown in \cref{fig_power_density}, little energy transfer in the ionosphere i
     \label{fig_inertial_length}
 \end{figure}
 
+Even so, the run presents a significant computational expense. Spread over 16 cores, a \SI{100}{\s} run on Tuna's usual grid takes well under an hour. The inertial-scale run barely finished in 96 hours, the cutoff at the Minnesota Supercomputing Institute\footnote{Runtime goes as the inverse square of grid resolution. Not only does finer resolution require more grid cells, but it also gives rise to proportionally smaller crossing times, imposing a smaller time step. }.
 
+The snapshot shown in \cref{fig_inertial_length} uses a perpendicular grid resolution of \SI{0.7}{\km} at the Earthward edge, which just satisfies the Nyquist rate for the minimum inertial length of \SI{1.7}{\km}. It's still too coarse. There is clearly some small-scale structure developing in the ionosphere, but it's not well resolved. The large number of ``wigglies'' portends an imminent crash. 
 
+Electron inertial effects present a promising first-principles-based approach to investigate parallel currents and electric fields associated with field line resonances. Unfortunately, because of the large differences in scale between Pc4 pulsations and the plasma oscillation, the proper deployment of inertial effects presents a prohibitive computational expense. For this reason, results presented in \cref{ch_results} make use of the core version of Tuna presented in \cref{sec_tuna}, which does not include the effects of electron inertia. 
 
-\todo{We do a few runs which sorta resolve the electron inertial length. It's about \SI{2}{\km}, and we get resolution down to \SI{0.7}{\km}. This is a factor of ten increase in resolution, and an additional factor of ten decrease in the time step (due to the drop in \Alfven crossing time). It's not enough. FIG is clearly not well-resolved. Those wigglies are probably about to cause a crash. }
-
-
-
-test reference: \cref{fig_inertial_length} \cref{fig_power_density}
-
-\todo{Note, again, that only the figures in the present chapter include electron inertia. Those in \cref{ch_results,ch_rbsp} do not, for the sake of stability and computational cost. }
-
-
-With a bit of algebra, the meridional components of the dispersion tensor from \cref{sec_high_alt} provide a comparison of the parallel and perpendicular electric field magnitudes.
-\begin{align}
-  \frac{E_\parallel}{E_\bot} &= \frac{- k_\parallel k_\bot c^2 }{ \omega^2 - k_\bot^2 c^2 - \op^2 } \sim \frac{k^2 c^2 }{\op^2}
-\end{align}
-
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\subsection{Field-Aligned Current}
-  \label{sec_fac}
-
-\todo{The field-aligned current activity lines up with the Poynting flux. Poloidal Poynting flux is calculated from real $E_y$ and $B_x$. Toroidal Poynting flux is imaginary $E_x$ and $B_y$. The real component of the field-aligned current matches up with the poloidal, and the imaginary component lines up with the toroidal. }
-
-\todo{Over the bulk of the simulation, each field is overwhelmingly either real or imaginary. However, that gets muddled at the ionosphere by the Hall conductivity (rather than being purely a function of azimuthal derivatives). }
-
-
-\todo{Notably, while the net Poynting flux is downward almost everywhere, field-aligned currents alternate between upward and downward flow. Perhaps this has to do with Poynting flux being a quadratic quantity while current is linear? }
-
-The ``wigglies'' visible in the lower-left corner of \cref{fig_current_poynting_flux} suggests overcorrection due to an improperly-coarse grid. See \cref{sec_lengths}. 
-
-\todo{Field-aligned currents can be of significant size, but they're not particularly good at depositing energy in the ionosphere. As would be expected from energy conservation, $\nabla \cdot \vec{S}$ closely resembles $\vec{J} \cdot \vec{E}$, but only a vanishingly small portion of that is due to $J_z E_z$. }
-
-\todo{Are we really computing the electric fields faithfully? As touched on in \cref{sec_inertia_fields}, the perpendicular wavelength is important for determining the strength of the parallel electric field. This is because everything depends on derivatives, not magnitudes. }
-
-
-The electron inertial length $\frac{c}{\op}$ is on the order of \SI{1}{\km}, smaller than the wavelength of a field line resonance by three or four orders of magnitude. That is, at high altitude, the parallel electric field is expected to be smaller than the perpendicular electric field by a factor of \num{e7} -- perhaps more, depending on how closely the wave vector is aligned to the magnetic field. That seems fine -- note that \cref{fig_electric_field_snapshots} shows that max $E_\parallel$ is 4 to 5 orders larger than max $E_\bot$... plus high altitude is the parallel field's minimum and the perpendicular field's maximum. 
-
-
-
-
-\todo{A typical run has maximum perpendicular electric field on the order of \SI{10}{\mV/\meter}. Maybe a bit more. Field structures vary on the order of as little as $\sim\SI{1}{\degree}$. That could give up to $\curl{E} \sim \SI{e2}{nT/\second}$. In comparison parallel electric fields max out around \SI{e-3}{\mV/\meter}. If that varies as a scale of the inertial length -- as we expect, recalling \cref{sec_boris} -- that's order of \SI{1}{\km}, it could give $\curl{E} \sim \SI{1}{nT/\second}$. Plausibly large enough to have a visible effect. Note that the electron inertial length only needs to be resolved in the perpendicular direction, since that's where we're taking curls of the parallel electric field... which is the only quantity expected to change significantly (to lowest order) as a result of electron inertial effects. }
-
-\todo{This poses a significant computational cost. Within the plasmasphere, the inertial length is on the order of \SI{0.1}{\km}. That's two-plus orders of magnitude smaller than the present grid. Moving the inner boundary from $L=2$ to $L=5$ makes up half of that. }
-
-
-\todo{The moral of the present section is that proper handling of electron inertial effects will probably show additional structure at small scales... but that simulating those structures is computationally expensive in terms of computational expense, even in 2.5D. }
 
 
