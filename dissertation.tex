@@ -84,44 +84,35 @@
 % Title and other sections that come before the body of the document
 \include{preliminaries/title}
 
-% Introductory chapters. 
-\include{chapters/intro}
-\include{chapters/environment}
-\include{chapters/flrs}
-
-% Model chapters. 
-\include{chapters/math}
-\include{chapters/model}
-\include{chapters/inertia}
-
-% Results chapters. 
-\include{chapters/results}
-
-
-
 %\begingroup\let\clearpage\relax
 % put sections that make up a chapter here to prevent newpage between sections.
 %\endgroup
 %\newpage
 
+\include{chapters/intro}
 
-\include{chapters/ch_rbsp}
-  \include{chapters/sec_events}
-  \include{chapters/sec_analysis}
+\include{chapters/environment}
 
-\include{chapters/ch_conclusion}
-  \include{chapters/sec_summary}
-  \include{chapters/sec_future}
+\include{chapters/flrs}
+
+\include{chapters/math}
+
+\include{chapters/model}
+
+\include{chapters/inertia}
+
+\include{chapters/results}
+
+\include{chapters/rbsp}
+
+\include{chapters/conclusion}
 
 % Bibliography
 \bibliography{dissertation}
 
 % Appendices
 \appendix
-
-\include{chapters/app_geometry}
-
-%\include{chapters/app_integrating}
+%\include{chapters/app_whatever}
 
 % End the Document
 \end{document}
