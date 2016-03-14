@@ -1,10 +1,10 @@
-% =============================================================================
-% =============================================================================
-% =============================================================================
-\section{Electron Inertial Effects}
-  \label{sec_inertia}
 
-As laid out in \cref{sec_tuna}, Tuna resolves neither parallel currents nor parallel electric fields. This limits the model's applicability to \todo{direct acceleration of particles? double layers? \Alfven{}ic aurorae? } and other topics closely related to field line resonance. 
+
+
+\chapter{Electron Inertial Effects}
+  \label{ch_inertia}
+
+As laid out in \cref{ch_model}, Tuna resolves neither parallel currents nor parallel electric fields. This limits the model's applicability to \todo{direct acceleration of particles? double layers? \Alfven{}ic aurorae? } and other topics closely related to field line resonance. 
 
 Parallel currents and electric fields can be added to Tuna through the consideration of electron inertial effects in \ohmlaw:
 \begin{align}
@@ -26,7 +26,7 @@ The present section explores the complications that arise from the addition of t
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{The Boris Factor}
+\section{The Boris Factor}
   \label{sec_boris}
 
 With the addition of the electron inertial term, a cyclical dependence appears between \amplaw and \ohmlaw:
@@ -49,7 +49,7 @@ That is, electron inertial effects come hand in hand with the plasma oscillation
     \label{fig_op}
 \end{figure}
 
-As mentioned in \cref{sec_math} and shown in \cref{fig_op}, plasma oscillation is quite fast -- several orders of magnitude smaller than Tuna's time step as determined in \cref{sec_coords} (\about\SI{10}{\us}). This poses a conundrum. At Tuna's usual time step, the plasma oscillation becomes unstable within seconds\footnote{For stability, $\op \dt < 1$ is necessary. }. On the other hand, reducing the time step by three orders of magnitude to resolve the plasma oscillation is computationally infeasible; a run slated for an hour would require six weeks to complete. 
+As mentioned in \cref{ch_math} and shown in \cref{fig_op}, plasma oscillation is quite fast -- several orders of magnitude smaller than Tuna's time step as determined in \cref{sec_coords} (\about\SI{10}{\us}). This poses a conundrum. At Tuna's usual time step, the plasma oscillation becomes unstable within seconds\footnote{For stability, $\op \dt < 1$ is necessary. }. On the other hand, reducing the time step by three orders of magnitude to resolve the plasma oscillation is computationally infeasible; a run slated for an hour would require six weeks to complete. 
 
 As it happens, this problem can be solved by artificially increasing the parallel electric constant above its usual value of \ez. Doing so lowers both the speed of light and the plasma frequency within the simulation. 
 
@@ -85,8 +85,7 @@ For waves with periods of a minute or so, even perhaps-implausibly large Boris f
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Parallel Currents and Electric Fields}
-  \label{sec_inertia_fields}
+\section{Parallel Currents and Electric Fields}
 
 As discussed in \cref{sec_implications}, parallel electric fields in this regime are expected to be six or more orders of magnitude smaller than the perpendicular electric fields. Numerical results show general agreement: in \cref{fig_electric_field_snapshots}, the parallel electric field appears comparable to its perpendicular counterparts only after its been scaled up by six orders of magnitude. 
 \begin{figure}[!htb]
@@ -115,7 +114,7 @@ It is furthermore notable that the parallel electric field (and the parallel cur
     \label{fig_current_poynting_flux}
 \end{figure}
 
-As mentioned in \cref{sec_tuna}, each field's real component gives its behavior in the meridional plane where the (real) driving is delivered, while imaginary components are representative of waves offset in the azimuthal direction. The Hall conductivity in the ionosphere muddles this relationship somewhat by directly coupling the perpendicular electric field components to one another; even so, the poloidal field components ($B_x$, $E_y$, and $B_z$) are overwhelmingly real while toroidal components ($E_x$ and $B_y$) are overwhelmingly imaginary. 
+As mentioned in \cref{ch_model}, each field's real component gives its behavior in the meridional plane where the (real) driving is delivered, while imaginary components are representative of waves offset in the azimuthal direction. The Hall conductivity in the ionosphere muddles this relationship somewhat by directly coupling the perpendicular electric field components to one another; even so, the poloidal field components ($B_x$, $E_y$, and $B_z$) are overwhelmingly real while toroidal components ($E_x$ and $B_y$) are overwhelmingly imaginary. 
 
 The parallel electric field and current defy this pattern. The real current scales more or less proportionally with the poloidal Poynting flux, and its imaginary component scales comparably with the toroidal Poynting flux. Rather than being preferrentially coupled to one mode or the other, parallel currents seem to arise wherever energy is moving along the background magnetic field. 
 
@@ -144,7 +143,7 @@ As shown in \cref{fig_power_density}, little energy transfer in the ionosphere i
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Inertial Length Scales}
+\section{Inertial Length Scales}
   \label{sec_lengths}
 
 It's not quite fair to compare the parallel and perpendicular contributions to \curl{E} as was done in the previous section. Perpendicular electric fields are on the order of \SI{1}{\mV/\m}, with wavelengths on the order of \SI{e5}{\km}; they give rise to magnetic field gradients around \SI{0.1}{\nT/\s}. Parallel electric fields, closer to \SI{e-6}{\mV/\m}, would need to vary over length scales of \SI{0.1}{\km} to match with that. 
@@ -168,7 +167,7 @@ Even so, the run presents a significant computational expense. Spread over 16 co
 
 The snapshot shown in \cref{fig_inertial_length} uses a perpendicular grid resolution of \SI{0.7}{\km} at the Earthward edge, which just satisfies the Nyquist rate for the minimum inertial length of \SI{1.7}{\km}. It's still too coarse. There is clearly some small-scale structure developing in the ionosphere, but it's not well resolved. The large number of ``wigglies'' portends an imminent crash. 
 
-Electron inertial effects present a promising first-principles-based approach to investigate parallel currents and electric fields associated with field line resonances. Unfortunately, because of the large differences in scale between Pc4 pulsations and the plasma oscillation, the proper deployment of inertial effects presents a prohibitive computational expense. For this reason, results presented in \cref{ch_results} make use of the core version of Tuna presented in \cref{sec_tuna}, which does not include the effects of electron inertia. 
+Electron inertial effects present a promising first-principles-based approach to investigate parallel currents and electric fields associated with field line resonances. Unfortunately, because of the large differences in scale between Pc4 pulsations and the plasma oscillation, the proper deployment of inertial effects presents a prohibitive computational expense. For this reason, results presented in \cref{ch_results} make use of the core version of Tuna presented in \cref{ch_model}, which does not include the effects of electron inertia. 
 
 
 

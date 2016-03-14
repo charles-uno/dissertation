@@ -1,8 +1,8 @@
-% =============================================================================
-% =============================================================================
-% =============================================================================
-\section{``Tuna Half'' Dimensional Simulation}
-  \label{sec_tuna}
+
+
+
+\chapter{``Tuna Half'' Dimensional Model}
+  \label{ch_model}
 
 The present section describes the implementation of Tuna, a new two and a half dimensional \Alfven wave code based largely on work by Lysak\cite{lysak_2004,lysak_2013}. 
 
@@ -22,11 +22,13 @@ Perhaps the most exciting feature of Tuna is its novel driving mechanism: ring c
 
 %Tuna uses megameters, seconds, megacoulombs, and grams as the fundamental units of length, time, charge, and mass respectively. As a result, electric field is measured in \si{\mV/\meter}, magnetic field is measured in \si{\nano\tesla}, and Poynting flux is measured in \si{\mW/\meter\squared}. The electric constant is expressed in \si{\milli\farad/\meter}, not in units of \ez, not that it really matters. 
 
+%Ionospheric profiles are static for the duration of a simulation. Even so-called ultra low frequency waves are still much faster than convective timescales. Each profile is resolved to an altitude of about $\SI{e4}{\km}$, and include well-resolved $E$, $F_1$, and $F_2$ layers. 
+
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Physical Parameter Profiles}
-  \label{sec_tuna_ionos}
+\section{Physical Parameter Profiles}
+  \label{sec_profile}
 
 Tuna models Earth's magnetic field to be an ideal dipole:
 \begin{align}
@@ -74,12 +76,14 @@ Ionospheric conductivity profiles are also based on values tabulated by Kelley, 
 
 Tuna's physical parameter profiles are static over the course of each run. Even so-called ultra low frequency waves like Pc4 pulsations are fast compared to convective timescales in the magnetosphere. 
 
+%``Increasing the Hall conductance allows the energy to oscillate through the inductive process rather than dissipate as Joule heating, increasing the `ringtime' of field line resonances.''\cite{waters_2013}
+
 %Tuna uses static\footnote{Even so-called ultra low frequency waves like Pc4 pulsations evolve very quickly compared to convective timescales in the magnetosphere. }, height-resolved profiles for the electric tensor and the conductivity tensor. Values are based on those found in Appendix B of Kelley\cite{kelley_1989}, and have been adapted\cite{lysak_2013} to take into account the effects of the plasmasphere. Ionospheric profiles are used to distinguish the dayside magnetosphere from the nightside, and times of high solar activity from quiet times. Conductivity profiles are shown in \cref{fig_sigma}; the \Alfven speed profile is shown in \cref{fig_va}.  
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Coordinate System}
+\section{Coordinate System}
   \label{sec_coords}
 
 %\todo{Past work which could be cited for geometry examples: Radoski 1967, Lee and Lysak 1989, 1991, Rankin et al 1993, 1994, Streltsov and Lotko 1995, 1999. }
@@ -182,7 +186,7 @@ The simulation's time step is set based on the grid spacing. As is the conventio
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Driving}
+\section{Driving}
   \label{sec_driving}
 
 %\todo{This model allows arbitrary driving/propagating waveform, absorption, refraction, phase/group delay, frequency shift, polarization, faraday rotation\cite{simpson_2004,samimi_2015}. }
@@ -228,7 +232,7 @@ In situ observations of Pc4 pulsations and giant pulsations have shown waves wit
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Maxwell's Equations}
+\section{Maxwell's Equations}
   \label{sec_eqns}
 
 % OpenMP. This doesn't really fit. Is it important enough to mention somewhere? Or is this just part of how coding works? 
@@ -285,7 +289,7 @@ Unlike \farlaw, \amplaw cannot be trivially solved. Not only does the derivative
   \lr{ \tensor{\Omega} + \tensor{ \mathbb{I} } \ddt } \cdot \vec{E} &= \tensor{V}^2 \cdot \vec{F}
 \end{align}
 
-Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates\footnote{Note the parallel component of the present definition of $\tensor{\Omega}$ differs slightly from that used in \cref{sec_math}.}, 
+Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates\footnote{Note the parallel component of the present definition of $\tensor{\Omega}$ differs slightly from that used in \cref{ch_math}.}, 
 \begin{align}
   \tensor{V}^2 &\equiv \frac{1}{\mz} \tensor{\epsilon}^{-1} = 
     \mmm{\va^2}{0}{0}
@@ -342,7 +346,7 @@ Or, using \cref{def_xyz_directions} to map to the covariant basis,
   E_3 \assign E_3 \exp \arg{ \tfrac{- \sz \dt}{\ez} } + c^2 \dt \lr{ g_{31} F^1 + g_{33} F^3 } \exp \arg{ \tfrac{- \sz \dt}{2 \ez} }
 \end{align}
 
-Tuna's conductivity profile gives a minimum value of $\frac{\sz \dt}{\ez}$ on the order of \num{e3}, making $\exp \arg{ \frac{- \sz \dt}{\ez} }$ far too small to be stored in a double precision variable\footnote{Not coincidentally, $\frac{\sz}{\ez}$ can also be written $\frac{\op^2}{\nu}$. At the ionosphere, the collision frequency $\nu$ is fast compared to field line resonance timescales, but it's still slow compared to the plasma frequency.}. That is, this model takes $E_3$ (and, proportionally, $E_z$) to be uniformly zero. This issue is revisited in \cref{sec_inertia}. 
+Tuna's conductivity profile gives a minimum value of $\frac{\sz \dt}{\ez}$ on the order of \num{e3}, making $\exp \arg{ \frac{- \sz \dt}{\ez} }$ far too small to be stored in a double precision variable\footnote{Not coincidentally, $\frac{\sz}{\ez}$ can also be written $\frac{\op^2}{\nu}$. At the ionosphere, the collision frequency $\nu$ is fast compared to field line resonance timescales, but it's still slow compared to the plasma frequency.}. That is, this model takes $E_3$ (and, proportionally, $E_z$) to be uniformly zero. This issue is revisited in \cref{ch_inertia}. 
 
 The perpendicular components of \cref{amp_final} give the expressions: 
 \begin{alignat}{6}
@@ -361,12 +365,12 @@ The perpendicular components of \cref{amp_final} give the expressions:
   & &&             && + && F^2 && \cos \arg{ \tfrac{- \sh \dt}{2\ep} } \exp \arg{ \tfrac{- \sp \dt}{2\ep} } &&  \frac{\va^2 \dt}{ g^{22} } \notag
 \end{alignat}
 
-The $E_3$ terms in \cref{e1_final,e2_final} can be ignored at present. They are revisited in \cref{sec_inertia}. 
+The $E_3$ terms in \cref{e1_final,e2_final} can be ignored at present. They are revisited in \cref{ch_inertia}. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Boundary Conditions}
+\section{Boundary Conditions}
   \label{sec_bcs}
 
 %\todo{Some ground signature work as far back as Greifinger and Greifinger in 1968\cite{greifinger_1968}, but there's been steady advancement. Lysak and Song, in 2006, were the first to work out ground signatures without the assumption of a single-frequency wave. }

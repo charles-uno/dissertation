@@ -1,8 +1,8 @@
-% =============================================================================
-% =============================================================================
-% =============================================================================
-\section{Dispersion Relation}
-  \label{sec_math}
+
+
+
+\chapter{Dispersion Relation}
+  \label{ch_math}
 
 Before delving into the implementation of the numerical model, it's instructive to consider the fundamental equations of waves in a cold, resistive plasma. 
 
@@ -12,7 +12,7 @@ The evolution of electric and magnetic fields is governed by \amplaw and \farlaw
   \tensor{\epsilon} \cdot \ddt \vec{E} &= \oomz \curl{B} - \vec{J} & \ddt \vec{B} &= -\curl{E}
 \end{align}
 
-Current follows \ohmlaw. For currents perpendicular to the background magnetic field, Kirchhoff's formulation is sufficient. Conductivity is much higher along the magnetic field lines\footnote{The dipole coordinate system is defined rigorously in \cref{sec_coords}; at present, it's sufficient to take \zhat parallel to the zeroth-order magnetic field, and \xhat and \yhat perpendicular to \zhat (and to each other). }, so it's appropriate to also include the electron inertial term\footnote{Electron inertial effects are not included in the model described in \cref{sec_tuna}, or in the results in \cref{ch_results}; however, their implementation and impact are explored in \cref{sec_inertia}. }. 
+Current follows \ohmlaw. For currents perpendicular to the background magnetic field, Kirchhoff's formulation is sufficient. Conductivity is much higher along the magnetic field lines\footnote{The dipole coordinate system is defined rigorously in \cref{sec_coords}; at present, it's sufficient to take \zhat parallel to the zeroth-order magnetic field, and \xhat and \yhat perpendicular to \zhat (and to each other). }, so it's appropriate to also include the electron inertial term\footnote{Electron inertial effects are not included in the model described in \cref{ch_model}, or in the results in \cref{ch_results}; however, their implementation and impact are explored in \cref{ch_inertia}. }. 
 \begin{align}
   \label{math_ohms}
   0 &= \tensor{\sigma}_\bot \cdot \vec{E}_\bot - \vec{J}_\bot &
@@ -63,7 +63,7 @@ In \cref{disp}, the expression in parentheses is the dispersion tensor. Nontrivi
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Guided Propagation}
+\section{Guided Propagation}
   \label{sec_par}
 
 The wave vector of a field line resonance aligns closely to the background magnetic field. By supposing that the two align exactly (that is, taking $k_x = 0$), the parallel and perpendicular components  of the dispersion relation are decoupled. 
@@ -89,7 +89,7 @@ Expanding \cref{par_par_setup} with respect to large \op, the dispersion relatio
 
 \cref{par_par_final} can hardly be called a wave, as it does not depend on the wave vector \vec{k}. Rather, it is the plasma oscillation\footnote{The plasma oscillation is also called the Langmuir wave, after Irving Langmuir. }: electrons vibrating in response to a charge separation along the background magnetic field. 
 
-The plasma oscillation is of little interest to the study of field line resonance. The two phenomena are separated by six orders of magnitude in frequency. Nevertheless, the topic is revisited in \cref{sec_inertia}. 
+The plasma oscillation is of little interest to the study of field line resonance. The two phenomena are separated by six orders of magnitude in frequency. Nevertheless, the topic is revisited in \cref{ch_inertia}. 
 
 The perpendicular components of the dispersion relation give an expression quartic in $\omega$. 
 \begin{align}
@@ -121,7 +121,7 @@ This is the \Alfven wave, with a shift to its frequency due to the conductivity 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Compressional Propagation}
+\section{Compressional Propagation}
   \label{sec_perp}
 
 \todo{Is it fair to say ``compressional'' to mean ``perpendicular'' in terms of propagation? It would be nice to have different jargon for the propagation directions and the polarization directions. }
@@ -172,7 +172,7 @@ A wave moving across magnetic field lines near the ionospheric boundary will enc
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{High Altitude Limit}
+\section{High Altitude Limit}
   \label{sec_high_alt}
 
 In the limit of large radial distance, it's reasonable to take the collision frequency to zero; doing so also neglects the Pedersen and Hall conductivities. 
@@ -212,12 +212,12 @@ Noting again that $\op$ is very large, the two roots can be expanded to
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{Implications to the Present Work}
+\section{Implications to the Present Work}
   \label{sec_implications}
 
 The present section's findings carry three significant implications for the present work. 
 
-First -- with the exception of the plasma oscillation, which is revisited in \cref{sec_inertia} -- waves are expected to propagate at the \Alfven speed. This, in combination with the grid configuration, will constrain the time step that can be used to model them numerically. The time step must be sufficiently small that information traveling at the \Alfven speed cannot ``skip over'' entire grid cells\footnote{As is the convention, the time step is scaled down from the smallest \Alfven zone crossing time by a Courant factor, typically 0.1, meaning that it takes at least ten time steps to cross a grid cell. }
+First -- with the exception of the plasma oscillation, which is revisited in \cref{ch_inertia} -- waves are expected to propagate at the \Alfven speed. This, in combination with the grid configuration, will constrain the time step that can be used to model them numerically. The time step must be sufficiently small that information traveling at the \Alfven speed cannot ``skip over'' entire grid cells\footnote{As is the convention, the time step is scaled down from the smallest \Alfven zone crossing time by a Courant factor, typically 0.1, meaning that it takes at least ten time steps to cross a grid cell. }
 
 Second, the results of the present section allow an estimate of the magnitude of parallel electric field that might be expected from a field line resonance compared to its perpendicular electric field. Between the full dispersion tenfor form in \cref{disp} and the \Alfven wave described by \cref{high_final}, 
 \begin{align}
@@ -234,7 +234,7 @@ Whereas the shear \Alfven wave's dispersion relation depends only on the paralle
     \centering
     \includegraphics[width=\textwidth]{figures/placeholder.jpg}
     \caption[Compressional \Alfven Wave Cutoff Frequencies]{
-      Using the \Alfven speed profile described in \cref{sec_tuna_ionos}, and taking $k_y \sim \frac{2 \pi \azm}{r}$ as a lower bound for the magnitude of the wave vector, the above figure demonstrates the lowest frequency at which compressional \Alfven waves may propagate as a function of position and \azm. 
+      Using the \Alfven speed profile described in \cref{sec_profile}, and taking $k_y \sim \frac{2 \pi \azm}{r}$ as a lower bound for the magnitude of the wave vector, the above figure demonstrates the lowest frequency at which compressional \Alfven waves may propagate as a function of position and \azm. 
     }
     \label{fig_cutoff}
 \end{figure}
