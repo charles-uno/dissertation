@@ -1,8 +1,8 @@
-% =============================================================================
-% =============================================================================
-% =============================================================================
-\section{The Near-Earth Environment}
-  \label{sec_environment}
+
+
+
+\chapter{The Near-Earth Environment}
+  \label{ch_environment}
 
 
 From Earth's surface to about \SI{100}{\km}, the atmosphere is a well-behaved fluid: a collisional ensemble of neutral atoms. However, beyond there, its behavior changes dramatically. As altitude increases, solar ultraviolet radiation becomes more intense, which ionizes atmospheric atoms. Density also decreases, slowing collisional recombination. Whereas the neutral atmosphere is held against Earth's surface by gravity, the behavior of charged particles is dominated by Earth's geomagnetic field... and the electromagnetic disturbances created as that field is hammered by the solar wind. 
@@ -14,9 +14,9 @@ The present section outlines the structure of the magnetosphere; that is, the re
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{The Outer Magnetosphere}
+\section{The Outer Magnetosphere}
 
-During quiet times\footnote{Geomagnetically active times are the topic of \cref{sec_storms}}, the behavior of the magnetosphere is driven by the solar wind: a hot, rarefied, fast-moving solar outflow threaded by the Sun's magnetic field\footnote{Usual solar wind velocities, densities, and temperatures fall on the order of \SI{100}{\km/\s}, \SI{10}{\percc}, and \SI{1}{\keV} respectively. At Earth's orbit, the Sun's magnetic field has a magnitude around \SI{1}{\nT}. }. 
+During quiet times\footnote{Geomagnetically active times are the topic of \cref{ch_storms}}, the behavior of the magnetosphere is driven by the solar wind: a hot, rarefied, fast-moving solar outflow threaded by the Sun's magnetic field\footnote{Usual solar wind velocities, densities, and temperatures fall on the order of \SI{100}{\km/\s}, \SI{10}{\percc}, and \SI{1}{\keV} respectively. At Earth's orbit, the Sun's magnetic field has a magnitude around \SI{1}{\nT}. }. 
 
 The magnetosphere's outer boundary represents a balance between the solar wind dynamic pressure and the magnetic pressure of Earth's dipole field. On the dayside, the dipole is compressed, pushing the magnetopause to within \SI{10}{\RE}\footnote{Distances in the magnetosphere are typically measured in units of Earth radii: $\SI{1}{\RE} \equiv \SI{6378}{\km}$. } of Earth. The nightside magnetosphere is stretched into a long tail which may exceed \SI{50}{\RE} in width and \SI{100}{\RE} in length. 
 
@@ -31,13 +31,13 @@ Plasma within the tail is cool (\about\SI{100}{\eV}) and rarefied (\about\SI{e-2
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{The Inner Magnetosphere}
+\section{The Inner Magnetosphere}
 
 Within about \todo{ $L\sim10$ }\footnote{The McIlwain parameter $L$ is a spatial parameter used to index field lines in Earth's dipole geometry: $L \equiv \frac{r}{\sin^2\theta}$ for colatitude $\theta$ and radius $r$ in Earth radii. For example, the $L=5$ field line passes through the equatorial plane at a geocentric radius of \SI{5}{\RE}, then meets the Earth at a colatitude of $\arcsin \sqrt{ \frac{1}{5} } \sim \SI{27}{\degree}$ (equally, a latitude of $\arcsin \sqrt{ \frac{1}{5} } \sim \SI{63}{\degree}$). }, the dipole magnetic field is not appreciably deformed by the solar wind. As a result, the structures in the inner magnetosphere follow closely from the motion of charged particles in an ideal dipole field. 
 
 The plasmasphere -- a cold (\about\SI{1}{\eV}), dense (\SIrange{e2}{e4}{\percc}) torus of corotating plasma -- is formed by the outward drift of atmospheric ions along magnetic closed field lines. Its outer boundary, is thought to represent a balance between the corotation electric field (per the rotation of Earth's magnetic dipole) and the convection electric field (associated with the convection of magnetic flux during the Dungey cycle). Particle density drops sharply at the edge of the plasmasphere; the boundary is called the plasmapause. The plasmapause typically falls around $L=4$, though it can be significantly larger during prolonged quiet times. 
 
-Between $L\sim3$ and $L\sim5$ lies a body of energetic (\SIrange{e3}{e5}{\eV}) electrons and ions undergoing gradient-curvature drift\footnote{Fundamental particle motions are discussed in \cref{sec_flrs}. }. Gradient-curvature drift carries positive and negative particles in opposite directions; the net result is a westward current called the ring current. Ring current intensity varies greatly based on geomagnetic conditions. During quiet times, it causes magnetic a southward magnetic field on the order of \SI{1}{\nT} at Earth's equator\footnote{For comparison, Earth's dipole field points north at the equator with a magnitude over \SI{e4}{\nT}. }. 
+Between $L\sim3$ and $L\sim5$ lies a body of energetic (\SIrange{e3}{e5}{\eV}) electrons and ions undergoing gradient-curvature drift\footnote{Fundamental particle motions are discussed in \cref{ch_flrs}. }. Gradient-curvature drift carries positive and negative particles in opposite directions; the net result is a westward current called the ring current. Ring current intensity varies greatly based on geomagnetic conditions. During quiet times, it causes magnetic a southward magnetic field on the order of \SI{1}{\nT} at Earth's equator\footnote{For comparison, Earth's dipole field points north at the equator with a magnitude over \SI{e4}{\nT}. }. 
 
 The inner magnetosphere is also home to the Van Allen radiation belts. The inner belt ($L\lesssim2$) and outer belt ($L\gtrsim4$) are primarily made up of high-energy (\SIrange{e5}{e7}{\eV}) protons and electrons respectively. 
 
@@ -46,7 +46,7 @@ The inner magnetosphere is also home to the Van Allen radiation belts. The inner
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\subsection{The Ionosphere}
+\section{The Ionosphere}
   \label{sec_ionos}
 
 \todo{Structure of the ionosphere. Layers. Stratification of different species. UV ionization, charged particle precipitation, cosmic rays. }
