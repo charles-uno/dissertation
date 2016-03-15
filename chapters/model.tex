@@ -4,6 +4,8 @@
 \chapter{``Tuna Half'' Dimensional Model}
   \label{ch_model}
 
+\todo{The dipole geometry isn't super new, but it's not widely-done. The height-resolved ionosphere is new and exciting! Ground signatures are new and exciting! }
+
 The present section describes the implementation of Tuna, a new two and a half dimensional \Alfven wave code based largely on work by Lysak\cite{lysak_2004,lysak_2013}. 
 
 The half-integer dimensionality refers to the fact that Tuna's spatial grid resolves a two-dimensional slice of the magnetosphere, but that electric and magnetic fields -- as well as their curls -- are three-dimensional vectors. This apparent contradiction is reconciled by the use of a fixed azimuthal modenumber, \azm. Electric and magnetic fields are taken to be complex-valued, varying azimuthally per $\exp\arg{i\azm\phi}$; derivatives with respect to $\phi$ are then replaced by a factor of $i\azm$. 
