@@ -49,6 +49,17 @@ A.~A. Chan, M.~Xia, and L.~Chen.
 \newblock Anisotropic alfv{\'e}n-ballooning modes in {Earth}'s magnetosphere.
 \newblock {\em J. Geophys. Res. Space Physics}, 99(A9):17351--17366, 1994.
 
+\bibitem{chaston_2002}
+C.~C. Chaston.
+\newblock Electron acceleration in the ionospheric alfven resonator.
+\newblock {\em J. Geophys. Res.}, 107(A11), 2002.
+
+\bibitem{chaston_2000}
+C.~C. Chaston, C.~W. Carlson, R.~E. Ergun, and J.~P. McFadden.
+\newblock Alfv{\'e}n waves, density cavities and electron acceleration observed
+  from the {FAST} spacecraft.
+\newblock {\em Physica Scripta}, T84(1):64, 2000.
+
 \bibitem{chen_1974}
 L.~Chen and A.~Hasegawa.
 \newblock A theory of long-period magnetic pulsations: 1. steady state
@@ -527,6 +538,12 @@ H.~R. Radoski.
   asymptotic fields.
 \newblock {\em J. Geophys. Res.}, 79, 1974.
 
+\bibitem{rankin_1999}
+R.~Rankin, J.~C. Samson, and V.~T. Tikhonchuk.
+\newblock Parallel electric fields in dispersive shear alfv{\'{e}}n waves in
+  the dipolar magnetosphere.
+\newblock {\em Geophys. Res. Lett.}, 26(24):3601--3604, 1999.
+
 \bibitem{rolf_1931}
 B.~Rolf.
 \newblock Giant micropulsations at abisko.
@@ -640,6 +657,12 @@ S.~M. Thompson and M.~G. Kivelson.
 \newblock New evidence for the origin of giant pulsations.
 \newblock {\em J. Geophys. Res.}, 106(A10):21237--21253, 2001.
 
+\bibitem{tikhonchuk_2000}
+V.~T. Tikhonchuk and R.~Rankin.
+\newblock Electron kinetic effects in standing shear alfve{\'e}n waves in the
+  dipolar magnetosphere.
+\newblock {\em Physics of Plasmas}, 7(6):2630, 2000.
+
 \bibitem{tsurutani_2003}
 B.~T. Tsurutani, W.~D. Gonzalez, G.~S. Lakhina, and S.~Alex.
 \newblock The extreme magnetic storm of 1–2 september 1859.
@@ -681,6 +704,14 @@ D.~M. Wright and T.~K. Yeoman.
 \newblock High-latitude {HF} doppler observations of {ULF} waves: 2. waves with
   small spatial scale sizes.
 \newblock {\em Ann. Geophys.}, 17(7):868--876, 1999.
+
+\bibitem{wygant_2002}
+J.~R. Wygant, A.~Keiling, C.~A. Cattell, R.~L. Lysak, M.~Temerin, F.~S. Mozer,
+  C.~A. Kletzing, J.~D. Scudder, V.~Streltsov, W.~Lotko, and C.~T. Russell.
+\newblock Evidence for kinetic alfvén waves and parallel electron energization
+  at 4–6 re altitudes in the plasma sheet boundary layer.
+\newblock {\em Journal of Geophysical Research: Space Physics}, 107(A8):SMP
+  24--1--SMP 24--15, 2002.
 
 \bibitem{yang_2010}
 B.~Yang, Q.-G. Zong, Y.~F. Wang, S.~Y. Fu, P.~Song, H.~S. Fu, A.~Korth,
