@@ -228,21 +228,17 @@ In essence, the relative magnitudes of the parallel and perpendicular electric f
 
 Finally, the dispersion relations shown above indicate how the behavior of a field line resonance should behave as the azimuthal modenumber becomes large. 
 
-Whereas the shear \Alfven wave's dispersion relation depends only on the parallel component of the wave vector, the compressional \Alfven wave depends on its magnitude: $\omega^2 = k^2 \va^2$. If the frequency is smaller than $k \va$, the wave will become evanescent. The wave vector's magnitude can be no smaller than its smallest component, however, and the azimuthal component scales with the azimuthal modenumber: $k_y \sim \frac{2 \pi \azm}{r}$. 
+Whereas the shear \Alfven wave's dispersion relation depends only on the parallel component of the wave vector, the compressional \Alfven wave depends on its magnitude: $\omega^2 = k^2 \va^2$. If the frequency is smaller than $k \va$, the wave will become evanescent. The wave vector's magnitude can be no smaller than its smallest component, however, and the azimuthal component scales with the azimuthal modenumber: $k_y \sim \frac{\azm}{2 \pi r}$. 
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/placeholder.jpg}
+    \includegraphics[width=\textwidth]{figures/alfven_cutoff.pdf}
     \caption[Compressional \Alfven Wave Cutoff Frequencies]{
-      Using the \Alfven speed profile described in \cref{sec_profile}, and taking $k_y \sim \frac{2 \pi \azm}{r}$ as a lower bound for the magnitude of the wave vector, the above figure demonstrates the lowest frequency at which compressional \Alfven waves may propagate as a function of position and \azm. 
+      Using the \Alfven speed profile described in \cref{sec_profile}, and taking $k_y \sim \frac{\azm}{2 \pi r}$ as a lower bound for the magnitude of the wave vector, the above figure demonstrates the lowest frequency at which compressional \Alfven waves may propagate as a function of position and \azm. Regions shown in white are off the color scale -- they have a lower bound on the order of \SI{e4}{\mHz} or more. 
     }
     \label{fig_cutoff}
 \end{figure}
 
 This imposes a frequency cutoff on compressional \Alfven waves which scales with the azimuthal modenumber. At small values of \azm, most of the magnetosphere is conducive to compressional \Alfven waves in the Pc4 frequency range. As \azm increases, and the wave vector with it, the inner magnetosphere becomes increasingly inaccessible to them. 
-
-\todo{Create this figure, obviously. Plot for \azm of 1, 8, 64 (arranged horizontally). Log scale in mHz. Title ``Compressional \Alfven Cutoff Frequency''}
-
-
 
 
