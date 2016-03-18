@@ -45,28 +45,6 @@ In the inner magnetosphere, the \Alfven frequency -- and thus the frequency of F
 
 The present chapter introduces the structural characteristics of FLRs, how those characteristics affect wave behavior, and several unresolved questions related to that behavior. 
 
-%\todo{Parallel electric fields. In this regime, we're looking at inertial effects, not kinetic effects\cite{goertz_1979,thompson_1996}. Should produce non-monoenergetic precipitation, which are observed\cite{goertz_1984}. Consistent with MHD models\cite{chaston_2000,chaston_2002}. Inertial-scale structures observed with Polar\cite{wygant_2002}. }
-
-%\todo{The plasmapause matters! Effective potential well, analogous to \Schrodinger's equation\cite{lee_1998,lee_1999,dai_2009}. Shown in theory\cite{klimushkin_1998,leonovich_2000,klimushkin_2004,mager_2013} and in observation\cite{takahashi_2009,takahashi_2010}.  }
-
-%\todo{All sorts of FLR occur preferrentially (though not exclusively) on the dayside\cite{dai_2015,ukhorskiy_2005}. }
-
-%\todo{Any waves with frequencies of $\SIrange{e-3}{1}{\Hz}$ are termed ULF waves -- ultra low frequency. ULF waves are furthermore categorized in terms of their morphological characteristics. Pc waves are continuous (exhibiting a fairly consistent waveform over a large number of wave periods) while Pi are irregular; the waves are further partitioned into frequency bands. See \cref{tab_iaga}. }
-
-%\todo{These are Jacobs' original ranges... but are they really reflective of the jargon still used? It's weird that these ranges bottom out so far below 1000s. }
-
-%\todo{While the IAGA characterizations are based on wave morphology, they do a decent job of deliniating between the different underlying physical processes as well. Pi2 pulsations (irregular waves with periods of a minute or two) tend to be excited on the nightside; they are associated with substorm onset (though the processes that give rise to Pi2s -- and their relation to substorm onset -- remains controversial). Pc1 and Pc2 pulsations tend to be EMIC (electromagnetic ion cyclotron) waves near the ion gyrofrequency, which are important for the precipitation of electrons (?). }
-
-%Pi2: ``Clearly linked to substorm disturbances and other impulsive dynamics are the irregularly shaped waves in the 7--25-mHz band referred to as Pi2. Recent work on these waves suggests that their periodicity reflects the spectrum of global mode excitations of the plasmasphere but there is a competing proposal that the dominant frequencies are imposed by the modulated flows in the magnetotail.''\cite{kivelson_2006}
-
-%\todo{The present work is specifically concerned with field line resonances near the plasmapause. These waves fall in the Pc4 range, with frequencies around \SI{10}{\mHz}\footnote{Notably, field line resonances can also fall within the Pc3 and Pc5 ranges. }. }
-
-% Less than a decade later, Sigura presented observational evidence of the phenomenon: a wave seen simultaneously at the northern and southern foot points of a geomagnetic field line\cite{sigura_1961}. 
-
-%\todo{There's no discussion of ULF frequency bands, or even use the term ``Pc4.'' That's probably a problem. Introduce \SIrange{7}{25}{\mHz}! }
-
-% \todo{Pc4s are localized in L and in MLT\cite{anderson_1990,dai_2015,engebretson_1992,liu_2009}. Near the plasmapause. This is an important part of why the 2.5D model is a good fit! }
-
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -128,21 +106,7 @@ Waves with small azimuthal modenumbers ($0 < \azm < 10$) are typically driven by
 
 When the azimuthal modenumber is large (or, equally, when the azimuthal wavelength is small), the shear and compressional \Alfven waves are decoupled\cite{cummings_1969,radoski_1974}\footnote{Equally, the strength of a wave's parallel component hint at its modenumber, a point which is revisited in \cref{ch_rbsp}. }. As a result, FLRs must be driven from within the magnetosphere. Proposed energy sources include phase space gradients near the plasmapause\cite{dai_2013}, particularly as the plasmasphere refills after a substorm\cite{engebretson_1992,liu_2013}. 
 
-The ionosphere is known to attenuate waves with small spatial extent in the perpendicular direction\cite{hughes_1976,wright_1999,yeoman_2001}. As a result, FLRs may create no signature on the ground if their azimuthal modenumber is sufficiently large. For example, a recent paper by Takahashi shows a strong (\SI{2}{\nT} at $L\sim10$), clear resonance with \azm\about70 and no corresponding ground signature. 
-
-% \todo{Waves with large \azm are screened by the ionosphere\cite{hughes_1976,wright_1999,yeoman_2001}. Observations of strong, clear waves in space have no corresponding ground signature when \azm is large\cite{takahashi_2013}. }
-
-% \todo{Drift resonance with azimuthal wavenumber. In the analogy of a parent pushing a child on the swing, the child still gains energy even if the parent only shows up half the time. Or Are there a bunch of parents? The analogy starts to fall apart past there. }
-
-%``To summarize, the general buffetting of the magnetosphere by variations in the solar wind dynamic pressure, or perhaps by sporadic magnetic reconnection, provides a broad band energy source to the magnetosphere. The magnetospheric cavity as a whole rings at its own eigenfrequencies, thus transporting energy at just those frequencies to field lines deep in the magnetosphere. Those field lines whose eigenfrequencies match one of the cavity eigenfrequencies couple to the cavity mode and resonate strongly, producing the classical field line resonance signature.\cite{hughes_1994}'' 
-
-% Compressional driving doesn't preclude drift or drift-bounce resonance\cite{zong_2007,zong_2009}. 
-
-% The strength of the compressional-poloidal coupling indicates \azm\cite{hughes_1994}. 
-
-% Low-\azm waves tend to be more muddled... driven by broadband sources rather than resonance\cite{dai_2015}. 
-
-% Small structures are also damped; resonances narrower than $\sim \SI{100}{km}$ aren't visible on the ground. See also Glassmeier and Stellmacher, 2000 (about small latitude). \Alfven waves with small latitudinal scale\cite{glassmeier_2000} are screened by the ionosphere. Attenuation factor from \cite{hughes_1976} and \cite{glassmeier_1984}. 
+The ionosphere is known to attenuate waves with small spatial extent in the perpendicular direction\cite{hughes_1976,wright_1999,yeoman_2001}. As a result, FLRs may create no signature on the ground if their azimuthal modenumber is sufficiently large. For example, a recent paper by Takahashi shows a strong (\SI{2}{\nT} at $L\sim10$), clear resonance with $|\azm|\gtrsim70$ and no corresponding ground signature. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -173,55 +137,30 @@ The toroidal mode's magnetic displacement is azimuthal, per \cref{fig_toroidal};
     \label{fig_toroidal}
 \end{figure}
 
-\todo{Toroidal modes are much more common\cite{anderson_1990}. }
+Both poloidal and toroidal waves are noted for their ability to contribute to the energization and radial diffufion of trapped particles. The poloidal mode interacts more strongly, since its electric field is aligned with the trapped particles' drift motion. Poloidally-polarized waves are also more prone to creating magnetic signatures on the ground, due to ducting in the ionosphere\cite{fujita_1988,greifinger_1968}. 
 
-\todo{The poloidal mode rotates to the toroidal mode in the presence of curved magnetic field lines\cite{radoski_1974} or a gradient in the \Alfven speed\cite{mann_1995}. The time is proportional to the azimuthal wavenumber\cite{mann_1995}. An analytical follow-up agreed with the numerical work\cite{mann_1997}. }
+Toroidal modes have been shown to far outnumber poloidal modes\cite{anderson_1990}. Perhaps not coincidentally, poloidally-polarized waves rotate asymptotically to the toroidal mode\cite{mann_1995,mann_1997,radoski_1974}. Poloidal waves with low azimuthal modenumber -- such as those driven by broadband sources at the magnetopause -- rotate particularly quickly. 
 
-\todo{Fishbone instability? McGuire 1983, Chen 1984. Similar phenomenon, but for lab plasmas. }
+\todo{Fishbone instability\cite{chen_1984,mcguire_1983}. Like the poloidal mode, but for lab plasmas. }
 
-\todo{Poloidal waves are more effective at creating ground signatures due to ducting by the ionosphere\cite{fujita_1988,greifinger_1968}. }
-
-\todo{Poloidal and toroidal modes are coupled by the Hall conductivity\cite{kato_1956}. }
+\todo{Poloidal and toroidal modes are coupled by the ionospheric Hall conductivity\cite{kato_1956}. }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \section{Giant Pulsations}
 
-\todo{First Pg observation\cite{birkeland_1901}. }
+The study of geomagnetic pulsations long predates satellites, sounding rockets, or even the word ``magnetohydrodynamics''\footnote{The term was first used by \Alfven in the 1940s\cite{alfven_1946}. }. Large, regular oscillations in the magnetic field were noted as early as 1901\cite{birkeland_1901}. Eventually, the term ``giant pulsation,'' or Pg, arose to describe such pulsations. 
 
-\todo{Giant pulsations are polarized in the meridional plane in space\cite{takahashi_1992}. However, due to the \about\SI{90}{\degree} rotation of long-period waves by the ionosphere\cite{nishida_1964_screening,hughes_1974}, they are primarily east-west polarized on the ground. }
+On the ground, Pgs are notable for their strikingly sinusoidal waveforms, their eastward\todo{?} drifts, and their specific occurrence pattern: Pgs are typically seen on the morningside, at latitudes of \SIrange{60}{70}{\degree}, near solar minimum. Pgs generally fall into the Pc4 frequency band\footnote{The Pc4 range is periods of \SIrange{45}{140}{\s}, while Pgs are often said to range from \SIrange{60}{200}{\s}\cite{brekke_1987}. }. The harmonic structure of Pgs was a source of controversy for decades, but recent multisatellite observations seem to be in agreement that they are odd, probably fundamental\cite{glassmeier_1999,hillebrand_1982,kokubun_1980,kokubun_1989,takahashi_1992,takahashi_2011}. They are poloidally polarized, with modenumbers $10 \lesssim \azm \lesssim 40$\cite{glassmeier_1980,hillebrand_1982,poulter_1983,rostoker_1979,takahashi_1992}. 
 
-\todo{Pgs are most common during solar minimum, perhaps because of decreased mass loading of heavy ions\cite{denton_2011}. }
-
-\todo{The harmonic structure of giant pulsations was once controversial; at this point, there is general consensus (based on satellite data) that they are fundamental poloidal modes\cite{glassmeier_1999,hillebrand_1982,kokubun_1980,kokubun_1989,takahashi_1992,takahashi_2011}. }
-
-\todo{Giant pulsations observed on the ground tend to have azimuthal modenumbers $10 \lesssim \azm \lesssim 40$\cite{glassmeier_1980,hillebrand_1982,poulter_1983,rostoker_1979,takahashi_1992}. }
+\todo{It bears noting, as was mentioned in \cref{sec_azm}, that large-modenumber waves are screened by the ionosphere. The fact that Pgs are typically observed with $m \lesssim 40$ does not necessarily indicate that strong, sinusoidal, odd-harmonic, poloidal Pc4s aren't happening in space. }
 
 \todo{Historically, the convention has been to identify giant pulsations by eye in ground magnetometer data, THEN look at satellite data? \cite{motoba_2015} }
-
-\todo{Giant pulsations peak around \SI{66}{\degree} MLAT\cite{motoba_2015}, corresponding to L=6, but have been observed at $5 \lesssim L \lesssim 7$\cite{green_1985}. Most prevalent on the morningside, with some in the afternoon. }
 
 \todo{Over the course of the twentieth century, a number of multi-year (sometimes multi-decade) surveys were published, tabulating nearly a thousand giant pulsation events (over 600 at Troms{\o}, Norway, alone!). On average, a ground magnetometer at \SI{66}{\degree} MLAT seems to observe 5 to 10 giant pulsations per year\cite{brekke_1987,harang_1941,rolf_1931,sucksdorff_1939}. The number depends on solar cycle as well as season. }
 
 \todo{Giant pulsations preferrentially happen during quiet times, as the magnetosphere is recovering from previous activities\cite{motoba_2015,rostoker_1979}. Also notes that giant pulsations have no particular correlation with storm phase\cite{motoba_2015}. }
-
-
-% Another past study: \cite{takahashi_1984_spectrum}. Satellite data is surveyed and classified by polarization, harmonic, wavenumber, etc, in order to determine the mechanisms for generating \Alfven waves. Old, but still pretty representative, according to Motoba\cite{motoba_2015}. 
-
-% A long-period \Alfven wave passing through the ionosphere is rotated by about 90 degrees\cite{nishida_1964_screening,hughes_1974}. That would translate a poloidal resonance in space to an east-west ground signature. 
-
-% \cite{motoba_2015} suggests that Pgs originate from the fundamental poloidal mode waves at all local times. 
-
-% It seems to be the convention to find a Pg event on the ground, then look at satellite data. That's certainly what was done in \cite{motoba_2015}. 
-
-% Per \cite{motoba_2015}, most Pg events happen around $L=7$, but some do happen near the plasmapause, as seen(?) by \cite{green_1985}. 
-
-% ``The AL distribution shown in Figure 14c are consistent with the findings of \cite{rostoker_1979} that Pgs occur as the magnetosphere recovers from previous activities (substorms).''\cite{motoba_2015} Finds this to be reasonable because it's ``very likely'' that energetic ions injected into the inner magnetosphere from the magnetotail provide energy to Pgs. 
-
-% Analysis of GOES data from 2008 to 2013 shows about 100 Pg events. They are concentrated on the morningside. No particular correlation with storm phase\cite{motoba_2015}. 
-
-% Recall compressional poloidal Pc4s are mostly during storm time, and noncompressional are mostly specifically during late recovery\cite{dai_2015}. Only 19 fundamental poloidal mode examples were identified from the 390 noncompressional poloidal events. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -234,14 +173,9 @@ Motoba\cite{motoba_2015}, similarly, notes ``It is unclear whether other generat
 
 The present work uses a numerical model to investigate the preferrential occurrence of field line resonances in the Pc4 range -- particularly first-harmonic poloidal modes, such as giant pulsations -- in MLT. 
 
-
-
 Giant pulsations have variously been referred to as ``intriguing''\cite{green_1985}
 
 ``rare''\cite{brekke_1987}, even to the point of being ``a small subset of fundamental poloidal waves''\cite{takahashi_2013} -- note that it's well known that fundamental poloidal mode waves are already rare in comparison to second harmonic waves. 
-
-
-
 
 \todo{What's going on with the MLT localization of Pc4 pulsations? Is there something spooky going on with the driving? Maybe the ionosphere just kills FLRs on the nightside! }
 
@@ -249,18 +183,50 @@ Giant pulsations have variously been referred to as ``intriguing''\cite{green_19
 
 \todo{The goal here is to clarify and unify several constraints on the viability and observability of FLRs. }
 
+
+
+
+
+
+%\todo{Parallel electric fields. In this regime, we're looking at inertial effects, not kinetic effects\cite{goertz_1979,thompson_1996}. Should produce non-monoenergetic precipitation, which are observed\cite{goertz_1984}. Consistent with MHD models\cite{chaston_2000,chaston_2002}. Inertial-scale structures observed with Polar\cite{wygant_2002}. }
+
+%\todo{The plasmapause matters! Effective potential well, analogous to \Schrodinger's equation\cite{lee_1998,lee_1999,dai_2009}. Shown in theory\cite{klimushkin_1998,leonovich_2000,klimushkin_2004,mager_2013} and in observation\cite{takahashi_2009,takahashi_2010}.  }
+
+%\todo{All sorts of FLR occur preferrentially (though not exclusively) on the dayside\cite{dai_2015,ukhorskiy_2005}. }
+
+%\todo{Any waves with frequencies of $\SIrange{e-3}{1}{\Hz}$ are termed ULF waves -- ultra low frequency. ULF waves are furthermore categorized in terms of their morphological characteristics. Pc waves are continuous (exhibiting a fairly consistent waveform over a large number of wave periods) while Pi are irregular; the waves are further partitioned into frequency bands. See \cref{tab_iaga}. }
+
+%\todo{These are Jacobs' original ranges... but are they really reflective of the jargon still used? It's weird that these ranges bottom out so far below 1000s. }
+
+%\todo{While the IAGA characterizations are based on wave morphology, they do a decent job of deliniating between the different underlying physical processes as well. Pi2 pulsations (irregular waves with periods of a minute or two) tend to be excited on the nightside; they are associated with substorm onset (though the processes that give rise to Pi2s -- and their relation to substorm onset -- remains controversial). Pc1 and Pc2 pulsations tend to be EMIC (electromagnetic ion cyclotron) waves near the ion gyrofrequency, which are important for the precipitation of electrons (?). }
+
+%Pi2: ``Clearly linked to substorm disturbances and other impulsive dynamics are the irregularly shaped waves in the 7--25-mHz band referred to as Pi2. Recent work on these waves suggests that their periodicity reflects the spectrum of global mode excitations of the plasmasphere but there is a competing proposal that the dominant frequencies are imposed by the modulated flows in the magnetotail.''\cite{kivelson_2006}
+
+%\todo{The present work is specifically concerned with field line resonances near the plasmapause. These waves fall in the Pc4 range, with frequencies around \SI{10}{\mHz}\footnote{Notably, field line resonances can also fall within the Pc3 and Pc5 ranges. }. }
+
+% Less than a decade later, Sigura presented observational evidence of the phenomenon: a wave seen simultaneously at the northern and southern foot points of a geomagnetic field line\cite{sigura_1961}. 
+
+%\todo{There's no discussion of ULF frequency bands, or even use the term ``Pc4.'' That's probably a problem. Introduce \SIrange{7}{25}{\mHz}! }
+
+% \todo{Pc4s are localized in L and in MLT\cite{anderson_1990,dai_2015,engebretson_1992,liu_2009}. Near the plasmapause. This is an important part of why the 2.5D model is a good fit! }
+
+% \todo{Drift resonance with azimuthal wavenumber. In the analogy of a parent pushing a child on the swing, the child still gains energy even if the parent only shows up half the time. Or Are there a bunch of parents? The analogy starts to fall apart past there. }
+
+%``To summarize, the general buffetting of the magnetosphere by variations in the solar wind dynamic pressure, or perhaps by sporadic magnetic reconnection, provides a broad band energy source to the magnetosphere. The magnetospheric cavity as a whole rings at its own eigenfrequencies, thus transporting energy at just those frequencies to field lines deep in the magnetosphere. Those field lines whose eigenfrequencies match one of the cavity eigenfrequencies couple to the cavity mode and resonate strongly, producing the classical field line resonance signature.\cite{hughes_1994}'' 
+
+% Compressional driving doesn't preclude drift or drift-bounce resonance\cite{zong_2007,zong_2009}. 
+
+% The strength of the compressional-poloidal coupling indicates \azm\cite{hughes_1994}. 
+
+% Low-\azm waves tend to be more muddled... driven by broadband sources rather than resonance\cite{dai_2015}. 
+
+% Small structures are also damped; resonances narrower than $\sim \SI{100}{km}$ aren't visible on the ground. See also Glassmeier and Stellmacher, 2000 (about small latitude). \Alfven waves with small latitudinal scale\cite{glassmeier_2000} are screened by the ionosphere. Attenuation factor from \cite{hughes_1976} and \cite{glassmeier_1984}. 
+
 %``Pgs maybe a manifestation of a small subset of fundamental poloidal waves excited in the magnetopause.'' \cite{takahashi_2013}
 
 %``It is not clear why noncompressional [high-\azm] Pc4 poloidal waves, which are presumably driven by instability within the magnetosphere, preferrentially occur on the dayside.\cite{dai_2015}''
 
 %``It is unclear whether other generation mechanisms of fundamental standing waves such as drift wave instability\cite{green_1979} can explain the localization of Pgs in local time (LT).''\cite{motoba_2015}
-
-
-
-
-
-
-
 
 % Shear mode incident on the ionosphere, pederson current closes FAC, Hall current then generates a fast mode wave which may be detected in space or on the ground\cite{tamao_1965}. 
 
@@ -299,9 +265,33 @@ Giant pulsations have variously been referred to as ``intriguing''\cite{green_19
 
 % Compressional poloidal Pc4 pulsations are much more common during storms, but not particularly sensitive to storm phase. Noncompressional ones occur primarily during recovery\cite{dai_2015,rostoker_1979,engebretson_1992,anderson_1994}. Note that Dai\cite{dai_2015} was pretty generous about what counted as a storm... anything that hits \SI{-30}{\nano\tesla}. So \cite{motoba_2015} may not have counted the same way when they found no particular correlation with storm phase. 
 
+%\todo{First Pg observation\cite{birkeland_1901}. }
 
+%\todo{Strong poloidal (that is, meridional) polarization in space, combined with the \about\SI{90}{\degree} rotation of long-period waves by the ionosphere\cite{nishida_1964_screening,hughes_1974}, gives Pgs a distinctive east-west polarization on the ground. }
 
+%\todo{Pgs are most common during solar minimum, perhaps because of decreased mass loading of heavy ions\cite{denton_2011}. }
 
+%\todo{The harmonic structure of giant pulsations was once controversial; at this point, there is general consensus (based on satellite data) that they are fundamental poloidal modes\cite{glassmeier_1999,hillebrand_1982,kokubun_1980,kokubun_1989,takahashi_1992,takahashi_2011}. }
+
+%\todo{Giant pulsations observed on the ground tend to have azimuthal modenumbers $10 \lesssim \azm \lesssim 40$\cite{glassmeier_1980,hillebrand_1982,poulter_1983,rostoker_1979,takahashi_1992}. }
+
+%\todo{Giant pulsations peak around \SI{66}{\degree} MLAT\cite{motoba_2015}, corresponding to L=6, but have been observed at $5 \lesssim L \lesssim 7$\cite{green_1985}. Most prevalent on the morningside, with some in the afternoon. }
+
+% Another past study: \cite{takahashi_1984_spectrum}. Satellite data is surveyed and classified by polarization, harmonic, wavenumber, etc, in order to determine the mechanisms for generating \Alfven waves. Old, but still pretty representative, according to Motoba\cite{motoba_2015}. 
+
+% A long-period \Alfven wave passing through the ionosphere is rotated by about 90 degrees\cite{nishida_1964_screening,hughes_1974}. That would translate a poloidal resonance in space to an east-west ground signature. 
+
+% \cite{motoba_2015} suggests that Pgs originate from the fundamental poloidal mode waves at all local times. 
+
+% It seems to be the convention to find a Pg event on the ground, then look at satellite data. That's certainly what was done in \cite{motoba_2015}. 
+
+% Per \cite{motoba_2015}, most Pg events happen around $L=7$, but some do happen near the plasmapause, as seen(?) by \cite{green_1985}. 
+
+% ``The AL distribution shown in Figure 14c are consistent with the findings of \cite{rostoker_1979} that Pgs occur as the magnetosphere recovers from previous activities (substorms).''\cite{motoba_2015} Finds this to be reasonable because it's ``very likely'' that energetic ions injected into the inner magnetosphere from the magnetotail provide energy to Pgs. 
+
+% Analysis of GOES data from 2008 to 2013 shows about 100 Pg events. They are concentrated on the morningside. No particular correlation with storm phase\cite{motoba_2015}. 
+
+% Recall compressional poloidal Pc4s are mostly during storm time, and noncompressional are mostly specifically during late recovery\cite{dai_2015}. Only 19 fundamental poloidal mode examples were identified from the 390 noncompressional poloidal events. 
 
 %
 % From W J Hughes' Magnetospheric ULF Waves: A Tutorial With a Historical Perspective
@@ -335,7 +325,5 @@ Giant pulsations have variously been referred to as ``intriguing''\cite{green_19
 % allan et al 1985 did early observation of ULF waves (Pc5 and Pc4) from waveform plots. 
 % Waters et al 1991 ground-based observation of Pc3 and Pc4 before spacecraft existed at small L. 
 % Menk et al 1993 also
-
-
 
 

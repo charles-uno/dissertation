@@ -5,6 +5,11 @@ S.-I. Akasofu.
 \newblock The development of the auroral substorm.
 \newblock {\em Planetary and Space Science}, 12(4):273--282, 1964.
 
+\bibitem{alfven_1946}
+H.~{Alfv{\'e}n}.
+\newblock {On the cosmogony of the solar system III}.
+\newblock {\em Stockholms Observatoriums Annaler}, 14:9.1--9.29, 1946.
+
 \bibitem{anderson_1990}
 B.~J. Anderson, M.~J. Engebretson, S.~P. Rounds, L.~J. Zanetti, and T.~A.
   Potemra.
@@ -62,6 +67,13 @@ L.~Chen and A.~Hasegawa.
   energetic particles.
 \newblock {\em J. Geophys. Res.}, 96(A2):1503, 1991.
 
+\bibitem{chen_1984}
+L.~Chen, R.~White, C.~Cheng, F.~Romanelli, J.~Weiland, R.~Hay, J.~V. Dam,
+  D.~Barnes, M.~Rosenbluth, and S.~Tsai.
+\newblock Theory and simulation of fishbone-type instabilities in beam-heated
+  tokamaks.
+\newblock Technical report, 1984.
+
 \bibitem{cheng_1994}
 C.~Z. Cheng and Q.~Qian.
 \newblock Theory of ballooning-mirror instabilities for anisotropic pressure
@@ -106,12 +118,6 @@ A.~W. Degeling, R.~Rankin, and Q.-G. Zong.
 \newblock Modeling radiation belt electron acceleration by {ULF} fast mode
   waves, launched by solar wind dynamic pressure fluctuations.
 \newblock {\em J. Geophys. Res. Space Physics}, 119(11):8916--8928, 2014.
-
-\bibitem{denton_2011}
-R.~E. Denton, M.~F. Thomsen, K.~Takahashi, R.~R. Anderson, and H.~J. Singer.
-\newblock Solar cycle dependence of bulk ion composition at geosynchronous
-  orbit.
-\newblock {\em J. Geophys. Res.}, 116(A3), 2011.
 
 \bibitem{dhaeseleer_1991}
 W.~D. D'haeseleer, W.~N. G. H. J.~D. Callen, and J.~L. Shohet.
@@ -249,12 +255,6 @@ L.~Harang.
 O.~Hillebrand, J.~Muench, and R.~L. McPherron.
 \newblock Ground-satellite correlative study of a giant pulsation event.
 \newblock {\em Journal of Geophysics Zeitschrift Geophysik}, 51:129--140, 1982.
-
-\bibitem{hughes_1974}
-W.~J. Hughes.
-\newblock The effect of the atmosphere and ionosphere on long period
-  magnetospheric micropulsations.
-\newblock {\em Planet. Space Sci.}, 22:1157--1172, 1974.
 
 \bibitem{hughes_1994}
 W.~J. Hughes.
@@ -413,6 +413,19 @@ T.~Maynard, N.~Smith, S.~Gonzalez, et~al.
 \newblock Solar storm risk to the {North American} electric grid.
 \newblock 2013.
 
+\bibitem{mcguire_1983}
+K.~McGuire, R.~Goldston, M.~Bell, M.~Bitter, K.~Bol, K.~Brau, D.~Buchenauer,
+  T.~Crowley, S.~Davis, F.~Dylla, H.~Eubank, H.~Fishman, R.~Fonck, B.~Grek,
+  R.~Grimm, R.~Hawryluk, H.~Hsuan, R.~Hulse, R.~Izzo, R.~Kaita, S.~Kaye,
+  H.~Kugel, D.~Johnson, J.~Manickam, D.~Manos, D.~Mansfield, E.~Mazzucato,
+  R.~McCann, D.~McCune, D.~Monticello, R.~Motley, D.~Mueller, K.~Oasa,
+  M.~Okabayashi, K.~Owens, W.~Park, M.~Reusch, N.~Sauthoff, G.~Schmidt,
+  S.~Sesnic, J.~Strachan, C.~Surko, R.~Slusher, H.~Takahashi, F.~Tenney,
+  P.~Thomas, H.~Towner, J.~Valley, and R.~White.
+\newblock Study of high-beta magnetohydrodynamic modes and fast-ion losses in
+  {PDX}.
+\newblock {\em Phys. Rev. Lett.}, 50(12):891--895, 1983.
+
 \bibitem{mcpherron_1973_substorms}
 R.~L. McPherron, G.~K. Parks, D.~S. Colburn, and M.~D. Montgomery.
 \newblock Satellite studies of magnetospheric substorms on august 15, 1968: 2.
@@ -438,11 +451,6 @@ M.~Nicolet.
 \newblock The collision frequency of electrons in the ionosphere.
 \newblock {\em Journal of Atmospheric and Terrestrial Physics}, 3(4):200--211,
   1953.
-
-\bibitem{nishida_1964_screening}
-A.~Nishida.
-\newblock Ionospheric screening effect and storm sudden commencement.
-\newblock {\em Journal of Geophysical Research}, 69(9):1861--1874, 1964.
 
 \bibitem{ozeke_2008}
 L.~G. Ozeke and I.~R. Mann.
