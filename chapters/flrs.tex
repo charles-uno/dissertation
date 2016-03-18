@@ -39,9 +39,9 @@ So-called ultra low frequency waves  -- of which FLRs are a subset -- are catego
 
 FLRs fall into the Pc3, Pc4, and Pc5 ranges. The present work focuses specifically on the Pc4 band: waves with periods of a minute or two. Frequencies in the Pc4 range typically coincide with \Alfven bounce times\footnote{The \Alfven frequency is the inverse of the \Alfven bounce time: $\frac{2 \pi}{\omega_A} \equiv \oint \frac{dz}{v_A}$. } near the plasmapause: $L\sim4$ to $L\sim6$\cite{anderson_1990,dai_2015,engebretson_1992,liu_2009}\footnote{Not coincidentally, these are the same $L$-shells where the Van Allen Probes spend most of their time; see \cref{ch_rbsp}. }. In fact, the large radial gradients in the \Alfven speed near the plasmapause act as an effective potential well, trapping FLRs\cite{dai_2009,klimushkin_2004,lee_1999,leonovich_2000,mager_2013,takahashi_2010}. 
 
-In addition to being radially localized, FLRs in the Pc4 frequency band (also called Pc4 pulsations, or just Pc4s) are localized in MLT\footnote{MLT is Magnetic Local Time. Noon points toward the Sun and midnight away from it, with 06:00 and 18:00 at the respective dawn and dusk flanks. }. They have also been shown to occur preferrentially on the dayside\cite{anderson_1990,dai_2015,engebretson_1992,liu_2009,ukhorskiy_2005}. 
+In addition to being radially localized, FLRs in the Pc4 frequency band (also called Pc4 pulsations, or just Pc4s) are localized in MLT\footnote{MLT is Magnetic Local Time. Noon points toward the Sun and midnight away from it, with 06:00 and 18:00 at the respective dawn and dusk flanks. }. They have also been shown to occur preferrentially on the dayside, during storms or storm recovery\cite{anderson_1990,dai_2015,engebretson_1992,kokubun_1989,liu_2009,ukhorskiy_2005}. 
 
-In the inner magnetosphere, the \Alfven frequency -- and thus the frequency of FLRs -- often coincides with integer or half-integer\footnote{See \cref{sec_harmonics}. } multiples of particle drift frequencies\cite{dai_2013}. The resulting wave-particle interactions can give rise to significant energization and radial diffusion of the particles\todo{Cite... everybody? }. In some cases, the waves also include an electric field parallel to the background magnetic field, contributing to the precipitation of energetic particles into the neutral atmosphere\cite{goertz_1979,goertz_1984,thompson_1996,wygant_2002}. 
+In the inner magnetosphere, the \Alfven frequency -- and thus the frequency of FLRs -- often coincides with integer or half-integer\footnote{See \cref{sec_harmonics}. } multiples of particle drift frequencies\cite{dai_2013}. The resulting wave-particle interactions can give rise to significant energization and radial diffusion of the particles. In some cases, the waves also include an electric field parallel to the background magnetic field, contributing to the precipitation of energetic particles into the neutral atmosphere\cite{goertz_1979,goertz_1984,thompson_1996,wygant_2002}. 
 
 The present chapter introduces the structural characteristics of FLRs, how those characteristics affect wave behavior, and several unresolved questions related to that behavior. 
 
@@ -106,14 +106,15 @@ Waves with small azimuthal modenumbers ($0 < \azm < 10$) are typically driven by
 
 When the azimuthal modenumber is large (or, equally, when the azimuthal wavelength is small), the shear and compressional \Alfven waves are decoupled\cite{cummings_1969,radoski_1974}\footnote{Equally, the strength of a wave's parallel component hint at its modenumber, a point which is revisited in \cref{ch_rbsp}. }. As a result, FLRs must be driven from within the magnetosphere. Proposed energy sources include phase space gradients near the plasmapause\cite{dai_2013}, particularly as the plasmasphere refills after a substorm\cite{engebretson_1992,liu_2013}. 
 
-The ionosphere is known to attenuate waves with small spatial extent in the perpendicular direction\cite{hughes_1976,wright_1999,yeoman_2001}. As a result, FLRs may create no signature on the ground if their azimuthal modenumber is sufficiently large. For example, a recent paper by Takahashi shows a strong (\SI{2}{\nT} at $L\sim10$), clear resonance with $|\azm|\gtrsim70$ and no corresponding ground signature. Per Southwood\cite{southwood_1976} and Glassmeier\cite{glassmeier_1984}, 
+The ionosphere is known to attenuate waves with small spatial extent in the perpendicular direction\cite{hughes_1976,wright_1999,yeoman_2001}. As a result, FLRs may create no signature on the ground if their azimuthal modenumber is sufficiently large. For example, a recent paper by Takahashi shows a strong (\SI{2}{\nT} at $L\sim10$), clear resonance with $|\azm|\gtrsim70$ and no corresponding ground signature. 
 \begin{align}
+  \label{attenuation}
   \frac{B_E}{B_I} &= \frac{\Sigma_H}{\Sigma_P} \exp \arg{ -\azm \frac{R_I - R_E}{R_E \sin \theta} }
 \end{align}
 
-Where $B_E$ and $B_I$ are the magnetic field strengths at $R_E$ (Earth's surface, \SI{6783}{\km} geocentric) and $R_I$ (the ionosphere, \about\SI{6900}{\km} geocentric) respectively. The integrated ionospheric Pedersen and Hall conductivities, $\Sigma_P$ and $\Sigma_H$, are typically within a factor of two of one another, and field lines near the plasmapause map to Earth at $\sin\theta\about0.4$. 
+\cref{attenuation}, adapted from Southwood\cite{southwood_1976} and Glassmeier\cite{glassmeier_1984}, shows the attenuation factor of a low frequency wave passing through the ionosphere on its way to Earth; $B_E$ and $B_I$ are the magnetic field strengths at $R_E$ (Earth's surface, \SI{6783}{\km} geocentric) and $R_I$ (the ionosphere, \about\SI{6900}{\km} geocentric) respectively. The integrated ionospheric Pedersen and Hall conductivities, $\Sigma_P$ and $\Sigma_H$, are typically within a factor of two of one another, and field lines near the plasmapause map to Earth at $\sin\theta\about0.4$. 
 
-That is, by the time it reaches the ground, the magnetic field from an FLR with $m=10$ is weaker by a factor of two; at $m=100$, the attenuation factor is closer to \num{e-2}. 
+That is, by the time it reaches the ground, the magnetic field from an FLR with $m=10$ is weaker by a factor of two; at $m=100$, the factor is closer to 100. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -146,11 +147,13 @@ The toroidal mode's magnetic displacement is azimuthal, per \cref{fig_toroidal};
 
 Both poloidal and toroidal waves are noted for their ability to contribute to the energization and radial diffufion of trapped particles. The poloidal mode interacts more strongly, since its electric field is aligned with the trapped particles' drift motion. Poloidally-polarized waves are also more prone to creating magnetic signatures on the ground, due to ducting in the ionosphere\cite{fujita_1988,greifinger_1968}. 
 
-Toroidal modes have been shown to far outnumber poloidal modes\cite{anderson_1990}. Perhaps not coincidentally, poloidally-polarized waves rotate asymptotically to the toroidal mode\cite{mann_1995,mann_1997,radoski_1974}. Poloidal waves with low azimuthal modenumber -- such as those driven by broadband sources at the magnetopause -- rotate particularly quickly. 
+Toroidal modes have been shown to far outnumber poloidal modes\cite{anderson_1990}. Perhaps not coincidentally, poloidally-polarized waves rotate asymptotically to the toroidal mode\cite{mann_1995,mann_1997,radoski_1974}. Poloidal waves with low azimuthal modenumber -- such as those driven by broadband sources at the magnetopause -- rotate on timescales comparable to their oscillation periods. 
 
 \todo{Fishbone instability\cite{chen_1984,mcguire_1983}. Like the poloidal mode, but for lab plasmas. }
 
-\todo{Poloidal and toroidal modes are coupled by the ionospheric Hall conductivity\cite{kato_1956}. }
+\todo{Poloidal and toroidal modes are coupled by the ionospheric Hall conductivity\cite{kato_1956}. The Hall conductivity also increases the ``ringtime'' of these resonances, allowing them to oscillate through the inductive process rather than be dissipated as Joule heating\cite{waters_2013}. }
+
+\todo{Toroidal modes show a clear frequency dependence with $L$. Poloidal modes less so. }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -159,57 +162,35 @@ Toroidal modes have been shown to far outnumber poloidal modes\cite{anderson_199
 
 The study of geomagnetic pulsations long predates satellites, sounding rockets, or even the word ``magnetohydrodynamics''\footnote{The term was first used by \Alfven in the 1940s\cite{alfven_1946}. }. Large, regular oscillations in the magnetic field were noted as early as 1901\cite{birkeland_1901}. Eventually, the term ``giant pulsation,'' or Pg, arose to describe such pulsations. 
 
-On the ground, Pgs are notable for their strikingly sinusoidal waveforms, their eastward\todo{?} drifts, and their specific occurrence pattern: Pgs are typically seen on the morningside, at latitudes of \SIrange{60}{70}{\degree}, near solar minimum. Pgs generally fall into the Pc4 frequency band\footnote{The Pc4 range is periods of \SIrange{45}{140}{\s}, while Pgs are often said to range from \SIrange{60}{200}{\s}\cite{brekke_1987}. }. The harmonic structure of Pgs was a source of controversy for decades, but recent multisatellite observations seem to be in agreement that they are odd harmonics, probably fundamental\cite{glassmeier_1999,hillebrand_1982,kokubun_1980,kokubun_1989,takahashi_1992,takahashi_2011}. They are poloidally polarized, with modenumbers $10 \lesssim \azm \lesssim 40$\cite{glassmeier_1980,hillebrand_1982,poulter_1983,rostoker_1979,takahashi_1992}. 
+On the ground, Pgs are notable for their strikingly sinusoidal waveforms, their eastward drifts, and their specific occurrence pattern: Pgs are typically seen pre-dawn, at latitudes of \SIrange{60}{70}{\degree}. Pgs generally fall into the Pc4 frequency band\footnote{The Pc4 range is periods of \SIrange{45}{140}{\s}, while Pgs are often said to range from \SIrange{60}{200}{\s}\cite{brekke_1987}. }. The harmonic structure of Pgs was a source of controversy for decades, but recent multisatellite observations seem to be in agreement that they are odd harmonics, probably fundamental\cite{glassmeier_1999,hillebrand_1982,kokubun_1980,kokubun_1989,takahashi_1992,takahashi_2011}. They are poloidally polarized, with modenumbers $10 \lesssim \azm \lesssim 40$\cite{glassmeier_1980,hillebrand_1982,poulter_1983,rostoker_1979,takahashi_1992}. 
 
 Whereas FLRs are waves in space which may produce ground signatures, ``giant pulsation'' refers to the ground signature specifically\footnote{Historically, the wave designations shown in \cref{tab_iaga} 
-all referred to ground phenomena. Over time, they have come to be used to describe satellite observations as well, including those not measured on Earth. }. In 2013, Takahashi described a strong, sinusoudal, high-\azm, fundamental poloidal resonance; however, because there was no associated ground signature, 
+all referred to ground phenomena. Over time, they have come to describe satellite observations as well, including those without corresponding signatures on the ground. }. That is, Takahashi's satellite observation of a sinusoidal, morningside, high-\azm, fundamental poloidal resonance was not classified as a Pg because it did not produce a signal on the ground\cite{takahashi_2013}. 
 
+Due to their remarkably clear waveforms, Pgs are typically found by ``visual inspection of magnetometer data''\cite{motoba_2015}. Over the course of the past century, a number of multi-year (sometimes multi-decade\cite{brekke_1987}) surveys have totaled nearly one thousand Pg events -- half of them measured at Troms{\o}, Norway. On average, a ground magnetometer near \SI{66}{\degree} magnetic latitude observes \about10 Pg events per year\cite{brekke_1987,harang_1941,rolf_1931,sucksdorff_1939}. Observations are not distributed uniformly; rather, giant pulsations become more common near the equinox and during times of low solar activity. 
 
-
-
-
-
-
-\todo{It bears noting, as was mentioned in \cref{sec_azm}, that large-modenumber waves are screened by the ionosphere. The fact that Pgs are typically observed with $m \lesssim 40$ does not necessarily indicate that strong, sinusoidal, odd-harmonic, poloidal Pc4s aren't happening in space. }
-
-\todo{Historically, the convention has been to identify giant pulsations by eye in ground magnetometer data, THEN look at satellite data? \cite{motoba_2015} }
-
-\todo{Over the course of the twentieth century, a number of multi-year (sometimes multi-decade) surveys were published, tabulating nearly a thousand giant pulsation events (over 600 at Troms{\o}, Norway, alone!). On average, a ground magnetometer at \SI{66}{\degree} MLAT seems to observe 5 to 10 giant pulsations per year\cite{brekke_1987,harang_1941,rolf_1931,sucksdorff_1939}. The number depends on solar cycle as well as season. }
-
-\todo{Giant pulsations preferrentially happen during quiet times, as the magnetosphere is recovering from previous activities\cite{motoba_2015,rostoker_1979}. Also notes that giant pulsations have no particular correlation with storm phase\cite{motoba_2015}. }
+Unlike Pc4 pulsations in general, Pgs show no particular correlation with storm phase\cite{motoba_2015}. However, they do often occur as the magnetosphere recovers from a substorm\cite{motoba_2015,rostoker_1979}. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \section{Motivations for the Present Work}
 
-\todo{Why build a model? }
+A great deal has been learned -- and continues to be learned -- through observations of field line resonance. However, the cost-to-benefit ratio is climbing. As summarized in the sections above, FLR behavior depends significantly on harmonic structure, azimuthal modenumber, and polarization, not to mention frequency, spectral width, and so on. With each degree of freedom comes the necessity for an additional simultaneous observation. 
 
-There's lots of observation. 
+Similarly, as FLRs have been shown to depend on ever-more-specific magnetospheric conditions, analytical techniques have fallen out of favor. The height-resolved ionosphere, the multidimensional \Alfven speed profile, and the inconvenient geometry combine to create a problem beyond the reasonable purview of pencil and paper. 
 
-Even multisatellite events give a limited big-picture view. 
+That is, the topic of field line resonance is ripe for numerical modeling. 
 
-Analytical work often takes $\azm\rightarrow0$ or $\azm\rightarrow\infty$, or neglects the obtuse angle between the field line and the ionosphere, or is limited to a single frequency. 
+Past models of the magnetosphere have been ill-suited for the consideration of FLRs. Reasons include overly-simplified treatment of the ionospheric boundary, no consideration of the plasmapause, limited range in \azm, and the inability to compute ground signatures. \cref{ch_model} presents a model which addresses these issues, allowing the computation of field line resonance with unparalleled attention to realism. 
 
-The consideration of large-but-finite \azm is interesting! Rotation rate depends on \azm. Ground signatures depend on \azm. 
+The model allows a bird's-eye view of the structure and evolution of FLRs. As such, not only can several open questions be addressed, but their answers serve to unify a number of seemingly-disparate properties described in the sections above. 
 
-A model gives a broader view of the wave's behavior as it spans the inner magnetosphere. Allow for a unification of previously-disparate results. 
+The rotation of poloidally-polarized waves to the toroidal mode is investigated. Particular attention is paid to the importance of azimuthal modenumber and ionospheric conductivity. The interplay between said rotation and the transport of energy across field lines -- which also depends on azimuthal modenumber -- is considered as well. 
 
-\todo{Why this model? }
+By their nature, drifting particles have the potential to spur wave-particle interactions at all MLT. However, Pc4 observations are strongly peaked on the dayside. In a 2015 paper, Dai notes, ``It is not clear why noncompressional [high-\azm] Pc4 poloidal waves, which are presumably driven by instability within the magnetosphere, preferrentially occur on the dayside''\cite{dai_2015}. Motoba, later that year, echoes, ``It is unclear whether other generation mechanisms of fundamental standing waves ... can explain the localization of Pgs in local time''\cite{motoba_2015}. This, too, is considered numerically: to what degree is field line resonance affected by the (day-night asymmetric) conditions of the ionosphere? 
 
-Global models have no plasmasphere, ionosphere. 
-
-3D models can't do large modenumber. 
-
-\todo{What can we do once we have the model? }
-
-Effect of the ionosphere. Why don't we see drift-resonant interactions on the nightside? 
-
-How weird are giant pulsations? Under what conditions might sinusoidal waves be expected to arise? What do Pc4 ground signatures look like as a function of \azm, frequency, and ionospheric conditions? 
-
-By its very definition, drift resonance has the potential to spur wave-particle interactions at all MLT. However, FLR observations are strongly peaked on the dayside. In his 2015 paper, Dai notes, ``It is not clear why noncompressional [high-\azm] Pc4 poloidal waves, which are presumably driven by instability within the magnetosphere, preferrentially occur on the dayside''\cite{dai_2015}. Motoba, in a paper written later that year, echoes, ``It is unclear whether other generation mechanisms of fundamental standing waves ... can explain the localization of Pgs in local time'' and adds that ``No theoretical study has explained why the occurrence of Pgs depends on solar activity''\cite{motoba_2015}. A goal of the present work is to investigate the problem numerically: to what degree is field line resonance affected by the conditions of the ionosphere? 
-
-\todo{With that in mind, what data would be super helpful? }
+\todo{Transition... With the above in mind, what data would be super helpful? }
 
 It's been shown that a ground magnetometer \SI{66}{\degree} north of the magnetic equator observes \about10 events per year. It's also been shown that poloidal Pc4s are rare compared to toroidal ones, and that most poloidal Pc4s are even harmonics. However, little attention has been paid to how these rates line up with one another. Given the relative occurrence rate of poloidal and toroidal waves, of odd and even harmonics, and of diffuse and sharp spectral peaks, just how unusual are giant pulsations? 
 

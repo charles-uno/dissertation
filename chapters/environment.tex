@@ -17,6 +17,15 @@ The present section outlines the structure of the magnetosphere; that is, the re
 
 Plasma behavior within Earth's magnetosphere is ultimately driven by the solar wind: a hot (\about\SI{100}{\eV}), fast-moving (\about\SI{100}{\km/\s}) plasma threaded by the inerplanetary magnetic field (\about\SI{1}{\nT})\footnote{Listed values correspond to the solar wind at Earth's orbit. }. The density of the solar wind is on the order of \SI{10}{\percc}; in a laboratory setting, this would constitute an ultra-high vacuum (atmospheric density at sea level is \about\SI{e19}{\percc}), but compared to much of the magnetopause it's quite dense. 
 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/placeholder.jpg}
+    \caption[Outer Magnetosphere Cutaway]{
+      \todo{The outer magnetosphere... }
+    }
+    \label{fig_outer_magnetosphere}
+\end{figure}
+
 The magnetosphere's outer boundary represents a balance between the solar wind dynamic pressure and the magnetic pressure of Earth's dipole field. On the dayside, the dipole is compressed, pushing this boundary to within about \SI{10}{\RE} of Earth\footnote{Distances in the magnetosphere are typically measured in units of Earth radii: $\SI{1}{\RE} \equiv \SI{6378}{\km}$. }. The nightside magnetosphere is stretched into a long tail which may exceed \SI{50}{\RE} in width and \SI{100}{\RE} in length. 
 
 When the interplanetary magnetic field opposes the magnetospheric magnetic field at the nose of the magnetosphere, magnetic reconnection occurs. Closed magnetospheric field lines ``break,'' opening up to the interplanetary magnetic field\footnote{Closed field lines connect at both ends to the magnetic dynamo at Earth's core. Open field lines meet Earth at only one end; the other connects to the interplanetary magnetic field. The distinction is important because charged particle motion is guided by magnetic field lines, as discussed in \cref{ch_flrs}. }. They then move tailward across the poles, dragging their frozen-in plasma with them\footnote{In the outer magnetosphere (as well as most of the inner magnetosphere), collisions are so infrequent that magnetic flux is said to be ``frozen in'' to the plasma. Charged particles move freely along magnetic field lines, but cannot cross from one line to another. Compression of the magnetic field is synonymous with compression of the ambient plasma. See \cref{sec_ionos}. }. Reconnection in the tail allows magnetic field lines to convect back to the day side, across the flanks; this process is called the Dungey cycle\cite{dungey_1961}. 
@@ -33,6 +42,15 @@ Plasma within the tail is cool (\about\SI{100}{\eV}) and rarefied (\about\SI{e-2
 \section{The Inner Magnetosphere}
 
 Within about \todo{ $L\sim10$ }\footnote{The McIlwain parameter $L$ is a spatial parameter used to index field lines in Earth's dipole geometry: $L \equiv \frac{r}{\sin^2\theta}$ for colatitude\footnote{Colatitude measures \SI{0}{\degree} at the magnetic north pole and \SI{90}{\degree} at the magnetic equator. } $\theta$ and radius $r$ in Earth radii. For example, the $L=5$ field line passes through the equatorial plane at a geocentric radius of \SI{5}{\RE}, then meets the Earth at a colatitude of $\arcsin \sqrt{ \frac{1}{5} } \sim \SI{27}{\degree}$ (equally, a latitude of $\arcsin \sqrt{ \frac{1}{5} } \sim \SI{63}{\degree}$). }, the dipole magnetic field is not appreciably deformed by the solar wind. As a result, the structures in the inner magnetosphere follow closely from the motion of charged particles in an ideal dipole field. 
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/placeholder.jpg}
+    \caption[Inner Magnetosphere Cutaway]{
+      \todo{The inner magnetosphere... }
+    }
+    \label{fig_inner_magnetosphere}
+\end{figure}
 
 The plasmasphere -- a cold (\about\SI{1}{\eV}), dense (\SIrange{e2}{e4}{\percc}) torus of corotating plasma -- is formed by the outward drift of atmospheric ions along magnetic closed field lines. Its outer boundary, is thought to represent a balance between the corotation electric field (per the rotation of Earth's magnetic dipole) and the convection electric field (associated with the convection of magnetic flux during the Dungey cycle). Particle density drops sharply at the edge of the plasmasphere; the boundary is called the plasmapause. The plasmapause typically falls around $L=4$, though during prolonged quiet times it can extend to $L=6$ or larger. 
 
@@ -52,7 +70,7 @@ Earth's neutral atmosphere is an excellent insulator. Collisions are so frequent
 
 Currents are also suppressed by the magnetosphere. In the absence of collisions, electrons and ions drift alongside one another in response to an electric field, creating no net current perpendicular to the magnetic field\footnote{The so-called $E$-cross-$B$ drift is associated with a velocity of $\vec{v} = \frac{1}{B^2} \vec{E} \times \vec{B}$, independent of a charged particle's mass or sign. }. Magnetic field lines are (to a good approximation) equipotential contours; electric fields do not form along them to drive parallel currents. 
 
-The ionosphere is a sweet spot between the two regimes. Collisions are frequent enough to disrupt the drift of ions, but not frequent enough to immobilize the electrons. The result is nonzero Pedersen and Hall conductivity, corresponding to current along the electric field and in the $-\vec{E} \times \vec{B}$ direction respectively. Collisions in the ionosphere also give rise to a finite parallel conductivity, allowing for the formation of potential structures along the magnetic field line. 
+The ionosphere is a sweet spot between the two regimes. Collisions are frequent enough to disrupt the drift of ions, but not frequent enough to immobilize the electrons. The result is nonzero Pedersen and Hall conductivity, corresponding to current along the electric field and in the $\vec{B} \times \vec{E}$ direction respectively. Collisions in the ionosphere also give rise to a finite parallel conductivity, allowing for the formation of potential structures along the magnetic field line. 
 
 \todo{Currents in the ionosphere create magnetic fields on the ground. }
 
