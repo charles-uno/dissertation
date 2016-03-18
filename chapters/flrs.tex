@@ -106,7 +106,14 @@ Waves with small azimuthal modenumbers ($0 < \azm < 10$) are typically driven by
 
 When the azimuthal modenumber is large (or, equally, when the azimuthal wavelength is small), the shear and compressional \Alfven waves are decoupled\cite{cummings_1969,radoski_1974}\footnote{Equally, the strength of a wave's parallel component hint at its modenumber, a point which is revisited in \cref{ch_rbsp}. }. As a result, FLRs must be driven from within the magnetosphere. Proposed energy sources include phase space gradients near the plasmapause\cite{dai_2013}, particularly as the plasmasphere refills after a substorm\cite{engebretson_1992,liu_2013}. 
 
-The ionosphere is known to attenuate waves with small spatial extent in the perpendicular direction\cite{hughes_1976,wright_1999,yeoman_2001}. As a result, FLRs may create no signature on the ground if their azimuthal modenumber is sufficiently large. For example, a recent paper by Takahashi shows a strong (\SI{2}{\nT} at $L\sim10$), clear resonance with $|\azm|\gtrsim70$ and no corresponding ground signature. 
+The ionosphere is known to attenuate waves with small spatial extent in the perpendicular direction\cite{hughes_1976,wright_1999,yeoman_2001}. As a result, FLRs may create no signature on the ground if their azimuthal modenumber is sufficiently large. For example, a recent paper by Takahashi shows a strong (\SI{2}{\nT} at $L\sim10$), clear resonance with $|\azm|\gtrsim70$ and no corresponding ground signature. Per Southwood\cite{southwood_1976} and Glassmeier\cite{glassmeier_1984}, 
+\begin{align}
+  \frac{B_E}{B_I} &= \frac{\Sigma_H}{\Sigma_P} \exp \arg{ -\azm \frac{R_I - R_E}{R_E \sin \theta} }
+\end{align}
+
+Where $B_E$ and $B_I$ are the magnetic field strengths at $R_E$ (Earth's surface, \SI{6783}{\km} geocentric) and $R_I$ (the ionosphere, \about\SI{6900}{\km} geocentric) respectively. The integrated ionospheric Pedersen and Hall conductivities, $\Sigma_P$ and $\Sigma_H$, are typically within a factor of two of one another, and field lines near the plasmapause map to Earth at $\sin\theta\about0.4$. 
+
+That is, by the time it reaches the ground, the magnetic field from an FLR with $m=10$ is weaker by a factor of two; at $m=100$, the attenuation factor is closer to \num{e-2}. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -152,7 +159,16 @@ Toroidal modes have been shown to far outnumber poloidal modes\cite{anderson_199
 
 The study of geomagnetic pulsations long predates satellites, sounding rockets, or even the word ``magnetohydrodynamics''\footnote{The term was first used by \Alfven in the 1940s\cite{alfven_1946}. }. Large, regular oscillations in the magnetic field were noted as early as 1901\cite{birkeland_1901}. Eventually, the term ``giant pulsation,'' or Pg, arose to describe such pulsations. 
 
-On the ground, Pgs are notable for their strikingly sinusoidal waveforms, their eastward\todo{?} drifts, and their specific occurrence pattern: Pgs are typically seen on the morningside, at latitudes of \SIrange{60}{70}{\degree}, near solar minimum. Pgs generally fall into the Pc4 frequency band\footnote{The Pc4 range is periods of \SIrange{45}{140}{\s}, while Pgs are often said to range from \SIrange{60}{200}{\s}\cite{brekke_1987}. }. The harmonic structure of Pgs was a source of controversy for decades, but recent multisatellite observations seem to be in agreement that they are odd, probably fundamental\cite{glassmeier_1999,hillebrand_1982,kokubun_1980,kokubun_1989,takahashi_1992,takahashi_2011}. They are poloidally polarized, with modenumbers $10 \lesssim \azm \lesssim 40$\cite{glassmeier_1980,hillebrand_1982,poulter_1983,rostoker_1979,takahashi_1992}. 
+On the ground, Pgs are notable for their strikingly sinusoidal waveforms, their eastward\todo{?} drifts, and their specific occurrence pattern: Pgs are typically seen on the morningside, at latitudes of \SIrange{60}{70}{\degree}, near solar minimum. Pgs generally fall into the Pc4 frequency band\footnote{The Pc4 range is periods of \SIrange{45}{140}{\s}, while Pgs are often said to range from \SIrange{60}{200}{\s}\cite{brekke_1987}. }. The harmonic structure of Pgs was a source of controversy for decades, but recent multisatellite observations seem to be in agreement that they are odd harmonics, probably fundamental\cite{glassmeier_1999,hillebrand_1982,kokubun_1980,kokubun_1989,takahashi_1992,takahashi_2011}. They are poloidally polarized, with modenumbers $10 \lesssim \azm \lesssim 40$\cite{glassmeier_1980,hillebrand_1982,poulter_1983,rostoker_1979,takahashi_1992}. 
+
+Whereas FLRs are waves in space which may produce ground signatures, ``giant pulsation'' refers to the ground signature specifically\footnote{Historically, the wave designations shown in \cref{tab_iaga} 
+all referred to ground phenomena. Over time, they have come to be used to describe satellite observations as well, including those not measured on Earth. }. In 2013, Takahashi described a strong, sinusoudal, high-\azm, fundamental poloidal resonance; however, because there was no associated ground signature, 
+
+
+
+
+
+
 
 \todo{It bears noting, as was mentioned in \cref{sec_azm}, that large-modenumber waves are screened by the ionosphere. The fact that Pgs are typically observed with $m \lesssim 40$ does not necessarily indicate that strong, sinusoidal, odd-harmonic, poloidal Pc4s aren't happening in space. }
 
