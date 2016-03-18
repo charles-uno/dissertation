@@ -50,17 +50,6 @@ A.~A. Chan, M.~Xia, and L.~Chen.
 \newblock Anisotropic alfv{\'e}n-ballooning modes in {Earth}'s magnetosphere.
 \newblock {\em J. Geophys. Res. Space Physics}, 99(A9):17351--17366, 1994.
 
-\bibitem{chaston_2002}
-C.~C. Chaston.
-\newblock Electron acceleration in the ionospheric alfven resonator.
-\newblock {\em J. Geophys. Res.}, 107(A11), 2002.
-
-\bibitem{chaston_2000}
-C.~C. Chaston, C.~W. Carlson, R.~E. Ergun, and J.~P. McFadden.
-\newblock Alfv{\'e}n waves, density cavities and electron acceleration observed
-  from the {FAST} spacecraft.
-\newblock {\em Physica Scripta}, T84(1):64, 2000.
-
 \bibitem{chen_1974}
 L.~Chen and A.~Hasegawa.
 \newblock A theory of long-period magnetic pulsations: 1. steady state
@@ -250,6 +239,12 @@ Y.~X. Hao, Q.-G. Zong, Y.~F. Wang, X.-Z. Zhou, H.~Zhang, S.~Y. Fu, Z.~Y. Pu,
   interplanetary shock: Van allen probes observations in the magnetotail.
 \newblock {\em J. Geophys. Res. Space Physics}, 119(10):8262--8273, 2014.
 
+\bibitem{harang_1941}
+L.~Harang.
+\newblock {\em Pulsations in the terrestrial magnetic records at high latitude
+  stations}.
+\newblock Grondahl, 1942.
+
 \bibitem{hillebrand_1982}
 O.~Hillebrand, J.~Muench, and R.~L. McPherron.
 \newblock Ground-satellite correlative study of a giant pulsation event.
@@ -281,6 +276,11 @@ W.~J. Hughes, D.~J. Southwood, B.~Mauk, R.~L. McPherron, and J.~N. Barfield.
   distribution.
 \newblock {\em Nature}, 275(5675):43--45, 1978.
 
+\bibitem{jacobs_1964}
+J.~A. Jacobs, Y.~Kato, S.~Matsushita, and V.~A. Troitskaya.
+\newblock Classification of geomagnetic micropulsations.
+\newblock {\em J. Geophys. Res.}, 69(1):180--181, 1964.
+
 \bibitem{karlsson_1996}
 T.~Karlsson and G.~T. Marklund.
 \newblock A statistical study of intense low-altitude electric fields observed
@@ -305,11 +305,6 @@ R.~L. Kessel.
   the ground.
 \newblock {\em J. Geophys. Res.}, 113(A4), 2008.
 
-\bibitem{klimushkin_1998}
-D.~Y. Klimushkin.
-\newblock Resonators for hydromagnetic waves in the magnetosphere.
-\newblock {\em J. Geophys. Res.}, 103(A2):2369--2375, 1998.
-
 \bibitem{klimushkin_2004}
 D.~Y. Klimushkin, P.~N. Mager, and K.-H. Glassmeier.
 \newblock Toroidal and poloidal {Alfv{\'e}n} waves with arbitrary azimuthal
@@ -327,11 +322,6 @@ S.~Kokubun, K.~N. Erickson, T.~A. Fritz, and R.~L. McPherron.
 \newblock Local time asymmetry of {Pc} 4-5 pulsations and associated particle
   modulations at synchronous orbit.
 \newblock {\em J. Geophys. Res.}, 94(A6):6607--6625, 1989.
-
-\bibitem{lee_1998}
-D.-H. Lee.
-\newblock On the generation mechanism of pi 2 pulsations in the magnetosphere.
-\newblock {\em Geophys. Res. Lett.}, 25(5):583--586, 1998.
 
 \bibitem{lee_1999}
 D.-H. Lee and K.~Kim.
@@ -544,12 +534,6 @@ E.~Sucksdorff.
 \newblock Giant pulsations recorded at sodankylä during 1914–1938.
 \newblock {\em Terrestrial Magnetism and Atmospheric Electricity},
   44(2):157--170, 1939.
-
-\bibitem{takahashi_2009}
-K.~Takahashi, D.~Berube, D.-H. Lee, J.~Goldstein, H.~J. Singer, F.~Honary, and
-  M.~B. Moldwin.
-\newblock Possible evidence of virtual resonance in the dayside magnetosphere.
-\newblock {\em J. Geophys. Res.}, 114(A5), 2009.
 
 \bibitem{takahashi_2010}
 K.~Takahashi, J.~Bonnell, K.-H. Glassmeier, V.~Angelopoulos, H.~J. Singer,

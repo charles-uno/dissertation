@@ -20,35 +20,24 @@
 \section{Finite Poloidal Lifetimes}
   \label{sec_lifetimes}
 
-Radoski\cite{radoski_1974} looked at \Alfven waves, using a cylindrical coordinate system to imitate an ``unwrapped'' dipole. He argued that poloidal waves should asymptotically rotate to the toroidal mode. 
+In his 1974 paper, Radoski argues that a poloidally-polarized wave should asymptotically rotate to the toroidal polarization\cite{radoski_1974} as a result of the curved derivative in the meridional plane. The question of finite poloidal lifetimes is considered further in a 1995 paper by Mann and Wright\cite{mann_1995}. Their numerical work used a straightened field line, with an \Alfven speed gradient in the ``radial'' direction. They also found a rotation over time from poloidal to toroidal polarization, with the characteristic time proportional to the azimuthal modenumber. 
 
-Mann\cite{mann_1995} performed some wave-in-a-box simulations and found the rotation time to be linear in modenumber: $\tau = \frac{d \lambda}{d \omega_A'}$, where $\lambda = \frac{\azm}{2 \pi r}$ and $\omega_A'$ is the spatial derivative of the \Alfven bounce frequency. Soon afterwards\cite{mann_1997}, he supported his simulations analytically. 
+\todo{Ding et al\cite{ding_1995} did similar work just before Mann and Wright, but results were less clear, possibly due to issues with grid resolution (as discussed in \cite{mann_1995}). }
 
-\todo{Crunch out $\frac{d \lambda}{d \omega_A'}$. Preliminary indications are that it doesn't translate well to a realistic grid, but let's double check. }
+The present section builds on the aforementioned results by relaxing several of their nonphysical assumptions. First, Tuna's geometry (as described in \cref{ch_model}) is far more realistic than Radoski's half-cylinder or the box model used by Mann and Wright. Magnetic field lines are dipolar. \Alfven speed is based on an empirical profile, and varies along and across field lines. Next, the present results feature driving delivered over time through perturbation of the ring current; past work has instead considered the evolution of an initial condition. Finally, the present model includes a height-resolved ionosphere (rather than perfectly-reflecting boundaries). The ionospheric conductivity provides a direct coupling between the poloidal and toroidal modes, in addition to dissipating energy. 
 
-Ding\cite{ding_1995} ran simulations more or less concurrent with Mann's. Ding saw a rotation from poloidal to toroidal... then back again. It seems that the reversal was a spatial resolution issue. 
+Each subplot in \cref{fig_U_day,fig_U_night} is analogous to Mann's Figure 3. Blue lines show the total energy in the poloidal mode as a function of time. Red lines show toroidal energy. Runs are organized such that driving frequency is constant down each column, and azimuthal modenumer is constant across each row. Axis bounds are held constant across all subplots. 
 
-The aforementioned models made significant simplifying assumptions in terms of geometry and boundary conditions. 
+Energy is computed per Poynting's theorem, with due consideration of the unusual geometry. Energy density is integrated over the meridional plane, but not in the azimuthal direction, giving units of gigajoule per radian; more than anything else, this serves as a reminder that the waves under consideration are azimuthally localized. 
+\begin{align}
+  \label{def_energy}
+  U_P &= \displaystyle\int \frac{d\lysakx d\lysakz}{2 \mz \jac} \lr{ B_x^2 + \frac{1}{\va^2} E_y^2} &
+  U_T &= \displaystyle\int \frac{d\lysakx d\lysakz}{2 \mz \jac} \lr{ B_y^2 + \frac{1}{\va^2} E_x^2} 
+\end{align}
 
-Mann used straight field lines, a uniform \Alfven speed gradient, and perfectly conducting boundaries. 
+The twenty-eight runs shown in \cref{fig_U_day} use a high-conductivity profile, corresponding to the dayside with high solar activity. 
 
-Ding's simulation is nominally carried out in a dipole geometry, but the ionospheric boundary is at \SI{2.5}{\RE}. Boundaries are also perfectly conducting. 
-
-That is, the results below offer a significantly higher level of realism than any past simulation (in part, of course, because computers are a lot better than they were 20 years ago). 
-
-A dedicated 3D treatment of this problem is unlikely at present. Large azimuthal modenumbers are expensive to compute. That's the whole point! 
-
-The energy is obtained by integrating (using the Jacobian to handle the grid properly) $U = \int dU = \int u \, dV$. Values are the log (base 10) of that, in the slightly odd units of gigajoules per radian. A factor of $2\pi$ wouldn't change anything, of course, but it seems inappropriate to integrate all the way around the sphere when Pc4s are longitudinally localized (a fact which was an important part of justifying a 2.5D approach). 
-
-
-% HIGH CONDUCTIVITY
-
-
-In \cref{fig_U_day}, the rotation of energy from the poloidal mode to the toroidal mode is clear. Driving is strictly poloidal, yet the toroidal mode accumulates energy over time, and doesn't appear to give it back. The rotation happens faster for low-\azm simulations, qualitatively consistent with Mann's result; the time at which poloidal and toroidal energies are equal seems to even be linear in \azm, in line with his result. 
-
-At least, this is the case on the dayside, where the ionosphere is highly conductive. 
-
-\begin{figure}[H]
+\begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/U_1.pdf}
     \caption[Poloidal and Toroidal Energy: Active Day]{
@@ -57,23 +46,21 @@ At least, this is the case on the dayside, where the ionosphere is highly conduc
     \label{fig_U_day}
 \end{figure}
 
-\todo{Talk about why this is exciting. }
+Some degree of poloidal-to-toroidal rotation is evident by the fact that the red lines are nonzero; as noted in \cref{sec_eqns}, the driving is delivered purely to the poloidal mode. 
 
-\todo{Note that Mann looked specifically at second-harmonic waves. }
+\todo{Put the characteristic times on a plot. Different color for each frequency. Are they linear in modenumber? }
+
+\todo{Mann and Wright looked specifically at second harmonics. These are first harmonics. }
+
+\todo{Crunch out $\frac{d \lambda}{d \omega_A'}$. Preliminary indications are that it doesn't translate well to a realistic grid, but let's double check. }
+
+\todo{Mann and Wright also made estimations about timescales for a realistic ionosphere... how does that line up here? }
 
 \todo{This result shows agreement with -- and significant refinement of -- Mann's findings. In the case of large-but-finite ionospheric conductivity, dipole geometry, and realistic \Alfven speed profile, energy does asymptotically rotate from the poloidal mode to the toroidal mode. The rotation rate is strongly affected by azimuthal modenumber and, in the case of large-but-finite \azm, has a characteristic timescale in the tens of periods. The present work furthermore demonstrates that the rotation rate is affected by driving frequency (did Mann talk about this at all, or just work in normalized time?) }
 
+In \cref{fig_U_day}, runs are carried out using a low-conductivity profile: quiet nightside. 
 
-% LOW CONDUCTIVITY
-
-
-The picture on the nightside (where the ionospheric conductivity is low) is significantly different from the dayside (where it's high). 
-
-Dissipation seems to outstrip rotation. Energy does not accumulate over numerous driving periods, as would be expected in resonance; it follows the driving up and down, as a damped-driven oscillator. 
-
-There is evidence that the rotation is still trying to happen. At low \azm, energy is distributed between the poloidal and toroidal mode before dissipating; at high \azm, the energy dissipates straight out of the poloidal mode, never having had a chance to rotate. 
-
-\begin{figure}[H]
+\begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/U_4.pdf}
     \caption[Poloidal and Toroidal Energy: Quiet Night]{
@@ -82,9 +69,12 @@ There is evidence that the rotation is still trying to happen. At low \azm, ener
     \label{fig_U_night}
 \end{figure}
 
-\todo{Why is this exciting? }
+\todo{Dissipation is much more important. It's fast enough to prevent an accumulation of energy over multiple wave periods. It looks like a damped-driven oscillator. }
+
+\todo{Rotation from poloidal toroidal is still trying to happen. At high \azm, the asymptotic bounds for the toroidal energy are relatively low compared to the bounds of the poloidal energy. This indicates that dissipation is relatively fast compared to rotation. }
 
 \todo{Previous considerations of poloidal lifetimes have been limited to the high conductivity regime. The present work demonstrates that the low conductivity regime exhibits qualitative differences. Ionospheric conductivity on the nightside is low enough that resonance does not develop, even in the case of ongoing driving. The dissipation timescale is comparable to the rotation timescale. Rather than aymoptotically accumulating energy in the toroidal mode, the oscillator asymptotically oscillates following the driving. This is relevant to the question of day-night asymmetry in the observation of field line resonances. }
+
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------

@@ -45,6 +45,19 @@ Dai\cite{dai_2015} says to look at \cite{takahashi_2011} and \cite{dai_2013} for
 % -----------------------------------------------------------------------------
 \section{Bias in MLT}
 
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/pos.pdf}
+    \caption[Spatial Distribution of Usable Van Allen Probe Data]{
+      Electric field data is cleaned up by taking $\vec{E} \cdot \vec{B} = 0$. If the field is within \SI{15}{\degree} of the spin axis, that assumption is not reliable, so the data is discarded. Doing so biases the sample against the flanks. (The concentration near $L=6$ is due to the probes' slower movement near apogee.)
+    }
+    \label{fig_pos}
+\end{figure}
+
+
+
 Because RBSP's spin plane faces the Sun, it can't get good electric field data at dawn or dusk. Let's plot the fraction of time at each hour of MLT that the data is unusable. 
 
 % -----------------------------------------------------------------------------
