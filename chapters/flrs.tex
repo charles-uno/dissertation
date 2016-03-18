@@ -167,26 +167,53 @@ On the ground, Pgs are notable for their strikingly sinusoidal waveforms, their 
 % -----------------------------------------------------------------------------
 \section{Motivations for the Present Work}
 
-Dai writes, in his 2015 paper\cite{dai_2015}, ``It is not clear why noncompressional [high-\azm] Pc4 poloidal waves, which are presumably driven by instability within the magnetosphere, preferrentially occur on the dayside.'' 
+\todo{Why build a model? }
 
-Motoba\cite{motoba_2015}, similarly, notes ``It is unclear whether other generation mechanisms of fundamental standing waves ... can explain the localization of Pgs in local time.''
+There's lots of observation. 
 
-The present work uses a numerical model to investigate the preferrential occurrence of field line resonances in the Pc4 range -- particularly first-harmonic poloidal modes, such as giant pulsations -- in MLT. 
+Even multisatellite events give a limited big-picture view. 
 
-Giant pulsations have variously been referred to as ``intriguing''\cite{green_1985}
+Analytical work often takes $\azm\rightarrow0$ or $\azm\rightarrow\infty$, or neglects the obtuse angle between the field line and the ionosphere, or is limited to a single frequency. 
 
-``rare''\cite{brekke_1987}, even to the point of being ``a small subset of fundamental poloidal waves''\cite{takahashi_2013} -- note that it's well known that fundamental poloidal mode waves are already rare in comparison to second harmonic waves. 
+The consideration of large-but-finite \azm is interesting! Rotation rate depends on \azm. Ground signatures depend on \azm. 
 
-\todo{What's going on with the MLT localization of Pc4 pulsations? Is there something spooky going on with the driving? Maybe the ionosphere just kills FLRs on the nightside! }
+A model gives a broader view of the wave's behavior as it spans the inner magnetosphere. Allow for a unification of previously-disparate results. 
 
-\todo{What's so special about Pgs? How rare are they, really, compared to fundamental poloidal modes in general? How does that line up with the occurrence rate of nice, sinusoidal waveforms in second-harmonic Pc4s? That is, is there something special about Pgs, or do they just live in a ``sweet spot'' with respect to constraints on observation and resonance? }
+\todo{Why this model? }
 
-\todo{The goal here is to clarify and unify several constraints on the viability and observability of FLRs. }
+Global models have no plasmasphere, ionosphere. 
+
+3D models can't do large modenumber. 
+
+\todo{What can we do once we have the model? }
+
+Effect of the ionosphere. Why don't we see drift-resonant interactions on the nightside? 
+
+How weird are giant pulsations? Under what conditions might sinusoidal waves be expected to arise? What do Pc4 ground signatures look like as a function of \azm, frequency, and ionospheric conditions? 
+
+By its very definition, drift resonance has the potential to spur wave-particle interactions at all MLT. However, FLR observations are strongly peaked on the dayside. In his 2015 paper, Dai notes, ``It is not clear why noncompressional [high-\azm] Pc4 poloidal waves, which are presumably driven by instability within the magnetosphere, preferrentially occur on the dayside''\cite{dai_2015}. Motoba, in a paper written later that year, echoes, ``It is unclear whether other generation mechanisms of fundamental standing waves ... can explain the localization of Pgs in local time'' and adds that ``No theoretical study has explained why the occurrence of Pgs depends on solar activity''\cite{motoba_2015}. A goal of the present work is to investigate the problem numerically: to what degree is field line resonance affected by the conditions of the ionosphere? 
+
+\todo{With that in mind, what data would be super helpful? }
+
+It's been shown that a ground magnetometer \SI{66}{\degree} north of the magnetic equator observes \about10 events per year. It's also been shown that poloidal Pc4s are rare compared to toroidal ones, and that most poloidal Pc4s are even harmonics. However, little attention has been paid to how these rates line up with one another. Given the relative occurrence rate of poloidal and toroidal waves, of odd and even harmonics, and of diffuse and sharp spectral peaks, just how unusual are giant pulsations? 
 
 
+%The present work uses a numerical model to investigate the preferrential occurrence of field line resonances in the Pc4 range -- particularly first-harmonic poloidal modes, such as giant pulsations -- in MLT. 
+
+%Giant pulsations are commonly referred to as ``rare''\cite{brekke_1987}, or even ``a small subset of fundamental poloidal waves''\cite{takahashi_2013}. However, quantification of Pg occurrence -- compared to the occurrence rate of fundamental poloidal Pc4s in general -- is thin on the ground. It's been shown that poloidal Pc4s are rare compared to their toroidal counterparts. It's also been shown that, among poloidal Pc4s, the second harmonic is the most common. 
 
 
+% Dai writes, in his 2015 paper\cite{dai_2015}, ``It is not clear why noncompressional [high-\azm] Pc4 poloidal waves, which are presumably driven by instability within the magnetosphere, preferrentially occur on the dayside.'' 
 
+% Motoba\cite{motoba_2015}, similarly, notes ``It is unclear whether other generation mechanisms of fundamental standing waves ... can explain the localization of Pgs in local time.''
+
+
+% Giant pulsations have variously been referred to as ``intriguing''\cite{green_1985}. ``rare''\cite{brekke_1987}, even to the point of being ``a small subset of fundamental poloidal waves''\cite{takahashi_2013} -- note that it's well known that fundamental poloidal mode waves are already rare in comparison to second harmonic waves. 
+
+
+%\todo{What's going on with the MLT localization of Pc4 pulsations? Is there something spooky going on with the driving? Maybe the ionosphere just kills FLRs on the nightside! }
+
+%\todo{What's so special about Pgs? How rare are they, really, compared to fundamental poloidal modes in general? How does that line up with the occurrence rate of nice, sinusoidal waveforms in second-harmonic Pc4s? That is, is there something special about Pgs, or do they just live in a ``sweet spot'' with respect to constraints on observation and resonance? }
 
 %\todo{Parallel electric fields. In this regime, we're looking at inertial effects, not kinetic effects\cite{goertz_1979,thompson_1996}. Should produce non-monoenergetic precipitation, which are observed\cite{goertz_1984}. Consistent with MHD models\cite{chaston_2000,chaston_2002}. Inertial-scale structures observed with Polar\cite{wygant_2002}. }
 
