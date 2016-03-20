@@ -41,38 +41,9 @@
 
 \todo{Notably, there is NO threshold on spectral width. Broadband and messy signals are allowed. See \cref{fig_fwhm}. }
 
+\todo{We try not to worry too much about first vs third harmonic, since we can't tell them apart except by guessing at frequency. Chisham and Orr\cite{chisham_1991} argue that around \SI{7}{\RE}, frequency around \SI{10}{\mHz} precludes higher harmonics. Or maybe look at \cite{green_1985}? }
 
-
-
-
-
-
-
-
-
-Note that, in gathering his 860 events, Dai\cite{dai_2015} did not take the $\vec{E} \cdot \vec{B} = 0$ assumption to clean up the electric field data. The present work has taken that assumption -- and discarded all events within \SI{15}{\degree} of the probe's spin axis. 
-
-This cuts it down to ... events. 
-
-Furthermore distinguish the fundamental mode from the second harmonic...
-
-Insist on a certain confidence... 
-
-
-
-% Identifying the Fundamental Harmonic
-
-Takahashi\cite{takahashi_2013} spells this out explicitly. Fundamental mode, south of the equator, V should lead B by 90 degrees. 
-
-Per Takahashi\cite{takahashi_2011}, phase lag can be used to distinguish the fundamental harmonic from the second harmonic. 
-
-Chisham and Orr\cite{chisham_1991} argue that around \SI{7}{\RE}, frequency around \SI{10}{\mHz} precludes higher harmonics. Or maybe look at \cite{green_1985}?
-
-Green\cite{green_1979} and Cummings\cite{cummings_1969} talk about the frequencies for ideal toroidal modes. 
-
-Dai\cite{dai_2015} says to look at \cite{takahashi_2011} and \cite{dai_2013} for unambiguous identification of the fundamental mode. 
-
-\cite{liu_2010} talks about setting the coordinate system using the time-averaged magnetic field, and the azimuthal direction being $\hat{B_0} \times \hat{r}$. 
+%Green\cite{green_1979} and Cummings\cite{cummings_1969} talk about the frequencies for ideal toroidal modes. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -80,6 +51,13 @@ Dai\cite{dai_2015} says to look at \cite{takahashi_2011} and \cite{dai_2013} for
 \section{Bias in MLT}
   \label{sec_mlt}
 
+\todo{RBSP precesses over time. It took about 22 months to go all the way around Earth. In principle, this gets rid of any bias in MLT. However, because the spin plane faces the sun, we lose more data to $\vec{E} \cdot \vec{B} = 0$ on the flanks. }
+
+\todo{It's not worth trying to get uniform coverage, then. We instead go for all available data. Almost 3 years of data from each probe. }
+
+\todo{This comes out to ... probe-days between $L=4$ and $L=6$. Comparable to about a year from a ground magnetometer? }
+
+\todo{The plots in section ... are normalized by \cref{fig_pos}. This is as close as we can get to cutting out the bias. }
 
 \begin{figure}[!htb]
     \centering
@@ -90,18 +68,10 @@ Dai\cite{dai_2015} says to look at \cite{takahashi_2011} and \cite{dai_2013} for
     \label{fig_pos}
 \end{figure}
 
-
-
-Because RBSP's spin plane faces the Sun, it can't get good electric field data at dawn or dusk. Let's plot the fraction of time at each hour of MLT that the data is unusable. 
-
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\section{Incidence of Odd Harmonics}
-
-
-
-
+\section{Slicing Events One Way...}
 
 \begin{figure}[!htb]
     \centering
@@ -112,20 +82,10 @@ Because RBSP's spin plane faces the Sun, it can't get good electric field data a
     \label{fig_fwhm}
 \end{figure}
 
-
-
-
-
-
-
-
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\section{Incidence of Giant Pulsations}
-
-
-
+\section{Slicing Events Another Way...}
 
 \todo{Collections of events at a single ground observatory (near \SI{66}{\degree}) over significant periods of time: }
 
