@@ -24,6 +24,8 @@ In his 1974 paper, Radoski argues that a poloidally-polarized wave should asympt
 
 \todo{Ding et al\cite{ding_1995} did similar work just before Mann and Wright, but results were less clear, possibly due to issues with grid resolution (as discussed in \cite{mann_1995}). }
 
+\todo{Mann and Wright looked specifically at second harmonics. This work is on first harmonics. (In principle Tuna allows arbitrary driving waveforms and spatial distributions.) }
+
 The present section builds on the aforementioned results by relaxing several of their nonphysical assumptions. First, Tuna's geometry (as described in \cref{ch_model}) is far more realistic than Radoski's half-cylinder or the box model used by Mann and Wright. Magnetic field lines are dipolar. \Alfven speed is based on an empirical profile, and varies along and across field lines. Next, the present results feature driving delivered over time through perturbation of the ring current; past work has instead considered the evolution of an initial condition. Finally, the present model includes a height-resolved ionosphere (rather than perfectly-reflecting boundaries). The ionospheric conductivity provides a direct coupling between the poloidal and toroidal modes, in addition to dissipating energy. 
 
 Each subplot in \cref{fig_U_day,fig_U_day_big,fig_U_night} is analogous to Mann's Figure 3. Blue lines show the total energy in the poloidal mode as a function of time. Red lines show toroidal energy. Runs are organized such that driving frequency is constant down each column, and azimuthal modenumer is constant across each row. Axis bounds are held constant across all subplots. 
@@ -39,10 +41,9 @@ The twenty-eight runs shown in \cref{fig_U_day} use a high-conductivity profile,
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/U_1_LPP_4.pdf}
+    \includegraphics[width=\textwidth]{figures/U_day.pdf}
     \caption[Poloidal and Toroidal Energy: Quiet Day]{
-      \todo{MAKE THIS MODEL 2 TO MATCH \cref{fig_U_day_big}. }
-      Driving -- delivered to the poloidal mode -- asymptotically rotates to the toroidal mode. The rate of rotation is strongly affected by the azimuthal modenumber. 
+      \todo{MAKE THIS PLOT WITH MODEL 2. }
     }
     \label{fig_U_day}
 \end{figure}
@@ -51,61 +52,41 @@ The fact that \cref{fig_U_day} includes red (toroidal energy) curves at all spea
 
 As expected, the rotation from poloidal to toroidal is slowest at large azimuthal modenumbers. The toroidal energy overtakes the poloidal energy within a single drive period at $\azm=4$; with $\azm=64$, the most of the energy is in the poloidal mode for \about10 driving periods. However, the relationship between azimuthal modenumber and rotation timescale is not linear, as was suggested by Mann and Wright. Instead, the rotation is fastest at $\azm=4$. 
 
-This hints at two competing effects. \todo{Probably the Hall conductivity? }
+This hints at two competing effects. \todo{Probably the Hall conductivity? Get these runs in here. Note also that in \cref{ch_inertia} we talked about how the Hall conductivity isn't add a significant imaginary component to $B_x$, etc. }
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/placeholder.jpg}
-    \caption[Poloidal and Toroidal Energy: Quiet Day, $\sh=0$]{
-      \todo{Do we still see a peak in rotation rate at $\azm=4$ or $\azm=8$ rather than at 1? } 
+    \caption[Poloidal and Toroidal Energy: Quiet Day, No Hall Conductivity]{
+      \todo{CARRY OUT THESE RUNS. } 
     }
     \label{fig_U_day_nosigh}
 \end{figure}
 
+The total energy in the system is asymptotically determined by the balance between the energy input (from driving) and the energy loss (through Joule dissipation in the ionosphere). When the driving frequency is not particularly close to the local \Alfven frequency, the energy reaches its asymptotic value quickly. When those frequencies align closely, energy accumulates over a larger number of drive periods, and the asymptotic value is larger. 
 
-
-
-
-\todo{Some frequencies can be driven more effectively than others -- resonance. Recall from \cref{fig_fa} that with $L_{PP}=4$, the \Alfven bounce frequency at $L=5$ is about \SI{20}{\mHz}. It's unsurprising that driving at \SI{19}{\mHz} is the best at accumulating energy. }
-
-\todo{With the plasmapause instead at $L_{PP}=5$, the resonance shifts. Now \SI{16}{\mHz} seems to be the best at accumulating energy. }
-
-\todo{At high \azm, the rotation from poloidal to toroidal is slow, taking tens of drive periods. But the pattern is not so simple. \cref{fig_U_day,fig_U_day_big} both show the fastest rotation at $\azm=4$ or maybe $\azm=8$ -- not at $\azm=1$, as would be expected from the linear relationship proposed by Mann and Wright. }
-
-\todo{We could try plotting a characteristic rotation timescale for each run. }
-
-\todo{This suggests two competing effects... and there aren't that many candidates. The poloidal and toroidal mode are coupled by Maxwell's equations (which Radoski and Mann and Wright argue give a one-way coupling) and the Hall conductivity (which gives a two-way coupling). }
-
-\todo{Maybe there's some kind of resonance going on between the rotation timescale and the Hall timescale? Awkward that we haven't got any runs with the Hall conductivity turned off... }
-
-\todo{But, as we argued talking about inertia, the Hall coupling only does so much. Each field is pretty much just real or just imaginary, with a bit of complex mixing near the ionosphere. Is this different at very low \azm? }
-
-\todo{Asymptotic energy determined by matching the driving input rate with the Pedersen damping rate. }
-
-
-
+The system's resonant frequency (for a fundamental poloidal mode at $L=5$) is affected significantly by the size of the plasmasphere. In \cref{fig_U_day}, with the plasmapause at $L_{PP}=4$, the system resonates at \SI{19}{\mHz} at low \azm; as \azm becomes large, the resonant frequency is closer to \SI{22}{\mHz}. \cref{fig_U_day_big} shows the effect of moving the plasmapause to $L_{PP}=5$: resonance is closer to \SI{16}{\mHz}. The runs are otherwise identical to those shown in \cref{fig_U_day}. 
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/U_2_LPP_5.pdf}
-    \caption[Poloidal and Toroidal Energy: Quiet Day, $L_{PP}=5$]{
-      \todo{INDICATE LPP IN TITLE. } Changing the position of the plasmapause has a significant effect on the \Alfven bounce time. 
+    \caption[Poloidal and Toroidal Energy: Quiet Day, Large Plasmasphere]{
+      Changing the position of the plasmapause has a significant effect on the \Alfven bounce time. \todo{FIX PLOT TITLE. } 
     }
     \label{fig_U_day_big}
 \end{figure}
 
+On the nightside, the picture changes significantly. 
 
-\todo{Put the characteristic times on a plot. Different color for each frequency. Are they linear in modenumber? }
 
-\todo{Mann and Wright looked specifically at second harmonics. These are first harmonics. }
 
-\todo{Crunch out $\frac{d \lambda}{d \omega_A'}$. Preliminary indications are that it doesn't translate well to a realistic grid, but let's double check. }
 
-\todo{Mann and Wright also made estimations about timescales for a realistic ionosphere... how does that line up here? }
+
+
 
 \todo{This result shows agreement with -- and significant refinement of -- Mann's findings. In the case of large-but-finite ionospheric conductivity, dipole geometry, and realistic \Alfven speed profile, energy does asymptotically rotate from the poloidal mode to the toroidal mode. The rotation rate is strongly affected by azimuthal modenumber and, in the case of large-but-finite \azm, has a characteristic timescale in the tens of periods. The present work furthermore demonstrates that the rotation rate is affected by driving frequency (did Mann talk about this at all, or just work in normalized time?) }
 
-In \cref{fig_U_day}, runs are carried out using a low-conductivity profile: quiet nightside. 
+In \cref{fig_U_night}, runs are carried out using a low-conductivity profile: quiet nightside. 
 
 \begin{figure}[!htb]
     \centering
