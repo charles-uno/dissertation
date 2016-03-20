@@ -22,12 +22,6 @@ V.~Angelopoulos.
 \newblock The {THEMIS} mission.
 \newblock {\em Space Science Reviews}, 141(1-4):5--34, 2008.
 
-\bibitem{arthur_1981}
-C.~W. Arthur and R.~L. McPherron.
-\newblock The statistical character of {Pc} 4 magnetic pulsations at
-  synchronous orbit.
-\newblock {\em J. Geophys. Res.}, 86(A3):1325, 1981.
-
 \bibitem{birkeland_1901}
 K.~Birkeland.
 \newblock Exp{\'e}dition norv{\'e}gienne de 1899-1900 pour l'{\'e}tude des
@@ -158,13 +152,6 @@ M.~J. Engebretson, D.~L. Murr, K.~N. Erickson, R.~J. Strangeway, D.~M. Klumpar,
   the dayside near synchronous orbit.
 \newblock {\em J. Geophys. Res.}, 97(A9):13741, 1992.
 
-\bibitem{engebretson_1988}
-M.~J. Engebretson, L.~J. Zanetti, T.~A. Potemra, D.~M. Klumpar, R.~J.
-  Strangeway, and M.~H. Acu{\~n}a.
-\newblock Observations of intense {ULF} pulsation activity near the geomagnetic
-  equator during quiet times.
-\newblock {\em J. Geophys. Res.}, 93(A11):12795, 1988.
-
 \bibitem{eriksson_2005}
 P.~T.~I. Eriksson, L.~G. Blomberg, A.~D.~M. Walker, and K.-H. Glassmeier.
 \newblock Poloidal {ULF} oscillations in the dayside magnetosphere: a {Cluster}
@@ -231,12 +218,6 @@ J.~L. Green and S.~Boardsen.
 C.~Greifinger and P.~S. Greifinger.
 \newblock Theory of hydromagnetic propagation in the ionospheric waveguide.
 \newblock {\em J. Geophys. Res.}, 73(23):7473--7490, 1968.
-
-\bibitem{haerendel_1999}
-G.~Haerendel, W.~Baumjohann, E.~Georgescu, R.~Nakamura, L.~M. Kistler,
-  B.~Klecker, H.~Kucharek, A.~Vaivads, T.~Mukai, and S.~Kokubun.
-\newblock High-beta plasma blobs in the morningside plasma sheet.
-\newblock {\em Ann. Geophys.}, 17(12):1592--1601, 1999.
 
 \bibitem{hall_2015}
 B.~C. Hall.
@@ -513,13 +494,6 @@ J.~C. Samson, L.~L. Cogger, and Q.~Pao.
   vortex structures.
 \newblock {\em J. Geophys. Res.}, 101(A8):17373--17383, 1996.
 
-\bibitem{sibeck_2012}
-D.~G. Sibeck, G.~Korotova, D.~L. Turner, V.~Angelopoulos, K.-H. Gla{\ss}meier,
-  and J.~P. McFadden.
-\newblock Frequency doubling and field-aligned ion streaming in a long-period
-  poloidal pulsation.
-\newblock {\em J. Geophys. Res.}, 117(A11), 2012.
-
 \bibitem{singer_1982}
 H.~J. Singer, W.~J. Hughes, and C.~T. Russell.
 \newblock Standing hydromagnetic waves observed by {ISEE} 1 and 2: Radial
@@ -556,12 +530,6 @@ K.~Takahashi, J.~Bonnell, K.-H. Glassmeier, V.~Angelopoulos, H.~J. Singer,
   plasmasphere.
 \newblock {\em J. Geophys. Res.}, 115(A12), 2010.
 
-\bibitem{takahashi_1987}
-K.~Takahashi, J.~F. Fennell, E.~Amata, and P.~R. Higbie.
-\newblock Field-aligned structure of the storm time {Pc} 5 wave of november
-  14--15, 1979.
-\newblock {\em J. Geophys. Res.}, 92(A6):5857, 1987.
-
 \bibitem{takahashi_2011}
 K.~Takahashi, K.-H. Glassmeier, V.~Angelopoulos, J.~Bonnell, Y.~Nishimura,
   H.~J. Singer, and C.~T. Russell.
@@ -580,11 +548,6 @@ K.~Takahashi, R.~W. McEntire, A.~T.~Y. Lui, and T.~A. Potemra.
 \newblock Ion flux oscillations associated with a radially polarized transverse
   {Pc} 5 magnetic pulsation.
 \newblock {\em J. Geophys. Res.}, 95(A4):3717, 1990.
-
-\bibitem{takahashi_1984}
-K.~Takahashi and R.~L. McPherron.
-\newblock Standing hydromagnetic oscillations in the magnetosphere.
-\newblock {\em Planetary and Space Science}, 32:1343--1359, 1984.
 
 \bibitem{takahashi_1992}
 K.~Takahashi, N.~Sato, J.~Warnecke, H.~L{\''u}hr, H.~E. Spence, and
@@ -618,12 +581,6 @@ B.~T. Tsurutani, W.~D. Gonzalez, G.~S. Lakhina, and S.~Alex.
 A.~Y. Ukhorskiy.
 \newblock Impact of toroidal {ULF} waves on the outer radiation belt electrons.
 \newblock {\em J. Geophys. Res.}, 110(A10), 2005.
-
-\bibitem{vaivads_2001}
-A.~Vaivads, W.~Baumjohann, G.~Haerendel, R.~Nakamura, H.~Kucharek, B.~Klecker,
-  M.~R. Lessard, L.~M. Kistler, T.~Mukai, and A.~Nishida.
-\newblock Compressional {Pc5} type pulsations in the morningside plasma sheet.
-\newblock {\em Ann. Geophys.}, 19(3):311--320, 2001.
 
 \bibitem{veldkamp_1960}
 J.~Veldkamp.

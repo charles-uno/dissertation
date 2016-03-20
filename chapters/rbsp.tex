@@ -4,14 +4,48 @@
 \chapter{Observations}
   \label{ch_rbsp}
 
-\todo{Talk about recent surveys by Dai\cite{dai_2015} and Motoba\cite{motoba_2015}. Note that they skirt the issue of the fundamental mode in general. Everyone talks about how Pgs are rare... but how rare are they compared to the fundamenal poloidal Pc4 in general? }
+\todo{You know what would be great for putting this numerical work in context? A nice, consistent survey that breaks down the occurrence rate of Pc4 pulsations by harmonic, etc. }
 
-Observations show that the poloidal mode is most excited in the second harmonic\cite{cummings_1969,hughes_1978,arthur_1981,singer_1982,takahashi_1984,engebretson_1988} even when there is a strong compressional component\cite{takahashi_1987,haerendel_1999,vaivads_2001,sibeck_2012}. 
+\todo{There have been some surveys in the past. Dai did a nice one last year, but his filter biased him against the fundamental mode. And only a few past works have even worried about harmonic mode... probably because it's hard to get that information unless you have both E and B. }
+
+\todo{Furthermore, it's awkward that Pgs are identified by visual inspection. How can we say how rare they are if they aren't rigorously defined? }
+
+%Observations show that the poloidal mode is most excited in the second harmonic\cite{cummings_1969,hughes_1978,arthur_1981,singer_1982,takahashi_1984,engebretson_1988} even when there is a strong compressional component\cite{takahashi_1987,haerendel_1999,vaivads_2001,sibeck_2012}. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \section{Event Selection}
+
+\todo{Scroll through the entire almost-three-year duration of the Van Allen Probes mission so far. Both probes. }
+
+\todo{Spinfit the field measurements to clean them up. This gives a ten-second cadence. Events are half an hour long to ensure that there are enough points to get a decent DFT. }
+
+\todo{Also take $\vec{E} \cdot \vec{B} = 0$ to clean up the electric field. Notably, Dai did not do this (since he did not need the electric field). Any data within \SI{15}{\degree} of the probe's spin axis is discarded as part of this process. This is a significant portion of the data -- about half -- and furthermore introduces a bias in MLT, as discussed in \cref{sec_mlt}. Map the field to GSE coordinates to be consistent with the probe's position. }
+
+\todo{Take a ten-minute rolling average of the data to get the background magnetic field. Subtract it out, and set $\zhat \parallel \vec{B_0}$. Then get the azimuthal direction with $\yhat \parallel \vec{B_0} \times \vec{r}$. The third component is the crosswise direction, $\xhat \equiv \yhat \times \zhat$. This is the same technique described by Liu\cite{liu_2010}. }
+
+\todo{Compute discrete Fourier transforms: \dft{E_x}, \dft{E_y}, \dft{B_x^*}, \dft{B_y^*}. Then get the poloidal and toroidal Poynting flux, mapped to the ionosphere (giving a factor of $L^3$ for the compression of the flux tube). }
+\begin{align}
+  \dft{S_P} &\equiv -\frac{L^3}{\mz} \dft{E_y} \dft{B_x^*} &
+  \dft{S_T} &\equiv \frac{L^3}{\mz} \dft{E_x} \dft{B_y^*}
+\end{align}
+
+\todo{Find the largest IMAGINARY component of the Poynting flux. This is the biggest standing wave present in this half hour. }
+
+\todo{Threshold on frequency: anything not in the Pc4 frequency range gets tossed. }
+
+\todo{Threshold on magnitude: anything below \SI{e-2}{\mW/\m\squared} gets tossed. }
+
+\todo{Threshold on coherence: if \dft{E} and \dft{B^*} aren't coherent at 0.9 or better, the event gets tossed. . }
+
+\todo{Notably, there is NO threshold on spectral width. Broadband and messy signals are allowed. See \cref{fig_fwhm}. }
+
+
+
+
+
+
 
 
 
@@ -44,7 +78,7 @@ Dai\cite{dai_2015} says to look at \cite{takahashi_2011} and \cite{dai_2013} for
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \section{Bias in MLT}
-
+  \label{sec_mlt}
 
 
 \begin{figure}[!htb]
@@ -64,6 +98,24 @@ Because RBSP's spin plane faces the Sun, it can't get good electric field data a
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \section{Incidence of Odd Harmonics}
+
+
+
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/placeholder.jpg}
+    \caption[Distribution of Events by Spectral Width]{
+      \todo{Break into three bins by FWHM. }
+    }
+    \label{fig_fwhm}
+\end{figure}
+
+
+
+
+
 
 
 
