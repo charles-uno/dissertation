@@ -28,7 +28,7 @@ In his 1974 paper, Radoski argues that a poloidally-polarized wave should asympt
 
 The present section builds on the aforementioned results by relaxing several of their nonphysical assumptions. First, Tuna's geometry (as described in \cref{ch_model}) is far more realistic than Radoski's half-cylinder or the box model used by Mann and Wright. Magnetic field lines are dipolar. \Alfven speed is based on an empirical profile, and varies along and across field lines. Next, the present results feature driving delivered over time through perturbation of the ring current; past work has instead considered the evolution of an initial condition. Finally, the present model includes a height-resolved ionosphere (rather than perfectly-reflecting boundaries). The ionospheric conductivity provides a direct coupling between the poloidal and toroidal modes, in addition to dissipating energy. 
 
-Each subplot in \cref{fig_U_day,fig_U_day_big,fig_U_night} is analogous to Mann's Figure 3. Blue lines show the total energy in the poloidal mode as a function of time. Red lines show toroidal energy. Runs are organized such that driving frequency is constant down each column, and azimuthal modenumer is constant across each row. Axis bounds are held constant across all subplots. 
+Each subplot in \cref{fig_U_day,fig_U_day_nosigh,fig_U_day_big,fig_U_night} is analogous to Mann's Figure 3. Blue lines show the total energy in the poloidal mode as a function of time. Red lines show toroidal energy. Runs are organized such that driving frequency is constant down each column, and azimuthal modenumer is constant across each row. Axis bounds are held constant across all subplots. 
 
 Energy is computed per Poynting's theorem, with due consideration of the unusual geometry. Energy density is integrated over the meridional plane, but not in the azimuthal direction, giving units of gigajoules per radian; more than anything else, this serves as a reminder that the waves under consideration are azimuthally localized. 
 \begin{align}
@@ -54,6 +54,8 @@ As expected, the rotation from poloidal to toroidal is slowest at large azimutha
 
 This hints at two competing effects. \todo{Probably the Hall conductivity? Get these runs in here. Note also that in \cref{ch_inertia} we talked about how the Hall conductivity isn't add a significant imaginary component to $B_x$, etc. }
 
+\todo{While the Hall conductivity does in principle allow energy to move from the toroidal mode back to the poloidal mode, the rate does not seem to be significant. In the rightmost column of \cref{fig_U_day}, the toroidal mode holds more energy than the poloidal mode by two orders of magnitude, yet there is no indication of the poloidal mode picking up energy to catch up. }
+
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/placeholder.jpg}
@@ -69,7 +71,7 @@ The system's resonant frequency (for a fundamental poloidal mode at $L=5$) is af
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/U_2_LPP_5.pdf}
+    \includegraphics[width=\textwidth]{figures/U_day_big.pdf}
     \caption[Poloidal and Toroidal Energy: Quiet Day, Large Plasmasphere]{
       Changing the position of the plasmapause has a significant effect on the \Alfven bounce time. \todo{FIX PLOT TITLE. } 
     }
@@ -78,55 +80,57 @@ The system's resonant frequency (for a fundamental poloidal mode at $L=5$) is af
 
 On the nightside, the picture changes significantly. 
 
+The ionospheric conductivity on the nightside is lower. As a result, energy is dissipated more efficiently. 
 
+\todo{The asymptotic energy -- at which driving and dissipation balance -- is much lower on the nightside. It's reached much more quickly as a result. The system does not accumulate energy over multiple driving periods. }
 
+\todo{The system resembles a damped-driven oscillator. There is no evidence of resonance -- of an energy buildup over multiple driving periods. Instead, the energy follows the waveform of the driver. }
 
+\todo{The only difference between the runs shown in \cref{fig_U_day} and those in \cref{fig_U_night} is the ionospheric profile. }
 
+\todo{Rotation of poloidal energy to the toroidal mode is present on the nightside, as it is on the dayside. There's less energy, of course, because the ionosphere damps the poloidal mode just as fast as it can rotate. The toroidal mode also doesn't last long, since the ionosphere damps it as fast as it grows. }
 
-
-\todo{This result shows agreement with -- and significant refinement of -- Mann's findings. In the case of large-but-finite ionospheric conductivity, dipole geometry, and realistic \Alfven speed profile, energy does asymptotically rotate from the poloidal mode to the toroidal mode. The rotation rate is strongly affected by azimuthal modenumber and, in the case of large-but-finite \azm, has a characteristic timescale in the tens of periods. The present work furthermore demonstrates that the rotation rate is affected by driving frequency (did Mann talk about this at all, or just work in normalized time?) }
-
-In \cref{fig_U_night}, runs are carried out using a low-conductivity profile: quiet nightside. 
+\todo{The rotation rate is shown by the asymptotic division of energy between the poloidal and toroidal modes. As on the dayside, the toroidal mode grows most quickly at $\azm=4$; the poloidal and toroidal modes hold a similar amount of energy. At $\azm=64$, the dissipation timescale is evidently much faster than the rotation timescale... only \about\SI{1}{\percent} of the poloidal energy ever rotates to the toroidal mode. }
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/U_4.pdf}
+    \includegraphics[width=\textwidth]{figures/U_night.pdf}
     \caption[Poloidal and Toroidal Energy: Quiet Night]{
-      Driving is applied to the poloidal electric field. There is some rotation of energy to the toroidal mode (and less at high azimuthal modenumber), but the low ionospheric conductivity prevents energy from accumulating over time. 
+      \todo{REDO WITH MODEL 2. }
+%      Driving is applied to the poloidal electric field. There is some rotation of energy to the toroidal mode (and less at high azimuthal modenumber), but the low ionospheric conductivity prevents energy from accumulating over time. 
     }
     \label{fig_U_night}
 \end{figure}
 
-\todo{Dissipation is much more important. It's fast enough to prevent an accumulation of energy over multiple wave periods. It looks like a damped-driven oscillator. }
+The results of the present section show agreement with -- and significant refinement of -- earlier work. In the case of large-but-finite ionospheric conductivity, dipole geometry, and realistic \Alfven speed profile, energy rotates asymptotically from the poloidal mode to the toroidal mode. The rotation rate is strongly affected by azimuthal modenumber and, in the case of large-but-finite \azm, has a characteristic timescale in the tens of periods. 
 
-\todo{Rotation from poloidal toroidal is still trying to happen. At high \azm, the asymptotic bounds for the toroidal energy are relatively low compared to the bounds of the poloidal energy. This indicates that dissipation is relatively fast compared to rotation. }
-
-\todo{Previous considerations of poloidal lifetimes have been limited to the high conductivity regime. The present work demonstrates that the low conductivity regime exhibits qualitative differences. Ionospheric conductivity on the nightside is low enough that resonance does not develop, even in the case of ongoing driving. The dissipation timescale is comparable to the rotation timescale. Rather than aymoptotically accumulating energy in the toroidal mode, the oscillator asymptotically oscillates following the driving. This is relevant to the question of day-night asymmetry in the observation of field line resonances. }
-
+The present work furthermore considers the issue of poloidal lifetimes in the low conductivity regime (while past work has used perfectly-reflecting boundaries). The result is novel: rather than asymptotically accumulating energy in the toroidal mode, an FLR on the nightside does not seem to accumulate energy at all. This is relevant to the question of day-night asymmetry in the observation of field line resonances. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \section{Spatial Distribution of Energy}
-  \label{sec_shells}
+  \label{sec_layers}
 
-Looking a bit deeper, it's possible to comment on the structure of the poloidal and toroidal modes, not just their magnitudes. The following commentary addresses the dayside; on the nightside, there's never much by the way of resonance. 
+Looking a bit deeper, it's possible to comment on the structure of the poloidal and toroidal modes, not just their magnitudes. 
 
-In \cref{fig_resonant_driving,fig_nonresonant_driving}, electromagnetic energy is binned by field line, averaged over volume (again, with respect to the Jacobian), and plotted as contours. All plots share a color scale. 
+\todo{Probably should at least mention the nightside? It seems silly to leave it out. }
 
-The poloidal mode and the toroidal mode exhibit qualitatively different behavior, related to the fact that energy rotates from poloidal to toroidal, and not back. 
+In the following figures, energy density is computed at each grid point, then averaged over the volume of the flux tube (again, with proper respect to the unusual geometry). This allows the eyeballing of how energy moves across field lines as a function of time. The color scale is shared across all plots. 
 
-At low \azm, energy rotates out of the poloidal mode so quickly that no resonance can form. 
+Poloidal and toroidal energy are again considered separately. The two exhibit qualitatively different behavior. 
 
-At high \azm, the \Alfven wave is guided. If the driving frequency lines up with the resonant frequency where it's delivered, the poloidal mode resonates strongly. Otherwise, again, no energy accumulates. 
+\todo{At low \azm, energy rotates out of the poloidal mode so quickly that no resonance can form. }
 
-In no case does the poloidal mode demonstrate the ability to move energy across magnetic field lines. 
+\todo{At high \azm, the \Alfven wave is guided. If the driving frequency lines up with the resonant frequency where it's delivered, the poloidal mode resonates strongly. Otherwise, again, no energy accumulates. }
 
-On the other hand, the toroidal mode does resonate, even if the driving isn't resonant (though in that case the response is of course stronger). The toroidal mode transports energy across field lines until it encounters resonance, then accumulates energy there. Often, resonances are seen in multiple locations due to the non-monotonic \Alfven bounce frequency as a function of $L$. 
+\todo{In no case does the poloidal mode demonstrate the ability to move energy across magnetic field lines. }
+
+\todo{On the other hand, the toroidal mode does resonate, even if the driving isn't resonant (though in that case the response is of course stronger). The toroidal mode transports energy across field lines until it encounters resonance, then accumulates energy there. Often, resonances are seen in multiple locations due to the non-monotonic \Alfven bounce frequency as a function of $L$. }
 
 % RESONANT DRIVING
 
-\begin{figure}[H]
+\begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/layers_22mHz_1.pdf}
     \caption[Poloidal and Toroidal Energy Distribution: Resonant Driving]{
@@ -139,12 +143,8 @@ On the other hand, the toroidal mode does resonate, even if the driving isn't re
 
 \todo{Driving from inside the magnetosphere is novel. }
 
-% NONRESONANT DRIVING
 
-
-
-
-\begin{figure}[H]
+\begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/layers_13mHz_2.pdf}
     \caption[Poloidal and Toroidal Energy Distribution: Nonresonant Driving]{
@@ -176,6 +176,9 @@ While this model makes no particular distinction between a giant pulsation and a
 Giant pulsations aren't seen at small \azm. As shown in \cref{sec_lifetimes}, low-\azm poloidal modes rotate to the toroidal mode too quickly to resonate effectively, even in the case of continuous driving at a locally-resonant frequency. The sweet spot seems to be around $\azm = 20$, more or less the same point where resonance becomes visible in \cref{fig_resonant_driving}. Admittedly, giant pulsations are typically closer to \SI{10}{\mHz} than \SI{22}{\mHz}. It seems likely that qualitatively similar results would be encountered if the driving were moved to an $L$-shell with a bounce time of \SI{10}{\mHz}. 
 
 
+\todo{Present profiles do not allow a distinction between the dawn and dusk flank. Future work... Tuna could easily accept new profiles! }
+
+
 % GROUND SIGNATURES
 
 \todo{\cite{takahashi_2011} talks significantly about the east-west polarization. }
@@ -197,7 +200,7 @@ This seems to be a giant pulsation ``sweet spot'': the poloidal mode becomes str
     \label{fig_ground_signatures}
 \end{figure}
 
-Giant pulsations are monochromatic, and can be accompanied by ``multiharmonic toroidal waves''\cite{takahashi_2011}. Per \cref{sec_shells}, this is about what would be expected from a mishmash of poloidal driving. Poloidal modes of all frequencies rotate into the toroidal mode; resonant poloidal modes resonate; non-resonant poloidal modes become evanescent. 
+Giant pulsations are monochromatic, and can be accompanied by ``multiharmonic toroidal waves''\cite{takahashi_2011}. Per \cref{sec_layers}, this is about what would be expected from a mishmash of poloidal driving. Poloidal modes of all frequencies rotate into the toroidal mode; resonant poloidal modes resonate; non-resonant poloidal modes become evanescent. 
 
 Giant pulsations often drift azimuthally. This model can't resolve azimuthal drift directly, of course, but can fake it by looking at complex phase. There has been some indication (not shown) of complex phase rotation in ground magnetic fields. However, at the boundary, it's difficult to disentangle which values are imaginary to indicate an azimuthal offset, and which are imaginary because of Hall coupling. Investigation is ongoing. 
 
