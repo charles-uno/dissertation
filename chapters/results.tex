@@ -28,7 +28,7 @@ In his 1974 paper, Radoski argues that a poloidally-polarized wave should asympt
 
 The present section builds on the aforementioned results by relaxing several of their nonphysical assumptions. First, Tuna's geometry (as described in \cref{ch_model}) is far more realistic than Radoski's half-cylinder or the box model used by Mann and Wright. Magnetic field lines are dipolar. \Alfven speed is based on an empirical profile, and varies along and across field lines. Next, the present results feature driving delivered over time through perturbation of the ring current; past work has instead considered the evolution of an initial condition. Finally, the present model includes a height-resolved ionosphere (rather than perfectly-reflecting boundaries). The ionospheric conductivity provides a direct coupling between the poloidal and toroidal modes, in addition to dissipating energy. 
 
-Each subplot in \cref{fig_U_day,fig_U_day_nosigh,fig_U_day_big,fig_U_night} is analogous to Mann's Figure 3. Blue lines show the total energy in the poloidal mode as a function of time. Red lines show toroidal energy. Runs are organized such that driving frequency is constant down each column, and azimuthal modenumer is constant across each row. Axis bounds are held constant across all subplots. 
+Each subplot in \cref{fig_U_day,fig_U_day_big,fig_U_night} is analogous to Mann's Figure 3. Blue lines show the total energy in the poloidal mode as a function of time. Red lines show toroidal energy. Runs are organized such that driving frequency is constant down each column, and azimuthal modenumer is constant across each row. Axis bounds are held constant across all subplots. 
 
 Energy is computed per Poynting's theorem, with due consideration of the unusual geometry. Energy density is integrated over the meridional plane, but not in the azimuthal direction, giving units of gigajoules per radian; more than anything else, this serves as a reminder that the waves under consideration are azimuthally localized. 
 \begin{align}
@@ -48,15 +48,19 @@ The twenty-eight runs shown in \cref{fig_U_day} use a high-conductivity profile,
     \label{fig_U_day}
 \end{figure}
 
-The fact that \cref{fig_U_day} includes red (toroidal energy) curves at all speaks to the coupling of the poloidal and toroidal modes. As discussed in \cref{ch_model}, driving in Tuna is delivered purely into the poloidal electric field (as a proxy for the azimuthal current). 
+The fact that red (toroidal) lines appear at all speaks to the coupling of the poloidal and toroidal modes. As discussed in \cref{ch_model}, driving in Tuna is delivered purely into the poloidal electric field (as a proxy for the azimuthal current). 
 
-As expected, the rotation from poloidal to toroidal is slowest at large azimuthal modenumbers. The toroidal energy overtakes the poloidal energy within a single drive period at $\azm=4$; with $\azm=64$, the most of the energy is in the poloidal mode for \about10 driving periods. However, the relationship between azimuthal modenumber and rotation timescale is not linear, as was suggested by Mann and Wright. Instead, the rotation is fastest at $\azm=4$. 
+As predicted, the rotation from poloidal to toroidal is slowest at large azimuthal modenumbers. The toroidal energy overtakes the poloidal energy within a single drive period at $\azm=4$; with $\azm=64$, the most of the energy is in the poloidal mode for \about10 periods. However, the relationship between azimuthal modenumber and rotation timescale is not linear, as was suggested by Mann and Wright. Instead, the rotation is fastest at $\azm=4$. 
 
-This hints at two competing effects. \todo{NOT the Hall conductivity. The same effect is present when the runs are repeated with $\sh=0$. It's actually energy escaping to the outer boundary! $\azm\sim4$ is where the \Alfven wave stops being compressional near where the driving is delivered. Note that higher frequency driving should be MORE prone to losing energy to the sides. Not clear that's the case. }
+This hints at two competing effects, and there are only so many options. In addition to the poloidal-to-toroidal rotation, the two modes are coupled by the ionospheric Hall conductivity; energy is also is lost when waves propagate out of the simulation domain, and as a result of Joule dissipation. 
 
-\todo{While the Hall conductivity does in principle allow energy to move from the toroidal mode back to the poloidal mode, the rate does not seem to be significant. In the rightmost column of \cref{fig_U_day}, the toroidal mode holds more energy than the poloidal mode by two orders of magnitude, yet there is no indication of the poloidal mode picking up energy to catch up. }
+\todo{The propagation of energy out of the simulation domain does explain this behavior. As shown in \cref{fig_cutoff}, as the azimuthal modenumber increases past order unity, the cutoff frequency for compressional \Alfven waves rises through the Pc4 frequency band. }
 
-The total energy in the system is asymptotically determined by the balance between the energy input (from driving) and the energy loss (through Joule dissipation in the ionosphere). When the driving frequency is not particularly close to the local \Alfven frequency, the energy reaches its asymptotic value quickly. When those frequencies align closely, energy accumulates over a larger number of drive periods, and the asymptotic value is larger. 
+\todo{In practice, the Hall conductivity does not move large amounts of energy between the poloidal and toroidal modes. In fact, when the runs shown in \cref{fig_U_day} are repeated with the Hall conductivity uniformly zero, the behavior is the same. }
+
+\todo{Joule dissipation is a major player in the simulation's energy economy. The asymptotic total energy is set by the balance of driving input and dissipative loss. However, it's not obvious that Joule dissipation should act particularly strongly at small azimuthal modenumber. }
+
+\todo{The total energy in the system is asymptotically determined by the balance between the energy input (from driving) and the energy loss (through Joule dissipation in the ionosphere). When the driving frequency is not particularly close to the local \Alfven frequency, the energy reaches its asymptotic value quickly. When those frequencies align closely, energy accumulates over a larger number of drive periods, and the asymptotic value is larger. }
 
 The system's resonant frequency (for a fundamental poloidal mode at $L=5$) is affected significantly by the size of the plasmasphere. In \cref{fig_U_day}, with the plasmapause at $L_{PP}=4$, the system resonates at \SI{19}{\mHz} at low \azm; as \azm becomes large, the resonant frequency is closer to \SI{22}{\mHz}. \cref{fig_U_day_big} shows the effect of moving the plasmapause to $L_{PP}=5$: resonance is closer to \SI{16}{\mHz}. The runs are otherwise identical to those shown in \cref{fig_U_day}. 
 
@@ -79,7 +83,7 @@ The ionospheric conductivity on the nightside is lower. As a result, energy is d
 
 \todo{The only difference between the runs shown in \cref{fig_U_day} and those in \cref{fig_U_night} is the ionospheric profile. }
 
-\todo{Rotation of poloidal energy to the toroidal mode is present on the nightside, as it is on the dayside. There's less energy, of course, because the ionosphere damps the poloidal mode just as fast as it can rotate. The toroidal mode also doesn't last long, since the ionosphere damps it as fast as it grows. }
+\todo{Rotation of poloidal energy to the toroidal mode is present on the nightside, as it is on the dayside. There's less energy, of course, because the ionosphere damps the poloidal mode just as fast as it can rotate. The toroidal mode also doesn't last long. }
 
 \todo{The rotation rate is shown by the asymptotic division of energy between the poloidal and toroidal modes. As on the dayside, the toroidal mode grows most quickly at $\azm=4$; the poloidal and toroidal modes hold a similar amount of energy. At $\azm=64$, the dissipation timescale is evidently much faster than the rotation timescale... only \about\SI{1}{\percent} of the poloidal energy ever rotates to the toroidal mode. }
 
