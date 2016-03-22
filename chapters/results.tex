@@ -52,18 +52,9 @@ The fact that \cref{fig_U_day} includes red (toroidal energy) curves at all spea
 
 As expected, the rotation from poloidal to toroidal is slowest at large azimuthal modenumbers. The toroidal energy overtakes the poloidal energy within a single drive period at $\azm=4$; with $\azm=64$, the most of the energy is in the poloidal mode for \about10 driving periods. However, the relationship between azimuthal modenumber and rotation timescale is not linear, as was suggested by Mann and Wright. Instead, the rotation is fastest at $\azm=4$. 
 
-This hints at two competing effects. \todo{Probably the Hall conductivity? Get these runs in here. Note also that in \cref{ch_inertia} we talked about how the Hall conductivity isn't add a significant imaginary component to $B_x$, etc. }
+This hints at two competing effects. \todo{NOT the Hall conductivity. The same effect is present when the runs are repeated with $\sh=0$. It's actually energy escaping to the outer boundary! $\azm\sim4$ is where the \Alfven wave stops being compressional near where the driving is delivered. Note that higher frequency driving should be MORE prone to losing energy to the sides. Not clear that's the case. }
 
 \todo{While the Hall conductivity does in principle allow energy to move from the toroidal mode back to the poloidal mode, the rate does not seem to be significant. In the rightmost column of \cref{fig_U_day}, the toroidal mode holds more energy than the poloidal mode by two orders of magnitude, yet there is no indication of the poloidal mode picking up energy to catch up. }
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/placeholder.jpg}
-    \caption[Poloidal and Toroidal Energy: Quiet Day, No Hall Conductivity]{
-      \todo{CARRY OUT THESE RUNS. } 
-    }
-    \label{fig_U_day_nosigh}
-\end{figure}
 
 The total energy in the system is asymptotically determined by the balance between the energy input (from driving) and the energy loss (through Joule dissipation in the ionosphere). When the driving frequency is not particularly close to the local \Alfven frequency, the energy reaches its asymptotic value quickly. When those frequencies align closely, energy accumulates over a larger number of drive periods, and the asymptotic value is larger. 
 
@@ -132,12 +123,16 @@ Poloidal and toroidal energy are again considered separately. The two exhibit qu
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/layers_22mHz_1.pdf}
-    \caption[Poloidal and Toroidal Energy Distribution: Resonant Driving]{
-      If \azm is small, energy rotates to the toroidal mode too fast to form a poloidal resonance. If \azm is large, the \Alfven wave is guided, so it resonates only if the driving frequency lines up with the resonant frequency where it's applied. The result is just one big -- or perhaps even giant -- pulsation. If the driving lines up with a nearby field line, the toroidal mode goes crazy! Resonance inside the plasmasphere. Resonance at the plasmapause. Resonance at the driving location. And (weak) attempt at a higher harmonic further out. 
+    \includegraphics[width=\textwidth]{figures/layers_p_2.pdf}
+    \caption[Radial Distribution of Poloidal Energy]{
+      \todo{$\cdots$}
     }
-    \label{fig_resonant_driving}
+    \label{fig_p_layers}
 \end{figure}
+
+\todo{If \azm is small, energy rotates to the toroidal mode too fast to form a poloidal resonance. If \azm is large, the \Alfven wave is guided, so it resonates only if the driving frequency lines up with the resonant frequency where it's applied. The result is just one big -- or perhaps even giant -- pulsation. If the driving lines up with a nearby field line, the toroidal mode goes crazy! Resonance inside the plasmasphere. Resonance at the plasmapause. Resonance at the driving location. And (weak) attempt at a higher harmonic further out. }
+
+\todo{When the driving frequency doesn't line up with the location where it's delivered, there's basically no response. There is no movement of energy to a resonant field line, so no energy can accumulate over the course of multiple rounds of driving. Even when not driven resonantly, the toroidal mode still makes the best of its situation. It steals what energy it can from the poloidal mode, carries it to the resonant $L$-shell, and gets to work. (In contrast, recall from \cref{fig_resonant_driving}, in this situation the poloidal mode just does not accumulate energy.) }
 
 \todo{Why is this exciting? }
 
@@ -146,11 +141,11 @@ Poloidal and toroidal energy are again considered separately. The two exhibit qu
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/layers_13mHz_2.pdf}
-    \caption[Poloidal and Toroidal Energy Distribution: Nonresonant Driving]{
-      When the driving frequency doesn't line up with the location where it's delivered, there's basically no response. There is no movement of energy to a resonant field line, so no energy can accumulate over the course of multiple rounds of driving. Even when not driven resonantly, the toroidal mode still makes the best of its situation. It steals what energy it can from the poloidal mode, carries it to the resonant $L$-shell, and gets to work. (In contrast, recall from \cref{fig_resonant_driving}, in this situation the poloidal mode just does not accumulate energy.)
+    \includegraphics[width=\textwidth]{figures/layers_t_2.pdf}
+    \caption[Radial Distribution of Toroidal Energy]{
+      \todo{$\cdots$}
     }
-    \label{fig_nonresonant_driving}
+    \label{fig_t_layers}
 \end{figure}
 
 \todo{Why is this exciting? }
@@ -193,7 +188,7 @@ This seems to be a giant pulsation ``sweet spot'': the poloidal mode becomes str
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{figures/ground_16mHz.pdf}
+    \includegraphics[width=\textwidth]{figures/ground_19mHz.pdf}
     \caption[Dayside Ground Magnetic Fields]{
       The east-west component of magnetic ground signatures is peaked on the geomagnetically quiet dayside, at modenumbers around 16 to 32. This coincides nicely with observations of giant pulsations. Like the east-west component, the north-south ground signature is strongest on the quiet dayside; however, unlike the east-west component, the north-south component is weak when the modenumber is large. 
     }
@@ -207,51 +202,6 @@ Giant pulsations often drift azimuthally. This model can't resolve azimuthal dri
 
 
 
-
-
-
-
-
-% =============================================================================
-% =============================================================================
-% =============================================================================
-%\section{Electromagnetic Energy Gap}
-
-%\todo{A preliminary search (and asking Bob) has not turned up anyone looking at this before, so it's hard to provide context. }
-
-%Above, we considered the decay of energy from the poloidal mode to the toroidal mode. A natural follow up is, are there any other surprising trends in the distribution of energy?
-
-%As it turns out, yes!
-
-%In cases where the driving frequency does not line up with the local bounce frequency, energy doesn't accumulate particularly well in either the poloidal or the toroidal mode. Like a damped-driven oscillator, the system's behavior follows the input. 
-
-%At low \azm, what energy there is divides itself more or less equally between the electric and magnetic fields. 
-
-%As \azm increases, oddly, a gap appears. When the conductivity is high, the magnetic field holds more energy than the electric field. The disparity can be up to a factor of $\sim \num{3}$; that is, \SI{75}{\percent}. of the energy in the magnetic field, and \SI{25}{\percent} in the electric field. When conductivity is low, the opposite happens: energy concentrates in the electric field. 
-
-%This lines up somewhat with what might be expected. When conductivity is low, it takes a larger electric field to induce the same current, and thus the same magnetic field. But it's not clear why this disparity only appears at large \azm, or why it does not appear when the driving is resonant. 
-
-%Maybe it's a timing issue? A relationship between the bounce time (which is more or less indepedent of \azm) and the rotation time (which depends on \azm). 
-
-%\todo{How is the compressional magnetic field brought into these calculations? It exists only at small \azm. It's never particularly large, it also gets added to the zeroth-order field before squaring. }
-
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=\textwidth]{figures/U_BE_010mHz.pdf}
-%    \caption[Current-Driven Electric and Magnetic Energy: 10mHz]{
-%      In the absence of resonant driving, a disparity emerges at large \azm between the energy in the magnetic field and the energy in the electric field. The sign of the difference depends on the ionospheric conductivity. 
-%    }
-%    \label{fig_U_BE_010mHz}
-%\end{figure}
-
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=\textwidth]{figures/U_BE_022mHz.pdf}
-%    \caption[Current-Driven Electric and Magnetic Energy: 22mHz]{
-%      When driving is resonant, energy is distributed almost exactly half-and-half between the electric and magnetic fields, regardless of \azm. The rightmost profile still shows a gap, likely because the ionospheric conductivity in that model is low enough that nothing ever resonates. 
-%    }
-%    \label{fig_U_BE_022mHz}
-%\end{figure}
 
 
 
