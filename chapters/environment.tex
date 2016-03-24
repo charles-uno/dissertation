@@ -91,6 +91,10 @@ The ionosphere is a sweet spot between the two regimes. Collisions are frequent 
 
 The convection electric field (associated with the Dungey cycle, \cref{sec_outer}) drives Pedersen currents in the ionosphere. It is these currents that give rise to the strongest magnetic fields on the ground. Pedersen currents flow dawnward on the flanks and duskward across the poles. The currents remain divergence-free by connecting to field-aligned currents at the edges of the polar cap. The field-aligned currents, in turn, connect to the magnetopause current, the cross-tail current, and the (partial) ring current. 
 
+When electron density is low, thermal velocities may be unable to carry enough current to satisfy $\nabla \cdot \vec{J} = 0$. This leads to the formation of potential structures along geomagnetic field lines in the ionosphere. Such structures accelerate particles along magnetic field lines, leading to the precipitation of energetic particles into the atmosphere. As the particles thermalize, they excite atmospheric atoms. The resulting spontaneous emission is often in the visible spectrum, giving rise to the aurora. 
+
+\todo{Particles can also be excited by \Alfven waves... this probably goes in \cref{ch_flrs}. }
+
 %From \cite{paschmann_2003}: ``In the thermosphere, the solar ultraviolet (UV) light and energetic particles precipitating from the magnetosphere produce ionization increasing with altitude. At the same time the particle density is low enough to make the recombination times of the ionized atoms and molecules sufficiently long to allow a significant fraction of the gas to remain ionized. This produces a conducting layer of the atmosphere known as the ionosphere. The ionosphere begins at $\sim\SI{65}{\km}$, has a peak plasma density between 200 and 300 km, and eventually merges with magnetospheric regions $\sim$1000--2000 km altitudes.''
 
 %The effects of mean molecular mass on conductivity are computed per the usual definitions. 
@@ -108,40 +112,23 @@ The convection electric field (associated with the Dungey cycle, \cref{sec_outer
 
 The quiet geomagnetic behavior described above is periodically disturbed by transient solar phenomena such as corotating interaction regions (CIRs) and coronal mass ejections (CMEs). CMEs, as noted in \cref{ch_intro}, are bursts of unusually dense solar wind which are ejected from regions of high magnetic activity on the Sun; they are most common at the height of the eleven-year solar cycle. CIRs, on the other hand, occur when a relatively fast region of the solar wind catches up to an earlier and slower-moving pocket of solar wind, resulting in a pair of shockwaves. 
 
-During a storm, increased solar wind intensity results in enhanced magnetic reconnection on the dayside. As the newly-opened field lines are swept tailward, the convection electric field is enhanced, resulting in the injection of particles into the ring current\cite{mcpherron_1997}. The strength of the storm is gauged by the size of the magnetic perturbation created by the ring current\footnote{The most commonly used storm index is Dst, which is computed hourly using measurements from several ground magnetometers near the equator. The Sym-H index, used in \cref{sec_driving}, is computed once per minute. }. A small storm has a magnitude of \SIrange{50}{100}{\nT}. Large storms may reach \SIrange{250}{500}{\nT}. The Carrington Event, mentioned in \cref{ch_intro}, is thought to have exceeded \SI{1700}{\nT}\cite{tsurutani_2003}. 
+During a storm, increased solar wind intensity results in enhanced magnetic reconnection on the dayside. As the newly-opened field lines are swept tailward, the convection electric field is strengthened. The plasmasphere --- the outer boundary of which is set by a balance between the convection electric field and the (more or less constant) corotation electric field --- sheds its outer layers. A large number of energetic particles are also injected into the ring current\cite{mcpherron_1997}. 
 
-The main phase of a storm typically lasts for several hours. Storm recovery --- the gradual return of the storm index to zero --- typically lasts several days. Geomagnetic storms occur tens of times per year at the height of the solar cycle, and just a few times per year otherwise. 
+The strength of the storm is gauged by the size of the magnetic perturbation created by the ring current\footnote{The most commonly used storm index is Dst, which is computed hourly using measurements from several ground magnetometers near the equator. The Sym-H index, used in \cref{sec_driving}, is computed once per minute. }. A small storm has a magnitude of \SIrange{50}{100}{\nT}. Large storms may reach \SIrange{250}{500}{\nT}. The Carrington Event, mentioned in \cref{ch_intro}, is thought to have exceeded \SI{1700}{\nT}\cite{tsurutani_2003}. 
+
+The main phase of a storm typically lasts for several hours. Storm recovery --- the gradual return of the storm index to zero --- typically lasts several days. The plasmapause refilling occurs on timescales of \todo{???}. Geomagnetic storms occur tens of times per year at the height of the solar cycle, and just a few times per year otherwise. 
+
+Whereas storms are prompted by large solar wind events on the dayside, geomagnetic substorms are primarily a nightside occurrence. As flux accumulates in the tail, magnetic tension builds in the stretched field lines. A substorm is an impulsive release of that tension. 
+
+\todo{Phases of a substorm. Definition of a substorm comes from \cite{akasofu_1964}. Revised by \cite{mcpherron_1973_substorms}. }
+
+At substorm onset, a burst of reconnection occurs in the tail. A jet of plasma is launched Earthward from the reconnection site (and another is launched tailward, and lost to the solar wind). The Earthward plasma injection injects particles into the ring current. The outer radiation belt is depleted, then repopulated. Energetic particles precipitate into the atmosphere, giving rise to a distinctive \todo{hour-long} sequence of auroral signatures. 
+
+Concurrent with substorm onset, impulsive \Alfven waves are observed with periods of a minute or two. The precise ordering of events --- whether reconnection causes the waves, or vice versa, or if they share a common cause --- remains controversial. 
+
+Each substorm lasts several hours, including the time it takes for the ring current to return to pre-substorm levels. Several substorms may occur per day during quiet times. During a storm, substorms become far more frequent; by the time one has ended, another may have already begun. 
 
 %The relationship between geomagnetic storms and geomagnetic substorms is not nearly as neat as their names suggest. Storms are not made of substorms (as atoms are made of subatomic particles), nor are they derivative (as suburbs are to urban areas). Substorms are also not ``below'' storms in any sense (as a subceiling, a submarine, or a subwoofer). Rather, substorms are 
-
-\todo{plasmaphere erosion and refilling. }
-
-\todo{Exact location/cause of substorm onset is a topic of ongoing controversy. }
-
-\todo{Auroral oval grows. Precipitation is enhanced. }
-
-\todo{Definition of a substorm comes from \cite{akasofu_1964}. Revised by \cite{mcpherron_1973_substorms}. }
-
-\todo{Precipitation into the atmosphere. }
-
-When electron density is low, thermal velocities may be unable to carry enough current to satisfy $\nabla \cdot \vec{J} = 0$. This can lead to the formation of potential structures along geomagnetic field lines in the ionosphere. 
-
-Particles can also be accelerated by \Alfven waves. 
-
-Acceleration of particles along magnetic field lines leads to the precipitation of energetic particles into the atmosphere. As the particles thermalize, they excite atmospheric atoms. The resulting spontaneous emission is often in the visible spectrum, giving rise to the aurora. 
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 %\begin{longtable}{ @{\extracolsep{\fill}} lrrr @{\extracolsep{\fill}} }
 %  \caption[Integrated Ionospheric Conductivity]{Integrated Ionospheric Conductivity (\si{\S})}
