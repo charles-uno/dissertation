@@ -21,7 +21,7 @@ From there, the parallel electric field can be updated directly; \cref{e3_final}
   E_3 &\assign E_3 + c^2 \dt \, \lr{ g_{31} F^1 + g_{33} F^3 } - \frac{\dt}{\ez} J_3
 \end{align}
 
-The present section explores the complications that arise from the addition of the electron inertial term to \ohmlaw, as well as a few results that may be gleaned despite those complications. Notably -- for reasons discussed in \cref{sec_lengths} -- the results presented in \cref{ch_results} do not make use of the electron inertial term. 
+The present section explores the complications that arise from the addition of the electron inertial term to \ohmlaw, as well as a few results that may be gleaned despite those complications. Notably --- for reasons discussed in \cref{sec_lengths} --- the results presented in \cref{ch_results} do not make use of the electron inertial term. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -49,11 +49,11 @@ That is, electron inertial effects come hand in hand with the plasma oscillation
     \label{fig_op}
 \end{figure}
 
-As mentioned in \cref{ch_math} and shown in \cref{fig_op}, plasma oscillation is quite fast -- several orders of magnitude smaller than Tuna's time step as determined in \cref{sec_coords} (\about\SI{10}{\us}). This poses a conundrum. At Tuna's usual time step, the plasma oscillation becomes unstable within seconds\footnote{For stability, $\op \dt < 1$ is necessary. }. On the other hand, reducing the time step by three orders of magnitude to resolve the plasma oscillation is computationally infeasible; a run slated for an hour would require six weeks to complete. 
+As mentioned in \cref{ch_math} and shown in \cref{fig_op}, plasma oscillation is quite fast --- several orders of magnitude smaller than Tuna's time step as determined in \cref{sec_coords} (\about\SI{10}{\us}). This poses a conundrum. At Tuna's usual time step, the plasma oscillation becomes unstable within seconds\footnote{For stability, $\op \dt < 1$ is necessary. }. On the other hand, reducing the time step by three orders of magnitude to resolve the plasma oscillation is computationally infeasible; a run slated for an hour would require six weeks to complete. 
 
 As it happens, this problem can be solved by artificially increasing the parallel electric constant above its usual value of \ez. Doing so lowers both the speed of light and the plasma frequency within the simulation. 
 
-This technique -- and others like it -- has been widespread in numerical modeling since it was presented by Boris in 1970\cite{boris_1970}. More recently, Lysak and Song considered its use specifically for the case of electron inertial effects\cite{lysak_2001}. The following paraphrases their argument. 
+This technique --- and others like it --- has been widespread in numerical modeling since it was presented by Boris in 1970\cite{boris_1970}. More recently, Lysak and Song considered its use specifically for the case of electron inertial effects\cite{lysak_2001}. The following paraphrases their argument. 
 
 Supposing that the current and electric field are oscillating at frequency $\omega$, the parallel components of \amplaw and \ohmlaw can be written
 \begin{align}
@@ -120,7 +120,7 @@ As mentioned in \cref{ch_model}, each field's real component gives its behavior 
 
 The parallel electric field and current defy this pattern. The real current scales more or less proportionally with the poloidal Poynting flux, and its imaginary component scales comparably with the toroidal Poynting flux. Rather than being preferrentially coupled to one mode or the other, parallel currents seem to arise wherever energy is moving along the background magnetic field. 
 
-It bears noting further that the Poynting flux waveforms are rectified -- they primarily carry energy Earthward. The current, on the other hand, alternates between upward and downward flow. This effect presumably arises because the current is a linear quantity while the Poynting flux is quadratic: the electric and magnetic fields that make it up oscillate in phase, so their product is positive even when they are negative. 
+It bears noting further that the Poynting flux waveforms are rectified --- they primarily carry energy Earthward. The current, on the other hand, alternates between upward and downward flow. This effect presumably arises because the current is a linear quantity while the Poynting flux is quadratic: the electric and magnetic fields that make it up oscillate in phase, so their product is positive even when they are negative. 
 
 \begin{figure}[!htb]
     \centering
@@ -136,7 +136,7 @@ It's also possible to consider the effect of parallel currents and electric fiel
   -\ddt u &= \div{E} + \vec{J} \cdot \vec{E}
 \end{align}
 
-As shown in \cref{fig_power_density}, little energy transfer in the ionosphere is mediated by perpendicular components of the Poynting flux. The parallel component of $\vec{J} \cdot \vec{E}$ is comparably unimportant. The energy deposited in the ionosphre by the Poynting flux matches closely with the energy lost to Joule dissipation -- as it should, to conserve energy -- but according to the model, parallel currents and electric fields do not contribute significantly. 
+As shown in \cref{fig_power_density}, little energy transfer in the ionosphere is mediated by perpendicular components of the Poynting flux. The parallel component of $\vec{J} \cdot \vec{E}$ is comparably unimportant. The energy deposited in the ionosphre by the Poynting flux matches closely with the energy lost to Joule dissipation --- as it should, to conserve energy --- but according to the model, parallel currents and electric fields do not contribute significantly. 
 
 %\todo{Parallel electric fields, supposedly, only appear at high altitude. \cite{marklund_1997,carlson_1998}. }
 
@@ -160,7 +160,7 @@ That is, with the inclusion of electron inertial effects, Tuna's grid is not suf
     \centering
     \includegraphics[width=\textwidth]{figures/inertial_length.pdf}
     \caption[Parallel Electric Fields by Perpendicular Grid Resolution]{
-      The parallel electric field develops significant structure when the perpendicular grid resolution is smaller than the electron inertial length. Unfortunately, such runs are prohibitively expensive. The lower panel -- which still fails to resolve wave structure properly -- represents a 100-fold increase in computational time. 
+      The parallel electric field develops significant structure when the perpendicular grid resolution is smaller than the electron inertial length. Unfortunately, such runs are prohibitively expensive. The lower panel --- which still fails to resolve wave structure properly --- represents a 100-fold increase in computational time. 
     }
     \label{fig_inertial_length}
 \end{figure}

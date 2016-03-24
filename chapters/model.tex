@@ -22,15 +22,15 @@
 
 The present section describes the implementation of Tuna, a new two and a half dimensional \Alfven wave code based largely on work by Lysak\cite{lysak_2004,lysak_2013}. 
 
-The half-integer dimensionality refers to the fact that Tuna's spatial grid resolves a two-dimensional slice of the magnetosphere, but that electric and magnetic fields -- as well as their curls -- are three-dimensional vectors. This apparent contradiction is reconciled by the use of a fixed azimuthal modenumber, \azm. Electric and magnetic fields are taken to be complex-valued, varying azimuthally per $\exp\arg{i\azm\phi}$; derivatives with respect to $\phi$ are then replaced by a factor of $i\azm$. 
+The half-integer dimensionality refers to the fact that Tuna's spatial grid resolves a two-dimensional slice of the magnetosphere, but that electric and magnetic fields --- as well as their curls --- are three-dimensional vectors. This apparent contradiction is reconciled by the use of a fixed azimuthal modenumber, \azm. Electric and magnetic fields are taken to be complex-valued, varying azimuthally per $\exp\arg{i\azm\phi}$; derivatives with respect to $\phi$ are then replaced by a factor of $i\azm$. 
 
 Unlike a fully three-dimensional code, Tuna cannot resolve the evolution of wave structures in the azimuthal direction. Furthermore, the model does not allow coupling between the dayside and nightside magnetospheres. What Tuna does offer is efficiency. The model's economical geometry allows it to include a realistic Earthward boundary: grid spacing on the order of \SI{10}{\km}, a height-resolved ionospheric conductivity tensor, and even the computation of magnetic field signatures at the ground. Such features are computationally infeasbile for a large global code. 
 
 Tuna was developed with field line resonance in mind. As discussed in \cref{ch_flrs}, such waves are azimuthally localized, minimizing the importance of Tuna's missing half dimension. Moreover, because field line resonances are known to be affected by both the ionosphere and the plasmasphere, a faithful treatment of the inner magnetosphere is a crucial part of studying them numerically. 
 
-Perhaps the most exciting feature of Tuna is its novel driving mechanism: ring current perturbation. Codes similar to Tuna have traditionally been driven using compressional pulses at the outer boundary\cite{lysak_2004,lysak_2013,waters_2008,waters_2013}. This has precluded the investigation of waves with large azimuthal modenumber -- such as giant pulsations -- which are guided, and thus must be driven from within the magnetosphere. 
+Perhaps the most exciting feature of Tuna is its novel driving mechanism: ring current perturbation. Codes similar to Tuna have traditionally been driven using compressional pulses at the outer boundary\cite{lysak_2004,lysak_2013,waters_2008,waters_2013}. This has precluded the investigation of waves with large azimuthal modenumber --- such as giant pulsations --- which are guided, and thus must be driven from within the magnetosphere. 
 
-\todo{The support software -- the driver and the plotter -- are also significant. Do they get mentioned here? Does the Git repository where the code can be accessed get mentioned here? }
+\todo{The support software --- the driver and the plotter --- are also significant. Do they get mentioned here? Does the Git repository where the code can be accessed get mentioned here? }
 
 %\todo{From Bob's 2013 paper\cite{lysak_2013} (which was also 2.5D): ``The shear \Alfven and compressional fast mode waves can be coupled not only by the Hall conductivity but also by inhomogeneities in the background plasma, which are unavoidable in a realistic magnetosphere [e.g., Lysak and Yoshikawa, 2006\cite{lysak_2006}; Waters et al., 2012\cite{waters_2013}]. This coupling requires a finite wave vector component in the azimuthal direction, i.e., a finite $m$ in the context of the present model. Because of the $\exp \arg{ i m \phi}$ dependence assumed in this model, the coupling from the inhomogeneity enters as an imaginary part of the coupled wave fields with respect to the initial fields, whereas the Hall conductivity appears in phase with the initial fields. Thus, although a fully three-dimensional model can give a more complete picture of wave propagation [e.g., Lysak, 2004\cite{lysak_2004}; Woodroffe and Lysak, 2012\cite{woodroffe_2012}], the present two-dimensional model serves to illustrate the nature of this coupling.''}
 
@@ -218,13 +218,13 @@ This issue is demonstrated in \cref{fig_bdrive}. At low modenumber, energy deliv
     \label{fig_bdrive}
 \end{figure}
 
-In order to simulate high-modenumber \Alfven waves in the inner magnetosphere -- such as giant pulsations -- a new driving mechanism is necessary. Perturbation of the ring current is a natural choice, as \Alfven waves in the Pc4 range are known to interact with ring current particles through drift and drift-bounce resonances. The ring current is a dynamic region, particularly during and after geomagnetic storms; it's easy to imagine the formation of localized inhomogeneities. 
+In order to simulate high-modenumber \Alfven waves in the inner magnetosphere --- such as giant pulsations --- a new driving mechanism is necessary. Perturbation of the ring current is a natural choice, as \Alfven waves in the Pc4 range are known to interact with ring current particles through drift and drift-bounce resonances. The ring current is a dynamic region, particularly during and after geomagnetic storms; it's easy to imagine the formation of localized inhomogeneities. 
 
 In order to estimate an appropriate magnitude for perturbations of the ring current, the Sym-H storm index is used. The index is measured once per minute, and so cannot directly detect ring current modulations in the Pc4 frequency range. Instead, the index is transformed into the frequency domain, allowing a fit of its pink noise\footnote{Pink noise, also called $\frac{1}{f}$ noise, refers to the power law decay present in the Fourier transforms of all manner of physical signals. }. 
 
 As shown in \cref{fig_symh}, a Fourier transform of the Sym-H index (taken here from the June 2013 storm) suggests that magnetic field perturbations at Earth's surface due to ring current activity in the Pc4 frequency range could be up to the order of \SI{e-2}{\nT}. Supposing that the ring current is centered around \SI{5}{\RE} geocentric, that corresponds to a current on the order of \SI{0.1}{\mega\ampere}. Tuna's driving is spread using a Gaussian profile in \lysakx (typically centered at $L=5$) and \lysakz (typically centered just off the equator), with a characteristic area of \SI{1}{\RE}$^2$; this gives a current density on the order of \SI{e-4}{\uA/\meter\squared}. 
 
-\todo{Admittedly, estimating the strength of localized perturbations using Sym-H -- an index averaged over the entire globe -- is a bit of a kludge. }
+\todo{Admittedly, estimating the strength of localized perturbations using Sym-H --- an index averaged over the entire globe --- is a bit of a kludge. }
 
 % Note: Not sure why \squared is allowed in some \SI calls but not others... \SI{1}{\RE\squared} throws a \sigma_P in between the R_E and the ^2. For now, we just circumvent the issue. 
 
@@ -383,7 +383,7 @@ The perpendicular components of \cref{amp_final} give the expressions:
 
 The $E_3$ terms in \cref{e1_final,e2_final} can be ignored at present. They are revisited in \cref{ch_inertia}. 
 
-\todo{Recall that the driving is folded into \vec{F} -- specifically, $F^2$. While in principle this couples it to both the poloidal and toroidal electric fields, in practice the driving is vanishingly small anywhere the Hall conductivity isn't. That is, driving is delivered to the poloidal electric field only. }
+\todo{Recall that the driving is folded into \vec{F} --- specifically, $F^2$. While in principle this couples it to both the poloidal and toroidal electric fields, in practice the driving is vanishingly small anywhere the Hall conductivity isn't. That is, driving is delivered to the poloidal electric field only. }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------

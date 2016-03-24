@@ -46,7 +46,7 @@
 
 \todo{Other planets\cite{glassmeier_2004}? Seems exciting but maybe not relevant. }
 
-The motion of a charged particle in a dipole field can be described in terms of three fundamental motions. First is cyclotron motion: a particle orbits around a magnetic field line in accordance with the Lorentz force. Second is bounce motion: while orbiting, the particle moves along the field line like a bead on a wire, back and forth between the northern and southern hemispheres\footnote{As a particle approaches Earth, it experiences an ever-stronger magnetic field. The particle's perpendicular kinetic energy increases in proportion with the magnetic field in order to conserve its first adiabatic invariant. When the perpendicular kinetic energy can no longer increase -- that is, when the parallel kinetic energy is zero -- the particle bounces back. (If the parallel kinetic energy is sufficiently large, the particle doesn't bounce; it precipitates into the atmosphere.)}. Third is drift motion: as particles orbit and bounce, they also move azimuthally around Earth per the gradient-curvature drift. 
+The motion of a charged particle in a dipole field can be described in terms of three fundamental motions. First is cyclotron motion: a particle orbits around a magnetic field line in accordance with the Lorentz force. Second is bounce motion: while orbiting, the particle moves along the field line like a bead on a wire, back and forth between the northern and southern hemispheres\footnote{As a particle approaches Earth, it experiences an ever-stronger magnetic field. The particle's perpendicular kinetic energy increases in proportion with the magnetic field in order to conserve its first adiabatic invariant. When the perpendicular kinetic energy can no longer increase --- that is, when the parallel kinetic energy is zero --- the particle bounces back. (If the parallel kinetic energy is sufficiently large, the particle doesn't bounce; it precipitates into the atmosphere.)}. Third is drift motion: as particles orbit and bounce, they also move azimuthally around Earth per the gradient-curvature drift. 
 
 Characteristic timescales for each of the above motions depend on particle energy. Electron cyclotron motion is on the order of \todo{$\cdots$} in the ionosphere, and closer to \todo{$\cdots$} in the tail; ions gyrate slower by three orders of magnitude due to their larger mass. \todo{Bounce... Drift... }
 
@@ -54,9 +54,9 @@ Characteristic timescales for each of the above motions depend on particle energ
 
 %\todo{Bounce timescales are faster closer to Earth (where the field lines are short) and slower further out. Something like \SIrange{10}{100}{\second}. Bounce timescales depend only on velocity, right? }
 
-%\todo{Drift timescales vary significantly based on particle energy. Dai\cite{dai_2013} showed a nice example of \SI{100}{\kilo\eV} ions drifting with a period of $\sim \SI{100}{\s}$. Bounce and drift timescales can overlap -- this turns out to be important. This doesn't depend on mass, right? Just kinetic energy. }
+%\todo{Drift timescales vary significantly based on particle energy. Dai\cite{dai_2013} showed a nice example of \SI{100}{\kilo\eV} ions drifting with a period of $\sim \SI{100}{\s}$. Bounce and drift timescales can overlap --- this turns out to be important. This doesn't depend on mass, right? Just kinetic energy. }
 
-Wave-particle resonance arises when a particle's periodic motion matches with the frequency of a coincident electromagnetic wave\cite{elkington_1999,mann_2013,ozeke_2008,southwood_1976}. In the particle's rest frame, the wave then appears as a DC electric field. This allows a net movement of energy between the wave and the particle. The interaction is analogous to a surfer moving along with -- and being accelerated by -- a wave in the ocean. 
+Wave-particle resonance arises when a particle's periodic motion matches with the frequency of a coincident electromagnetic wave\cite{elkington_1999,mann_2013,ozeke_2008,southwood_1976}. In the particle's rest frame, the wave then appears as a DC electric field. This allows a net movement of energy between the wave and the particle. The interaction is analogous to a surfer moving along with --- and being accelerated by --- a wave in the ocean. 
 
 In the present work, the waves in question are field line resonances (FLRs). An FLR is a standing harmonic on a geomagnetic field line. It can also be envisioned as a superposition of traveling waves, reflecting back and forth between its northern and southern foot points at the conducting ionosphere. These waves travel at the \Alfven speed\footnote{The \Alfven speed is given by \va is given by $\va^2 \equiv \frac{B^2}{\mz \rho}$, where $B$ is the magnitude of the magnetic field, \mz is the magnetic constant, and $\rho$ is the mass density of the ambient plasma. It can vary by several orders of magnitude over the length of a magnetic field line. }. The fundamental equations of field line resonance were presented by Dungey in 1954\cite{dungey_1954}; since then, they have remained a topic of active study. 
 
@@ -69,7 +69,7 @@ In the present work, the waves in question are field line resonances (FLRs). An 
     \label{fig_fa}
 \end{figure}
 
-So-called ultra low frequency waves  -- of which FLRs are a subset -- are categorized by morphology. Continuous (long-lived) pulsations are termed Pc, while irregular pulsations are called Pi. Within each are a number of frequency bands; see \cref{tab_iaga}\cite{jacobs_1964}. 
+So-called ultra low frequency waves  --- of which FLRs are a subset --- are categorized by morphology. Continuous (long-lived) pulsations are termed Pc, while irregular pulsations are called Pi. Within each are a number of frequency bands; see \cref{tab_iaga}\cite{jacobs_1964}. 
 
 \begin{longtable}{ @{\extracolsep{\fill}} cccccccc @{\extracolsep{\fill}} }
   \caption[IAGA Magnetic Pulsation Frequency Bands]{IAGA Magnetic Pulsation Frequency Bands}
@@ -88,7 +88,7 @@ FLRs fall into the Pc3, Pc4, and Pc5 ranges. The present work focuses specifical
 
 In addition to being radially localized, FLRs in the Pc4 frequency band (also called Pc4 pulsations, or just Pc4s) are localized in MLT\footnote{MLT is Magnetic Local Time. Noon points toward the Sun and midnight away from it, with 06:00 and 18:00 at the respective dawn and dusk flanks. }. They have also been shown to occur preferrentially on the dayside, during storms or storm recovery\cite{anderson_1990,dai_2015,engebretson_1992,kokubun_1989,liu_2009,ukhorskiy_2005}. 
 
-In the inner magnetosphere, the \Alfven frequency -- and thus the frequency of FLRs -- often coincides with integer or half-integer\footnote{See \cref{sec_harmonics}. } multiples of particle drift frequencies\cite{dai_2013}. The resulting wave-particle interactions can give rise to significant energization and radial diffusion of the particles. In some cases, the waves also include an electric field parallel to the background magnetic field, contributing to the precipitation of energetic particles into the neutral atmosphere\cite{goertz_1979,goertz_1984,thompson_1996,wygant_2002}. 
+In the inner magnetosphere, the \Alfven frequency --- and thus the frequency of FLRs --- often coincides with integer or half-integer\footnote{See \cref{sec_harmonics}. } multiples of particle drift frequencies\cite{dai_2013}. The resulting wave-particle interactions can give rise to significant energization and radial diffusion of the particles. In some cases, the waves also include an electric field parallel to the background magnetic field, contributing to the precipitation of energetic particles into the neutral atmosphere\cite{goertz_1979,goertz_1984,thompson_1996,wygant_2002}. 
 
 The present chapter introduces the structural characteristics of FLRs, how those characteristics affect wave behavior, and several unresolved questions related to that behavior. 
 
@@ -120,11 +120,11 @@ The drift-bounce resonance condition is written\cite{takahashi_2011}:
 
 Where $\omega$ is the frequency of the wave, $\omega_D$ and $\omega_B$ are the particle's drift and bounce frequencies respectively, and \azm is the wave's azimuthal modenumber, as discussed in \cref{sec_azm}. 
 
-In principle, the first and second harmonics can be distinguished by their frequencies, even from a single-point observation\cite{cummings_1969,green_1985}.  In practice, however, this is not a reliable approach\cite{takahashi_2013}. There are significant uncertainties surrounding the number density profile -- and thus the \Alfven speed profile -- along a geomagnetic field line. 
+In principle, the first and second harmonics can be distinguished by their frequencies, even from a single-point observation\cite{cummings_1969,green_1985}.  In practice, however, this is not a reliable approach\cite{takahashi_2013}. There are significant uncertainties surrounding the number density profile --- and thus the \Alfven speed profile --- along a geomagnetic field line. 
 
 Harmonic structure can also be deduced by noting the phase offset between the wave magnetic field and its electric field (or the plasma velocity)\cite{takahashi_1992,dai_2015}. In \cref{fig_harmonics}, the green line indicates an observer just north of the magnetic equator. For the first harmonic, the observer sees the electric field waveform lead the magnetic field by a phase of \SI{90}{\degree}; for the second harmonic, the electric field waveform lags by \SI{90}{\degree}. (South of the equator, the signs are reversed.) Notably, this approach has only become viable with the advent of satellites carrying both electric and magnetic field instrumentation, such as THEMIS in 2007\cite{angelopoulos_2008} and the Van Allen Probes\footnote{The Van Allen Probes were previously called RBSP, for Radiation Belt Storm Probes. } in 2012\cite{stratton_2012}. 
 
-Strictly speaking, the the phase offset of the electric and magnetic fields does not provide the harmonic number -- only its parity. It's reasonably safe to assume that an even mode is the second harmonic; the second harmonic is by far the most commonly observed\cite{hughes_1978,singer_1982,takahashi_1990}, due in part to the antisymmetric balloon instability\cite{southwood_1976,chen_1991,cheng_1994,chan_1994}. However, the distinction between the first and third harmonics is not always clear; this issue is discussed further in \cref{ch_rbsp}. Higher harmonics than that are not expected in the Pc4 frequency band. 
+Strictly speaking, the the phase offset of the electric and magnetic fields does not provide the harmonic number --- only its parity. It's reasonably safe to assume that an even mode is the second harmonic; the second harmonic is by far the most commonly observed\cite{hughes_1978,singer_1982,takahashi_1990}, due in part to the antisymmetric balloon instability\cite{southwood_1976,chen_1991,cheng_1994,chan_1994}. However, the distinction between the first and third harmonics is not always clear; this issue is discussed further in \cref{ch_rbsp}. Higher harmonics than that are not expected in the Pc4 frequency band. 
 
 % Of 390 noncompressional events, Dai identified 19 to be clearly fundamental mode and 197 to be clearly second harmonic\cite{dai_2015}. 
 
@@ -194,7 +194,7 @@ The toroidal mode's magnetic displacement is azimuthal, per \cref{fig_toroidal};
 
 Both poloidal and toroidal waves are noted for their ability to contribute to the energization and radial diffufion of trapped particles. The poloidal mode interacts more strongly, since its electric field is aligned with the trapped particles' drift motion. Poloidally-polarized waves are also more prone to creating magnetic signatures on the ground, due to ducting in the ionosphere\cite{fujita_1988,greifinger_1968}. 
 
-Toroidal modes have been shown to far outnumber poloidal modes\cite{anderson_1990}. Perhaps not coincidentally, poloidally-polarized waves rotate asymptotically to the toroidal mode\cite{mann_1995,mann_1997,radoski_1974}. Poloidal waves with low azimuthal modenumber -- such as those driven by broadband sources at the magnetopause -- rotate on timescales comparable to their oscillation periods. 
+Toroidal modes have been shown to far outnumber poloidal modes\cite{anderson_1990}. Perhaps not coincidentally, poloidally-polarized waves rotate asymptotically to the toroidal mode\cite{mann_1995,mann_1997,radoski_1974}. Poloidal waves with low azimuthal modenumber --- such as those driven by broadband sources at the magnetopause --- rotate on timescales comparable to their oscillation periods. 
 
 \todo{Fishbone instability\cite{chen_1984,mcguire_1983}. Like the poloidal mode, but for lab plasmas. }
 
@@ -214,7 +214,7 @@ On the ground, Pgs are notable for their strikingly sinusoidal waveforms, their 
 Whereas FLRs are waves in space which may produce ground signatures, ``giant pulsation'' refers to the ground signature specifically\footnote{Historically, the wave designations shown in \cref{tab_iaga} 
 all referred to ground phenomena. Over time, they have come to describe satellite observations as well, including those without corresponding signatures on the ground. }. That is, Takahashi's satellite observation of a sinusoidal, morningside, high-\azm, fundamental poloidal resonance was not classified as a Pg because it did not produce a signal on the ground\cite{takahashi_2013}. 
 
-Due to their remarkably clear waveforms, Pgs are typically found by ``visual inspection of magnetometer data''\cite{motoba_2015}. Over the course of the past century, a number of multi-year (sometimes multi-decade\cite{brekke_1987}) surveys have totaled nearly one thousand Pg events -- half of them measured at Troms{\o}, Norway. On average, a ground magnetometer near \SI{66}{\degree} magnetic latitude observes \about10 Pg events per year\cite{brekke_1987,harang_1941,rolf_1931,sucksdorff_1939}. Observations are not distributed uniformly; rather, giant pulsations become more common near the equinox and during times of low solar activity. 
+Due to their remarkably clear waveforms, Pgs are typically found by ``visual inspection of magnetometer data''\cite{motoba_2015}. Over the course of the past century, a number of multi-year (sometimes multi-decade\cite{brekke_1987}) surveys have totaled nearly one thousand Pg events --- half of them measured at Troms{\o}, Norway. On average, a ground magnetometer near \SI{66}{\degree} magnetic latitude observes \about10 Pg events per year\cite{brekke_1987,harang_1941,rolf_1931,sucksdorff_1939}. Observations are not distributed uniformly; rather, giant pulsations become more common near the equinox and during times of low solar activity. 
 
 Unlike Pc4 pulsations in general, Pgs show no particular correlation with storm phase\cite{motoba_2015}. However, they do often occur as the magnetosphere recovers from a substorm\cite{motoba_2015,rostoker_1979}. 
 
@@ -223,7 +223,7 @@ Unlike Pc4 pulsations in general, Pgs show no particular correlation with storm 
 % -----------------------------------------------------------------------------
 \section{Motivations for the Present Work}
 
-A great deal has been learned -- and continues to be learned -- through observations of field line resonance. However, the cost-to-benefit ratio is climbing. As summarized in the sections above, FLR behavior depends significantly on harmonic structure, azimuthal modenumber, and polarization, not to mention frequency, spectral width, and so on. With each degree of freedom comes the necessity for an additional simultaneous observation. 
+A great deal has been learned --- and continues to be learned --- through observations of field line resonance. However, the cost-to-benefit ratio is climbing. As summarized in the sections above, FLR behavior depends significantly on harmonic structure, azimuthal modenumber, and polarization, not to mention frequency, spectral width, and so on. With each degree of freedom comes the necessity for an additional simultaneous observation. 
 
 Similarly, as FLRs have been shown to depend on ever-more-specific magnetospheric conditions, analytical techniques have fallen out of favor. The height-resolved ionosphere, the multidimensional \Alfven speed profile, and the inconvenient geometry combine to create a problem beyond the reasonable purview of pencil and paper. 
 
@@ -233,7 +233,7 @@ Past models of the magnetosphere have been ill-suited for the consideration of F
 
 The model allows a bird's-eye view of the structure and evolution of FLRs. As such, not only can several open questions be addressed, but their answers serve to unify a number of seemingly-disparate properties described in the sections above. 
 
-The rotation of poloidally-polarized waves to the toroidal mode is investigated. Particular attention is paid to the importance of azimuthal modenumber and ionospheric conductivity. The interplay between said rotation and the transport of energy across field lines -- which also depends on azimuthal modenumber -- is considered as well. 
+The rotation of poloidally-polarized waves to the toroidal mode is investigated. Particular attention is paid to the importance of azimuthal modenumber and ionospheric conductivity. The interplay between said rotation and the transport of energy across field lines --- which also depends on azimuthal modenumber --- is considered as well. 
 
 By their nature, drifting particles have the potential to spur wave-particle interactions at all MLT. However, Pc4 observations are strongly peaked on the dayside. In a 2015 paper, Dai notes, ``It is not clear why noncompressional [high-\azm] Pc4 poloidal waves, which are presumably driven by instability within the magnetosphere, preferrentially occur on the dayside''\cite{dai_2015}. Motoba, later that year, echoes, ``It is unclear whether other generation mechanisms of fundamental standing waves ... can explain the localization of Pgs in local time''\cite{motoba_2015}. This, too, is considered numerically: to what degree is field line resonance affected by the (day-night asymmetric) conditions of the ionosphere? 
 
@@ -242,9 +242,9 @@ By their nature, drifting particles have the potential to spur wave-particle int
 It's been shown that a ground magnetometer \SI{66}{\degree} north of the magnetic equator observes \about10 events per year. It's also been shown that poloidal Pc4s are rare compared to toroidal ones, and that most poloidal Pc4s are even harmonics. However, little attention has been paid to how these rates line up with one another. Given the relative occurrence rate of poloidal and toroidal waves, of odd and even harmonics, and of diffuse and sharp spectral peaks, just how unusual are giant pulsations? 
 
 
-%The present work uses a numerical model to investigate the preferrential occurrence of field line resonances in the Pc4 range -- particularly first-harmonic poloidal modes, such as giant pulsations -- in MLT. 
+%The present work uses a numerical model to investigate the preferrential occurrence of field line resonances in the Pc4 range --- particularly first-harmonic poloidal modes, such as giant pulsations --- in MLT. 
 
-%Giant pulsations are commonly referred to as ``rare''\cite{brekke_1987}, or even ``a small subset of fundamental poloidal waves''\cite{takahashi_2013}. However, quantification of Pg occurrence -- compared to the occurrence rate of fundamental poloidal Pc4s in general -- is thin on the ground. It's been shown that poloidal Pc4s are rare compared to their toroidal counterparts. It's also been shown that, among poloidal Pc4s, the second harmonic is the most common. 
+%Giant pulsations are commonly referred to as ``rare''\cite{brekke_1987}, or even ``a small subset of fundamental poloidal waves''\cite{takahashi_2013}. However, quantification of Pg occurrence --- compared to the occurrence rate of fundamental poloidal Pc4s in general --- is thin on the ground. It's been shown that poloidal Pc4s are rare compared to their toroidal counterparts. It's also been shown that, among poloidal Pc4s, the second harmonic is the most common. 
 
 
 % Dai writes, in his 2015 paper\cite{dai_2015}, ``It is not clear why noncompressional [high-\azm] Pc4 poloidal waves, which are presumably driven by instability within the magnetosphere, preferrentially occur on the dayside.'' 
@@ -252,7 +252,7 @@ It's been shown that a ground magnetometer \SI{66}{\degree} north of the magneti
 % Motoba\cite{motoba_2015}, similarly, notes ``It is unclear whether other generation mechanisms of fundamental standing waves ... can explain the localization of Pgs in local time.''
 
 
-% Giant pulsations have variously been referred to as ``intriguing''\cite{green_1985}. ``rare''\cite{brekke_1987}, even to the point of being ``a small subset of fundamental poloidal waves''\cite{takahashi_2013} -- note that it's well known that fundamental poloidal mode waves are already rare in comparison to second harmonic waves. 
+% Giant pulsations have variously been referred to as ``intriguing''\cite{green_1985}. ``rare''\cite{brekke_1987}, even to the point of being ``a small subset of fundamental poloidal waves''\cite{takahashi_2013} --- note that it's well known that fundamental poloidal mode waves are already rare in comparison to second harmonic waves. 
 
 
 %\todo{What's going on with the MLT localization of Pc4 pulsations? Is there something spooky going on with the driving? Maybe the ionosphere just kills FLRs on the nightside! }
@@ -265,11 +265,11 @@ It's been shown that a ground magnetometer \SI{66}{\degree} north of the magneti
 
 %\todo{All sorts of FLR occur preferrentially (though not exclusively) on the dayside\cite{dai_2015,ukhorskiy_2005}. }
 
-%\todo{Any waves with frequencies of $\SIrange{e-3}{1}{\Hz}$ are termed ULF waves -- ultra low frequency. ULF waves are furthermore categorized in terms of their morphological characteristics. Pc waves are continuous (exhibiting a fairly consistent waveform over a large number of wave periods) while Pi are irregular; the waves are further partitioned into frequency bands. See \cref{tab_iaga}. }
+%\todo{Any waves with frequencies of $\SIrange{e-3}{1}{\Hz}$ are termed ULF waves --- ultra low frequency. ULF waves are furthermore categorized in terms of their morphological characteristics. Pc waves are continuous (exhibiting a fairly consistent waveform over a large number of wave periods) while Pi are irregular; the waves are further partitioned into frequency bands. See \cref{tab_iaga}. }
 
 %\todo{These are Jacobs' original ranges... but are they really reflective of the jargon still used? It's weird that these ranges bottom out so far below 1000s. }
 
-%\todo{While the IAGA characterizations are based on wave morphology, they do a decent job of deliniating between the different underlying physical processes as well. Pi2 pulsations (irregular waves with periods of a minute or two) tend to be excited on the nightside; they are associated with substorm onset (though the processes that give rise to Pi2s -- and their relation to substorm onset -- remains controversial). Pc1 and Pc2 pulsations tend to be EMIC (electromagnetic ion cyclotron) waves near the ion gyrofrequency, which are important for the precipitation of electrons (?). }
+%\todo{While the IAGA characterizations are based on wave morphology, they do a decent job of deliniating between the different underlying physical processes as well. Pi2 pulsations (irregular waves with periods of a minute or two) tend to be excited on the nightside; they are associated with substorm onset (though the processes that give rise to Pi2s --- and their relation to substorm onset --- remains controversial). Pc1 and Pc2 pulsations tend to be EMIC (electromagnetic ion cyclotron) waves near the ion gyrofrequency, which are important for the precipitation of electrons (?). }
 
 %Pi2: ``Clearly linked to substorm disturbances and other impulsive dynamics are the irregularly shaped waves in the 7--25-mHz band referred to as Pi2. Recent work on these waves suggests that their periodicity reflects the spectrum of global mode excitations of the plasmasphere but there is a competing proposal that the dominant frequencies are imposed by the modulated flows in the magnetotail.''\cite{kivelson_2006}
 
@@ -373,7 +373,7 @@ It's been shown that a ground magnetometer \SI{66}{\degree} north of the magneti
 % Patel 1965 made observations in space, and matched them to observations on the ground
 % Cummings et al 1969 numerically integrated Dungey's equations to estimate eigenfrequencies
 % soviets discovered that different pulsations have different sources in the 1970s; see troitskaya 1993 and greenstadt and russell 1993
-% troitskaya 1969 showed that Pc3 can sometimes be explained by a sudden change in the size of the magnetosphere following an impulse. an example -- this must have also been seen earlier. because... 
+% troitskaya 1969 showed that Pc3 can sometimes be explained by a sudden change in the size of the magnetosphere following an impulse. an example --- this must have also been seen earlier. because... 
 % Bolshakova and Troitskaya 1968 showed that Pc3 observation depends on IMF N/S. Iff IMF is within about 50 degrees of the earth-sun linem Pc3 is observable on the ground. 
 % Troitskaya et al 1971 showed Pc3 frequencies at L=3 depend on IMF magnitude
 % Gul'elmi 1974 and Kovner et al gave theoretical justification for these observations. 

@@ -67,7 +67,7 @@ Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates
 
 In \cref{disp}, the expression in parentheses is the dispersion tensor. Nontrivial solutions exist only when its determinant is zero. This gives rise to a seventh-order polynomial in $\omega$, so rather than a direct solution it's necessary to consider limits of specific interest. 
 
-\todo{Without loss of generality, the wave vector \vec{k} may be taken to lie in the \x-\z plane -- that is, with $k_y = 0$. The distinction between the two perpendicular directions is discussed in \cref{sec_implications}. }
+\todo{Without loss of generality, the wave vector \vec{k} may be taken to lie in the \x-\z plane --- that is, with $k_y = 0$. The distinction between the two perpendicular directions is discussed in \cref{sec_implications}. }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -86,7 +86,7 @@ The parallel-polarized component is quadratic, and thus can be solved directly.
   \omega &= -\frac{i \nu}{2} \pm \sqrt{ \op^2 - \frac{\nu^2}{4} }
 \end{align}
 
-It bears noting that the plasma frequency is large -- not just compared to Pc4 frequencies, but even compared to the collision frequencies in the ionosphere\footnote{The collision frequency may match or exceed the plasma frequency for a thin slice at the bottom of the ionosphere, where the density of neutral atoms is large; however, it falls off quickly. Above an altitude of \SI{200}{\km}, conservatively\cite{nicolet_1953}, the plasma frequency exceeds the collision frequency by an order of magnitude or more. }. 
+It bears noting that the plasma frequency is large --- not just compared to Pc4 frequencies, but even compared to the collision frequencies in the ionosphere\footnote{The collision frequency may match or exceed the plasma frequency for a thin slice at the bottom of the ionosphere, where the density of neutral atoms is large; however, it falls off quickly. Above an altitude of \SI{200}{\km}, conservatively\cite{nicolet_1953}, the plasma frequency exceeds the collision frequency by an order of magnitude or more. }. 
 
 Expanding \cref{par_par_setup} with respect to large \op, the dispersion relation becomes
 \begin{align}
@@ -226,7 +226,7 @@ Noting again that $\op$ is very large, the two roots can be expanded to
 
 The present section's findings carry three significant implications for the present work. 
 
-First -- with the exception of the plasma oscillation, which is revisited in \cref{ch_inertia} -- waves are expected to propagate at the \Alfven speed. This, in combination with the grid configuration, will constrain the time step that can be used to model them numerically. The time step must be sufficiently small that information traveling at the \Alfven speed cannot ``skip over'' entire grid cells\footnote{As is the convention, the time step is scaled down from the smallest \Alfven zone crossing time by a Courant factor, typically 0.1, meaning that it takes at least ten time steps to cross a grid cell. }
+First --- with the exception of the plasma oscillation, which is revisited in \cref{ch_inertia} --- waves are expected to propagate at the \Alfven speed. This, in combination with the grid configuration, will constrain the time step that can be used to model them numerically. The time step must be sufficiently small that information traveling at the \Alfven speed cannot ``skip over'' entire grid cells\footnote{As is the convention, the time step is scaled down from the smallest \Alfven zone crossing time by a Courant factor, typically 0.1, meaning that it takes at least ten time steps to cross a grid cell. }
 
 Second, the results of the present section allow an estimate of the magnitude of parallel electric field that might be expected from a field line resonance compared to its perpendicular electric field. Between the full dispersion tenfor form in \cref{disp} and the \Alfven wave described by \cref{high_final}, 
 \begin{align}
@@ -243,7 +243,7 @@ Whereas the shear \Alfven wave's dispersion relation depends only on the paralle
     \centering
     \includegraphics[width=\textwidth]{figures/alfven_cutoff.pdf}
     \caption[Compressional \Alfven Wave Cutoff Frequencies]{
-      Using the quiet dayside \Alfven speed profile described in \cref{sec_profile}, and taking $k_y \sim \frac{\azm}{2 \pi r}$ as a lower bound for the magnitude of the wave vector, the above figure demonstrates the lowest frequency at which compressional \Alfven waves may propagate as a function of position and \azm. Regions shown in white are off the color scale -- they have a lower bound on the order of \SI{e4}{\mHz} or more. 
+      Using the quiet dayside \Alfven speed profile described in \cref{sec_profile}, and taking $k_y \sim \frac{\azm}{2 \pi r}$ as a lower bound for the magnitude of the wave vector, the above figure demonstrates the lowest frequency at which compressional \Alfven waves may propagate as a function of position and \azm. Regions shown in white are off the color scale --- they have a lower bound on the order of \SI{e4}{\mHz} or more. 
     }
     \label{fig_cutoff}
 \end{figure}
