@@ -5,20 +5,7 @@
   \label{ch_model}
 
 %ALEX NOTES
-%## 5
-%- Ouch, that pun hurts. ;-)
 %- I would mention the other codes and git here, yes.
-%### 5.1
-%- Should there be a ':' before eq 5.2?
-%- So many parenthesis, perhaps try em dashes, or commas (and replace the list
-%  commas with semicolons).
-%- "Four different for the low-density perpendicular" That is not English.
-%- I'm not sure I understand Fig 5.1, is that earth in the cut out circle
-%  thing? I also can't tell the difference between them...
-%### 5.2
-%- Fig 5.3 seems really important for the previous figures.
-
-\todo{The dipole geometry isn't super new, but it's not widely-done. The height-resolved ionosphere is new and exciting! Ground signatures are new and exciting! }
 
 The present section describes the implementation of Tuna, a new two and a half dimensional \Alfven wave code based largely on work by Lysak\cite{lysak_2004,lysak_2013}. 
 
@@ -28,7 +15,9 @@ Unlike a fully three-dimensional code, Tuna cannot resolve the evolution of wave
 
 Tuna was developed with field line resonance in mind. As discussed in \cref{ch_flrs}, such waves are azimuthally localized, minimizing the importance of Tuna's missing half dimension. Moreover, because field line resonances are known to be affected by both the ionosphere and the plasmasphere, a faithful treatment of the inner magnetosphere is a crucial part of studying them numerically. 
 
-Perhaps the most exciting feature of Tuna is its novel driving mechanism: ring current perturbation. Codes similar to Tuna have traditionally been driven using compressional pulses at the outer boundary\cite{lysak_2004,lysak_2013,waters_2008,waters_2013}. This has precluded the investigation of waves with large azimuthal modenumber --- such as giant pulsations --- which are guided, and thus must be driven from within the magnetosphere. 
+Perhaps the most exciting feature of Tuna is its novel driving mechanism: ring current perturbation. Codes similar to Tuna have traditionally been driven using compressional pulses at the outer boundary\cite{lysak_2004,lysak_2013,waters_2013,waters_2008}. This has precluded the investigation of waves with large azimuthal modenumber --- such as giant pulsations --- which are guided, and thus must be driven from within the magnetosphere. 
+
+\todo{The dipole geometry isn't super new, but it's not widely used. The height-resolved ionosphere is new and exciting! Ground signatures are new and exciting! }
 
 \todo{The support software --- the driver and the plotter --- are also significant. Do they get mentioned here? Does the Git repository where the code can be accessed get mentioned here? }
 
@@ -43,21 +32,151 @@ Perhaps the most exciting feature of Tuna is its novel driving mechanism: ring c
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
+\section{Coordinate System}
+  \label{sec_coords}
+
+%\todo{Past work which could be cited for geometry examples: Radoski 1967, Lee and Lysak 1989, 1991, Rankin et al 1993, 1994, Streltsov and Lotko 1995, 1999. }
+
+Field line resonance has traditionally been modeled by straightening the field lines into a rectangular configuration\cite{dungey_1954,mann_1995}, by unrolling the azimuthal coordinate into a cylindrical coordinate system\cite{radoski_1974}, or through the use of dipole coordinates\cite{radoski_1967_coords}\footnote{The dipole coordinates \radx, \rady\ and \radz are perhaps more commonly named $\mu$, $\phi$, and $\nu$ respectively; however, in the present work, $\mu$ and $\nu$ take other meanings.}:
+\begin{align}
+  \label{radoski_coords}
+  \radx &\equiv -\frac{\sin^2 \theta}{r} &
+  \rady &\equiv \phi &
+  \radz &\equiv \frac{\cos \theta}{r^2}
+\end{align}
+
+Where $r$, $\theta$, and $\phi$ take on their usual spherical meanings of radial distance, colatitude, and azimuthal angle respectively. 
+
+The dipole coordinate \radx is constant over each equipotential shell\footnote{In fact, \radx is inversely proportional to the McIlwain parameter $L$.}, \rady is azimuthal angle, and \radz indexes each field line from south to north. The unit vectors \xhat, \yhat, and \zhat point in the crosswise\footnote{In the context of in situ measurements taken near the equatorial plane, \xhat is referred to as the radial direction; however, the present work extends the dipole grid to low altitudes, where \xhat can be more horizontal than vertical. The term ``crosswise'' is meant to indicate that \xhat is defined by the cross product of \yhat and \zhat.} (radially outward at the equator), azimuthal (eastward), and parallel (northward at the equator) directions respectively. 
+
+Notably, the dipole coordinates in \cref{radoski_coords} are normal to one another. While mathematically convenient, they do not readily accommodate a fixed-altitude boundary at the ionosphere, nor do they allow the dipole magnetic field to intersect the boundary at an oblique angle, as Earth's field does. As a solution, a nonorthogonal set of dipole coordinates was developed numerically by Proehl\cite{proehl_2002}, then formalized analytically by Lysak\cite{lysak_2004} in terms of their contravariant components:
+\begin{align}
+  \label{def_coords}
+  \lysakx & = - \frac{R_I}{r} \sin^2 \theta & 
+  \lysaky & = \phi &
+  \lysakz & = \frac{R_I^2}{r^2} \frac{\cos \theta}{\cos \theta_0}
+\end{align}
+
+Above, $R_I$ is the position of the ionosphere relative to Earth's center; it's typically taken to be $\SI{1}{\RE} + \SI{100}{\km}$. 
+
+Like the dipole coordinates \radx, \rady, and \radz, Lysak's coordinates \lysakx, \lysaky, and \lysakz correspond to $L$-shell, azimuthal angle, and position along a field line respectively. However, compared to \radz, \lysakz has been renormalized using the invariant colatitude\footnote{The invariant colatitude is the colatitude $\theta$ at which a field line intersects the ionosphere. It is related to the McIlwain parameter by $\cos\theta_0 \equiv \sqrt{1 - \frac{R_I}{L}}$. } $\theta_0$. As a result, \lysakz takes the value \num[retain-explicit-plus]{+1} at the northern ionospheric boundary and \num{-1} at the southern ionospheric boundary for all field lines. 
+
+Because Lysak's coordinate system is not orthogonal\footnote{Curves of constant \lysakx and curves of constant \lysakz can intersect at non-right angles. }, it's necessary to consider covariant and contravariant basis vectors separately. 
+\begin{align}
+  \hat{e}_i & \equiv \dd{\lysaki} \vec{x} &
+  \hat{e}^i & \equiv \dd{ \vec{x} } \lysaki
+\end{align}
+
+Covariant basis vectors $\hat{e}_i$ are normal to the curve defined by constant $\lysaki$, while contravariant basis vectors $\hat{e}^i$ are tangent to the coordinate curve (equivalently, $\hat{e}^i$ is normal to the plane defined by constant $u^j$ for all $j \ne i$). These vectors are reciprocal\footnote{The symbol $\delta^i_j$ is the Kronecker delta; the present work also makes use of the Levi-Civita symbol $\varepsilon^{ijk}$ and Einstein's convention of implied summation over repeated indeces\cite{einstein_1916}. } to one another, and can be combined to give components of the metric tensor $\tensor{g}$\cite{dhaeseleer_1991}. 
+\begin{align}
+  \label{def_metric}
+  \hat{e}^i \cdot \hat{e}_j &= \delta^i_j &
+  g_{ij} &\equiv \hat{e}_i \cdot \hat{e}_j &
+  g^{ij} &\equiv \hat{e}^i \cdot \hat{e}^j 
+\end{align}
+
+The metric tensor allows rotation between covariant and contravariant representations of vectors. 
+\begin{align}
+  \label{metric}
+  A_i &= g_{ij} A^j &
+  & \text{and} &
+  A^i &= g^{ij} A_j &
+  & \text{where} &
+  A_i &\equiv \vec{A} \cdot \hat{e}_i &
+  & \text{and} &
+  A^i &\equiv \vec{A} \cdot \hat{e}^i
+\end{align}
+
+In addition, the determinant of the metric tensor is used to define cross products and curls\footnote{The square root of the determinant of the metric tensor is called the Jacobian. It's sometimes denoted using the letter $J$, which is reserved for current in the present work. }. 
+\begin{align}
+  \label{jacobian}
+  \lr{ \vec{A} \times \vec{B} }^i &= \frac{ \varepsilon^{ijk} }{\jac} A_j B_k &
+  & \text{and} &
+  \lr{ \curl{A} }^i &= \frac{ \varepsilon^{ijk} }{\jac} \dd{\lysakj} A_k &
+  & \text{where} &
+  g \equiv \det \tensor{g}
+\end{align}
+
+Explicit forms of the basis vectors and metric tensor can be found in the appendix of Lysak's 2004 paper\cite{lysak_2004}. At present, it's sufficient to note the mapping between Lysak's basis vectors and the usual dipole unit vectors. 
+\begin{align}
+  \label{def_xyz_directions}
+  \xhat &= \frac{1}{ \sqrt{ g^{11} } } \hat{e}^1 &
+  \yhat &= \frac{1}{ \sqrt{ g^{22} } } \hat{e}^2 &
+  \zhat &= \frac{1}{ \sqrt{ g_{33} } } \hat{e}_3
+\end{align}
+
+\todo{Do these need to be written out? Referring people to the code, which will be in a public Git repository, is also a possibility. }
+
+The basis vectors can also be mapped to the spherical unit vectors, though \cref{def_rqf_directions} is valid only at the ionospheric boundary. 
+\begin{align}
+  \label{def_rqf_directions}
+  \qhat &= \frac{1}{ \sqrt{ g_{11} } } \hat{e}_1 &
+  \fhat &= \frac{1}{ \sqrt{ g_{22} } } \hat{e}_2 &
+  \rhat &= \frac{1}{ \sqrt{ g^{33} } } \hat{e}^3
+\end{align}
+
+The coordinates converge at the equatorial ionosphere, so an inner boundary is necessary to maintain finite grid spacing. It's typically placed at $L=2$. The outer boundary is at $L=10$. The dipole approximation of Earth's magnetic field is tenuous at the outer boundary (particularly on the dayside); however, in practice, wave activity is localized inside $L\sim7$. The grid is spaced uniformly in \lysakx, which gives finer resolution close to Earth and coarser resolution at large distances. 
+
+Spacing in \lysakz is set by placing grid points along the outermost field line. The points are closest together at the ionosphere, and grow towards the equator. The spacing increases in a geometric fashion, typically by \SI{3}{\percent}. 
+
+Typically, Tuna uses a grid 150 points in \lysakx by 350 points in \lysakz. The result is a resolution on the order of \SI{10}{\km} at the ionosphere, which increases to the order of \SI{e3}{\km} at the midpoint of the outermost field line. 
+
+There are no grid points in \lysaky due to the two-and-a-half-dimensional nature of the model. Fields are assumed to vary as $\exp \arg{i \azm \lysaky}$ --- equally, $\exp \arg{i \azm \phi}$ --- so derivatives with respect to \lysaky are equivalent to a factor of $i \azm$. In effect, the real component of each field is azimuthally in phase with the (purely real) driving, while imaginary values represent behavior that is azimuthally offset. 
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/grid.pdf}
+    \caption[Nonorthogonal Dipole Grid]{
+      The model's nonorthorthogonal dipole grid. Every fifth point is shown in each direction. The high concentration of grid points near Earth's equator is a consequence of the coordinate system, which converges at the equatorial ionosphere. Earth (not shown) is centered at the origin with unit radius. 
+    }
+    \label{fig_grid}
+\end{figure}
+
+The simulation's time step is set based on the grid spacing. As is the convention, \dt is set to match the smallest \Alfven zone crossing time, scaled down by a Courant factor (typically 0.1). It bears noting that the smallest crossing time need not correspond to the smallest zone; the \Alfven speed peaks several thousand kilometers above Earth's surface, in the so-called Ionospheric \Alfven Resonator\cite{lysak_2013}. A typical time step is on the order of \SI{e-5}{\second}. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
 \section{Physical Parameter Profiles}
   \label{sec_profile}
 
-Tuna models Earth's magnetic field to be an ideal dipole:
+%### 5.1
+%- So many parenthesis, perhaps try em dashes, or commas (and replace the list commas with semicolons).
+%- "Four different for the low-density perpendicular" That is not English.
+%- I'm not sure I understand Fig 5.1, is that earth in the cut out circle thing? I also can't tell the difference between them...
+
+
+Tuna models Earth's magnetic field to be an ideal dipole, so the zeroth-order field strength is written in the usual form:
 \begin{align}
   \vec{B}_0 &= \SI{3.1e4}{\nT} \lr{ \frac{R_E}{r} }^3 \lr{ 2 \cos\theta \, \hat{r} - \sin\theta \, \hat{\theta} }
 \end{align}
 
-Number density is taken to be the sum of an inverse-radial-dependent auroral profile and a plasmaspheric profile dependent on the $L$-shell\cite{lysak_2013}. 
+Number density is taken to be the sum of an inverse-radial-dependent auroral profile and a plasmaspheric profile dependent on the $L$-shell\cite{lysak_2013}: 
 \begin{align}
   n &= n_{AZ} \frac{ r_{AZ} }{r} + 
   n_{PS} \exp \arg{ \frac{-L}{ L_{PS} } } \lr{ \frac{1}{2} - \frac{1}{2} \tanh \frac{ L - L_{PP} }{ \dL_{PP} } }
 \end{align}
 
-Where typical values are $n_{AZ} = \SI{10}{\percc}$ (the number density at the base of the auroral zone), $r_{AZ} = \SI{1}{\RE}$ (the scale height of the auroral density distribution), $n_{PS} = \SI{e4}{\percc}$ (the number density at the base of the plasmasphere), $L_{PS} = \SI{1.1}{\RE}$ (the scale $L$ of the plasmasphere), $L_{PP} = 4$ (the $L$ value of the plasmapause), and $\dL_{PP} = 0.1$ (the thickness of the plasmapause, in $L$). 
+% Where typical values are $n_{AZ} = \SI{10}{\percc}$ (the number density at the base of the auroral zone), $r_{AZ} = \SI{1}{\RE}$ (the scale height of the auroral density distribution), $n_{PS} = \SI{e4}{\percc}$ (the number density at the base of the plasmasphere), $L_{PS} = \SI{1.1}{\RE}$ (the scale $L$ of the plasmasphere), $L_{PP} = 4$ (the $L$ value of the plasmapause), and $\dL_{PP} = 0.1$ (the thickness of the plasmapause, in $L$). 
+
+Where typical values are shown in \cref{tab_tuna_typical}.
+
+\begin{longtable}{ @{\extracolsep{\fill}} c r @{\hskip -\tabcolsep}@{\hskip -\tabcolsep} l l @{\extracolsep{\fill}} }
+  \caption[Typical Parameters for the Tuna Density Profile]{Typical Parameters for the Tuna Density Profile}
+  \label{tab_tuna_typical} \\
+  \toprule
+  Variable & \multicolumn{2}{c}{Value} & Description \\
+  \midrule
+  \endfirsthead
+  \bottomrule
+  \endlastfoot
+  $L_{PS}$   & \num{1.1} &             & Scale $L$ of the plasmasphere. \\
+  $L_{PP}$   & \num{4.0} &             & Location of the plasmapause. \\
+  $\dL_{PP}$ & \num{0.1} &             & Thickness of the plasmapause. \\
+  $n_{AZ}$   & \num{10}  & \si{\percc} & Number density at the base of the auroral zone. \\
+  $n_{PS}$   & \num{e4}  & \si{\percc} & Number density at the base of the plasmasphere. \\
+  $r_{AZ}$   & \num{1}   & \si{\RE}    & Scale height of the auroral density distribution. \\
+\end{longtable}
 
 The perpendicular component of the electric tensor, \ep, is computed based on Kelley's\cite{kelley_1989} tabulated low-density values, $\epsilon_K$, which are adjusted to take into account the effects of high density in the plasmapause. 
 \begin{align}
@@ -93,109 +212,6 @@ Ionospheric conductivity profiles are also based on values tabulated by Kelley, 
 Tuna's physical parameter profiles are static over the course of each run. Even so-called ultra low frequency waves like Pc4 pulsations are fast compared to convective timescales in the magnetosphere. 
 
 %Tuna uses static\footnote{Even so-called ultra low frequency waves like Pc4 pulsations evolve very quickly compared to convective timescales in the magnetosphere. }, height-resolved profiles for the electric tensor and the conductivity tensor. Values are based on those found in Appendix B of Kelley\cite{kelley_1989}, and have been adapted\cite{lysak_2013} to take into account the effects of the plasmasphere. Ionospheric profiles are used to distinguish the dayside magnetosphere from the nightside, and times of high solar activity from quiet times. Conductivity profiles are shown in \cref{fig_sigma}; the \Alfven speed profile is shown in \cref{fig_va}.  
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\section{Coordinate System}
-  \label{sec_coords}
-
-%\todo{Past work which could be cited for geometry examples: Radoski 1967, Lee and Lysak 1989, 1991, Rankin et al 1993, 1994, Streltsov and Lotko 1995, 1999. }
-
-Field line resonance has traditionally been modeled by straightening the field lines into a rectangular configuration\cite{dungey_1954,mann_1995}, by unrolling the azimuthal coordinate into a cylindrical coordinate system\cite{radoski_1974}, or through the use of dipole coordinates\cite{radoski_1967_coords}\footnote{The dipole coordinates \radx, \rady\ and \radz are perhaps more commonly named $\mu$, $\phi$, and $\nu$ respectively; however, in the present work, $\mu$ and $\nu$ take other meanings.}:
-\begin{align}
-  \label{radoski_coords}
-  \radx &\equiv -\frac{\sin^2 \theta}{r} &
-  \rady &\equiv \phi &
-  \radz &\equiv \frac{\cos \theta}{r^2}
-\end{align}
-
-Where $r$, $\theta$, and $\phi$ take on their usual spherical meanings of radial distance, colatitude, and azimuthal angle respectively. 
-
-The dipole coordinate \radx is constant over each equipotential shell\footnote{In fact, \radx is inversely proportional to the McIlwain parameter.}, \rady is azimuthal angle, and \radz indexes each field line from south to north. The unit vectors \xhat, \yhat, and \zhat point in the crosswise\footnote{In the context of in situ measurements taken near the equatorial plane, \xhat is referred to as the radial direction; however, the present work extends the dipole grid to low altitudes, where \xhat can be more horizontal than vertical. The term ``crosswise'' is meant to indicate that \xhat is defined by the cross product of \yhat and \zhat.} (radially outward at the equator), azimuthal (eastward), and parallel (northward at the equator) directions respectively. 
-
-Notably, the dipole coordinates in \cref{radoski_coords} are normal to one another. While mathematically convenient, they do not readily accommodate a fixed-altitude boundary at the ionosphere, nor do they allow the dipole magnetic field to intersect the boundary at an oblique angle, as Earth's field does. As a solution, a nonorthogonal set of dipole coordinates was developed numerically by Proehl\cite{proehl_2002}, then formalized analytically by Lysak\cite{lysak_2004} in terms of their contravariant components:
-\begin{align}
-  \label{def_coords}
-  \lysakx & = - \frac{R_I}{r} \sin^2 \theta & 
-  \lysaky & = \phi &
-  \lysakz & = \frac{R_I^2}{r^2} \frac{\cos \theta}{\cos \theta_0}
-\end{align}
-
-Above, $R_I$ is the position of the ionosphere relative to Earth's center; it's typically taken to be $\SI{1}{\RE} + \SI{100}{\km}$. 
-
-Like the dipole coordinates \radx, \rady, and \radz, Lysak's coordinates \lysakx, \lysaky, and \lysakz correspond to $L$-shell, azimuthal angle, and position along a field line respectively. However, compared to \radz, \lysakz has been renormalized using the invariant colatitude\footnote{The invariant colatitude is the colatitude $\theta$ at which a field line intersects the ionosphere. It is related to the McIlwain parameter by $\cos\theta_0 \equiv \sqrt{1 - \frac{R_I}{L}}$. } $\theta_0$. As a result, \lysakz takes the value \num[retain-explicit-plus]{+1} at the northern ionospheric boundary and \num{-1} at the southern ionospheric boundary for all field lines. 
-
-Because Lysak's coordinate system is not orthogonal\footnote{Curves of constant \lysakx and curves of constant \lysakz can intersect at non-right angles. }, it's necessary to consider covariant and contravariant basis vectors separately. 
-\begin{align}
-  \hat{e}_i & \equiv \dd{\lysaki} \vec{r} &
-  \hat{e}^i & \equiv \dd{ \vec{r} } \lysaki
-\end{align}
-
-Covariant basis vectors $\hat{e}_i$ are normal to the curve defined by constant $\lysaki$, while contravariant basis vectors $\hat{e}^i$ are tangent to the coordinate curve (equivalently, $\hat{e}^i$ is normal to the plane defined by constant $u^j$ for all $j \ne i$). These vectors are reciprocal\footnote{The symbol $\delta^i_j$ is the Kronecker delta; the present work also makes use of the Levi-Civita symbol $\varepsilon^{ijk}$ and Einstein's convention of implied summation over repeated indeces\cite{einstein_1916}. } to one another, and can be combined to give components of the metric tensor $\tensor{g}$\cite{dhaeseleer_1991}. 
-\begin{align}
-  \label{def_metric}
-  \hat{e}^i \cdot \hat{e}_j &= \delta^i_j &
-  g_{ij} &\equiv \hat{e}_i \cdot \hat{e}_j &
-  g^{ij} &\equiv \hat{e}^i \cdot \hat{e}^j 
-\end{align}
-
-The metric tensor allows rotation between covariant and contravariant representations of vectors. 
-\begin{align}
-  \label{metric}
-  A_i &= g_{ij} A^j &
-  & \text{and} &
-  A^i &= g^{ij} A_j &
-  & \text{where} &
-  A_i &\equiv \vec{A} \cdot \hat{e}_i &
-  & \text{and} &
-  A^i &\equiv \vec{A} \cdot \hat{e}^i
-\end{align}
-
-In addition, the determinant of the metric tensor is used to define cross products and curls\footnote{The square root of the determinant of the metric tensor is called the Jacobian. It's sometimes denoted using the letter $J$, which the present work reserves for current.}. 
-\begin{align}
-  \label{jacobian}
-  \lr{ \vec{A} \times \vec{B} }^i &= \frac{ \varepsilon^{ijk} }{\jac} A_j B_k &
-  & \text{and} &
-  \lr{ \curl{A} }^i &= \frac{ \varepsilon^{ijk} }{\jac} \dd{\lysakj} A_k &
-  & \text{where} &
-  g \equiv \det \tensor{g}
-\end{align}
-
-Explicit forms of the basis vectors and metric tensor can be found in the appendix of Lysak's 2004 paper\cite{lysak_2004}. At present, it's sufficient to note the mapping between Lysak's basis vectors and the usual dipole unit vectors\footnote{\todo{Do these need to be written out? Referring people to the code, which will be in a public Git repository, is also a possibility. }}. 
-\begin{align}
-  \label{def_xyz_directions}
-  \xhat &= \frac{1}{ \sqrt{ g^{11} } } \hat{e}^1 &
-  \yhat &= \frac{1}{ \sqrt{ g^{22} } } \hat{e}^2 &
-  \zhat &= \frac{1}{ \sqrt{ g_{33} } } \hat{e}_3
-\end{align}
-
-The basis vectors can also be mapped to the spherical unit vectors, though \cref{def_rqf_directions} is valid only at the ionospheric boundary. 
-\begin{align}
-  \label{def_rqf_directions}
-  \qhat &= \frac{1}{ \sqrt{ g_{11} } } \hat{e}_1 &
-  \fhat &= \frac{1}{ \sqrt{ g_{22} } } \hat{e}_2 &
-  \rhat &= \frac{1}{ \sqrt{ g^{33} } } \hat{e}^3
-\end{align}
-
-The coordinates converge at the equatorial ionosphere, so an inner boundary is necessary to maintain finite grid spacing. It's typically placed at $L=2$. The outer boundary is at $L=10$. The dipole approximation of Earth's magnetic field is tenuous at the outer boundary (particularly on the dayside); however, in practice, wave activity is localized inside $L\sim7$. The grid is spaced uniformly in \lysakx, which gives finer resolution close to Earth and coarser resolution at large distances. 
-
-Spacing in \lysakz is set by placing grid points along the outermost field line. The points are closest together at the ionosphere, and grow towards the equator. The spacing increases in a geometric fashion, typically by \SI{3}{\percent}. 
-
-Typically, Tuna uses a grid 150 points in \lysakx by 350 points in \lysakz. The result is a resolution on the order of \SI{10}{\km} at the ionosphere, which increases to the order of \SI{e3}{\km} at the midpoint of the outermost field line. 
-
-There are no grid points in \lysaky due to the two-and-a-half-dimensional nature of the model. Fields are assumed to vary as $\exp \arg{i \azm \lysaky}$, so derivatives with respect to \lysaky are equivalent to a factor of $i \azm$. In effect, this means that the real component of each field is azimuthally in phase with the (purely real) driving, while imaginary values represent behavior that is azimuthally offset. 
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/grid.pdf}
-    \caption[Nonorthogonal Dipole Grid]{
-      The model's nonorthorthogonal dipole grid. Every fifth point is shown in each direction. The high concentration of grid points near Earth's equator is a consequence of the coordinate system, which converges at the equatorial ionosphere. 
-    }
-    \label{fig_grid}
-\end{figure}
-
-The simulation's time step is set based on the grid spacing. As is the convention, \dt is set to match the smallest \Alfven zone crossing time, scaled down by a Courant factor (typically 0.1). It bears noting that the smallest crossing time need not correspond to the smallest zone; the \Alfven speed peaks several thousand kilometers above Earth's surface, in the so-called Ionospheric \Alfven Resonator\cite{lysak_2013}. A typical time step is on the order of \SI{e-5}{\second}. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -265,7 +281,7 @@ Tuna simulates the evolution of electromagnetic waves in accordance with \amplaw
 
 %Differentiation and interpolation are good to second order on the nonuniform grid. Like the coefficients for Maxwell's equations, differentiation and interpolation weights are computed during setup to save time during iteration. 
 
-The Ohmic current in \amplaw is replaced with $\; \tensor{\sigma} \cdot \vec{E}\; $ per Kirchhoff's formulation of \ohmlaw. Then, taking \vec{J} to represent the driving current discussed in \cref{sec_driving}, Maxwell's equations can be written 
+The Ohmic current in \amplaw is replaced with $\; \tensor{\sigma} \cdot \vec{E}\; $ per Kirchhoff's formulation of \ohmlaw. Then, taking \vec{J} to represent the driving current discussed in \cref{sec_driving}, \maxeqs can be written 
 \begin{align}
   \label{def_eqns}
   \ddt \vec{B} &= - \curl{E} &
@@ -285,7 +301,7 @@ In these terms, \farlaw can simply be written:
   \ddt B^i &= - C^i
 \end{align}
 
-Writing each component out explicitly, and using the metric tensor (per \cref{metric}) to eliminate contravariant magnetic field components\footnote{Fields are stored only in terms of their covariant components, and curls in terms of their contravariant components. This reduces Tuna's memory footprint (since each field need not be stored twice) as well as its computational cost (since time need not be spent rotating between bases). As a result, Tuna's solutions to Maxwell's equations are linear expressions whose coefficients are a mishmash of physical constants and geometric factors. To save time, each coefficient is computed once and stored, rather than being multiplied out from scratch with each time step. }, \cref{farlaw_ijk} becomes:
+Writing each component out explicitly, and using the metric tensor (per \cref{metric}) to eliminate contravariant magnetic field components\footnote{Fields are stored only in terms of their covariant components, and curls in terms of their contravariant components. This reduces Tuna's memory footprint (since each field need not be stored twice) as well as its computational cost (since time need not be spent rotating between bases). As a result, Tuna's solutions to \maxeqs are linear expressions whose coefficients are a mishmash of physical constants and geometric factors. To save time, each coefficient is computed once and stored, rather than being multiplied out from scratch with each time step. }, \cref{farlaw_ijk} becomes:
 \begin{align}
   \label{farlaw_final}
   \begin{split}
@@ -305,7 +321,7 @@ Unlike \farlaw, \amplaw cannot be trivially solved. Not only does the derivative
   \lr{ \tensor{\Omega} + \tensor{ \mathbb{I} } \ddt } \cdot \vec{E} &= \tensor{V}^2 \cdot \vec{F}
 \end{align}
 
-Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates\footnote{Note the parallel component of the present definition of $\tensor{\Omega}$ differs slightly from that used in \cref{ch_math}.}, 
+Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates\footnote{Note the parallel component of the present definition of $\tensor{\Omega}$ differs slightly from that used in \cref{ch_math}, due to the latter's consideration of electron inertial effects.}, 
 \begin{align}
   \tensor{V}^2 &\equiv \frac{1}{\mz} \tensor{\epsilon}^{-1} = 
     \mmm{\va^2}{0}{0}
@@ -439,7 +455,7 @@ An expression for the horizontal electric fields at the boundary can be obtained
   \end{alignedat}
 \end{align}
 
-The atmospheric magnetic field is computed as a linear combination of harmonics. The neutral atmosphere is considered to be a perfect insulator, giving $\curl{B}=0$. Combined with $\div{B}=0$ (per Maxwell's equations), this allows the computation of a magnetic scalar potential $\Psi$ such that $\vec{B}=\grad{\Psi}$ and $\Psi$ satisfies Laplace's equation, $\nabla^2 \Psi = 0$. 
+The atmospheric magnetic field is computed as a linear combination of harmonics. The neutral atmosphere is considered to be a perfect insulator, giving $\curl{B}=0$. Combined with $\div{B}=0$ (per \maxeqs), this allows the computation of a magnetic scalar potential $\Psi$ such that $\vec{B}=\grad{\Psi}$ and $\Psi$ satisfies Laplace's equation, $\nabla^2 \Psi = 0$. 
 
 Laplace's equation can be solved analytically; however, a numerical solution is preferrable to ensure orthonormality on a discrete and incomplete\footnote{As discussed in \cref{sec_coords}, the grid is constrained to finite $L$, which excludes the equator as well as the poles. } grid. After separating out the radial and azimuthal dependence in the usual way, the latitudinal component of Laplace's equation can be written in terms of $s \equiv - \sin^2 \theta$: 
 \begin{align}

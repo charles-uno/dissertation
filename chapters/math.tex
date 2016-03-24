@@ -5,17 +5,12 @@
   \label{ch_math}
 
 %ALEX NOTES
-%## 4
-%- Foot note 3: Why?
-%### 4.1
 %- Why revisit plasma oscillation if it is of little interest?
-%### 4.4
-%- Missing period after "grid cells"
 %- I don't see where Fig 4.1 is referenced in the text. Also it references 5.1?
 
 Before delving into the implementation of the numerical model, it's instructive to consider the fundamental equations of waves in a cold, resistive plasma. 
 
-The evolution of electric and magnetic fields is governed by \amplaw and \farlaw. Notably, the present work takes the linearized versions of Maxwell's equations; the vectors \vec{E} and \vec{B} indicate perturbations above the zeroth-order magnetic field. 
+The evolution of electric and magnetic fields is governed by \amplaw and \farlaw. Notably, the present work takes the linearized versions of \maxeqs; the vectors \vec{E} and \vec{B} indicate perturbations above the zeroth-order magnetic field. 
 \begin{align}
   \label{math_maxwells}
   \tensor{\epsilon} \cdot \ddt \vec{E} &= \oomz \curl{B} - \vec{J} & \ddt \vec{B} &= -\curl{E}
@@ -52,7 +47,7 @@ Using the vector identity $\vec{k} \times \vec{k} \times \vec{E} = \vec{k} \, \v
   0 &= \lr{ \tensor{ \mathbb{I} } + \frac{1}{\omega^2} \tensor{V}^2 \cdot \vec{k} \, \vec{k} - \frac{k^2}{\omega^2} \tensor{V}^2 + \frac{i}{\omega} \tensor{\Omega} } \cdot \vec{E}
 \end{align}
 
-Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates\footnote{Note that the present definition of \tensor{\Omega} differs slightly from that used in \cref{sec_eqns}. }, 
+Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates, 
 \begin{align}
   \tensor{V}^2 &\equiv 
     \mmm{\va^2}{0}{0}
@@ -67,7 +62,7 @@ Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates
 
 In \cref{disp}, the expression in parentheses is the dispersion tensor. Nontrivial solutions exist only when its determinant is zero. This gives rise to a seventh-order polynomial in $\omega$, so rather than a direct solution it's necessary to consider limits of specific interest. 
 
-\todo{Without loss of generality, the wave vector \vec{k} may be taken to lie in the \x-\z plane --- that is, with $k_y = 0$. The distinction between the two perpendicular directions is discussed in \cref{sec_implications}. }
+Without loss of generality, the wave vector \vec{k} may be taken to lie in the \x-\z plane --- that is, with $k_y = 0$. The distinction between the two perpendicular directions is discussed in \cref{sec_implications}. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -77,7 +72,7 @@ In \cref{disp}, the expression in parentheses is the dispersion tensor. Nontrivi
 
 The wave vector of a field line resonance aligns closely to the background magnetic field. By supposing that the two align exactly (that is, taking $k_x = 0$), the parallel and perpendicular components  of the dispersion relation are decoupled. 
 
-The parallel-polarized component is quadratic, and thus can be solved directly. 
+The parallel-polarized component --- that is, the solution when $E_x = E_y = 0$ --- is quadratic, and thus can be solved directly. 
 \begin{align}
   \label{par_par_setup}
   % Parallel propagation, parallel polarization. 
@@ -92,15 +87,14 @@ Expanding \cref{par_par_setup} with respect to large \op, the dispersion relatio
 \begin{align}
   \label{par_par_final}
   % Parallel propagation, parallel polarization. 
-  % Parallel propagation, parallel polarization. 
   \omega^2 & = \op^2 \pm i \nu \op + ...
 \end{align}
 
 \cref{par_par_final} can hardly be called a wave, as it does not depend on the wave vector \vec{k}. Rather, it is the plasma oscillation\footnote{The plasma oscillation is also called the Langmuir wave, after Irving Langmuir. }: electrons vibrating in response to a charge separation along the background magnetic field. 
 
-The plasma oscillation is of little interest to the study of field line resonance. The two phenomena are separated by six orders of magnitude in frequency. Nevertheless, the topic is revisited in \cref{ch_inertia}. 
+The plasma oscillation is not specifically relevant to the study of field line resonance. The two phenomena are separated by six orders of magnitude in frequency. The topic is revisited in \cref{ch_inertia} insomuch as it is inseparable from the electron inertial effects in \ohmlaw. 
 
-The perpendicular components of the dispersion relation give an expression quartic in $\omega$. 
+The perpendicular ($E_z = 0$) components of the dispersion relation give an expression quartic in $\omega$. 
 \begin{align}
   \label{par_perp_setup}
   % Parallel propagation, perpendicular polarization. 
@@ -123,9 +117,7 @@ Also like the parallel-polarized component, the exact solution is less useful th
   \omega^2 = k_z^2 \va^2 \opm k_z \va \frac{\sh \pm i \sp}{\ep} + ...
 \end{align}
 
-This is the \Alfven wave, with a shift to its frequency due to the conductivity of the ionosphere. It travels along the background magnetic field like a bead on a string, with electric and magnetic field perturbations perpendicular to the magnetic field line (and to one another). 
-
-\todo{Jesse calls this the magnetosonic wave, and uses ``\Alfven wave'' for the other one! } 
+This is the shear \Alfven wave, with a shift to its frequency due to the conductivity of the ionosphere. It travels along the background magnetic field like a bead on a string, with electric and magnetic field perturbations perpendicular to the magnetic field line (and to one another). 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -133,11 +125,11 @@ This is the \Alfven wave, with a shift to its frequency due to the conductivity 
 \section{Compressional Propagation}
   \label{sec_perp}
 
-\todo{Is it fair to say ``compressional'' to mean ``perpendicular'' in terms of propagation? It would be nice to have different jargon for the propagation directions and the polarization directions. }
+%\todo{Is it fair to say ``compressional'' to mean ``perpendicular'' in terms of propagation? It would be nice to have different jargon for the propagation directions and the polarization directions. }
 
 The partner to guided motion is compressional motion; in order for energy to move across field lines, the wave vector must have a component perpendicular to \zhat. If the wave vector is completely perpendicular to the magnetic field line ($k_z = 0$), the parallel and perpendicular components of the dispersion relation decouple, as in \cref{sec_par}. 
 
-The parallel-polarized component of the dispersion relation is
+The parallel-polarized ($E_x = E_y = 0$) component of the dispersion relation is
 \begin{align}
   \label{perp_par_setup}
   % Perpendicular propagation, parallel polarization. 
@@ -155,7 +147,7 @@ The parallel-polarized component of the dispersion relation is
 
 This is the O mode, a compressional wave with an electric field perturbation along the background magnetic field. Like the plasma oscillation discussed in \cref{sec_par}, its frequency is very large compared to that of a field line resonance. 
 
-The perpendicular-polarized component of the compressional dispersion relation is also cubic. 
+The perpendicular-polarized ($E_z = 0$) component of the compressional dispersion relation is also cubic. 
 \begin{align}
   \label{perp_perp_setup}
   % Perpendicular propagation, perpendicular polarization. 
@@ -176,7 +168,9 @@ A wave moving across magnetic field lines near the ionospheric boundary will enc
 %  \end{split}
 \end{align}
 
-\todo{These expressions are both the same sort of wave, obviously, with shifts in frequency due to the ionospheric conductivity. Double check terminology; is it still an \Alfven wave if it's propagating across magnetic field lines, or does a different name become more correct? Electric field perturbation is still perpendicular to the background magnetic field. }
+In both limits, \cref{perp_perp_final} describes a compressional \Alfven wave. The magnetic field perturbation is along the background magnetic field --- indicating compression of the frozen-in plasma --- while the electric field perturbation is perpendicular to both the magnetic field and the wave vector. 
+
+\todo{Double check terminology. Jesse's dissertation disagrees with Bob's notes. }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -186,14 +180,15 @@ A wave moving across magnetic field lines near the ionospheric boundary will enc
 
 In the limit of large radial distance, it's reasonable to take the collision frequency to zero; doing so also neglects the Pedersen and Hall conductivities. 
 
-Whereas in \cref{sec_par,sec_perp} it was the parallel-polarized component of the dispersion relation that factored out from the other two, the high altitude limit decouples the component polarized out of the \x-\z plane. The \yhat-polarized dispersion relation is simply:
+Whereas in \cref{sec_par,sec_perp} it was the parallel-polarized component of the dispersion relation that factored out from the other two, the high altitude limit decouples the component polarized out of the \x-\z plane. The \yhat-polarized dispersion ($E_x = E_z = 0$) is simply:
 \begin{align}
+  \label{high_y}
   \omega^2 & = k^2 \va^2
 \end{align}
 
-This solution is analogous to \cref{par_perp_final,perp_perp_final}. The electric field perturbation is perpendicular to both the background magnetic field and the wave vector (though those two evidently need not be perpendicular to one another). 
+\cref{high_y} describes an \Alfven wave with an arbitrary angle of propagation. Depending on the angle between the wave vector and the background magnetic field, it could be guided, compressional, or somewhere in between. Regardless of propagation angle, the electric field perturbation is perpendicular to both the direction of propagation and the magnetic field perturbation. 
 
-The other two components of the high altitude dispersion tensor give an expression quadratic in $\omega^2$:
+The other two components (from $E_y = 0$) of the high altitude dispersion tensor give an expression quadratic in $\omega^2$:
 \begin{align}
   \label{high_setup}
   0 &= \omega^4 
@@ -216,7 +211,7 @@ Noting again that $\op$ is very large, the two roots can be expanded to
   \omega^2 & = k_x^2 c^2 + k_z^2 \va^2 + \op^2 + ...
 \end{align}
 
-\todo{The first part looks like an \Alfven wave. The second is faster than the plasma frequency, so we don't really care about it. }
+The first is a shear \Alfven wave, as in \cref{par_perp_final}. The second oscillates faster than the plasma frequency; like the plasma oscillation in \cref{par_par_final} and the O mode in \cref{parallel_math_final}, it's far outside the Pc4 frequency range. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -226,14 +221,14 @@ Noting again that $\op$ is very large, the two roots can be expanded to
 
 The present section's findings carry three significant implications for the present work. 
 
-First --- with the exception of the plasma oscillation, which is revisited in \cref{ch_inertia} --- waves are expected to propagate at the \Alfven speed. This, in combination with the grid configuration, will constrain the time step that can be used to model them numerically. The time step must be sufficiently small that information traveling at the \Alfven speed cannot ``skip over'' entire grid cells\footnote{As is the convention, the time step is scaled down from the smallest \Alfven zone crossing time by a Courant factor, typically 0.1, meaning that it takes at least ten time steps to cross a grid cell. }
+First --- with the exception of the plasma oscillation and similar modes, which are revisited in \cref{ch_inertia} --- waves propagate at the \Alfven speed. This, in combination with the grid configuration, will constrain the time step that can be used to model them numerically. The time step must be sufficiently small that information traveling at the \Alfven speed cannot ``skip over'' entire grid cells\footnote{As is the convention, the time step is scaled down from the smallest \Alfven zone crossing time by a Courant factor, typically 0.1, meaning that it takes at least ten time steps to cross a grid cell. }.
 
 Second, the results of the present section allow an estimate of the magnitude of parallel electric field that might be expected from a field line resonance compared to its perpendicular electric field. Between the full dispersion tenfor form in \cref{disp} and the \Alfven wave described by \cref{high_final}, 
 \begin{align}
   \left| \frac{E_z}{E_x} \right| &= \frac{ k_x k_z c^2 }{ \omega^2 - k_x^2 c^2 - \op^2 } \sim \frac{k^2 c^2 }{\op^2}
 \end{align}
 
-In essence, the relative magnitudes of the parallel and perpendicular electric fields should be in proportion to the square of the relative magnitudes of the electron inertial length (\SIrange{1}{100}{\km}, depending on altitude) and the wavelength (\about\SI{e5}{\km}). That is, parallel electric fields should be smaller than the perpendicular electric fields by six or more orders of magnitude. 
+In essence, the relative magnitudes of the parallel and perpendicular electric fields should be in proportion to the square of the relative magnitudes of the electron inertial length (\SIrange{1}{100}{\km}) and the wavelength (\about\SI{e5}{\km}). That is, parallel electric fields should be smaller than the perpendicular electric fields by six or more orders of magnitude. 
 
 Finally, the dispersion relations shown above indicate how the behavior of a field line resonance should behave as the azimuthal modenumber becomes large. 
 
@@ -243,11 +238,12 @@ Whereas the shear \Alfven wave's dispersion relation depends only on the paralle
     \centering
     \includegraphics[width=\textwidth]{figures/alfven_cutoff.pdf}
     \caption[Compressional \Alfven Wave Cutoff Frequencies]{
-      Using the quiet dayside \Alfven speed profile described in \cref{sec_profile}, and taking $k_y \sim \frac{\azm}{2 \pi r}$ as a lower bound for the magnitude of the wave vector, the above figure demonstrates the lowest frequency at which compressional \Alfven waves may propagate as a function of position and \azm. Regions shown in white are off the color scale --- they have a lower bound on the order of \SI{e4}{\mHz} or more. 
+      Taking $k_y \sim \frac{\azm}{2 \pi r}$ as a lower bound for the magnitude of the wave vector, the above figure demonstrates the lowest frequency at which compressional \Alfven waves may propagate as a function of position and \azm. Regions shown in white are off the color scale --- they have a lower bound on the order of \SI{e4}{\mHz} or more. \Alfven frequency profiles are based on values from Kelley\cite{kelley_1989}, discussed further in \cref{sec_profile}. 
     }
     \label{fig_cutoff}
 \end{figure}
 
-This imposes a frequency cutoff on compressional \Alfven waves which scales with the azimuthal modenumber. At small values of \azm, most of the magnetosphere is conducive to compressional \Alfven waves in the Pc4 frequency range. As \azm increases, and the wave vector with it, the inner magnetosphere becomes increasingly inaccessible to them. 
+This imposes a frequency cutoff on compressional \Alfven waves which scales with the azimuthal modenumber, as shown in \cref{fig_cutoff}. At small values of \azm, most of the magnetosphere is conducive to compressional \Alfven waves in the Pc4 frequency range. As \azm increases, and the wave vector with it, the inner magnetosphere becomes increasingly inaccessible to them. 
+
 
 
