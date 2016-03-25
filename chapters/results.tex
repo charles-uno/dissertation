@@ -26,9 +26,9 @@ In his 1974 paper, Radoski argues that a poloidally-polarized wave should asympt
 
 \todo{Mann and Wright looked specifically at second harmonics. This work is on first harmonics. (In principle Tuna allows arbitrary driving waveforms and spatial distributions.) }
 
-The present section builds on the aforementioned results by relaxing several of their nonphysical assumptions. First, Tuna's geometry (as described in \cref{ch_model}) is far more realistic than Radoski's half-cylinder or the box model used by Mann and Wright. Magnetic field lines are dipolar. \Alfven speed is based on an empirical profile, and varies along and across field lines. Next, the present results feature driving delivered over time through perturbation of the ring current; past work has instead considered the evolution of an initial condition. Finally, the present model includes a height-resolved ionosphere (rather than perfectly-reflecting boundaries). The ionospheric conductivity provides a direct coupling between the poloidal and toroidal modes, in addition to dissipating energy. 
+The present section builds on the aforementioned results by relaxing several of their nonphysical assumptions. First, Tuna's geometry (as described in \cref{ch_model}) is far more realistic than Radoski's half-cylinder or the box model used by Mann and Wright. Magnetic field lines are dipolar. \Alfven speed is based on an empirical profile, and varies along and across field lines. Next, the present results feature driving delivered over time through perturbation of the ring current; past work has instead considered only the evolution of an initial condition. Finally, the present model includes a height-resolved ionosphere (rather than perfectly-reflecting boundaries). The ionospheric conductivity provides a direct coupling between the poloidal and toroidal modes, in addition to dissipating energy. 
 
-Each subplot in \cref{fig_U_day,fig_U_day_big,fig_U_night} is analogous to Mann's Figure 3. Blue lines show the total energy in the poloidal mode as a function of time. Red lines show toroidal energy. Runs are organized such that driving frequency is constant down each column, and azimuthal modenumer is constant across each row. Axis bounds are held constant across all subplots. 
+Each subplot in \cref{fig_U_2,fig_U_2_big,fig_U_3,fig_U_3_big} is analogous to Mann's Figure 3. Blue lines show the total energy in the poloidal mode as a function of time. Red lines show toroidal energy. Runs are organized such that driving frequency is constant down each column, and azimuthal modenumer is constant across each row. Axis bounds are held constant across all subplots. 
 
 Energy is computed per Poynting's theorem, with due consideration of the unusual geometry. Energy density is integrated over the meridional plane, but not in the azimuthal direction, giving units of gigajoules per radian; more than anything else, this serves as a reminder that the waves under consideration are azimuthally localized. 
 \begin{align}
@@ -37,67 +37,75 @@ Energy is computed per Poynting's theorem, with due consideration of the unusual
   U_T &= \displaystyle\int \frac{d\lysakx d\lysakz}{2 \mz \jac} \lr{ B_y^2 + \frac{1}{\va^2} E_x^2} 
 \end{align}
 
-The twenty-eight runs shown in \cref{fig_U_day} use a high-conductivity profile, corresponding to the dayside with high solar activity. 
+The twenty-eight runs shown in \cref{fig_U_2} use a high-conductivity profile, corresponding to the dayside with low solar activity. 
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/U_day.pdf}
-    \caption[Poloidal and Toroidal Energy: Quiet Day]{
-      \todo{MAKE THIS PLOT WITH MODEL 2. }
+    \includegraphics[width=\textwidth]{figures/U_2.pdf}
+    \caption[Poloidal and Toroidal Energy: Quiet Day, Typical Plasmasphere]{
+      Driving is continuously injected into the poloidal mode (energy in blue). The waves rotate asymptotically to the toroidal mode (red). When the azimuthal modenumber (rows) is large, the rotation is slower. The driving frequency (columns) also affects the asymptotic accumulation of energy. 
     }
-    \label{fig_U_day}
+    \label{fig_U_2}
 \end{figure}
 
-The fact that red (toroidal) lines appear at all speaks to the coupling of the poloidal and toroidal modes. As discussed in \cref{ch_model}, driving in Tuna is delivered purely into the poloidal electric field (as a proxy for the azimuthal current). 
+The fact that red (toroidal) lines appear at all speaks to the coupling of the poloidal and toroidal modes. As discussed in \cref{ch_model}, driving in Tuna is delivered purely into the poloidal electric field (reflecting the azimuthal direction of the ring current). 
 
 As predicted, the rotation from poloidal to toroidal is slowest at large azimuthal modenumbers. The toroidal energy overtakes the poloidal energy within a single drive period at $\azm=4$; with $\azm=64$, the most of the energy is in the poloidal mode for \about10 periods. However, the relationship between azimuthal modenumber and rotation timescale is not linear, as was suggested by Mann and Wright. Instead, the rotation is fastest at $\azm=4$. 
 
 This hints at two competing effects, and there are only so many options. In addition to the poloidal-to-toroidal rotation, the two modes are coupled by the ionospheric Hall conductivity; energy is also is lost when waves propagate out of the simulation domain, and as a result of Joule dissipation. 
 
-\todo{The propagation of energy out of the simulation domain does explain this behavior. As shown in \cref{fig_cutoff}, as the azimuthal modenumber increases past order unity, the cutoff frequency for compressional \Alfven waves rises through the Pc4 frequency band. }
+In practice, the Hall conductivity does not move large amounts of energy between the poloidal and toroidal modes. In fact, when the runs shown in \cref{fig_U_2} are repeated with Hall conductivity uniformy zero (not shown), the energy curves are not visibly distinct. 
 
-\todo{In practice, the Hall conductivity does not move large amounts of energy between the poloidal and toroidal modes. In fact, when the runs shown in \cref{fig_U_day} are repeated with the Hall conductivity uniformly zero, the behavior is the same. }
+Joule dissipation --- discussed further below --- is a major player in the simulation's energy economy, but does not depend directly on the azimuthal modenumber. 
 
-\todo{Joule dissipation is a major player in the simulation's energy economy. The asymptotic total energy is set by the balance of driving input and dissipative loss. However, it's not obvious that Joule dissipation should act particularly strongly at small azimuthal modenumber. }
+That leaves the propagation of energy across field lines, which does explain the observed behavior. As the azimuthal modenumber increases past order unity, compressional \Alfven waves in the Pc4 band become evanescent\footnote{See \cref{sec_implications}. }. Runs in the top two rows lose considerable sums of energy as a result of waves propagating out of the simulation domain. In contrast, runs conducted at higher modenumber are not conducive to compressional \Alfven waves, so no energy escapes through the outer boundary. 
 
-\todo{The total energy in the system is asymptotically determined by the balance between the energy input (from driving) and the energy loss (through Joule dissipation in the ionosphere). When the driving frequency is not particularly close to the local \Alfven frequency, the energy reaches its asymptotic value quickly. When those frequencies align closely, energy accumulates over a larger number of drive periods, and the asymptotic value is larger. }
+Notably, the low-modenumber runs at \SI{19}{\mHz} do accumulate significant energy over time, while those at \SI{13}{\mHz}, \SI{16}{\mHz}, and \SI{22}{\mHz} falter. This is because \SI{19}{\mHz} driving excites the third harmonic just inside the simulation's outer boundary, as shown in \cref{fig_third_harmonic}. Coupling to the shear \Alfven wave at $L\about9$ gives energy a second chance to resonate before being lost to the outer boundary. 
 
-The system's resonant frequency (for a fundamental poloidal mode at $L=5$) is affected significantly by the size of the plasmasphere. In \cref{fig_U_day}, with the plasmapause at $L_{PP}=4$, the system resonates at \SI{19}{\mHz} at low \azm; as \azm becomes large, the resonant frequency is closer to \SI{22}{\mHz}. \cref{fig_U_day_big} shows the effect of moving the plasmapause to $L_{PP}=5$: resonance is closer to \SI{16}{\mHz}. The runs are otherwise identical to those shown in \cref{fig_U_day}. 
+In each run, the energy of the system is asymptotically determined by the balance between the energy input (from driving) and the energy loss (through Joule dissipation in the ionosphere, and, at low \azm, escape through the outer boundary). When the driving frequency matches closely with the local \Alfven frequency, energy accumulates over a number of drive periods, leading to a relatively large asymptotic energy in the system. 
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/U_day_big.pdf}
+    \includegraphics[width=\textwidth]{figures/U_2_big.pdf}
     \caption[Poloidal and Toroidal Energy: Quiet Day, Large Plasmasphere]{
-      Changing the position of the plasmapause has a significant effect on the \Alfven bounce time. \todo{FIX PLOT TITLE. } 
+      Above is a figure identical to \cref{fig_U_2}, except that the plasmapause has been moved from $L_{PP} = 4$ to $L_{PP} = 5$. This affects which driving frequency is closest to the resonant \Alfven frequency, and hence is most effective is causing a buildup of energy over time. 
     }
-    \label{fig_U_day_big}
+    \label{fig_U_2_big}
 \end{figure}
+
+The system's resonant frequency (for a fundamental poloidal mode at $L\about5$) is affected significantly by the size of the plasmasphere. In \cref{fig_U_2}, with the plasmapause at $L_{PP}=4$, the system resonates at \SI{19}{\mHz} at low \azm; as \azm becomes large, the resonant frequency is closer to \SI{22}{\mHz}. \cref{fig_U_2_big} shows the effect of moving the plasmapause to $L_{PP}=5$: resonance is closer to \SI{16}{\mHz}. The runs are otherwise identical to those shown in \cref{fig_U_2}. 
 
 On the nightside, the picture changes significantly. 
 
-The ionospheric conductivity on the nightside is lower. As a result, energy is dissipated more efficiently. 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/U_3.pdf}
+    \caption[Poloidal and Toroidal Energy: Active Night, Typical Plasmasphere]{
+      On the nightside, driving in the Pc4 band is not resonant at $L\about5$. This --- combined with the less-conductive ionosphere --- causes the poloidal (blue) and toroidal (red) energies to quickly reach their asymptotic values. As on the dayside, energy rotates from poloidal to toroidal most effectively at small-but-finite \azm. 
+    }
+    \label{fig_U_3}
+\end{figure}
 
-\todo{The asymptotic energy --- at which driving and dissipation balance --- is much lower on the nightside. It's reached much more quickly as a result. The system does not accumulate energy over multiple driving periods. }
+Due to the difference in electric constant between the dayside and nightside magnetospheres\footnote{See \cref{fig_fa}. }, resonant frequencies just outside the typical ($L_{PP} = 4$) plasmapause are well above the Pc4 range. As shown in \cref{fig_U_3}, this results in little energy accumulation across the board --- compared to \cref{fig_U_2}, where the driving was near the resonant frequency, asymptotic energies are lower on the nightside by an order of magnitude or more. 
 
-\todo{The system resembles a damped-driven oscillator. There is no evidence of resonance --- of an energy buildup over multiple driving periods. Instead, the energy follows the waveform of the driver. }
+Even so, the poloidal-to-toroidal rotation is qualitatively the same. The further the azimuthal modenumber from the rotation peak at $\azm = 4$, the lower the asymptotic toroidal energy level is compared to the poloidal. If anything, the effect is exaggerated by the small dissipation timescale. When $\azm = 64$, only \about\SI{1}{\percent} of the energy in the poloidal mode rotates to the toroidal mode before being lost. 
 
-\todo{The only difference between the runs shown in \cref{fig_U_day} and those in \cref{fig_U_night} is the ionospheric profile. }
+Behavior closer to resonance is shown in \cref{fig_U_3_big}. 
 
-\todo{Rotation of poloidal energy to the toroidal mode is present on the nightside, as it is on the dayside. There's less energy, of course, because the ionosphere damps the poloidal mode just as fast as it can rotate. The toroidal mode also doesn't last long. }
-
-\todo{The rotation rate is shown by the asymptotic division of energy between the poloidal and toroidal modes. As on the dayside, the toroidal mode grows most quickly at $\azm=4$; the poloidal and toroidal modes hold a similar amount of energy. At $\azm=64$, the dissipation timescale is evidently much faster than the rotation timescale... only \about\SI{1}{\percent} of the poloidal energy ever rotates to the toroidal mode. }
+\todo{The runs with $L_{PP} = L_{drive} = 5$ are OK, but still not really resonant. Trying $L_{PP} = 5$ with $L_{drive} = 6$. It's a lot closer to the boundary, so may be prone to instability. Another option (next on the docket) is $L_{drive} = 6$ with the usual plasmapause at $L_{PP} = 4$. When the driving is that far out, it's not clear how important the plasmapause is anyway. }
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/U_night.pdf}
-    \caption[Poloidal and Toroidal Energy: Quiet Night]{
-      \todo{REDO WITH MODEL 2. }
-%      Driving is applied to the poloidal electric field. There is some rotation of energy to the toroidal mode (and less at high azimuthal modenumber), but the low ionospheric conductivity prevents energy from accumulating over time. 
+    \includegraphics[width=\textwidth]{figures/U_3_big.pdf}
+    \caption[Poloidal and Toroidal Energy: Active Night, Typical Plasmasphere]{
+      \todo{$\cdots$}
     }
-    \label{fig_U_night}
+    \label{fig_U_3_big}
 \end{figure}
 
-The results of the present section show agreement with --- and significant refinement of --- earlier work. In the case of large-but-finite ionospheric conductivity, dipole geometry, and realistic \Alfven speed profile, energy rotates asymptotically from the poloidal mode to the toroidal mode. The rotation rate is strongly affected by azimuthal modenumber and, in the case of large-but-finite \azm, has a characteristic timescale in the tens of periods. 
+The results of the present section show agreement with --- and significant refinement of --- past analytical and numerical work. In the case of large (but finite) ionospheric conductivity, dipole geometry, and realistic \Alfven speed profile, energy rotates asymptotically from the poloidal mode to the toroidal mode. The rotation rate is strongly affected by azimuthal modenumber and, in the large-\azm regime, has a characteristic timescale in the tens of periods. 
+
+\todo{The following may need to be reworked --- a few final attempts are currently running, to see if it's possible to get something nice looking on the nightside. }
 
 The present work furthermore considers the issue of poloidal lifetimes in the low conductivity regime (while past work has used perfectly-reflecting boundaries). The result is novel: rather than asymptotically accumulating energy in the toroidal mode, an FLR on the nightside does not seem to accumulate energy at all. This is relevant to the question of day-night asymmetry in the observation of field line resonances. 
 
