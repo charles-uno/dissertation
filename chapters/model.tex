@@ -161,7 +161,7 @@ Number density is taken to be the sum of an inverse-radial-dependent auroral pro
 
 Where typical values are shown in \cref{tab_tuna_typical}.
 
-\begin{longtable}{ @{\extracolsep{\fill}} c r @{\hskip -\tabcolsep}@{\hskip -\tabcolsep} l l @{\extracolsep{\fill}} }
+\begin{longtable}{ @{\extracolsep{\fill}} c r @{{\hskip -\tabcolsep}{\hskip -\tabcolsep}} l l @{\extracolsep{\fill}} }
   \caption[Typical Parameters for the Tuna Density Profile]{Typical Parameters for the Tuna Density Profile}
   \label{tab_tuna_typical} \\
   \toprule
@@ -196,7 +196,9 @@ The \Alfven speed profile is computed from the perpendicular electric constant i
     \label{fig_va}
 \end{figure}
 
-While the density profile is held constant for all runs discussed in the present work, the \Alfven speed profile is not. Four different for the low-density perpendicular electric constant $\epsilon_K$, corresponding to the differing ionospheric conditions between the dayside and the nightside, and between the high and low points in the solar cycle. These differences are visible in \cref{fig_va}, particularly in the size of the ionospheric \Alfven resonator (the peak in \Alfven speed in the high-latitude ionosphere). 
+While the density profile is held constant for all runs discussed in the present work, the \Alfven speed profile is not. Four different profiles are used for the low-density perpendicular electric constant $\epsilon_K$, corresponding to the differing ionospheric conditions between the dayside and the nightside, and between the high and low points in the solar cycle. These differences are visible in \cref{fig_va}, particularly in the size of the ionospheric \Alfven resonator (the peak in \Alfven speed in the high-latitude ionosphere). 
+
+\todo{Runs are only carried out for day and night... is it even worth showing the flank profile? }
 
 \begin{figure}[!htb]
     \centering
@@ -221,9 +223,9 @@ Tuna's physical parameter profiles are static over the course of each run. Even 
 
 %\todo{This model allows arbitrary driving/propagating waveform, absorption, refraction, phase/group delay, frequency shift, polarization, faraday rotation\cite{simpson_2004,samimi_2015}. }
 
-Models similar to Tuna have traditionally been driven using compression at the outer boundary\cite{lysak_2004,lysak_2013,waters_2008,waters_2013}. Such driving can be envisioned as a proxy for solar wind compression, Kelvin-Helmholtz effects at the magnetopause, and so on. However, because of the constraints imposed by the dispersion relation for \Alfven waves\footnote{See \cref{sec_implications}. }, simulations driven from the outer boundary are constrained to the consideration of waves with low azimuthal modenumber (equivalently, large azimuthal wavelength). 
+Models similar to Tuna have traditionally been driven using compression at the outer boundary\cite{lysak_2004,lysak_2013,waters_2013,waters_2008}. Such driving acts as a proxy for solar wind compression, Kelvin-Helmholtz effects at the magnetopause, and so on. However, because of the constraints imposed by the dispersion relation for \Alfven waves\footnote{See \cref{sec_implications}. }, simulations driven from the outer boundary are constrained to the consideration of waves with low azimuthal modenumber (equivalently, large azimuthal wavelength). 
 
-This issue is demonstrated in \cref{fig_bdrive}. At low modenumber, energy delivered at the outer boundary is able to propagate across field lines in order to stimulate resonances in the inner magnetosphere. However, as modenumber increases, \Alfven waves become increasingly guided, and the inner magnetosphere is unaffected by perturbations at the outer boundary. 
+This issue is demonstrated in \cref{fig_bdrive}. At low modenumber, energy delivered at the outer boundary propagates across field lines in order to stimulate resonances in the inner magnetosphere. However, as modenumber increases, \Alfven waves become increasingly guided, and the inner magnetosphere is unaffected by perturbations at the outer boundary. 
 
 \begin{figure}[!htb]
     \centering
@@ -253,7 +255,7 @@ As shown in \cref{fig_symh}, a Fourier transform of the Sym-H index (taken here 
     \label{fig_symh}
 \end{figure}
 
-In situ observations of Pc4 pulsations and giant pulsations have shown waves with modenumbers across the range $1 \lesssim \azm \lesssim 100$\cite{dai_2013,dai_2015,takahashi_2013}. Simulations are carried out across that range, corresponding to ring current perturbations with azimuthal extent as small as \SI{0.5}{\RE}. 
+In situ observations of Pc4 pulsations and giant pulsations have shown waves with modenumbers across the range $1 \lesssim \azm \lesssim 100$\cite{dai_2015,dai_2013,takahashi_2013}. Simulations are carried out across that range, corresponding to ring current perturbations with azimuthal extent as small as \SI{0.5}{\RE}. 
 
 \todo{Driving is delivered in the azimuthal component of the current only. }
 
@@ -321,7 +323,7 @@ Unlike \farlaw, \amplaw cannot be trivially solved. Not only does the derivative
   \lr{ \tensor{\Omega} + \tensor{ \mathbb{I} } \ddt } \cdot \vec{E} &= \tensor{V}^2 \cdot \vec{F}
 \end{align}
 
-Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates\footnote{Note the parallel component of the present definition of $\tensor{\Omega}$ differs slightly from that used in \cref{ch_math}, due to the latter's consideration of electron inertial effects.}, 
+Where $\tensor{ \mathbb{I} }$ is the identity tensor and in \x-\y-\z coordinates\footnote{Note the parallel component of the present definition of $\tensor{\Omega}$ differs slightly from that used in \cref{ch_math}, due to the present neglect of inertial effects; see \cref{ch_inertia}.}, 
 \begin{align}
   \tensor{V}^2 &\equiv \frac{1}{\mz} \tensor{\epsilon}^{-1} = 
     \mmm{\va^2}{0}{0}
@@ -340,14 +342,14 @@ Multiplying through by $\exp \arg{ \tensor{\Omega} \, t }$ and applying the prod
   \ddt \Big( \exp \arg{\tensor{\Omega} \, t} \cdot \vec{E} \, \Big) &= \exp \arg{\tensor{\Omega} \, t} \cdot \vec{V}^2 \cdot \vec{F}
 \end{align}
 
-\cref{int_fac_1} can then be integrated over a small time step \dt and expressed in terms of the assignment operator introduced in \cref{farlaw_ijk}. 
+\cref{int_fac_1} can then be integrated over a small time step \dt and expressed in terms of the assignment operator introduced in \cref{farlaw_final}. 
 \begin{align}
   \label{int_fac_2}
   \vec{E} &\assign \exp \arg{ -\tensor{\Omega} \, \dt } \cdot \vec{E} + \dt \, \exp \arg{ -\tensor{\Omega} \, \tfrac{\dt}{2} } \cdot \tensor{V}^2 \cdot \vec{F}
 \end{align}
 
 The tensor exponential can be evaluated by splitting $\tensor{\Omega}$ into the sum of its diagonal and Hall components
-\footnote{For tensors, $\exp \arg{ \tensor{S} + \tensor{T} } = \exp \arg{ \tensor{S} } \exp \arg{ \tensor{T} }$ as long as $\tensor{S} \cdot \tensor{T} = \tensor{T} \cdot \tensor{S}$. }. The Hall exponential condenses into sines and cosines, giving a rotation around the magnetic field line. 
+\footnote{For tensors, $\exp \arg{ \tensor{S} + \tensor{T} } = \exp \arg{ \tensor{S} } \exp \arg{ \tensor{T} }$ as long as $\tensor{S} \cdot \tensor{T} = \tensor{T} \cdot \tensor{S}$. }. The Hall exponential condenses into sines and cosines, giving a rotation around the magnetic field line: 
 \begin{align}
   \label{amp_final}
   \vec{E} &\assign \exp \arg{ -\tensor{\Omega}' \; \dt } \cdot \tensor{R}_z \arg{ \tfrac{-\sh \dt}{\ep} } \cdot \vec{E}
@@ -399,7 +401,7 @@ The perpendicular components of \cref{amp_final} give the expressions:
 
 The $E_3$ terms in \cref{e1_final,e2_final} can be ignored at present. They are revisited in \cref{ch_inertia}. 
 
-\todo{Recall that the driving is folded into \vec{F} --- specifically, $F^2$. While in principle this couples it to both the poloidal and toroidal electric fields, in practice the driving is vanishingly small anywhere the Hall conductivity isn't. That is, driving is delivered to the poloidal electric field only. }
+It bears recalling that the driving current is defined as part of \vec{F}, per \cref{def_curls}. When the driving current is purely azimuthal ($J^1 = J^3 = 0$), the driving is in principle applied to both the poloidal and the toroidal electric fields through $F^2$. However, in practice, the driving applied to the toroidal electric field is vanishingly small. The driving current $J^2$ is localized around \SI{5}{\RE} geocentric, and $\exp \arg{ \tfrac{- \sp \dt}{2\ep} }$ drops off quickly with altitude.
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
