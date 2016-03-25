@@ -457,7 +457,7 @@ An expression for the horizontal electric fields at the boundary can be obtained
   \end{alignedat}
 \end{align}
 
-The atmospheric magnetic field is computed as a linear combination of harmonics. The neutral atmosphere is considered to be a perfect insulator, giving $\curl{B}=0$. Combined with $\div{B}=0$ (per \maxeqs), this allows the computation of a magnetic scalar potential $\Psi$ such that $\vec{B}=\grad{\Psi}$ and $\Psi$ satisfies Laplace's equation, $\nabla^2 \Psi = 0$. 
+In order to compute the atmospheric magnetic field, a scalar magnetic potential ($\Psi$ such that $\vec{B}=\grad{\Psi}$) is computed as a linear combination of harmonics. The neutral atmosphere is considered to be a perfect insulator, giving $\curl{B}=0$. Combined with $\div{B}=0$ (per \maxeqs), $\Psi$ satisfies Laplace's equation, $\nabla^2 \Psi = 0$.
 
 Laplace's equation can be solved analytically; however, a numerical solution is preferrable to ensure orthonormality on a discrete and incomplete\footnote{As discussed in \cref{sec_coords}, the grid is constrained to finite $L$, which excludes the equator as well as the poles. } grid. After separating out the radial and azimuthal dependence in the usual way, the latitudinal component of Laplace's equation can be written in terms of $s \equiv - \sin^2 \theta$: 
 \begin{align}
@@ -465,7 +465,7 @@ Laplace's equation can be solved analytically; however, a numerical solution is 
   \lr{ 4 s^2 + 4s } \frac{d^2}{ds^2} Y_\ell + \lr{ 4 + 6 s } \frac{d}{ds} Y_\ell - \frac{\azm^2}{s} Y_\ell &= \ell \, \lr{ \ell + 1 } Y_\ell
 \end{align}
 
-Using centered differences to linearize the derivatives, \cref{laplace} becomes a system of coupled linear equations, one per field line. It can be solved numerically for eigenvalues $\ell \, \lr{\ell + 1}$ and eigenfunctions $Y_\ell$\footnote{Solving Laplace's equation analytically results in spherical harmonics indexed by both $\ell$ and \azm, the separation constants for $\theta$ and $\phi$ respectively. In two and a half dimensions, $\phi$ is not explicitly resolved, so \azm is set manually.}. In terms of the harmonics $Y_\ell$, $\Psi$ between the Earth's surface and the top of the atmosphere can be written
+Using centered differences to linearize the derivatives, \cref{laplace} becomes a system of coupled linear equations, one per field line. It can be solved numerically for eigenvalues $\ell \, \lr{\ell + 1}$ and eigenfunctions $Y_\ell$\footnote{Solving Laplace's equation analytically results in spherical harmonics indexed by both $\ell$ and \azm, the separation constants for $\theta$ and $\phi$ respectively. In two and a half dimensions, $\phi$ is not explicitly resolved, so \azm is set manually.}. In terms of the harmonics $Y_\ell$, $\Psi$ between the Earth's surface and the top of the atmosphere can be written using eigenweights $a_\ell$ and $b_\ell$:
 \begin{align}
   \label{psi_expansion}
   \Psi &= \displaystyle\sum_\ell \lr{ a_\ell \, r^\ell + b_\ell \, r^{-\ell - 1} } Y_\ell
