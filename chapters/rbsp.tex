@@ -17,29 +17,39 @@
 % -----------------------------------------------------------------------------
 \section{Event Selection}
 
-\todo{Scroll through the entire almost-three-year duration of the Van Allen Probes mission so far. Both probes. }
+\todo{Grab all available waveform data from RBSP --- almost 3 years for each of the two probes. }
 
-\todo{Spinfit the field measurements to clean them up. This gives a ten-second cadence. Events are half an hour long to ensure that there are enough points to get a decent DFT. }
+\todo{Clean up the data by spinfitting and doing $\vec{E} \cdot \vec{B} = 0$. This makes about half of the data unusable (anything within \SI{15}{\degree} of the spin axis), and drops the data to a ten second cadence. }
 
-\todo{Also take $\vec{E} \cdot \vec{B} = 0$ to clean up the electric field. Notably, Dai did not do this (since he did not need the electric field). Any data within \SI{15}{\degree} of the probe's spin axis is discarded as part of this process. This is a significant portion of the data --- about half --- and furthermore introduces a bias in MLT, as discussed in \cref{sec_mlt}. Map the field to GSE coordinates to be consistent with the probe's position. }
+\todo{Increment through half-hour chunks. With the ten-second cadence, anything shorter (like Dai's ten-minute events) puts too few points in the Fourier transform. }
 
-\todo{Take a ten-minute rolling average of the data to get the background magnetic field. Subtract it out, and set $\zhat \parallel \vec{B_0}$. Then get the azimuthal direction with $\yhat \parallel \vec{B_0} \times \vec{r}$. The third component is the crosswise direction, $\xhat \equiv \yhat \times \zhat$. This is the same technique described by Liu\cite{liu_2010}. }
+\todo{Data is mapped from MGSE to GSE. }
 
-\todo{Compute discrete Fourier transforms: \dft{E_x}, \dft{E_y}, \dft{B_x^*}, \dft{B_y^*}. Then get the poloidal and toroidal Poynting flux, mapped to the ionosphere (giving a factor of $L^3$ for the compression of the flux tube). }
+\todo{The background magnetic field is determined with a ten-minute running average. }
+
+\todo{Map the data to dipole coordinates. The \z axis is set along the background magnetic field (which is subtracted off). The azimuthal direction is along $\vec{B_0} \times \vec{r}$, as shown by Liu\cite{liu_2010}. Then the crosswise direction is defined by $\xhat \equiv \yhat \times \zhat$ to ensure orthonormality. }
+
+\todo{Compute discrete Fourier transforms: \dft{E_x}, \dft{E_y}, \dft{B_x^*}, \dft{B_y^*}. Then get the poloidal and toroidal Poynting flux associated with the standing wave, mapped to the ionosphere (giving a factor of $L^3$ for the compression of the flux tube). }
 \begin{align}
-  \dft{S_P} &\equiv -\frac{L^3}{\mz} \dft{E_y} \dft{B_x^*} &
-  \dft{S_T} &\equiv \frac{L^3}{\mz} \dft{E_x} \dft{B_y^*}
+  \dft{S_P} &\equiv -\mathbb{I}\mathrm{m}\frac{L^3}{\mz} \dft{E_y} \dft{B_x^*} &
+  \dft{S_T} &\equiv  \mathbb{I}\mathrm{m}\frac{L^3}{\mz} \dft{E_x} \dft{B_y^*}
 \end{align}
 
-\todo{Find the largest IMAGINARY component of the Poynting flux. This is the biggest standing wave present in this half hour. }
+\todo{Fit a Gaussian to the spectrum. If the fit fails (for example, due to missing or non-finite data), or if the peak of the fit is off of the peak of the actual spectrum by more than \SI{5}{\mHz}, the event is discarded. }
 
-\todo{Threshold on frequency: anything not in the Pc4 frequency range gets tossed. }
+\todo{Threshold on frequency: if the Gaussian doesn't peak in the Pc4 band, toss it. }
 
-\todo{Threshold on magnitude: anything below \SI{e-2}{\mW/\m\squared} gets tossed. }
+\todo{Threshold on magnitude: if the Gaussian peak has an amplitude below \SI{e-2}{\mW/\m\squared}, toss it. }
 
-\todo{Threshold on coherence: if \dft{E} and \dft{B^*} aren't coherent at 0.9 or better, the event gets tossed. . }
+\todo{Threshold on coherence: if the event doesn't have \dft{E} and \dft{B^*} coherent at 0.9 or better, toss it. }
 
 \todo{Notably, there is NO threshold on spectral width. Broadband and messy signals are allowed. See \cref{fig_fwhm}. }
+
+\todo{Sort (sorta) based on polarization: triggers are run independently for the poloidal and toroidal mode. Sometimes, both trigger simultaneously. See \cref{sec_double}. }
+
+\todo{Sort based on parity: look at the phase of the closest DFT point to the peak of the Gaussian. Compare the complex DFT's complex phase at that point to the sign of MLAT. North of the equator (positive MLAT), the electric field should lead the magnetic field for odd modes, and lag for even modes. Deviation from exactly \SI{90}{\degree} insidates energy in the traveling wave. }
+
+\todo{Also note the FWHM of the Gaussian, its magnitude, and the coupling between the poloidal and compressional magnetic perturbations (which indicates azimuthal modenumber): $\dft{B_z} / \dft{B_x}$. Note that Dai put a cutoff of ``compressional'' and ``noncompressional'' at $\dft{B_z} / \dft{B_x} = 0.2$ (with larger coupling meaning smaller modenumber). }
 
 \todo{We try not to worry too much about first vs third harmonic, since we can't tell them apart except by guessing at frequency. Chisham and Orr\cite{chisham_1991} argue that around \SI{7}{\RE}, frequency around \SI{10}{\mHz} precludes higher harmonics. Or maybe look at \cite{green_1985}? }
 
@@ -51,19 +61,17 @@
 \section{Bias in MLT}
   \label{sec_mlt}
 
-\todo{RBSP precesses over time. It took about 22 months to go all the way around Earth. In principle, this gets rid of any bias in MLT. However, because the spin plane faces the sun, we lose more data to $\vec{E} \cdot \vec{B} = 0$ on the flanks. }
+\todo{The $\vec{E} \cdot \vec{B} = 0$ cleanup routine introduces a bias in MLT. Data is more likely to line up with the spin axis (and thus be discarded) on the flanks. So noon andn midnight are overrepresented. }
 
-\todo{It's not worth trying to get uniform coverage, then. We instead go for all available data. Almost 3 years of data from each probe. }
+\todo{The data presented also makes use of a non-integer number of precessions. Each precession takes \about670 days, and there are only \about1000 days of available data. That means the nightside is sampled more heavily than the dayside at $L\about5$. }
 
-\todo{This comes out to ... probe-days between $L=4$ and $L=6$. Comparable to about a year from a ground magnetometer? }
-
-\todo{The plots in section ... are normalized by \cref{fig_pos}. This is as close as we can get to cutting out the bias. }
+\todo{Sampling is shown in \cref{fig_pos}. Rather than event counts, \cref{sec_rate,sec_double} show event rates normalized by this sampling profile. }
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/pos.pdf}
     \caption[Spatial Distribution of Usable Van Allen Probe Data]{
-      Electric field data is cleaned up by taking $\vec{E} \cdot \vec{B} = 0$. If the field is within \SI{15}{\degree} of the spin axis, that assumption is not reliable, so the data is discarded. Doing so biases the sample against the flanks. (The concentration near $L=6$ is due to the probes' slower movement near apogee.)
+      Electric field data is cleaned up by taking $\vec{E} \cdot \vec{B} = 0$. If the field is within \SI{15}{\degree} of the spin axis, that assumption is not reliable, so the data is discarded. Doing so biases the sample against the flanks. (The concentration near $L=6$ is due to the probes' slower movement near apogee.) \todo{Also non-integer number of precessions. }
     }
     \label{fig_pos}
 \end{figure}
@@ -71,7 +79,8 @@
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\section{Slicing Events One Way...}
+\section{Pc4 Incidence by Mode}
+  \label{sec_rate}
 
 \begin{figure}[!htb]
     \centering
@@ -85,7 +94,15 @@
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\section{Slicing Events Another Way...}
+\section{Double Events}
+  \label{sec_double}
+
+\todo{$\cdots$}
+
+
+
+
+
 
 \todo{Of the \about100 events where both the poloidal and toroidal channels triggered independently, almost all had one odd mode and one even mode. }
 

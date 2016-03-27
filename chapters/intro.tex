@@ -19,23 +19,21 @@ The present work focuses in particular on the phenomenon of field line resonance
 
 \section{Structure of the Present Work}
 
-\todo{Make this section read nicely. }
+\cref{ch_environment} surveys the near-Earth environment. Prominent features of the magnetosphere are defined. The response of the magnetosphere to transient solar wind events is summarized. 
 
-\cref{ch_environment} briefly introduces the near-Earth environment. 
+\cref{ch_flrs} introduces the field line resonance phenomenon, in terms of both the underlying physics and notable work on the topic. Jargon is introduced to clarify important elements of wave structure. Several open questions about field line resonances (FLRs) are offered as motivations for the present work. 
 
-\cref{ch_flrs} surveys the field line resonance phenomenon in terms of its underlying physics and notable theoretical and observational work. It also indicates several open questions pertaining to field line resonances. 
+\cref{ch_math} lays the groundwork for a numerical model by exploring the fundamental equations of waves in a cold, resistive plasma --- such as Earth's magnetosphere. Characteristic scales are gleaned from the resulting dispersion relations. 
 
-\cref{ch_math} explores the fundamental equations of electromagnetic waves in a cold, resistive plasma (such as Earth's magnetosphere). 
+\cref{ch_model} presents Tuna, a new two and a half dimensional simulation designed specifically for the realistic modeling of FLRs. Tuna's non-orthogonal geometry, height-resolved ionosphere, novel driving mechanism, and coupling to the atmosphere are explained. 
 
-\cref{ch_model} presents a new two and a half dimensional numerical model for the simulation of field line resonances in the inner magnetosphere, particularly those with large azimuthal modenumber. 
+\cref{ch_inertia} considers the addition of electron inertial effects to Tuna, touches on what can be learned from them, and shows that they incur an unreasonable computational cost. (Electron inertia is neglected in the results presented in other chapters.)
 
-\cref{ch_inertia} shows how electron inertial effects can be added to the model, touches on what can be learned from them, and explains why they are not presently feasible. 
+\cref{ch_results} describes the core numerical results of the work, unifying several of the questions posed in \cref{ch_flrs}. Significant depth is added to past work on finite poloidal lifetimes\cite{mann_1995,radoski_1974}. Interplay between poloidal-toroidal coupling, shear-compressional coupling, and Joule dissipation is considered from several angles. 
 
-\cref{ch_results} describes the core numerical results of the work, unifying several of the questions posed in \cref{ch_flrs}. 
+\cref{ch_rbsp} puts the numerical results in physical context through the analysis of data from the Van Allen Probes mission. FLR occurrence rates are considered in terms of not only location, but mode structure and polarization as well --- parameters which are not considered in other recent FLR surveys\cite{dai_2015,motoba_2015}. 
 
-\cref{ch_rbsp} puts the numerical results in physical context through the analysis of data from the Van Allen Probes mission. 
-
-\cref{ch_conclusion} briefly summarizes the present work and suggests future directions. 
+\cref{ch_conclusion} briefly summarizes the results shown in the above chapters --- the code development, analysis of numerical results, and satellite observation --- and suggests further directions. 
 
 %\todo{The storm of 1859 presented compelling evidence that the Sun drives geomagnetic activity. In the decades that followed, a model took shape to describe the mechanisms of energy transfer between the Sun and the Earth. Based on auroral observations and data from ground-based magnetometers, Birkeland argued for the existence of a constant outflow of electrons and ions from the Sun -- the solar wind. The advent of high-frequency radio communication allowed Kennelly, Heaviside, and others to probe the electrical properties of the upper atmosphere. }
 
