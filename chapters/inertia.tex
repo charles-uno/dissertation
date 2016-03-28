@@ -104,24 +104,38 @@ Even if there is no significant feedback through \farlaw, it's informative to co
 
 \todo{The compressional component of the magnetic field is also flipped compared to the perpendicular components. Should this have been mentioned in \cref{ch_flrs}, with the figures showcasing harmonic structure? }
 
-\todo{Get snapshots of real and imaginary $J_z$. At high altitude, are the real and imaginary components still mixed, or does this only occur at the ionosphere? }
+At low altitude, where the Hall conductivity muddles all of the electric field components together, parallel currents coincide with strong Poynting flux. The imaginary component of the current lines up with the toroidal Poynting flux (which comes from imaginary $E_x$ and imaginary $B_y^*$), while the real current lines up with the poloidal Poynting flux ($E_y$ and $B_x^*$ are real)\footnote{As mentioned in \cref{ch_model}, poloidal field components are in practice overwhelmingly real, indicating that they coincide azimuthally with the (real) driving. Toroidal components are overwhelmingly imaginary, which corresponds to an azimuthal offset. }. This is shown in \cref{fig_slice_100km}, which lays out the real and imaginary components of the parallel current (in the first and third column respectively) next to the poloidal and toroidal Poynting flux (second and fourth columns). Four runs are shown, one per column, with $\azm = \numlist{1;4;16;64}$. Values are measured at an altitude of \SI{100}{\km}, the edge of the simulation. 
+
+Notably, the Poynting flux waveforms are rectified --- they primarily carry energy Earthward. The current, on the other hand, alternates between upward and downward flow. This effect presumably arises because the current is a linear quantity while the Poynting flux is quadratic: the electric and magnetic fields that make it up oscillate in phase, so their product is positive even when they are negative. 
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/current_poynting_flux.pdf}
-    \caption[Current and Poynting Flux at the Ionosphere]{
-      Perhaps unsurprisingly, field-aligned current structures at the ionospheric boundary line up with Poynting flux structures. The imaginary component of the current lines up with the toroidal Poynting flux (which is the product of imaginary $E_x$ and imaginary $B_y^*$), while the real current lines up with the poloidal Poynting flux ($E_y$ and $B_x^*$ are real).
+    \includegraphics[width=\textwidth]{figures/slice_100km.pdf}
+    \caption[Current and Poynting Flux at \SI{100}{\km}]{
+      \todo{$\cdots$}
     }
-    \label{fig_current_poynting_flux}
+    \label{fig_slice_100km}
 \end{figure}
 
-\todo{In \cref{fig_current_poynting_flux}, parallel currents top out around \SI{1}{\uA/\m\squared}. This falls about an order of magnitude shy of the up-to-tens of \si{\uA/\m\squared} inferred from ground observations and seen in situ\cite{carlson_1998,karlsson_1996,samson_1996}. }
+At higher altitude, where the Hall conductivity is small, parallel current is associated only with the toroidal mode. \cref{fig_slice_1000km} shows data from the same runs as \cref{fig_slice_100km}, arranged in the same way, but the values are taken at an altitude of \SI{1000}{\km} instead of \SI{100}{\km}. 
 
-As mentioned in \cref{ch_model}, each field's real component gives its behavior in the meridional plane where the (real) driving is delivered, while imaginary components are representative of waves offset in the azimuthal direction. The Hall conductivity in the ionosphere muddles this relationship somewhat by directly coupling the perpendicular electric field components to one another; even so, the poloidal field components ($B_x$, $E_y$, and $B_z$) are overwhelmingly real while toroidal components ($E_x$ and $B_y$) are overwhelmingly imaginary. 
+In \cref{fig_slice_1000km}, as in \cref{fig_slice_100km}, the imaginary component of the parallel current (third column) coincides more or less with the toroidal Poynting flux (fourth column). However, the real component of the parallel current (first column) is vanishingly small, even when the poloidal Poynting flux (second column) is strong. \todo{Is this expected? Tikhonchuk\cite{tikhonchuk_2000} looks specifically at the toroidal mode when considering shear \Alfven waves. Does the poloidal mode count as compressional even when it's guided? }
 
-The parallel electric field and current defy this pattern. The real current scales more or less proportionally with the poloidal Poynting flux, and its imaginary component scales comparably with the toroidal Poynting flux. Rather than being preferrentially coupled to one mode or the other, parallel currents seem to arise wherever energy is moving along the background magnetic field. 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/slice_1000km.pdf}
+    \caption[Current and Poynting Flux at \SI{1000}{\km}]{
+      \todo{$\cdots$}
+    }
+    \label{fig_slice_1000km}
+\end{figure}
 
-It bears noting further that the Poynting flux waveforms are rectified --- they primarily carry energy Earthward. The current, on the other hand, alternates between upward and downward flow. This effect presumably arises because the current is a linear quantity while the Poynting flux is quadratic: the electric and magnetic fields that make it up oscillate in phase, so their product is positive even when they are negative. 
+The magnitude of the parallel current tops out over \SI{1}{\uA/\m\squared}, just shy of the up-to-tens of \si{\uA/\m\squared} inferred from ground observations and seen in situ\cite{carlson_1998,karlsson_1996,samson_1996}. 
+
+It's also possible to consider the effect of parallel currents and electric fields on the ionosphere's energy budget, per Poynting's theorem:
+\begin{align}
+  \ddt u &= -\div{E} - \vec{J} \cdot \vec{E}
+\end{align}
 
 \begin{figure}[!htb]
     \centering
@@ -131,11 +145,6 @@ It bears noting further that the Poynting flux waveforms are rectified --- they 
     }
     \label{fig_power_density}
 \end{figure}
-
-It's also possible to consider the effect of parallel currents and electric fields on the ionosphere's energy budget, per Poynting's theorem:
-\begin{align}
-  \ddt u &= -\div{E} - \vec{J} \cdot \vec{E}
-\end{align}
 
 As shown in \cref{fig_power_density}, little energy transfer in the ionosphere is mediated by perpendicular components of the Poynting flux. The parallel component of $\vec{J} \cdot \vec{E}$ is comparably unimportant. The energy deposited in the ionosphre by the Poynting flux matches closely with the energy lost to Joule dissipation --- as it should, to conserve energy --- but according to the model, parallel currents and electric fields do not contribute significantly. 
 
@@ -168,12 +177,22 @@ Even so, the run presents a significant computational expense. Spread over 16 co
 
 The snapshot shown in \cref{fig_inertial_length} uses a perpendicular grid resolution of \SI{0.7}{\km} at the Earthward edge, which just satisfies the Nyquist rate for the minimum inertial length of \SI{1.7}{\km}. It's still too coarse. There is clearly some small-scale structure developing in the ionosphere, but it's not well resolved. The large number of ``wigglies'' portends an imminent crash. 
 
-Electron inertial effects present a promising first-principles-based approach to investigate parallel currents and electric fields associated with field line resonances. Unfortunately, because of the large differences in scale between Pc4 pulsations and the plasma oscillation, the proper deployment of inertial effects presents a prohibitive computational expense. For this reason, results presented in \cref{ch_results} make use of the core version of Tuna presented in \cref{ch_model}, which does not include the effects of electron inertia. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \section{Discussion}
+
+
+\todo{$\cdots$}
+
+
+
+
+
+Electron inertial effects present a promising first-principles-based approach to investigate parallel currents and electric fields associated with field line resonances. Unfortunately, because of the large differences in scale between Pc4 pulsations and the plasma oscillation, the proper deployment of inertial effects presents a prohibitive computational expense. Results presented in \cref{ch_results} make use of the core version of Tuna presented in \cref{ch_model}, which does not include the effects of electron inertia. 
+
+
 
 \todo{$\cdots$}
 
