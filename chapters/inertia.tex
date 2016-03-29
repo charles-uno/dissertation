@@ -104,10 +104,6 @@ Even if there is no significant feedback through \farlaw, it's informative to co
 
 \todo{The compressional component of the magnetic field is also flipped compared to the perpendicular components. Should this have been mentioned in \cref{ch_flrs}, with the figures showcasing harmonic structure? }
 
-At low altitude, where the Hall conductivity muddles all of the electric field components together, parallel currents coincide with strong Poynting flux. The imaginary component of the current lines up with the toroidal Poynting flux (which comes from imaginary $E_x$ and imaginary $B_y^*$), while the real current lines up with the poloidal Poynting flux ($E_y$ and $B_x^*$ are real)\footnote{As mentioned in \cref{ch_model}, poloidal field components are in practice overwhelmingly real, indicating that they coincide azimuthally with the (real) driving. Toroidal components are overwhelmingly imaginary, which corresponds to an azimuthal offset. }. This is shown in \cref{fig_slice_100km}, which lays out the real and imaginary components of the parallel current (in the first and third column respectively) next to the poloidal and toroidal Poynting flux (second and fourth columns). Four runs are shown, one per column, with $\azm = \numlist{1;4;16;64}$. Values are measured at an altitude of \SI{100}{\km}, the edge of the simulation. 
-
-Notably, the Poynting flux waveforms are rectified --- they primarily carry energy Earthward. The current, on the other hand, alternates between upward and downward flow. This effect presumably arises because the current is a linear quantity while the Poynting flux is quadratic: the electric and magnetic fields that make it up oscillate in phase, so their product is positive even when they are negative. 
-
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/slice_100km.pdf}
@@ -116,6 +112,11 @@ Notably, the Poynting flux waveforms are rectified --- they primarily carry ener
     }
     \label{fig_slice_100km}
 \end{figure}
+
+At low altitude, where the Hall conductivity muddles all of the electric field components together, parallel currents coincide with strong Poynting flux. The imaginary component of the current lines up with the toroidal Poynting flux (which comes from imaginary $E_x$ and imaginary $B_y^*$), while the real current lines up with the poloidal Poynting flux ($E_y$ and $B_x^*$ are real)\footnote{As mentioned in \cref{ch_model}, poloidal field components are in practice overwhelmingly real, indicating that they coincide azimuthally with the (real) driving. Toroidal components are overwhelmingly imaginary, which corresponds to an azimuthal offset. }. This is shown in \cref{fig_slice_100km}, which lays out the real and imaginary components of the parallel current (in the first and third column respectively) next to the poloidal and toroidal Poynting flux (second and fourth columns). Four runs are shown, one per row, with azimuthal modenumbers 1, 4, 16, and 64. Values are measured at an altitude of \SI{100}{\km}, the edge of the simulation. 
+
+Notably, the Poynting flux waveforms are rectified --- they primarily carry energy Earthward. The current, on the other hand, alternates between upward and downward flow. This effect presumably arises because the current is a linear quantity while the Poynting flux is quadratic: the electric and magnetic fields that make it up oscillate in phase, so their product is positive even when they are negative. 
+
 
 At higher altitude, where the Hall conductivity is small, parallel current is associated only with the toroidal mode. \cref{fig_slice_1000km} shows data from the same runs as \cref{fig_slice_100km}, arranged in the same way, but the values are taken at an altitude of \SI{1000}{\km} instead of \SI{100}{\km}. 
 
@@ -183,23 +184,9 @@ The snapshot shown in \cref{fig_inertial_length} uses a perpendicular grid resol
 % -----------------------------------------------------------------------------
 \section{Discussion}
 
-
 \todo{$\cdots$}
 
-
-
-
-
-Electron inertial effects present a promising first-principles-based approach to investigate parallel currents and electric fields associated with field line resonances. Unfortunately, because of the large differences in scale between Pc4 pulsations and the plasma oscillation, the proper deployment of inertial effects presents a prohibitive computational expense. Results presented in \cref{ch_results} make use of the core version of Tuna presented in \cref{ch_model}, which does not include the effects of electron inertia. 
-
-
+Electron inertial effects present a promising first-principles-based approach to the investigation of parallel currents and electric fields associated with field line resonances. Unfortunately, because of the large differences in scale between Pc4 pulsations and the plasma oscillation, the proper deployment of inertial effects presents a prohibitive computational expense. Results shown  in \cref{ch_results} make use of the core version of Tuna presented in \cref{ch_model}, which does not include the effects of electron inertia. 
 
 \todo{$\cdots$}
-
-
-
-
-
-
-
 
