@@ -21,6 +21,7 @@
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \section{Sampling Bias and Event Selection}
+  \label{sec_selection}
 
 The present analysis makes use of as much Van Allen Probe data as is available at the time of writing: October 2012 to August 2015. Between the two probes, that's just over 2000 days of observation. 
 
@@ -45,6 +46,39 @@ The spatial distribution of usable data --- that is, data for which three-dimens
     \label{fig_pos_all_sharp}
 \end{figure}
 
+Awkwardly, coverage is weakest from pre-dawn to the mid-afternoon --- the exact regions where Pc4 pulsations have been shown to peak. In order to compensate for that fact, results in the present chapter are binned coarsely. Histogram bins are two hours wide in MLT. Only a single bin is used in $L$, from $L = 4$ outward. In practice, Pc4 events are almost exclusively observed at $L \geq 4$, where the Van Allen Probes spend \SI{70}{\percent} of their time. 
+
+\todo{Exact percent/number of events are inside $L=4$? }
+
+\todo{Show all sampling together? Show two plots, based on Dst? Showing it all, as is presently done, seems like overkill. }
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/pos_all.pdf}
+    \caption[Distribution of Usable Van Allen Probe Data]{
+      \todo{This is the sampling distribution used to normalize Dst-agnostic event counts. It's not clear that all of these plots are necessary. }
+    }
+    \label{fig_pos_all}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/pos_calm.pdf}
+    \caption[Distribution of Usable Van Allen Probe Data: Dst $\geq \SI{-30}{\nT}$]{
+      \todo{This is the sampling distribution used to normalize event counts at Dst$\geq \SI{-30}{\nT}$. It's not clear that all of these plots are necessary. }
+    }
+    \label{fig_pos_calm}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/pos_storm.pdf}
+    \caption[Distribution of Usable Van Allen Probe Data: Dst $< \SI{-30}{\nT}$]{
+      \todo{This is the sampling distribution used to normalize event counts at Dst$< \SI{-30}{\nT}$. It's not clear that all of these plots are necessary. }
+    }
+    \label{fig_pos_storm}
+\end{figure}
+
 Field measurements are transformed from GSE coordinates into the same dipole coordinates used in \cref{ch_model,ch_results}. The \z axis is parallel to the background magnetic field, which is estimated using a ten-minute running average of the magnetic field measurements. The \y axis is defined per $\yhat \parallel \zhat \times \vec{r}$. The \x axis is then defined per $\xhat \equiv \yhat \times \zhat$. This method is described by Liu\cite{liu_2010}, and guarantees that the axes are right-handed and pairwise orthogonal. 
 
 The \about1000 days of usable data are considered half an hour at a time --- \about60 data points per event at the ten-second spinfit cadence. This allows for a frequency resolution of \about\SI{0.5}{\mHz} in the discrete Fourier transform. Spectra are computed for all six field components: \dft{B_x}, \dft{B_y}, \dft{B_z}, \dft{E_x}, \dft{E_y}, and \dft{E_z}. 
@@ -67,13 +101,58 @@ Non-Pc4 events are filtered out: any event for which the standing wave Gaussian 
 
 Out of consideration for instrument sensitivity, events are thresholded at a magnitude of $|\mathbb{I}\mathrm{m}\dft{S}| \geq \SI{e-2}{\mW/\m\squared}$. 
 
-Events are also filtered based on the phase offset between the electric and magnetic field waveforms, given by $\arctan\frac{ \mathbb{I}\mathrm{m}\dft{S} }{ \mathbb{I}\mathrm{m}\dft{S} }$. For a purely traveling wave, the electric and magnetic field waveforms are in phase (\SI{0}{\degree}) or in antiphase (\SI{180}{\degree}). As discussed in \cref{ch_flrs}, standing waves have a phase of $\pm\SI{90}{\degree}$ between their electric and magnetic field components, depending on polarization and harmonic parity. The events presented here filter conservatively in phase, insisting only that the standing wave exceed the traveling wave (phase between \SI{45}{\degree} and \SI{135}{\degree} in absolute value). 
+Events are filtered based on the phase offset between the electric and magnetic field waveforms, given by $\arctan\frac{ \mathbb{I}\mathrm{m}\dft{S} }{ \mathbb{R}\mathrm{e}\dft{S} }$. For a purely traveling wave, the electric and magnetic field waveforms are in phase (\SI{0}{\degree}) or in antiphase (\SI{180}{\degree}). Standing waves have a phase of $\pm\SI{90}{\degree}$ between their electric and magnetic field components. The events presented here filter conservatively in phase, insisting only that the standing wave exceed the traveling wave (phase between \SI{45}{\degree} and \SI{135}{\degree} in absolute value). 
 
 \todo{Make a histogram of the phases. }
 
-\todo{Do we get prettier results with a stricter cutoff? }
+\todo{Do we get prettier results with a stricter phase cutoff? }
 
-Events are also filtered on coherence, to ensure that the phase offset is credible. If the coherence between \dft{E} and \dft{B^*} is less than 0.9, the event is discarded. Coherence and phase are both measured at the discrete Fourier transform point closest to the peak of the Gaussian. 
+Events are filtered on coherence, to ensure that the phase offset is credible. If the coherence between \dft{E} and \dft{B^*} is less than 0.9, the event is discarded. Coherence and phase are both measured at the discrete Fourier transform point closest to the peak of the Gaussian. 
+
+Finally, any event within \SI{3}{\degree} of the magnetic equator is discarded due to ambiguity in its phase. As discussed in \cref{ch_flrs}, odd and even harmonics are distinguished by the sign of the phase offset between the electric and magnetic field. For example, in odd poloidal modes, an observer north of the equator sees $B_x$ lead $E_y$ by a phase of \SI{90}{\degree}, and an observer below the equator sees the opposite. When the probe is very close to the equator, an event's parity becomes ambiguous. 
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Pc4 Occurrence Rate by Mode}
+
+The filters described in \cref{sec_selection} yield 919 events: 139 odd poloidal modes, 236 even poloidal modes, 457 odd toroidal modes, and 87 even toroidal modes. The distributions of those events are shown in \cref{fig_mode_all,fig_mode_calm,fig_mode_storm}; counts are normalized to the sampling rates shown in \cref{fig_pos_all,fig_pos_calm,fig_pos_storm} respectively. 
+
+\todo{Get a better handle on the numbers presented by Anderson\cite{anderson_1990}. That was ground, based, I think, and the categorization was really inconvenient. }
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/mode_all.pdf}
+    \caption[Pc4 Rate by Mode]{
+      \todo{$\cdots$}
+    }
+    \label{fig_mode_all}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/mode_calm.pdf}
+    \caption[Pc4 Rate by Mode: Dst $\geq \SI{-30}{\nT}$]{
+      \todo{$\cdots$}
+    }
+    \label{fig_mode_calm}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/mode_storm.pdf}
+    \caption[Pc4 Rate by Mode: Dst $< \SI{-30}{\nT}$]{
+      \todo{$\cdots$}
+    }
+    \label{fig_mode_storm}
+\end{figure}
+
+
+
+... \\ \\ \\
+
+
+
 
 
 
@@ -118,44 +197,9 @@ The vast majority of Pc4 events are outside $L=4$.
 
 
 
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\section{Bias in MLT}
 
 
 
-
-
-
-
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/pos_all.pdf}
-    \caption[Distribution of Usable Van Allen Probe Data]{
-      \todo{$\cdots$}
-    }
-    \label{fig_pos_all}
-\end{figure}
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/pos_calm.pdf}
-    \caption[Distribution of Usable Van Allen Probe Data: Dst $\geq \SI{-30}{\nT}$]{
-      \todo{$\cdots$}
-    }
-    \label{fig_pos_calm}
-\end{figure}
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/pos_storm.pdf}
-    \caption[Distribution of Usable Van Allen Probe Data: Dst $< \SI{-30}{\nT}$]{
-      \todo{$\cdots$}
-    }
-    \label{fig_pos_storm}
-\end{figure}
 
 
 
@@ -192,34 +236,6 @@ The vast majority of Pc4 events are outside $L=4$.
 
 
 
-
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/mode_all.pdf}
-    \caption[Pc4 Rate by Mode]{
-      \todo{$\cdots$}
-    }
-    \label{fig_mode_all}
-\end{figure}
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/mode_calm.pdf}
-    \caption[Pc4 Rate by Mode: Dst $\geq \SI{-30}{\nT}$]{
-      \todo{$\cdots$}
-    }
-    \label{fig_mode_calm}
-\end{figure}
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/mode_storm.pdf}
-    \caption[Pc4 Rate by Mode: Dst $< \SI{-30}{\nT}$]{
-      \todo{$\cdots$}
-    }
-    \label{fig_mode_storm}
-\end{figure}
 
 
 
