@@ -43,7 +43,7 @@
 
 \todo{Threshold on coherence: if the event doesn't have \dft{E} and \dft{B^*} coherent at 0.9 or better, toss it. }
 
-\todo{Notably, there is NO threshold on spectral width. Broadband and messy signals are allowed. See \cref{fig_fwhm}. }
+\todo{Notably, there is NO threshold on spectral width. Broadband and messy signals are allowed. }
 
 \todo{Sort (sorta) based on polarization: triggers are run independently for the poloidal and toroidal mode. Sometimes, both trigger simultaneously. See \cref{sec_double}. }
 
@@ -64,16 +64,127 @@
 
 \todo{The data presented also makes use of a non-integer number of precessions. Each precession takes \about670 days, and there are only \about1000 days of available data. That means the nightside is sampled more heavily than the dayside at $L\about5$. }
 
-\todo{Sampling is shown in \cref{fig_pos}. Rather than event counts, \cref{sec_rate,sec_double} show event rates normalized by this sampling profile. }
+\todo{Sampling is shown in \cref{fig_pos_all_sharp}. Rather than event counts, \cref{sec_rate,sec_double} show event rates normalized by this sampling profile. }
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/pos.pdf}
-    \caption[Spatial Distribution of Usable Van Allen Probe Data]{
-      Electric field data is cleaned up by taking $\vec{E} \cdot \vec{B} = 0$. If the field is within \SI{15}{\degree} of the spin axis, that assumption is not reliable, so the data is discarded. Doing so biases the sample against the flanks. (The concentration near $L=6$ is due to the probes' slower movement near apogee.) \todo{Also non-integer number of precessions. }
+    \includegraphics[width=\textwidth]{figures/pos_all_sharp.pdf}
+    \caption[Distribution of Usable Van Allen Probe Data: Fine Resolution]{
+      \todo{$\cdots$}
+      %Electric field data is cleaned up by taking $\vec{E} \cdot \vec{B} = 0$. If the field is within \SI{15}{\degree} of the spin axis, that assumption is not reliable, so the data is discarded. Doing so biases the sample against the flanks. (The concentration near $L=6$ is due to the probes' slower movement near apogee.) \todo{Also non-integer number of precessions. }
     }
-    \label{fig_pos}
+    \label{fig_pos_all_sharp}
 \end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/pos_all.pdf}
+    \caption[Distribution of Usable Van Allen Probe Data]{
+      \todo{$\cdots$}
+    }
+    \label{fig_pos_all}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/pos_calm.pdf}
+    \caption[Distribution of Usable Van Allen Probe Data: Dst $\geq \SI{-30}{\nT}$]{
+      \todo{$\cdots$}
+    }
+    \label{fig_pos_calm}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/pos_storm.pdf}
+    \caption[Distribution of Usable Van Allen Probe Data: Dst $< \SI{-30}{\nT}$]{
+      \todo{$\cdots$}
+    }
+    \label{fig_pos_storm}
+\end{figure}
+
+
+
+
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/rate_all.pdf}
+    \caption[Pc4 Rate]{
+      \todo{$\cdots$}
+    }
+    \label{fig_rate_all}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/rate_calm.pdf}
+    \caption[Pc4 Rate: Dst $\geq \SI{-30}{\nT}$]{
+      \todo{$\cdots$}
+    }
+    \label{fig_rate_calm}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/rate_storm.pdf}
+    \caption[Pc4 Rate: Dst $< \SI{-30}{\nT}$]{
+      \todo{$\cdots$}
+    }
+    \label{fig_rate_storm}
+\end{figure}
+
+
+
+
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/mode_all.pdf}
+    \caption[Pc4 Rate by Mode]{
+      \todo{$\cdots$}
+    }
+    \label{fig_mode_all}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/mode_calm.pdf}
+    \caption[Pc4 Rate by Mode: Dst $\geq \SI{-30}{\nT}$]{
+      \todo{$\cdots$}
+    }
+    \label{fig_mode_calm}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/mode_storm.pdf}
+    \caption[Pc4 Rate by Mode: Dst $< \SI{-30}{\nT}$]{
+      \todo{$\cdots$}
+    }
+    \label{fig_mode_storm}
+\end{figure}
+
+
+
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/llpp.pdf}
+    \caption[Pc4 Rate Inside and Outside the Plasmapause]{
+      \todo{$\cdots$}
+    }
+    \label{fig_llpp}
+\end{figure}
+
+
+
+
+
+
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -81,61 +192,9 @@
 \section{Pc4 Incidence by Mode}
   \label{sec_rate}
 
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/placeholder.jpg}
-    \caption[Distribution of Events by Spectral Width]{
-      \todo{Break into three bins by FWHM. }
-    }
-    \label{fig_fwhm}
-\end{figure}
 
 
-
-
-
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/rate.pdf}
-    \caption[Pc4 Incidence by Mode]{
-      \todo{$\cdots$}
-    }
-    \label{fig_rate}
-\end{figure}
-
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/azm_rate.pdf}
-    \caption[Poloidal Pc4 Incidence by Modenumber]{
-      \todo{$\cdots$}
-    }
-    \label{fig_azm_rate}
-\end{figure}
-
-
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/double_rate.pdf}
-    \caption[Double Pc4 Incidence by Modes]{
-      \todo{$\cdots$}
-    }
-    \label{fig_double_rate}
-\end{figure}
-
-
-
-
-
-
-
-
-
-
-
-
+\todo{$\cdots$}
 
 
 
@@ -145,10 +204,6 @@
 % -----------------------------------------------------------------------------
 \section{Double Events}
   \label{sec_double}
-
-\todo{$\cdots$}
-
-
 
 
 
