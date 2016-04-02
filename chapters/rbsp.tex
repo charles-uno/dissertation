@@ -10,40 +10,78 @@
 
 \todo{Furthermore, it's awkward that Pgs are identified by visual inspection. How can we say how rare they are if they aren't rigorously defined? }
 
+\todo{Probably need some fluff here with appropriate citations for the mission and the instrumentation. }
+
+\todo{The tools used in the present chapter --- SPEDAS and the SPICE kernel --- are publicly available. They run best with an IDL license, which is not, but they are functional using just the (free) IDL virtual machine. The code is wrapped up in a Git repository: \url{https://github.com/chizarlicious/RBSP} (maybe should make a GitHub organization to hold this code, to decouple it from my personal account?). }
+
+
 %Observations show that the poloidal mode is most excited in the second harmonic\cite{cummings_1969,hughes_1978,arthur_1981,singer_1982,takahashi_1984,engebretson_1988} even when there is a strong compressional component\cite{takahashi_1987,haerendel_1999,vaivads_2001,sibeck_2012}. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\section{Event Selection}
+\section{Sampling Bias and Event Selection}
 
-\todo{Grab all available waveform data from RBSP --- almost 3 years for each of the two probes. }
+The present analysis makes use of as much Van Allen Probe data as is available at the time of writing: October 2012 to August 2015. Between the two probes, that's just over 2000 days of observation. 
 
-\todo{Clean up the data by spinfitting and doing $\vec{E} \cdot \vec{B} = 0$. This makes about half of the data unusable (anything within \SI{15}{\degree} of the spin axis), and drops the data to a ten second cadence. }
+Notably, the two probes are taken to be independent observers. The vast majority of Pc4 observations take place near apogee, where the probes are separated by several hours. Pc4 pulsations tend to be localized in MLT --- indeed, this was a key justification for the model described in \cref{ch_model}. The two probes simultaneously observe the same event only \todo{$\cdots$} of the time. 
 
-\todo{Increment through half-hour chunks. With the ten-second cadence, anything shorter (like Dai's ten-minute events) puts too few points in the Fourier transform. }
+\todo{How common is it for one probe to see an event, then the other probe to fly through that same event an hour or two later? }
 
-\todo{Data is mapped from MGSE to GSE. }
+Electric and magnetic waveform data is cleaned up by averaging over the probe's spin period, \SI{10.5}{\s}. The three-dimensional electric field is then obtained using the assumption $\vec{E} \cdot \vec{B} = 0$. Notably, this assumption is taken only when the probe's spin plane is offset from the magnetic field by at least \SI{15}{\degree}. The rest of the data --- about half --- is discarded, which introduces a sampling bias against the flanks. 
 
-\todo{The background magnetic field is determined with a ten-minute running average. }
+A further bias is introduced by the probes' non-integer number of precessions around Earth. Pc4 pulsations are most commonly observed near apogee. As of July 2014, apogee had precessed once around Earth\cite{dai_2015}. The present work considers roughly one and a half precessions; the nightside has been sampled at apogee twice as often as the dayside. 
 
-\todo{Map the data to dipole coordinates. The \z axis is set along the background magnetic field (which is subtracted off). The azimuthal direction is along $\vec{B_0} \times \vec{r}$, as shown by Liu\cite{liu_2010}. Then the crosswise direction is defined by $\xhat \equiv \yhat \times \zhat$ to ensure orthonormality. }
+The spatial distribution of usable data --- that is, data for which three-dimensional electric and magnetic fields are abailable --- is shown in \cref{fig_pos_all_sharp}. Bins are unitary in $L$ (divided at integer $L$) and in MLT (centered at integer hours). Event distribution in magnetic latitude is not shown; the Van Allen Probes are localized to within \todo{\SI{10}{\degree}} of the equatorial plane. 
 
-\todo{Compute discrete Fourier transforms: \dft{E_x}, \dft{E_y}, \dft{B_x^*}, \dft{B_y^*}. Then get the poloidal and toroidal Poynting flux associated with the standing wave, mapped to the ionosphere (giving a factor of $L^3$ for the compression of the flux tube). }
+\todo{$L$ is italicized and MLT is not? That seems weird. }
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/pos_all_sharp.pdf}
+    \caption[Distribution of Usable Van Allen Probe Data: Fine Resolution]{
+      Three-dimensional electric field values are computed by assuming $\vec{E} \cdot \vec{B} = 0$. Data is discarded whenever the magnetic field falls within \SI{15}{\degree} of the spin plane, which introduces a bias against the flanks. Furthermore, the probes have completed only one and a half precessions around Earth; the dayside has been sampled once at apogee, and the nightside twice. 
+    }
+    \label{fig_pos_all_sharp}
+\end{figure}
+
+Field measurements are transformed from GSE coordinates into the same dipole coordinates used in \cref{ch_model,ch_results}. The \z axis is parallel to the background magnetic field, which is estimated using a ten-minute running average of the magnetic field measurements. The \y axis is defined per $\yhat \parallel \zhat \times \vec{r}$. The \x axis is then defined per $\xhat \equiv \yhat \times \zhat$. This method is described by Liu\cite{liu_2010}, and guarantees that the axes are right-handed and pairwise orthogonal. 
+
+The \about1000 days of usable data are considered half an hour at a time --- \about60 data points per event at the ten-second spinfit cadence. This allows for a frequency resolution of \about\SI{0.5}{\mHz} in the discrete Fourier transform. Spectra are computed for all six field components: \dft{B_x}, \dft{B_y}, \dft{B_z}, \dft{E_x}, \dft{E_y}, and \dft{E_z}. 
+
+The background magnetic is subtracted off before performing each transform, leaving only the magnetic field perturbation along each axis. (As in \cref{ch_model,ch_results}, $B_x$ refers not to the full magnetic field in the \x direction, but to its perturbation from the zeroth-order field.) Each waveform is also shifted horizontally so that its mean over the thirty minute event is zero. 
+
+Frequency-domain Poynting flux is computed from the electric and magnetic field transforms. Values are effective at the ionosphere; a factor of $L^3$ is introduced to account for the compression of the flux tube. Poloidal and toroidal Poynting flux, respectively, are given by:
 \begin{align}
-  \dft{S_P} &\equiv -\mathbb{I}\mathrm{m}\frac{L^3}{\mz} \dft{E_y} \dft{B_x^*} &
-  \dft{S_T} &\equiv  \mathbb{I}\mathrm{m}\frac{L^3}{\mz} \dft{E_x} \dft{B_y^*}
+  \dft{S_P} &\equiv -\frac{L^3}{\mz} \dft{E_y} \dft{B_x^*} &
+  \dft{S_T} &\equiv  \frac{L^3}{\mz} \dft{E_x} \dft{B_y^*}
 \end{align}
 
-\todo{Fit a Gaussian to the spectrum. If the fit fails (for example, due to missing or non-finite data), or if the peak of the fit is off of the peak of the actual spectrum by more than \SI{5}{\mHz}, the event is discarded. }
+\todo{The Poynting flux scaled by $L^3$ to conserve energy. But doesn't the magnetic field be scale with $L^3$ to conserve flux, and the electric field scale with the magnetic field? }
 
-\todo{Threshold on frequency: if the Gaussian doesn't peak in the Pc4 band, toss it. }
+The Poynting fluxes $\dft{S}$ for each event are filtered based on frequency, magnitude, and phase offset. The poloidal and toroidal channels are checked independently; a given half hour can have no event, a poloidal event, a toroidal event, or both. 
 
-\todo{Threshold on magnitude: if the Gaussian peak has an amplitude below \SI{e-2}{\mW/\m\squared}, toss it. }
+A Gaussian profile is fit to $|\mathbb{I}\mathrm{m}\dft{S}|$, which corresponds to the magnitude of the standing wave (in turn, the real component is the traveling wave). If the fit fails, for example due to non-finite values in the data, the event is discarded. The event is also discarded if the peak of the Gaussian does not correspond to the largest spectral feature in the data, standing or traveling; that is, the event is disqualified if the Gaussian is not centered within \SI{5}{\mHz} of the maximum value of $|\dft{S}|$. 
 
-\todo{Threshold on coherence: if the event doesn't have \dft{E} and \dft{B^*} coherent at 0.9 or better, toss it. }
+Non-Pc4 events are filtered out: any event for which the standing wave Gaussian does not fall in the range \SIrange{7}{25}{\mHz}. Notably, no filter is imposed on spectral width. 
 
-\todo{Notably, there is NO threshold on spectral width. Broadband and messy signals are allowed. }
+Out of consideration for instrument sensitivity, events are thresholded at a magnitude of $|\mathbb{I}\mathrm{m}\dft{S}| \geq \SI{e-2}{\mW/\m\squared}$. 
+
+Events are also filtered based on the phase offset between the electric and magnetic field waveforms, given by $\arctan\frac{ \mathbb{I}\mathrm{m}\dft{S} }{ \mathbb{I}\mathrm{m}\dft{S} }$. For a purely traveling wave, the electric and magnetic field waveforms are in phase (\SI{0}{\degree}) or in antiphase (\SI{180}{\degree}). As discussed in \cref{ch_flrs}, standing waves have a phase of $\pm\SI{90}{\degree}$ between their electric and magnetic field components, depending on polarization and harmonic parity. The events presented here filter conservatively in phase, insisting only that the standing wave exceed the traveling wave (phase between \SI{45}{\degree} and \SI{135}{\degree} in absolute value). 
+
+\todo{Make a histogram of the phases. }
+
+\todo{Do we get prettier results with a stricter cutoff? }
+
+Events are also filtered on coherence, to ensure that the phase offset is credible. If the coherence between \dft{E} and \dft{B^*} is less than 0.9, the event is discarded. Coherence and phase are both measured at the discrete Fourier transform point closest to the peak of the Gaussian. 
+
+
+
+
+
+
+
+
 
 \todo{Sort (sorta) based on polarization: triggers are run independently for the poloidal and toroidal mode. Sometimes, both trigger simultaneously. See \cref{sec_double}. }
 
@@ -55,26 +93,42 @@
 
 %Green\cite{green_1979} and Cummings\cite{cummings_1969} talk about the frequencies for ideal toroidal modes. 
 
+
+
+
+
+The vast majority of Pc4 events are outside $L=4$. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+\todo{Sampling is shown in \cref{fig_pos_all_sharp}. Rather than event counts, \cref{sec_rate,sec_double} show event rates normalized by this sampling profile. }
+
+
+
+
+
+
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \section{Bias in MLT}
 
-\todo{The $\vec{E} \cdot \vec{B} = 0$ cleanup routine introduces a bias in MLT. Data is more likely to line up with the spin axis (and thus be discarded) on the flanks. So noon andn midnight are overrepresented. }
 
-\todo{The data presented also makes use of a non-integer number of precessions. Each precession takes \about670 days, and there are only \about1000 days of available data. That means the nightside is sampled more heavily than the dayside at $L\about5$. }
 
-\todo{Sampling is shown in \cref{fig_pos_all_sharp}. Rather than event counts, \cref{sec_rate,sec_double} show event rates normalized by this sampling profile. }
 
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/pos_all_sharp.pdf}
-    \caption[Distribution of Usable Van Allen Probe Data: Fine Resolution]{
-      \todo{$\cdots$}
-      %Electric field data is cleaned up by taking $\vec{E} \cdot \vec{B} = 0$. If the field is within \SI{15}{\degree} of the spin axis, that assumption is not reliable, so the data is discarded. Doing so biases the sample against the flanks. (The concentration near $L=6$ is due to the probes' slower movement near apogee.) \todo{Also non-integer number of precessions. }
-    }
-    \label{fig_pos_all_sharp}
-\end{figure}
+
+
+
 
 \begin{figure}[!htb]
     \centering
