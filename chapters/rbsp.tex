@@ -33,7 +33,7 @@ Electric and magnetic waveform data is cleaned up by averaging over the probe's 
 
 A further bias is introduced by the probes' non-integer number of precessions around Earth. Pc4 pulsations are most commonly observed near apogee. As of July 2014, apogee had precessed once around Earth\cite{dai_2015}. The present work considers roughly one and a half precessions; the nightside has been sampled at apogee twice as often as the dayside. 
 
-The spatial distribution of usable data --- that is, data for which three-dimensional electric and magnetic fields are abailable --- is shown in \cref{fig_pos_all_sharp}. Bins are unitary in $L$ (divided at integer $L$) and in MLT (centered at integer hours). Event distribution in magnetic latitude is not shown; the Van Allen Probes are localized to within \todo{\SI{10}{\degree}} of the equatorial plane. 
+The spatial distribution of usable data --- that is, data for which three-dimensional electric and magnetic fields are abailable --- is shown in \cref{fig_pos_all_sharp}. Bins are unitary in $L$ (divided at integer $L$) and in MLT (centered at integer hours). Event distribution in magnetic latitude is not shown; the Van Allen Probes are localized to within \todo{\SI{15}{\degree}} of the equatorial plane. 
 
 \todo{$L$ is italicized and MLT is not? That seems weird. }
 
@@ -46,9 +46,9 @@ The spatial distribution of usable data --- that is, data for which three-dimens
     \label{fig_pos_all_sharp}
 \end{figure}
 
-Awkwardly, coverage is weakest from pre-dawn to the mid-afternoon --- the exact regions where Pc4 pulsations have been shown to peak. In order to compensate for that fact, results in the present chapter are binned coarsely. Histogram bins are two hours wide in MLT. Only a single bin is used in $L$, from $L = 4$ outward. In practice, Pc4 events are almost exclusively observed at $L \geq 4$, where the Van Allen Probes spend \SI{70}{\percent} of their time. 
+Awkwardly, coverage is weakest from pre-dawn to the mid-afternoon --- the exact regions where Pc4 pulsations have been shown to peak. In order to compensate for that fact, results in the present chapter are binned coarsely. Histogram bins are two hours wide in MLT. Only two bins are used in the radial direction: $L \leq 5$ and $L > 5$. 
 
-\todo{Exact percent/number of events are inside $L=4$? }
+\todo{Most events occur between $L = 4$ and $L = 6$, but splitting at $L = 5$ is otherwise arbitrary. It might make more sense to split the bins wherever the median event is or something. }
 
 \todo{Show all sampling together? Show two plots, based on Dst? Showing it all, as is presently done, seems like overkill. }
 
@@ -63,12 +63,13 @@ Awkwardly, coverage is weakest from pre-dawn to the mid-afternoon --- the exact 
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/pos_calm.pdf}
-    \caption[Distribution of Usable Van Allen Probe Data: Dst $\geq \SI{-30}{\nT}$]{
+    \includegraphics[width=\textwidth]{figures/pos_storm.pdf}
+    \caption[Distribution of Usable Van Allen Probe Data: Dst$\geq \SI{-30}{\nT}$]{
       \todo{This is the sampling distribution used to normalize event counts at Dst$\geq \SI{-30}{\nT}$. It's not clear that all of these plots are necessary. }
     }
     \label{fig_pos_calm}
 \end{figure}
+
 
 \begin{figure}[!htb]
     \centering
@@ -101,116 +102,25 @@ Non-Pc4 events are filtered out: any event for which the standing wave Gaussian 
 
 Out of consideration for instrument sensitivity, events are thresholded at a magnitude of $|\mathbb{I}\mathrm{m}\dft{S}| \geq \SI{e-2}{\mW/\m\squared}$. 
 
-Events are filtered based on the phase offset between the electric and magnetic field waveforms, given by $\arctan\frac{ \mathbb{I}\mathrm{m}\dft{S} }{ \mathbb{R}\mathrm{e}\dft{S} }$. For a purely traveling wave, the electric and magnetic field waveforms are in phase (\SI{0}{\degree}) or in antiphase (\SI{180}{\degree}). Standing waves have a phase of $\pm\SI{90}{\degree}$ between their electric and magnetic field components. The events presented here filter conservatively in phase, insisting only that the standing wave exceed the traveling wave (phase between \SI{45}{\degree} and \SI{135}{\degree} in absolute value). 
-
-\todo{Make a histogram of the phases. }
-
-\todo{Do we get prettier results with a stricter phase cutoff? }
+Events are filtered based on the phase offset between the electric and magnetic field waveforms, given by $\arctan\frac{ \mathbb{I}\mathrm{m}\dft{S} }{ \mathbb{R}\mathrm{e}\dft{S} }$. For a purely traveling wave, the electric and magnetic field waveforms are in phase (\SI{0}{\degree}) or in antiphase (\SI{180}{\degree}). Standing waves have a phase of $\pm\SI{90}{\degree}$ between their electric and magnetic field components. The events presented here are filtered conservatively in phase; the standing wave must just barely exceed the traveling wave (phase between \SI{45}{\degree} and \SI{135}{\degree} in absolute value). 
 
 Events are filtered on coherence, to ensure that the phase offset is credible. If the coherence between \dft{E} and \dft{B^*} is less than 0.9, the event is discarded. Coherence and phase are both measured at the discrete Fourier transform point closest to the peak of the Gaussian. 
 
 Finally, any event within \SI{3}{\degree} of the magnetic equator is discarded due to ambiguity in its phase. As discussed in \cref{ch_flrs}, odd and even harmonics are distinguished by the sign of the phase offset between the electric and magnetic field. For example, in odd poloidal modes, an observer north of the equator sees $B_x$ lead $E_y$ by a phase of \SI{90}{\degree}, and an observer below the equator sees the opposite. When the probe is very close to the equator, an event's parity becomes ambiguous. 
 
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\section{Pc4 Occurrence Rate by Mode}
-
-The filters described in \cref{sec_selection} yield 919 events: 139 odd poloidal modes, 236 even poloidal modes, 457 odd toroidal modes, and 87 even toroidal modes. The distributions of those events are shown in \cref{fig_mode_all,fig_mode_calm,fig_mode_storm}; counts are normalized to the sampling rates shown in \cref{fig_pos_all,fig_pos_calm,fig_pos_storm} respectively. 
-
-\todo{Get a better handle on the numbers presented by Anderson\cite{anderson_1990}. That was ground, based, I think, and the categorization was really inconvenient. }
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/mode_all.pdf}
-    \caption[Pc4 Rate by Mode]{
-      \todo{$\cdots$}
-    }
-    \label{fig_mode_all}
-\end{figure}
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/mode_calm.pdf}
-    \caption[Pc4 Rate by Mode: Dst $\geq \SI{-30}{\nT}$]{
-      \todo{$\cdots$}
-    }
-    \label{fig_mode_calm}
-\end{figure}
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/mode_storm.pdf}
-    \caption[Pc4 Rate by Mode: Dst $< \SI{-30}{\nT}$]{
-      \todo{$\cdots$}
-    }
-    \label{fig_mode_storm}
-\end{figure}
-
-
-
-... \\ \\ \\
-
-
-
-
-
-
-
-
-
-
-
-
-\todo{Sort (sorta) based on polarization: triggers are run independently for the poloidal and toroidal mode. Sometimes, both trigger simultaneously. See \cref{sec_double}. }
-
-\todo{Sort based on parity: look at the phase of the closest DFT point to the peak of the Gaussian. Compare the complex DFT's complex phase at that point to the sign of MLAT. North of the equator (positive MLAT), the electric field should lead the magnetic field for odd modes, and lag for even modes. Deviation from exactly \SI{90}{\degree} insidates energy in the traveling wave. }
-
-\todo{Also note the FWHM of the Gaussian, its magnitude, and the coupling between the poloidal and compressional magnetic perturbations (which indicates azimuthal modenumber): $\dft{B_z} / \dft{B_x}$. Note that Dai put a cutoff of ``compressional'' and ``noncompressional'' at $\dft{B_z} / \dft{B_x} = 0.2$ (with larger coupling meaning smaller modenumber). }
-
 \todo{We try not to worry too much about first vs third harmonic, since we can't tell them apart except by guessing at frequency. Chisham and Orr\cite{chisham_1991} argue that around \SI{7}{\RE}, frequency around \SI{10}{\mHz} precludes higher harmonics. Or maybe look at \cite{green_1985}? }
 
-%Green\cite{green_1979} and Cummings\cite{cummings_1969} talk about the frequencies for ideal toroidal modes. 
-
-
-
-
-
-The vast majority of Pc4 events are outside $L=4$. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-\todo{Sampling is shown in \cref{fig_pos_all_sharp}. Rather than event counts, \cref{sec_rate,sec_double} show event rates normalized by this sampling profile. }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Overall Rate of Pc4 Events}
+  \label{sec_total}
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/rate_all.pdf}
     \caption[Pc4 Rate]{
-      \todo{$\cdots$}
+      \todo{Pc4s are observed at all local times, but are most common near noon and least common near dusk. }
     }
     \label{fig_rate_all}
 \end{figure}
@@ -218,7 +128,7 @@ The vast majority of Pc4 events are outside $L=4$.
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/rate_calm.pdf}
-    \caption[Pc4 Rate: Dst $\geq \SI{-30}{\nT}$]{
+    \caption[Pc4 Rate: Dst$\geq \SI{-30}{\nT}$]{
       \todo{$\cdots$}
     }
     \label{fig_rate_calm}
@@ -227,59 +137,178 @@ The vast majority of Pc4 events are outside $L=4$.
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/rate_storm.pdf}
-    \caption[Pc4 Rate: Dst $< \SI{-30}{\nT}$]{
-      \todo{$\cdots$}
+    \caption[Pc4 Rate: Dst$< \SI{-30}{\nT}$]{
+      \todo{During geomagnetically active times, Pc4 pulsations become much more common on the dayside. }
     }
     \label{fig_rate_storm}
 \end{figure}
 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/rate_all_lpp.pdf}
+    \caption[Pc4 Rate Inside and Outside the Plasmapause]{
+      \todo{Almost all Pc4 events are outside the plasmapause. }
+    }
+    \label{fig_rate_all_lpp}
+\end{figure}
 
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Pc4 Events by Mode}
+  \label{sec_mode}
 
+The filters described in \cref{sec_selection} yield 822 events: 136 odd poloidal modes, 234 even poloidal modes, 445 odd toroidal modes, and 86 even toroidal modes. The distributions of those events are shown in \cref{fig_mode_all,fig_mode_storm}; counts are normalized to the sampling rates shown in \cref{fig_pos_all,fig_pos_storm} respectively. 
 
+\todo{Get a better handle on the numbers presented by Anderson\cite{anderson_1990}. That was ground, based, I think, and the categorization was really inconvenient. }
 
+\todo{It's good to see that even poloidal and even toroidal modes have similar distributions, since one turns into the other. The relationship is less clear for the odd modes, but odd poloidal and odd toroidal events are both least common near dusk. }
 
+\todo{Odd toroidal events are by far the most commonly observed. }
 
+\todo{Even modes are less likely to be observed on the ground? \cite{takahashi_1992} }
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/mode_all.pdf}
+    \caption[Pc4 Rate by Mode]{
+      \todo{Even harmonics are strongly peaked at noon, with some presence smeared across the dusk side. Odd harmonics, on the other hand, are mostly seen on the dawn side. }
+    }
+    \label{fig_mode_all}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/mode_calm.pdf}
+    \caption[Pc4 Rate by Mode: Dst$\geq \SI{-30}{\nT}$]{
+      \todo{$\cdots$}
+    }
+    \label{fig_mode_calm}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/mode_storm.pdf}
+    \caption[Pc4 Rate by Mode: Dst$< \SI{-30}{\nT}$]{
+      \todo{Pc4 events near noon are much more common during geomagnetically active times. }
+    }
+    \label{fig_mode_storm}
+\end{figure}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Poloidal Pc4 Events by Compressional Coupling}
+
+\todo{Low-\azm poloidal Pc4 events are coupled to the compressional mode, while high-\azm ones are not. }
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/azm_rate_all.pdf}
+    \caption[Poloidal Pc4 Rate by Compressional Coupling]{
+      \todo{Low-\azm poloidal Pc4 events are more common on the nightside than high-\azm events. }
+    }
+    \label{fig_azm_rate_all}
+\end{figure}
 
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/llpp.pdf}
-    \caption[Pc4 Rate Inside and Outside the Plasmapause]{
+    \includegraphics[width=\textwidth]{figures/azm_rate_calm.pdf}
+    \caption[Poloidal Pc4 Rate by Compressional Coupling: Dst$\geq \SI{-30}{\nT}$]{
       \todo{$\cdots$}
     }
-    \label{fig_llpp}
+    \label{fig_azm_rate_calm}
+\end{figure}
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/azm_rate_storm.pdf}
+    \caption[Poloidal Pc4 Rate by Compressional Coupling: Dst$< \SI{-30}{\nT}$]{
+      \todo{$\cdots$}
+    }
+    \label{fig_azm_rate_storm}
 \end{figure}
 
 
 
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Pc4 Events by Spectral Width}
 
 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fwhm_rate_p_all.pdf}
+    \caption[Poloidal Pc4 Rate by Compressional Coupling]{
+      \todo{$\cdots$}
+    }
+    \label{fig_fwhm_rate_p_all}
+\end{figure}
 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fwhm_rate_p_calm.pdf}
+    \caption[Poloidal Pc4 Rate by Compressional Coupling: Dst$\geq \SI{-30}{\nT}$]{
+      \todo{$\cdots$}
+    }
+    \label{fig_fwhm_rate_p_calm}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fwhm_rate_p_storm.pdf}
+    \caption[Poloidal Pc4 Rate by Compressional Coupling: Dst$< \SI{-30}{\nT}$]{
+      \todo{$\cdots$}
+    }
+    \label{fig_fwhm_rate_p_storm}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fwhm_rate_t_all.pdf}
+    \caption[Toroidal Pc4 Rate by Compressional Coupling]{
+      \todo{$\cdots$}
+    }
+    \label{fig_fwhm_rate_t_all}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fwhm_rate_t_calm.pdf}
+    \caption[Toroidal Pc4 Rate by Compressional Coupling: Dst$\geq \SI{-30}{\nT}$]{
+      \todo{$\cdots$}
+    }
+    \label{fig_fwhm_rate_t_calm}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fwhm_rate_t_storm.pdf}
+    \caption[Toroidal Pc4 Rate by Compressional Coupling: Dst$< \SI{-30}{\nT}$]{
+      \todo{$\cdots$}
+    }
+    \label{fig_fwhm_rate_t_storm}
+\end{figure}
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
-\section{Pc4 Incidence by Mode}
-  \label{sec_rate}
+\section{Double-Triggering Events}
+
+The poloidal and toroidal triggers are checked for events independently. In about \SI{10}{\percent} of cases, both trigger at the same time. In such cases, the poloidal and toroidal event almost always have the same parity. 
 
 
-
-\todo{$\cdots$}
-
-
-
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\section{Double Events}
-  \label{sec_double}
-
-
-
-
-
-
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/double_rate.pdf}
+    \caption[Dual Poloidal + Toroidal Pc4 Events]{
+      \todo{$\cdots$}
+    }
+    \label{fig_double_rate}
+\end{figure}
 
 
 % -----------------------------------------------------------------------------
