@@ -27,7 +27,6 @@
 \setlength{\abovecaptionskip}{0pt}
 
 \usepackage{lineno}
-\linenumbers
 
 \usepackage{xcolor} % so we can put todo notes in color. 
 
@@ -83,6 +82,9 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\ifdraft
+  \linenumbers
+\fi
 
 
 \begin{document}
