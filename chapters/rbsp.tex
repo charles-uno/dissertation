@@ -6,25 +6,17 @@
 
 \todo{You know what would be great for putting this numerical work in context? A nice, consistent survey that breaks down the occurrence rate of Pc4 pulsations by harmonic, etc. }
 
-\todo{There have been some surveys in the past. Dai did a nice one last year, but his filter biased him against the fundamental mode. And only a few past works have even worried about harmonic mode... probably because it's hard to get that information unless you have both E and B. }
+\todo{Anderson\cite{anderson_1990} located events by visual inspection of AMPTE/CCE data. He found that toroidal resonances outnumber poloidal ones about three-to-one. ``Harmonic toroidal resonances'' are spread 0600 to 1600. ``Fundamental toroidal resonances'' (which are not mutually exclusive with harmonic ones!) appear everywhere but dusk. Poloidal modes occur everywhere but dawn; odd and even harmonics are not distinguished. Notably, most observation time was spent at $L > 7$. Orbit near the equator, magnetic field instrumentation, so fundamental poloidal modes would have been hard to observe... and I need to reread this to figure out how he managed to observe fundamental toroidal modes! }
 
-\todo{Furthermore, it's awkward that Pgs are identified by visual inspection. How can we say how rare they are if they aren't rigorously defined? }
+\todo{Dai\cite{dai_2015} found 890 poloidal Pc4 events using RBSP. Due to a cutoff in magnetic field amplitude, his findings are biased in favor of the even mode. Events are shown to be most common near noon, but smeared across the dayside, and with a few stragglers near midnight. Low-\azm waves were shown to be smeared a bit more, occurring across the entire dusk flank at low rates. }
 
-\todo{Probably need some fluff here with appropriate citations for the mission and the instrumentation. }
+\todo{Motoba\cite{motoba_2015} looked specifically at Pgs -- 105 events. Seen from midnight to noon, with a strong peak before dawn, 0300 or so. Events are identified by visual inspection. }
 
-\todo{The tools used in the present chapter --- SPEDAS and the SPICE kernel --- are publicly available. They run best with an IDL license, which is not, but they are functional using just the (free) IDL virtual machine. The code is wrapped up in a Git repository: \url{https://github.com/chizarlicious/RBSP} (maybe should make a GitHub organization to hold this code, to decouple it from my personal account?). }
-
-
-
-Past studies to compare to:
-
-Anderson\cite{anderson_1990} located events by visual inspection of AMPTE/CCE data. He found that toroidal resonances outnumber poloidal ones about three-to-one. ``Harmonic toroidal resonances'' are spread 0600 to 1600. ``Fundamental toroidal resonances'' (which are not mutually exclusive with harmonic ones!) appear everywhere but dusk. Poloidal modes occur everywhere but dawn; odd and even harmonics are not distinguished. Notably, most observation time was spent at $L > 7$. Orbit near the equator, magnetic field instrumentation, so fundamental poloidal modes would have been hard to observe. 
-
-Dai\cite{dai_2015} found 890 poloidal Pc4 events using RBSP. Due to a cutoff in magnetic field amplitude, his findings are also biased in favor of the even mode. Events are shown to be most common near noon, but smeared across the dayside, and with a few odd stragglers near midnight. Low-\azm waves were shown to be smeared a bit more, occurring across the entire dusk flank at low rates. 
-
-Motoba\cite{motoba_2015} looked specifically at giant pulsations -- 105 events. Seen from midnight to noon, with a strong peak before dawn, 0300 or so. 
+\todo{Probably need some fluff here with appropriate citations for RBSP and its instrumentation. }
 
 %Observations show that the poloidal mode is most excited in the second harmonic\cite{cummings_1969,hughes_1978,arthur_1981,singer_1982,takahashi_1984,engebretson_1988} even when there is a strong compressional component\cite{takahashi_1987,haerendel_1999,vaivads_2001,sibeck_2012}. 
+
+\todo{The tools used in the present chapter --- SPEDAS and the SPICE kernel --- are publicly available. They run best with an IDL license, which is not, but they are functional using just the (free) IDL virtual machine. The code is wrapped up in a Git repository: \url{https://github.com/chizarlicious/RBSP} (maybe should make a GitHub organization to hold this code, to decouple it from my personal account?). }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -42,7 +34,7 @@ Electric and magnetic waveform data is cleaned up by averaging over the probe's 
 
 A further bias is introduced by the probes' non-integer number of precessions around Earth. Pc4 pulsations are most commonly observed near apogee. As of July 2014, apogee had precessed once around Earth\cite{dai_2015}. The present work considers roughly one and a half precessions; the nightside has been sampled at apogee twice as often as the dayside. 
 
-The spatial distribution of usable data --- that is, data for which three-dimensional electric and magnetic fields are abailable --- is shown in \cref{fig_pos_all_sharp}. Bins are unitary in $L$ (divided at integer $L$) and in MLT (centered at integer hours). Event distribution in magnetic latitude is not shown; the Van Allen Probes are localized to within \todo{\SI{15}{\degree}} of the equatorial plane. 
+The spatial distribution of usable data --- that is, data for which three-dimensional electric and magnetic fields are available --- is shown in \cref{fig_pos_all_sharp}. Bins are unitary in $L$ (divided at integer $L$) and in MLT (centered at integer hours). Event distribution in magnetic latitude is not shown; the Van Allen Probes are localized to within \todo{\SI{15}{\degree}} of the equatorial plane. 
 
 \todo{$L$ is italicized and MLT is not? That seems weird. }
 
@@ -58,8 +50,6 @@ The spatial distribution of usable data --- that is, data for which three-dimens
 Awkwardly, coverage is weakest from pre-dawn to the mid-afternoon --- the exact regions where Pc4 pulsations have been shown to peak. In order to compensate for that fact, results in the present chapter are binned coarsely. Histogram bins are two hours wide in MLT. Only two bins are used in the radial direction: $L \leq 5$ and $L > 5$. 
 
 \todo{Most events occur between $L = 4$ and $L = 6$, but splitting at $L = 5$ is otherwise arbitrary. It might make more sense to split the bins wherever the median event is or something. }
-
-\todo{Show all sampling together? Show two plots, based on Dst? Showing it all, as is presently done, seems like overkill. }
 
 \begin{figure}[!htb]
     \centering
@@ -78,7 +68,6 @@ Awkwardly, coverage is weakest from pre-dawn to the mid-afternoon --- the exact 
     }
     \label{fig_pos_calm}
 \end{figure}
-
 
 \begin{figure}[!htb]
     \centering
@@ -112,6 +101,8 @@ Non-Pc4 events are filtered out: any event for which the standing wave Gaussian 
 Out of consideration for instrument sensitivity, events are thresholded at a magnitude of $|\mathbb{I}\mathrm{m}\dft{S}| \geq \SI{e-2}{\mW/\m\squared}$. 
 
 Events are filtered based on the phase offset between the electric and magnetic field waveforms, given by $\arctan\frac{ \mathbb{I}\mathrm{m}\dft{S} }{ \mathbb{R}\mathrm{e}\dft{S} }$. For a purely traveling wave, the electric and magnetic field waveforms are in phase (\SI{0}{\degree}) or in antiphase (\SI{180}{\degree}). Standing waves have a phase of $\pm\SI{90}{\degree}$ between their electric and magnetic field components. The events presented here are filtered conservatively in phase; the standing wave must just barely exceed the traveling wave (phase between \SI{45}{\degree} and \SI{135}{\degree} in absolute value). 
+
+\todo{A stricter cutoff in magnitude, or in phase, does not obviously affect the distributions of events... it just shrinks the sample size and makes everything look noisier. }
 
 Events are filtered on coherence, to ensure that the phase offset is credible. If the coherence between \dft{E} and \dft{B^*} is less than 0.9, the event is discarded. Coherence and phase are both measured at the discrete Fourier transform point closest to the peak of the Gaussian. 
 
@@ -147,18 +138,9 @@ Finally, any event within \SI{3}{\degree} of the magnetic equator is discarded d
     \centering
     \includegraphics[width=\textwidth]{figures/rate_storm.pdf}
     \caption[Pc4 Rate: Dst$< \SI{-30}{\nT}$]{
-      \todo{During geomagnetically active times, Pc4 pulsations become much more common on the dayside. }
+      \todo{During geomagnetically active times, Pc4 pulsations become significantly more common, particularly near noon. }
     }
     \label{fig_rate_storm}
-\end{figure}
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/rate_all_lpp.pdf}
-    \caption[Pc4 Rate Inside and Outside the Plasmapause]{
-      \todo{Almost all Pc4 events are outside the plasmapause. }
-    }
-    \label{fig_rate_all_lpp}
 \end{figure}
 
 % -----------------------------------------------------------------------------
@@ -169,9 +151,7 @@ Finally, any event within \SI{3}{\degree} of the magnetic equator is discarded d
 
 The filters described in \cref{sec_selection} yield 822 events: 136 odd poloidal modes, 234 even poloidal modes, 445 odd toroidal modes, and 86 even toroidal modes. The distributions of those events are shown in \cref{fig_mode_all,fig_mode_storm}; counts are normalized to the sampling rates shown in \cref{fig_pos_all,fig_pos_storm} respectively. 
 
-\todo{Get a better handle on the numbers presented by Anderson\cite{anderson_1990}. That was ground, based, I think, and the categorization was really inconvenient. }
-
-\todo{It's good to see that even poloidal and even toroidal modes have similar distributions, since one turns into the other. The relationship is less clear for the odd modes, but odd poloidal and odd toroidal events are both least common near dusk. }
+\todo{It's good to see that even poloidal modes and even toroidal modes are distributed similarly, since one turns into the other! The relationship is less clear for odd modes, though odd poloidal modes and odd toroidal modes are both least common at dusk. }
 
 \todo{Odd toroidal events are by far the most commonly observed. }
 
@@ -207,25 +187,53 @@ The filters described in \cref{sec_selection} yield 822 events: 136 odd poloidal
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
+\section{Pc4 Events Inside and Outside the Plasmapause}
+  \label{sec_lpp}
+
+\todo{In the present section, bins in the radial direction indicate whether the event is located inside or outside of the plasmapause. Plasmapause locations are estimated from work by Scott. Normalization is also computed based on the sampling rate inside and outside the plasmapause. }
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/rate_all_lpp.pdf}
+    \caption[Pc4 Rate Inside and Outside the Plasmapause]{
+      \todo{Pc4 events are usually outside the plasmapause. }
+    }
+    \label{fig_rate_all_lpp}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/mode_all_lpp.pdf}
+    \caption[Pc4 Rate Inside and Outside the Plasmapause by Mode]{
+      \todo{Odd events are sometimes inside the plasmapause. Even events are almost never inside the plasmapause. }
+    }
+    \label{fig_mode_all_lpp}
+\end{figure}
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
 \section{Poloidal Pc4 Events by Compressional Coupling}
 
 \todo{Low-\azm poloidal Pc4 events are coupled to the compressional mode, while high-\azm ones are not. }
+
+\todo{The value of $\dft{B_z}/\dft{B_x} = 0.2$ comes from Dai\cite{dai_2015}. Can we match this up to an \azm value? }
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/azm_rate_all.pdf}
     \caption[Poloidal Pc4 Rate by Compressional Coupling]{
-      \todo{Low-\azm poloidal Pc4 events are more common on the nightside than high-\azm events. }
+      \todo{Odd poloidal Pc4 events have a peak pre-noon and another peak near midnight. The pre-noon peak seems to be composed of high-\azm events, and the midnight peak seems to be low-\azm events. Low-\azm even poloidal events are spread broadly across the dusk side, while high-\azm even events are peaked strongly on the dayside --- consistent with Dai's results\cite{dai_2015}. }
     }
     \label{fig_azm_rate_all}
 \end{figure}
-
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/azm_rate_calm.pdf}
     \caption[Poloidal Pc4 Rate by Compressional Coupling: Dst$\geq \SI{-30}{\nT}$]{
-      \todo{$\cdots$}
+      \todo{Looks about like \cref{fig_azm_rate_all}... }
     }
     \label{fig_azm_rate_calm}
 \end{figure}
@@ -235,7 +243,7 @@ The filters described in \cref{sec_selection} yield 822 events: 136 odd poloidal
     \centering
     \includegraphics[width=\textwidth]{figures/azm_rate_storm.pdf}
     \caption[Poloidal Pc4 Rate by Compressional Coupling: Dst$< \SI{-30}{\nT}$]{
-      \todo{$\cdots$}
+      \todo{During storm-time, the rate of high-\azm poloidal modes goes up for both odd and even modes. The rate of low-\azm even modes goes WAY up. And the rate of low-\azm odd modes goes down! }
     }
     \label{fig_azm_rate_storm}
 \end{figure}
@@ -247,12 +255,13 @@ The filters described in \cref{sec_selection} yield 822 events: 136 odd poloidal
 % -----------------------------------------------------------------------------
 \section{Pc4 Events by Spectral Width}
 
+\todo{We did a Gaussian fit of each spectrum as part of the event selection process. That gives FWHM. Let's divide the events at a FWHM of \SI{1.3}{\mHz}, the (rounded) median value. }
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/fwhm_rate_p_all.pdf}
-    \caption[Poloidal Pc4 Rate by Compressional Coupling]{
-      \todo{$\cdots$}
+    \caption[Poloidal Pc4 Rate by Spectral Width]{
+      \todo{Odd poloidal events skew a bit toward midnight when the spectra are broad/messy. Even poloidal modes skew significantly duskward --- or, maybe, nice clean peaks are particularly common near noon. }
     }
     \label{fig_fwhm_rate_p_all}
 \end{figure}
@@ -260,8 +269,8 @@ The filters described in \cref{sec_selection} yield 822 events: 136 odd poloidal
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/fwhm_rate_p_calm.pdf}
-    \caption[Poloidal Pc4 Rate by Compressional Coupling: Dst$\geq \SI{-30}{\nT}$]{
-      \todo{$\cdots$}
+    \caption[Poloidal Pc4 Rate by Spectral Width: Dst$\geq \SI{-30}{\nT}$]{
+      \todo{Looks about like \cref{fig_fwhm_rate_p_all}... }
     }
     \label{fig_fwhm_rate_p_calm}
 \end{figure}
@@ -269,8 +278,8 @@ The filters described in \cref{sec_selection} yield 822 events: 136 odd poloidal
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/fwhm_rate_p_storm.pdf}
-    \caption[Poloidal Pc4 Rate by Compressional Coupling: Dst$< \SI{-30}{\nT}$]{
-      \todo{$\cdots$}
+    \caption[Poloidal Pc4 Rate by Spectral Width: Dst$< \SI{-30}{\nT}$]{
+      \todo{Even poloidal events skew toward broad/messy spectra during storm time, compared to the quiet time distribution of FWHM. }
     }
     \label{fig_fwhm_rate_p_storm}
 \end{figure}
@@ -278,8 +287,8 @@ The filters described in \cref{sec_selection} yield 822 events: 136 odd poloidal
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/fwhm_rate_t_all.pdf}
-    \caption[Toroidal Pc4 Rate by Compressional Coupling]{
-      \todo{$\cdots$}
+    \caption[Toroidal Pc4 Rate by Spectral Width]{
+      \todo{Odd toroidal modes are skewed overall toward broad/messy spectra. }
     }
     \label{fig_fwhm_rate_t_all}
 \end{figure}
@@ -287,7 +296,7 @@ The filters described in \cref{sec_selection} yield 822 events: 136 odd poloidal
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/fwhm_rate_t_calm.pdf}
-    \caption[Toroidal Pc4 Rate by Compressional Coupling: Dst$\geq \SI{-30}{\nT}$]{
+    \caption[Toroidal Pc4 Rate by Spectral Width: Dst$\geq \SI{-30}{\nT}$]{
       \todo{$\cdots$}
     }
     \label{fig_fwhm_rate_t_calm}
@@ -296,7 +305,7 @@ The filters described in \cref{sec_selection} yield 822 events: 136 odd poloidal
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/fwhm_rate_t_storm.pdf}
-    \caption[Toroidal Pc4 Rate by Compressional Coupling: Dst$< \SI{-30}{\nT}$]{
+    \caption[Toroidal Pc4 Rate by Spectral Width: Dst$< \SI{-30}{\nT}$]{
       \todo{$\cdots$}
     }
     \label{fig_fwhm_rate_t_storm}
@@ -309,6 +318,11 @@ The filters described in \cref{sec_selection} yield 822 events: 136 odd poloidal
 
 The poloidal and toroidal triggers are checked for events independently. In about \SI{10}{\percent} of cases, both trigger at the same time. In such cases, the poloidal and toroidal event almost always have the same parity. 
 
+Odd harmonics are comparably likely to trigger on both the poloidal and toroidal channels whether or not it's storm time. Even double modes are much more common during storm time than they are during quiet time. 
+
+Odd double-triggering events rarely happen twice in the same day --- the 24 events in the top row of \cref{fig_double_rate} occur on \about20 different dates (and each of the three odd storm double events is on a different date). 
+
+Even double-triggering events often happen multiple times in the same day. The 36 calm-time double events are spread over 15 days; the 14 storm double events are spread over only 7 days. 
 
 \begin{figure}[!htb]
     \centering
@@ -329,62 +343,57 @@ The poloidal and toroidal triggers are checked for events independently. In abou
 
 
 
+%\todo{Collections of events at a single ground observatory (near \SI{66}{\degree}) over significant periods of time: }
 
-\todo{Of the \about100 events where both the poloidal and toroidal channels triggered independently, almost all had one odd mode and one even mode. }
+%Brekke\cite{brekke_1987} looked at 523 giant pulsation events recorded at Troms{\o}, Norway, from 1929 to 1985. This spanned several solar cycles. 
 
-\todo{Collections of events at a single ground observatory (near \SI{66}{\degree}) over significant periods of time: }
+%Rolf\cite{rolf_1931} collected 28 events between 1921 and 1930 at Abisko. 
 
-Brekke\cite{brekke_1987} looked at 523 giant pulsation events recorded at Troms{\o}, Norway, from 1929 to 1985. This spanned several solar cycles. 
+%Sucksdorf\cite{sucksdorff_1939} got 150 events between 1914 and 1938 in Sodankyl{\"a}. 
 
-Rolf\cite{rolf_1931} collected 28 events between 1921 and 1930 at Abisko. 
+%Harang\cite{harang_1941}. 97 events from 1929 to 1941. Also Troms{\o}. Note that this may have been limited by the war! 
 
-Sucksdorf\cite{sucksdorff_1939} got 150 events between 1914 and 1938 in Sodankyl{\"a}. 
+%This comes out to something like ... events over ... years. That's about ... giant pulsations per year, observed on the ground. 
 
-Harang\cite{harang_1941}. 97 events from 1929 to 1941. Also Troms{\o}. Note that this may have been limited by the war! 
+%\todo{Collections of events at an array of ground observatories: }
 
-This comes out to something like ... events over ... years. That's about ... giant pulsations per year, observed on the ground. 
+%Chisham and Orr\cite{chisham_1991} found 34 events from 1984 to 1987 using the EISCAT magnetometer array in scandanavia. About \SI{5}{\degree} in MLT, decent coverage from \SIrange{63}{67}{\degree} mlat. This coincides with a solar minimum. 
 
-\todo{Collections of events at an array of ground observatories: }
+%Motoba, in 2015, recorded 105 giant pulsation events. The observations were carried out by a number of ground magnetometers spanning $\sim \SI{90}{\degree}$ in local time and ranging roughly \SIrange{60}{70}{\degree} magnetic latitude\cite{motoba_2015}. This was mostly during a period of low solar activity, so we expect a high count. 
 
-Chisham and Orr\cite{chisham_1991} found 34 events from 1984 to 1987 using the EISCAT magnetometer array in scandanavia. About \SI{5}{\degree} in MLT, decent coverage from \SIrange{63}{67}{\degree} mlat. This coincides with a solar minimum. 
+%\todo{Estimate of the size of an event's footprint:}
 
-Motoba, in 2015, recorded 105 giant pulsation events. The observations were carried out by a number of ground magnetometers spanning $\sim \SI{90}{\degree}$ in local time and ranging roughly \SIrange{60}{70}{\degree} magnetic latitude\cite{motoba_2015}. This was mostly during a period of low solar activity, so we expect a high count. 
+%Velkamp\cite{veldkamp_1960} looked at a single large event and showed that, at best, it was visible over a span of \SI{5}{\degree} in magnetic latitude. 
 
-\todo{Estimate of the size of an event's footprint:}
+%This is seemingly consistent with the 29 February 2012 event discussed in detail by Motoba\cite{motoba_2015} --- Motoba shows some data, but doesn't discuss this aspect in detail. 
 
-Velkamp\cite{veldkamp_1960} looked at a single large event and showed that, at best, it was visible over a span of \SI{5}{\degree} in magnetic latitude. 
+%Takahashi\cite{takahashi_2011} computes a FWHM of about 1 in L, or \SI{2}{\degree} magnetic latitude. 
 
-This is seemingly consistent with the 29 February 2012 event discussed in detail by Motoba\cite{motoba_2015} --- Motoba shows some data, but doesn't discuss this aspect in detail. 
+%\todo{Tying that in to RBSP observations? }
 
-Takahashi\cite{takahashi_2011} computes a FWHM of about 1 in L, or \SI{2}{\degree} magnetic latitude. 
+%Note that it's a bit tricky to compare ground observations to in situ observations. Large-\azm events won't make it through the ionosphere. 
 
-\todo{Tying that in to RBSP observations? }
+%There should be no bias with respect to MLT between a ground magnetometer and RBSP. Dai's analysis was specifically chosen to take advantage of the fact that RBSP's orbit had precessed all the way around the Earth. No preferred direction. And mlat shouldn't cause issues... these are FLRs, after all. 
 
-Note that it's a bit tricky to compare ground observations to in situ observations. Large-\azm events won't make it through the ionosphere. 
+%How strong does an event need to be on the ground, or in the sky, to count as a giant pulsation? Motoba 2015\cite{motoba_2015} has an event which tops out on the order of \SI{10}{\nT} on the ground. It's more like \SI{5}{\mV/\m} in situ. Takahashi\cite{takahashi_2011} has similar values. 
 
-There should be no bias with respect to MLT between a ground magnetometer and RBSP. Dai's analysis was specifically chosen to take advantage of the fact that RBSP's orbit had precessed all the way around the Earth. No preferred direction. And mlat shouldn't cause issues... these are FLRs, after all. 
+%If peak Pg observations are at $\SI{66}{\degree}$ mlat, that corresponds to $L = 6$. Then let's suppose that peak Pg viewing is $\SI{5}{\degree}$ wide --- estimating from the work of Velkamp and Motoba. That means RBSP should see lots of Pgs when it's between $L = 5.2$ andn $L = 7.1$. Well, \SI{7.1}{\RE} is outside its apogee, but the probes spend a fair amount of time outside $L = 5.2$, since they are moving pretty slowly at that point. 
 
-How strong does an event need to be on the ground, or in the sky, to count as a giant pulsation? Motoba 2015\cite{motoba_2015} has an event which tops out on the order of \SI{10}{\nT} on the ground. It's more like \SI{5}{\mV/\m} in situ. Takahashi\cite{takahashi_2011} has similar values. 
+%Giant pulsations have been shown to be more numerous in times of low solar activity. That was the whole point of Brekke's seminal 1987 paper, and it's consistent with what we show in \cref{ch_results}. The RBSP observations occur during peak solar times, though it's an anemic solar peak\cite{pesnell_2016}. 
 
-Note that Takahashi\cite{takahashi_2013} has shown that it's OK to call something a giant pulsation even if it's not visible on the ground... though, obviously, we are comparing to ground magnetometer data for occurrence rate. 
+%\todo{How much time does RBSP spend outside of $L = 5.2$ (for a range of \SI{5}{\degree})? How about $L = 5.6$ to $L = 6.5$ (for FWHM of \SI{2}{\degree}? }
 
-If peak Pg observations are at $\SI{66}{\degree}$ mlat, that corresponds to $L = 6$. Then let's suppose that peak Pg viewing is $\SI{5}{\degree}$ wide --- estimating from the work of Velkamp and Motoba. That means RBSP should see lots of Pgs when it's between $L = 5.2$ andn $L = 7.1$. Well, \SI{7.1}{\RE} is outside its apogee, but the probes spend a fair amount of time outside $L = 5.2$, since they are moving pretty slowly at that point. 
+%Each RBSP probe spends about \SI{30}{\percent} of its orbit between $L = 5.6$ and $L = 6.5$. 
 
-Giant pulsations have been shown to be more numerous in times of low solar activity. That was the whole point of Brekke's seminal 1987 paper, and it's consistent with what we show in \cref{ch_results}. The RBSP observations occur during peak solar times, though it's an anemic solar peak\cite{pesnell_2016}. 
+%RBSP-A and RBSP-B count as two observers. In one $\sim 5$ cases out of hundreds do they simultaneously observe a poloidal Pc4 event (although, most notably for the 2012 event which \cite{dai_2013} considers in detail), both probes do fly through the same apparent event several hours apart from one another. 
 
-\todo{How much time does RBSP spend outside of $L = 5.2$ (for a range of \SI{5}{\degree})? How about $L = 5.6$ to $L = 6.5$ (for FWHM of \SI{2}{\degree}? }
+%The duration of Dai's survey is October 2012 to June 2014. Scaled by 2 probes, each of which is present in the peak Pg lshells 30\% of the time, that comes out to almost exactly one year. 
 
-Each RBSP probe spends about \SI{30}{\percent} of its orbit between $L = 5.6$ and $L = 6.5$. 
+%\todo{How many fundamental mode poloidal events do we see? How many could pass for giant pulsations? How many should we expect to see? }
 
-RBSP-A and RBSP-B count as two observers. In one $\sim 5$ cases out of hundreds do they simultaneously observe a poloidal Pc4 event (although, most notably for the 2012 event which \cite{dai_2013} considers in detail), both probes do fly through the same apparent event several hours apart from one another. 
+%\todo{How weird is it for a fundamental mode poloidal Pc4 to be monochromatic? }
 
-The duration of Dai's survey is October 2012 to June 2014. Scaled by 2 probes, each of which is present in the peak Pg lshells 30\% of the time, that comes out to almost exactly one year. 
-
-\todo{How many fundamental mode poloidal events do we see? How many could pass for giant pulsations? How many should we expect to see? }
-
-\todo{How weird is it for a fundamental mode poloidal Pc4 to be monochromatic? }
-
-\todo{How weird is it for a fundamental mode poloidal Pc4 to be stronger than \SI{5}{\mV/\m} at the equator? }
+%\todo{How weird is it for a fundamental mode poloidal Pc4 to be stronger than \SI{5}{\mV/\m} at the equator? }
 
 
 

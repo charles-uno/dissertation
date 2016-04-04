@@ -117,7 +117,6 @@ At low altitude, where the Hall conductivity muddles all of the electric field c
 
 Notably, the Poynting flux waveforms are rectified --- they primarily carry energy Earthward. The current, on the other hand, alternates between upward and downward flow. This effect presumably arises because the current is a linear quantity while the Poynting flux is quadratic: the electric and magnetic fields that make it up oscillate in phase, so their product is positive even when they are negative. 
 
-
 At higher altitude, where the Hall conductivity is small, parallel current is associated only with the toroidal mode. \cref{fig_slice_1000km} shows data from the same runs as \cref{fig_slice_100km}, arranged in the same way, but the values are taken at an altitude of \SI{1000}{\km} instead of \SI{100}{\km}. 
 
 In \cref{fig_slice_1000km}, as in \cref{fig_slice_100km}, the imaginary component of the parallel current (third column) coincides more or less with the toroidal Poynting flux (fourth column). However, the real component of the parallel current (first column) is vanishingly small, even when the poloidal Poynting flux (second column) is strong. \todo{Is this expected? Tikhonchuk\cite{tikhonchuk_2000} looks specifically at the toroidal mode when considering shear \Alfven waves. Does the poloidal mode count as compressional even when it's guided? }
@@ -184,9 +183,11 @@ The snapshot shown in \cref{fig_inertial_length} uses a perpendicular grid resol
 % -----------------------------------------------------------------------------
 \section{Discussion}
 
-\todo{$\cdots$}
+\todo{The dispersion relation in \cref{ch_math} suggests that parallel electric fields should be smaller than perpendicular electric fields by at least six orders of magnitude. Tuna agrees. }
+
+\todo{Tuna computes parallel currents a bit weaker than those that are observed --- \about\SI{1}{\uA/\m\squared} rather than \about\SI{10}{\uA/\m\squared}. The currents accompany the toroidal mode, but not the poloidal mode, except where the two are coupled by a strong Hall conductivity. Is this expected? }
+
+\todo{When inertial effects are not properly resolved, the code is prone to instability. Resolving inertial scales properly presents a prohibitive computational expense. }
 
 Electron inertial effects present a promising first-principles-based approach to the investigation of parallel currents and electric fields associated with field line resonances. Unfortunately, because of the large differences in scale between Pc4 pulsations and the plasma oscillation, the proper deployment of inertial effects presents a prohibitive computational expense. Results shown  in \cref{ch_results} make use of the core version of Tuna presented in \cref{ch_model}, which does not include the effects of electron inertia. 
-
-\todo{$\cdots$}
 
