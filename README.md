@@ -34,6 +34,7 @@ texlive-latex-extra \
 texlive-fonts-recommended \
 texlive-pictures \
 texlive-science \
+texlive-humanities
 ```
 
 ## `cleveref`
