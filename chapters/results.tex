@@ -217,6 +217,58 @@ The effect is particularly pronounced at large modenumber, where the poloidal-to
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
+\section{Modenumber and Compressional Coupling}
+  \label{sec_compression}
+
+The fact that the poloidal mode is compressional at low modenumber, but not at high modenumber, is well known. However, the relationship is not well quantified. Theoretical work has historically been focused on the limits $\azm \rightarrow 0$ and $\azm \rightarrow \infty$\cite{cummings_1969,radoski_1974}, and only a handful of satellite observations have explicitly considered an event's azimuthal modenumber\cite{dai_2013,motoba_2015,takahashi_2013}. 
+
+\cref{fig_comp_2,fig_comp_4} show the strength of the compressional magnetic field, as compared to the poloidal magnetic field, for two ensembles of runs. Each subplot in \cref{fig_comp_2,fig_comp_4} corresponds to a run. Azimuthal modenumber is held constant across each row, and drive frequency is constant down each column. 
+
+The runs shown in \cref{fig_comp_2} are carried out using the quiet dayside ionospheric profile. Similar runs using the active dayside and active nightside profiles give numbers that match closely. Using the quiet nightside profile, compressional coupling at high \azm is stronger by a factor of \about2, as shown in \cref{fig_comp_4}. 
+
+The quantity shown in \cref{fig_comp_2,fig_comp_4} is the ratio of the RMS compressional magnetic field to the RMS poloidal magnetic field:
+\begin{align}
+  \label{def_compression}
+  \text{\todo{name?}} &= \sqrt{ \frac{\int dV B_z^2}{\int dV B_x^2} }
+\end{align}
+
+The dotted lines indicate the mean, which is listed at the top of each subplot. 
+
+At $\azm = 1$, when the cutoff frequency\footnote{See \cref{fig_cutoff}. } is well below the drive frequency, the compressional and poloidal wave magnetic fields are (on average) equally strong. As \azm increases, the poloidal mode's compressional propagation becomes constrained, and the compressional magnetic field weakens. The compressional magnetic field's relative magnitude is cut in half by $\azm\about5$ (for non-quiet-night profiles), and cut in half again by $\azm\about10$. (Using the quiet night profile, the strength is instead halved at $\azm\about7$ and quartered at $\azm\about14$). 
+
+\todo{The nature of the relationship between \azm and the compressional coupling is not obvious. It's not linear, logarithmic, or a power law. When the compressional magnetic field is compared to the total wave magnetic field ($\sqrt{B_x^2 + B_y^2 + B_z^2}$) instead of to the poloidal magnetic field, the pattern remains unclear. }
+
+\todo{These results line up nicely with Dai's 2015 survey of poloidal Pc4 events\cite{dai_2015}. Events are characterized as compressional or non-compressional based on the ratio $\left|\frac{B_z}{B_x}\right|$. The threshold is arbitrarily set to \num{0.2} --- with no suggestion of a corresponding value of \azm. The results in \cref{fig_comp_2} suggest that Dai's threshold (conveniently!) aligns closely with the paper's definition of ``small \azm'' to mean $\azm < 10$. }
+
+\todo{Check if a relationship is given in Hughes\cite{hughes_1994}. That's what Lei cites for ``low-\azm waves are compressional.'' Other papers give no indication that this has been looked at before\cite{cummings_1969,radoski_1974}. }
+
+\todo{Results might vary significantly for even modes. Radoski's 1974 paper suggests that $\left|\frac{B_z}{B_x}\right|\sim\frac{1}{n}$ (where $n$ is the harmonic number). }
+
+\todo{There's a bit of frequency dependence in the compressional coupling. Higher-frequency runs are more compressional. This is presumably because higher-frequency runs are closer to the compressional cutoff, so they are not quite as evanescent in the compressional direction. }
+
+\todo{Sawtooth shape --- the compressional magnetic field is pumped up by the driving, but drops quickly since compressional propagation is evanescent. }
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/comp_2.pdf}
+    \caption[Compressional Coupling to the Poloidal Mode: Quiet Day]{
+      \todo{$\cdots$}
+    }
+    \label{fig_comp_2}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/comp_4.pdf}
+    \caption[Compressional Coupling to the Poloidal Mode: Quiet Night]{
+      \todo{The other three models give comparable compressional couplings. Oddly, the quiet night profile gives twice as much. }
+    }
+    \label{fig_comp_4}
+\end{figure}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
 \section{Ground Signatures and Giant Pulsations}
   \label{sec_ground}
 
@@ -240,7 +292,7 @@ Ground signatures are maximized at $\azm = 16$ and $\azm = 32$ on both the daysi
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/ground_19mHz_day_4_5.pdf}
+    \includegraphics[width=\textwidth]{figures/ground_day.pdf}
     \caption[Dayside Ground Magnetic Fields]{
       \todo{Use \SI{22}{\mHz} instead! At \SI{19}{\mHz} and low \azm, there's something weird happening at the outer boundary. }
     }
@@ -249,7 +301,7 @@ Ground signatures are maximized at $\azm = 16$ and $\azm = 32$ on both the daysi
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/ground_16mHz_night_4_5.pdf}
+    \includegraphics[width=\textwidth]{figures/ground_night.pdf}
     \caption[Nightside Ground Magnetic Fields]{
       Nightside ground signatures are less strongly peaked than those on the dayside, but qualitative features are the same: the strongest signals are in $B_\phi$, peaked over just a few degrees in latitude, at a modenumber of 16 or 32, under quiet ionospheric conditions. 
     }
