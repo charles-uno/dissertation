@@ -12,18 +12,7 @@ In his 1974 paper, Radoski argues that a poloidally-polarized wave should asympt
 
 The present chapter builds on the aforementioned results by relaxing several of their nonphysical assumptions. Tuna's geometry (as described in \cref{ch_model}) is far more realistic than Radoski's half-cylinder or the box model used by Mann and Wright. Magnetic field lines are dipolar. \Alfven speed is based on an empirical profile, and varies along and across field lines. The present work also features driving delivered over time through perturbation of the ring current; past work has instead considered only the evolution of an initial condition. Finally, the present model includes a height-resolved ionosphere (rather than perfectly-reflecting boundaries). The ionospheric conductivity provides a direct coupling between the poloidal and toroidal modes, in addition to dissipating energy. 
 
-Energy is computed per Poynting's theorem, with due consideration of the unusual geometry. Energy density is integrated over the meridional plane, but not in the azimuthal direction, giving units of gigajoules per radian; more than anything else, this serves as a reminder that the waves under consideration are azimuthally localized. The energy in the poloidal mode and the energy in the toroidal mode are, respectively, 
-\begin{align}
-  \label{def_energy}
-  U_P &= \displaystyle\int \frac{d\lysakx d\lysakz}{2 \mz \jac} \lr{ B_x^2 + \frac{1}{\va^2} E_y^2} &
-  U_T &= \displaystyle\int \frac{d\lysakx d\lysakz}{2 \mz \jac} \lr{ B_y^2 + \frac{1}{\va^2} E_x^2} 
-\end{align}
-
 \todo{We look at the interplay between poloidal-to-toroidal rotation, Joule dissipation, etc. }
-
-\todo{The overarching motivation for this work is that Pc4 pulsations vary in interesting ways with respect to azimuthal modenumber, and that prior models have been unable to give a good picture of that behavior. }
-
-\todo{It's possible that the contour plots (\cref{sec_layers_day,sec_layers_night}) should go before the line plots (\cref{sec_lifetimes_day,sec_lifetimes_night}). They sorta depend on one another. Unclear if there's a better way to divide things up. }
 
 %\todo{Do we every check E/B against $\Sigma_P / \mz$? }
 
@@ -32,6 +21,273 @@ Energy is computed per Poynting's theorem, with due consideration of the unusual
 %\todo{Look at McKenzie and Westphal. Waves incident on the bow shock, etc, at weird angles. }
 
 %\todo{Look at the E to B ratio. Compare to the \Alfven speed and to the height-integrated Pedersen conductivity. }
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Modenumber and Compressional Coupling}
+  \label{sec_compression}
+
+\todo{The overarching motivation for this work is that Pc4 pulsations vary in interesting ways with respect to azimuthal modenumber, and that prior models have been unable to give a good picture of that behavior. }
+
+The fact that the poloidal mode is compressional at low modenumber, but not at high modenumber, is well known. However, the relationship is not well quantified. Theoretical work has historically been focused on the limits $\azm \rightarrow 0$ and $\azm \rightarrow \infty$\cite{cummings_1969,radoski_1974}, and only a handful of satellite observations have explicitly considered an event's azimuthal modenumber\cite{dai_2013,motoba_2015,takahashi_2013}. 
+
+\cref{fig_snapshot_smallm,fig_snapshot_bigm} show magnetic field snapshots taken from a run with small \azm and a run with large \azm. These runs were performed using the quiet dayside ionospheric profile, but other profiles produce qualitatively similar results. The differences between the profiles are explored in \cref{sec_day,sec_night}. The two runs shown are identical except for the modenumber: same driving, same physical parameter profiles, etc. 
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/snapshot_smallm.pdf}
+    \caption[Magnetic Field Snapshots from a Small-\azm Run]{
+      \todo{$\cdots$}
+    }
+    \label{fig_snapshot_smallm}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/snapshot_bigm.pdf}
+    \caption[Magnetic Field Snapshots from a Large-\azm Run]{
+      \todo{$\cdots$}
+    }
+    \label{fig_snapshot_bigm}
+\end{figure}
+
+\cref{fig_comp_2} shows the ratio of the compressional magnetic field to the poloidal magnetic field for an ensemble of runs, including those shown in \cref{fig_snapshot_smallm,fig_snapshot_bigm}. RMS field values are used, integrating over the volume of the simulation. Dotted lines indicate the mean, which is also listed at the top of each subplot. 
+
+\todo{Sawtooth shape --- the compressional magnetic field is pumped up by the driving, but drops quickly since compressional propagation is evanescent. }
+
+\todo{There's a bit of frequency dependence in the compressional coupling. Higher-frequency runs are more compressional. This is presumably because higher-frequency runs are closer to the compressional cutoff, so they are not quite as evanescent in the compressional direction. }
+
+\todo{Results might vary significantly for even modes. Radoski's 1974 paper suggests that $\left|\frac{B_z}{B_x}\right|\sim\frac{1}{n}$ (where $n$ is the harmonic number). }
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/comp_2.pdf}
+    \caption[Compressional Coupling to the Poloidal Mode]{
+      \todo{By varying the frequency and ionospheric profiles, the coupling at $\azm > 16$ can change by as much as a factor of two. But everything still converges to zero. }
+    }
+    \label{fig_comp_2}
+\end{figure}
+
+At $\azm = 1$, when the cutoff frequency\footnote{See \cref{fig_cutoff}. } is well below the drive frequency, the compressional and poloidal wave magnetic fields are (on average) equally strong. As \azm increases, the poloidal mode's compressional propagation becomes constrained, and the compressional magnetic field weakens. The compressional magnetic field's relative magnitude is cut in half by $\azm\about5$ (for non-quiet-night profiles), and cut in half again by $\azm\about10$. (Using the quiet night profile, the strength is instead halved at $\azm\about7$ and quartered at $\azm\about14$). 
+
+\todo{The nature of the relationship between \azm and the compressional coupling is not obvious. It's not linear, logarithmic, or a power law. }
+
+\todo{These results line up nicely with Dai's 2015 survey of poloidal Pc4 events\cite{dai_2015}. Events are characterized as compressional or non-compressional based on the ratio $\left|\frac{B_z}{B_x}\right|$. The threshold is arbitrarily set to \num{0.2} --- with no suggestion of a corresponding value of \azm. The results in \cref{fig_comp_2} suggest that Dai's threshold (conveniently!) aligns closely with the paper's definition of ``small \azm'' to mean $\azm < 10$. }
+
+\todo{Check if a relationship is given in Hughes\cite{hughes_1994}. That's what Lei cites for ``low-\azm waves are compressional.'' Other papers give no indication that this has been looked at before\cite{cummings_1969,radoski_1974}. }
+
+
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Resonance and Rotation on the Dayside}
+  \label{sec_day}
+
+Ionospheric conductivity on the dayside is high. 
+
+Energy is computed per Poynting's theorem, with due consideration of the unusual geometry. Energy density is integrated over the meridional plane, but not in the azimuthal direction, giving units of gigajoules per radian; more than anything else, this serves as a reminder that the waves under consideration are azimuthally localized. The energy in the poloidal mode and the energy in the toroidal mode are, respectively, 
+\begin{align}
+  \label{def_energy}
+  U_P &= \displaystyle\int \frac{d\lysakx d\lysakz}{2 \mz \jac} \lr{ B_x^2 + \frac{1}{\va^2} E_y^2} &
+  U_T &= \displaystyle\int \frac{d\lysakx d\lysakz}{2 \mz \jac} \lr{ B_y^2 + \frac{1}{\va^2} E_x^2} 
+\end{align}
+
+
+Each subplot in \cref{fig_U_day,fig_layers_day_p,fig_layers_day_t} corresponds to a run. 
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/U_day.pdf}
+    \caption[Dayside Poloidal and Toroidal Energy]{
+      \todo{$\cdots$}
+    }
+    \label{fig_U_day}
+\end{figure}
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/layers_day_p.pdf}
+    \caption[Dayside Poloidal Energy Distribution]{
+      \todo{$\cdots$}
+    }
+    \label{fig_layers_day_p}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/layers_day_t.pdf}
+    \caption[Dayside Toroidal Energy Distribution]{
+      \todo{$\cdots$}
+    }
+    \label{fig_layers_day_t}
+\end{figure}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Resonance and Rotation on the Nightside}
+  \label{sec_night}
+
+Each subplot in \cref{fig_U_night,fig_layers_night_p,fig_layers_night_t} corresponds to a run. 
+
+Driving is moved from $L=5$ to $L=6$ to line up better. Or even $L=7$?
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/placeholder.jpg}
+    \caption[Nightside Poloidal and Toroidal Energy]{
+      \todo{$\cdots$}
+    }
+    \label{fig_U_night}
+\end{figure}
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/placeholder.jpg}
+    \caption[Nightside Poloidal Energy Distribution]{
+      \todo{$\cdots$}
+    }
+    \label{fig_layers_night_p}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/placeholder.jpg}
+    \caption[Nightside Toroidal Energy Distribution]{
+      \todo{$\cdots$}
+    }
+    \label{fig_layers_night_t}
+\end{figure}
+
+
+
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Ground Signatures and Giant Pulsations}
+  \label{sec_ground}
+
+While the majority of the action is in space, the majority of FLR observations have been ground-based. The present section explores the same simulations discussed in \cref{sec_lifetimes_day,sec_layers_day,sec_lifetimes_night,sec_layers_night}, but in terms of their ground signatures rather than their broad energy distributions. 
+
+As in the figures shown in \cref{sec_lifetimes_day,sec_layers_day,sec_lifetimes_night,sec_layers_night}, each row in \cref{fig_ground_day,fig_ground_night} shows runs at a different modenumber. The columns are magnetic field contours; the vertical axis is latitude, and the horizontal axis is time. The four columns are components of the magnetic field signatures at the ground:  the north-south magnetic field (first and third columns) and the east-west magnetic field (second and fourth columns). The pair on the left show a simulation carried out using the active ionospheric profile, and the pair on the right show a simulation using the quiet profile. 
+
+Notably, the magnetic polarization of a low frequency \Alfven wave is rotated by \about\SI{90}{\degree} as it passes through the ionosphere\cite{hughes_1974}. The east-west field on the ground ($B_\phi$) corresponds to the poloidal polarization in space, and the north-south field on the ground ($B_\theta$) corresponds to the toroidal mode. 
+
+\todo{What's going on with the empty frame for nightside, $\azm = 1$, \SI{16}{\mHz}? }
+
+\todo{Don't use \SI{19}{\mHz}! It's wonky at low modenumber. Use \SI{22}{\mHz} instead. }
+
+The most striking feature of \cref{fig_ground_day,fig_ground_night} is the modenumber dependence. As modenumber increases, the magnetic field signatures become sharply localized in latitude. At high \azm, ground signatures are concentrated between \SI{60}{\degree} and \SI{70}{\degree}, peaking just below \SI{65}{\degree}. This shows good agreement with observations of Pgs peaked near \SI{66}{\degree}. 
+
+At low modenumber, magnetic signatures are weak on the ground because the waves in space are also weak. At high modenumber, waves in space are strong, but so is the attenuation of magnetic signatures by the ionosphere\footnote{See \cref{attenuation}. }. The ``sweet spot'' at which magnetic ground signatures are maximized falls at $\azm = 16$ to $\azm = 32$. For comparison, Pgs are generally observed with azimuthal modenumbers of 16 to 35\cite{takahashi_1992}. 
+
+Ground signatures are maximized at $\azm = 16$ and $\azm = 32$ on both the dayside (\cref{fig_ground_day}) and the nightside (\cref{fig_ground_night}). Dayside signatures are stronger than those on the nightside, and quiet dayside and quiet nightside responses are stronger than those on the active dayside and active nightside respectively. The strongest magnetic fields at the ground are primarily east-west polarized -- as Pgs are\cite{takahashi_1992}. 
+
+\todo{At present, Tuna's ionospheric profiles do not allow the dawn and dusk flanks to be distinguished from the dayside and nightside. }
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/ground_day.pdf}
+    \caption[Dayside Ground Magnetic Fields]{
+      \todo{$\cdots$}
+    }
+    \label{fig_ground_day}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/ground_night.pdf}
+    \caption[Nightside Ground Magnetic Fields]{
+      Nightside ground signatures are less strongly peaked than those on the dayside, but qualitative features are the same: the strongest signals are in $B_\phi$, peaked over just a few degrees in latitude, at a modenumber of 16 or 32, under quiet ionospheric conditions. 
+    }
+    \label{fig_ground_night}
+\end{figure}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\section{Discussion}
+
+\todo{Make this section read nicely. }
+
+%The results of the present section show agreement with --- and significant refinement of --- past analytical and numerical work. In the case of large (but finite) ionospheric conductivity, dipole geometry, and realistic \Alfven speed profile, energy rotates asymptotically from the poloidal mode to the toroidal mode. The rotation rate is strongly affected by azimuthal modenumber and, in the large-\azm regime, has a characteristic timescale in the tens of periods. 
+
+%The present work furthermore considers the issue of poloidal lifetimes in the low conductivity regime (while past work has used perfectly-reflecting boundaries). Results show that an equally-strong driving current will create weaker FLRs on the nightside. 
+
+%LIFETIMES
+
+Poloidal FLRs rotate to the toroidal mode over time. Toroidal modes do not appear to rotate back to the poloidal mode. When \azm is small, the rotation is comparable to an oscillation period; when \azm is large, rotation timescales are comparable to ten periods, sometimes more.
+
+On the dayside, little damping takes place over rotation timescales, so the toroidal mode asymptotically exceeds the toroidal mode. The exception is waves with low modenumber, where poloidal waves can escape by propagating across field lines. An evaluation of what happens then --- whether they bounce back off the magnetopause, for example --- is beyond the scope of the present work. 
+
+On the nightside, the conductivity of the ionosphere is low enough that damping timescales become comparable to oscillation timescales. Waves are weaker, since they are unable to accumulate energy over as many periods. High-\azm toroidal waves are particularly weak, since the dissipation timescale is faster than the poloidal-to-toroidal rotation timescale. 
+
+Waves resonate best when the frequency of the driving matches the local eigenfrequency where it's delivered. The eigenfrequency is significantly affected by the size of the plasmasphere. 
+
+%LAYERS
+
+%Low-\azm poloidal modes are not inclined to resonate just outside the plasmapause, even if the driving frequency matches the local eigenfrequency. They slide --- \todo{up?} --- the effective potential surface formed by the sharp \Alfven speed gradient. Some energy accumulates as a third harmonic at large $L$, and some within the plasmapause. 
+
+The poloidal mode, due to its compressional character, exhibits an energy profile which is smeared in $L$. The toroidal mode, on the other hand, forms sharp resonances where the drive frequency matches the local eigenfrequency. This may explain why the observed frequencies of poloidal waves depend weakly on $L$, while the frequencies of toroidal waves are strongly dependent on $L$. 
+
+%GROUND SIGNATURES
+
+At low \azm, ground signatures are weak because waves in space are weak because energy can easily escape through the simulation's outer boundary. At large \azm, ground signatures are attenuated by the ionosphere. The ``sweet spot'' in azimuthal modenumber at which ground signatures are strongest is around 16 to 32. Furthermore, ground signatures are strongest when ionospheric profiles corresponding to solar minimum are used. Driving in the poloidal electric field gives rise to primarily ground signatures polarized primarily in the east-west direction at the ground. And, when the frequency of the driving does not match the local eigenfrequency, the high-\azm resonates weakly in place, rather than tunneling across field lines to resonate strongly somewhere else. 
+
+These findings imply, awkwardly, that the morphology of giant pulsations may reveal relatively little about their origins. One can consider a hypothetical magnetosphere subject to constant driving: broadband in frequency, broadband in modenumber, just outside the plasmapause. Low-\azm poloidal waves will quickly rotate to the toroidal mode (and/or propagate away). High-\azm waves will resonate in place, accumulating energy over time, and giving rise to ``multiharmonic toroidal waves''\cite{takahashi_2011}; Fourier components that do not match the local eigenfrequency will quickly asymptote. Waves with very high modenumbers will be attenuated by the ionosphere. The response on the ground will be significantly stronger during quiet solar conditions. In other words, the measurements on the ground will look very much like a giant pulsation. 
+
+\todo{Notably, the present work offers no explanation as to Pgs' distinctive distribution in MLT! }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -213,134 +469,4 @@ The effect is particularly pronounced at large modenumber, where the poloidal-to
 %\todo{If \azm is small, energy rotates to the toroidal mode too fast to form a poloidal resonance. If \azm is large, the \Alfven wave is guided, so it resonates only if the driving frequency lines up with the resonant frequency where it's applied. The result is just one big --- or perhaps even giant --- pulsation. If the driving lines up with a nearby field line, the toroidal mode goes crazy! Resonance inside the plasmasphere. Resonance at the plasmapause. Resonance at the driving location. And (weak) attempt at a higher harmonic further out. }
 
 %\todo{When the driving frequency doesn't line up with the location where it's delivered, there's basically no response. There is no movement of energy to a resonant field line, so no energy can accumulate over the course of multiple rounds of driving. Even when not driven resonantly, the toroidal mode still makes the best of its situation. It steals what energy it can from the poloidal mode, carries it to the resonant $L$-shell, and gets to work. (In contrast, recall from \cref{fig_resonant_driving}, in this situation the poloidal mode just does not accumulate energy.) }
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\section{Modenumber and Compressional Coupling}
-  \label{sec_compression}
-
-The fact that the poloidal mode is compressional at low modenumber, but not at high modenumber, is well known. However, the relationship is not well quantified. Theoretical work has historically been focused on the limits $\azm \rightarrow 0$ and $\azm \rightarrow \infty$\cite{cummings_1969,radoski_1974}, and only a handful of satellite observations have explicitly considered an event's azimuthal modenumber\cite{dai_2013,motoba_2015,takahashi_2013}. 
-
-\cref{fig_comp_2,fig_comp_4} show the strength of the compressional magnetic field, as compared to the poloidal magnetic field, for two ensembles of runs. Each subplot in \cref{fig_comp_2,fig_comp_4} corresponds to a run. Azimuthal modenumber is held constant across each row, and drive frequency is constant down each column. 
-
-The runs shown in \cref{fig_comp_2} are carried out using the quiet dayside ionospheric profile. Similar runs using the active dayside and active nightside profiles give numbers that match closely. Using the quiet nightside profile, compressional coupling at high \azm is stronger by a factor of \about2, as shown in \cref{fig_comp_4}. 
-
-The quantity shown in \cref{fig_comp_2,fig_comp_4} is the ratio of the RMS compressional magnetic field to the RMS poloidal magnetic field:
-\begin{align}
-  \label{def_compression}
-  \text{\todo{name?}} &= \sqrt{ \frac{\int dV B_z^2}{\int dV B_x^2} }
-\end{align}
-
-The dotted lines indicate the mean, which is listed at the top of each subplot. 
-
-At $\azm = 1$, when the cutoff frequency\footnote{See \cref{fig_cutoff}. } is well below the drive frequency, the compressional and poloidal wave magnetic fields are (on average) equally strong. As \azm increases, the poloidal mode's compressional propagation becomes constrained, and the compressional magnetic field weakens. The compressional magnetic field's relative magnitude is cut in half by $\azm\about5$ (for non-quiet-night profiles), and cut in half again by $\azm\about10$. (Using the quiet night profile, the strength is instead halved at $\azm\about7$ and quartered at $\azm\about14$). 
-
-\todo{The nature of the relationship between \azm and the compressional coupling is not obvious. It's not linear, logarithmic, or a power law. When the compressional magnetic field is compared to the total wave magnetic field ($\sqrt{B_x^2 + B_y^2 + B_z^2}$) instead of to the poloidal magnetic field, the pattern remains unclear. }
-
-\todo{These results line up nicely with Dai's 2015 survey of poloidal Pc4 events\cite{dai_2015}. Events are characterized as compressional or non-compressional based on the ratio $\left|\frac{B_z}{B_x}\right|$. The threshold is arbitrarily set to \num{0.2} --- with no suggestion of a corresponding value of \azm. The results in \cref{fig_comp_2} suggest that Dai's threshold (conveniently!) aligns closely with the paper's definition of ``small \azm'' to mean $\azm < 10$. }
-
-\todo{Check if a relationship is given in Hughes\cite{hughes_1994}. That's what Lei cites for ``low-\azm waves are compressional.'' Other papers give no indication that this has been looked at before\cite{cummings_1969,radoski_1974}. }
-
-\todo{Results might vary significantly for even modes. Radoski's 1974 paper suggests that $\left|\frac{B_z}{B_x}\right|\sim\frac{1}{n}$ (where $n$ is the harmonic number). }
-
-\todo{There's a bit of frequency dependence in the compressional coupling. Higher-frequency runs are more compressional. This is presumably because higher-frequency runs are closer to the compressional cutoff, so they are not quite as evanescent in the compressional direction. }
-
-\todo{Sawtooth shape --- the compressional magnetic field is pumped up by the driving, but drops quickly since compressional propagation is evanescent. }
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/comp_2.pdf}
-    \caption[Compressional Coupling to the Poloidal Mode: Quiet Day]{
-      \todo{$\cdots$}
-    }
-    \label{fig_comp_2}
-\end{figure}
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/comp_4.pdf}
-    \caption[Compressional Coupling to the Poloidal Mode: Quiet Night]{
-      \todo{The other three models give comparable compressional couplings. Oddly, the quiet night profile gives twice as much. }
-    }
-    \label{fig_comp_4}
-\end{figure}
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\section{Ground Signatures and Giant Pulsations}
-  \label{sec_ground}
-
-While the majority of the action is in space, the majority of FLR observations have been ground-based. The present section explores the same simulations discussed in \cref{sec_lifetimes_day,sec_layers_day,sec_lifetimes_night,sec_layers_night}, but in terms of their ground signatures rather than their broad energy distributions. 
-
-As in the figures shown in \cref{sec_lifetimes_day,sec_layers_day,sec_lifetimes_night,sec_layers_night}, each row in \cref{fig_ground_day,fig_ground_night} shows runs at a different modenumber. The columns are magnetic field contours; the vertical axis is latitude, and the horizontal axis is time. The four columns are components of the magnetic field signatures at the ground:  the north-south magnetic field (first and third columns) and the east-west magnetic field (second and fourth columns). The pair on the left show a simulation carried out using the active ionospheric profile, and the pair on the right show a simulation using the quiet profile. 
-
-Notably, the magnetic polarization of a low frequency \Alfven wave is rotated by \about\SI{90}{\degree} as it passes through the ionosphere\cite{hughes_1974}. The east-west field on the ground ($B_\phi$) corresponds to the poloidal polarization in space, and the north-south field on the ground ($B_\theta$) corresponds to the toroidal mode. 
-
-\todo{What's going on with the empty frame for nightside, $\azm = 1$, \SI{16}{\mHz}? }
-
-\todo{Don't use \SI{19}{\mHz}! It's wonky at low modenumber. Use \SI{22}{\mHz} instead. }
-
-The most striking feature of \cref{fig_ground_day,fig_ground_night} is the modenumber dependence. As modenumber increases, the magnetic field signatures become sharply localized in latitude. At high \azm, ground signatures are concentrated between \SI{60}{\degree} and \SI{70}{\degree}, peaking just below \SI{65}{\degree}. This shows good agreement with observations of Pgs peaked near \SI{66}{\degree}. 
-
-At low modenumber, magnetic signatures are weak on the ground because the waves in space are also weak. At high modenumber, waves in space are strong, but so is the attenuation of magnetic signatures by the ionosphere\footnote{See \cref{attenuation}. }. The ``sweet spot'' at which magnetic ground signatures are maximized falls at $\azm = 16$ to $\azm = 32$. For comparison, Pgs are generally observed with azimuthal modenumbers of 16 to 35\cite{takahashi_1992}. 
-
-Ground signatures are maximized at $\azm = 16$ and $\azm = 32$ on both the dayside (\cref{fig_ground_day}) and the nightside (\cref{fig_ground_night}). Dayside signatures are stronger than those on the nightside, and quiet dayside and quiet nightside responses are stronger than those on the active dayside and active nightside respectively. The strongest magnetic fields at the ground are primarily east-west polarized -- as Pgs are\cite{takahashi_1992}. 
-
-\todo{At present, Tuna's ionospheric profiles do not allow the dawn and dusk flanks to be distinguished from the dayside and nightside. }
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/ground_day.pdf}
-    \caption[Dayside Ground Magnetic Fields]{
-      \todo{Use \SI{22}{\mHz} instead! At \SI{19}{\mHz} and low \azm, there's something weird happening at the outer boundary. }
-    }
-    \label{fig_ground_day}
-\end{figure}
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/ground_night.pdf}
-    \caption[Nightside Ground Magnetic Fields]{
-      Nightside ground signatures are less strongly peaked than those on the dayside, but qualitative features are the same: the strongest signals are in $B_\phi$, peaked over just a few degrees in latitude, at a modenumber of 16 or 32, under quiet ionospheric conditions. 
-    }
-    \label{fig_ground_night}
-\end{figure}
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\section{Discussion}
-
-\todo{Make this section read nicely. }
-
-%The results of the present section show agreement with --- and significant refinement of --- past analytical and numerical work. In the case of large (but finite) ionospheric conductivity, dipole geometry, and realistic \Alfven speed profile, energy rotates asymptotically from the poloidal mode to the toroidal mode. The rotation rate is strongly affected by azimuthal modenumber and, in the large-\azm regime, has a characteristic timescale in the tens of periods. 
-
-%The present work furthermore considers the issue of poloidal lifetimes in the low conductivity regime (while past work has used perfectly-reflecting boundaries). Results show that an equally-strong driving current will create weaker FLRs on the nightside. 
-
-%LIFETIMES
-
-Poloidal FLRs rotate to the toroidal mode over time. Toroidal modes do not appear to rotate back to the poloidal mode. When \azm is small, the rotation is comparable to an oscillation period; when \azm is large, rotation timescales are comparable to ten periods, sometimes more.
-
-On the dayside, little damping takes place over rotation timescales, so the toroidal mode asymptotically exceeds the toroidal mode. The exception is waves with low modenumber, where poloidal waves can escape by propagating across field lines. An evaluation of what happens then --- whether they bounce back off the magnetopause, for example --- is beyond the scope of the present work. 
-
-On the nightside, the conductivity of the ionosphere is low enough that damping timescales become comparable to oscillation timescales. Waves are weaker, since they are unable to accumulate energy over as many periods. High-\azm toroidal waves are particularly weak, since the dissipation timescale is faster than the poloidal-to-toroidal rotation timescale. 
-
-Waves resonate best when the frequency of the driving matches the local eigenfrequency where it's delivered. The eigenfrequency is significantly affected by the size of the plasmasphere. 
-
-%LAYERS
-
-%Low-\azm poloidal modes are not inclined to resonate just outside the plasmapause, even if the driving frequency matches the local eigenfrequency. They slide --- \todo{up?} --- the effective potential surface formed by the sharp \Alfven speed gradient. Some energy accumulates as a third harmonic at large $L$, and some within the plasmapause. 
-
-The poloidal mode, due to its compressional character, exhibits an energy profile which is smeared in $L$. The toroidal mode, on the other hand, forms sharp resonances where the drive frequency matches the local eigenfrequency. This may explain why the observed frequencies of poloidal waves depend weakly on $L$, while the frequencies of toroidal waves are strongly dependent on $L$. 
-
-%GROUND SIGNATURES
-
-At low \azm, ground signatures are weak because waves in space are weak because energy can easily escape through the simulation's outer boundary. At large \azm, ground signatures are attenuated by the ionosphere. The ``sweet spot'' in azimuthal modenumber at which ground signatures are strongest is around 16 to 32. Furthermore, ground signatures are strongest when ionospheric profiles corresponding to solar minimum are used. Driving in the poloidal electric field gives rise to primarily ground signatures polarized primarily in the east-west direction at the ground. And, when the frequency of the driving does not match the local eigenfrequency, the high-\azm resonates weakly in place, rather than tunneling across field lines to resonate strongly somewhere else. 
-
-These findings imply, awkwardly, that the morphology of giant pulsations may reveal relatively little about their origins. One can consider a hypothetical magnetosphere subject to constant driving: broadband in frequency, broadband in modenumber, just outside the plasmapause. Low-\azm poloidal waves will quickly rotate to the toroidal mode (and/or propagate away). High-\azm waves will resonate in place, accumulating energy over time, and giving rise to ``multiharmonic toroidal waves''\cite{takahashi_2011}; Fourier components that do not match the local eigenfrequency will quickly asymptote. Waves with very high modenumbers will be attenuated by the ionosphere. The response on the ground will be significantly stronger during quiet solar conditions. In other words, the measurements on the ground will look very much like a giant pulsation. 
-
-\todo{Notably, the present work offers no explanation as to Pgs' distinctive distribution in MLT! }
-
 
