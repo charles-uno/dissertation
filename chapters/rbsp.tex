@@ -139,13 +139,7 @@ Even poloidal modes and even toroidal modes exhibit similar distributions in spa
 \section{Events by Amplitude}
   \label{sec_amp}
 
-The distribution of event magnitudes is presented in \cref{fig_amp}, graded based on the peak amplitude of the Gaussian fit of each event's Poynting flux, $|\dft{S}\arg{\omega}|$. Mean and median values are listed for each mode. Most events are small, with Poynting flux no larger than \SI{0.1}{\mW/\m\squared} when mapped to the ionosphere. 
-
-\todo{$\cdots$}
-
-One might reasonable be concerned that the spatial distributions presented in \cref{fig_mode_all_sharp} are dominated by these small events, while Pc4 events large enough to be noteworthy follow a different distribution entirely. As shown in \cref{fig_mode_amp} that's not the case. 
-
-\todo{$\cdots$}
+One might reasonable be concerned that the spatial distributions presented in \cref{fig_mode_all_sharp} are dominated by these small events, while Pc4 events large enough to be noteworthy follow a different distribution entirely. The goal of the present section is to address that concern. 
 
 \begin{figure}[!htb]
     \centering
@@ -156,6 +150,22 @@ One might reasonable be concerned that the spatial distributions presented in \c
     \label{fig_amp}
 \end{figure}
 
+The distribution of event magnitudes is presented in \cref{fig_amp}, graded based on the peak of the Gaussian fit of each event's Poynting flux, $|\dft{S}\arg{\omega}|$. Mean and median values are listed for each mode. Most events are small, with Poynting flux well below \SI{0.1}{\mW/\m\squared} when mapped to the ionosphere. Only a handful of events --- 3 out of 762 --- exceed \SI{1}{\mW/\m\squared}, typically taken to be the threshold at which visible auroral arcs form. One such event is shown in \cref{fig_sample_event_strong}. 
+
+\todo{Say something about this event? Not really clear what purpose is served by this example, actually. As a matter of curiosity, the apparent wave activity in the toroidal channel did not pass the event selection trigger because the electric and magnetic waveforms are not coherent. }
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/sample_event_strong.pdf}
+    \caption[Waveforms and Spectra for a Strong Pc4 Event]{
+      \todo{$\cdots$}
+    }
+    \label{fig_sample_event_strong}
+\end{figure}
+
+\todo{The distribution of even poloidal events is flatter in amplitude than the rest. As the amplitude cutoff increases, so does the proportion of even events. }
+
+\todo{The distribution of events by mode is reproduced in \cref{fig_mode_amp} using several different amplitude cutoffs. The qualitative distribution of events does not change. }
 
 \begin{figure}[!htb]
     \centering
@@ -173,7 +183,9 @@ One might reasonable be concerned that the spatial distributions presented in \c
 \section{Events by Frequency}
   \label{sec_f}
 
-\todo{Toroidal events exhibit a much sharper frequency distribution than poloidal events. (Maybe put the Gaussian fit back on here, even though it's not Gaussian, to estimate spread?) This makes sense --- toroidal events are supposed to depend sharply on $L$, while poloidal events are more smeared in $L$. Recall \cref{sec_day}. RBSP observations are concentrated over not that many $L$ shells. }
+\todo{(Odd) toroidal events exhibit a much stronger peak in frequency than poloidal events. This is consistent with the fact that toroidal waves align closely with the local eigenfrequency, while poloidal modes are more smeared in $L$, as discussed in \cref{sec_day}. Van Allen Probe observations are mostly concentrated over a small range in $L$ near apogee. }
+
+\todo{Maybe put the Gaussian fit back on top of these distributions? The distributions are not particularly Gaussian, but it gives a quantitative estimate of the spread. }
 
 \begin{figure}[!htb]
     \centering
@@ -201,43 +213,45 @@ One might reasonable be concerned that the spatial distributions presented in \c
 \section{Events by Phase}
   \label{sec_phase}
 
-\todo{John says that the phase of these waves is one of the most interesting things about them. }
+The phase of a wave --- that is, the phase offset between a wave's electric and magnetic fields --- indicates how its energy is partitioned between the standing and traveling wave modes. An ideal standing wave has a phase of $\pm$\SI{90}{\degree}, and thus its Poynting flux is completely imaginary. A traveling wave, on the other hand, has electric and magnetic fields in phase (or in antiphase), and is associated with a net movement of energy, usually toward the ionosphere. 
 
-\todo{Phase tells us how much energy is in the standing wave, and how much is in the traveling wave. We can use it to estimate the timescale over which the wave's energy will be carried away by Poynting flux. Events are not selected based on phase, but it turns out that pretty much everything is a nice-looking standing wave. }
+Wave phase is a topic of significant interest, since it allows an estimate to be made of the wave's lifetime. And, because phase can only be determined using simultaneous electric and magnetic field measurements, it has only recently become observable. 
 
-Taking $B$ and $E$ to be characteristic electric and magnetic field values, and $R$ to be a characteristic length scale, the energy in the system per unit volume, and the rate at which that energy is leaving the system, are given respectively by:
+\todo{Do people really care about phase, or is it just John? }
+
+The energy per unit volume, and the rate at which energy is carried out of that volume by Poynting flux, are respectively given by:
 \begin{align}
   \label{def_phase}
   U &= \frac{R^3}{2\mz} B^2 &
   \ddt U &= \frac{R^2}{\mz} E B \cos\varphi
 \end{align}
 
-Where the phase, $\varphi \equiv \arctan\frac{ \imag\dft{S} }{ \real\dft{S} }$, is introduced because only the real component of the Poynting flux removes energy from the system. 
+Where $B$, $E$, and $R$ are the characteristic magnetic field magnitude, electric field magnitude, and length scale. The phase, $\varphi \equiv \arctan\frac{ \imag\dft{S} }{ \real\dft{S} }$, enters because only real Poynting flux carries energy. 
 
-The ratio of the two quantities in \cref{def_phase} gives a characteristic timescale for energy leaving the system:
+The ratio of the two quantities in \cref{def_phase} gives a characteristic timescale over which energy leaves the system
 \begin{align}
   \label{def_tau}
-  \tau &\equiv \frac{BR}{2 E \cos\varphi} & 
-  & \text{or, if $B$ (\si{\nT}) \about $E$ (\si{\mV/\m}), } &
-  \tau \; (\si{\s}) &\sim \frac{R \; (\si{\km})}{\num{e3}\cos\varphi}
+  \tau &\equiv \frac{BR}{2 E \cos\varphi}
 \end{align}
 
-In the present case, a reasonable value for $R$ might be \SI{e4}{\km}, the distance traversed by the probe over the course of a half-hour event (notably, back-to-back events are unusual). In that case, a wave with a phase of \SI{80}{\degree} loses energy on the timescale of a minute, while a wave with a phase of \SI{130}{\degree} has a lifetime closer to \SI{15}{\s}. 
+In the present case, magnetic fields are on the order of \SI{1}{\nT} and electric fields are on the order of \SI{1}{\mV/\m}. A reasonable scale length might be \SI{e4}{\km}, the distance traversed by the probe over the course of a half-hour event (notably, back-to-back events are unusual). 
 
-\todo{This seems too fast... }
+At a phase of \SI{80}{\degree}, this timescale is comparable to a Pc4 wave period. At \SI{135}{\degree}, where energy is divided evenly between the standing and traveling wave, the timescale is only 7 seconds. A wave with a phase so far from \SI{90}{\degree} would quickly vanish unless it were constantly being replenished. 
+
+An example of just such an event is shown in \cref{fig_sample_event_phase}.  The left column shows electric and magnetic field waveforms in blue and red respectively. The right shows the corresponding spectra: imaginary Poynting flux in magenta (corrresponding to the strength of the standing wave) and real Poynting flux in green (for the traveling wave). The black line is a Gaussian fit to the magnitude of the Poynting flux. 
+
+The poloidal channel shows a mostly-standing wave, with a phase of \SI{79}{\degree}. The coherent activity in the compressional magnetic field implies a low azimuthal modenumber, and thus a fast rotation of energy from the poloidal mode to the toroidal mode. It's likely the rotation of energy from the poloidal mode is the only thing keeping the toroidal wave going; its phase is \SI{130}{\degree}, so its energy should be carried away by Poynting flux quickly compared to the oscillation of the standing wave. 
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=\textwidth]{figures/sample_event.pdf}
+    \includegraphics[width=\textwidth]{figures/sample_event_phase.pdf}
     \caption[Waveforms and Spectra for a Pc4 Event]{
       The above is a double event, where the poloidal and toroidal channels have been independently selected as events. The poloidal channel shows a wave with most of its energy in the standing wave (phase of \SI{79}{\degree}). The toroidal mode has a significant traveling component (phase of \SI{130}{\degree}). The compressional activity implies a low modenumber, which would cause energy to rotate quickly from the poloidal mode to the toroidal mode --- evidently at a sufficient rate to replenish the losses due to the traveling mode's real Poynting flux. 
     }
-    \label{fig_sample_event}
+    \label{fig_sample_event_phase}
 \end{figure}
 
-%One such event is shown in \cref{fig_sample_event}. The left column shows electric and magnetic field waveforms in blue and red respectively. The right shows the corresponding spectra: imaginary Poynting flux in magenta (corrresponding to the strength of the standing wave) and real Poynting flux in green (for the traveling wave). The black line is a Gaussian fit to the magnitude of the Poynting flux. 
-
-%This particular event shows a well-formed standing wave in the poloidal channel; the phase of \SI{79}{\degree} indicates that the standing wave exceeds the traveling wave by a factor of five. The coherent activity in the compressional magnetic field implies a low azimuthal modenumber, and thus a fast rotation of energy from the poloidal mode to the toroidal mode. In fact, that rotation may be the only thing keeping the toroidal mode going. Half of its energy is in the traveling wave as opposed to the standing wave (phase of \SI{130}{\degree}). With fields on the order of \SI{1}{\mV/\m} and \SI{1}{\nT}, and a characteristic length scale of \SI{e4}{\km} (the distance covered by a probe in half an hour at apogee), the energy should be carried away by Poynting flux on timescales of \SI{10}{\s}. 
+The selection process described in \cref{sec_selection} does not explicitly consider phase. However, the discrete Fourier transform is performed over a half-hour time span. An event with a comparatively short lifetime would be unlikely to register. It's unsurprising to see the events in \cref{fig_phase}tightly clustered near \SI{90}{\degree}. 
 
 \begin{figure}[!htb]
     \centering
@@ -248,6 +262,9 @@ In the present case, a reasonable value for $R$ might be \SI{e4}{\km}, the dista
     \label{fig_phase}
 \end{figure}
 
+It's further notable in \cref{fig_phase} that the odd events are more spread out in phase than the even events. Near the equator, odd modes have an electric field antinode and a magnetic field node; per \cref{def_tau}, an odd mode's lifetime should be longer than that of an even mode with the same phase. 
+
+\todo{The spatial distribution of Pc4 events doesn't seem to depend much on phase, as shown in \cref{fig_mode_phase}. }
 
 \begin{figure}[!htb]
     \centering
@@ -257,8 +274,6 @@ In the present case, a reasonable value for $R$ might be \SI{e4}{\km}, the dista
     }
     \label{fig_mode_phase}
 \end{figure}
-
-
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
