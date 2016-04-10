@@ -1,14 +1,20 @@
 
 
 
-\chapter{Observations}
+\chapter{Van Allen Probe Observations}
   \label{ch_rbsp}
 
-\todo{You know what would be great for putting this numerical work in context? A nice, consistent survey that breaks down the occurrence rate of Pc4 pulsations by harmonic, etc. }
+The results presented in \cref{ch_results} are perhaps interesting on their own, but become particularly valuable when combined with observational data. Unfortunately, only a small number of studies to date have explored how Pc4 observation rate is affected by the harmonic and polarization structure of those waves. 
+
+While Pc4 pulsations have previously been studied in terms of both harmonic\cite{arthur_1981,cummings_1969,engebretson_1988,hughes_1978,singer_1982,takahashi_1984} and polarization\cite{anderson_1990,dai_2015,dai_2013,kokubun_1989,liu_2009}, little work has considered both at the same time. This has largely been due to observational constraints. The classification of a wave's harmonic is best carried out by computing the phase offset of the magnetic and electric field waveforms, simultaneous in situ measurements of which have only recently become available as part of the THEMIS\cite{angelopoulos_2008} and Van Allen Probe\cite{stratton_2012} missions. The Van Allen Probes (launched in 2012) are particularly well-suited to the study of Pc4 pulsations as their apogee of $L \sim 6$ coincides closely with eigenfrequencies in the Pc4 range. 
+
+The present chapter uses data from the Van Allen Probes' EFW instrument\cite{wygant_2013} to survey the occurrence rate of FLRs in the Pc4 range as a function of harmonic parity and polarization, as well as magnitude, frequency, and phase. The tools used to perform the present analysis --- SPEDAS and the SPICE kernel --- are publicly available. They, along with the Python routines used to download, filter, and plot the data, can be found in a Git repository at \url{https://github.com/chizarlicious/RBSP}. 
+
+\todo{Set this up, along with Tuna, at \url{https://github.com/chizarlicious/UMN_Space-Physics}. }
 
 %Observations show that the poloidal mode is most excited in the second harmonic\cite{cummings_1969,hughes_1978,arthur_1981,singer_1982,takahashi_1984,engebretson_1988} even when there is a strong compressional component\cite{takahashi_1987,haerendel_1999,vaivads_2001,sibeck_2012}. 
 
-\todo{The tools used in the present chapter --- SPEDAS and the SPICE kernel --- are publicly available. They run best with an IDL license, which is not, but they are functional using just the (free) IDL virtual machine. The code is wrapped up in a Git repository: \url{https://github.com/chizarlicious/RBSP} (maybe should make a GitHub organization to hold this code, to decouple it from my personal account?). }
+%\todo{The tools used in the present chapter --- SPEDAS and the SPICE kernel --- are publicly available. They run best with an IDL license, which is not, but they are functional using just the (free) IDL virtual machine. The code is wrapped up in a Git repository: \url{https://github.com/chizarlicious/RBSP} (maybe should make a GitHub organization to hold this code, to decouple it from my personal account?). }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -16,19 +22,17 @@
 \section{Sampling Bias and Event Selection}
   \label{sec_selection}
 
-The present analysis makes use of all available Van Allen Probe data, which spans from October 2012 to August 2015. Between the two probes, that's just over 2000 days of observation. 
+The present analysis makes use of Van Allen Probe data from October 2012 to August 2015 --- the entire range available at the time of writing. Between the two probes, that's just over 2000 days of observation. 
 
 For the purposes of Pc4 pulsations, it's reasonable to consider the two probes to be independent observers. Nearly all Pc4 events occur near apogee ($L\gtrsim5$), at which point the two probes are several hours apart in MLT. Pc4 events are typically not large enough to be seen by both probes simultaneously, and not long enough in duration to be seen by two probes passing through the same region of space several hours apart. 
 
 \todo{Quantify how often an event is seen by both probes? }
 
-Electric and magnetic field waveforms are collected using the probes' \todo{$\cdots$} instrument. Values are cleaned up by averaging over the ten-second spin period. Three-dimensional electric field data is then obtained using the $\vec{E} \cdot \vec{B} = 0$ assumption. Notably, this assumption is taken only when the probe's spin plane is offset from the magnetic field by at least \SI{15}{\degree}. The rest of the data --- about half --- is discarded, which introduces a sampling bias against the flanks. 
+Electric and magnetic field waveforms are collected using the probes' EFW and EMFISIS instruments respectively. Values are cleaned up by averaging over the ten-second spin period. Three-dimensional electric field data is then obtained using the $\vec{E} \cdot \vec{B} = 0$ assumption. Notably, this assumption is taken only when the probe's spin plane is offset from the magnetic field by at least \SI{15}{\degree}. The rest of the data --- about half --- is discarded, which introduces a sampling bias against the flanks. 
 
 A further bias is introduced by the probes' non-integer number of precessions around Earth. As of July 2014, apogee had precessed once around Earth\cite{dai_2015}. The present work considers roughly one and a half precessions; the nightside has been sampled at apogee twice as often as the dayside. 
 
-The spatial distribution of usable data --- that is, data for which three-dimensional electric and magnetic fields are available --- is shown in \cref{fig_pos_all_sharp}. Bins are unitary in $L$ and in MLT. Event distribution in magnetic latitude is not shown; the Van Allen Probes are localized to within \about\SI{10}{\degree} of the equatorial plane. 
-
-\todo{$L$ is italicized and MLT is not? That seems weird. }
+The spatial distribution of usable data --- that is, data for which three-dimensional electric and magnetic fields are available --- is shown in \cref{fig_pos_all_sharp}. Bins are unitary in $L$ and in MLT. Distribution in magnetic latitude is not shown; the Van Allen Probes are localized to within \about\SI{10}{\degree} of the equatorial plane. 
 
 \begin{figure}[!htb]
     \centering
@@ -39,9 +43,9 @@ The spatial distribution of usable data --- that is, data for which three-dimens
     \label{fig_pos_all_sharp}
 \end{figure}
 
-Field measurements are transformed from GSE coordinates into the same dipole coordinates used in \cref{ch_model,ch_results}. The \z axis is parallel to the background magnetic field, which is estimated using a ten-minute running average of the magnetic field measurements. The \y axis is set parallel to $\zhat \times \vec{r}$, where \vec{r} is the probe's geocentric position vector. The \x axis is then defined per $\xhat \equiv \yhat \times \zhat$. This scheme guarantees that the axes are right-handed and pairwise orthogonal\cite{liu_2009}. 
+Field measurements are transformed from GSE coordinates into the same dipole coordinates used in \cref{ch_model,ch_results}. The \z axis (parallel to the background magnetic field) is estimated using a ten-minute running average of the magnetic field measurements. The \y axis is set parallel to $\zhat \times \vec{r}$, where \vec{r} is the probe's geocentric position vector. The \x axis is then defined per $\xhat \equiv \yhat \times \zhat$. This scheme guarantees that the axes are right-handed and pairwise orthogonal\cite{liu_2009}. 
 
-The \about1000 days of usable data are considered half an hour at a time, which gives a frequency resolution of \about\SI{0.5}{\mHz} in the discrete Fourier transform. Spectra are computed for all six field components: \dft{B_x}, \dft{B_y}, \dft{B_z}, \dft{E_x}, \dft{E_y}, and \dft{E_z}. The background magnetic field is subtracted before transforming the magnetic field components, leaving only the perturbation along each axis\footnote{As in \cref{ch_model,ch_results}, $B_x$ refers not to the full magnetic field in the \x direction, but to the perturbation in the \x direction from the zeroth-order magnetic field.}. Each waveform is also shifted horizontally so that its mean over the thirty minute event is zero. 
+The \about1000 days of usable data are considered half an hour at a time, which gives a frequency resolution of \about\SI{0.5}{\mHz} in the discrete Fourier transform. Spectra are computed for all six field components: \dft{B_x}, \dft{B_y}, \dft{B_z}, \dft{E_x}, \dft{E_y}, and \dft{E_z}. The background magnetic field is subtracted before transforming the magnetic field components, leaving only the perturbation along each axis\footnote{As in \cref{ch_model,ch_results}, $B_x$, refers not to the full magnetic field in the \x direction, but to the perturbation in the \x direction from the zeroth-order magnetic field. The same is true for $B_y$ and $B_z$. }. Each waveform is also shifted vertically so that its mean over the thirty minute event is zero. 
 
 Frequency-domain Poynting flux is computed from the electric and magnetic field transforms. A factor of $L^3$ compensates the compression of the flux tube, so that the resulting values are effective at the ionosphere. Poloidal and toroidal Poynting flux, respectively, are given by:
 \begin{align}
@@ -58,8 +62,6 @@ Events are discarded if their parity is ambiguous. The electric field and the ma
 A visual inspection of events shows that those with broad ``peaks'' in their spectra are typically not peaked at all --- they are noisy spectra with several spectral features grouped just closely enough to trick the fitting routine. A threshold is set at a FWHM of \SI{3}{\mHz} (equally, a standard deviation of \SI{1.27}{\mHz}). Any event with a Gaussian fit broader than that is discarded. 
 
 Notably, events are not filtered on their phase --- that is, on the division of their energy between standing and traveling waves. This is the topic of \cref{sec_phase}. 
-
-\todo{First and third harmonics can only be distinguished by guessing at the frequency. Chisham and Orr\cite{chisham_1991} argue that around \SI{7}{\RE}, frequency around \SI{10}{\mHz} precludes higher harmonics. Or maybe look at \cite{green_1985}? }
 
 \todo{Are we biased in terms of \DST? What's the distribution look like for the good data and for the bad data? }
 
@@ -82,17 +84,11 @@ The filters described in \cref{sec_selection} yield 762 Pc4 events, the spatial 
     \label{fig_rate_all_sharp}
 \end{figure}
 
-Consistent with previous work, Pc4 events peak on the dayside and are rarely observed at $L < 4$. Nearly \SI{30}{\percent} of the usable data shown in \cref{fig_pos_all_sharp} is located inside $L = 4$, yet that data accounts for only 16 of the 762 events. 
+Consistent with previous work, Pc4 events peak on the dayside and are rarely observed at $L < 4$. Nearly \SI{30}{\percent} of the usable data shown in \cref{fig_pos_all_sharp} is taken at $L < 4$, yet only 16 of the 762 events appear there. 
 
-On the other hand, the present work runs contrary to Dai's 2015 result in terms of Pc4 event rates with respect to the plasmapause (not shown). His analysis found Pc4 pulsations to be comparably common inside and outside the plasmapause\cite{dai_2015}. In the present work, only 40 of the 762 events (\SI{5}{\percent}) fall inside the plasmasphere, despite the fact that \SI{40}{\percent} of the available data falls within the plasmasphere. The disparity is not likely due to a difference in sampling --- Dai's work, like the present work, uses data from the Van Allen Probes mission. Rather, the difference is likely due to disagreement in how the plasmapause is defined. Dai identifies the plasmapause by the maximum gradient in electron number density, while the present work takes an electron density of \SI{100}{\percc} to mark the plasmapause\footnote{Per ongoing work by Thaller. }. 
+On the other hand, the present work runs contrary to Dai's 2015 result in terms of Pc4 event rates with respect to the plasmapause (not shown). His analysis found (poloidal) Pc4 pulsations to be comparably common inside and outside the plasmapause\cite{dai_2015}. In the present work, only 40 of the 762 events (\SI{5}{\percent}) fall inside the plasmasphere, despite the fact that \SI{40}{\percent} of the available data falls within the plasmasphere. The disparity is not likely due to a difference in sampling --- Dai's work, like the present work, uses data from the Van Allen Probes mission. Rather, the difference is likely due to disagreement in how the plasmapause is defined. Dai identifies the plasmapause by the maximum gradient in electron number density, while the present work takes an electron density of \SI{100}{\percc} to mark the plasmapause\footnote{Per ongoing work by Thaller. }. 
 
 In \cref{fig_mode_all_sharp}, events are partitioned by parity and polarization, yielding 124 odd poloidal events, 214 even poloidal events, 415 odd toroidal events, and 83 even toroidal events --- a total of 836 events. The total is greater than 762 because in \about\SI{10}{\percent} of events, the poloidal and toroidal channels trigger independently. Such cases are marked as a single event in \cref{fig_rate_all_sharp}, but the toroidal and poloidal events are both shown in \cref{fig_mode_all_sharp}. 
-
-Double-triggering can be taken as a vague proxy for event quality. When the channels both trigger independently, the two events almost always (71 of 74 events) exhibit the same parity. This suggests a poloidal wave with suffient power, and a sufficient narrow spectral peak, that it can still be seen after much of its energy has rotated to the toroidal mode. 
-
-Odd double-triggering events are spread broadly in MLT. They rarely occur twice on the same day (23 events spread over 20 days), are observed at comparable rates regardless of \DST. 
-
-Even-harmonic double-triggering events, on the other hand, are mostly seen near noon, and are significantly more common when $\DST < \SI{-30}{\nT}$. Even events are also more concentrated than odd ones. The 48 even-harmonic double-events are spread over 20 days, and 35 of them are spread over just 7 days. This clustering --- where the poloidal and toroidal channel both trigger for five to ten half-hour events in the same day --- is prevalent regardless of \DST. 
 
 \begin{figure}[!htb]
     \centering
@@ -103,24 +99,31 @@ Even-harmonic double-triggering events, on the other hand, are mostly seen near 
     \label{fig_mode_all_sharp}
 \end{figure}
 
+Double-triggering can be taken as a vague proxy for event quality. When the channels both trigger independently, the two events almost always (71 of 74 events) exhibit the same parity. This suggests a poloidal wave with suffient power, and a sufficient narrow spectral peak, that it can still be seen after much of its energy has rotated to the toroidal mode. 
+
+\todo{Show plot of double-triggering events. }
+
+Odd double-triggering events are spread broadly in MLT. They rarely occur twice on the same day (23 events spread over 20 days), are observed at comparable rates regardless of \DST. 
+
+Even-harmonic double-triggering events, on the other hand, are mostly seen near noon, and are significantly more common when $\DST < \SI{-30}{\nT}$. Even events are also more concentrated than odd ones. The 48 even-harmonic double-events are spread over 20 days, and 35 of them are spread over just 7 days. This clustering --- where the poloidal and toroidal channel both trigger for five to ten half-hour events in the same day --- is prevalent regardless of \DST. 
+
 The distribution of even poloidal events in \cref{fig_mode_all_sharp} is consistent with that reported by Dai\cite{dai_2015}: the observation rate is peaked at noon, and smeared across the dusk side. Notably, Dai's work focused on even poloidal waves. While he did not explicitly remove odd events from his sample, he did introduce a threshold in the magnetic field. This threshold is preferrentially satisfied by even waves (which have a magnetic field antinode near the equator) compared to odd waves (which have a magnetic field node). Dai characterized the parity of only a quarter of his events; among those, he found even harmonics to outnumber odd harmonics ten-to-one. 
 
-In fact --- to the degree that they can be straightforwardly compared --- the distributions in \cref{fig_mode_all_sharp} also show agreement with work by Anderson (using AMPTE/CCE\cite{anderson_1990}), Kokubun (using ATS6\cite{kokubun_1989}), Liu (using THEMIS\cite{liu_2009}), and Motoba (using GOES\cite{motoba_2015}). Toroidal events dominate overall, and are primarily seen on the dawn side. Poloidal events are spread broadly in MLT, with a peak near noon and distinctive odd harmonics in the early morning. 
+In fact --- to the degree that they can be straightforwardly compared --- the distributions in \cref{fig_mode_all_sharp} also show agreement with work by Anderson\cite{anderson_1990} (using AMPTE/CCE), Kokubun\cite{kokubun_1989} (using ATS6), Liu\cite{liu_2009} (using THEMIS), and Motoba\cite{motoba_2015} (using GOES). Toroidal events dominate overall, and are primarily seen on the morning side. Poloidal events are spread broadly in MLT, with a peak near noon and distinctive odd harmonics in the early morning. 
 
 Crucially, the present work can offer insight into how previous results fit together. Unlike events considered in previous works, those shown in \cref{fig_mode_all_sharp} have all been categorized in terms of both polarization and parity. And, perhaps more importantly, the selection process has not introduced a bias with respect to polarization or parity (at least not an obvious one). 
 
-Not only does \cref{fig_mode_all_sharp} show that toroidal events outnumber poloidal events, but it also shows that toroidal events are predominantly odd harmonics --- as opposed to the primarily-even poloidal events. This may suggest that odd poloidal waves are more likely than even ones to be driven at low modenumber (allowing a prompt rotation of that energy to the toroidal mode). One might expect low-\azm poloidal modes to be driven by a sudden increase in the solar wind dynamic pressure, for instance. The relative scarcity of odd poloidal observations on the dayside may indicate a short-lived source. At low \azm, energy rotates to the toroidal mode on the order of a wave period; without an ongoing source, there will be no poloidal wave to observe. 
+Not only does \cref{fig_mode_all_sharp} show that toroidal events outnumber poloidal events, but it also shows that toroidal events are predominantly odd harmonics --- as opposed to the primarily-even poloidal events. This may suggest that odd poloidal waves are more likely than even ones to be driven at low modenumber (allowing a prompt rotation of that energy to the toroidal mode). One might expect low-\azm poloidal modes to be driven by a broad, sudden change in solar wind dynamic pressure, for instance. The relative scarcity of odd poloidal observations on the dayside may indicate a short-lived source. At low \azm, energy rotates to the toroidal mode on the order of a wave period; without an ongoing source, there would be no poloidal wave to observe. 
 
+This would furthermore be consistent with even modes' apparent dearth of ground signatures\cite{takahashi_1992}. If even harmonics tend to be produced at higher modenumber than odd ones, even harmonics would be expected to produce ground signatures less often\footnote{See \cref{attenuation}. }. 
 
-\todo{Also, even waves are less likely to produce ground signatures\cite{takahashi_1992}, perhaps because they are more likely to be at high modenumber? }
-
-
+Even poloidal modes and even toroidal modes exhibit similar distributions in space: both are peaked at noon and smeared across the dusk flank, with little activity on the dawn side. This is further support for the even poloidal wave as a significant source for the even toroidal mode. 
 
 \todo{People have talked about this. Is there a conventional explanation for dawn-dusk asymmetry? }
 
-Even poloidal modes and even toroidal modes exhibit similar distributions in space: both are peaked at noon and smeared across the dusk flank, with little activity on the dawn side. This is consistent with the idea that the even poloidal mode is a significant source for the even toroidal mode. 
-
 \todo{What else do we want to say here? Or does the rest of the commentary belong in the later sections? Note that plots in future sections are lower resolution, to make sure that the number of bins remains much smaller than the number of events. }
+
+\todo{How does this relate to the numerical results in \cref{ch_results}? }
 
 %Dai\cite{dai_2015} used RBSP to look at poloidal Pc4 events, with a bias in favor of the second harmonic --- 890 events. Events are most common near noon, but are spread across the day and dusk side, with a few stragglers at midnight. 
 
@@ -150,7 +153,7 @@ One might reasonable be concerned that the spatial distributions presented in \c
     \centering
     \includegraphics[width=\textwidth]{figures/amp.pdf}
     \caption[Amplitude Distribution of Pc4 Events by Mode]{
-      \todo{$\cdots$}
+      Amplitude distribution is shown for Pc4 events by parity and polarization, based on the peak of the spectrum's Gaussian fit. Odd poloidal events, odd toroidal events, and even toroidal events fall off sharply with increasing amplitude, while the even poloidal events are distributed more broadly --- the mean and median of the even poloidal distribution is twice as large as that of the others. 
     }
     \label{fig_amp}
 \end{figure}
@@ -158,6 +161,12 @@ One might reasonable be concerned that the spatial distributions presented in \c
 The distribution of event magnitudes is presented in \cref{fig_amp}, graded based on the peak of the Gaussian fit of each event's Poynting flux, $|\dft{S}\arg{\omega}|$. Mean and median values are listed for each mode. Most events are small, with Poynting flux well below \SI{0.1}{\mW/\m\squared} when mapped to the ionosphere. Only a handful of events --- 3 out of 762 --- exceed \SI{1}{\mW/\m\squared}, typically taken to be the threshold at which visible auroral arcs form. One such event is shown in \cref{fig_sample_event_strong}. 
 
 \todo{Say something about this event? Not really clear what purpose is served by this example, actually. As a matter of curiosity, the apparent wave activity in the toroidal channel did not pass the event selection trigger because the electric and magnetic waveforms are not coherent. }
+
+Perhaps the most notable feature of \cref{fig_amp} is the relative uniformity of the distribution of even poloidal events. If a higher magnitude threshold is imposed, as shown in \cref{fig_mode_amp}, the proportion of even poloidal events rises. 
+
+The spatial bins in \cref{fig_mode_amp} are larger than those in \cref{sec_rate}; this change reflects an effort to keep the number of events large compared to the number of bins, even when considering relatively small subsets of the data. The larger bins --- two hours wide in MLT and divided at $L = 5$ radially --- are also used in \cref{sec_f,sec_phase}. All of the large-binned bullseye plots also share a common logarithmic color bar. 
+
+All else being equal, one might expect the amplitude distribution of even toroidal modes to mimic that of even poloidal modes, since poloidal waves asymptotically rotate to toroidal waves. However, this does not seem to be the case. The mean and median magnitudes are more or less consistent for even toroidal modes, odd toroidal modes, and odd poloidal modes, while even poloidal modes are twice as large by those metrics. This would seem to imply that large even poloidal modes have disproportionately high modenumbers, and thus deliver energy to the toroidal mode less efficiently. This explanation is also unsatisfying, however; \cref{fig_mode_amp} shows that even poloidal and toroidal modes both become more concentrated near noon at high amplitude, suggesting a common origin. 
 
 \begin{figure}[!htb]
     \centering
@@ -168,19 +177,14 @@ The distribution of event magnitudes is presented in \cref{fig_amp}, graded base
     \label{fig_sample_event_strong}
 \end{figure}
 
-\todo{The distribution of even poloidal events is flatter in amplitude than the rest. As the amplitude cutoff increases, so does the proportion of even events. }
-
-\todo{The distribution of events by mode is reproduced in \cref{fig_mode_amp} using several different amplitude cutoffs. The qualitative distribution of events does not change. }
-
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/mode_amp.pdf}
     \caption[Observation Rate of Pc4 Events by Mode and Amplitude]{
-      \todo{$\cdots$}
+      The above figure shows the distribution of Pc4 event observations by mode. Event magnitude cutoff is constant down each column, and increases from left to right. Stronger even events appear to become more concentrated on the dayside as the amplitude increases. Even poloidal events also become significantly more numerous relative to the other three modes, from \SI{26}{\percent} at a cutoff of \SI{0.01}{\mW/\m\squared} to \SI{41}{\percent} at \SI{0.1}{\mW/\m\squared}. 
     }
     \label{fig_mode_amp}
 \end{figure}
-
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -188,29 +192,41 @@ The distribution of event magnitudes is presented in \cref{fig_amp}, graded base
 \section{Events by Frequency}
   \label{sec_f}
 
-\todo{(Odd) toroidal events exhibit a much stronger peak in frequency than poloidal events. This is consistent with the fact that toroidal waves align closely with the local eigenfrequency, while poloidal modes are more smeared in $L$, as discussed in \cref{sec_day}. Van Allen Probe observations are mostly concentrated over a small range in $L$ near apogee. }
+The difference in magnetospheric conditions between the dayside and the nightside suggest that different eigenfrequencies should arise between dayside and nightside resonances at the same $L$-shell. In fact, this phenomenon has been observed directly; the frequencies of azimuthally-drifting FLRs have been shown to change over time\cite{motoba_2015}. The effect is attributed to the difference in mass loading (and thus \Alfven speed) as a function of MLT. 
 
-\todo{Maybe put the Gaussian fit back on top of these distributions? The distributions are not particularly Gaussian, but it gives a quantitative estimate of the spread. }
+This effect was furthermore apparent in the numerical results shown in \cref{ch_results}, where \Alfven speeds on the dayside (based on empirical profiles) gave rise to significantly higher eigenfrequencies than those on the nightside. 
 
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/f.pdf}
-    \caption[Frequency Distribution of Pc4 Events by Mode]{
-      \todo{$\cdots$}
-    }
-    \label{fig_f}
-\end{figure}
+In \cref{fig_mode_f}, events at \SIrange{11}{17}{\mHz} (center column) do seem to be shifted nightward compared to those at \SIrange{7}{11}{\mHz} (left column), but the effect is far more pronounced than what is suggested by \cref{sec_day,sec_night}. 
 
+\todo{We should show the runs driven at $L\sim5$ across the board. Dayside and nightside. That way we can make a fair comparison. }
+
+As might be expected, even events are more prevalent than first-harmonic-dominated odd events higher in the Pc4 range. Events at \SIrange{7}{11}{\mHz} (left column) outnumber those at \SIrange{17}{25}{\mHz} (right column) ten-to-one or more for odd events. Among even events, the comparison is closer to three-to-one. 
+
+The spatial distribution of odd toroidal events above \SI{17}{\mHz} warrants specific consideration. Whereas odd toroidal events overall show an overwhelming preference for the morning side, those at the top of the Pc4 frequency band instead appear from noon to dusk. It's possible that this distribution is a consequence of the small number of events (25). More likely, however, is that these are third-harmonic events, and that their source more closely resembles the source for second-harmonic waves than it does first-harmonics. 
+
+\todo{Have people looked at third harmonics? }
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/mode_f.pdf}
     \caption[Observation Rate of Pc4 Events by Mode and Frequency]{
-      \todo{$\cdots$}
+      Event distributions above are shown in terms of mode (row) as well as event frequency (column). Mid-frequency Pc4 events are shifted somewhat nightward compared to low-frequency Pc4 events, as might be expected from the dayside's faster \Alfven speed. At the top of the Pc4 band, the distribution of odd toroidal events takes on a decidedly different character; this is likely because they are third harmonics rather than first harmonics. 
     }
     \label{fig_mode_f}
 \end{figure}
 
+The frequency distribution for each mode is shown in \cref{fig_f}. The most distinctive feature, certainly, is the frequency peak in the odd toroidal mode near \SI{9}{\mHz}. This is in line with the idea that toroidal waves exhibit frequencies that depend sharply on $L$, as discussed in \cref{ch_results}. While the Van Allen Probes' orbits do cover a large range of $L$-shells, their observations (and thus the selected events) are concentrated near apogee at $L \sim 6$. 
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/f.pdf}
+    \caption[Frequency Distribution of Pc4 Events by Mode]{
+      Frequency distributions are shown for all events, divided by harmonic and polarization. Odd toroidal events exhibit a particularly sharp peak in frequency, which is consistent with the toroidal mode's strong correlation with the local eigenfrequency. Poloidal modes appear more spread out in frequency, which is also consistent with past observations and with the numerical results in \cref{ch_results}. 
+    }
+    \label{fig_f}
+\end{figure}
+
+\todo{Maybe put the Gaussian fit back on top of these distributions? The distributions are not particularly Gaussian, but it gives a quantitative estimate of the spread. }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -245,7 +261,7 @@ At a phase of \SI{80}{\degree}, this timescale is comparable to a Pc4 wave perio
 
 An example of just such an event is shown in \cref{fig_sample_event_phase}.  The left column shows electric and magnetic field waveforms in blue and red respectively. The right shows the corresponding spectra: imaginary Poynting flux in magenta (corrresponding to the strength of the standing wave) and real Poynting flux in green (for the traveling wave). The black line is a Gaussian fit to the magnitude of the Poynting flux. 
 
-The poloidal channel shows a mostly-standing wave, with a phase of \SI{79}{\degree}. The coherent activity in the compressional magnetic field implies a low azimuthal modenumber, and thus a fast rotation of energy from the poloidal mode to the toroidal mode. It's likely the rotation of energy from the poloidal mode is the only thing keeping the toroidal wave going; its phase is \SI{130}{\degree}, so its energy should be carried away by Poynting flux quickly compared to the oscillation of the standing wave. 
+The poloidal channel shows a mostly-standing wave, with a phase of \SI{79}{\degree}. The coherent activity in the compressional magnetic field implies a low azimuthal modenumber, and thus a fast rotation of energy from the poloidal mode to the toroidal mode. It's likely the rotation of energy from the poloidal mode contributes significantly to the toroidal mode's lifetime; the toroidal wave's phase is \SI{130}{\degree}, so its energy should be carried away quickly by Poynting flux. 
 
 \begin{figure}[!htb]
     \centering
@@ -267,15 +283,15 @@ The selection process described in \cref{sec_selection} does not explicitly cons
     \label{fig_phase}
 \end{figure}
 
-It's further notable in \cref{fig_phase} that the odd events are more spread out in phase than the even events. Near the equator, odd modes have an electric field antinode and a magnetic field node; per \cref{def_tau}, an odd mode's lifetime should be longer than that of an even mode with the same phase. 
+It's further notable in \cref{fig_phase} that the odd events are more spread out in phase than the even events. Near the equator, odd modes have an electric field antinode and a magnetic field node; per \cref{def_tau}, an odd mode's lifetime should be longer than that of an even mode with the same phase. \cref{fig_phase} uses the absolute value of each event's phase, as does \cref{fig_mode_phase}. 
 
-\todo{The spatial distribution of Pc4 events doesn't seem to depend much on phase, as shown in \cref{fig_mode_phase}. }
+Unlike amplitude (\cref{sec_amp}) and frequency (\cref{sec_f}), events of different phase do not seem to exhibit different spatial distributions, as shown in \cref{fig_mode_phase}. Comparisons are limited by the small event counts in several of the subplots; however, coarsely speaking, events with phases of \SI{75}{\degree} and worse (left column) show spatial distributions more or less in proportion with events phased \SI{85}{\degree} or better (right column). 
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/mode_phase.pdf}
     \caption[Observation Rate of Pc4 Events by Mode and Phase]{
-      \todo{$\cdots$}
+      The observation rate of events is shown above, divided by (absolute) phase as well as mode. The closer a phase to \SI{90}{\degree}, the more of an event's energy is in the standing wave, rather than the traveling wave. The spatial distribution of events is more or less consistent between waves with phases very close to \SI{90}{\degree} and those with a significant traveling wave component. 
     }
     \label{fig_mode_phase}
 \end{figure}

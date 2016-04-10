@@ -22,6 +22,12 @@ V.~Angelopoulos.
 \newblock The {THEMIS} mission.
 \newblock {\em Space Science Reviews}, 141(1-4):5--34, 2008.
 
+\bibitem{arthur_1981}
+C.~W. Arthur and R.~L. McPherron.
+\newblock The statistical character of {Pc} 4 magnetic pulsations at
+  synchronous orbit.
+\newblock {\em J. Geophys. Res.}, 86(A3):1325, 1981.
+
 \bibitem{birkeland_1901}
 K.~Birkeland.
 \newblock Exp{\'e}dition norv{\'e}gienne de 1899-1900 pour l'{\'e}tude des
@@ -145,6 +151,13 @@ M.~J. Engebretson, D.~L. Murr, K.~N. Erickson, R.~J. Strangeway, D.~M. Klumpar,
 \newblock The spatial extent of radial magnetic pulsation events observed in
   the dayside near synchronous orbit.
 \newblock {\em J. Geophys. Res.}, 97(A9):13741, 1992.
+
+\bibitem{engebretson_1988}
+M.~J. Engebretson, L.~J. Zanetti, T.~A. Potemra, D.~M. Klumpar, R.~J.
+  Strangeway, and M.~H. Acu{\~n}a.
+\newblock Observations of intense {ULF} pulsation activity near the geomagnetic
+  equator during quiet times.
+\newblock {\em J. Geophys. Res.}, 93(A11):12795, 1988.
 
 \bibitem{fujita_1988}
 S.~Fujita and T.~Tamao.
@@ -525,6 +538,11 @@ K.~Takahashi, R.~W. McEntire, A.~T.~Y. Lui, and T.~A. Potemra.
   {Pc} 5 magnetic pulsation.
 \newblock {\em J. Geophys. Res.}, 95(A4):3717, 1990.
 
+\bibitem{takahashi_1984}
+K.~Takahashi and R.~L. McPherron.
+\newblock Standing hydromagnetic oscillations in the magnetosphere.
+\newblock {\em Planetary and Space Science}, 32:1343--1359, 1984.
+
 \bibitem{takahashi_1992}
 K.~Takahashi, N.~Sato, J.~Warnecke, H.~L{\''u}hr, H.~E. Spence, and
   Y.~Tonegawa.
@@ -583,6 +601,18 @@ D.~M. Wright and T.~K. Yeoman.
 \newblock High-latitude {HF} doppler observations of {ULF} waves: 2. waves with
   small spatial scale sizes.
 \newblock {\em Ann. Geophys.}, 17(7):868--876, 1999.
+
+\bibitem{wygant_2013}
+J.~R. Wygant, J.~W. Bonnell, K.~Goetz, R.~E. Ergun, F.~S. Mozer, S.~D. Bale,
+  M.~Ludlam, P.~Turin, P.~R. Harvey, R.~Hochmann, K.~Harps, G.~Dalton,
+  J.~McCauley, W.~Rachelson, D.~Gordon, B.~Donakowski, C.~Shultz, C.~Smith,
+  M.~Diaz-Aguado, J.~Fischer, S.~Heavner, P.~Berg, D.~M. Malsapina, M.~K.
+  Bolton, M.~Hudson, R.~J. Strangeway, D.~N. Baker, X.~Li, J.~Albert, J.~C.
+  Foster, C.~C. Chaston, I.~Mann, E.~Donovan, C.~M. Cully, C.~A. Cattell,
+  V.~Krasnoselskikh, K.~Kersten, A.~Brenneman, and J.~B. Tao.
+\newblock The electric field and waves instruments on the radiation belt storm
+  probes mission.
+\newblock {\em Space Science Reviews}, 179(1):183--220, 2013.
 
 \bibitem{wygant_2002}
 J.~R. Wygant, A.~Keiling, C.~A. Cattell, R.~L. Lysak, M.~Temerin, F.~S. Mozer,
