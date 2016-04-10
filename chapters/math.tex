@@ -8,7 +8,7 @@
 %- Why revisit plasma oscillation if it is of little interest?
 %- I don't see where Fig 4.1 is referenced in the text. Also it references 5.1?
 
-Before delving into the implementation of the numerical model, it's instructive to consider the fundamental equations of waves in a cold, resistive plasma. 
+Before delving into the implementation of the numerical model, it's instructive to consider the fundamental equations of waves in a cold, resistive plasma. Specifically, the present chapter is concerned with waves much slower than the electron cyclotron frequency. High-frequency waves such as the L and R modes are beyond the scope of the present work --- and, in fact, beyond the limits of the model described in \cref{ch_model}. 
 
 The evolution of electric and magnetic fields is governed by \amplaw and \farlaw. Notably, the present work takes the linearized versions of \maxeqs; the vectors \vec{E} and \vec{B} indicate perturbations above the zeroth-order magnetic field. 
 \begin{align}
@@ -40,6 +40,8 @@ The speed of light, \Alfven speed (including the displacement current correction
   \op^2 & \equiv \frac{n e^2}{\me \ez} &
   \sz & \equiv \frac{n e^2}{\me \nu}
 \end{align}
+
+Where the perpendicular dielectric constant \ep is analogous to the electric constant \ez, but for electric fields which are perpendicular to the preferred direction of the dielectric medium. As noted in \cref{def_va}, $\ep \equiv \frac{\rho}{B^2}$ where $\rho$ is the mass density and $B$ is the magnitude of the (zeroth-order) magnetic field. 
 
 Using the vector identity $\vec{k} \times \vec{k} \times \vec{E} = \vec{k} \, \vec{k} \cdot \vec{E} - k^2 \vec{E}$, \cref{disp_setup} can be reassembled into a single expression, 
 \begin{align}
@@ -168,9 +170,9 @@ A wave moving across magnetic field lines near the ionospheric boundary will enc
 %  \end{split}
 \end{align}
 
-In both limits, \cref{perp_perp_final} describes a compressional \Alfven wave. The magnetic field perturbation is along the background magnetic field --- indicating compression of the frozen-in plasma --- while the electric field perturbation is perpendicular to both the magnetic field and the wave vector. 
+At first glance, both limits of \cref{perp_perp_final} appear to describe a compressional \Alfven wave. The magnetic perturbation is along the background magnetic field --- indicating compression of the frozen-in plasma --- while the electric field perturbation is perpendicular to both the magnetic field and the wave vector. 
 
-\todo{Double check terminology. Jesse's dissertation disagrees with Bob's notes. }
+However, in the high-conductivity limit, the parenthetical term actually dominates the \Alfven term, taking values as large as \about\SI{e6}{\Hz}. Waves at such frequencies are beyond the scope of the present work. As a matter of curiosity, however, it bears noting that (as long as $\nu \ll \SI{e6}{\Hz}$) \she reduces to the electron cyclotron frequency, $\frac{eB}{\me}$. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -211,7 +213,7 @@ Noting again that $\op$ is very large, the two roots can be expanded to
   \omega^2 & = k_x^2 c^2 + k_z^2 \va^2 + \op^2 + ...
 \end{align}
 
-The first is a shear \Alfven wave, as in \cref{par_perp_final}. The second oscillates faster than the plasma frequency; like the plasma oscillation in \cref{par_par_final} and the O mode in \cref{parallel_math_final}, it's far outside the Pc4 frequency range. 
+The first solution of \cref{high_final} is a shear \Alfven wave, as in \cref{par_perp_final}. Notably, this form arises only when the parenthetical quantity is close to unity --- as it is for FLRs. The inertial limit, where frequencies are close to the plasma frequency, is beyond the scope of the present work. For that same reason, the second solution (which describes an oscillation faster than the plasma frequency) is not further considered. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------

@@ -9,7 +9,11 @@
 
 %\todo{ULF, FLR, and Pc4 all mean basically the same thing in the context of the present work. How many acronyms do we really need? }
 
-The motion of a charged particle in a dipole field can be described in terms of three fundamental motions. The first is cyclotron motion: a particle orbits around a magnetic field line in accordance with the Lorentz force. The second is bounce motion: while orbiting, the particle moves along the field line like a bead on a wire, back and forth between the northern and southern hemispheres\footnote{As a particle approaches Earth, it experiences an ever-stronger magnetic field. The particle's perpendicular kinetic energy increases in proportion with the magnetic field in order to conserve its first adiabatic invariant. When the perpendicular kinetic energy can no longer increase --- that is, when the parallel kinetic energy is zero --- the particle bounces back. (If the parallel kinetic energy is sufficiently large, the particle doesn't bounce; it precipitates into the atmosphere.)}. The third is drift motion: as particles orbit and bounce, they also move azimuthally around Earth per the gradient-curvature drift. 
+The motion of a charged particle in a dipole field can be described in terms of three fundamental motions. The first is cyclotron motion. Given a uniform magnetic field line, a particle follows a helical path. It moves in a circular path in a plane normal to the magnetic field line, and keeps a constant velocity along the direction of the field. 
+
+The second fundamental motion is bounce motion. As it moves along the magnetic field line like a bead on a wire, the particle experiences a change in magnetic field magnitude. In order to conserve its magnetic moment (also called the first adiabatic invariant), the particle's perpendicular kinetic energy increases in proportion with the magnetic field. When the perpendicular kinetic energy can no longer increase --- that is, when all of the particle's kinetic energy is perpendicular --- the particle bounces back. (If the particle's parallel kinetic energy is sufficiently large, it doesn't bounce, and instead precipitates into the atmosphere.) Particles undergoing bounce motion continuously move back and forth between the northern and southern hemispheres. 
+
+The third fundamental motion is drift motion. Over the course of a particle's cyclotron motion, the Earthward half of the orbit experiences a slightly stronger magnetic field (and thus a slightly smaller orbit radius). The net effect, called the gradient-curvature drift, is an azimuthal motion around Earth. 
 
 Characteristic timescales for each of the above motions depend on particle energy. Electron cyclotron motion is on the order of \todo{$\cdots$} in the ionosphere, and closer to \todo{$\cdots$} in the tail; ions gyrate slower by three orders of magnitude due to their larger mass. \todo{Bounce... Drift... }
 
@@ -19,9 +23,23 @@ Characteristic timescales for each of the above motions depend on particle energ
 
 %\todo{Drift timescales vary significantly based on particle energy. Dai\cite{dai_2013} showed a nice example of \SI{100}{\kilo\eV} ions drifting with a period of $\sim \SI{100}{\s}$. Bounce and drift timescales can overlap --- this turns out to be important. This doesn't depend on mass, right? Just kinetic energy. }
 
-Wave-particle resonance arises when a particle's periodic motion matches with the frequency of a coincident electromagnetic wave\cite{elkington_1999,mann_2013,ozeke_2008,southwood_1976}. In the particle's rest frame, the wave then appears as a net electric field. This allows a net movement of energy between the wave and the particle. The interaction is analogous to a surfer moving along with --- and being accelerated by --- a wave in the ocean. 
+Wave-particle resonance arises when a particle's periodic motion matches with the frequency of a coincident electromagnetic wave\cite{elkington_1999,mann_2013,ozeke_2008,southwood_1976}. In the particle's rest frame, the wave then appears as a net electric field. This allows a net movement of energy between the wave and the particle. The interaction is analogous to a surfer moving along with --- and being accelerated by --- a wave in the ocean. Such resonance can arise for any of the three fundamental motions, or even for a combination of them. 
 
-In the present work, the waves in question are field line resonances (FLRs). An FLR is a standing harmonic on a geomagnetic field line. It can also be envisioned as a superposition of traveling waves, reflecting back and forth between its northern and southern foot points at the conducting ionosphere. These waves travel at the \Alfven speed\footnote{The \Alfven speed is given by \va is given by $\va^2 \equiv \frac{B^2}{\mz \rho}$, where $B$ is the magnitude of the magnetic field, \mz is the magnetic constant, and $\rho$ is the mass density of the ambient plasma. It can vary by several orders of magnitude over the length of a magnetic field line. }. The fundamental equations of field line resonance were presented by Dungey in 1954\cite{dungey_1954}; since then, they have remained a topic of active study. 
+In the present work, the waves in question are field line resonances (FLRs). An FLR is a standing harmonic on a geomagnetic field line. It can also be envisioned as a superposition of traveling waves, reflecting back and forth between its northern and southern foot points at the conducting ionosphere. 
+
+These waves travel at the \Alfven speed, \va, defined per
+\begin{align}
+  \label{def_va}
+  \va^2 &\equiv \frac{B^2}{\mz \rho} &
+  & \text{or, equally, } &
+  \va^2 &\equiv \frac{1}{\mz \ep} 
+\end{align}
+
+Where $B$ is the magnetic field magnitude, $\rho$ is the mass density, and \mz is the magnetic constant. The perpendicular electric constant \ep is analogous to the electric constant \ez, and arises in cases (such as the magnetosphere) where a dielectric medium exhibits a preferred direction. In the magnetosphere, mass density and magnetic field strength depend strongly on position. As a result, the \Alfven speed may vary by several orders of magnitude over the length of a field line. 
+
+The fundamental equations of field line resonance were presented by Dungey in 1954\cite{dungey_1954}; since then, they have remained a topic of active study. 
+
+\todo{...in no small part because they are not just relevant to space! \Alfven waves also show up in laboratory plasmas, which are hard to measure directly, and in all sorts of astrophysical contexts. }
 
 So-called ultra low frequency waves  --- of which FLRs are a subset --- are categorized by morphology. Continuous (long-lived) pulsations are termed Pc, while irregular pulsations are called Pi. Within each are a number of frequency bands; see \cref{tab_iaga}\cite{jacobs_1964}. 
 
@@ -59,7 +77,7 @@ The present chapter introduces the structural characteristics of FLRs, how those
 
 \todo{The polarization of long-period \Alfven waves is rotated by \about\SI{90}{\degree} when passing through the ionosphere\cite{hughes_1974}. A wave that is azimuthally polarized in space is polarized north-south on the ground, and vice versa. It has been noted specifically that Pgs exhibit east-west polarized ground signatures\cite{takahashi_1992}. }
 
-\todo{Other planets\cite{glassmeier_2004}? Seems exciting but maybe not relevant. }
+%\todo{Other planets\cite{glassmeier_2004}? Seems exciting but maybe not relevant. }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -67,13 +85,13 @@ The present chapter introduces the structural characteristics of FLRs, how those
 \section{Harmonic Structure}
   \label{sec_harmonics}
 
-Wave structure along a geomagnetic field line is indicated by harmonic number. The first (or fundamental) harmonic has a wavelength twice as long as the field line. It exhibits an antinode in the perpendicular electric field at the equator, along with a node in the perpendicular magnetic field. The second harmonic is a single wavelength along the field line. Its perpendicular magnetic perturbation has an antinode at the equator, while its perpendicular electric field has a node. \cref{fig_harmonics} shows a qualitative sketch of each: a series of snapshots in time, in the rest frame of the wave. Perpendicular electric and magnetic field perturbations are shown in blue and red respectively. 
+Wave structure along a geomagnetic field line is indicated by harmonic number. The first (or fundamental) harmonic has a wavelength twice as long as the field line. The electric field perturbation is zero at the ionospheric foot points of the field line, due to the conductivity of the ionosphere. For the first harmonic, this puts an electric field antinode at the equator, along with a node in the perpendicular\footnote{The parallel, or compressional, magnetic field exhibits the same nodes and antinodes as the perpendicular electric field\cite{radoski_1974}. } perturbation to the magnetic field. For the second harmonic, the electric field has a third node at the equator, which is accompanied by an antinode in the perpendicular magnetic field perturbation. \cref{fig_harmonics} shows a qualitative sketch of the first and second harmonics: a series of snapshots in time, in the rest frame of the wave. Perpendicular electric and magnetic field perturbations are shown in blue and red respectively. 
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/harmonics.pdf}
     \caption[First and Second Harmonic Resonances]{
-      The first (or fundamental) harmonic has an an antinode in its perpendicular electric field (blue) at the equator, along with a node in its perpendicular magnetic field perturbation (red). A single satellite can identify the first harmonic by the relative phase of the electric and magnetic field perturbations: an observer north of the equator (green) will see the magnetic field perturbation lead the electric field by \SI{90}{\degree}. The second harmonic is the opposite: it has an electric field node at the equator, and an observer north of the equator will see the magnetic field perturbation lag the electric field by \SI{90}{\degree}. The purple line sketches the path of a particle in drift-bounce resonance; in the particle's rest frame, the electric field is always to the right. \todo{Actually, toroidal waves are flipped --- Faraday's law gives $\ddt B_x\sim\dd{z}E_y$ but $\ddt B_y\sim-\dd{z}E_x$. }
+      The first (or fundamental) harmonic has an an antinode in its perpendicular electric field (blue) at the equator, along with a node in its perpendicular magnetic field perturbation (red). A single satellite can identify the first harmonic by the relative phase of the electric and magnetic field perturbations: an observer north of the equator (green) will see the magnetic field perturbation lead the electric field by $\pm\SI{90}{\degree}$. The second harmonic is the opposite: it has an electric field node at the equator, and an observer north of the equator will see the magnetic field perturbation lag the electric field by $\mp\SI{90}{\degree}$. Top and bottom signs correspond to the poloidal (shown) and toroidal polarizations respectively. The purple line sketches the path of a particle in drift-bounce resonance; in the particle's rest frame, the electric field is always to the right. 
     }
     \label{fig_harmonics}
 \end{figure}
@@ -91,9 +109,13 @@ The drift and drift-bounce resonance conditions is written, respectively\cite{ta
 
 Where $\omega$ is the frequency of the wave, $\omega_D$ and $\omega_B$ are the particle's drift and bounce frequencies respectively, and \azm is the wave's azimuthal modenumber, as discussed in \cref{sec_azm}. 
 
-In principle, the first and second harmonics can be distinguished by their frequencies, even from a single-point observation\cite{cummings_1969,green_1985}.  In practice, however, this is not a reliable approach\cite{takahashi_2013}. There are significant uncertainties surrounding the number density profile --- and thus the \Alfven speed profile --- along a geomagnetic field line. 
+In principle, the first and second harmonics can be distinguished by their frequencies, even from a single-point observation\cite{cummings_1969,green_1985}.  In practice, however, this is not a reliable approach\cite{takahashi_2013}. There are significant uncertainties surrounding the mass density profile --- and thus the \Alfven speed profile --- along a geomagnetic field line. 
 
-Harmonic structure can also be deduced by noting the phase offset between the wave magnetic field and its electric field (or the plasma velocity)\cite{dai_2015,takahashi_1992}. In \cref{fig_harmonics}, the green line indicates an observer just north of the magnetic equator. For the first harmonic, the observer sees the electric field waveform lead the magnetic field by a phase of \SI{90}{\degree}; for the second harmonic, the electric field waveform lags by \SI{90}{\degree}. (South of the equator, the signs are reversed.) Notably, this approach has only become viable with the advent of satellites carrying both electric and magnetic field instrumentation, such as THEMIS in 2007\cite{angelopoulos_2008} and the Van Allen Probes\footnote{The Van Allen Probes were previously called RBSP, for Radiation Belt Storm Probes. } in 2012\cite{stratton_2012}. 
+Harmonic structure can also be deduced by noting the phase offset between the wave magnetic field and its electric field (or the plasma velocity)\cite{dai_2015,takahashi_1992}. In \cref{fig_harmonics}, the green line indicates an observer just north of the magnetic equator. For a wave polarized in the poloidal direction (see \cref{sec_polarization}), the observer sees the electric field waveform offset from the magnetic field by a phase of $\pm\SI{90}{\degree}$, where the top sign is for odd modes and the bottom sign is for even modes. The signs are flipped for toroidally-polarized waves, and again for waves observed south of the equator. 
+
+\todo{Talk about imaginary Poynting flux? Standing waves don't move energy. Traveling waves do. In practice, everything is a superposition of the two. }
+
+Notably, the measurement of wave phase has only become viable with the advent of satellites carrying both electric and magnetic field instrumentation, such as THEMIS in 2007\cite{angelopoulos_2008} and the Van Allen Probes\footnote{The Van Allen Probes were previously called RBSP, for Radiation Belt Storm Probes. } in 2012\cite{stratton_2012}. 
 
 Strictly speaking, the the phase offset of the electric and magnetic fields does not provide the harmonic number --- only its parity. It's reasonably safe to assume that an even mode is the second harmonic; the second harmonic is by far the most commonly observed\cite{hughes_1978,singer_1982,takahashi_1990}, due in part to its excitement by the antisymmetric balloon instability\cite{chan_1994,chen_1991,cheng_1994,southwood_1976}. However, the distinction between the first and third harmonics is not always clear; this issue is discussed further in \cref{ch_rbsp}. Higher harmonics than that are not expected in the Pc4 frequency band. 
 
@@ -101,7 +123,7 @@ Strictly speaking, the the phase offset of the electric and magnetic fields does
 
 \todo{Second-harmonic FLRs are unlikely to cause ground signatures\cite{takahashi_1992}. }
 
-\todo{Dai found a nice event\cite{dai_2013} that was unambiguously determined to be a fundamental-mode Pc4 in drift-resonant interaction with \about\SI{e5}{\eV} ions. Consistent with \cite{thompson_2001}. Other observations of odd harmonics: \cite{yang_2010,eriksson_2005}. }
+%\todo{Dai found a nice event\cite{dai_2013} that was unambiguously determined to be a fundamental-mode Pc4 in drift-resonant interaction with \about\SI{e5}{\eV} ions. Consistent with \cite{thompson_2001}. Other observations of odd harmonics: \cite{yang_2010,eriksson_2005}. }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -109,7 +131,7 @@ Strictly speaking, the the phase offset of the electric and magnetic fields does
 \section{Azimuthal Modenumber}
   \label{sec_azm}
 
-The wavelength of an FLR in the azimuthal direction is indicated by its azimuthal wavelength. A wave with modenumber \azm has an azimuthal wavelength that spans $\frac{24}{\azm}$ hours in MLT. 
+The wavelength of an FLR in the azimuthal direction is indicated by its azimuthal modenumber. A wave with modenumber \azm has an azimuthal wavelength that spans $\frac{24}{\azm}$ hours in MLT. 
 
 \begin{figure}[!htb]
     \centering
@@ -120,11 +142,11 @@ The wavelength of an FLR in the azimuthal direction is indicated by its azimutha
     \label{fig_azm}
 \end{figure}
 
-Waves with small azimuthal modenumbers ($0 < \azm < 10$) are typically driven by broadband energy sources at the magnetosphere's boundary, such as variations in the solar wind pressure\cite{degeling_2014,hao_2014,kessel_2008,zong_2007,zong_2009}, sporadic magnetic reconnection\cite{hughes_1994}, or Kelvin-Helmholtz waves on the magnetopause\cite{chen_1974,liu_2011,southwood_1974}. In the low-\azm regime, the shear and compressional \Alfven waves are coupled, which allows energy to move across field lines until the driving frequency lines up with the local \Alfven frequency\cite{lysak_1992}. Because of their broadband energy source, low-\azm FLRs often have a mishmash of frequencies present in their spectra\cite{dai_2015}.
+Waves with small azimuthal modenumbers ($0 < \azm < 10$) are typically driven by broadband energy sources at the magnetosphere's boundary, such as variations in the solar wind pressure\cite{degeling_2014,hao_2014,kessel_2008,zong_2007,zong_2009}, sporadic magnetic reconnection\cite{hughes_1994}, or Kelvin-Helmholtz waves on the magnetopause\cite{chen_1974,liu_2011,southwood_1974}. In the low-\azm regime, the shear and compressional \Alfven waves are coupled, which allows energy to move across field lines until the driving frequency lines up with the local \Alfven frequency\cite{lysak_1992}. Because of their broadband energy source, low-\azm FLRs often have a mishmash of frequencies present in their spectra\cite{dai_2015}, though the spectra are coherent in terms of harmonic\cite{engebretson_1986}.
 
-When the azimuthal modenumber is large (or, equally, when the azimuthal wavelength is small), the shear and compressional \Alfven waves are decoupled\cite{cummings_1969,radoski_1974}\footnote{Equally, the strength of a wave's parallel component hint at its modenumber, a point which is revisited in \cref{ch_rbsp}. }. As a result, FLRs must be driven from within the magnetosphere. Proposed energy sources include phase space gradients near the plasmapause\cite{dai_2013}, particularly as the plasmasphere refills after a storm or substorm\cite{engebretson_1992,liu_2013}. 
+When the azimuthal modenumber is large (or, equally, when the azimuthal wavelength is small), compressional propagation of \Alfven waves becomes evanescent, so the movement of energy is guided by magnetic field lines\cite{cummings_1969,radoski_1974}\footnote{Equally, the strength of a wave's parallel component hint at its modenumber, a point which is revisited in \cref{ch_rbsp}. }. As a result, FLRs must be driven from within the magnetosphere. Proposed energy sources include phase space gradients near the plasmapause\cite{dai_2013}, particularly as the plasmasphere refills after a storm or substorm\cite{engebretson_1992,liu_2013}. 
 
-The ionosphere is known to attenuate waves with small spatial extent in the perpendicular direction\cite{hughes_1976,wright_1999,yeoman_2001}. As a result, FLRs may create no signature on the ground if their azimuthal modenumber is large. For example, a recent paper by Takahashi shows a strong (\SI{2}{\nT} at $L\sim10$), clear resonance with $|\azm|\gtrsim70$ and no corresponding ground signature\cite{takahashi_2013}. 
+The atmosphere is known to attenuate waves with small spatial extent in the perpendicular direction\cite{hughes_1976,wright_1999,yeoman_2001}. As a result, FLRs may create no signature on the ground if their azimuthal modenumber is large. For example, a recent paper by Takahashi shows a strong (\SI{2}{\nT} at $L\sim10$), clear resonance with $|\azm|\gtrsim70$ and no corresponding ground signature\cite{takahashi_2013}. 
 
 Southwood\cite{southwood_1976} and Glassmeier\cite{glassmeier_1984} show that a low frequency wave passing through the ionosphere on its way to Earth will be attenuated per
 \begin{align}
@@ -138,6 +160,7 @@ Where $B_E$ and $B_I$ are the magnetic field strengths at $R_E$ (Earth's surface
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \section{Poloidal and Toroidal Polarizations}
+  \label{sec_polarization}
 
 %- One sentence paragraphs aren't
 %- "Perhaps not coincidentally" Perhaps?
@@ -172,7 +195,7 @@ Toroidal modes have been shown to far outnumber poloidal modes\cite{anderson_199
 
 \todo{Poloidal and toroidal modes are coupled by the ionospheric Hall conductivity\cite{kato_1956}. The Hall conductivity also increases the ``ringtime'' of these resonances, allowing them to oscillate through the inductive process rather than be dissipated as Joule heating\cite{waters_2013}. }
 
-\todo{Toroidal modes show a clear frequency dependence with $L$. Poloidal modes less so. Citation...? }
+\todo{Toroidal modes show a clear frequency dependence with $L$. Poloidal modes less so. Citation... \cite{engebretson_1986}? }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -206,7 +229,7 @@ Similarly, as FLRs have been shown to depend on ever-more-specific magnetospheri
 
 That is, the topic of field line resonance is ripe for numerical modeling. 
 
-Past models of the magnetosphere have been ill-suited for the consideration of FLRs. Reasons include overly-simplified treatment of the ionospheric boundary, no consideration of the plasmapause, limited range in \azm, and the inability to compute ground signatures. \cref{ch_model} presents a model which addresses these issues, allowing the computation of field line resonance with unparalleled attention to realism. 
+Past models of the magnetosphere have been limited in their consideration of FLRs. Reasons include overly-simplified treatment of the ionospheric boundary, no consideration of the plasmapause, limited range in \azm, and the inability to compute ground signatures. \cref{ch_model} presents a model which addresses these issues, allowing the computation of field line resonance with unparalleled attention to realism. 
 
 The model allows a bird's-eye view of the structure and evolution of FLRs. As such, not only can several open questions be addressed, but their answers serve to unify a number of seemingly-disparate properties described in the sections above. 
 
