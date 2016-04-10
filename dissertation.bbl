@@ -145,6 +145,14 @@ S.~R. Elkington, M.~K. Hudson, and A.~A. Chan.
   with toroidal-mode {Pc-5} {ULF} oscillations.
 \newblock {\em Geophys. Res. Lett.}, 26(21):3273--3276, 1999.
 
+\bibitem{engebretson_1986}
+M.~J. Engebretson, L.~J. Cahill, J.~H. Waite, D.~L. Gallagher, M.~O. Chandler,
+  M.~Sugiura, and D.~R. Weimer.
+\newblock Wave and plasma observations during a compressional pc 5 wave event
+  august 10, 1982.
+\newblock {\em Journal of Geophysical Research: Space Physics},
+  91(A6):6884--6898, 1986.
+
 \bibitem{engebretson_1992}
 M.~J. Engebretson, D.~L. Murr, K.~N. Erickson, R.~J. Strangeway, D.~M. Klumpar,
   S.~A. Fuselier, L.~J. Zanetti, and T.~A. Potemra.
@@ -353,6 +361,12 @@ R.~L. Lysak and Y.~Song.
   through the auroral ionosphere: first results.
 \newblock {\em Adv. Space Res.}, 28:813--822, 2001.
 
+\bibitem{lysak_2003}
+R.~L. Lysak and Y.~Song.
+\newblock Nonlocal kinetic theory of alfvén waves on dipolar field lines.
+\newblock {\em Journal of Geophysical Research: Space Physics}, 108(A8), 2003.
+\newblock 1327.
+
 \bibitem{lysak_2013}
 R.~L. Lysak, C.~L. Waters, and M.~D. Sciffer.
 \newblock Modeling of the ionospheric {Alfv{\'e}n} resonator in dipolar
@@ -556,7 +570,7 @@ B.~J. Thompson and R.~L. Lysak.
 
 \bibitem{tikhonchuk_2000}
 V.~T. Tikhonchuk and R.~Rankin.
-\newblock Electron kinetic effects in standing shear alfve{\'e}n waves in the
+\newblock Electron kinetic effects in standing shear alfv{\'e}n waves in the
   dipolar magnetosphere.
 \newblock {\em Physics of Plasmas}, 7(6):2630, 2000.
 

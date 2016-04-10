@@ -4,7 +4,7 @@
 \chapter{Van Allen Probe Observations}
   \label{ch_rbsp}
 
-The results presented in \cref{ch_results} are perhaps interesting on their own, but become particularly valuable when combined with observational data. Unfortunately, only a small number of studies to date have explored how Pc4 observation rate is affected by the harmonic and polarization structure of those waves. 
+The results presented in \cref{ch_results} are interesting on their own, but become particularly valuable when combined with observational data. Unfortunately, only a small number of studies to date have explored how Pc4 observation rate is affected by the harmonic and polarization structure of those waves. 
 
 While Pc4 pulsations have previously been studied in terms of both harmonic\cite{arthur_1981,cummings_1969,engebretson_1988,hughes_1978,singer_1982,takahashi_1984} and polarization\cite{anderson_1990,dai_2015,dai_2013,kokubun_1989,liu_2009}, little work has considered both at the same time. This has largely been due to observational constraints. The classification of a wave's harmonic is best carried out by computing the phase offset of the magnetic and electric field waveforms, simultaneous in situ measurements of which have only recently become available as part of the THEMIS\cite{angelopoulos_2008} and Van Allen Probe\cite{stratton_2012} missions. The Van Allen Probes (launched in 2012) are particularly well-suited to the study of Pc4 pulsations as their apogee of $L \sim 6$ coincides closely with eigenfrequencies in the Pc4 range. 
 
@@ -114,6 +114,10 @@ In fact --- to the degree that they can be straightforwardly compared --- the di
 Crucially, the present work can offer insight into how previous results fit together. Unlike events considered in previous works, those shown in \cref{fig_mode_all_sharp} have all been categorized in terms of both polarization and parity. And, perhaps more importantly, the selection process has not introduced a bias with respect to polarization or parity (at least not an obvious one). 
 
 Not only does \cref{fig_mode_all_sharp} show that toroidal events outnumber poloidal events, but it also shows that toroidal events are predominantly odd harmonics --- as opposed to the primarily-even poloidal events. This may suggest that odd poloidal waves are more likely than even ones to be driven at low modenumber (allowing a prompt rotation of that energy to the toroidal mode). One might expect low-\azm poloidal modes to be driven by a broad, sudden change in solar wind dynamic pressure, for instance. The relative scarcity of odd poloidal observations on the dayside may indicate a short-lived source. At low \azm, energy rotates to the toroidal mode on the order of a wave period; without an ongoing source, there would be no poloidal wave to observe. 
+
+\todo{Actually, it looks like odd poloidal waves are split about half-and-half around $\left| \frac{B_z}{B_x} \right| = 0.2$. Compressional odd modes are more common near midnight. Noncompressional ones are mostly in the morning. Even poloidal events are skewed toward low \azm. This is probably worth showing. }
+
+\todo{Odd poloidal events are skewed nightward compared to odd toroidal events. This is not surprising. Per \cref{ch_results}, nightside poloidal events are less likely to give rise to toroidal events than those on the dayside. Even events too, actually. The toroidal distribution looks like the poloidal distribution, but skewed dayward. }
 
 This would furthermore be consistent with even modes' apparent dearth of ground signatures\cite{takahashi_1992}. If even harmonics tend to be produced at higher modenumber than odd ones, even harmonics would be expected to produce ground signatures less often\footnote{See \cref{attenuation}. }. 
 
@@ -278,7 +282,7 @@ The selection process described in \cref{sec_selection} does not explicitly cons
     \centering
     \includegraphics[width=\textwidth]{figures/phase.pdf}
     \caption[Phase Distribution of Pc4 Events by Mode]{
-      \todo{$\cdots$}
+      The (absolute) phase of the selected Pc4 events is shown above. All modes show phase distributions peaked around \SI{90}{\degree}. This reflects the fact that a significant traveling wave component quickly carries energy away from an FLR. Odd events are spread more broadly in phase than even events. This is consistent with the odd modes' electric field antinode near the equator, where events are observed; the characteristic loss timescale depends on $\frac{B}{E}$ per \cref{def_tau}. 
     }
     \label{fig_phase}
 \end{figure}
@@ -299,6 +303,23 @@ Unlike amplitude (\cref{sec_amp}) and frequency (\cref{sec_f}), events of differ
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
+\section{Discussion}
+
+\todo{Odd poloidal events and odd toroidal events are distributed similarly in space. Even poloidal events and even toroidal events too. Toroidal events are skewed dayward compared to poloidal events, which makes sense, since on the nightside poloidal-to-toroidal rotation timescales are comparable to dissipation timescales. }
+
+\todo{Poloidal events are mostly even. Toroidal events are mostly odd. Maybe this indicates a different preference in modenumber? }
+
+\todo{Even poloidal events are skewed toward high amplitude compared to the other modes. Stronger even poloidal events are also skewed dayward. }
+
+\todo{Odd toroidal events near the top of the Pc4 frequency range exhibit qualitatively different behavior from the other odd toroidal modes. They are probably third harmonics. Maybe third harmonics have a source mechanism more like second harmonics than like first. }
+
+\todo{Most events have (absolute) phase in the range \SIrange{80}{100}{\degree}, indicating that most of the energy is in the standing wave. Odd events are spread a bit more broadly in phase. This makes sense, since they ahve an electric field antinode near the equator (where measurements are made) which makes them less susceptible to energy loss from the traveling wave. }
+
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
 %\section{Poloidal Pc4 Events by Compressional Coupling}
 
 %\todo{Low-\azm poloidal Pc4 events are coupled to the compressional mode, while high-\azm ones are not. }
@@ -314,13 +335,6 @@ Unlike amplitude (\cref{sec_amp}) and frequency (\cref{sec_f}), events of differ
 %    \label{fig_azm_rate_all}
 %\end{figure}
 
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-\section{Discussion}
-
-\todo{$\cdots$}
 
 
 
