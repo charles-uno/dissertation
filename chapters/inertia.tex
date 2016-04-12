@@ -55,7 +55,7 @@ As mentioned in \cref{ch_math} and shown in \cref{fig_op}, plasma oscillation is
 
 As it happens, this problem can be solved by artificially increasing the parallel electric constant above its usual value of \ez. Doing so lowers both the speed of light and the plasma frequency within the simulation. 
 
-This technique --- and others like it --- has been widespread in numerical modeling since it was presented by Boris in 1970\cite{boris_1970}. More recently, Lysak and Song considered its use specifically for the case of electron inertial effects\cite{lysak_2001}. The following paraphrases their argument. 
+This technique --- and others like it --- has been widespread in numerical modeling since it was presented by Boris in 1970\cite{boris_1970}. The following paraphrases an argument by Lysak and Song\cite{lysak_2001}, outlining its validity specifically in the case of electron inertial effects. 
 
 Supposing that the current and electric field are oscillating at frequency $\omega$, the parallel components of \amplaw and \ohmlaw can be written
 \begin{align}
@@ -150,7 +150,7 @@ It's also possible to consider the effect of parallel currents and electric fiel
     \label{fig_power_density}
 \end{figure}
 
-As shown in \cref{fig_power_density}, little energy transfer in the ionosphere is mediated by perpendicular components of the Poynting flux. The parallel component of $\vec{J} \cdot \vec{E}$ is comparably unimportant. The energy deposited in the ionosphre by the Poynting flux matches closely with the energy lost to Joule dissipation --- as it should, to conserve energy --- but according to the model, parallel currents and electric fields do not contribute significantly. 
+As shown in \cref{fig_power_density}, little energy transfer in the ionosphere is mediated by perpendicular components of the Poynting flux. The parallel component of $\vec{J} \cdot \vec{E}$ is comparably unimportant. The energy deposited in the ionosphere by the Poynting flux matches closely with the energy lost to Joule dissipation --- as it should, to conserve energy --- but according to the model, parallel currents and electric fields do not contribute significantly. 
 
 %\todo{Parallel electric fields, supposedly, only appear at high altitude. \cite{marklund_1997,carlson_1998}. }
 
@@ -162,17 +162,17 @@ As shown in \cref{fig_power_density}, little energy transfer in the ionosphere i
 \section{Inertial Length Scales}
   \label{sec_lengths}
 
-It's not quite fair to compare the parallel and perpendicular contributions to \curl{E} as is done in \cref{sec_jz}. Perpendicular electric fields are on the order of \SI{1}{\mV/\m}, with wavelengths on the order of \SI{e5}{\km}; they give rise to magnetic field gradients around \SI{0.1}{\nT/\s}. Parallel electric fields, closer to \SI{e-6}{\mV/\m}, would need to vary over length scales of \SI{0.1}{\km} to match with that. 
+It's not quite fair to compare the parallel and perpendicular contributions to \curl{E} as is done in \cref{sec_jz}. Perpendicular electric fields are on the order of \SI{1}{\mV/\m}, with wavelengths on the order of \SI{e5}{\km}; they cause magnetic fields to change at a rate of around \SI{0.1}{\nT/\s}. Parallel electric fields, closer to \SI{e-6}{\mV/\m}, would need to vary over length scales of \SI{0.1}{\km} to match with that. 
 
 Such scales are believable. The characteristic length scale of the plasma oscillation is the electron inertial length, $\frac{c}{\op}$, which is on the order of \SI{1}{\km} in the auroral ionosphere and \SI{0.1}{\km} in the low-altitude plasmasphere. However, Tuna's usual grid doesn't resolve structures so fine; its resolution bottoms out closer to \SI{10}{\km}. That is, with the inclusion of electron inertial effects, Tuna's grid is too coarse to resolve all of the waves expected to be present. The model is prone to instability as a result. 
 
-\cref{fig_inertial_length} shows a run with perpendicular resolution smaller than the electron inertial length, side by side with an analogous run on the usual grid. In order to carry out the inertial-scale run, several concessions were made to computational cost. The run simulates only a duration of \SI{100}{\s} (other results in previous sections and in \cref{ch_results} show \SI{300}{\s}), and the grid covers only the auroral latitudes from $L=5$ to $L=7$. 
+\cref{fig_inertial_length} shows a run with perpendicular resolution smaller than the electron inertial length, side by side with an analogous run on the usual grid. In order to carry out the inertial-scale run, several concessions were made to computational cost. The run simulates only a duration of \SI{100}{\s} (other figures in the present chapter, and those in \cref{ch_results}, show \SI{300}{\s}), and the grid covers only the auroral latitudes from $L=5$ to $L=7$. 
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{figures/inertial_length.pdf}
     \caption[Parallel Electric Fields by Perpendicular Grid Resolution]{
-      The parallel electric field develops significant structure when the perpendicular grid resolution is smaller than the electron inertial length. Unfortunately, such runs are prohibitively expensive. The lower panel --- which still fails to resolve wave structure properly --- represents a 100-fold increase in computational time. 
+      The parallel electric field develops significant structure when the perpendicular grid resolution is smaller than the electron inertial length. Unfortunately, such runs are prohibitively expensive. The subplot on the right --- which still fails to resolve wave structure properly --- represents a 100-fold increase in computational time. 
     }
     \label{fig_inertial_length}
 \end{figure}
@@ -187,11 +187,19 @@ The snapshot shown in \cref{fig_inertial_length} uses a perpendicular grid resol
 % -----------------------------------------------------------------------------
 \section{Discussion}
 
-\todo{The dispersion relation in \cref{ch_math} suggests that parallel electric fields should be smaller than perpendicular electric fields by at least six orders of magnitude. Tuna agrees. }
+The present chapter is a proof of concept: the addition of electron inertial effects to Tuna presents a promising first-principles-based approach to the investigation of parallel currents and electric fields associated with field line resonances. Electric fields arise which are consistent in magnitude with those predicted by the dispersion relation, and parallel currents fall within an order of magnitude or so of observed values, even when inertial length scales are not properly resolved. 
 
-\todo{Tuna computes parallel currents a bit weaker than those that are observed --- \about\SI{1}{\uA/\m\squared} rather than \about\SI{10}{\uA/\m\squared}. The currents accompany the toroidal mode, but not the poloidal mode, except where the two are coupled by a strong Hall conductivity. Is this expected? }
+Results in \cref{sec_jz} suggest a disparity between poloidal and toroidal FLRs in terms of the parallel current response. At low altitude, where the two modes are directly coupled by the Hall conductivity, both seem to be accompanied by parallel currents. However, in regions of low Hall conductivity, parallel currents appear to preferrentially accompany toroidal waves. The cause is unclear, and a topic worthy of future investigation. 
 
-\todo{When inertial effects are not properly resolved, the code is prone to instability. Resolving inertial scales properly presents a prohibitive computational expense. }
+Future work in this vein may also consider the scales and structures that arise in regions of parallel current. For example, one might consider the relationship between the dynamic height-integrated potentials and the accompanying parallel currents, specifically with respect to the Knight Relation\cite{knight_1973}. Inertial effects could furthermore be accompanied by test particles, in order to gauge the properties of particle precipitation that could accompany global \Alfven{}ic potential structures. 
 
-Electron inertial effects present a promising first-principles-based approach to the investigation of parallel currents and electric fields associated with field line resonances. Unfortunately, because of the large differences in scale between Pc4 pulsations and the plasma oscillation, the proper deployment of inertial effects presents a prohibitive computational expense. Results shown  in \cref{ch_results} make use of the core version of Tuna presented in \cref{ch_model}, which does not include the effects of electron inertia. 
+Unfortunately, simulations are prone to instability when inertial length scales are not properly resolved. And, at least at present, resolving those scales poses a prohibitive computational expense. For this reason, the consideration of inertial effects is limited to the present chapter; results in \cref{ch_results} make use of the core version of Tuna presented in \cref{ch_model}, which does not include the effects of electron inertia. 
+
+Notably, the addition or omission of parallel currents and electric fields does not appear to significantly alter the behavior of perpendicular electric fields or magnetic fields. Because the parallel electric fields are relatively small, $\curl{E}$ is essentially unaffected by their inclusion. 
+
+
+
+
+
+
 
