@@ -9,13 +9,39 @@
 
 %\todo{ULF, FLR, and Pc4 all mean basically the same thing in the context of the present work. How many acronyms do we really need? }
 
-The motion of a charged particle in a dipole field can be described in terms of three fundamental motions. The first is cyclotron motion. Given a uniform magnetic field line, a particle follows a helical path. It moves in a circular path in a plane normal to the magnetic field line, and keeps a constant velocity along the direction of the field. 
+The motion of a charged particle in a dipole field can be described in terms
+of three fundamental motions. 
 
-The second fundamental motion is bounce motion. As it moves along the magnetic field line like a bead on a wire, the particle experiences a change in magnetic field magnitude. In order to conserve its magnetic moment (also called the first adiabatic invariant), the particle's perpendicular kinetic energy increases in proportion with the magnetic field. When the perpendicular kinetic energy can no longer increase --- that is, when all of the particle's kinetic energy is perpendicular --- the particle bounces back. (If the particle's parallel kinetic energy is sufficiently large, it doesn't bounce, and instead precipitates into the atmosphere.) Particles undergoing bounce motion continuously move back and forth between the northern and southern hemispheres. 
+The first is cyclotron motion. Given a uniform magnetic field line, a particle
+follows a helical path. It moves in a circular path in a plane normal to the
+magnetic field line, and keeps a constant velocity along the direction of the
+field. Close to Earth, where the magnetic field is strongest, the proton
+(electron) cyclotron timescale is on the order of \SI{e-3}{\s} (\SI{e-6}{\s});
+at $L \sim 5$, a typical value is closer to \SI{10}{\s} (\SI{e4}{\s}). 
 
-The third fundamental motion is drift motion. Over the course of a particle's cyclotron motion, the Earthward half of the orbit experiences a slightly stronger magnetic field (and thus a slightly smaller orbit radius). The net effect, called the gradient-curvature drift, is an azimuthal motion around Earth. 
+The second fundamental motion is bounce motion. As it moves along the magnetic
+field line like a bead on a wire, the particle experiences a change in magnetic
+field magnitude. In order to conserve its magnetic moment (also called the
+first adiabatic invariant), the particle's perpendicular kinetic energy
+increases in proportion with the magnetic field. When the perpendicular kinetic
+energy can no longer increase --- that is, when all of the particle's kinetic
+energy is perpendicular --- the particle bounces back. Particles undergoing
+bounce motion continuously move back and forth between the northern and
+southern hemispheres, with timescales of a few seconds to a few minutes. 
 
-Characteristic timescales for each of the above motions depend on particle energy. Electron cyclotron motion is on the order of \todo{$\cdots$} in the ionosphere, and closer to \todo{$\cdots$} in the tail; ions gyrate slower by three orders of magnitude due to their larger mass. \todo{Bounce... Drift... }
+Particles with more parallel kinetic energy (compared to their perpendicular
+kinetic energy) bounce at lower altitudes. If the particle's motion is
+sufficiently field-aligned, the bounce altitude drops into the atmosphere, and
+the particle is collisionally thermalized. This process is called
+precipitation.
+
+The third fundamental motion is drift motion. Over the course of a particle's
+cyclotron motion, the Earthward half of the orbit experiences a slightly
+stronger magnetic field (and thus a slightly smaller orbit radius). The net
+effect, called the gradient-curvature drift, is an azimuthal motion around
+Earth on timescales of \about\SI{e3}{\s}. 
+
+%Characteristic timescales for each of the above motions depend on particle energy. Electron cyclotron motion is on the order of \todo{$\cdots$} in the ionosphere, and closer to \todo{$\cdots$} in the tail; ions gyrate slower by three orders of magnitude due to their larger mass. \todo{Bounce... Drift... }
 
 %\todo{Electron cyclotron frequency is on the order of $\sim \SI{1}{\MHz}$ in the ionosphere, and more like $\sim \SI{1}{\kHz}$ in the magnetosphere. Much faster than drift or bounce timescales. Ion cyclotron frequency... down by a factor of $\frac{\me}{\mp}$. }
 
@@ -23,9 +49,19 @@ Characteristic timescales for each of the above motions depend on particle energ
 
 %\todo{Drift timescales vary significantly based on particle energy. Dai\cite{dai_2013} showed a nice example of \SI{100}{\kilo\eV} ions drifting with a period of $\sim \SI{100}{\s}$. Bounce and drift timescales can overlap --- this turns out to be important. This doesn't depend on mass, right? Just kinetic energy. }
 
-Wave-particle resonance arises when a particle's periodic motion matches with the frequency of a coincident electromagnetic wave\cite{elkington_1999,mann_2013,ozeke_2008,southwood_1976}. In the particle's rest frame, the wave then appears as a net electric field. This allows a net movement of energy between the wave and the particle. The interaction is analogous to a surfer moving along with --- and being accelerated by --- a wave in the ocean. Such resonance can arise for any of the three fundamental motions, or even for a combination of them. 
+Wave-particle resonance arises when a particle's periodic motion matches with
+the frequency of a coincident electromagnetic
+wave\cite{elkington_1999,mann_2013,ozeke_2008,southwood_1976}. In the
+particle's rest frame, the wave then appears as a net electric field. This
+allows a net movement of energy between the wave and the particle. The
+interaction is analogous to a surfer moving along with --- and being
+accelerated by --- a wave in the ocean. Such resonance can arise for any of the
+three fundamental motions, or even for a combination of them. 
 
-In the present work, the waves in question are field line resonances (FLRs). An FLR is a standing harmonic on a geomagnetic field line. It can also be envisioned as a superposition of traveling waves, reflecting back and forth between its northern and southern foot points at the conducting ionosphere. 
+In the present work, the waves under consideration are field line resonances
+(FLRs). An FLR is a standing harmonic on a geomagnetic field line. It can also
+be envisioned as a superposition of traveling waves, reflecting back and forth
+between its northern and southern foot points at the conducting ionosphere. 
 
 These waves travel at the \Alfven speed, \va, defined per
 \begin{align}
@@ -35,16 +71,28 @@ These waves travel at the \Alfven speed, \va, defined per
   \va^2 &\equiv \frac{1}{\mz \ep} 
 \end{align}
 
-Where $B$ is the magnetic field magnitude, $\rho$ is the mass density, and \mz is the magnetic constant. The perpendicular electric constant \ep is analogous to the electric constant \ez, and arises in cases (such as the magnetosphere) where a dielectric medium exhibits a preferred direction. In the magnetosphere, mass density and magnetic field strength depend strongly on position. As a result, the \Alfven speed may vary by several orders of magnitude over the length of a field line. 
+Where $B$ is the magnetic field magnitude, $\rho$ is the mass density, and \mz
+is the magnetic constant. The perpendicular electric constant \ep is analogous
+to the electric constant \ez, and arises in cases (such as the magnetosphere)
+where a dielectric medium exhibits a preferred direction. In the magnetosphere,
+mass density and magnetic field strength depend strongly on position. As a
+result, the \Alfven speed varies by several orders of magnitude over the length
+of a field line. The fundamental equations of field line resonance were
+presented by Dungey in 1954\cite{dungey_1954}. Since then, they have remained a
+topic of active study. 
 
-The fundamental equations of field line resonance were presented by Dungey in 1954\cite{dungey_1954}; since then, they have remained a topic of active study. 
+%\todo{...in no small part because they are not just relevant to space! \Alfven waves also show up in laboratory plasmas, which are hard to measure directly, and in all sorts of astrophysical contexts. }
 
-\todo{...in no small part because they are not just relevant to space! \Alfven waves also show up in laboratory plasmas, which are hard to measure directly, and in all sorts of astrophysical contexts. }
-
-So-called ultra low frequency waves  --- of which FLRs are a subset --- are categorized by morphology. Continuous (long-lived) pulsations are termed Pc, while irregular pulsations are called Pi. Within each are a number of frequency bands; see \cref{tab_iaga}\cite{jacobs_1964}. 
+So-called ultra low frequency waves  --- of which FLRs are a subset --- are
+categorized by morphology. Continuous (long-lived) pulsations are termed Pc,
+while irregular pulsations are called Pi. Within each are a number of
+frequency bands; see \cref{tab_iaga}\cite{jacobs_1964}. In practice, frequency
+demarcations are not strict, but rather serve as a heuristic for grouping
+phenomenologically similar waves\cite{hughes_1994}. 
 
 \begin{longtable}{ @{\extracolsep{\fill}} cccccccc @{\extracolsep{\fill}} }
-  \caption[IAGA Magnetic Pulsation Frequency Bands]{IAGA Magnetic Pulsation Frequency Bands}
+  \caption[IAGA Magnetic Pulsation Frequency Bands]
+    {IAGA Magnetic Pulsation Frequency Bands}
   \label{tab_iaga} \\
   \toprule
   & Pc1 & Pc2 & Pc3 & Pc4 & Pc5 & Pi1 & Pi2 \\
@@ -52,30 +100,64 @@ So-called ultra low frequency waves  --- of which FLRs are a subset --- are cate
   \endfirsthead
   \bottomrule
   \endlastfoot
-  Period (\si{\second}) & 0.2--5    & 5--10    & 10--45  & 45--150 & 150--600 & 1--40    & 40--150 \\
-  Frequency (\si{\mHz}) & 200--5000 & 100--200 & 22--100 & 7--22   & 2--7     & 25--1000 & 7--25 \\
+  Period (\si{\second}) & 0.2--5    & 5--10    & 10--45  & 45--150 & 150--600 &
+    1--40    & 40--150 \\
+  Frequency (\si{\mHz}) & 200--5000 & 100--200 & 22--100 & 7--22   & 2--7     &
+    25--1000 & 7--25 \\
 \end{longtable}
 
-\todo{Boundaries between wave bands are, in practice, not strict. They are sometimes fudged to better match phenomenological boundaries. }
+%\todo{Boundaries between wave bands are, in practice, not strict. They are sometimes fudged to better match phenomenological boundaries. }
 
-FLRs fall into the Pc3, Pc4, and Pc5 ranges. The present work focuses specifically on the Pc4 band: waves with periods of a minute or two. Frequencies in the Pc4 range typically coincide with \Alfven bounce times\footnote{The \Alfven frequency is the inverse of the \Alfven bounce time: $\frac{2 \pi}{\omega_A} \equiv \oint \frac{dz}{v_A}$. } near the plasmapause: $L\sim4$ to $L\sim6$\cite{anderson_1990,dai_2015,engebretson_1992,liu_2009}\footnote{Not coincidentally, these are the same $L$-shells where the Van Allen Probes spend most of their time; see \cref{ch_rbsp}. }. In fact, the large radial gradients in the \Alfven speed near the plasmapause act as an effective potential well, trapping FLRs\cite{dai_2009,klimushkin_2004,lee_1999,leonovich_2000,mager_2013,takahashi_2010}. 
+FLRs fall into the Pc3, Pc4, and Pc5 ranges. The present work focuses
+specifically on the Pc4 band: waves with periods of a minute or two.
+Frequencies in the Pc4 range typically coincide with \Alfven bounce
+times\footnote{The \Alfven frequency is the inverse of the \Alfven bounce time:
+$\frac{2 \pi}{\omega_A} \equiv \oint \frac{dz}{v_A}$. } near the plasmapause:
+$L\sim4$ to
+$L\sim6$\cite{anderson_1990,dai_2015,engebretson_1992,liu_2009}\footnote{Not
+coincidentally, these are the same $L$-shells where the Van Allen Probes
+spend most of their time; see \cref{ch_rbsp}. }. In fact, the large radial
+gradients in the \Alfven speed near the plasmapause act as an effective
+potential well, trapping FLRs\cite{dai_2009,klimushkin_2004,lee_1999,
+leonovich_2000,mager_2013,takahashi_2010}. 
 
 \begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/fa.pdf}
-    \caption[\Alfven Bounce Frequencies]{
-      The above are bounce frequencies for an \Alfven wave moving back and forth along a geomagnetic field line. \Alfven speeds are computed based on profiles from Kelley\cite{kelley_1989}, as discussed in \cref{sec_profile}. Notably, the bounce frequency depends significantly on the position of the plasmasphere, taken here to be at $L=4$. Dotted lines indicate the Pc4 frequency range: \SIrange{7}{25}{\mHz}. 
-    }
-    \label{fig_fa}
+  \centering
+  \includegraphics[width=\textwidth]{figures/fa.pdf}
+  \caption[\Alfven Bounce Frequencies]{
+    The above are bounce frequencies for an \Alfven wave moving back and forth
+    along a geomagnetic field line. \Alfven speeds are computed based on
+    profiles from Kelley\cite{kelley_1989}, as discussed in \cref{sec_profile}.
+    Notably, the bounce frequency depends significantly on the position of the
+    plasmasphere, taken here to be at $L=4$. Dotted lines indicate the Pc4
+    frequency range: \SIrange{7}{25}{\mHz}. 
+  }
+  \label{fig_fa}
 \end{figure}
 
-In addition to being radially localized, FLRs in the Pc4 frequency band (also called Pc4 pulsations, or just Pc4s) are localized in magnetic local time (MLT\footnote{Noon points toward the Sun and midnight away from it, with 06:00 and 18:00 at the respective dawn and dusk flanks. }). They have also been shown to occur preferrentially on the dayside, during storms or storm recovery\cite{anderson_1990,dai_2015,engebretson_1992,kokubun_1989,liu_2009,ukhorskiy_2005}. 
+In addition to being radially localized, FLRs in the Pc4 frequency band (also
+called Pc4 pulsations, or just Pc4s) are localized in magnetic local time
+(MLT\footnote{Noon points toward the Sun and midnight away from it, with 06:00
+and 18:00 at the respective dawn and dusk flanks. }). They have also been shown
+to occur preferrentially on the dayside, during storms or storm
+recovery\cite{anderson_1990,dai_2015,engebretson_1992,kokubun_1989,liu_2009,
+ukhorskiy_2005}. 
 
-In the inner magnetosphere, the \Alfven frequency --- and thus the frequency of FLRs --- often coincides with integer or half-integer\footnote{See \cref{sec_harmonics}. } multiples of particle drift frequencies\cite{dai_2013}. The resulting wave-particle interactions can give rise to significant energization and radial diffusion of the particles. In some cases, the waves also include an electric field parallel to the background magnetic field, contributing to the precipitation of energetic particles into the neutral atmosphere\cite{goertz_1984,goertz_1979,thompson_1996,wygant_2002}. 
+In the inner magnetosphere, the \Alfven frequency --- and thus the frequency of
+FLRs --- often coincides with integer or half-integer\footnote{See
+\cref{sec_harmonics}. } multiples of particle drift frequencies\cite{dai_2013}.
+The resulting wave-particle interactions can give rise to significant
+energization and radial diffusion of the particles. In some cases, the waves
+also include an electric field parallel to the background magnetic field,
+breaking the assumption that magnetic field lines are equipotential contours,
+and contributing to the precipitation of energetic particles into the neutral
+atmosphere\cite{goertz_1984,goertz_1979,thompson_1996,wygant_2002}. 
 
-The present chapter introduces the structural characteristics of FLRs, how those characteristics affect wave behavior, and several unresolved questions related to that behavior. 
+The present chapter introduces the structural characteristics of FLRs, how
+those characteristics affect wave behavior, and several unresolved questions
+related to that behavior. 
 
-\todo{The polarization of long-period \Alfven waves is rotated by \about\SI{90}{\degree} when passing through the ionosphere\cite{hughes_1974}. A wave that is azimuthally polarized in space is polarized north-south on the ground, and vice versa. It has been noted specifically that Pgs exhibit east-west polarized ground signatures\cite{takahashi_1992}. }
+%\todo{The polarization of long-period \Alfven waves is rotated by \about\SI{90}{\degree} when passing through the ionosphere\cite{hughes_1974}. A wave that is azimuthally polarized in space is polarized north-south on the ground, and vice versa. It has been noted specifically that Pgs exhibit east-west polarized ground signatures\cite{takahashi_1992}. }
 
 %\todo{Other planets\cite{glassmeier_2004}? Seems exciting but maybe not relevant. }
 
@@ -85,45 +167,115 @@ The present chapter introduces the structural characteristics of FLRs, how those
 \section{Harmonic Structure}
   \label{sec_harmonics}
 
-Wave structure along a geomagnetic field line is indicated by harmonic number. The first (or fundamental) harmonic has a wavelength twice as long as the field line. The electric field perturbation is zero at the ionospheric foot points of the field line, due to the conductivity of the ionosphere. For the first harmonic, this puts an electric field antinode at the equator, along with a node in the perpendicular\footnote{The parallel, or compressional, magnetic field exhibits the same nodes and antinodes as the perpendicular electric field\cite{radoski_1974}. } perturbation to the magnetic field. For the second harmonic, the electric field has a third node at the equator, which is accompanied by an antinode in the perpendicular magnetic field perturbation. \cref{fig_harmonics} shows a qualitative sketch of the first and second harmonics: a series of snapshots in time, in the rest frame of the wave. Perpendicular electric and magnetic field perturbations are shown in blue and red respectively. 
+%\todo{Second-harmonic FLRs are unlikely to cause ground signatures\cite{takahashi_1992}. }
+
+%\todo{Dai found a nice event\cite{dai_2013} that was unambiguously determined to be a fundamental-mode Pc4 in drift-resonant interaction with \about\SI{e5}{\eV} ions. Consistent with \cite{thompson_2001}. Other observations of odd harmonics: \cite{yang_2010,eriksson_2005}. }
+
+Wave structure along a geomagnetic field line is indicated by harmonic number.
+The first (or fundamental) harmonic has a wavelength twice as long as the field
+line. The electric field perturbation is zero at the ionospheric foot points of
+the field line, due to the conductivity of the ionosphere. For the first
+harmonic, this puts an electric field antinode at the equator, along with a
+node in the perpendicular\footnote{The parallel, or compressional, wave
+magnetic field exhibits the same nodes and antinodes as the perpendicular
+electric field\cite{radoski_1974}. } perturbation to the magnetic field. For
+the second harmonic, the electric field has a third node at the equator, in
+addition to the two at the ionospheric foot points, which is accompanied by an
+antinode in the perpendicular wave magnetic field. \cref{fig_harmonics} shows a
+qualitative sketch of the first and second harmonics: a series of snapshots in
+time, in the rest frame of the wave. Perpendicular electric and magnetic field
+perturbations are shown in blue and red respectively. 
 
 \begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/harmonics.pdf}
-    \caption[First and Second Harmonic Resonances]{
-      The first (or fundamental) harmonic has an an antinode in its perpendicular electric field (blue) at the equator, along with a node in its perpendicular magnetic field perturbation (red). A single satellite can identify the first harmonic by the relative phase of the electric and magnetic field perturbations: an observer north of the equator (green) will see the magnetic field perturbation lead the electric field by $\pm\SI{90}{\degree}$. The second harmonic is the opposite: it has an electric field node at the equator, and an observer north of the equator will see the magnetic field perturbation lag the electric field by $\mp\SI{90}{\degree}$. Top and bottom signs correspond to the poloidal (shown) and toroidal polarizations respectively. The purple line sketches the path of a particle in drift-bounce resonance; in the particle's rest frame, the electric field is always to the right. 
-    }
-    \label{fig_harmonics}
+  \centering
+  \includegraphics[width=\textwidth]{figures/harmonics.pdf}
+  \caption[First and Second Harmonic Resonances]{
+    The first (or fundamental) harmonic has an an antinode in its perpendicular
+    electric field (blue) at the equator, along with a node in its
+    perpendicular magnetic field perturbation (red). A single satellite can
+    identify the first harmonic by the relative phase of the electric and
+    magnetic field perturbations: an observer north of the equator (green) will
+    see the magnetic field perturbation lead the electric field by
+    $\pm\SI{90}{\degree}$. The second harmonic is the opposite: it has an
+    electric field node at the equator, and an observer north of the equator
+    will see the magnetic field perturbation lag the electric field by
+    $\mp\SI{90}{\degree}$. Top and bottom signs correspond to the poloidal
+    (shown) and toroidal polarizations respectively. The purple line sketches
+    the path of a particle in drift-bounce resonance; in the particle's rest
+    frame, the electric field is always to the right. 
+  }
+  \label{fig_harmonics}
 \end{figure}
 
-A first-harmonic FLR that is periodic or localized in the azimuthal direction is conducive to drift-resonant wave-particle interactions\cite{dai_2013,poulter_1983}. The particle is like a child on a swing: whenever the path of the particle (or child) gets close to the wave (parent), it gets a push, and always in the same direction. The wave fields spend half its time pointing the other direction, just as the parent must shift their weight backward to get ready for the next push, but at that point the particle (child) is far away. 
+A first-harmonic FLR that is periodic or localized in the azimuthal direction
+is conducive to drift-resonant wave-particle
+interactions\cite{dai_2013,poulter_1983}. The particle is like a child on a
+swing: whenever the path of the particle (or child) gets close to the wave
+(parent), it gets a push, and always in the same direction. The wave fields
+spend half its time pointing the other direction, just as the parent must shift
+their weight backward to get ready for the next push, but at that point the
+particle (child) is far away. 
 
-Second-harmonic FLRs interact with particles through the drift-bounce resonance, which is slightly more complicated. As the particle drifts azimuthally, it also zig-zags north-south. The combination of those two periodic motions must align with the phase of the wave electric field. An example path is shown by the purple line in \cref{fig_harmonics}: the particle experiences a rightward electric field throughout the wave's oscillation. 
+Second-harmonic FLRs interact with particles through the drift-bounce
+resonance, which is slightly more complicated. As the particle drifts
+azimuthally, it also zig-zags north-south. The combination of those two
+periodic motions must align with the phase of the wave electric field. An
+example path is shown by the purple line in \cref{fig_harmonics}: the
+particle's drift and bounce motions together ensure that it experiences a
+rightward electric field throughout the wave's oscillation. 
 
-The drift and drift-bounce resonance conditions is written, respectively\cite{takahashi_2011}:
+The drift and drift-bounce resonance conditions is written,
+respectively\cite{takahashi_2011}:
 \begin{align}
   \omega - \azm \omega_D &= 0 &
   &\text{and}&
   \omega - \azm \omega_D &= \omega_B
 \end{align}
 
-Where $\omega$ is the frequency of the wave, $\omega_D$ and $\omega_B$ are the particle's drift and bounce frequencies respectively, and \azm is the wave's azimuthal modenumber, as discussed in \cref{sec_azm}. 
+Where $\omega$ is the frequency of the wave, $\omega_D$ and $\omega_B$ are the
+particle's drift and bounce frequencies respectively, and \azm is the wave's
+azimuthal modenumber, as discussed in \cref{sec_azm}. 
 
-In principle, the first and second harmonics can be distinguished by their frequencies, even from a single-point observation\cite{cummings_1969,green_1985}.  In practice, however, this is not a reliable approach\cite{takahashi_2013}. There are significant uncertainties surrounding the mass density profile --- and thus the \Alfven speed profile --- along a geomagnetic field line. 
+In principle, the first and second harmonics can be distinguished by their
+frequencies, even from a single-point
+observation\cite{anderson_1990,cummings_1969,green_1985}.  In practice,
+however, this is not a reliable approach\cite{takahashi_2013}. Significant
+uncertainties surround the mass density profile --- and thus the \Alfven speed
+profile --- along a geomagnetic field line. 
 
-Harmonic structure can also be deduced by noting the phase offset between the wave magnetic field and its electric field (or the plasma velocity)\cite{dai_2015,takahashi_1992}. In \cref{fig_harmonics}, the green line indicates an observer just north of the magnetic equator. For a wave polarized in the poloidal direction (see \cref{sec_polarization}), the observer sees the electric field waveform offset from the magnetic field by a phase of $\pm\SI{90}{\degree}$, where the top sign is for odd modes and the bottom sign is for even modes. The signs are flipped for toroidally-polarized waves, and again for waves observed south of the equator. 
+Harmonic structure can also be deduced by noting the phase offset between the
+wave magnetic field and its electric field (or the plasma
+velocity)\cite{dai_2015,takahashi_1992}. In \cref{fig_harmonics}, the green
+line indicates an observer just north of the magnetic equator. For a wave
+polarized in the poloidal direction (see \cref{sec_polarization}), the observer
+sees the electric field waveform offset from the magnetic field by a phase of
+$\pm\SI{90}{\degree}$, where the top sign is for odd modes and the bottom sign
+is for even modes. The signs are flipped for toroidally-polarized waves, and
+again for waves observed south of the equator. 
 
-\todo{Talk about imaginary Poynting flux? Standing waves don't move energy. Traveling waves do. In practice, everything is a superposition of the two. }
+In addition to a wave's parity, the phase indicates how energy is divided
+between standing and traveling waves. Standing waves (phase of
+$\pm\SI{90}{\degree}$) have a purely imaginary Poynting flux. Traveling waves
+(phase of $\SI{0}{\degree}$ or $\SI{180}{\degree}$), on the other hand, have
+real Poynting flux, indicating a net movement of energy. Wave lifetimes can be
+estimated by comparing the energy density to the rate at which that energy is
+carried away by Poynting flux, as is done in \cref{ch_rbsp}. 
 
-Notably, the measurement of wave phase has only become viable with the advent of satellites carrying both electric and magnetic field instrumentation, such as THEMIS in 2007\cite{angelopoulos_2008} and the Van Allen Probes\footnote{The Van Allen Probes were previously called RBSP, for Radiation Belt Storm Probes. } in 2012\cite{stratton_2012}. 
+Notably, the measurement of wave phase has only become viable with the advent
+of satellites carrying both electric and magnetic field instrumentation, such
+as THEMIS in 2007\cite{angelopoulos_2008} and the Van Allen Probes (formerly
+RBSP, for Radiation Belt Storm Probes) in 2012\cite{stratton_2012}. 
 
-Strictly speaking, the the phase offset of the electric and magnetic fields does not provide the harmonic number --- only its parity. It's reasonably safe to assume that an even mode is the second harmonic; the second harmonic is by far the most commonly observed\cite{hughes_1978,singer_1982,takahashi_1990}, due in part to its excitement by the antisymmetric balloon instability\cite{chan_1994,chen_1991,cheng_1994,southwood_1976}. However, the distinction between the first and third harmonics is not always clear\cite{chisham_1991,green_1985}; this issue is discussed further in \cref{ch_rbsp}. Higher harmonics than that are not expected in the Pc4 frequency band. 
-
-% Of 390 noncompressional events, Dai identified 19 to be clearly fundamental mode and 197 to be clearly second harmonic\cite{dai_2015}. 
-
-\todo{Second-harmonic FLRs are unlikely to cause ground signatures\cite{takahashi_1992}. }
-
-%\todo{Dai found a nice event\cite{dai_2013} that was unambiguously determined to be a fundamental-mode Pc4 in drift-resonant interaction with \about\SI{e5}{\eV} ions. Consistent with \cite{thompson_2001}. Other observations of odd harmonics: \cite{yang_2010,eriksson_2005}. }
+Strictly speaking, the the phase offset of the electric and magnetic fields
+does not provide the harmonic number --- only its parity. It's reasonably safe
+to assume that an even mode is the second harmonic; the second harmonic is by
+far the most commonly observed\cite{hughes_1978,singer_1982,takahashi_1990},
+due in part to its excitement by the antisymmetric balloon
+instability\cite{chan_1994,chen_1991,cheng_1994,southwood_1976}. However, the
+distinction between the first and third harmonics is not always
+clear\cite{chisham_1991,green_1985}; this issue is discussed further in
+\cref{ch_rbsp}. Higher harmonics than that are not expected in the Pc4
+frequency band. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -131,30 +283,71 @@ Strictly speaking, the the phase offset of the electric and magnetic fields does
 \section{Azimuthal Modenumber}
   \label{sec_azm}
 
-The wavelength of an FLR in the azimuthal direction is indicated by its azimuthal modenumber. A wave with modenumber \azm has an azimuthal wavelength that spans $\frac{24}{\azm}$ hours in MLT. 
+The wavelength of an FLR in the azimuthal direction is indicated by its
+azimuthal modenumber. A wave with modenumber \azm has an azimuthal wavelength
+that spans $\frac{24}{\azm}$ hours in MLT. 
 
 \begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/placeholder.jpg}
-    \caption[Large and Small Azimuthal Modenumbers]{
-      \todo{Large and small azimuthal modenumbers.}
-    }
-    \label{fig_azm}
+  \centering
+  \includegraphics[width=\textwidth]{figures/azm.pdf}
+  \caption[Azimuthal Modenumbers Viewed from the Pole]{
+    Above are qualitative sketches of waves with azimuthal modenumbers 1, 4,
+    and 16, projected into the ecliptic plane. Black circles show unperturbed
+    fields, while the blue and red curves show perturbations. At $\azm = 1$,
+    the wave is more or less a uniform displacement, while at $\azm = 16$
+    azimuthal variations take place on spatial scales small compared to Earth's
+    radius. 
+  }
+  \label{fig_azm}
 \end{figure}
 
-Waves with small azimuthal modenumbers ($0 < \azm < 10$) are typically driven by broadband energy sources at the magnetosphere's boundary, such as variations in the solar wind pressure\cite{degeling_2014,hao_2014,kessel_2008,zong_2007,zong_2009}, sporadic magnetic reconnection\cite{hughes_1994}, or Kelvin-Helmholtz waves on the magnetopause\cite{chen_1974,liu_2011,southwood_1974}. In the low-\azm regime, the shear and compressional \Alfven waves are coupled, which allows energy to move across field lines until the driving frequency lines up with the local \Alfven frequency\cite{lysak_1992}. Because of their broadband energy source, low-\azm FLRs often have a mishmash of frequencies present in their spectra\cite{dai_2015}, though the spectra are coherent in terms of harmonic\cite{engebretson_1986}.
+Waves with small azimuthal modenumbers ($0 < \azm < 10$) are typically driven
+by broadband energy sources at the magnetosphere's boundary, such as variations
+in the solar wind
+pressure\cite{degeling_2014,hao_2014,kessel_2008,zong_2007,zong_2009}, sporadic
+magnetic reconnection\cite{hughes_1994}, or Kelvin-Helmholtz waves on the
+magnetopause\cite{chen_1974,liu_2011,southwood_1974}. In the low-\azm regime,
+the shear and compressional \Alfven waves are coupled, which allows energy to
+move across field lines until the driving frequency lines up with the local
+\Alfven frequency\cite{lysak_1992}. Because of their broadband energy source,
+low-\azm FLRs often have a mishmash of frequencies present in their
+spectra\cite{dai_2015}, though the spectra are coherent in terms of
+harmonic\cite{engebretson_1986}.
 
-When the azimuthal modenumber is large (or, equally, when the azimuthal wavelength is small), compressional propagation of \Alfven waves becomes evanescent, so the movement of energy is guided by magnetic field lines\cite{cummings_1969,radoski_1974}\footnote{Equally, the strength of a wave's parallel component hint at its modenumber, a point which is revisited in \cref{ch_rbsp}. }. As a result, FLRs must be driven from within the magnetosphere. Proposed energy sources include phase space gradients near the plasmapause\cite{dai_2013}, particularly as the plasmasphere refills after a storm or substorm\cite{engebretson_1992,liu_2013}. 
+When the azimuthal modenumber is large (or, equally, when the azimuthal
+wavelength is small), compressional propagation of \Alfven waves becomes
+evanescent, so the movement of energy is guided by magnetic field
+lines\cite{cummings_1969,radoski_1974}\footnote{Equally, the strength of a
+wave's parallel component indicates its modenumber, a point which is revisited
+in \cref{ch_results,ch_rbsp}. }. As a result, FLRs must be driven from within
+the magnetosphere. Proposed energy sources include phase space gradients near
+the plasmapause\cite{dai_2013}, particularly as the plasmasphere refills after
+a storm or substorm\cite{engebretson_1992,liu_2013}. 
 
-The atmosphere is known to attenuate waves with small spatial extent in the perpendicular direction\cite{hughes_1976,wright_1999,yeoman_2001}. As a result, FLRs may create no signature on the ground if their azimuthal modenumber is large. For example, a recent paper by Takahashi shows a strong (\SI{2}{\nT} at $L\sim10$), clear resonance with $|\azm|\gtrsim70$ and no corresponding ground signature\cite{takahashi_2013}. 
+The atmosphere is known to attenuate waves with small spatial extent in the
+perpendicular direction\cite{hughes_1976,wright_1999,yeoman_2001}. As a result,
+FLRs may create no signature on the ground if their azimuthal modenumber is
+large. For example, a recent paper by Takahashi shows a strong (\SI{2}{\nT} at
+$L\sim10$), clear resonance with $|\azm|\gtrsim70$ and no corresponding ground
+signature\cite{takahashi_2013}. 
 
-Southwood\cite{southwood_1976} and Glassmeier\cite{glassmeier_1984} show that a low frequency wave passing through the ionosphere on its way to Earth will be attenuated per
+Southwood\cite{southwood_1976} and Glassmeier\cite{glassmeier_1984} show that a
+low frequency wave passing through the ionosphere on its way to Earth will be
+attenuated per
 \begin{align}
   \label{attenuation}
-  \frac{B_E}{B_I} &= \frac{\Sigma_H}{\Sigma_P} \exp \arg{ -\azm \frac{R_I - R_E}{R_E \sin \theta} }
+  \frac{B_E}{B_I} &= \frac{\Sigma_H}{\Sigma_P} \exp 
+    \arg{ -\azm \frac{R_I - R_E}{R_E \sin \theta} }
 \end{align}
 
-Where $B_E$ and $B_I$ are the magnetic field strengths at $R_E$ (Earth's surface, \SI{6783}{\km} geocentric) and $R_I$ (the ionosphere, \about\SI{6900}{\km} geocentric) respectively. The integrated ionospheric Pedersen and Hall conductivities, $\Sigma_P$ and $\Sigma_H$, are typically within a factor of two of one another. Field lines near the plasmapause can be traced to Earth at $\sin\theta\about0.4$. That is, by the time it reaches the ground, the magnetic field from an FLR with $m=10$ is weaker by a factor of two; at $m=100$, the factor is closer to 100. 
+Where $B_E$ and $B_I$ are the magnetic field strengths at $R_E$ (Earth's
+surface, \SI{6783}{\km} geocentric) and $R_I$ (the ionosphere,
+\about\SI{6900}{\km} geocentric) respectively. The integrated ionospheric
+Pedersen and Hall conductivities, $\Sigma_P$ and $\Sigma_H$, are typically
+within a factor of two of one another. Field lines near the plasmapause can
+be traced to Earth at $\sin\theta\about0.4$. That is, by the time it reaches
+the ground, the magnetic field from an FLR with $m=10$ is weaker by a factor
+of two; at $m=100$, the factor is closer to 100. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -167,35 +360,67 @@ Where $B_E$ and $B_I$ are the magnetic field strengths at $R_E$ (Earth's surface
 %- Fig. 3.4: I don't know how to read this plot. I guess the left is the first harmonic and the right is the second, but at first glance they looked the same. I guess I get it now...
 %- Page 18 (page number not PDF number): You have half a sentence hanging on. You should probably make this images their own page.
 
-Based on polarization, each FLR can be classified as either poloidal or toroidal. The poloidal mode is a field line displacement in the meridional plane, as shown in \cref{fig_poloidal}, with an accompanying electric field in the azimuthal direction. The toroidal mode's magnetic displacement is azimuthal, per \cref{fig_toroidal}; the associated electric field is in the meridional plane. 
+Based on polarization, each FLR can be classified as either poloidal or
+toroidal. The poloidal mode is a field line displacement in the meridional
+plane, as shown in \cref{fig_poloidal}, with an accompanying electric field in
+the azimuthal direction. The toroidal mode's magnetic displacement is
+azimuthal, per \cref{fig_toroidal}; the associated electric field is in the
+meridional plane. 
 
 \begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/poloidal.pdf}
-    \caption[Poloidal Mode Structure]{
-      The poloidal resonance is a magnetic field in the meridional plane. The displacement is radial near the equator, and can be accompanied by enhancement in the parallel magnetic field near the ionosphere. The first harmonic is shown on the left, and the second harmonic on the right. Lines are colored red and blue only to contrast with the unperturbed black field line. 
-    }
-    \label{fig_poloidal}
+  \centering
+  \includegraphics[width=\textwidth]{figures/poloidal.pdf}
+  \caption[Poloidal Mode Structure]{
+    The poloidal resonance is a magnetic field in the meridional plane. The
+    displacement is radial near the equator, and can be accompanied by
+    enhancement in the parallel magnetic field near the ionosphere. The first
+    harmonic is shown on the left, and the second harmonic on the right. Lines
+    are colored red and blue only to contrast with the unperturbed black field
+    line. 
+  }
+  \label{fig_poloidal}
 \end{figure}
 
 \begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/toroidal.pdf}
-    \caption[Toroidal Mode Structure]{
-      A toroidally-polarized FLR has a magnetic perturbation in the azimuthal direction, as shown. Bold lines are taken to be above the page, and dotted lines below the page, with the displacement indicated by the line's width. The first harmonic --- where the entire field line oscillates in and out of the page --- is shown on the left. The second harmonic is on the right, with northern and southern halves perturbed in opposite directions. 
-    }
-    \label{fig_toroidal}
+  \centering
+  \includegraphics[width=\textwidth]{figures/toroidal.pdf}
+  \caption[Toroidal Mode Structure]{
+    A toroidally-polarized FLR has a magnetic perturbation in the azimuthal
+    direction, as shown. Bold lines are taken to be above the page, and dotted
+    lines below the page, with the displacement indicated by the line's width.
+    The first harmonic --- where the entire field line oscillates in and out of
+    the page --- is shown on the left. The second harmonic is on the right,
+    with northern and southern halves perturbed in opposite directions. 
+  }
+  \label{fig_toroidal}
 \end{figure}
 
-Both poloidal and toroidal waves are noted for their ability to contribute to the energization and radial diffusion of trapped particles. The poloidal mode interacts more strongly, since its electric field is aligned with the trapped particles' drift motion. Poloidally-polarized waves are also more prone to creating magnetic signatures on the ground, due to ducting in the ionosphere\cite{fujita_1988,greifinger_1968}. 
+Both poloidal and toroidal waves are noted for their ability to contribute to
+the energization and radial diffusion of trapped particles. The poloidal mode
+interacts more strongly, since its electric field is aligned with the trapped
+particles' drift motion. Poloidally-polarized waves are also more prone to
+creating magnetic signatures on the ground, due to ducting in the
+ionosphere\cite{fujita_1988,greifinger_1968}. 
 
-Toroidal modes have been shown to far outnumber poloidal modes\cite{anderson_1990}. Perhaps not coincidentally, poloidally-polarized waves rotate asymptotically to the toroidal mode\cite{mann_1995,mann_1997,radoski_1974}. Poloidal waves with low azimuthal modenumber --- such as those driven by broadband sources at the magnetopause --- rotate on timescales comparable to their oscillation periods. 
+Toroidal modes have been shown to outnumber poloidal modes\cite{anderson_1990}.
+Perhaps not coincidentally, poloidally-polarized waves rotate asymptotically to
+the toroidal mode\cite{mann_1995,mann_1997,radoski_1974}. Poloidal waves with
+low azimuthal modenumber --- such as those driven by broadband sources at the
+magnetopause --- rotate on timescales comparable to their oscillation periods.
+The two modes are also coupled directly by the ionospheric Hall
+conductivity\cite{kato_1956}. 
 
-\todo{Fishbone instability\cite{chen_1984,mcguire_1983}. Like the poloidal mode, but for lab plasmas. }
+The eigenfrequencies for poloidal and toroidal FLRs are similar, though not
+identical\cite{green_1985}. It has furthermore been noted that
+toroidally-polarized waves exhibit a strong relationship between frequency and
+$L$-shell (or latitude), while poloidal waves at fixed frequency are spread
+more broadly in $L$\cite{engebretson_1986}. 
 
-\todo{Poloidal and toroidal modes are coupled by the ionospheric Hall conductivity\cite{kato_1956}. The Hall conductivity also increases the ``ringtime'' of these resonances, allowing them to oscillate through the inductive process rather than be dissipated as Joule heating\cite{waters_2013}. }
+%\todo{Fishbone instability\cite{chen_1984,mcguire_1983}. Like the poloidal mode, but for lab plasmas. }
 
-\todo{Toroidal modes show a clear frequency dependence with $L$. Poloidal modes less so. Citation... \cite{engebretson_1986}? }
+%\todo{Poloidal and toroidal modes are coupled by the ionospheric Hall conductivity\cite{kato_1956}. The Hall conductivity also increases the ``ringtime'' of these resonances, allowing them to oscillate through the inductive process rather than be dissipated as Joule heating\cite{waters_2013}. }
+
+%\todo{Toroidal modes show a clear frequency dependence with $L$. Poloidal modes less so. Citation... \cite{engebretson_1986}? }
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -204,42 +429,110 @@ Toroidal modes have been shown to far outnumber poloidal modes\cite{anderson_199
 
 %- What's special about Tromso Norway? I feel like you need half a sentence more!
 
-The study of geomagnetic pulsations long predates satellites, sounding rockets, or even the word ``magnetohydrodynamics''\footnote{The term was first used by \Alfven in the 1940s\cite{alfven_1946}. }. Large, regular oscillations in the magnetic field were noted as early as 1901\cite{birkeland_1901}. Eventually, the term ``giant pulsation,'' or Pg, arose to describe such pulsations. 
+The study of geomagnetic pulsations long predates satellites, sounding rockets,
+or even the word ``magnetohydrodynamics''\footnote{The term was first used by
+\Alfven in the 1940s\cite{alfven_1946}. }. Large, regular oscillations in the
+magnetic field were noted as early as 1901\cite{birkeland_1901}. Eventually,
+the term ``giant pulsation,'' or Pg, arose to describe such pulsations. 
 
-On the ground, Pgs are notable for their strikingly sinusoidal waveforms, their eastward drifts, and their specific occurrence pattern: Pgs are typically seen pre-dawn, at latitudes of \SIrange{60}{70}{\degree}. Pgs generally fall into the Pc4 frequency band\footnote{The Pc4 range is periods of \SIrange{45}{140}{\s}, while Pgs are often said to range from \SIrange{60}{200}{\s}\cite{brekke_1987}. }. Their harmonic structure was a source of controversy for decades, but recent multisatellite observations seem to be in agreement that they are odd harmonics, probably fundamental\cite{glassmeier_1999,hillebrand_1982,kokubun_1980,kokubun_1989,takahashi_2011,takahashi_1992}. They are poloidally polarized, with modenumbers $10 \lesssim \azm \lesssim 40$\cite{glassmeier_1980,hillebrand_1982,poulter_1983,rostoker_1979,takahashi_1992}. 
+On the ground, Pgs are notable for their strikingly sinusoidal waveforms,
+their eastward drifts, and their specific occurrence pattern: Pgs are typically
+seen pre-dawn, at latitudes of \SIrange{60}{70}{\degree}. Pgs generally fall
+into the Pc4 frequency band\footnote{The Pc4 range is periods of
+\SIrange{45}{140}{\s}, while Pgs range from
+\SIrange{60}{200}{\s}\cite{brekke_1987}. }. Their harmonic structure was a
+source of controversy for decades, but recent multisatellite observations seem
+to be in agreement that they are odd harmonics, probably
+fundamental\cite{glassmeier_1999,hillebrand_1982,kokubun_1980,kokubun_1989,
+takahashi_2011,takahashi_1992}. They are poloidally polarized, with modenumbers
+$10 \lesssim \azm \lesssim 40$\cite{glassmeier_1980,hillebrand_1982,
+poulter_1983,rostoker_1979,takahashi_1992}. 
 
-Whereas FLRs are waves in space which may produce ground signatures, ``giant pulsation'' refers to the ground signature specifically\footnote{Historically, the wave designations shown in \cref{tab_iaga} all referred to ground phenomena. Over time, they have come to describe satellite observations as well, including those without corresponding signatures on the ground. }. That is, Takahashi's satellite observation of a sinusoidal, morningside, high-\azm, fundamental poloidal resonance was not classified as a Pg because it did not produce a signal on the ground\cite{takahashi_2013}. 
+Whereas FLRs are waves in space which may produce ground signatures,
+``giant pulsation'' refers to the ground signature
+specifically\footnote{Historically, the wave designations shown in
+\cref{tab_iaga} all referred to ground phenomena. Over time, they have come to
+describe satellite observations as well, including those without corresponding
+signatures on the ground. }. That is, Takahashi's satellite observation of a
+sinusoidal, morningside, high-\azm, fundamental poloidal resonance was not
+classified as a Pg because it did not produce a signal on the
+ground\cite{takahashi_2013}. 
 
-\todo{Pgs are localized to within \SIrange{2}{5}{\degree} in latitude\cite{motoba_2015,takahashi_2011,veldkamp_1960}. }
+%\todo{Pgs are localized to within \SIrange{2}{5}{\degree} in latitude\cite{motoba_2015,takahashi_2011,veldkamp_1960}. }
 
 %  --- half of them measured at Troms{\o}, Norway
 
-Due to their remarkably clear waveforms, Pgs are typically found by ``visual inspection of magnetometer data''\cite{motoba_2015}. Over the course of the past century, a number of multi-year (sometimes multi-decade\cite{brekke_1987}) surveys have totaled nearly one thousand Pg events. On average, a ground magnetometer near \SI{66}{\degree} magnetic latitude observes \about10 Pg events per year\cite{brekke_1987,harang_1941,rolf_1931,sucksdorff_1939}. Observations are not distributed uniformly; rather, giant pulsations become more common near the equinox and during times of low solar activity. 
+Due to their remarkably clear waveforms, Pgs are typically found by ``visual
+inspection of magnetometer data''\cite{motoba_2015}. Over the course of the
+past century, a number of multi-year (sometimes multi-decade\cite{brekke_1987})
+surveys have totaled nearly one thousand Pg events. On average, a ground
+magnetometer near \SI{66}{\degree} magnetic latitude observes \about10 Pg
+events per year\cite{brekke_1987,harang_1941,rolf_1931,sucksdorff_1939}.
+Observations are not distributed uniformly; rather, giant pulsations are most
+common near the equinox and during times of low solar activity. 
 
-Unlike Pc4 pulsations in general, Pgs show no particular correlation with storm phase\cite{motoba_2015}. However, they do often occur as the magnetosphere recovers from a substorm\cite{motoba_2015,rostoker_1979}. 
+Unlike Pc4 pulsations in general, Pgs show no particular correlation with storm
+phase\cite{motoba_2015}. However, they do often occur as the magnetosphere
+recovers from a substorm\cite{motoba_2015,rostoker_1979}. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \section{Motivations for the Present Work}
 
-A great deal has been learned --- and continues to be learned --- through observations of field line resonance. However, the cost-to-benefit ratio is climbing. As summarized in the sections above, FLR behavior depends significantly on harmonic structure, azimuthal modenumber, and polarization --- not to mention frequency, spectral width, and so on. With each degree of freedom comes the necessity for an additional simultaneous observation. 
+A great deal has been learned --- and continues to be learned --- through
+observations of field line resonance. However, the cost-to-benefit ratio is
+climbing. As summarized in the sections above, FLR behavior depends
+significantly on harmonic structure, azimuthal modenumber, and polarization ---
+not to mention frequency, spectral width, and so on. With each degree of
+freedom comes the necessity for an additional simultaneous observation. 
 
-Similarly, as FLRs have been shown to depend on ever-more-specific magnetospheric conditions, analytical techniques have fallen out of favor. The height-resolved ionosphere, the multidimensional \Alfven speed profile, and the inconvenient geometry combine to create a problem beyond the reasonable purview of pencil and paper. 
+Similarly, as FLRs have been shown to depend on ever-more-specific
+magnetospheric conditions, analytical techniques have fallen out of favor. The
+height-resolved ionosphere, multidimensional \Alfven speed profile, and
+inconvenient geometry combine to create a problem beyond the reasonable purview
+of pencil and paper. 
 
 That is, the topic of field line resonance is ripe for numerical modeling. 
 
-Past models of the magnetosphere have been limited in their consideration of FLRs. Reasons include overly-simplified treatment of the ionospheric boundary, no consideration of the plasmapause, limited range in \azm, and the inability to compute ground signatures. \cref{ch_model} presents a model which addresses these issues, allowing the computation of field line resonance with unparalleled attention to realism. 
+Past models of the magnetosphere have been limited in their consideration of
+FLRs. Reasons include overly-simplified treatment of the ionospheric boundary,
+no consideration of the plasmapause, limited range in \azm, and the inability
+to compute ground signatures. \cref{ch_model} presents a model which addresses
+these issues, allowing the computation of field line resonance with
+unparalleled attention to realism. 
 
-The model allows a bird's-eye view of the structure and evolution of FLRs. As such, not only can several open questions be addressed, but their answers serve to unify a number of seemingly-disparate properties described in the sections above. 
+The model allows a bird's-eye view of the structure and evolution of FLRs. As
+such, not only can several open questions be addressed, but their answers serve
+to unify a number of seemingly-disparate properties described in the sections
+above. 
 
-The rotation of poloidally-polarized waves to the toroidal mode is investigated. Particular attention is paid to the importance of azimuthal modenumber and ionospheric conductivity. The interplay between said rotation and the transport of energy across field lines --- which also depends on azimuthal modenumber --- is considered as well. 
+The rotation of poloidally-polarized waves to the toroidal mode is
+investigated. Particular attention is paid to the importance of azimuthal
+modenumber and ionospheric conductivity. The interplay between said rotation
+and the transport of energy across field lines --- which also depends on
+azimuthal modenumber --- is considered as well. 
 
-By their nature, drifting particles have the potential to spur wave-particle interactions at all MLT. However, Pc4 observations are strongly peaked on the dayside. In a 2015 paper, Dai notes, ``It is not clear why noncompressional [high-\azm] Pc4 poloidal waves, which are presumably driven by instability within the magnetosphere, preferrentially occur on the dayside''\cite{dai_2015}. Motoba, later that year, echoes, ``It is unclear whether other generation mechanisms of fundamental standing waves ... can explain the localization of Pgs in local time''\cite{motoba_2015}. This, too, is considered numerically: to what degree is field line resonance affected by the (day-night asymmetric) conditions of the ionosphere? 
+By their nature, drifting particles have the potential to spur wave-particle
+interactions at all MLT. However, Pc4 observations are strongly peaked on the
+dayside. In a 2015 paper, Dai notes, ``It is not clear why noncompressional
+[high-\azm] Pc4 poloidal waves, which are presumably driven by instability
+within the magnetosphere, preferrentially occur on the
+dayside''\cite{dai_2015}. Motoba, later that year, echoes, ``It is unclear
+whether other generation mechanisms of fundamental standing waves ... can
+explain the localization of Pgs in local time''\cite{motoba_2015}. This, too,
+is considered numerically: to what degree is field line resonance affected by
+the (day-night asymmetric) conditions of the ionosphere? 
 
-\todo{Transition... With the above in mind, what data would be super helpful? }
+An attempt is also made to demystify giant pulsations. It's been shown that
+toroidal Pc4s outnumber poloidal ones, and that most poloidal Pc4s are even, so
+perhaps it should come as no surprise that (poloidal, odd) Pgs are rare. Is it
+truly the case that Pgs are only ``a small subset of fundamental poloidal
+waves''\cite{takahashi_2013}, set apart from the rest by their distinctive
+properties? Or, said another way, to what degree do the properties
+associated with Pgs arise in fundamental poloidal waves overall? 
 
-It's been shown that a ground magnetometer \SI{66}{\degree} north of the magnetic equator observes \about10 Pg events per year. It's also been shown that poloidal Pc4s are rare compared to toroidal ones, and that most poloidal Pc4s are even harmonics. However, little attention has been paid to how these rates line up with one another. Given the relative occurrence rate of poloidal and toroidal waves, of odd and even harmonics, and of diffuse and sharp spectral peaks, just how unusual are giant pulsations? 
+%It's been shown that a ground magnetometer \SI{66}{\degree} north of the magnetic equator observes \about10 Pg events per year. It's also been shown that poloidal Pc4s are rare compared to toroidal ones, and that most poloidal Pc4s are even harmonics. However, little attention has been paid to how these rates line up with one another. Given the relative occurrence rate of poloidal and toroidal waves, of odd and even harmonics, and of diffuse and sharp spectral peaks, just how unusual are giant pulsations? 
 
 
 %The present work uses a numerical model to investigate the preferrential occurrence of field line resonances in the Pc4 range --- particularly first-harmonic poloidal modes, such as giant pulsations --- in MLT. 
@@ -251,9 +544,7 @@ It's been shown that a ground magnetometer \SI{66}{\degree} north of the magneti
 
 % Motoba\cite{motoba_2015}, similarly, notes ``It is unclear whether other generation mechanisms of fundamental standing waves ... can explain the localization of Pgs in local time.''
 
-
 % Giant pulsations have variously been referred to as ``intriguing''\cite{green_1985}. ``rare''\cite{brekke_1987}, even to the point of being ``a small subset of fundamental poloidal waves''\cite{takahashi_2013} --- note that it's well known that fundamental poloidal mode waves are already rare in comparison to second harmonic waves. 
-
 
 %\todo{What's going on with the MLT localization of Pc4 pulsations? Is there something spooky going on with the driving? Maybe the ionosphere just kills FLRs on the nightside! }
 

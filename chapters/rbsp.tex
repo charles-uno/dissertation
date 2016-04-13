@@ -10,7 +10,7 @@ While Pc4 pulsations have previously been studied in terms of both harmonic\cite
 
 The present chapter uses data from the Van Allen Probes' EFW instrument\cite{wygant_2013} to survey the occurrence rate of FLRs in the Pc4 range as a function of harmonic parity and polarization, as well as magnitude, frequency, and phase. The tools used to perform the present analysis --- SPEDAS and the SPICE kernel --- are publicly available. They, along with the Python routines used to download, filter, and plot the data, can be found in a Git repository at \url{https://github.com/chizarlicious/RBSP}. 
 
-\todo{Set this up, along with Tuna, at \url{https://github.com/chizarlicious/UMN_Space-Physics}. }
+\todo{Set this up, along with Tuna, at \url{https://github.com/UMN-Space-Physics}. }
 
 %Observations show that the poloidal mode is most excited in the second harmonic\cite{cummings_1969,hughes_1978,arthur_1981,singer_1982,takahashi_1984,engebretson_1988} even when there is a strong compressional component\cite{takahashi_1987,haerendel_1999,vaivads_2001,sibeck_2012}. 
 
@@ -107,63 +107,25 @@ The even events shown in \cref{fig_mode_all_sharp} show good agreement with the 
 
 The same can be said to some extent for the odd events in \cref{fig_mode_all_sharp}, though the trends are less strong. Odd poloidal and odd toroidal events are both scarce on the dusk flank. On the dawn flank, poloidal events skew nightward, while toroidal events are spread broadly --- that is, they are skewed dayward compared to the poloidal events. However, it's unclear why odd toroidal events outnumber odd poloidal events to such a degree. 
 
+%Not only does \cref{fig_mode_all_sharp} show that toroidal events outnumber poloidal events, but it also shows that toroidal events are predominantly odd harmonics --- as opposed to the primarily-even poloidal events. 
 
+%This may suggest that odd poloidal waves are more likely than even ones to be driven at low modenumber (allowing a prompt rotation of that energy to the toroidal mode). One might expect low-\azm poloidal modes to be driven by a broad, sudden change in solar wind dynamic pressure, for instance. The relative scarcity of odd poloidal observations on the dayside may indicate a short-lived source. At low \azm, energy rotates to the toroidal mode on the order of a wave period; without an ongoing source, there would be no poloidal wave to observe. 
 
+%\todo{Actually, it looks like odd poloidal waves are split about half-and-half around $\left| \frac{B_z}{B_x} \right| = 0.2$. Compressional odd modes are more common near midnight. Noncompressional ones are mostly in the morning. Even poloidal events are skewed toward low \azm. This is probably worth showing. }
 
+%\todo{Odd poloidal events are skewed nightward compared to odd toroidal events. This is not surprising. Per \cref{ch_results}, nightside poloidal events are less likely to give rise to toroidal events than those on the dayside. Even events too, actually. The toroidal distribution looks like the poloidal distribution, but skewed dayward. }
 
-Not only does \cref{fig_mode_all_sharp} show that toroidal events outnumber poloidal events, but it also shows that toroidal events are predominantly odd harmonics --- as opposed to the primarily-even poloidal events. 
+%This would furthermore be consistent with even modes' apparent dearth of ground signatures\cite{takahashi_1992}. If even harmonics tend to be produced at higher modenumber than odd ones, even harmonics would be expected to produce ground signatures less often\footnote{See \cref{attenuation}. }. 
 
+%Even poloidal modes and even toroidal modes exhibit similar distributions in space: both are peaked at noon and smeared across the dusk flank, with little activity on the dawn side. This is further support for the even poloidal wave as a significant source for the even toroidal mode. 
 
+\todo{Conventional explanation for dawn-dusk asymmetry. }
 
+%\todo{What else do we want to say here? Or does the rest of the commentary belong in the later sections? Note that plots in future sections are lower resolution, to make sure that the number of bins remains much smaller than the number of events. }
 
+%\todo{How does this relate to the numerical results in \cref{ch_results}? }
 
-
-
-
-This may suggest that odd poloidal waves are more likely than even ones to be driven at low modenumber (allowing a prompt rotation of that energy to the toroidal mode). One might expect low-\azm poloidal modes to be driven by a broad, sudden change in solar wind dynamic pressure, for instance. The relative scarcity of odd poloidal observations on the dayside may indicate a short-lived source. At low \azm, energy rotates to the toroidal mode on the order of a wave period; without an ongoing source, there would be no poloidal wave to observe. 
-
-
-
-
-
-\todo{Actually, it looks like odd poloidal waves are split about half-and-half around $\left| \frac{B_z}{B_x} \right| = 0.2$. Compressional odd modes are more common near midnight. Noncompressional ones are mostly in the morning. Even poloidal events are skewed toward low \azm. This is probably worth showing. }
-
-\todo{Odd poloidal events are skewed nightward compared to odd toroidal events. This is not surprising. Per \cref{ch_results}, nightside poloidal events are less likely to give rise to toroidal events than those on the dayside. Even events too, actually. The toroidal distribution looks like the poloidal distribution, but skewed dayward. }
-
-This would furthermore be consistent with even modes' apparent dearth of ground signatures\cite{takahashi_1992}. If even harmonics tend to be produced at higher modenumber than odd ones, even harmonics would be expected to produce ground signatures less often\footnote{See \cref{attenuation}. }. 
-
-Even poloidal modes and even toroidal modes exhibit similar distributions in space: both are peaked at noon and smeared across the dusk flank, with little activity on the dawn side. This is further support for the even poloidal wave as a significant source for the even toroidal mode. 
-
-\todo{People have talked about this. Is there a conventional explanation for dawn-dusk asymmetry? }
-
-\todo{What else do we want to say here? Or does the rest of the commentary belong in the later sections? Note that plots in future sections are lower resolution, to make sure that the number of bins remains much smaller than the number of events. }
-
-\todo{How does this relate to the numerical results in \cref{ch_results}? }
-
-
-
-
-
-
-
-
-
-
-
-In \cref{fig_mode_all_sharp}, events are partitioned by parity and polarization, yielding 124 odd poloidal events, 214 even poloidal events, 415 odd toroidal events, and 83 even toroidal events --- a total of 836 events. The total is greater than 762 because in \about\SI{10}{\percent} of events, the poloidal and toroidal channels trigger independently. Such cases are marked as a single event in \cref{fig_rate_all_sharp}, but the toroidal and poloidal events are both shown in \cref{fig_mode_all_sharp}. 
-
-
-
-
-
-
-
-
-
-
-
-
-
+When the 762 events are broken down by mode in \cref{fig_mode_all_sharp}, the result is 124 odd poloidal events, 214 even poloidal events, 415 odd toroidal events, and 83 even toroidal events --- a total of 836 events. The total is greater than 762 because in \about\SI{10}{\percent} of events, the poloidal and toroidal channels trigger independently. Such cases are marked as a single event in \cref{fig_rate_all_sharp}, but the toroidal and poloidal events are both shown in \cref{fig_mode_all_sharp}. 
 
 Double-triggering can be taken as a vague proxy for event quality. When the channels both trigger independently, the two events almost always (71 of 74 events) exhibit the same parity. This suggests a poloidal wave with suffient power, and a sufficient narrow spectral peak, that it can still be seen after much of its energy has rotated to the toroidal mode. 
 
@@ -181,10 +143,6 @@ The spatial distribution of double events is shown in \cref{fig_double_rate_shar
 Odd double-triggering events are spread broadly in MLT. They rarely occur twice on the same day; the 23 events shown take place over 20 different dates. Odd double events occur at similar rates regardless of \DST. 
 
 Even-harmonic double-triggering events, on the other hand, are mostly seen near noon, and are significantly more common during geomagnetically active times. Even events are also more concentrated than odd ones. The 48 even-harmonic double-events shown in the bottom row of \cref{fig_double_rate_sharp} are spread over 20 days, and 35 of them are spread over just 7 days. This clustering --- where the poloidal and toroidal channel both trigger for five to ten half-hour events in the same day --- is prevalent regardless of \DST. 
-
-
-
-
 
 %Dai\cite{dai_2015} used RBSP to look at poloidal Pc4 events, with a bias in favor of the second harmonic --- 890 events. Events are most common near noon, but are spread across the day and dusk side, with a few stragglers at midnight. 
 

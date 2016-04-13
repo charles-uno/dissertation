@@ -8,41 +8,103 @@
 %- Should decide if you're going to use contractions or not; many would say not to in formal writing
 
 %\todo{In 1859, humanity was working hard to get its shit together.} 
+%Austro-Sardinian War
 
-1859 was a pivotal year in human history. The United States moved steadily toward the American Civil War, which would abolish slavery and consolidate the power of the federal government. A slew of conflicts in Southern Europe, such as the Austro-Sardinian War, set the stage for the unification of Italy. The Taiping Civil War --- one of the bloodiest conflicts of all time --- is considered by many to mark the beginning of modern Chinese history. Origin of Species was published. The first transatlantic telegraph cable was laid.
+1859 was a pivotal year in human history. The United States moved steadily 
+toward the American Civil War, which would abolish slavery and consolidate the 
+power of the federal government. A slew of conflicts in Southern Europe set the
+stage for the unification of Italy. The Taiping Civil War --- one of the
+bloodiest conflicts of all time --- is considered by many to mark the beginning
+of modern Chinese history. Origin of Species was published. The first
+transatlantic telegraph cable was laid.
 
-Meanwhile, ambivalent to humanity, the Sun belched an intense burst of charged particles and magnetic energy directly at Earth. The resulting geomagnetic storm\footnote{The Solar Storm of 1859 is also called the Carrington Event, after English astronomer Richard Carrington. He drew a connection between the storm's geomagnetic activity and the sunspots he had observed the day before.} caused telegraph systems to fail across the Western hemisphere, electrocuting operators and starting fires\cite{green_2006,tsurutani_2003}. Displays of the northern lights were visible as far south as Cuba. 
+Meanwhile, ambivalent to humanity, the Sun belched an intense burst of charged
+particles and magnetic energy directly toward Earth. The resulting geomagnetic
+storm\footnote{The Solar Storm of 1859 is also called the Carrington Event,
+after English astronomer Richard Carrington. He drew a connection between the
+storm's geomagnetic activity and the sunspots he had observed the day before.}
+caused telegraph systems to fail across the Western hemisphere, electrocuting
+operators and starting fires\cite{green_2006,tsurutani_2003}. Displays of the
+northern lights were visible as far south as Cuba. 
 
-The Solar Storm of 1859 was perhaps the most powerful in recorded history, but by no means was it a one-time event. The Sun discharges hundreds of coronal mass ejections (CMEs) per year, of all sizes, in all directions. In fact, a comparably large CME narrowly missed Earth in 2012\cite{nasa_2012}. Had it not, it's estimated it would have caused widespread, long-term electrical outages, with a damage toll on the order of \num{e12} dollars\cite{lloyds_2013}. 
+The Solar Storm of 1859 was perhaps the most powerful in recorded history, but
+by no means was it a one-time event. The Sun discharges hundreds of coronal
+mass ejections (CMEs) per year, of all sizes, in all directions. In fact, a
+comparably large CME narrowly missed Earth in 2012\cite{nasa_2012}. Had it not,
+it's estimated it would have caused widespread, long-term electrical outages,
+with a damage toll on the order of \num{e12} dollars\cite{lloyds_2013}. 
 
-The Sun's extreme --- and temperamental --- effect on Earth's magnetic environment makes a compelling case for the ongoing study of space weather. Such research has evolved over the past century from sunspot counts and compass readings to multi-satellite missions and supercomputer simulations. Modern methods have dramatically increased humanity's understanding of the relationship between the Sun and the Earth; however, significant uncertainty continues to surround geomagnetic storms, substorms, and the various energy transport mechanisms that make them up. 
+The Sun's extreme --- and temperamental --- effect on Earth's magnetic
+environment makes a compelling case for the ongoing study of space weather.
+Such research has evolved over the past century from sunspot counts and compass
+readings to multi-satellite missions and supercomputer simulations. Modern
+methods have dramatically increased humanity's understanding of the
+relationship between the Sun and the Earth; however, significant uncertainty
+continues to surround geomagnetic storms, substorms, and the various energy
+transport mechanisms that make them up. 
 
-The present work focuses in particular on the phenomenon of field line resonance: \Alfven waves bouncing between the northern and southern hemispheres. Such waves play an important part in the energization of magnetospheric particles, the transport of energy from high to low altitude, and the driving of currents at the top of the atmosphere. 
+The present work focuses in particular on the phenomenon of field line
+resonance: \Alfven waves bouncing between the northern and southern
+hemispheres. Such waves play an important part in the energization of
+magnetospheric particles, the transport of energy from high to low altitude,
+the precipitation of particles into the atmosphere, and the driving of currents
+at the top of the atmosphere. It is these currents which give rise to
+potentially-catastrophic magnetic disturbances at Earth's surface. 
 
+The study of resonance in the near-Earth environment is furthermore valuable as
+a proxy for other (less-accessible) plasma environments. Similar waves occur in
+astrophysical plasmas, observation of which is limited by distance. Field line
+resonance is also analogous to the so-called ``fishbone instability'' in fusion
+reactors. As a plasma laboratory, the magnetosphere is unique in that it is
+both close enough to measure directly, and also large enough that measurements
+can be performed without disrupting its behavior. 
 
-\todo{More is needed before we can jump into a description of the present work. Introduce what we're working on a bit ore specifically. Talk about how space is a laboratory that teaches us about plasma in a way that's relevant to both astrophysics and fusion reactors, which are hard to measure. Fishbone instability. }
-
-
-
-
-
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
 \section{Structure of the Present Work}
 
-\cref{ch_environment} surveys the near-Earth environment. Prominent features of the magnetosphere are defined. The response of the magnetosphere to transient solar wind events is summarized. 
+The present work is laid out as follows. 
 
-\cref{ch_flrs} introduces the field line resonance phenomenon, in terms of both the underlying physics and notable work on the topic. Jargon is introduced to clarify important elements of wave structure. Several open questions about field line resonances (FLRs) are offered as motivations for the present work. 
+\cref{ch_environment} surveys the near-Earth environment. Prominent features of
+the magnetosphere are defined. The behavior of the magnetosphere during
+geomagnetic storms and substorms is summarized. 
 
-\cref{ch_math} lays the groundwork for a numerical model by exploring the fundamental equations of waves in a cold, resistive plasma --- such as Earth's magnetosphere. Characteristic scales are gleaned from the resulting dispersion relations. 
+\cref{ch_flrs} introduces the field line resonance phenomenon, in terms of both
+the underlying physics and notable work on the topic. Jargon is introduced to
+clarify important elements of wave structure. Several open questions about
+field line resonances (FLRs) are offered as motivations for the present work. 
 
-\cref{ch_model} presents Tuna, a new two and a half dimensional simulation designed specifically for the realistic modeling of FLRs. Tuna's non-orthogonal geometry, height-resolved ionosphere, novel driving mechanism, and coupling to the atmosphere are explained. 
+\cref{ch_math} lays the groundwork for a numerical model by exploring the
+fundamental equations of waves in a cold, resistive plasma --- such as
+Earth's magnetosphere. Characteristic scales are gleaned from the resulting
+dispersion relations. 
 
-\cref{ch_inertia} considers the addition of electron inertial effects to Tuna, touches on what can be learned from them, and shows that they incur an unreasonable computational cost. (Electron inertia is neglected in the results presented in other chapters.) \todo{Previous work has looked at inertial effects for localized models. The exciting part is that we're looking at a global model. }
+\cref{ch_model} presents Tuna, a new two and a half dimensional simulation
+designed specifically for the realistic modeling of FLRs. Tuna's
+non-orthogonal geometry, height-resolved ionosphere, novel driving mechanism,
+and coupling to the atmosphere are justified and explained. 
 
-\cref{ch_results} describes the core numerical results of the work, unifying several of the questions posed in \cref{ch_flrs}. Significant depth is added to past work on finite poloidal lifetimes\cite{mann_1995,radoski_1974}. Interplay between poloidal-toroidal coupling, shear-compressional coupling, and Joule dissipation is considered from several angles. 
+\cref{ch_inertia} considers the addition of electron inertial effects to Tuna,
+which are neglected in the core model presented in \cref{ch_model}. These
+effects allow the computation of parallel currents and electric fields, which
+have not previously been included in global \Alfven models. The effects are
+shown to be instability-prone and computationally expensive, but some results
+are gleaned nonetheless. 
 
-\cref{ch_rbsp} puts the numerical results in physical context through the analysis of data from the Van Allen Probes mission. FLR occurrence rates are considered in terms of location, mode structure, and polarization -- parameters which have been only partially addressed by other recent FLR surveys\cite{dai_2015,motoba_2015}. 
+\cref{ch_results} showcases the core numerical results of the present work,
+unifying several of the questions posed in \cref{ch_flrs}. The interplay
+between compressional propagation, poloidal-to-toroidal rotation, and Joule
+dissipation is considered from several angles. 
 
-\cref{ch_conclusion} briefly summarizes the results shown in the above chapters --- the code development, analysis of numerical results, and satellite observation --- and suggests further directions. 
+\cref{ch_rbsp} puts the numerical results in context through the analysis of
+data from the Van Allen Probes mission. FLR occurrence rates are considered in
+terms of location, harmonic, and polarization, parameters which have been only
+partially addressed in past FLR surveys. 
+
+\cref{ch_conclusion} briefly summarizes the results shown in the above chapters
+--- code development, analysis of numerical results, and satellite observation
+--- and suggests further directions. 
 
 %\todo{The storm of 1859 presented compelling evidence that the Sun drives geomagnetic activity. In the decades that followed, a model took shape to describe the mechanisms of energy transfer between the Sun and the Earth. Based on auroral observations and data from ground-based magnetometers, Birkeland argued for the existence of a constant outflow of electrons and ions from the Sun -- the solar wind. The advent of high-frequency radio communication allowed Kennelly, Heaviside, and others to probe the electrical properties of the upper atmosphere. }
 

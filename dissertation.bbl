@@ -1,10 +1,5 @@
 \begin{thebibliography}{100}
 
-\bibitem{akasofu_1964}
-S.-I. Akasofu.
-\newblock The development of the auroral substorm.
-\newblock {\em Planetary and Space Science}, 12(4):273--282, 1964.
-
 \bibitem{alfven_1946}
 H.~{Alfv{\'e}n}.
 \newblock {On the cosmogony of the solar system III}.
@@ -66,13 +61,6 @@ L.~Chen and A.~Hasegawa.
 \newblock Kinetic theory of geomagnetic pulsations: 1. internal excitations by
   energetic particles.
 \newblock {\em J. Geophys. Res.}, 96(A2):1503, 1991.
-
-\bibitem{chen_1984}
-L.~Chen, R.~White, C.~Cheng, F.~Romanelli, J.~Weiland, R.~Hay, J.~V. Dam,
-  D.~Barnes, M.~Rosenbluth, and S.~Tsai.
-\newblock Theory and simulation of fishbone-type instabilities in beam-heated
-  tokamaks.
-\newblock Technical report, 1984.
 
 \bibitem{cheng_1994}
 C.~Z. Cheng and Q.~Qian.
@@ -198,6 +186,11 @@ C.~Goertz.
 C.~K. Goertz and R.~W. Boswell.
 \newblock Magnetosphere-ionosphere coupling.
 \newblock {\em J. Geophys. Res.}, 84(A12):7239, 1979.
+
+\bibitem{goldstein_2006}
+J.~Goldstein.
+\newblock Plasmasphere response: Tutorial and review of recent imaging results.
+\newblock {\em Space Science Reviews}, 124(1-4):203--216, 2006.
 
 \bibitem{green_1985}
 C.~A. Green.
@@ -405,30 +398,11 @@ T.~Maynard, N.~Smith, S.~Gonzalez, et~al.
 \newblock Solar storm risk to the {North American} electric grid.
 \newblock 2013.
 
-\bibitem{mcguire_1983}
-K.~McGuire, R.~Goldston, M.~Bell, M.~Bitter, K.~Bol, K.~Brau, D.~Buchenauer,
-  T.~Crowley, S.~Davis, F.~Dylla, H.~Eubank, H.~Fishman, R.~Fonck, B.~Grek,
-  R.~Grimm, R.~Hawryluk, H.~Hsuan, R.~Hulse, R.~Izzo, R.~Kaita, S.~Kaye,
-  H.~Kugel, D.~Johnson, J.~Manickam, D.~Manos, D.~Mansfield, E.~Mazzucato,
-  R.~McCann, D.~McCune, D.~Monticello, R.~Motley, D.~Mueller, K.~Oasa,
-  M.~Okabayashi, K.~Owens, W.~Park, M.~Reusch, N.~Sauthoff, G.~Schmidt,
-  S.~Sesnic, J.~Strachan, C.~Surko, R.~Slusher, H.~Takahashi, F.~Tenney,
-  P.~Thomas, H.~Towner, J.~Valley, and R.~White.
-\newblock Study of high-beta magnetohydrodynamic modes and fast-ion losses in
-  {PDX}.
-\newblock {\em Phys. Rev. Lett.}, 50(12):891--895, 1983.
-
 \bibitem{mcpherron_1997}
 R.~L. {McPherron}.
 \newblock {The role of substorms in the generation of magnetic storms}.
 \newblock {\em Washington DC American Geophysical Union Geophysical Monograph
   Series}, 98:131--147, 1997.
-
-\bibitem{mcpherron_1973_substorms}
-R.~L. McPherron, G.~K. Parks, D.~S. Colburn, and M.~D. Montgomery.
-\newblock Satellite studies of magnetospheric substorms on august 15, 1968: 2.
-  solar wind and outer magnetosphere.
-\newblock {\em J. Geophys. Res.}, 78(16):3054--3061, 1973.
 
 \bibitem{motoba_2015}
 T.~Motoba, K.~Takahashi, J.~V. Rodriguez, and C.~T. Russell.
@@ -587,12 +561,6 @@ B.~T. Tsurutani, W.~D. Gonzalez, G.~S. Lakhina, and S.~Alex.
 A.~Y. Ukhorskiy.
 \newblock Impact of toroidal {ULF} waves on the outer radiation belt electrons.
 \newblock {\em J. Geophys. Res.}, 110(A10), 2005.
-
-\bibitem{veldkamp_1960}
-J.~Veldkamp.
-\newblock A giant geomagnetic pulsation.
-\newblock {\em Journal of Atmospheric and Terrestrial Physics}, 17(4):320--324,
-  1960.
 
 \bibitem{wanliss_2006}
 J.~A. Wanliss and K.~M. Showalter.
