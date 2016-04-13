@@ -178,74 +178,120 @@ driven by perturbations in the ring current. For example, in
 (with maxima near the ionosphere) exhibits the opposite harmonic structure to
 the perpendicular electric field components (which peak near the equator). 
 
+\cref{fig_slice_1000km} shows how parallel currents lines up with the Poynting
+flux over time. Four runs are shown, one per row. The horizontal axis is time,
+and the vertical axis is latitude. The real and imaginary components of the
+parallel current are shown in the first and third columns respectively, while
+the second and fourth columns show the poloidal and toroidal Poynting flux.
+Values are taken at an altitude of \SI{1000}{\km}. 
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\textwidth]{figures/slice_1000km.pdf}
+  \caption[Current and Poynting Flux at \SI{1000}{\km}]{
+    Parallel current and Poynting flux is shown for four runs, one per row,
+    measured at an altitude of \SI{1000}{\km}. The parallel current is
+    overwhelmingly imaginary, which implies a connection to the toroidal mode.
+    Appropriately enough, the structure of the parallel current (particularly
+    at low modenumber) seems to resemble the structure of the toroidal mode
+    more than it does that of the poloidal mode. This is likely because the
+    toroidal mode, with its sharp gradients across $L$-shells, dominates
+    $\lr{ \curl{B} }_z$. 
+  }
+  \label{fig_slice_1000km}
+\end{figure}
+
+Poloidal and toroidal fields are overwhelmingly real and imaginary
+respectively, because they are separated from one another by an azimuthal
+derivative (which carries a factor of $i$). However, when a wave's polarization
+is rotated by the Hall conductivity, there is no accompanying rotation in the
+complex plane --- this gives rise to an imaginary component of the poloidal
+wave and a real component of the toroidal wave. 
+
+In \cref{fig_slice_1000km}, the ionospheric conductivity is small, so the
+imaginary component of the parallel current dominates. This implies a
+connection between the parallel current and the toroidal mode, and indeed, the
+two do exhibit qualitatively similarities. At $\azm = 4$ in particular, the
+poloidal and toroidal Poynting fluxes are similar in strength much of the time,
+yet the form of the parallel current strongly resembles that of the toroidal
+Poynting flux over the poloidal.
+
+The toroidal mode's dominant effect on the parallel current at small \azm is
+not surprising. As shown in \cref{fig_electric_field_snapshots}, toroidal waves
+vary sharply in $L$\footnote{The sharp definition in $L$ of the toroidal mode
+compared to the poloidal mode is also the topic of significant discussion in
+\cref{ch_results}. }. When the poloidal and toroidal magnetic fields are
+comparable in magnitude, $\dd{x} B_y$ typically exceeds $\dd{y} B_x$ (at least
+for $\azm \lesssim 32$). 
+
+Whereas the imaginary component of the parallel current corresponds to that
+carried into the ionosphere by \Alfven waves, its real component comes from
+electric fields rotated by the Hall conductivity. \cref{fig_slice_100km} shows
+the same four runs as \cref{fig_slice_1000km}, but measured at \SI{100}{\km},
+the Earthward boundary of the simulation. At that point, the real and imaginary
+components are similar in magnitude. 
+
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=\textwidth]{figures/slice_100km.pdf}
   \caption[Current and Poynting Flux at \SI{100}{\km}]{
-    Four runs are shown above, one per row, with azimuthal modenumbers of 1, 4, 16, and 64. Columns show slices at \SI{100}{\km} of the real parallel current, poloidal Poynting flux, imaginary current, and toroidal Poynting flux respectively. The similarity visible across columns suggests that the real parallel current follows the poloidal Poynting flux, while the imaginary parallel current follows the toroidal Poynting flux (the toroidal fields are imaginary). At least, this is the case in regions of significant Hall conductivity. 
+    The above slices are taken from the same runs shown in
+    \cref{fig_slice_1000km}, but at an altitude of \SI{100}{\km} instead of
+    \SI{1000}{\km}. The primary difference between the two altitudes is the
+    strength of the ionospheric Hall conductivity, which directly couples the
+    poloidal and toroidal modes. The Hall-rotated fields give rise to a real
+    component of the parallel current, the structure of which follows the
+    poloidal Poynting flux (as it rotates to the toroidal mode). 
   }
   \label{fig_slice_100km}
 \end{figure}
 
+In \cref{fig_slice_100km}, as in \cref{fig_slice_1000km}, the imaginary
+component of the parallel current preferrentially follows the toroidal Poynting
+flux. This is particularly apparent at $\azm = 16$, where the poloidal Poynting
+flux is clearly stronger, yet the structure of the imaginary current resembles
+that of the toroidal Poynting flux. The real parallel current, on the other
+hand, appears to follow the poloidal Poynting flux. 
 
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/slice_1000km.pdf}
-    \caption[Current and Poynting Flux at \SI{1000}{\km}]{
-      The above figure shows the same runs as \cref{fig_slice_100km}, except that the slices are taken at an altitude of \SI{1000}{\km} instead of \SI{100}{\km}. Morphological similarities are still evident between the imaginary parallel current and the toroidal Poynting flux. However, without the Hall conductivity to couple the modes, the poloidal mode does not appear to carry significant current along the field line. 
-    }
-    \label{fig_slice_1000km}
-\end{figure}
+Put another way, low-\azm poloidal waves seem to primarily give rise to
+field-aligned currents only after being rotated to the toroidal mode by the
+Hall conductivity. At high modenumber, the two modes contribute comparably
+to the formation of parallel currents. 
 
-\cref{fig_slice_100km,fig_slice_1000km} show how the parallel current structures line up with the Poynting flux over time. The same four runs are shown in each figure, one per row. Time is shown on the horizontal axis, and latitude on the vertical axis. \cref{fig_slice_100km} shows values at an altitude of \SI{100}{\km}, the boundary of the simulation, while \cref{fig_slice_1000km} shows a slice at \SI{1000}{\km}. 
+%It's not clear whether this disparity is to be expected. Theoretical work surrounding parallel currents from inertial \Alfven waves has typically been concerned specifically with the shear mode\cite{lysak_2003,tikhonchuk_2000}. The guided (high-\azm) poloidal mode does a good imitation of a shear \Alfven wave, but still maintains some ability to propagate across $L$-shells --- this fact is visible in \cref{fig_electric_field_snapshots}, and is discussed at length in \cref{ch_results}. 
 
-At \SI{100}{\km}, parallel currents line up with regions of strong Poynting flux. The real component of the current (first column) shows morphological similarities with the poloidal Poynting flux (second column), while the imaginary component of the parallel current (third column) lines up with the toroidal Poynting flux (fourth column). This is as might be expected; the poloidal Poynting flux is computed from $E_y$ and $B_x^*$, which are overwhelmingly real, while the toroidal fields $E_x$ and $B_y^*$ are overwhelmingly imaginary. That said, the Hall conductivity close to the boundary muddles the real and imaginary fields. 
+%\todo{Is this expected? Tikhonchuk\cite{tikhonchuk_2000} looks specifically at the toroidal mode when considering shear \Alfven waves. Does the poloidal mode count as compressional even when it's guided? In his 2001 paper, Lysak\cite{lysak_2001} talks about how circularly-polarized waves might be interesting. That would be a superposition of the poloidal and toroidal modes, right? In that paper, he's looking at modes with frequencies of \SI{1}{\Hz} or so, in the context of the IAR. Lysak and Song's 2003 paper\cite{lysak_2003} looks at the toroidal mode, also in the IAR (?). }
 
-At higher altitude, the Hall conductivity is significantly weaker, and so the poloidal and toroidal modes are barely coupled. In this case, the imaginary component of the parallel current still lines up with the toroidal Poynting flux, but the real poloidal current, rather than scaling with the poloidal Poynting flux, is vanishingly small. 
+%\todo{Notably, the Poynting flux waveforms are rectified --- they primarily carry energy Earthward. The current, on the other hand, alternates between upward and downward flow. This effect presumably arises because the current is a linear quantity while the Poynting flux is quadratic: the electric and magnetic fields that make it up oscillate in phase, so their product is positive even when they are negative. NOTE: THIS WOULD BE A GREAT THING TO MENTION IF WE WERE TALKING ABOUT PHASE! }
 
-
-This is likely a consequence of the poloidal mode's compressional nature, as discussed further in \cref{ch_results}. Poloidal FLRs 
-
-
-
-The cause of this disparity is not entirely clear. Currents might be expected not to accompany the poloidal mode at low modenumber, due to its compressional nature --- inertial effects are typically considered specifically in the context of shear \Alfven waves\cite{lysak_2003,tikhonchuk_2000}. But at high modenumber, the poloidal mode is guided, and so closely resembles a purely shear \Alfven wave. One possible cause 
-
-
-
-
-
-
-
-
-At low altitude, the Hall conductivity muddles the poloidal and toroidal electric fields. In this region, as shown in \cref{fig_slice_100km}, parallel currents coincide with strong Poynting flux. The imaginary component of the current lines up with the toroidal Poynting flux (which comes from imaginary $E_x$ and imaginary $B_y^*$), while the real current lines up with the poloidal Poynting flux ($E_y$ and $B_x^*$ are real)\footnote{As mentioned in \cref{ch_model}, poloidal field components are in practice overwhelmingly real, indicating that they coincide azimuthally with the (real) driving. Toroidal components are overwhelmingly imaginary, which corresponds to an azimuthal offset. }. 
-
-Four runs are shown in \cref{fig_slice_100km}, one per row, with azimuthal modenumbers 1, 4, 16, and 64. The first and third columns show the real and imaginary components of the parallel current respectively, in units of \si{\uA/\m\squared}, sliced at an altitude of \SI{100}{\km}, the edge of the simulation domain. The second and fourth columns are the poloidal and toroidal Poynting flux respectively, in units of \si{\mW/\m\squared}. Latitude is shown on the vertical axis, and time on the horizontal axis. 
-
-At higher altitude, where the Hall conductivity is small, parallel current is associated only with the toroidal mode. \cref{fig_slice_1000km} shows data from the same runs as \cref{fig_slice_100km}, arranged in the same way, but the values are taken at an altitude of \SI{1000}{\km} instead of \SI{100}{\km}. 
-
-In \cref{fig_slice_1000km}, as in \cref{fig_slice_100km}, the imaginary component of the parallel current (third column) coincides more or less with the toroidal Poynting flux (fourth column). However, the real component of the parallel current (first column) is vanishingly small, even when the poloidal Poynting flux (second column) is strong. 
-
-\todo{Is this expected? Tikhonchuk\cite{tikhonchuk_2000} looks specifically at the toroidal mode when considering shear \Alfven waves. Does the poloidal mode count as compressional even when it's guided? In his 2001 paper, Lysak\cite{lysak_2001} talks about how circularly-polarized waves might be interesting. That would be a superposition of the poloidal and toroidal modes, right? In that paper, he's looking at modes with frequencies of \SI{1}{\Hz} or so, in the context of the IAR. Lysak and Song's 2003 paper\cite{lysak_2003} looks at the toroidal mode, also in the IAR (?). }
-
-Notably, the Poynting flux waveforms are rectified --- they primarily carry energy Earthward. The current, on the other hand, alternates between upward and downward flow. This effect presumably arises because the current is a linear quantity while the Poynting flux is quadratic: the electric and magnetic fields that make it up oscillate in phase, so their product is positive even when they are negative. 
-
-The magnitude of the parallel current tops out over \SI{1}{\uA/\m\squared}, just shy of the up-to-tens of \si{\uA/\m\squared} inferred from ground observations and seen in situ\cite{carlson_1998,karlsson_1996,samson_1996}. 
-
-It's also possible to consider the effect of parallel currents and electric fields on the ionosphere's energy budget, per Poynting's theorem:
+It's also possible to consider the effect of parallel currents and electric
+fields on the ionosphere's energy budget, per Poynting's theorem:
 \begin{align}
   \ddt u &= -\div{E} - \vec{J} \cdot \vec{E}
 \end{align}
 
 \begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/power_density.pdf}
-    \caption[Power Density at the Ionosphere]{
-      While field-aligned currents can be of significant size, they are not particularly good at depositing energy in the ionosphere. Energy deposited by the Poynting flux matches closely with Joule dissipation from the perpendicular currents, while $J_z E_z$ is smaller by several orders of magnitude. 
-    }
-    \label{fig_power_density}
+  \centering
+  \includegraphics[width=\textwidth]{figures/power_density.pdf}
+  \caption[Power Density at the Ionosphere]{
+    While field-aligned currents can be of significant size, they are not
+    particularly good at depositing energy in the ionosphere. Energy deposited
+    by the Poynting flux matches closely with Joule dissipation from the
+    perpendicular currents, while $J_z E_z$ is smaller by several orders of
+    magnitude. 
+  }
+  \label{fig_power_density}
 \end{figure}
 
-As shown in \cref{fig_power_density}, little energy transfer in the ionosphere is mediated by perpendicular components of the Poynting flux. The parallel component of $\vec{J} \cdot \vec{E}$ is comparably unimportant. The energy deposited in the ionosphere by the Poynting flux matches closely with the energy lost to Joule dissipation --- as it should, to conserve energy --- but according to the model, parallel currents and electric fields do not contribute significantly. 
+The magnitude of the parallel current tops out over \SI{1}{\uA/\m\squared},
+just shy of the up-to-tens of \si{\uA/\m\squared} inferred from ground
+observations and seen in situ\cite{carlson_1998,karlsson_1996,samson_1996}.
+However, this current is not a significant contributor to ionospheric Joule
+dissipation. As shown in \cref{fig_power_density}, the energy deposited in the
+ionosphere by the Poynting flux matches closely with the energy lost to Joule
+dissipation --- as it should, to conserve energy. But, according to the model,
+Pedersen and Hall are dominant. The parallel component of
+$\vec{J} \cdot \vec{E}$ is smaller by several orders of magnitude. 
 
 %\todo{Parallel electric fields, supposedly, only appear at high altitude. \cite{marklund_1997,carlson_1998}. }
 
@@ -257,43 +303,99 @@ As shown in \cref{fig_power_density}, little energy transfer in the ionosphere i
 \section{Inertial Length Scales}
   \label{sec_lengths}
 
-It's not quite fair to compare the parallel and perpendicular contributions to \curl{E} as is done in \cref{sec_jz}. Perpendicular electric fields are on the order of \SI{1}{\mV/\m}, with wavelengths on the order of \SI{e5}{\km}; they cause magnetic fields to change at a rate of around \SI{0.1}{\nT/\s}. Parallel electric fields, closer to \SI{e-6}{\mV/\m}, would need to vary over length scales of \SI{0.1}{\km} to match with that. 
+It's not quite fair to compare the parallel and perpendicular contributions to
+\curl{E} as is done in \cref{sec_jz}. Perpendicular electric fields are on the
+order of \SI{1}{\mV/\m}, with wavelengths on the order of \SI{e5}{\km}; they
+cause magnetic fields to change at a rate of around \SI{0.1}{\nT/\s}. Parallel
+electric fields, closer to \SI{e-6}{\mV/\m}, would need to vary over length
+scales of \SI{0.1}{\km} to match with that. 
 
-Such scales are believable. The characteristic length scale of the plasma oscillation is the electron inertial length, $\frac{c}{\op}$, which is on the order of \SI{1}{\km} in the auroral ionosphere and \SI{0.1}{\km} in the low-altitude plasmasphere. However, Tuna's usual grid doesn't resolve structures so fine; its resolution bottoms out closer to \SI{10}{\km}. That is, with the inclusion of electron inertial effects, Tuna's grid is too coarse to resolve all of the waves expected to be present. The model is prone to instability as a result. 
+Such scales are believable. The characteristic length scale of the plasma
+oscillation is the electron inertial length, $\frac{c}{\op}$, which is on the
+order of \SI{1}{\km} in the auroral ionosphere and \SI{0.1}{\km} in the
+low-altitude plasmasphere. However, Tuna's grid out bottoms out closer to
+\SI{10}{\km}. That is, with the inclusion of electron inertial effects, the
+grid is too coarse to resolve all of the waves expected to be present. The
+model is prone to instability as a result --- for example, ``wigglies'' are
+visible in the bottom-left subplot of \cref{fig_slice_100km}. 
 
-\cref{fig_inertial_length} shows a run with perpendicular resolution smaller than the electron inertial length, side by side with an analogous run on the usual grid. In order to carry out the inertial-scale run, several concessions were made to computational cost. The run simulates only a duration of \SI{100}{\s} (other figures in the present chapter, and those in \cref{ch_results}, show \SI{300}{\s}), and the grid covers only the auroral latitudes from $L=5$ to $L=7$. 
+\cref{fig_inertial_length} shows a run with perpendicular resolution smaller
+than the electron inertial length, side by side with an analogous run on the
+typical grid described in \cref{ch_model}. In order to carry out the
+inertial-scale run, several concessions were made to computational cost. The
+run simulates only a duration of \SI{100}{\s} (other figures in the present
+chapter, and those in \cref{ch_results}, show \SI{300}{\s}), and the grid
+covers only the auroral latitudes from $L=5$ to $L=7$. 
 
 \begin{figure}[!htb]
-    \centering
-    \includegraphics[width=\textwidth]{figures/inertial_length.pdf}
-    \caption[Parallel Electric Fields by Perpendicular Grid Resolution]{
-      The parallel electric field develops significant structure when the perpendicular grid resolution is smaller than the electron inertial length. Unfortunately, such runs are prohibitively expensive. The subplot on the right --- which still fails to resolve wave structure properly --- represents a 100-fold increase in computational time. 
-    }
-    \label{fig_inertial_length}
+  \centering
+  \includegraphics[width=\textwidth]{figures/inertial_length.pdf}
+  \caption[Parallel Electric Fields by Perpendicular Grid Resolution]{
+    The parallel electric field develops significant structure when the
+    perpendicular grid resolution is smaller than the electron inertial
+    length. Unfortunately, such runs are prohibitively expensive. The subplot
+    on the right --- which still fails to resolve wave structure properly ---
+    represents a 100-fold increase in computational time compared to that on
+    the left. 
+  }
+  \label{fig_inertial_length}
 \end{figure}
 
-Even so, the run presents a significant computational expense. Spread over 16 cores, a \SI{100}{\s} run on Tuna's usual grid takes well under an hour. The inertial-scale run barely finished in 96 hours, the cutoff at the Minnesota Supercomputing Institute\footnote{Runtime goes as the inverse square of grid resolution. Not only does finer resolution require more grid cells, but it also gives rise to proportionally smaller crossing times, imposing a smaller time step. }.
+Even so, the run presents a significant computational expense. Spread over 16
+cores, a \SI{100}{\s} run on Tuna's usual grid takes well under an hour. The
+inertial-scale run barely finished in 96 hours, the cutoff at the Minnesota
+Supercomputing Institute. This is because runtime goes as the inverse square of
+grid resolution; not only does finer resolution require more grid cells, but it
+also gives rise to proportionally smaller crossing times, imposing a smaller
+time step. 
 
-The snapshot shown in \cref{fig_inertial_length} uses a perpendicular grid resolution of \SI{0.7}{\km} at the Earthward edge, which just satisfies the Nyquist rate for the minimum inertial length of \SI{1.7}{\km}. It's still too coarse. There is clearly some small-scale structure developing in the ionosphere, but it's not well resolved. The large number of ``wigglies'' portends an imminent crash. 
-
+The snapshot shown in \cref{fig_inertial_length} uses a perpendicular grid
+resolution of \SI{0.7}{\km} at the Earthward edge, which just satisfies the
+Nyquist rate for the minimum inertial length of \SI{1.7}{\km}. It's still too
+coarse. There is clearly some small-scale structure developing in the
+ionosphere, but it's not well resolved. The large number of ``wigglies''
+portends an imminent crash. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
 \section{Discussion}
 
-The present chapter is a proof of concept: the addition of electron inertial effects to Tuna presents a promising first-principles-based approach to the investigation of parallel currents and electric fields associated with field line resonances. Electric fields arise which are consistent in magnitude with those predicted by the dispersion relation, and parallel currents fall within an order of magnitude or so of observed values, even when inertial length scales are not properly resolved. 
+The present chapter is a proof of concept: the addition of electron inertial
+effects to Tuna presents a promising first-principles-based approach to the
+investigation of parallel currents and electric fields associated with field
+line resonances. Electric fields arise which are consistent in magnitude with
+those predicted by the dispersion relation, and parallel currents fall within
+an order of magnitude or so of observed values, even when inertial length
+scales are not properly resolved. 
 
-Results in \cref{sec_jz} suggest a disparity between poloidal and toroidal FLRs in terms of the parallel current response. At low altitude, where the two modes are directly coupled by the Hall conductivity, both seem to be accompanied by parallel currents. However, in regions of low Hall conductivity, parallel currents appear to preferrentially accompany toroidal waves. The cause is unclear, and a topic worthy of future investigation. 
+Results in \cref{sec_jz} suggest a disparity between low-\azm poloidal and
+toroidal FLRs in terms of the parallel current response. At low altitude, where
+the two modes are directly coupled by the Hall conductivity, both seem to be
+accompanied by parallel currents. However, in regions of low Hall conductivity,
+parallel currents appear to preferrentially accompany toroidal waves. This is
+likely a result of the toroidal mode's sharp gradients across $L$-shells. 
 
-Future work in this vein may also consider the scales and structures that arise in regions of parallel current. For example, one might consider the relationship between the dynamic height-integrated potentials and the accompanying parallel currents, specifically with respect to the Knight Relation\cite{knight_1973}. Inertial effects could furthermore be accompanied by test particles, in order to gauge the properties of particle precipitation that could accompany global \Alfven{}ic potential structures. 
+Future work  could consider the relationship between the dynamic
+height-integrated potentials and the accompanying parallel currents,
+specifically with respect to the Knight relation\cite{knight_1973}. Inertial
+effects could also be accompanied by test particles, in order to gauge the
+precipitation that would be expected to accompany global \Alfven{}ic potential
+structures. 
 
-Unfortunately, simulations are prone to instability when inertial length scales are not properly resolved. And, at least at present, resolving those scales poses a prohibitive computational expense. For this reason, the consideration of inertial effects is limited to the present chapter; results in \cref{ch_results} make use of the core version of Tuna presented in \cref{ch_model}, which does not include the effects of electron inertia. 
+Unfortunately, simulations are prone to instability when inertial length scales
+are not properly resolved. And, at least at present, resolving those scales
+poses a prohibitive computational expense. For this reason, the consideration
+of inertial effects is limited to the present chapter; results in
+\cref{ch_results} make use of the core version of Tuna presented in
+\cref{ch_model}, which does not include the effects of electron inertia. 
 
-Notably, the addition or omission of parallel currents and electric fields does not appear to significantly alter the behavior of perpendicular electric fields or magnetic fields. Because the parallel electric fields are relatively small, $\curl{E}$ is essentially unaffected by their inclusion. 
-
-
-
+Notably, the addition or omission of parallel currents and electric fields does
+not appear to significantly alter the behavior of perpendicular electric fields
+or magnetic fields. Because the parallel electric fields are relatively small,
+$\curl{E}$ is essentially unaffected by their inclusion. Joule dissipation from
+parallel currents also does not seem to be a significant in comparison to that
+from Pedersen and Hall currents. 
 
 
 
