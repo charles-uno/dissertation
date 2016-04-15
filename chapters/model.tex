@@ -566,7 +566,7 @@ $\exp \arg{ \tensor{T} } \equiv \displaystyle\sum_n \frac{1}{ n! } \tensor{T}^n$
 \begin{align}
   \label{int_fac_1}
   \ddt \Big( \exp \arg{\tensor{\Omega} \, t} \cdot \vec{E} \, \Big) &=
-    \exp \arg{\tensor{\Omega} \, t} \cdot \vec{V}^2 \cdot \vec{F}
+    \exp \arg{\tensor{\Omega} \, t} \cdot \tensor{V}^2 \cdot \vec{F}
 \end{align}
 
 \cref{int_fac_1} can then be integrated over a small time step \dt and
@@ -590,8 +590,9 @@ magnetic field line:
   \label{amp_final}
   \vec{E} &\assign \exp \arg{ -\tensor{\Omega}' \; \dt } \cdot
     \tensor{R}_z \arg{ \tfrac{-\sh \dt}{\ep} } \cdot \vec{E}
-   + \dt \, \tensor{V}^2 \cdot \exp \arg{ -\tensor{\Omega}' \; \tfrac{\dt}{2} }
-    \cdot \tensor{R}_z \arg{ \tfrac{-\sh \dt}{2 \ep} } \cdot \vec{F}
+   + \dt \, \exp \arg{ -\tensor{\Omega}' \; \tfrac{\dt}{2} }
+    \cdot \tensor{R}_z \arg{ \tfrac{-\sh \dt}{2 \ep} } \cdot \tensor{V}^2 \cdot
+    \vec{F}
 \end{align}
 
 Where 
