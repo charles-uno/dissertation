@@ -1,0 +1,93 @@
+
+# Sketching out what we will say for the talk, what slides go where, etc. 
+
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+Imagine a bird cage. Now take that imaginary bird cage and put it over your head. You are now the Earth, and these wires are your magnetic field lines. 
+
+Now, sometimes someone might walk up in front of you and give the cage a good slap. Really set those wires rattling. And the person sitting behind you might flick at them -- pull a wire and let it go -- which is also going to make some noise. And really, you're going to find that this cage is sorta rattling around all the time -- when you walk, when the wind shifts, and so on. 
+
+The slap would be something like a geomagnetic storm. The Sun belches a blob of plasma toward Earth, and when it hits us, the whole magnetosphere shakes. Pulling wires from the pack is something like a substorm. The solar wind stretches Earth's magnetic field on the night side, building up tension in the magnetic field lines, and the tension gets released impulsively, setting off waves. And, even during geomagnetically quiet times, no storm, no substorms, there are just always a few waves bouncing around the magnetosphere. 
+
+Now, obviously, the near-Earth environment is a lot more complicated than that. Magnetic field lines twist and reconnect with each other. There are a ton of different kinds of waves -- enough that they call it the magnetospheric zoo. You've got a big shockwave where the solar wind hits Earth's magnetic field, and you've got huge sheets of electric current all over the place. 
+
+But this is a public talk, so we're just NOT going to worry about that stuff. We're going to zoom in and just talk about the bare bones of what we need for my work. We'll see how far we can get before people fall asleep. 
+
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+Let's talk briefly about how charged particles behave in a magnetic field. 
+
+There are three fundamental motions we're worried about. 
+
+The first one -- also the fastest one -- is cyclotron motion. Particles in a constant-ish magnetic field move in a helical path. The velocity along the magnetic field line is constant, and they also move in a circular orbit around that field line. Cyclotron orbit is actually quite a bit faster than the stuff we'll be looking at -- these orbits happen many times per second. 
+
+The second fundamental motion is bounce motion. In the magnetosphere, the magnetic field is strongest close to Earth. So a particle near the equator feels a relatively weak field. As its helical path arcs toward Earth, though, the field gets stronger. The orbit gets faster, accounting for more and more of the particle's kinetic energy. Eventually, all of the particle's kinetic energy is going into its orbit, it has none left to carry it along the field, and it bounces back. 
+
+And it just keeps bouncing back and forth between the mirror points in the northern and southern hemispheres. 
+
+The third fundamental motion is drift motion. As a particle orbits around the magnetic field line, one half of that orbit is just a LITTLE bit closer to Earth, so it feels a magnetic field that is just a LITTLE bit stronger, so it turns just a LITTLE bit tighter. The overall effect is an azimuthal drift around Earth. Positive particles drift west, and negative particles drift East. 
+
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+These fundamental motions give us a few big structures in the inner magnetosphere -- and remember, we're not worrying about the outer magnetosphere. 
+
+We've got the plasmapause, which is a dense -- well, "dense," compared to the rest of the magnetosphere -- torus of cold plasma which rotates along with Earth. It's mostly made of particles from the atmosphere which have been ionized by cosmic rays, UV radiation from the sun, and so on. The plasmasphere wraps all the way around Earth, and its properties depend on geomagnetic conditions, but it goes out to something like L=4. 
+
+L is called the McIlwain parameter. It lets us index where things are in terms of Earth's dipole geometry. L=4 is the dipole field line that crosses the equator at a distance of 4 Earth radii, measured from Earth's center. 
+
+We've also got the ring current, which is L=3 to L=5 or so. Remember that positive particles drift one way and negative particles drift the other way. That gives a net electric current. The ring current is very responsive to geomagnetic storms and substorms. It actually creates a magnetic field on Earth, and we measure that field to gauge how strong a storm is. 
+
+There are also radiation belts. There's an inner belt around L=2 and an outer belt more like L=5. These particles are higher-energy than those that make up the ring current, but are also drift-bouncing their way around Earth. 
+
+We're also concerned with the ionosphere, which is a transition region between the atmosphere and the magnetosphere. The ionosphere has just the right density to be electrically conductive. The biggest fields seen on the ground come from currents driven in the ionosphere. 
+
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+Alright, so the magnetosphere is full of waves, and we also have these particles bouncing around. 
+
+Where things get interesting is when you have a wave resonating, and a particle bouncing, and they're going at the same frequency. This is called resonance, and it's something that you have an intuitive inderstanding of, even if you don't know it. 
+
+Suppose you have a kid on a swing. If you give that kid a push, then wait an hour, and give them another push, then wait another hour, the swing isn't really going to swing. And if you grab the kid and push pull push pull push pull, that's also not going to work. The way you get the swing to work is you time the pushes to line up with the motion of the swing. 
+
+Wave-particle resonance works the same way, except that the kid is a proton and the person pushing them is an oscillating electric field. 
+
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+Now let's talk about these waves. 
+
+If you were to unwrap a few of Earth's magnetic field lines, you would be able to see Alfven waves moving in two ways. You've got shear Alfven waves, which move ALONG the magnetic field line, and you have compressional Alfven waves, which can move ACROSS magnetic field lines. 
+
+If you take one of these shear Alfven waves and get its wavelength just right, we call that a field line resonance (FLR). 
+
+You can think of this like a jumprope. If you take one end of a jumprope and give it a shake, you'll see a pulse move down the length of the rope. But if you swing it at just the right frequency, the whole rope moves together, and you get a standing wave. 
+
+As it turns out, resonance is kinda everywhere. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
