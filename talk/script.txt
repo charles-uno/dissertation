@@ -2,7 +2,7 @@
 # Sketching out what we will say for the talk, what slides go where, etc. 
 
 # -----------------------------------------------------------------------------
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------- Bird Cage on Head
 # -----------------------------------------------------------------------------
 
 Imagine a bird cage. Now take that imaginary bird cage and put it over your head. You are now the Earth, and these wires are your magnetic field lines. 
@@ -16,7 +16,7 @@ Now, obviously, the near-Earth environment is a lot more complicated than that. 
 But this is a public talk, so we're just NOT going to worry about that stuff. We're going to zoom in and just talk about the bare bones of what we need for my work. We'll see how far we can get before people fall asleep. 
 
 # -----------------------------------------------------------------------------
-# -----------------------------------------------------------------------------
+# -------------------------------------------- Cyclotron, Bounce, Drift Motions
 # -----------------------------------------------------------------------------
 
 Let's talk briefly about how charged particles behave in a magnetic field. 
@@ -29,10 +29,12 @@ The second fundamental motion is bounce motion. In the magnetosphere, the magnet
 
 And it just keeps bouncing back and forth between the mirror points in the northern and southern hemispheres. 
 
-The third fundamental motion is drift motion. As a particle orbits around the magnetic field line, one half of that orbit is just a LITTLE bit closer to Earth, so it feels a magnetic field that is just a LITTLE bit stronger, so it turns just a LITTLE bit tighter. The overall effect is an azimuthal drift around Earth. Positive particles drift west, and negative particles drift East. 
+Bounce timescales are on the order of a minute. 
+
+The third fundamental motion is drift motion. As a particle orbits around the magnetic field line, one half of that orbit is just a LITTLE bit closer to Earth, so it feels a magnetic field that is just a LITTLE bit stronger, so it turns just a LITTLE bit tighter. The overall effect is an azimuthal drift around Earth. Positive particles drift west, and negative particles drift East, with timescales on the order of an hour. 
 
 # -----------------------------------------------------------------------------
-# -----------------------------------------------------------------------------
+# --------------------------------------------------------- Inner Magnetosphere
 # -----------------------------------------------------------------------------
 
 These fundamental motions give us a few big structures in the inner magnetosphere -- and remember, we're not worrying about the outer magnetosphere. 
@@ -60,7 +62,7 @@ Suppose you have a kid on a swing. If you give that kid a push, then wait an hou
 Wave-particle resonance works the same way, except that the kid is a proton and the person pushing them is an oscillating electric field. 
 
 # -----------------------------------------------------------------------------
-# -----------------------------------------------------------------------------
+# -------------------------------------------- Shear/Compressional Alfven Waves
 # -----------------------------------------------------------------------------
 
 Now let's talk about these waves. 
@@ -72,6 +74,111 @@ If you take one of these shear Alfven waves and get its wavelength just right, w
 You can think of this like a jumprope. If you take one end of a jumprope and give it a shake, you'll see a pulse move down the length of the rope. But if you swing it at just the right frequency, the whole rope moves together, and you get a standing wave. 
 
 As it turns out, resonance is kinda everywhere. 
+
+These FLRs can be characterized in terms of a few different characteristics. I'm going to belabor these a little bit, because the difference between odd and even waves, poloidal and toroidal polarizations, and low and high modenumbers is sorta the whole point. 
+
+# -----------------------------------------------------------------------------
+# -------------------------------------------------------------------- Harmonic
+# -----------------------------------------------------------------------------
+
+We'll start with harmonic, since we can keep the jumprope analogy. 
+
+Usually, you spin a jumprope so that it touches the ground just once in the middle. But if you spin it faster, you can actually get the middle to become a node, and just hang there. Then you get two antinodes, one on each half, where the rope moves the most. That's the second harmonic. 
+
+If you spin even faster, you can get a third harmonic, or a fourth harmonic. But we're just really worried about first and second harmonics, which I might call odd and even -- first harmonics being odd and second harmonics being even. 
+
+What I've sketched out here is a series of snapshots from the first and second harmonic FLRs. The blue lines are electric field -- they have nodes at the ionosphere, due to the high conductivity. The magnetic field is red, and has its nodes and antinodes flipped compared to the electric field. 
+
+Importantly, the red lines are not the magnetic field lines themselves. They show the strength of the PERTURBATION of the magnetic field in the perpendicular direction. The perpendicular field is big at the edges, so the magnetic field is tilted compared to the magnetic field line there. At the equator, it goes to zero, so the measured magnetic field lines up with the zeroth-order magnetic field line.  
+
+At the equator, the first harmonic is all electric field and the second harmonic is all magnetic field. That ends up mattering because the satellites we use to observe these waves fly close to the equator. And it's only in the past decade or so that we've had probes with the ability to measure both electric and magnetic fields. 
+
+Now if you're flying a satellite and you see the fields start to wobble, you can't exactly zoom out and check, "is this an odd harmonic or an even one?" -- although that would be super convenient. Instead, you grab your electric field waveforms, and your magnetic field waveforms, and you slide them around until they match up. 
+
+The green dotted line shows an observer just north of the equator. For the first harmonic, that observer sees the magnetic field goes positive, then the electric field goes positive. The magnetic field goes negative, then the electric field goes negative. The magnetic field is always ahead of the magnetic field by 90 degrees. 
+
+For the second harmonic, it's the opposite. 
+
+# -----------------------------------------------------------------------------
+# ---------------------------------------------------------------- Polarization
+# -----------------------------------------------------------------------------
+
+So you may be wondering, "what does it look like when some parts of the magnetic field line are tilted?" And the answer is, "that's harder to draw than you might imagine."
+
+This is where polarization comes in. 
+
+You can have POLOIDAL waves, where the magnetic field goes like THIS, in a sorta pulsing motion. 
+
+And you can have TOROIDAL waves, where the magnetic field goes like THIS, in a sorta twisting motion. In and out of the screen. 
+
+The electric fields do the opposite. For the poloidal mode, where magnetic fields are pulsing in and out, the electric fields point around. For the toroidal mode, magnetic fields are twisting back and forth, and electric fields point in and out. 
+
+The colors are just for contrast. 
+
+# -----------------------------------------------------------------------------
+# -------------------------------------------------------- Azimuthal Modenumber
+# -----------------------------------------------------------------------------
+
+The last property we're worried about is azimuthal modenumber. Basically, this is how many times a wave can fit around the Earth. A small azimuthal modenumber means a big wavelength, maybe wrapping all the way around Earth. At large modenumber, you fit a bunch of wavelengths around Earth in the azimuthal direction, so each wave is much smaller. 
+
+Toroidal waves -- the twisting ones -- sorta act the same regardless of modenumber. But the poloidal ones don't. At low modenumber, poloidal waves are compressional. This means they move ACROSS magnetic field lines. But at high modenumber, the compressional component becomes evanescent, so they are guided by the field lines. At that point, they basically pretend to be shear waves. 
+
+This ends up mattering A LOT. At low modenumber, this means you can drive FLRs from wherever you want. You can slap the birdcage, and energy will move across field lines, and end up at whichever field lines where the frequencies line up. At high modenumber, energy is sorta stuck where it is. If you want waves at L=5, you have to get that energy to L=5 before injecting it into the Alfven wave. 
+
+This is where that wave-particle interaction comes in. 
+
+You've got these particles drifting and bouncing around Earth. Particles with different energies go at different speeds. And you've got these Alfven waves, with oscillation times that depend on the Alfven speed, and the length of the magnetic field line. And sometimes those frequencies match up with one another, and resonate. 
+
+You can end up energizing your resonant particles, moving them radially, or even slamming them into the atmosphere and getting auroral displays. 
+
+# -----------------------------------------------------------------------------
+# ------------------------------------------------------------- Show a Pg Event
+# -----------------------------------------------------------------------------
+
+I'm looking specifically at waves with periods of a minute or two, or frequencies of 7 mHz to 25 mHz. This is called the Pc4 frequency band. These waves are resonant at field lines with L of 4 to 7 or so, generally a bit outside the plasmasphere. Pc4s interact with ring current and radiation belt particles, particularly ions with energies in the neighborhood of 100 keV. 
+
+And any time you talk about Pc4s, you also have to talk about GIANT PULSATIONS, or Pgs. Pgs are a subset of Pc4s, but they're different from Pc4s overall in several ways. 
+
+Most Pc4s are toroidal, but Pgs are poloidal. 
+
+Most poloidal Pc4s are even, but Pgs are odd. 
+
+Pc4s overall peak near noon, near the peak of the solar cycle, but Pgs occur in the early morning, especially at the bottom of the solar cycle. 
+
+Pgs are almost always observed with modenumbers in the range 16 to 35. 
+
+Maybe the most subjective property of Pgs, but also the one that got them discovered, si their strikingly sinusoidal ground signatures. People have been picking these events out of magnetometer data by eye for over a century. 
+
+One of the big questions behind this work is, what makes Pgs different from other Pc4s? We've got this list of distinctive properties, but we don't really know how they fit together. 
+
+# -----------------------------------------------------------------------------
+# ------------------------------------------------------- THE MODEL... OUTLINE?
+# -----------------------------------------------------------------------------
+
+Part of the reason we don't know how the different properties of giant pulsations fit together is this sort of wave is hard to model numerically. Scale lengths get small near the ionosphere, and the Alfven speed gets fast, which puts drastic constraints on the time step. Big global codes make a lot of simplifying assumptions at the ionospheric boundary, like bumping the ionosphere out from an altitude of 100 km to an altitude of 10,000 km. 
+
+On top of that, the larger your azimuthal modenumber, the more grid cells you need in the azimuthal direction to resolve your waves in three dimensions. 
+
+In the next part of the talk, I lay my numerical model, based on work by Bob, which is built specifically with FLRs in mind. It's got a realistic handling of the ionosphere, a novel driving mechanism, and it even models ground signatures. 
+
+From there, we'll jump into numerical results -- if we take this model and shake it, what falls out? If we throw some energy into this model of the inner magnetosphere, how does it respond, and how does that compare to what we see with Pc4s in general or Pgs in particular? 
+
+Ideally, I would want to take those results and match them up against a big survey of Pc4 events, where everything gets broken down by harmonic and polarization. The Van Allen Probes are pretty much perfect for this, both in terms of their instrumentation and the shape of their orbit. 
+
+The bad new is, they've only been flying since 2012, and nobody has published a survey like that yet. 
+
+The good news is, John is the PI on the electric field instrument. 
+
+So I dug through that data, found ~800 Pc4 events, categorized them, and threw together some plots. It worked out surprisingly well -- the numerical results and the satellite data end up really complimenting one another. 
+
+Polarization, harmonic, and modenumber all sorta fit together in a way nobody has put together before. 
+
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+
+
 
 
 
