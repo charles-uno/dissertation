@@ -587,24 +587,70 @@ And, you know, it's about in line with what's been seen in the past. Peak Pc4 oc
 
 Now what we can do -- which was really the whole point -- is we can partition these events by polarization and harmonic. This is why we were so careful to get both the electric and magnetic field waveforms, and compute the phase between them. 
 
+# -----------------------------------------------------------------------------
+# -------------------------------------------------------- Distribution by Mode
+# -----------------------------------------------------------------------------
 
+In the dissertation I throw out a handful of different plots, look at things froma few different angles, but as far as my survey of Van Allen Probe data, this is the real moneymaker. 
 
+So let's remember our three questions from before. 
 
+(1) Where are odd poloidal events? Is it weird that Pc4 pulsations peak near noon, but giant pulsations are mostly seen pre-dawn? 
 
+And no, it's not weird. Pc4 events overall DO peak near noon. But if we just look at odd poloidal events specifically, the peak is near midnight, and they really don't show up at all in the afternoon. 
 
+(2) Do the odd poloidal and odd toroidal distributions look like one another, with toroidal events shifted dayward?
 
+Eyeballing the distribution, I'm going to say PROBABLY. Odd poloidal events and odd toroidal events are both LEAST common on the evening side. Toroidal events are spread broadly on the morning side, and odd poloidal events are concentrated on the back end of the morning side. 
 
+(3) How about even events? Does the distribution of even toroidal events look like a dayward-skewed version of the distribution of even poloidal events? 
 
+On this one, I'm going with DEFINITELY. Even events of both polarizations are peaked near noon, and smeared through the afternoon and evening. Poloidal events are much MORE smeared than toroidal ones. 
 
+We can also take a moment to note how the event counts break down. Toroidal events significantly outnumber poloidal events, which is consistent with past work. And, among poloidal events, even harmonics outnumber odd harmonics, which is also been shown before. 
 
+But the most dramatic disparity here is in the toroidal events. Odd toroidal events outnumber even toroidal events FIVE TO ONE. 
 
+Nobody has presented this disparity before, and it's not obvious what causes it. 
 
+# -----------------------------------------------------------------------------
+# -------------------------------------------------------------- SO LET'S RECAP
+# -----------------------------------------------------------------------------
 
+SO LET'S RECAP. 
 
+Past work has shown that FLRs in the Pc4 band are important for moving energy around, and has given us a mishmash of different properties. 
 
+* Toroidal waves have frequencies which depend sharply on L, poloidal waves less so. 
 
+* Poloidal waves are compressional at low m, but not at high m. 
 
+* Waves asymptotically rotate from the poloidal to the toroidal mode. 
 
+* High-m waves are attenuated by the atmosphere. 
 
+* Giant pulsations have so-and-so properties. 
 
+So we built a code that can actually model these waves, keeping track of polarization and harmonic, even at large modenumber. The ionosphere and plasmasphere are important to FLRs, so we do these things right. Structure in the azimuthal direction is a relatively small concern, so that's where we make a big simplifying assumption to make the code computationally feasible. 
 
+Then we take this code, and we shake it, and what falls out is a relationship between several of these properties. 
+
+* It MAKES SENSE that Pgs are mostly seen at m=16 to 32, since that's the sweet spot where poloidal waves are guided, but not so attenuated by the atmosphere. 
+
+* Toroidal waves have frequencies which depend sharply on L because they are actually shear Alfven waves. Poloidal waves are always a little bit compressional, so they are smeared in L. 
+
+* Poloidal-to-toroidal rotation happens on timescales comparable to the wave period -- and, on the nightside, Joule dissipation happens on that same timescale. 
+
+FINALLY, we bounce our numerical results off of some in situ data, and it turns out they line up pretty well. 
+
+When you break down event rates by mode and harmonic, it looks like poloidal waves are a significant source of toroidal waves at the same harmonic -- particularly on the dayside. 
+
+So we've got some questions left to answer:
+
+* Numerically, how are even waves different from odd ones?
+
+* How about the dawn and dusk flanks? 
+
+* Why are toroidal events so predominantly odd? 
+
+But we have succeeded in using a bunch of previously-unconnected results to put each other in context. 
