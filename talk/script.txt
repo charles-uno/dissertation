@@ -423,10 +423,71 @@ So we see that the poloidal mode is smeared out across L-shells, and that the en
 
 This matches with past results. Poloidal FLR observations tend to depend only VAGUELY on latitude, or L-shell, which makes sense if those waves are smeared out. Toroidal observations tend to have frequencies that depend strongly on L, which makes sense since those waves only show up at resonant L-shells.
 
+Now, these runs I've shown have all been on the dayside, where the conductivity of the ionosphere is pretty high. Joule dissipation has been pretty slow compared to oscillation timescales. 
+
+Even at high modenumber, where poloidal-to-toroidal rotation takes tens of wave periods, most of the energy in the poloidal survives long enough to rotate to the toroidal mode, and the toroidal mode almost always asymptotically exceeds the poloidal mode, both in terms of total energy and energy density. 
+
+You can see this in where the red shows up -- where you get energy density of 0.1 nJ/m^3 or larger. For the poloidal mode, energy density that high showed up only in the bottom right corner. This is where the drive frequency lines up best with the local eigenfrequency, and the high modenumber means the rotation of energy over to the toroidal mode is slow. 
+
+In the toroidal contours, in comparison, we see energy on the order of 0.1 nJ/m^3 in six of these plots. And a seventh one hasn't asymptoted yet, so it might still get there. 
+
 # -----------------------------------------------------------------------------
 # ----------------------------------------------------------------- Nightside U
 # -----------------------------------------------------------------------------
 
+Now let's look at an analogous set of runs, but using the ionospheric profile for the quiet nightside instead of the quiet dayside. 
+
+Remember, on the dayside, we say an accumulation of energy over multiple drive periods, and toroidal energy ultimately overtook poloidal energy in most cases. 
+
+On the nightside, the ionospheric conductivity is much lower, so Joule dissipation is much faster. The distribution of energy looks dramatically different as a result. 
+
+Nothing else has changed. We're driving with the same current, looking at the same range of frequencies, the same range of modenumbers. 
+
+We still see some weird behavior at low modenumber, since the poloidal mode is not guided by the field lines. 
+
+At moderate modenumber, we still see the toroidal mode quickly catching up to the poloidal mode in terms of energy. 
+
+But at high modenumber...
+
+On the dayside, poloidal-to-toroidal rotation at high modenumber was slow, so it took a long time for the toroidal energy to catch up to the poloidal energy. On the nightside, it just DOESN'T catch up. 
+
+The poloidal-to-toroidal rotation timescale is on the order of ten oscillation periods. Dis the dissipation timescale is more like ONE wave period. 
+
+So we don't even really see an asymptotic accumulation of energy. We see a damped driven oscillation where we pump energy in and it falls right back out. Most of the energy is disspated out of the system before it has a chance to rotate from the poloidal mode to the toroidal mode. And if it weren't for our ongoing driving, we wouldn't really be seeing any wave at all. 
+
+# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------- Nightside P
+# -----------------------------------------------------------------------------
+
+We can look at the poloidal contours, and they're probably about what we expect. 
+
+At low modenumber, energy doesn't stick around. It escapes through the simulation boundary. 
+
+At high modenumber, the energy distribution gets stronger and stronger, righter and tighter, though it still maxes out a good order of magnitude below what we saw on the dayside. 
+
+We're using the same color scale here. On the dayside, we saw a good amount of orange and a little bit of red. On the nightside, we're seeing a good amount of green and a bit of yellow. 
+
+# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------- Nightside T
+# -----------------------------------------------------------------------------
+
+The really big difference is in the toroidal contours. There's a token attempt to build up energy at resonant L shells, but the energy in these resonances is marginal. At best, we're down two orders of magnitude from what we saw on the dayside. 
+
+At high modenumber, most of the energy is dissipated from the toroidal mode before the toroidal mode even gets to touch it. Compared to the dayside, energy density is down THREE orders of magnitude. 
+
+This all ends up lining up QUITE well with my in situ data, which I'll get to in a moment. 
+
+But first, let's check how this lines up with GIANT PULSATIONS. 
+
+# -----------------------------------------------------------------------------
+# ----------------------------------------------------------- Ground Signatures
+# -----------------------------------------------------------------------------
+
+On this plot, we've still got azimuthal modenumber running down the side, but the columns are different. 
+
+We've got two runs per row. The first two columns show a run using the active ionosphere, and the third and fourth use the quiet ionosphere -- which is what we've been looking at. 
+
+For each, we have B theta, which is the north-south magnetic field at the ground, and B phi, which is the east-west magnetic field at the ground. 
 
 
 
