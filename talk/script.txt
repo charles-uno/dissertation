@@ -319,20 +319,113 @@ Electron inertial effects don't play into the main results I want to show off, s
 # -------------------------------------------------- Coupling to the Atmosphere
 # -----------------------------------------------------------------------------
 
+OK, the last bit of the model is the atmospheric boundary. 
 
+We say the atmosphere is a perfect insulator, so curl B is zero. Combine that with Maxwell's equations, div B is zero, and we find that there's a scalar magnetic potential Psi such that grad Psi is B and Psi satisfies Laplace's equation. 
 
+So we break down the atmospheric potential in terms of harmonics. We solve Laplace's equation numerically, use the conductive Earth as a bottom boundary condition. The top boundary condition is a thin horizontal current sheet representing the E layer of the atmosphere. 
 
+Magnetic fields at the top of the atmosphere are plugged back into the simulation per Ampere's law. 
 
+Fields at the bottom of the atmosphere show us the ground signatures that arise from these FLRs.
 
+# -----------------------------------------------------------------------------
+# -------------------------------------------------- Small Modenumber Snapshots
+# -----------------------------------------------------------------------------
 
+OK, so now let's look at some results! 
 
+The first thing I want to look at is just some snapshots from a pair of runs. 
 
+We'll flip back and forth between them a few times. 
 
+These runs are both driven at 22 mHz, so a period of 45 seconds. The driving is delivered in a Gaussian around L=5. They both use the quiet dayside ionosphere. 
 
+This shows the whole dipole slice, so Earth fits right in this cavity here. 
 
+The three columns show the poloida, toroidal, and compressional magnetic fields. The rows are a series of snapshots in time.
 
+At low modenumber, m=2, the poloidal and compressional magnetic fields are VAGUELY field-aligned, but mostly they look pretty blobby. The toroidal field, on the other hand, is DEFINITELY resonating along field lines. There's not much SMEAR in L. Everything looks pretty sharp. 
 
+And all of the components are comparably strong, in a hand-wavey sense. Keeping in mind that these magnitudes are shown on a symmetric log scale. 
 
+# -----------------------------------------------------------------------------
+# -------------------------------------------------- Large Modenumber Snapshots
+# -----------------------------------------------------------------------------
+
+At large modenumber, m=32, the picture changes A LOT. We've still got some smear in the poloidal field. The toroidal mode is still sharp, especially at the outer edge here. The compressional field is comparably very weak. 
+
+(FLIP BACK AND FORTH A BIT)
+
+Remember that the compressional Alfven wave is how energy moves across L-shells. So when the poloidal wave stops being compressional, energy stops moving across field lines. A little bit of that energy manages to tunnel out to a third harmonic at large L, but mostly everything is pretty confined in L. 
+
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+One thing I may not have been explicit about earlier is that the driving is delivered purely into the poloidal electric field. We're putting a sinusoidal perturbation the magnitude of the ring current, and leaving its direction alone. 
+
+So the fact that we're seeing any toroidal waves at all tells us that the poloidal and toroidal waves are coupled. 
+
+And it turns out, the poloidal mode actually rotates to the toroidal mode over time. 
+
+Henry Radoski looked at this in 1974. He showed that a poloidal wave will rotate over time to the toroidal mode as a result of the curved geometry. 
+
+Ian Mann looked at the same thing in 1995, and showed that you can get the same effect from a gradient in the Alfven speed. 
+
+Tuna is several decades more realistic than the models used in the past. They used perfectly reflecting boundary conditions, simplified geometries, and so on. 
+
+So let's check their results. Let's integrate all of the energy in the poloidal mode, and all of the energy in the toroidal mode, and plot them, and see what we can see about poloidal-to-toroidal rotation. 
+
+# -----------------------------------------------------------------------------
+# --------------------------------------------------- Integrated Dayside Energy
+# -----------------------------------------------------------------------------
+
+This figure may look a little overwhelming, but I promise it's not so bad. 
+
+Each subplot is a different 300 second run. 
+
+Drive frequency is at the top of each column, and the azimuthal modnumber increases as we go down the rows. 
+
+The two runs we looked at snapshots for are in the rightmost column, second from the top and second from the bottom. 
+
+And what we're looking at is, how fast does the red line (the toroidal energy) grow compared to the blue line (the poloidal energy). 
+
+At high modenumber, the red line grows slowest. At m=64, the toroidal energy takes tens of oscillation periods to catch up to the poloidal energy. At m=4, the toroidal energy catches up to the poloidal energy within a single wave period. This is consistent with Mann's work -- he showed that rotation time scales with modenumber. 
+
+We can also see that the asymptotic energy of the system depends on the frequency, which also makes sense. When the driving lines up with the eigenfrequency where it's delivered, we build up energy more effectively. 
+
+At very low modenumber, though, everything gets sorta weird. To get a better sense of this, let's take a look at these same runs from a different angle. 
+
+# -----------------------------------------------------------------------------
+# ----------------------------------------------------- Dayside Poloidal Layers
+# -----------------------------------------------------------------------------
+
+This plot shows the same runs, arranged in the same way. Frequency at the top, modenumber down the side. But instead of integrating all the energy in the entire simulation domain, we're looking just at the energy in the poloidal mode, and we've got it broken down in terms of L. So for each time step, we've computed the mean energy density in each L-shell. That's on the vertical axis. The horizontal axis is time. 
+
+At modenumbers above about 4, we see about what we might have expected from the snapshots we looked at. Low modenumbers are more compressional, so energy is more spread out in L. As modenumber gets higher, the spread gets smaller. 
+
+At very lopw modenumber, though, we see something completely different. At L=5, where we inject the driving, we don't really see any energy buildup. There's a bit of a resonance inside the plasmasphere, where energy gets caught in the potential well. And we have a LOT of energy making a break for the outer boundary. 
+
+This is why the curves on the previous slide looked weird. At high modenumber, we're looking at energy building up in FLRs. At low modenumber, waves are only SORTA guided by the field lines, so these waves are only SORTA FLRs at all. 
+
+It also bears noting -- this will pop up a few times -- that this big buildup of energy in the 19 mHz, m=1 run is likely not physical. There's a third harmonic resonance RIGHT at the outer boundary, so it's probably artificially enhanced by bumping continuously against the boundary condition.
+
+# -----------------------------------------------------------------------------
+# ----------------------------------------------------- Dayside Toroidal Layers
+# -----------------------------------------------------------------------------
+
+So that was the poloidal energy distribution. Let's look at its toroidal counterpart. These are still the same 28 runs, arranged in the same way. 
+
+Like we saw before, looking at the snapshots, the toroidal mode is a LOT sharper in L than the poloidal mode. The compressional component of the poloidal mode is evanescent at high modenumber, so it does a good IMITATION of a shear Alfven wave, but the toroidal FLR actually IS a shear Alfven wave. 
+
+So we see that the poloidal mode is smeared out across L-shells, and that the energy in the poloidal mode rotates over time to the toroidal mode. But the toroidal energy really only shows up on field lines where the the wave frequency lines up with the local eigenfrequency. 
+
+This matches with past results. Poloidal FLR observations tend to depend only VAGUELY on latitude, or L-shell, which makes sense if those waves are smeared out. Toroidal observations tend to have frequencies that depend strongly on L, which makes sense since those waves only show up at resonant L-shells.
+
+# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------- Nightside U
+# -----------------------------------------------------------------------------
 
 
 
