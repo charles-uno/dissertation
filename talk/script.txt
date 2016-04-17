@@ -174,10 +174,18 @@ So I dug through that data, found ~800 Pc4 events, categorized them, and threw t
 Polarization, harmonic, and modenumber all sorta fit together in a way nobody has put together before. 
 
 # -----------------------------------------------------------------------------
-# -----------------------------------------------------------------------------
+# --------------------------------------------------- Two and a Half Dimensions
 # -----------------------------------------------------------------------------
 
+In trying to model FLRs, it's useful to know that they tend to be azimuthally localized. Pc4 events tend to be spread over just a few hours local time. If we're looking at an event on the dayside, we probably aren't that worried about what's happening on the nightside, and vice versa. 
 
+This means we don't REALLY need a three-dimensional model... which is good -- remember, 3D models are computationally expensive. Instead, we can get away with two and a half dimensions. 
+
+This means our spatial grid is two dimensional -- we're just looking at a meridional slice of the magnetosphere. But the electric and magnetic field vectors are three-dimensional. 
+
+We finagle this by saying that everything goes as exp(i m f), where m is the azimuthal modenumber. That means we get to swap out azimuthal derivatives for a factor of i m. 
+
+The fields we compute are complex-valued. In a hand-wavey sense, we say that the real component of each field is azimuthally lined up with the driving (which is real). And the imaginary parts of the fields are azimuthally offset by a quarter wavelength. 
 
 
 
