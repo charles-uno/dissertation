@@ -480,14 +480,115 @@ This all ends up lining up QUITE well with my in situ data, which I'll get to in
 But first, let's check how this lines up with GIANT PULSATIONS. 
 
 # -----------------------------------------------------------------------------
-# ----------------------------------------------------------- Ground Signatures
+# --------------------------------------------------- Dayside Ground Signatures
 # -----------------------------------------------------------------------------
 
 On this plot, we've still got azimuthal modenumber running down the side, but the columns are different. 
 
-We've got two runs per row. The first two columns show a run using the active ionosphere, and the third and fourth use the quiet ionosphere -- which is what we've been looking at. 
+We've got two runs per row. The first two columns show a run using the active ionosphere, and the third and fourth use the quiet ionosphere -- which is what we've been looking at so far. 
 
 For each, we have B theta, which is the north-south magnetic field at the ground, and B phi, which is the east-west magnetic field at the ground. 
+
+We've been driving just generic fundamental poloidal FLRs. We haven't done anything in particular to try to make these simulations look like giant pulsations. So let's go down the laundry list of giant pulsation properties, and see which properties we have reproduced numerically, and which giant pulsation properties remain... sorta enigmatic and mysterious. 
+
+Pgs are mostly seen with modenumbers of 10 to 40, 16 to 35, depending on who you ask. And that's where we see our strongest ground signatures. At low m, ground signatures are weak because waves in space are weak. At high m, waves in space are strong, but they're attenuated by the atmosphere. It looks like m=16 to 32, something like that, is the sweet spot. 
+
+Pg ground signatures are tightly peaked in latitude. Observations using arrays of ground magnetometers put FWHM at just a few degrees, peaked near a latitude of 65 degrees. That's also the case here. 
+
+Pg ground signatures are mostly east-west polarized. We see our maximum ground signature values in B phi, the east-west component. 
+
+Giant pulsations are also noted for having clockwise ground signatures at high latitude and counterclockwise ones at low latitude. We see that too. B phi, the east-west field, has contours that line up by latitude. B theta, the north-south component, peaks early at low latitude and late at high latitude. So we get that flip in chirality. 
+
+Pgs are also mostly seen at the bottom of the solar cycle. When we compare quiet solar conditions to active solar conditions, we see that the same driving gives us stronger ground signatures during quiet times. 
+
+# -----------------------------------------------------------------------------
+# ------------------------------------------------- Nightside Ground Signatures
+# -----------------------------------------------------------------------------
+
+On the nightside, fields are weaker by about a factor of four, but the trends are the same. 
+
+The peak magnitudes are in B phi, at m=16 to 32, using the quiet ionospheric profile. We get a tight concentration in latitude, and we get a flip from counterclockwise to clockwise based on latitude. 
+
+So overall -- I would say -- these results line up surprisingly well with observations. 
+
+Pgs are also seen to drift azimuthally, which we can't really comment on. 
+
+And Tuna hasn't got ionospheric profiles for the dawn and dusk flanks, so I can't talk about why they peak in the early morning. But otherwise it looks like the distinctive properties that we commonly associate with giant pulsations are just... what what odd poloidal events look like. 
+
+# -----------------------------------------------------------------------------
+# -------------------------------------------- Questions for Observational Data
+# -----------------------------------------------------------------------------
+
+So this brings us to the observational work. 
+
+Based on the numbers we've crunched, we have a few questions that we would really like to run past a big survey of Pc4 data:
+
+(1) How does the spatial distribution of giant pulsations line up with that of odd poloidal Pc4 events overall? Is this -- as is sometimes claimed -- a quality that makes giant pulsations truly distinctive?
+
+(2) It looks like odd poloidal FLRs turn into odd toroidal waves pretty fast -- over just a handful of oscillation periods. And this happens LESS EFFECTIVELY on the nightside, where poloidal waves can damp out before rotating. So: does the spatial distribution of odd toroidal events look like the distribution of odd poloidal events, but shifted dayward? 
+
+(3) Same question, but for evens. Do even toroidal events and even poloidal events show similar spatial distributions, but with fewer toroidal waves on the nightside?
+
+UNFORTUNATELY, nobody has ever put together the sort of survey we would need to answer these questions. 
+
+Past work has looked at the distribution of poloidal waves versus toroidal waves. People have SORTA looked at odd harmonics versus even harmonics. But nobody has gone through, gotten a bunch of events, cleaned them up in a way that doesn't bias against one parity or one polarization, and characterized ALL of the events in terms of BOTH harmonic and polarization.
+
+So, over the past few months, that's what I did. 
+
+This work got done on a tight schedule really only because of a lot of help-slash-micromanaging from John, Aaron, Scott, and Sheng. We also had Ian Mann in the loop, and Lei, a former postdoc who did a more specific Pc4 survey last year. 
+
+# -----------------------------------------------------------------------------
+# ------------------------------------------------- Distribution of Usable Data
+# -----------------------------------------------------------------------------
+
+Step one of this survey was to grab the data. I got all of the Van Allen Probe electric and magnetic field waveform data that was available, which came out to about 1000 days per probe. 
+
+The probes have an elliptical orbit, close to Earth at perigee and around L=6 at apogee. Apogee is where the probes are moving the slowest, which is convenient, since that also lines up with the L shells I'm most interested in. 
+
+Apogee also slowly precesses around Earth. We've got about one and a half precessions, so we've double-sampled on the nightside. We'll account for this by showing event RATE, normalized to sampling in each bin, rather than event COUNTS. 
+
+This is also important because it normalizes out a spatial bias in our data processing. The Van Allen Probes measure a three dimensional magnetic field, but only a two-dimensional electric field. We can get the third dimension of the electric field by taking E dot B equals zero. This doesn't work when the probe's spin plane lines up wrong with the magnetic field. 
+
+About half of the data gets tossed because we can't get a 3D electric field. Data is least likely to be tossed near noon and midnight. This is why we have more usable data at noon than we have pre-noon or post-noon. It's also why we have about 1000 days of data TOTAL, when we started out with 1000 days of data PER PROBE. 
+
+# -----------------------------------------------------------------------------
+# -------------------------------------------------------------- Finding Events
+# -----------------------------------------------------------------------------
+
+We do a ten-minute running average of this data to estimate the strength and direction of the background magnetic field, and subtract it off. Then we break the data into thirty-minute chunks and check each chunk for waves. 
+
+We do a discrete Fourier transform of the poloidal and toroidal electric and magnetic fields. Then we slam those fields together to get a spectrum of the Poynting flux, which we scale by R cubed to get a value effective at the ionosphere. 
+
+We do a Gaussian fit on the Poynting flux spectrum. 
+
+If the fit fails to converge, we toss it. 
+
+If the peak of the Gaussian is outside the Pc4 band, we toss it. 
+
+If there's more than a 5 mHz difference between the peak of the spectrum and the peak of the fit, we toss it. 
+
+If the peak has an amplitude smaller than 0.01 mW/m^2, we toss it, since that's flirting with instrument sensitivity. 
+
+If the fit has a standard deviation of more than about one and a half mHz, we also toss it. A visual inspection of the events shows that these fits tend to be a bunch of smaller spectral features clustered together, rather than a real peak. 
+
+We don't bother with any data within 3 degrees of the equator. If we want to use the event's phase to distinguish odd events from even events, we need to know if we're above or below the equator, and when we're that close, it's ambiguous. 
+
+Finally, we filter on coherence. If the electric and magnetic field waveforms aren't coherent at 0.9 or better, we toss them. This is how we make sure that when we compute the phase of the wave, it's not just noise. 
+
+We actually do all this TWICE for each half-hour chunk of data. We trigger on the poloidal and toroidal channels independently. They trigger simultaneously about 10 percent of the time. 
+
+# -----------------------------------------------------------------------------
+# -------------------------------------------------- Distribution of All Events
+# -----------------------------------------------------------------------------
+
+We end up with about 800 Pc4 events. When we normalize to sampling rate, it looks like THIS. 
+
+And, you know, it's about in line with what's been seen in the past. Peak Pc4 occurrence rate peaks near noon. It's spread out on the dayside. Not much at dusk. A few stragglers at midnight. 
+
+Now what we can do -- which was really the whole point -- is we can partition these events by polarization and harmonic. This is why we were so careful to get both the electric and magnetic field waveforms, and compute the phase between them. 
+
+
+
 
 
 
