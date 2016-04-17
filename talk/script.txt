@@ -174,7 +174,7 @@ So I dug through that data, found ~800 Pc4 events, categorized them, and threw t
 Polarization, harmonic, and modenumber all sorta fit together in a way nobody has put together before. 
 
 # -----------------------------------------------------------------------------
-# --------------------------------------------------- Two and a Half Dimensions
+# ------------------------------------------------------ "Tuna Half" Dimensions
 # -----------------------------------------------------------------------------
 
 In trying to model FLRs, it's useful to know that they tend to be azimuthally localized. Pc4 events tend to be spread over just a few hours local time. If we're looking at an event on the dayside, we probably aren't that worried about what's happening on the nightside, and vice versa. 
@@ -186,6 +186,153 @@ This means our spatial grid is two dimensional -- we're just looking at a meridi
 We finagle this by saying that everything goes as exp(i m f), where m is the azimuthal modenumber. That means we get to swap out azimuthal derivatives for a factor of i m. 
 
 The fields we compute are complex-valued. In a hand-wavey sense, we say that the real component of each field is azimuthally lined up with the driving (which is real). And the imaginary parts of the fields are azimuthally offset by a quarter wavelength. 
+
+# -----------------------------------------------------------------------------
+# --------------------------------------------------------------- Grid Geometry
+# -----------------------------------------------------------------------------
+
+The geometry of this model is a bit tricky. 
+
+Traditionally, you want your coordinate system to be orthonormal. You want x, y, and z to all come together at right angles. 
+
+But that doesn't line up super well with the magnetosphere. We've got curved magnetic field lines, and an ionospheric boundary at more or less a constant altitude, and they don't come together at a right angle, or even at a consistent angle. 
+
+Past studies have dealt with this by making a few different simpligying assumptions. Sometimes they say that the curvature of the magnetic field lines probably isn't that important, so they stretch out the magnetic field lines to be straight. Sometimes they say the curvature AROUND the Earth probably isn't that important, and straighten THAT out, and say that the magnetosphere looks about like a half cylinder. 
+
+Tuna's approach -- pilfered from Bob -- is to just do the geometry right, and deal with some gross math. 
+
+So we've got one coordinate that indexes L-shells. And we've got another coordinate that indexes ALONG the magnetic field line, and always takes a value of +1 at the northern ionosphere annd -1 at the southern ionosphere. 
+
+These coordinates don't always come together at right angles. 
+
+This means we have to worry about covariant and contravariant coordinates separately. We've got one basis vector that points along the dipole field, and another that points radially out at the ionosphere. And they're not quite the same. 
+
+The math gets a little bit gross. We won't get into it here, but I think this equation is the exact point where I lost several proofreaders. 
+
+So the grid ends up looking like this. 
+
+Its Earthward boundary is usually set at an altitude of 100 km. The coordinates converge at the equatorial ionosphere, so we have to take a finite inner boundary, which we put at L=2. 
+
+The outer bounadry goes at L=10, at which point the dipole approximation of Earth's field is pretty tenuous. In practice, though, wave activity is concentrated inside L=7 or so. 
+
+At the ionosphere, we get grid resolution on the order of 10 km. Far out, it's more like 1000 km. In this figure, only every fifth grid point is shown in each direction. 
+
+# -----------------------------------------------------------------------------
+# ------------------------------------------------- Physical Parameter Profiles
+# -----------------------------------------------------------------------------
+
+In terms of physical parameter profiles, we use an ideal dipole for the background magnetic field, with a strength of 31,000 nT at the equator at Earth's surface. 
+
+We use height-resolved profiles for the Pedersen, Hall, and parallel conductivities. These are based on empirical values tabulated by Kelley, tweaked by Bob to take into account the higher mean molecular mass near the Earthward boundary. 
+
+The perpendicular electric constant, which gives us the Alfven speed, also comes from Kelley's tabulated values, and is adjusted to into account the density of the plasmasphere and the auroral ionosphere.  
+
+The density profile has a few knobs we can play with. The stuff I'm showing here has pretty inoffensive values -- plasmapause at L=4, density of 10,000 per cc at its base, and so on. 
+
+Tuna has a few different ionospheric profiles. Most of the results I'm going to show will use the quiet dayside and quiet nightside profiles, which correspond to times of low solar activity, at the bottom of the solar cycle. But we'll also look briefly at how the active and quiet dayside differ, and how the active and quiet nightside differ. 
+
+# -----------------------------------------------------------------------------
+# ------------------------------------------------------ Driving -- Show Bdrive
+# -----------------------------------------------------------------------------
+
+The biggest difference between Tuna and Bob's work -- and its other spin-offs -- is the driving. 
+
+The traditional driving method is to impose a wave on the outer boundary of the simulation, and watch what happens as it propagates in and resonates. This is a good proxy for an input of energy from the solar wind, or maybe substorm injection on the nightside. 
+
+But, as we touched on before, that only works at low modenumber, where the poloidal wave is compressional. At high modenumber, once you get energy into these waves, it tends to stay where it is. So driving at the boundary tends to resonate near the boundary. 
+
+This figure shows 16 different runs using Tuna, with driving delivered at the outer boundary. Color indicates energy density, averaged over the 300 second simulation. 
+
+Each column uses a different ionospheric profile. Modenumber increases as you move down the rows. 
+
+At low modenumber, these runs look great. You can see some stripes where energy is building up, indicating resonance. But as modenumber increases, this cavity opens up where compressional Alfven waves just can't go at the frequencies we're looking at. 
+
+There's basically nothing going on in the inner magnetosphere at m=16. At m=64, the results probably aren't even physical. We're driving at the outer boundary, but waves can't propagate in, so they just get slammed right back against the boundary conditions. This has the potential to cause nonphysical reflections, which doesn't matter most of the time, but REALLY matters in this case. 
+
+# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------- Sym-H
+# -----------------------------------------------------------------------------
+
+So if we want to see high-modenumber waves in the inner magnetosphere, we need to inject the energy into the inner magnetosphere. 
+
+We know that Pc4s interact resonantly with ring current particles, so let's try that. What if we just perturb the ring current? 
+
+The ring current is a dynamic environment, especially during active geomagnetic times, which is when Pc4s tend to be observed. It's easy to imagine some kind of localized change in its magnitude. 
+
+It's a bit trickier to estimate how large these perturbations might be. We can't zoom out and measure, how strong is the ring current right here, right now, and also how much does that change if we move 10,000 km in each direction? 
+
+So we make a sorta kludgey estimate. 
+
+We take the Sym-H index, which is a measurement of the magnetic field on EARTH as a result of the ring current. This gives us a sense for how much current is flowing overall, even if we don't know how it's distributed. 
+
+Sym-H is basically like DST, except that DST is measured once per hour and Sym-H is once per minute. 
+
+A measurement once per minute still isn't fast enough to tell us about the ring current perturbations that would drive Pc4s, with periods of just a minute or two. But it gets us close. So we take a Fourier transform of the Sym-H index and fit its pink noise. 
+
+This suggests that Pc4-frequency perturbations might be responsible for Sym-H fluctuations with magnitudes on the order of 0.01 nT, which corresponds to a current in space of about a MA. 
+
+If we suppose that's spread over an area of about a square Earth radius, that ends up being a current density on the order of 10^-4 uA/m^2. 
+
+# -----------------------------------------------------------------------------
+# --------------------------------------------------------- Maxwell's Equations
+# -----------------------------------------------------------------------------
+
+This brings us to Maxwell's equations. This is how we get from ring current perturbations to Alfven waves. 
+
+The nice thing about this approach is that it's just PHYSICS. Maxwell's equations are about as fundamental as you can get. We just have to plug in the current, turn the crank, and see what happens. 
+
+Now, turning the crank ends up being a little more complicated than we might like. 
+
+Updating the magnetic field using Faraday's law isn't so bad. We set up C as a shorthand for the curl of the electric field, throw in a few geometric factors, and we're good. 
+
+# -----------------------------------------------------------------------------
+# ---------------------------------------------------------------- Ampere's Law
+# -----------------------------------------------------------------------------
+
+Ampere's law is trickier. The time derivative of the electric field depends on its own future value, so we're going to need to use an integrating factor. And the Hall conductivity couples the poloidal and toroidal electric fields, so it doesn't quite work to split the vector equation up into three scalar equations. 
+
+It turns out you're allowed to exponentiate a tensor, so that's what we do. Product rule, integrate over a time step, and we get something that, honestly, could be a lot worse. 
+
+It gets a bit grosser when we have to actually evaluate the tensor exponential. The Hall terms turn into a rotation matrix, which makes sense, since the Hall conductivity rotates the polarization of the wave. But it still sorts fits on one line. 
+
+When we write out the perpendicular terms, they're gross, but workable. We just have to type this in once, and check it 500 times, and then it becomes the computer's problem. 
+
+And the parallel term doesn't look so bad! It breaks off cleanly since the rotation matrix only touches the perpendicular components. 
+
+It seems like we should be able to plug this in and see some parallel electric fields, but it turns out that doesn't really work. The field-aligned conductivity sigma zero is really big, to the degree that sigma zero dt over epsilon zero bottoms out in the thousands. So when we exponentiate it, we get 10^-400 or something. Way too small to be stored in a double-precision value. 
+
+# -----------------------------------------------------------------------------
+# ------------------------------------------------------------ Inertial Effects
+# -----------------------------------------------------------------------------
+
+So, basically, Tuna doesn't include parallel electric fields. They're uniformly zero. 
+
+In my dissertation, I go on a chapter-long detour about this. I look at how we can add the electron inertial term to Ohm's law, and get into Boris factors, where we artificially lower the speed of light and the plasma frequency, and I talk about how it's OK as long as their ratio stays the same. 
+
+And I show that this approach adds some computational expense, and it's prone to instability, but we can still get some results from this approach. 
+
+The moral of the story ends up being, parallel currents end up about where you would expect them to -- in regions where a lot of energy is moving. We see FAC more or less in line with the magnitudes that are observed. And these terms don't appreciably affect the curl of E, so the overall behavior of the simulation doesn't change. 
+
+Electron inertial effects don't play into the main results I want to show off, so that's as much as we're going to worry about them here. We're going to power through the last little bit of the model, and then get on to the flagship results. 
+
+# -----------------------------------------------------------------------------
+# -------------------------------------------------- Coupling to the Atmosphere
+# -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
