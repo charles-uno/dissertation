@@ -1,18 +1,4 @@
 
-# Sketching out what we will say for the talk, what slides go where, etc. 
-
-
-http://www.physics.usyd.edu.au/~cairns/teaching/lecture14/img34.gif
-
-http://www.propagation.gatech.edu/ECE6390/project/Fall2011/group5/website/ssp/sat/env/radiation.html
-
-http://www.propagation.gatech.edu/ECE6390/project/Fall2011/group5/website/ssp/sat/env/res/FigureE5.gif
-
-
-http://blogs.nasa.gov/wp-content/uploads/sites/212/2013/06/1027979main_Bomb3.jpg
-
-
-
 # -----------------------------------------------------------------------------
 # ----------------------------------------------------------- Bird Cage on Head
 # -----------------------------------------------------------------------------
