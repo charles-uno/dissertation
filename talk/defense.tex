@@ -30,6 +30,8 @@
 \usepackage{float} % Sometimes you want to tell LaTeX to put an image RIGHT HERE. 
 % Prevent LaTeX from putting a figure right before the start of a section. 
 \usepackage[section]{placeins}
+\usepackage[percent]{overpic}
+
 % Try to prevent widows and orphans -- dangling parts of paragraphs over page breaks. 
 \widowpenalty10000
 \clubpenalty10000
@@ -41,6 +43,28 @@
 % Configure the cleveref package
 \newcommand{\creflastconjunction}{, and } % Always use the serial comma
 \input{../my_definitions}
+
+
+
+
+
+
+
+
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+
+
 
 % =============================================================================
 % ============================================================== Begin Document
@@ -77,25 +101,39 @@
 \begin{frame}
 \frametitle{Earth's Magnetic Field}
 
-\includegraphics[width=\textwidth>]{<your image file>}
+When shaken by the solar wind, etc, Earth's magnetic field lines rattle. 
 
+\vfill
 
+\begin{overpic}[width=0.6885\textwidth]{figures/nasa_magnetosphere.jpg}
+ \put (0, 1) {\tiny\textcolor{white}{\;NASA}}
+\end{overpic}%
+\begin{overpic}[width=0.3115\textwidth]{figures/flora_borsi.jpg}
+ \put (0, 1) {\tiny\textcolor{white}{\;Fl{\'o}ra Borsi}}
+\end{overpic}%
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{\Alfven Waves}
 
 \begin{columns}
- 
 \column{0.5\textwidth}
-This is a text in first column.
-$$E=mc^2$$
-\begin{itemize}
-\item First item
-\item Second item
-\end{itemize}
- 
+\begin{wideitemize}
+\item Shear \Alfven waves carry energy along magnetic field lines. 
+\item Compressional \Alfven waves can carry energy across field lines. 
+\item A field line resonance (FLR) is a shear \Alfven wave that fills the field line exactly. 
+\end{wideitemize}
 \column{0.5\textwidth}
-This text will be in the second column
-and on a second tought this is a nice looking
-layout in some cases.
+\begin{overpic}[width=\textwidth]{figures/kv_alfven.png}
+ \put (0, 1) {\tiny\textcolor{black}{\;Kivelson and Russell}}
+\end{overpic}%
 \end{columns}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -103,9 +141,10 @@ layout in some cases.
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Sample frame title}
-This is a text in first frame. This is a text in first frame. This is a text in first frame.
-\SI{5}{\nT}
+\frametitle{Characterizing Field Line Resonances}
+
+\includegraphics[width=\textwidth]{figures/properties.pdf}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -113,9 +152,50 @@ This is a text in first frame. This is a text in first frame. This is a text in 
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Sample frame title}
-This is a text in first frame. This is a text in first frame. This is a text in first frame.
-\SI{5}{\nT}
+\frametitle{Poloidal-to-Toroidal Rotation}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{overpic}[width=\textwidth]{figures/mann_1995.png}
+ \put (0, 1) {\tiny\textcolor{black}{\;Mann and Wright, 1995}}
+\end{overpic}%
+\column{0.5\textwidth}
+\begin{wideitemize}
+\item Poloidal FLRs rotate over time to become toroidal. 
+\item The rotation is slower at large \azm. 
+\item Toroidal FLRs do not rotate back. 
+\end{wideitemize}
+\end{columns}
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Pc4s and Giant Pulsations}
+
+\begin{wideitemize}
+\item Pc4 pulsations are resonant at auroral latitudes. 
+\item They interact with trapped energetic particles. 
+\item Giant pulsations are a small, distinctive subset of Pc4s.  
+\end{wideitemize}
+
+\vfill
+
+\begin{center}
+IAGA Frequency Bands [Jacobs, 1964]
+\begin{tabular}{ @{\extracolsep{\fill}} cccccc @{\extracolsep{\fill}} }
+  \hline
+  & Pc1 & Pc2 & Pc3 & Pc4 & Pc5 \\
+  \hline
+  Period (\si{\second}) & 0.2--5    & 5--10    & 10--45  & 45--150 & 150--600 \\
+  Frequency (\si{\mHz}) & 200--5000 & 100--200 & 22--100 & 7--22   & 2--7     \\
+  \hline
+\end{tabular}
+\end{center}
+
 \end{frame}
 
 % =============================================================================
@@ -129,9 +209,20 @@ This is a text in first frame. This is a text in first frame. This is a text in 
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Sample frame title}
-This is a text in first frame. This is a text in first frame. This is a text in first frame.
-\SI{5}{\nT}
+\frametitle{``Tuna Half'' Dimensional Grid}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{wideitemize}
+\item Near Earth, at high \azm, 3D is too expensive. 
+\item Earthward boundary is important for Pc4s --- keep it realistic. 
+\item Simplifying assumption: everything goes as $\exp\arg{i \azm \phi}$. 
+\item Grid is 2D, but fields and curls are 3D vectors. 
+\end{wideitemize}
+\column{0.5\textwidth}
+\includegraphics[width=\textwidth]{figures/grid.pdf}
+\end{columns}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -139,9 +230,19 @@ This is a text in first frame. This is a text in first frame. This is a text in 
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Sample frame title}
-This is a text in first frame. This is a text in first frame. This is a text in first frame.
-\SI{5}{\nT}
+\frametitle{Physical Parameter Profiles}
+
+\begin{wideitemize}
+\item Height-resolved conductivity from Kelley, modified by Lysak. 
+\item Plasma density, including the plasmasphere. 
+\item Four profiles: active day, quiet day, active night, quiet night. 
+\end{wideitemize}
+
+\vfill
+
+\includegraphics[width=0.5\textwidth]{figures/va_2.pdf}%
+\includegraphics[width=0.5\textwidth]{figures/fa_2.pdf}%
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -149,9 +250,34 @@ This is a text in first frame. This is a text in first frame. This is a text in 
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Sample frame title}
-This is a text in first frame. This is a text in first frame. This is a text in first frame.
-\SI{5}{\nT}
+\frametitle{Driving}
+
+\begin{wideitemize}
+\item At high \azm, driving at the outer boundary doesn't work. 
+\item Tuna drives by perturbing the ring current instead. 
+\item Magnitude is estimated from Sym-H storm index. 
+\end{wideitemize}
+
+\vfill
+
+\includegraphics[width=\textwidth]{figures/drivers.pdf}%
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Maxwell's Equations}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Coupling to the Atmosphere}
 \end{frame}
 
 % =============================================================================
@@ -178,6 +304,21 @@ This is a text in first frame. This is a text in first frame. This is a text in 
 \frametitle{Sample frame title}
 This is a text in first frame. This is a text in first frame. This is a text in first frame.
 \SI{5}{\nT}
+
+\begin{columns}
+\column{0.5\textwidth}
+This is a text in first column.
+$$E=mc^2$$
+\begin{itemize}
+\item First item
+\item Second item
+\end{itemize}
+\column{0.5\textwidth}
+This text will be in the second column
+and on a second tought this is a nice looking
+layout in some cases.
+\end{columns}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
