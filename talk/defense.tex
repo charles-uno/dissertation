@@ -44,14 +44,6 @@
 \newcommand{\creflastconjunction}{, and } % Always use the serial comma
 \input{../my_definitions}
 
-
-
-
-
-
-
-
-
 \AtBeginSection[]{
   \begin{frame}
   \vfill
@@ -62,9 +54,6 @@
   \vfill
   \end{frame}
 }
-
-
-
 
 % =============================================================================
 % ============================================================== Begin Document
@@ -270,6 +259,31 @@ IAGA Frequency Bands [Jacobs, 1964]
 
 \begin{frame}
 \frametitle{Maxwell's Equations}
+
+Magnetic fields are updated using \farlaw:
+\begin{align*}
+  \tfrac{\partial}{\partial t} \vec{B} &= -\curl{E} &
+  & \text{so} &
+  \vec{B} &\assign \vec{B} - \dt \, \curl{E}
+\end{align*}
+
+Electric fields are updated using \amplaw and \ohmlaw:
+\begin{align*}
+  \tensor{\epsilon} \cdot \tfrac{\partial}{\partial t} \vec{E} = \tfrac{1}{\mz} \curl{B} - \vec{J} - \tensor{\sigma} \cdot \vec{E}
+\end{align*}
+
+Let $ \quad \tensor{V}^2 \equiv \frac{1}{\mz} \tensor{\epsilon}^{-1} \quad $ and $ \quad \tensor{\Omega} \equiv \tensor{\epsilon}^{-1} \cdot \tensor{\sigma} \quad $ so
+\begin{align*}
+  \lr{ \tensor{\Omega} + \tensor{ \mathbb{I} } \tfrac{\partial}{\partial t} } \cdot \vec{E} &= \tensor{V}^2 \cdot \big( \curl{B} - \mz \vec{J} \big)
+\end{align*}
+
+Which can be solved with an integrating factor: 
+\begin{align*}
+  \vec{E} &\assign \exp \arg{ -\tensor{\Omega} \, \dt } \cdot \vec{E} +
+    \dt \, \exp \arg{ -\tensor{\Omega} \, \tfrac{\dt}{2} } \cdot
+    \tensor{V}^2 \cdot \big( \curl{B} - \mz \vec{J} \big)
+\end{align*}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -278,6 +292,23 @@ IAGA Frequency Bands [Jacobs, 1964]
 
 \begin{frame}
 \frametitle{Coupling to the Atmosphere}
+
+\begin{wideitemize}
+\item Assume a perfectly-insulating atmosphere: $\curl{B} = 0$.  
+\item From Maxwell's equations, $\div{B} = 0$. 
+\item Then $\nabla^2\Psi = 0$ where $\nabla \Psi = \vec{B}$. 
+\item Solution at the top of the atmosphere is a boundary condition:
+\begin{align*}
+  \tensor{\Sigma} \cdot \vec{E} &= \frac{1}{\mz} \,
+    \displaystyle\lim_{\dr \rightarrow 0} \, \bigg[ \, \hat{r} \times \vec{B}
+    \, \bigg|^{R_I + \dr}_{R_I - \dr}
+\end{align*}
+\item Solution at the bottom of the atmosphere gives ground signatures. 
+\end{wideitemize}
+
+
+
+
 \end{frame}
 
 % =============================================================================
