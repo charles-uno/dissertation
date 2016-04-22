@@ -32,6 +32,12 @@
 \usepackage[section]{placeins}
 \usepackage[percent]{overpic}
 
+
+
+\usepackage{empheq}
+\usepackage{tcolorbox}
+
+
 % Try to prevent widows and orphans -- dangling parts of paragraphs over page breaks. 
 \widowpenalty10000
 \clubpenalty10000
@@ -53,6 +59,19 @@
   \end{beamercolorbox}
   \vfill
   \end{frame}
+}
+
+
+
+
+\usepackage{beamerthemesplit}
+
+\newcommand{\backupbegin}{
+   \newcounter{finalframe}
+   \setcounter{finalframe}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \setcounter{framenumber}{\value{finalframe}}
 }
 
 % =============================================================================
@@ -132,6 +151,9 @@ When shaken by the solar wind, etc, Earth's magnetic field lines rattle.
 \begin{frame}
 \frametitle{Characterizing Field Line Resonances}
 
+\vfill
+
+Three properties by which FLRs can be characterized:
 \includegraphics[width=\textwidth]{figures/properties.pdf}
 
 \end{frame}
@@ -144,13 +166,13 @@ When shaken by the solar wind, etc, Earth's magnetic field lines rattle.
 \frametitle{Poloidal-to-Toroidal Rotation}
 
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.33\textwidth}
 \begin{overpic}[width=\textwidth]{figures/mann_1995.png}
  \put (0, 1) {\tiny\textcolor{black}{\;Mann and Wright, 1995}}
 \end{overpic}%
-\column{0.5\textwidth}
+\column{0.67\textwidth}
 \begin{wideitemize}
-\item Poloidal FLRs rotate over time to become toroidal. 
+\item Polarization rotates over time from poloidal to toroidal. 
 \item The rotation is slower at large \azm. 
 \item Toroidal FLRs do not rotate back. 
 \end{wideitemize}
@@ -166,7 +188,7 @@ When shaken by the solar wind, etc, Earth's magnetic field lines rattle.
 \frametitle{Pc4s and Giant Pulsations}
 
 \begin{wideitemize}
-\item Pc4 pulsations are resonant at auroral latitudes. 
+\item Pc4 pulsations (\SIrange{7}{22}{\mHz}) resonate at auroral latitudes. 
 \item They interact with trapped energetic particles. 
 \item Giant pulsations are a small, distinctive subset of Pc4s.  
 \end{wideitemize}
@@ -244,7 +266,7 @@ IAGA Frequency Bands [Jacobs, 1964]
 \begin{wideitemize}
 \item At high \azm, driving at the outer boundary doesn't work. 
 \item Tuna drives by perturbing the ring current instead. 
-\item Magnitude is estimated from Sym-H storm index. 
+\item Magnitude is estimated from the Sym-H storm index. 
 \end{wideitemize}
 
 \vfill
@@ -264,7 +286,7 @@ Magnetic fields are updated using \farlaw:
 \begin{align*}
   \tfrac{\partial}{\partial t} \vec{B} &= -\curl{E} &
   & \text{so} &
-  \vec{B} &\assign \vec{B} - \dt \, \curl{E}
+  &\highlight{ \vec{B} \assign \vec{B} - \dt \, \curl{E} }
 \end{align*}
 
 Electric fields are updated using \amplaw and \ohmlaw:
@@ -278,11 +300,11 @@ Let $ \quad \tensor{V}^2 \equiv \frac{1}{\mz} \tensor{\epsilon}^{-1} \quad $ and
 \end{align*}
 
 Which can be solved with an integrating factor: 
-\begin{align*}
-  \vec{E} &\assign \exp \arg{ -\tensor{\Omega} \, \dt } \cdot \vec{E} +
+\begin{gather*}
+  \highlight{\vec{E} \assign \exp \arg{ -\tensor{\Omega} \, \dt } \cdot \vec{E} +
     \dt \, \exp \arg{ -\tensor{\Omega} \, \tfrac{\dt}{2} } \cdot
-    \tensor{V}^2 \cdot \big( \curl{B} - \mz \vec{J} \big)
-\end{align*}
+    \tensor{V}^2 \cdot \big( \curl{B} - \mz \vec{J} \big)}
+\end{gather*}
 
 \end{frame}
 
@@ -324,9 +346,9 @@ Which can be solved with an integrating factor:
 \begin{columns}
 \column{0.33\textwidth}
 \begin{wideitemize}
-\item Blobby poloidal, compressional waves. 
-\item Sharply-defined toroidal waves. 
-\item All components similar in magnitude. 
+\item Poloidal and compressional waves are blobby. 
+\item Toroidal waves are sharply defined. 
+\item All components are similar in magnitude. 
 \end{wideitemize}
 \column{0.67\textwidth}
 \includegraphics[width=\textwidth]{figures/snapshot_smallm.pdf}
@@ -344,9 +366,9 @@ Which can be solved with an integrating factor:
 \begin{columns}
 \column{0.33\textwidth}
 \begin{wideitemize}
-\item Barely compressional. 
-\item Toroidal still sharper in $L$ than poloidal. 
-\item ...
+\item Compressional field is weak. 
+\item Little energy crosses field lines. 
+\item Toroidal waves still sharper than poloidal ones, consistent with observations. 
 \end{wideitemize}
 \column{0.67\textwidth}
 \includegraphics[width=\textwidth]{figures/snapshot_bigm.pdf}
@@ -361,9 +383,17 @@ Which can be solved with an integrating factor:
 \begin{frame}
 \frametitle{Resonance and Rotation on the Dayside}
 
-\vfill
+\vfill 
 
 \includegraphics[width=\textwidth]{figures/energy_day.pdf}
+
+\begin{wideitemize}
+\item Poloidal-to-toroidal rotation timescales are comparable to the oscillation period, clearly faster than dissipation. 
+% slowest at high \azm, toroidal asymptotically exceeds poloidal
+%\item Toroidal energy asymptotically exceeds poloidal energy.
+\item Toroidal energy accumulates only where resonant. 
+\item At small \azm, energy escapes to the outer boundary. 
+\end{wideitemize}
 
 \end{frame}
 
@@ -378,6 +408,12 @@ Which can be solved with an integrating factor:
 
 \includegraphics[width=\textwidth]{figures/energy_night.pdf}
 
+\begin{wideitemize}
+\item The nightside ionosphere is much less conductive than the dayside. 
+\item No accumulation of energy over multiple drive periods. 
+\item At high \azm, dissipation is faster than poloidal-to-toroidal rotation. 
+\end{wideitemize}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -386,6 +422,33 @@ Which can be solved with an integrating factor:
 
 \begin{frame}
 \frametitle{Ground Signatures and Giant Pulsations}
+
+\begin{wideitemize}
+\item Peak is in $B_\phi$, quiet conditions, \azm=16 to 32, \about\SI{65}{\degree} latitude. 
+\item Counterclockwise at low latitude, clockwise at high latitude. 
+\item It seems these properties are not unique to giant pulsations! 
+\end{wideitemize}
+
+\vfill
+
+\includegraphics[width=\textwidth]{figures/ground_night.pdf}%
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Comparison to Observational Data?}
+
+\begin{wideitemize}
+\item How does the spatial distribution of giant pulsations compare to that of odd poloidal Pc4s?
+\item How does the spatial distribution of odd toroidal Pc4s compare to that of odd poloidal Pc4s?
+\item How about even toroidal and even poloidal Pc4s?
+\item Past surveys do not address these questions.  
+\end{wideitemize}
+
 \end{frame}
 
 % =============================================================================
@@ -400,6 +463,19 @@ Which can be solved with an integrating factor:
 
 \begin{frame}
 \frametitle{Distribution of Usable Data}
+
+
+\begin{columns}
+\column{0.33\textwidth}
+\begin{wideitemize}
+\item Data spans October 2012 to August 2015. 
+\item Nightside has been sampled twice at apogee. 
+\item Full 3D fields computed per $\vec{E} \cdot \vec{B} = 0$, about half the data gets tossed.
+\end{wideitemize}
+\column{0.67\textwidth}
+\includegraphics[width=\textwidth]{figures/pos_all_sharp.pdf}
+\end{columns}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -408,6 +484,20 @@ Which can be solved with an integrating factor:
 
 \begin{frame}
 \frametitle{Event Selection}
+
+\begin{columns}
+\column{0.5\textwidth}
+\includegraphics[width=\textwidth]{figures/sample_event_phase.pdf}
+\column{0.5\textwidth}
+\begin{wideitemize}
+\item Split \about1000 days of data into half-hour events. 
+\item Fourier transform electric and magnetic field components. 
+\item Compute Poynting flux, effective at the ionosphere. 
+\item Threshold on frequency, magnitude, coherence, and spectral width. 
+\item Characterize each event by polarization and harmonic. 
+\end{wideitemize}
+\end{columns}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -416,6 +506,19 @@ Which can be solved with an integrating factor:
 
 \begin{frame}
 \frametitle{Pc4 Observation Rate}
+
+\begin{columns}
+\column{0.33\textwidth}
+\begin{wideitemize}
+\item Peak observation rate at noon.  
+\item Fewest events at dusk. 
+\item Stragglers near midnight. 
+\item Generally consistent with previous surveys of Pc4 events. 
+\end{wideitemize}
+\column{0.67\textwidth}
+\includegraphics[width=\textwidth]{figures/rate_all_sharp.pdf}
+\end{columns}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -424,6 +527,22 @@ Which can be solved with an integrating factor:
 
 \begin{frame}
 \frametitle{Pc4 Observation Rate by Mode}
+
+\begin{columns}
+\column{0.33\textwidth}
+Questions from before:
+
+\vspace{5pt}
+
+\begin{wideitemize}
+\item Where are odd poloidal Pc4s compared to giant pulsations?
+\item Where are odd toroidal Pc4s compared to odd poloidal Pc4s?
+\item How about even toroidal and even poloidal Pc4s?
+\end{wideitemize}
+\column{0.67\textwidth}
+\includegraphics[width=\textwidth]{figures/mode_all_sharp.pdf}
+\end{columns}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -432,6 +551,44 @@ Which can be solved with an integrating factor:
 
 \begin{frame}
 \frametitle{Phase Distribution of Pc4 Events}
+
+\begin{wideitemize}
+\item Estimate wave lifetime from characteristic values $B$, $E$, and $R$:
+\begin{align*}
+  \tau &= \frac{BR}{2 E \cos\varphi} &
+  & \text{where} &
+  \varphi \equiv \arctan\frac{ \imag\dft{S} }{ \real\dft{S} }
+\end{align*}
+\item Standing waves: $\varphi = \pm\SI{90}{\degree}$. Traveling waves: $\varphi = \SI{0}{\degree}$ or \SI{180}{\degree}. 
+\item Odd modes are spread more from $\pm\SI{90}{\degree}$, at least at the equator. 
+\end{wideitemize}
+
+\vfill
+
+\centerline{\includegraphics[width=1.2\textwidth]{figures/phase_across.pdf}}
+
+\end{frame}
+
+% =============================================================================
+% ================================================================== Conclusion
+% =============================================================================
+
+\section{Conclusion}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Summary}
+
+\begin{wideitemize}
+\item Pc4s and giant pulsations are known to have a mishmash of heretofore-unrelated properties. 
+\item Tuna is a new model designed with Pc4s in mind. 
+\item Numerical results suggest several novel relationships between Pc4 properties. 
+\item Van Allen Probe survey supports numerical results, and poses new questions. 
+\end{wideitemize}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -439,28 +596,68 @@ Which can be solved with an integrating factor:
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Summary and Conclusions}
+\frametitle{Acknowledgements}
+
+\begin{columns}
+\column{0.33\textwidth}
+Committee:
+\column{0.34\textwidth}
+Funding:
+\column{0.33\textwidth}
+Collaborators:
+\end{columns}
+
+\begin{columns}
+\column{0.33\textwidth}
+\begin{wideitemize}
+\item Bob Lysak (Advisor)
+\item Cindy Cattell (Chair)
+\item Tom Jones
+\item Lindsay Glesener
+\end{wideitemize}
+\column{0.34\textwidth}
+\begin{wideitemize}
+\item NSF grant AGS-1405383
+\item UMN OVPR
+\item NASA grant NNX12AD14G
+\item GEM Student Support
+\end{wideitemize}
+\column{0.33\textwidth}
+\begin{wideitemize}
+\item John Wygant
+\item Lei Dai
+\item Ian Mann
+\item Aaron Breneman
+\item Scott Thaller
+\item Sheng Tian
+\end{wideitemize}
+\end{columns}
+
+\end{frame}
+
+% =============================================================================
+% =============================================================== Backup Slides
+% =============================================================================
+
+\backupbegin
+\section{Backup Slides}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Summary}
+
 \end{frame}
 
 % =============================================================================
 % ================================================================ End Document
 % =============================================================================
- 
+
+\backupend
+
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
