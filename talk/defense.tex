@@ -78,14 +78,13 @@
 % ============================================================== Begin Document
 % =============================================================================
 
-\title[FLR in 2.5D]{Field Line Resonance in Two and a Half Dimensions}
+\title[FLR in 2.5D]{Field Line Resonance in ``Tuna Half'' Dimensions}
 %\subtitle{PhD Defense}
 %\institute{University of Minnesota}
 \author{Charles McEachern}
 \date{28 April 2016}
 
 \usetheme{Boadilla}
-
 \usefonttheme{serif}
 
 \begin{document}
@@ -155,28 +154,6 @@ When shaken by the solar wind, etc, Earth's magnetic field lines rattle.
 
 Three properties by which FLRs can be characterized:
 \includegraphics[width=\textwidth]{figures/properties.pdf}
-
-\end{frame}
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-
-\begin{frame}
-\frametitle{Poloidal-to-Toroidal Rotation}
-
-\begin{columns}
-\column{0.33\textwidth}
-\begin{overpic}[width=\textwidth]{figures/mann_1995.png}
- \put (0, 1) {\tiny\textcolor{black}{\;Mann and Wright, 1995}}
-\end{overpic}%
-\column{0.67\textwidth}
-\begin{wideitemize}
-\item Polarization rotates over time from poloidal to toroidal. 
-\item The rotation is slower at large \azm. 
-\item Toroidal FLRs do not rotate back. 
-\end{wideitemize}
-\end{columns}
 
 \end{frame}
 
@@ -266,7 +243,7 @@ IAGA Frequency Bands [Jacobs, 1964]
 \begin{wideitemize}
 \item At high \azm, driving at the outer boundary doesn't work. 
 \item Tuna drives by perturbing the ring current instead. 
-\item Magnitude is estimated from the Sym-H storm index. 
+\item Magnitude is from a Fourier transform of the Sym-H storm index. 
 \end{wideitemize}
 
 \vfill
@@ -368,10 +345,32 @@ Which can be solved with an integrating factor:
 \begin{wideitemize}
 \item Compressional field is weak. 
 \item Little energy crosses field lines. 
-\item Toroidal waves still sharper than poloidal ones, consistent with observations. 
+\item Toroidal waves still sharper than poloidal ones. 
 \end{wideitemize}
 \column{0.67\textwidth}
 \includegraphics[width=\textwidth]{figures/snapshot_bigm.pdf}
+\end{columns}
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Poloidal-to-Toroidal Rotation}
+
+\begin{columns}
+\column{0.33\textwidth}
+\begin{overpic}[width=\textwidth]{figures/mann_1995.png}
+ \put (0, 1) {\tiny\textcolor{black}{\;Mann and Wright, 1995}}
+\end{overpic}%
+\column{0.67\textwidth}
+\begin{wideitemize}
+\item Polarization rotates over time from poloidal to toroidal. 
+\item The rotation is slower at large \azm. 
+\item Toroidal FLRs do not rotate back. 
+\end{wideitemize}
 \end{columns}
 
 \end{frame}
@@ -491,8 +490,7 @@ Which can be solved with an integrating factor:
 \column{0.5\textwidth}
 \begin{wideitemize}
 \item Split \about1000 days of data into half-hour events. 
-\item Fourier transform electric and magnetic field components. 
-\item Compute Poynting flux, effective at the ionosphere. 
+\item Compute Poynting flux spectrum, effective at the ionosphere. 
 \item Threshold on frequency, magnitude, coherence, and spectral width. 
 \item Characterize each event by polarization and harmonic. 
 \end{wideitemize}
