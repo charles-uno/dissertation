@@ -31,12 +31,7 @@
 % Prevent LaTeX from putting a figure right before the start of a section. 
 \usepackage[section]{placeins}
 \usepackage[percent]{overpic}
-
-
-
-\usepackage{empheq}
-\usepackage{tcolorbox}
-
+\usepackage{beamerthemesplit} % To avoid including backup slides in the page count. 
 
 % Try to prevent widows and orphans -- dangling parts of paragraphs over page breaks. 
 \widowpenalty10000
@@ -61,7 +56,7 @@
 %  \end{frame}
 %}
 
-\usepackage{beamerthemesplit}
+% These are used to delimit the backup slides, so that they are not included in the slide count in the corner. 
 
 \newcommand{\backupbegin}{
    \newcounter{finalframe}
@@ -103,7 +98,7 @@
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Talk at a Glance}
+\frametitle{Summary}
 
 \begin{wideitemize}
 \item Field line resonances (FLRs) have been shown to exhibit a mishmash of as-yet unrelated properties. 
@@ -146,7 +141,7 @@ When shaken by the solar wind, etc, Earth's magnetic field lines rattle.
 \begin{wideitemize}
 \item Shear \Alfven waves carry energy along magnetic field lines. 
 \item Compressional \Alfven waves can carry energy across field lines. 
-\item A field line resonance (FLR) is a shear \Alfven wave that fills the field line exactly. 
+\item A field line resonance (FLR) is a shear \Alfven wave with a frequency that matches the \Alfven bounce frequency. 
 \end{wideitemize}
 \column{0.5\textwidth}
 \begin{overpic}[width=\textwidth]{figures/kv_alfven.png}
@@ -166,9 +161,9 @@ When shaken by the solar wind, etc, Earth's magnetic field lines rattle.
 \begin{columns}
 \column{0.5\textwidth}
 \begin{wideitemize}
-\item ...
-\item ...
-\item ...
+\item First harmonic --- the entire magnetic field line moves together.  
+\item Second harmonic --- the northern and southern halves of the magnetic field line move opposite one another. 
+\item A changing magnetic field creates an electric field. 
 \end{wideitemize}
 \column{0.5\textwidth}
 \begin{overpic}[width=\textwidth]{figures/takahashi_2011_adapted.png}
@@ -188,9 +183,9 @@ When shaken by the solar wind, etc, Earth's magnetic field lines rattle.
 \begin{columns}
 \column{0.5\textwidth}
 \begin{wideitemize}
-\item ...
-\item ...
-\item ...
+\item Poloidal wave --- the magnetic field line pulses in and out. 
+\item Toroidal wave --- the magnetic field line twists in the azimuthal direction. 
+\item Corresponding electric fields are flipped. 
 \end{wideitemize}
 \column{0.5\textwidth}
 \includegraphics[width=\textwidth]{figures/polarizations.pdf}
@@ -206,14 +201,16 @@ When shaken by the solar wind, etc, Earth's magnetic field lines rattle.
 \frametitle{Azimuthal Modenumber}
 
 \begin{wideitemize}
-\item ...
-\item ...
-\item ...
+\item Small azimuthal modenumber means the wave extends broadly around the equator. 
+\item Large modenumber means the wave could fit many times around the equator. 
+\item Small-\azm and large-\azm waves behave differently. 
 \end{wideitemize}
 
 \vfill
 
-\includegraphics[width=\textwidth]{figures/modenumber.pdf}
+\centerline{\includegraphics[width=1.2\textwidth]{figures/modenumber.pdf}}
+
+%\includegraphics[width=\textwidth]{figures/modenumber.pdf}
 
 \end{frame}
 
@@ -282,6 +279,7 @@ IAGA Frequency Bands [Jacobs, 1964]
 \begin{wideitemize}
 \item Height-resolved conductivity from Kelley, modified by Lysak. 
 \item Plasma density, including the plasmasphere. 
+\item \Alfven speed from dipole field and density: $\va \equiv \frac{B}{\sqrt{\mz \rho}}$
 \item Four profiles: active day, quiet day, active night, quiet night. 
 \end{wideitemize}
 
@@ -297,7 +295,7 @@ IAGA Frequency Bands [Jacobs, 1964]
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Driving}
+\frametitle{Driving --- Compression or Current?}
 
 \begin{wideitemize}
 \item At high \azm, driving at the outer boundary doesn't work. 
@@ -399,9 +397,9 @@ Magnetic fields are updated using \farlaw:
 \frametitle{Snapshots of a High-\azm Simulation}
 
 \begin{wideitemize}
-\item Compressional field is weak. 
+\item Waves are barely compressional. 
 \item Little energy crosses field lines. 
-\item Toroidal waves still sharper than poloidal ones. 
+\item Poloidal waves are less smeared than at $\azm=2$, but still not as sharp as toroidal waves. 
 \end{wideitemize}
 
 \vfill
@@ -478,7 +476,8 @@ Magnetic fields are updated using \farlaw:
 \frametitle{Ground Signatures and Giant Pulsations}
 
 \begin{wideitemize}
-\item Peak is in $B_\phi$, quiet conditions, \azm=16 to 32, \about\SI{65}{\degree} latitude. 
+%\item Ground signatures are the most convenient way to compare numerical results to observations. 
+\item Peak at $\azm = 16$ to $32$, near \SI{65}{\degree} latitude. 
 \item Counterclockwise at low latitude, clockwise at high latitude. 
 \item It seems these properties are not unique to giant pulsations! 
 \end{wideitemize}
@@ -555,15 +554,15 @@ Magnetic fields are updated using \farlaw:
 \frametitle{Event Selection}
 
 \begin{columns}
-\column{0.5\textwidth}
-\includegraphics[width=\textwidth]{figures/sample_event_phase.pdf}
-\column{0.5\textwidth}
+\column{0.33\textwidth}
 \begin{wideitemize}
-\item Split \about1000 days of data into half-hour events. 
-\item Compute Poynting flux spectrum, effective at the ionosphere. 
-\item Threshold on frequency, magnitude, coherence, and spectral width. 
-\item Characterize each event by polarization and harmonic. 
+\item Split data into half-hour events. 
+\item Compute Poynting flux spectrum. 
+\item Threshold on frequency, magnitude, etc. 
+\item Classify events by polarization and harmonic. 
 \end{wideitemize}
+\column{0.67\textwidth}
+\includegraphics[width=\textwidth]{figures/sample_event_phase.pdf}
 \end{columns}
 
 \end{frame}
@@ -620,20 +619,31 @@ Questions from before:
 \begin{frame}
 \frametitle{Phase Distribution of Pc4 Events}
 
-\begin{wideitemize}
-\item Estimate wave lifetime from characteristic values $B$, $E$, and $R$:
-\begin{align*}
-  \tau &= \frac{BR}{2 E \cos\varphi} &
-  & \text{where} &
-  \varphi \equiv \arctan\frac{ \imag\dft{S} }{ \real\dft{S} }
-\end{align*}
-\item Standing waves: $\varphi = \pm\SI{90}{\degree}$. Traveling waves: $\varphi = \SI{0}{\degree}$ or \SI{180}{\degree}. 
-\item Odd modes are spread more from $\pm\SI{90}{\degree}$, at least at the equator. 
-\end{wideitemize}
-
 \vfill
 
-\centerline{\includegraphics[width=1.2\textwidth]{figures/phase_across.pdf}}
+\begin{columns}
+\column{0.33\textwidth}
+\begin{wideitemize}
+\item Perfect standing waves have a phase of $\pm\SI{90}{\degree}$. 
+\item The further from $\pm\SI{90}{\degree}$, the shorter the wave lifetime. 
+\item Direct phase measurements are new and exciting! 
+\end{wideitemize}
+\column{0.67\textwidth}
+\includegraphics[width=\textwidth]{figures/phase.pdf}
+\end{columns}
+
+%\begin{wideitemize}
+%\item Estimate wave lifetime from characteristic values $B$, $E$, and $R$:
+%\begin{align*}
+%  \tau &= \frac{BR}{2 E \cos\varphi} &
+%  & \text{where} &
+%  \varphi \equiv \arctan\frac{ \imag\dft{S} }{ \real\dft{S} }
+%\end{align*}
+%\item Standing waves: $\varphi = \pm\SI{90}{\degree}$. Traveling waves: $\varphi = \SI{0}{\degree}$ or \SI{180}{\degree}. 
+%\item Odd modes are spread more from $\pm\SI{90}{\degree}$, at least at the equator. 
+%\end{wideitemize}
+%\vfill
+%\centerline{\includegraphics[width=1.2\textwidth]{figures/phase.pdf}}
 
 \end{frame}
 
@@ -651,10 +661,10 @@ Questions from before:
 \frametitle{Summary}
 
 \begin{wideitemize}
-\item Pc4s and giant pulsations are known to have a mishmash of heretofore-unrelated properties. 
-\item Tuna is a new model designed with Pc4s in mind. 
-\item Numerical results suggest several novel relationships between Pc4 properties. 
-\item Van Allen Probe survey supports numerical results, and poses new questions. 
+\item Pc4s and giant pulsations have been shown to exhibit a mishmash of heretofore-unrelated properties. 
+\item Tuna is a new two-and-a-half-dimensional simulation created with these waves in mind. 
+\item Numerical results from Tuna suggest novel connections between several FLR properties. 
+\item A survey of Van Allen Probes data shows good agreement with numerical results. 
 \end{wideitemize}
 
 \end{frame}
@@ -664,7 +674,7 @@ Questions from before:
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Acknowledgements}
+\frametitle{Thanks!}
 
 \begin{columns}
 \column{0.33\textwidth}
@@ -693,7 +703,7 @@ Collaborators:
 \column{0.33\textwidth}
 \begin{wideitemize}
 \item John Wygant
-\item Lei Dai
+\item Dai Lei
 \item Ian Mann
 \item Aaron Breneman
 \item Scott Thaller
@@ -715,7 +725,7 @@ Collaborators:
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Sym-H}
+\frametitle{Estimating Current from Sym-H}
 
 \end{frame}
 
@@ -725,6 +735,33 @@ Collaborators:
 
 \begin{frame}
 \frametitle{Dayside Ground Signatures}
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Dawn-Dusk Asymmetry}
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Pc4 Distribution by Phase}
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Pc4 Distribution by Amplitude}
 
 \end{frame}
 
