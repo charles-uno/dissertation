@@ -50,19 +50,16 @@
 \newcommand{\creflastconjunction}{, and } % Always use the serial comma
 \input{../my_definitions}
 
-\AtBeginSection[]{
-  \begin{frame}
-  \vfill
-  \centering
-  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
-    \usebeamerfont{title}\insertsectionhead\par%
-  \end{beamercolorbox}
-  \vfill
-  \end{frame}
-}
-
-
-
+%\AtBeginSection[]{
+%  \begin{frame}
+%  \vfill
+%  \centering
+%  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+%    \usebeamerfont{title}\insertsectionhead\par%
+%  \end{beamercolorbox}
+%  \vfill
+%  \end{frame}
+%}
 
 \usepackage{beamerthemesplit}
 
@@ -100,6 +97,22 @@
 % =============================================================================
 
 \section{Introduction}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Talk at a Glance}
+
+\begin{wideitemize}
+\item Field line resonances (FLRs) have been shown to exhibit a mishmash of as-yet unrelated properties. 
+\item Tuna is a new two-and-a-half-dimensional simulation created with FLRs in mind. 
+\item Numerical results from Tuna suggest novel connections between several FLR properties. 
+\item A survey of Van Allen Probes data shows good agreement with numerical results. 
+\end{wideitemize}
+
+\end{frame}
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -148,12 +161,59 @@ When shaken by the solar wind, etc, Earth's magnetic field lines rattle.
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Characterizing Field Line Resonances}
+\frametitle{First and Second Harmonics}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{wideitemize}
+\item ...
+\item ...
+\item ...
+\end{wideitemize}
+\column{0.5\textwidth}
+\begin{overpic}[width=\textwidth]{figures/takahashi_2011_adapted.png}
+ \put (0, 1) {\tiny\textcolor{black}{\;Adapted from Takahashi et al, 2011}}
+\end{overpic}%
+\end{columns}
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Poloidal and Toroidal Polarizations}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{wideitemize}
+\item ...
+\item ...
+\item ...
+\end{wideitemize}
+\column{0.5\textwidth}
+\includegraphics[width=\textwidth]{figures/polarizations.pdf}
+\end{columns}
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Azimuthal Modenumber}
+
+\begin{wideitemize}
+\item ...
+\item ...
+\item ...
+\end{wideitemize}
 
 \vfill
 
-Three properties by which FLRs can be characterized:
-\includegraphics[width=\textwidth]{figures/properties.pdf}
+\includegraphics[width=\textwidth]{figures/modenumber.pdf}
 
 \end{frame}
 
@@ -197,17 +257,16 @@ IAGA Frequency Bands [Jacobs, 1964]
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{``Tuna Half'' Dimensional Grid}
+\frametitle{``Tuna Half'' Dimensional Model}
 
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.33\textwidth}
 \begin{wideitemize}
 \item Near Earth, at high \azm, 3D is too expensive. 
-\item Earthward boundary is important for Pc4s --- keep it realistic. 
-\item Simplifying assumption: everything goes as $\exp\arg{i \azm \phi}$. 
-\item Grid is 2D, but fields and curls are 3D vectors. 
+\item Simplifying assumption: 2D grid, fields go as $\exp\arg{i \azm \phi}$. 
+\item Then $\dd{\phi} \rightarrow i\azm$ allows 3D fields and 3D derivatives. 
 \end{wideitemize}
-\column{0.5\textwidth}
+\column{0.67\textwidth}
 \includegraphics[width=\textwidth]{figures/grid.pdf}
 \end{columns}
 
@@ -259,13 +318,6 @@ IAGA Frequency Bands [Jacobs, 1964]
 \begin{frame}
 \frametitle{Maxwell's Equations}
 
-Magnetic fields are updated using \farlaw:
-\begin{align*}
-  \tfrac{\partial}{\partial t} \vec{B} &= -\curl{E} &
-  & \text{so} &
-  &\highlight{ \vec{B} \assign \vec{B} - \dt \, \curl{E} }
-\end{align*}
-
 Electric fields are updated using \amplaw and \ohmlaw:
 \begin{align*}
   \tensor{\epsilon} \cdot \tfrac{\partial}{\partial t} \vec{E} = \tfrac{1}{\mz} \curl{B} - \vec{J} - \tensor{\sigma} \cdot \vec{E}
@@ -282,6 +334,13 @@ Which can be solved with an integrating factor:
     \dt \, \exp \arg{ -\tensor{\Omega} \, \tfrac{\dt}{2} } \cdot
     \tensor{V}^2 \cdot \big( \curl{B} - \mz \vec{J} \big)}
 \end{gather*}
+
+Magnetic fields are updated using \farlaw:
+\begin{align*}
+  \tfrac{\partial}{\partial t} \vec{B} &= -\curl{E} &
+  & \text{so} &
+  &\highlight{ \vec{B} \assign \vec{B} - \dt \, \curl{E} }
+\end{align*}
 
 \end{frame}
 
@@ -318,18 +377,17 @@ Which can be solved with an integrating factor:
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Snapshots of a Low-\azm Run}
+\frametitle{Snapshots of a Low-\azm Simulation}
 
-\begin{columns}
-\column{0.33\textwidth}
 \begin{wideitemize}
 \item Poloidal and compressional waves are blobby. 
 \item Toroidal waves are sharply defined. 
 \item All components are similar in magnitude. 
 \end{wideitemize}
-\column{0.67\textwidth}
-\includegraphics[width=\textwidth]{figures/snapshot_smallm.pdf}
-\end{columns}
+
+\vfill
+
+\includegraphics[width=\textwidth, height=1in]{figures/snapshot_smallm.pdf}
 
 \end{frame}
 
@@ -338,18 +396,17 @@ Which can be solved with an integrating factor:
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Snapshots of a High-\azm Run}
+\frametitle{Snapshots of a High-\azm Simulation}
 
-\begin{columns}
-\column{0.33\textwidth}
 \begin{wideitemize}
 \item Compressional field is weak. 
 \item Little energy crosses field lines. 
 \item Toroidal waves still sharper than poloidal ones. 
 \end{wideitemize}
-\column{0.67\textwidth}
-\includegraphics[width=\textwidth]{figures/snapshot_bigm.pdf}
-\end{columns}
+
+\vfill
+
+\includegraphics[width=\textwidth, height=1in]{figures/snapshot_bigm.pdf}
 
 \end{frame}
 
@@ -382,17 +439,15 @@ Which can be solved with an integrating factor:
 \begin{frame}
 \frametitle{Resonance and Rotation on the Dayside}
 
-\vfill 
-
-\includegraphics[width=\textwidth]{figures/energy_day.pdf}
-
 \begin{wideitemize}
-\item Poloidal-to-toroidal rotation timescales are comparable to the oscillation period, clearly faster than dissipation. 
-% slowest at high \azm, toroidal asymptotically exceeds poloidal
-%\item Toroidal energy asymptotically exceeds poloidal energy.
+\item Poloidal-to-toroidal rotation is fast compared to dissipation. 
 \item Toroidal energy accumulates only where resonant. 
 \item At small \azm, energy escapes to the outer boundary. 
 \end{wideitemize}
+
+\vfill 
+
+\includegraphics[width=\textwidth]{figures/energy_day.pdf}
 
 \end{frame}
 
@@ -403,15 +458,15 @@ Which can be solved with an integrating factor:
 \begin{frame}
 \frametitle{Resonance and Rotation on the Nightside}
 
-\vfill
-
-\includegraphics[width=\textwidth]{figures/energy_night.pdf}
-
 \begin{wideitemize}
-\item The nightside ionosphere is much less conductive than the dayside. 
+\item The nightside ionosphere is much less conductive than the dayside ionosphere. 
 \item No accumulation of energy over multiple drive periods. 
 \item At high \azm, dissipation is faster than poloidal-to-toroidal rotation. 
 \end{wideitemize}
+
+\vfill
+
+\includegraphics[width=\textwidth]{figures/energy_night.pdf}
 
 \end{frame}
 
@@ -439,13 +494,13 @@ Which can be solved with an integrating factor:
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Comparison to Observational Data?}
+\frametitle{Results from the Numerical Model}
 
 \begin{wideitemize}
-\item How does the spatial distribution of giant pulsations compare to that of odd poloidal Pc4s?
-\item How does the spatial distribution of odd toroidal Pc4s compare to that of odd poloidal Pc4s?
-\item How about even toroidal and even poloidal Pc4s?
-\item Past surveys do not address these questions.  
+\item Toroidal frequencies depend sharply on $L$ because toroidal FLRs are sharp in $L$ --- unlike poloidal FLRs, which are smeared. 
+\item At least in terms of \azm, latitude, and chirality, giant pulsations are not as distinctive as they are made out to be. 
+\item Poloidal-to-toroidal rotation is fast --- the poloidal mode is a significant source for same-harmonic toroidal waves. 
+\item Resonance on the nightside is significantly impeded by Joule dissipation in the ionosphere.  
 \end{wideitemize}
 
 \end{frame}
@@ -455,6 +510,21 @@ Which can be solved with an integrating factor:
 % =============================================================================
 
 \section{Van Allen Probe Observations}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Comparison to Observational Data?}
+
+\begin{wideitemize}
+\item How does the spatial distribution of giant pulsations compare to that of odd poloidal Pc4s overall?
+\item How does the distribution of odd toroidal Pc4s compare to that of odd poloidal Pc4s?
+\item How about even toroidal and even poloidal Pc4s?
+\end{wideitemize}
+
+\end{frame}
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -645,7 +715,16 @@ Collaborators:
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Summary}
+\frametitle{Sym-H}
+
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Dayside Ground Signatures}
 
 \end{frame}
 
