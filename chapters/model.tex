@@ -29,7 +29,7 @@ magnetic field signatures at the ground. Such features would pose a
 prohibitive computational expense in a large global code. 
 
 Tuna was developed with field line resonance in mind. As discussed in
-\cref{ch_flrs}, such waves are azimuthally localized, minimizing the
+\cref{ch_flrs}, such waves extend over just a few hours MLT, minimizing the
 importance of Tuna's missing half dimension. Moreover, because field line
 resonances are known to be affected by both the ionosphere and the
 plasmasphere, a faithful treatment of the inner magnetosphere is a crucial part
@@ -48,8 +48,6 @@ Tuna's source code, written in Fortran, is publicly available at
 of Python scripts: a test harness --- which automates programming environment
 setup, compilation, and interfacing with the supercomputer queue --- and a
 plotter. 
-
-\todo{Set up Git repo. }
 
 %\todo{The dipole geometry isn't super new, but it's not widely used. The height-resolved ionosphere is new and exciting! Ground signatures are new and exciting! }
 
@@ -76,7 +74,7 @@ lines into a rectangular configuration\cite{dungey_1954,mann_1995}, by
 unrolling the azimuthal coordinate into a cylindrical coordinate
 system\cite{radoski_1974}, or through the use of dipole
 coordinates\cite{radoski_1967_coords}\footnote{The dipole coordinates \radx,
-\rady, and \radz are sometimes named $\mu$, $\phi$, and $\nu$ respectively.}:
+\rady, and \radz are sometimes named $\nu$, $\phi$, and $\mu$ respectively.}:
 \begin{align}
   \label{radoski_coords}
   \radx &\equiv -\frac{\sin^2 \theta}{r} &

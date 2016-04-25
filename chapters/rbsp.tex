@@ -30,8 +30,6 @@ perform the present analysis --- SPEDAS and the SPICE kernel --- are publicly
 available. They, along with the Python routines used to download, filter, and
 plot the data, can be found at \url{https://github.com/UMN-Space-Physics}. 
 
-\todo{Set up Git repo. }
-
 %Observations show that the poloidal mode is most excited in the second harmonic\cite{cummings_1969,hughes_1978,arthur_1981,singer_1982,takahashi_1984,engebretson_1988} even when there is a strong compressional component\cite{takahashi_1987,haerendel_1999,vaivads_2001,sibeck_2012}. 
 
 %\todo{The tools used in the present chapter --- SPEDAS and the SPICE kernel --- are publicly available. They run best with an IDL license, which is not, but they are functional using just the (free) IDL virtual machine. The code is wrapped up in a Git repository: \url{https://github.com/chizarlicious/RBSP} (maybe should make a GitHub organization to hold this code, to decouple it from my personal account?). }
@@ -46,54 +44,64 @@ The present analysis makes use of Van Allen Probe data from October 2012 to
 August 2015 --- the entire range available at the time of writing. Between the
 two probes, that's just over 2000 days of observation. 
 
-For the purposes of Pc4 pulsations, it's reasonable to consider the two probes
-to be independent observers. Nearly all Pc4 events occur near apogee
-($L \gtrsim 5$), at which point the two probes are several hours apart in MLT.
-Pc4 events are typically not large enough to be seen by both probes
-simultaneously, and not long enough in duration to be seen by two probes
-passing through the same region of space several hours apart. 
+For the purposes of the present work, the two probes are taken to be
+independent observers. A preliminary estimate shows that Pc4 events are
+sufficiently narrow in MLT that they are rarely (\about\SI{1}{\percent}) seen
+by both probes simultaneously. The events are also short-lived enough that they
+are rarely seen by the two probes passing through the same region of space, no
+more than a few hours apart. That said, a future investigation into the few
+events that are seen by both probes could offer significant insight into the
+structure and behavior of these waves. 
+
+%For the purposes of Pc4 pulsations, it's reasonable to consider the two probes
+%to be independent observers. Nearly all Pc4 events occur near apogee
+%($L \gtrsim 5$), at which point the two probes are several hours apart in MLT.
+%Pc4 events are typically not large enough to be seen by both probes
+%simultaneously, and not long enough in duration to be seen by two probes
+%passing through the same region of space several hours apart. 
 
 %\todo{Quantify how often an event is seen by both probes? }
 
-Electric and magnetic field waveforms are collected using the probes'
-EFW\cite{wygant_2013} and EMFISIS instruments respectively. Values are cleaned
-up by averaging over the ten-second spin period. Three-dimensional electric
-field data is then obtained using the $\vec{E} \cdot \vec{B} = 0$ assumption.
-Notably, this assumption is taken only when the probe's spin plane is offset
-from the magnetic field by at least \SI{15}{\degree}. The rest of the data ---
-about half --- is discarded, which introduces a sampling bias against the
-flanks.
+Electric and magnetic field data are collected using the probes'
+EFW\cite{wygant_2013} and EMFISIS instruments respectively. Level 3 values are
+used, averaged over the ten-second probe spin period. Three-dimensional
+electric field data is obtained by using the $\vec{E} \cdot \vec{B} = 0$
+assumption; at such low frequencies, this is more accurate than measurements
+taken using the spin-axis boom. Notably, this assumption is taken only when the
+probe's spin plane is offset from the magnetic field by at least
+\SI{15}{\degree}. The rest of the data --- about half --- is discarded,
+potentially introducing a sampling bias in MLT.
 
 A further bias is introduced by the probes' non-integer number of precessions
-around Earth. As of July 2014, apogee had precessed once around
-Earth\cite{dai_2015}. The present work considers roughly one and a half
+around Earth. As of July 2014, apogee had completed one fill
+precession\cite{dai_2015}. The present work considers roughly one and a half
 precessions; the nightside has been sampled at apogee twice as often as the
 dayside. 
 
 The spatial distribution of usable data --- that is, data for which
-three-dimensional electric and magnetic fields are available --- is shown in
+three-dimensional electric and magnetic fields are available at the desired
+accuracy --- is shown in
 \cref{fig_pos_all_sharp}. Bins are unitary in $L$ and in MLT. The distribution
-of the data in magnetic latitude is not shown; the Van Allen Probes are
-localized to within \about\SI{10}{\degree} of the equatorial plane. 
+of the data in magnetic latitude is not shown; the Van Allen Probes are usually
+localized to within \SI{10}{\degree} of the equatorial plane. 
 
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=\textwidth]{figures/pos_all_sharp.pdf}
   \caption[Distribution of Usable Van Allen Probe Data]{
-    Three-dimensional electric field values are computed by assuming
-    $\vec{E} \cdot \vec{B} = 0$. Data is discarded whenever the magnetic field
-    falls within \SI{15}{\degree} of the spin plane, which introduces a bias
-    against the flanks. Furthermore, the probes have completed one and a half
-    precessions around Earth; the dayside has been sampled once at apogee, and
-    the nightside twice. 
+    The above figure shows the spatial distribution of sampling by the Van Allen
+    Probes. Bins are unitary in the polar coordinates $L$ and MLT; the spatial
+    scale is indicated by the SM $X$ and $Y$ axes. The Van Allen Probes have
+    precessed one and a half times around Earth, so the nightside has been
+    double-sampled at apogee, resulting in a significant sampling bias. 
   }
   \label{fig_pos_all_sharp}
 \end{figure}
 
-Field measurements are transformed from GSE coordinates into the same dipole
-coordinates used in \cref{ch_model,ch_results}. The \z axis (parallel to the
-background magnetic field) is estimated using a ten-minute running average of
-the magnetic field measurements. The \y axis is set parallel to
+Field measurements are transformed into the same dipole
+coordinates used in \cref{ch_model,ch_results}. The background magnetic field
+is estimated using a ten-minute running average of the magnetic field
+measurements; that defines the \z axis. The \y axis is set parallel to
 $\zhat \times \vec{r}$, where \vec{r} is the probe's geocentric position
 vector. The \x axis is then defined per $\xhat \equiv \yhat \times \zhat$. This
 scheme guarantees that the axes are right-handed and pairwise
@@ -111,14 +119,35 @@ from the zeroth-order magnetic field. The same is true for $B_y$ and $B_z$. }.
 Each waveform is also shifted vertically so that its mean over the thirty
 minute event is zero. 
 
-Frequency-domain Poynting flux is computed from the electric and magnetic field
-transforms. A factor of $L^3$ compensates the compression of the flux tube, so
+Poynting flux along the field is computed from the electric and magnetic field
+transforms. A factor of $\lr{\frac{r}{R_I}}^3$ compensates the compression of
+the flux tube, so
 that the resulting values are effective at the ionosphere. Poloidal and
 toroidal Poynting flux, respectively, are given by:
 \begin{align}
-  \dft{S_P} &\equiv -\frac{L^3}{\mz} \dft{E_y} \dft{B_x^*} &
-  \dft{S_T} &\equiv  \frac{L^3}{\mz} \dft{E_x} \dft{B_y^*}
+  \dft{S_P} &\equiv -\lr{\frac{r}{R_I}}^3\frac{1}{\mz} \dft{E_y} \dft{B_x^*} &
+  \dft{S_T} &\equiv  \lr{\frac{r}{R_I}}^3\frac{1}{\mz} \dft{E_x} \dft{B_y^*}
 \end{align}
+
+
+
+
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\textwidth]{figures/sample_event_selection.pdf}
+  \caption[Waveforms and Spectra for a Toroidal Pc4 Event]{
+    ...
+  }
+  \label{fig_sample_event_selection}
+\end{figure}
+
+
+
+
+
+
+
 
 The poloidal and toroidal channels are independently checked for Pc4 waves. For
 each channel, a Gaussian profile is fit to the magnitude of the Poynting flux,
@@ -126,8 +155,12 @@ $|\dft{S}\arg{\omega}|$. If the fit fails to converge, or if the peak of the
 Gaussian does not fall within \SI{5}{\mHz} of the peak value of \dft{S}, the
 event is discarded. Events are also discarded if their frequencies fall outside
 the Pc4 frequency range (\SIrange{7}{25}{\mHz}) or if their amplitudes fall
-below \SI{e-2}{\mW/\m\squared} (out of consideration for instrument
+below \SI{0.005}{\mW/\m\squared} (out of consideration for instrument
 sensitivity). 
+
+Poynting flux magnitude is used rather than magnetic field magnitude (as is
+more typical) to avoid a bias against the detections of odd harmonics, which
+exhibit a magnetic field node at the equator. 
 
 Events are discarded if their parity is ambiguous. The electric field and the
 magnetic field must be coherent at a level of 0.9 or better (judged at the
@@ -157,7 +190,8 @@ their energy between standing and traveling waves. This is the topic of
 \section{Events by Mode}
   \label{sec_rate}
 
-The filters described in \cref{sec_selection} yield 762 Pc4 events, the spatial
+The filters described in \cref{sec_selection} yield 762 half-hour Pc4 events,
+the spatial
 distribution of which is shown in \cref{fig_rate_all_sharp}. In each bin, the
 event count is normalized to the amount of usable data
 (\cref{fig_pos_all_sharp}). Bins shown in white contain zero events. The rate
@@ -179,30 +213,38 @@ events would be observed if the sampling were distributed uniformly in space.
   \label{fig_rate_all_sharp}
 \end{figure}
 
-Consistent with previous work, Pc4 events peak on the dayside and are rarely
+Consistent with previous
+work\cite{anderson_1990,dai_2015,kokubun_1989,liu_2009}, Pc4 events peak on the
+dayside and are rarely
 observed at $L < 4$. Nearly \SI{30}{\percent} of the usable data shown in
 \cref{fig_pos_all_sharp} is taken at $L < 4$, yet only 16 of the 762 events
 (\SI{2}{\percent}) appear there. 
 
-On the other hand, the present work runs contrary to Dai's 2015 result in terms
-of Pc4 event rates with respect to the plasmapause (not shown). His analysis
+On the other hand, the present work runs contrary to recent results by Dai et
+al in terms
+of Pc4 event rates with respect to the plasmapause (not shown). Their analysis
 found (poloidal) Pc4 pulsations to be comparably common inside and outside the
 plasmapause\cite{dai_2015}. In the present work, only 40 of the 762 events
 (\SI{5}{\percent}) fall inside the plasmasphere, despite the fact that
-\SI{40}{\percent} of the available data falls within the plasmasphere. The
-disparity is not likely due to a difference in sampling --- Dai's work, like
-the present work, uses data from the Van Allen Probes mission. Rather, the
-difference is likely due to a difference in how the plasmapause is defined. Dai
-identifies the plasmapause by the maximum gradient in electron number density,
+\SI{40}{\percent} of the available data falls within the plasmasphere. 
+It's possible that the discrepancy is due to differing definitions of the
+location of the plasmapause; Dai et al
+identify the plasmapause by the maximum gradient in electron number density,
 while the present work takes an electron density of \SI{100}{\percc} to mark
-the plasmapause\footnote{Per ongoing work by Thaller. }. 
+the plasmapause\footnote{Per ongoing work by Thaller. }. Event selection
+criteria also vary significantly between the present survey and that conducted
+by Dai et al --- their work shows poloidal events located based on high-cadence
+magnetic field data only, while the present work also considers toroidal waves
+and electric fields, but at lower cadence. 
 
 The same events in \cref{fig_rate_all_sharp} are shown again in
-\cref{fig_mode_all_sharp}, partitioned by polarization and parity. 
+\cref{fig_mode_all}, partitioned by polarization and parity. In an effort to
+keep the number of bins much smaller than the number of events, the bins in
+\cref{fig_mode_all} span two hours each in MLT and do not break at all in $L$. 
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=\textwidth]{figures/mode_all_sharp.pdf}
+  \includegraphics[width=\textwidth]{figures/mode_all.pdf}
   \caption[Rate of Pc4 Events by Mode]{
     The above figure shows the spatial distribution for the same 762 events
     shown in \cref{fig_rate_all_sharp}, partitioned by polarization and parity.
@@ -212,23 +254,27 @@ The same events in \cref{fig_rate_all_sharp} are shown again in
     bottom-left corners do not sum to 762 because some events trigger on both
     the poloidal channel and the toroidal channel. 
   }
-  \label{fig_mode_all_sharp}
+  \label{fig_mode_all}
 \end{figure}
 
-The distribution of even poloidal events in \cref{fig_mode_all_sharp} is
-consistent with that reported by Dai\cite{dai_2015}: the observation rate is
-peaked at noon, and smeared across the dusk side. Notably, Dai's work focused
-on even poloidal waves. While he did not explicitly remove odd events from his
-sample, he did introduce a threshold in the magnetic field. This threshold is
+The distribution of even poloidal events in \cref{fig_mode_all} is
+consistent with that reported by Dai et al\cite{dai_2015}: the observation rate
+is peaked at noon, and extends across the dusk side. Notably, Dai et al focused
+on even poloidal waves. While they did not explicitly remove odd events from
+the sample, they did introduce a threshold in the magnetic field. This
+threshold is
 preferrentially satisfied by even waves (which have a magnetic field antinode
-near the equator) compared to odd waves (which have a magnetic field node). Dai
-characterized the parity of only a quarter of his events; among those, he found
-even harmonics to outnumber odd harmonics ten-to-one. 
+near the equator) compared to odd waves (which have a magnetic field node). 
+Dai et al
+characterized the parity of only a quarter of his events; among those, they
+found even harmonics to outnumber odd harmonics ten-to-one. 
 
 In fact --- to the degree that they can be straightforwardly compared --- the
 distributions in \cref{fig_mode_all_sharp} also show agreement with work by
-Anderson\cite{anderson_1990} (using AMPTE/CCE), Kokubun\cite{kokubun_1989}
-(using ATS6), Liu\cite{liu_2009} (using THEMIS), and Motoba\cite{motoba_2015}
+Anderson et al\cite{anderson_1990} (using AMPTE/CCE), Kokubun et 
+al\cite{kokubun_1989}
+(using ATS6), Liu et al\cite{liu_2009} (using THEMIS), and Motoba at 
+al\cite{motoba_2015}
 (using GOES). Toroidal events dominate overall, and are primarily seen on the
 morning side. Poloidal events are spread broadly in MLT, with a peak near noon
 and odd harmonics in the early morning. 
@@ -240,7 +286,7 @@ polarization and parity. And, crucially, the selection process has not
 introduced a bias with respect to polarization or parity (at least not an
 obvious one). 
 
-The even events shown in \cref{fig_mode_all_sharp} show good agreement with the
+The even events shown in \cref{fig_mode_all} show good agreement with the
 numerical results in \cref{ch_results}. The even poloidal and even toroidal
 distributions are qualitatively similar, as might be expected if even poloidal
 waves served as a source for even toroidal waves. Even poloidal waves are more
@@ -250,40 +296,40 @@ dayward compared to even poloidal events, suggesting that poloidal-to-toroidal
 rotation is inhibited by increased Joule dissipation on the nightside. 
 
 The same can be said to some extent for the odd events in
-\cref{fig_mode_all_sharp}, though the trends are less strong. Odd poloidal and
+\cref{fig_mode_all}, though the trends are less strong. Odd poloidal and
 odd toroidal events are both scarce on the dusk flank. On the dawn flank,
 poloidal events skew nightward, while toroidal events are spread broadly ---
 that is, they are skewed dayward compared to the poloidal events. However, it's
 unclear why odd toroidal events outnumber odd poloidal events to such a degree. 
 
-When the 762 events are broken down by mode in \cref{fig_mode_all_sharp}, the
+When the 762 events are broken down by mode in \cref{fig_mode_all}, the
 result is 124 odd poloidal events, 214 even poloidal events, 415 odd toroidal
 events, and 83 even toroidal events --- a total of 836 events. The total is
 greater than 762 because in \about\SI{10}{\percent} of events, the poloidal and
 toroidal channels trigger independently. Such cases are marked as a single
 event in \cref{fig_rate_all_sharp}, but the toroidal and poloidal events are
-both shown in \cref{fig_mode_all_sharp}. 
+both shown in \cref{fig_mode_all}. 
 
-Double-triggering can be taken as a vague proxy for event quality. When the
+Double-triggering can be taken as a crude proxy for event quality. When the
 channels both trigger independently, the two events almost always (71 of 74
 events) exhibit the same parity. This suggests a poloidal wave with suffient
 power, and a sufficient narrow spectral peak, that it can still be seen after
 much of its energy has rotated to the toroidal mode. 
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=\textwidth]{figures/double_rate_sharp.pdf}
-  \caption[Rate of Double Pc4 Events by Parity and Storm Index]{
-    A double event is a simultaneous triggering of the poloidal and toroidal
-    channels on the same probe. In such cases, the two channels almost always
-    exhibit the same parity. Double events serve as a vague proxy for event
-    quality --- a poloidal event with sufficient strength and clarity to be
-    seen even after much of its energy has rotated to the toroidal mode. Odd
-    double events are spread broadly; even events are concentrated near noon,
-    and become more common during geomagnetically active times. 
-  }
-  \label{fig_double_rate_sharp}
-\end{figure}
+%\begin{figure}[!htb]
+%  \centering
+%  \includegraphics[width=\textwidth]{figures/double_rate_sharp.pdf}
+%  \caption[Rate of Double Pc4 Events by Parity and Storm Index]{
+%    A double event is a simultaneous triggering of the poloidal and toroidal
+%    channels on the same probe. In such cases, the two channels almost always
+%    exhibit the same parity. Double events serve as a crude proxy for event
+%    quality --- a poloidal event with sufficient strength and clarity to be
+%    seen even after much of its energy has rotated to the toroidal mode. Odd
+%    double events are spread broadly; even events are concentrated near noon,
+%    and become more common during geomagnetically active times. 
+%  }
+%  \label{fig_double_rate_sharp}
+%\end{figure}
 
 The spatial distribution of double events is shown in
 \cref{fig_double_rate_sharp}. The left column shows events observed with
@@ -367,8 +413,7 @@ based on the peak of the Gaussian fit of each event's Poynting flux,
 $|\dft{S}\arg{\omega}|$. Mean and median values are listed for each mode. Most
 events are small, with Poynting flux well below \SI{0.1}{\mW/\m\squared} when
 mapped to the ionosphere. Only a handful of events --- 3 out of 762 --- exceed
-\SI{1}{\mW/\m\squared}, typically taken to be the threshold at which visible
-auroral arcs form. 
+\SI{1}{\mW/\m\squared}. 
 
 %One such event is shown in \cref{fig_sample_event_strong}. 
 
@@ -573,7 +618,7 @@ away quickly by Poynting flux.
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=\textwidth]{figures/sample_event_phase.pdf}
-  \caption[Waveforms and Spectra for a Pc4 Event]{
+  \caption[Waveforms and Spectra for a Double Pc4 Event]{
     The above is a double event, where the poloidal and toroidal channels have
     been independently selected as events. The poloidal channel shows a wave
     with most of its energy in the standing wave (phase of \SI{79}{\degree}).
