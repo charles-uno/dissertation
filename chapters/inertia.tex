@@ -43,12 +43,10 @@ gleaned despite those complications. Notably --- for reasons discussed in
 use of the effects of electron inertia. 
 
 Inertial effects have been considered in previous numerical work, such as by
-Lysak and Song in 2001\cite{lysak_2001}, but never at the global scale. That
-work considered waves in the ionospheric \Alfven resonator, with frequencies of
-hundreds of \si{\mHz}, and did not account for the effects of the dipolar
-geometry. In fact, in that work, circular polarization (essentially a
-superposition of poloidal and toroidal modes) was noted to be a promising
-avenue for future work. 
+Lysak and Song\cite{lysak_2001,lysak_2011}, but never at the global scale.
+Previous work has instead employed a quasi-dipolar model which scales the
+cross-sectional area of flux tubes with altitude, but does not properly account
+for their curvature. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -267,7 +265,7 @@ to the formation of parallel currents.
 It's also possible to consider the effect of parallel currents and electric
 fields on the ionosphere's energy budget, per Poynting's theorem:
 \begin{align}
-  \ddt u &= -\div{E} - \vec{J} \cdot \vec{E}
+  \ddt u &= -\div{S} - \vec{J} \cdot \vec{E}
 \end{align}
 
 \begin{figure}[!htb]
@@ -355,6 +353,13 @@ Nyquist rate for the minimum inertial length of \SI{1.7}{\km}. It's still too
 coarse. There is clearly some small-scale structure developing in the
 ionosphere, but it's not well resolved. The large number of ``wigglies''
 portends an imminent crash. 
+
+Tuna's grid can be limited by considering only a small range of $L$-shells, as
+in \cref{fig_inertial_length}, but ultimately enough points are necessary to
+resolve the entire length of a magnetic field line. The time step also must
+remain small --- because waves can propagate in any direction, the
+perpendicular Courant condition must be respected. That is, at present, Tuna's
+limited ability to resolve inertial effects is simply a scaling issue. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------

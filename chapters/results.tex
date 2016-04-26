@@ -4,10 +4,14 @@
 \chapter{Numerical Results}
   \label{ch_results}
 
-A primary motivation for the development of Tuna is the fact that FLRs vary in
-interesting ways as a function of azimuthal modenumber, and that existing
-numerical models are limited in their ability to examine such behaviors. The
-present chapter discusses the core results that the model has so far produced. 
+The primary motivation for Tuna's development is the fact that Pc4s and Pgs
+exhibit a variety of heretofore-unconnected properties, and that existing
+models are limited in their ability to investigate them. The present chapter
+discusses the core results Tuna has so far produced. Particular attention is
+paid to the importance of azimuthal modenumber --- a characteristic which is
+particularly difficult to study using three-dimensional models, and which is
+of importance to poloidal-toroidal coupling, compressional propagation, and
+giant pulsations. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -572,11 +576,11 @@ particularly at low \azm, but to some degree at high \azm as well.
 The asymptotic rotation of energy from the poloidal mode to the toroidal mode
 is reproduced; at small \azm, the rotation timescale is comparable to a wave
 period, while at large modenumber it's on the order of 10 periods. On the
-dayside, little energy is lost to Joule dissipation on rotation timescales. In
-contrast, on the nightside, dissipation timescales are comparable to wave
-periods. In high-\azm nightside runs, even in the case of continuous driving
-near the local eigenfrequency, the movement of energy from the poloidal mode to
-the toroidal mode is vanishingly small. 
+dayside, little energy is lost to Joule dissipation on rotation timescales,
+suggesting that the poloidal mode is a significant source of energy for
+same-harmonic toroidal waves. On the nightside, dissipation timescales are
+comparable to wave periods, suggesting that the poloidal mode gives rise to
+toroidal waves less effectively. 
 
 Ground signatures at low modenumber are shown to be weak because waves in space
 are weak; this is particularly true for poloidal waves --- a non-guided wave
@@ -598,7 +602,8 @@ Low-\azm poloidal waves will quickly rotate to the toroidal mode (and/or
 propagate away). High-\azm waves will resonate in place, accumulating energy
 over time, and giving rise to ``multiharmonic toroidal
 waves''\cite{takahashi_2011}; Fourier components that do not match the local
-eigenfrequency will quickly asymptote. Waves with very high modenumbers will
+eigenfrequency will accumulate energy over just a few wave periods before
+reaching asymptotic values. Waves with very high modenumbers will
 be attenuated by the ionosphere. The response on the ground will be
 counterclockwise at low latitude, clockwise at high latitude, peaked at
 $16 \lesssim \azm \lesssim 32$, mostly east-west polarized, and notably

@@ -64,7 +64,9 @@ structure and behavior of these waves.
 
 Electric and magnetic field data are collected using the probes'
 EFW\cite{wygant_2013} and EMFISIS instruments respectively. Level 3 values are
-used, averaged over the ten-second probe spin period. Three-dimensional
+used, averaged over the ten-second probe spin period\footnote{The fastest Pc4
+pulsations have periods of \SI{45}{\second}, so a ten-second measurement
+cadence easily satisfies the Nyquist rate. }. Three-dimensional
 electric field data is obtained by using the $\vec{E} \cdot \vec{B} = 0$
 assumption; at such low frequencies, this is more accurate than measurements
 taken using the spin-axis boom. Notably, this assumption is taken only when the
@@ -129,25 +131,28 @@ toroidal Poynting flux, respectively, are given by:
   \dft{S_T} &\equiv  \lr{\frac{r}{R_I}}^3\frac{1}{\mz} \dft{E_x} \dft{B_y^*}
 \end{align}
 
-
-
-
+An example event --- both electric and magnetic field measurements and real and
+imaginary Poynting flux spectra --- is shown in
+\cref{fig_sample_event_selection}. 
 
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=\textwidth]{figures/sample_event_selection.pdf}
   \caption[Waveforms and Spectra for a Toroidal Pc4 Event]{
-    ...
+    An example half-hour event is shown. On the left, components of the
+    electric and magnetic field measurements are shown. On the right are the
+    real and imaginary components of the corresponding Poynting flux spectra.
+    A \about\SI{3}{\mHz} magnetic oscillation is visible in the poloidal
+    channel, as is an electric field oscillation at \about\SI{10}{\mHz}; peaks
+    appear at both frequencies in the corresponding spectrum, but no poloidal
+    event is
+    selected because the oscillations are not coherent. In the toroidal
+    channel, a clear standing wave (phase of \SI{87}{\degree}) is evident at
+    \SI{10.3}{\mHz}. The black dotted line shows a Gaussian fit of the Poynting
+    flux magnitude. 
   }
   \label{fig_sample_event_selection}
 \end{figure}
-
-
-
-
-
-
-
 
 The poloidal and toroidal channels are independently checked for Pc4 waves. For
 each channel, a Gaussian profile is fit to the magnitude of the Poynting flux,
@@ -158,9 +163,13 @@ the Pc4 frequency range (\SIrange{7}{25}{\mHz}) or if their amplitudes fall
 below \SI{0.005}{\mW/\m\squared} (out of consideration for instrument
 sensitivity). 
 
-Poynting flux magnitude is used rather than magnetic field magnitude (as is
-more typical) to avoid a bias against the detections of odd harmonics, which
-exhibit a magnetic field node at the equator. 
+The magnitude threshold is set in Poynting flux instead of magnetic field
+(which is more typical) in an effort to reduce bias in event selection. When
+events are selected based on the magnitude of the wave magnetic field, odd
+waves become more difficult to detect, due to their magnetic field node at the
+equator. In fact, Dai et al mention explicitly in their 2015 survey that the
+magnetic field threshold is meant to preferrentially select even
+events\cite{dai_2015}. 
 
 Events are discarded if their parity is ambiguous. The electric field and the
 magnetic field must be coherent at a level of 0.9 or better (judged at the
@@ -173,8 +182,8 @@ the equator.
 %\todo{How much time do the probes spend within \SI{3}{\degree} of the magnetic equator? }
 
 A visual inspection of events shows that those with broad ``peaks'' in their
-spectra are typically not peaked at all --- they are noisy spectra with several
-spectral features grouped just closely enough to trick the fitting routine. A
+spectra are typically not peaked at all --- that are bad fits of noisy or
+multiharmonic data. A
 threshold is set at a FWHM of \SI{3}{\mHz} (equally, a standard deviation of
 \SI{1.27}{\mHz}). Any event with a Gaussian fit broader than that is discarded.
 
@@ -190,7 +199,7 @@ their energy between standing and traveling waves. This is the topic of
 \section{Events by Mode}
   \label{sec_rate}
 
-The filters described in \cref{sec_selection} yield 762 half-hour Pc4 events,
+The filters described in \cref{sec_selection} yield 451 half-hour Pc4 events,
 the spatial
 distribution of which is shown in \cref{fig_rate_all_sharp}. In each bin, the
 event count is normalized to the amount of usable data
@@ -202,7 +211,7 @@ events would be observed if the sampling were distributed uniformly in space.
   \centering
   \includegraphics[width=\textwidth]{figures/rate_all_sharp.pdf}
   \caption[Rate of Pc4 Events]{
-    The above figure shows the spatial distribution of all 762 observed Pc4
+    The above figure shows the spatial distribution of all 451 observed Pc4
     events. Counts are normalized by the amount of usable data in each bin. The
     value in the bottom-right corner is the mean of the rate in each bin, with
     the rate in each bin weighed by the area of that bin. Events where the
@@ -217,15 +226,15 @@ Consistent with previous
 work\cite{anderson_1990,dai_2015,kokubun_1989,liu_2009}, Pc4 events peak on the
 dayside and are rarely
 observed at $L < 4$. Nearly \SI{30}{\percent} of the usable data shown in
-\cref{fig_pos_all_sharp} is taken at $L < 4$, yet only 16 of the 762 events
-(\SI{2}{\percent}) appear there. 
+\cref{fig_pos_all_sharp} is taken at $L < 4$, yet only 13 of the 451 events
+(\SI{3}{\percent}) appear there. 
 
 On the other hand, the present work runs contrary to recent results by Dai et
 al in terms
 of Pc4 event rates with respect to the plasmapause (not shown). Their analysis
 found (poloidal) Pc4 pulsations to be comparably common inside and outside the
-plasmapause\cite{dai_2015}. In the present work, only 40 of the 762 events
-(\SI{5}{\percent}) fall inside the plasmasphere, despite the fact that
+plasmapause\cite{dai_2015}. In the present work, only \todo{40} of the 451 events
+\todo{(\SI{5}{\percent})} fall inside the plasmasphere, despite the fact that
 \SI{40}{\percent} of the available data falls within the plasmasphere. 
 It's possible that the discrepancy is due to differing definitions of the
 location of the plasmapause; Dai et al
@@ -239,19 +248,20 @@ and electric fields, but at lower cadence.
 
 The same events in \cref{fig_rate_all_sharp} are shown again in
 \cref{fig_mode_all}, partitioned by polarization and parity. In an effort to
-keep the number of bins much smaller than the number of events, the bins in
+mitigate the effects of small number statistics, the bins in
 \cref{fig_mode_all} span two hours each in MLT and do not break at all in $L$. 
+These same large bins are used in \cref{sec_amp,sec_f,sec_phase}. 
 
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=\textwidth]{figures/mode_all.pdf}
   \caption[Rate of Pc4 Events by Mode]{
-    The above figure shows the spatial distribution for the same 762 events
+    The above figure shows the spatial distribution for the same 451 events
     shown in \cref{fig_rate_all_sharp}, partitioned by polarization and parity.
     The selection criteria described in \cref{sec_selection} ensure that both
     properties are known for all events. Event counts are normalized by the
     time spent by the amount of usable data in each bin. Counts shown in the
-    bottom-left corners do not sum to 762 because some events trigger on both
+    bottom-left corners do not sum to 451 because some events trigger on both
     the poloidal channel and the toroidal channel. 
   }
   \label{fig_mode_all}
@@ -270,7 +280,7 @@ characterized the parity of only a quarter of his events; among those, they
 found even harmonics to outnumber odd harmonics ten-to-one. 
 
 In fact --- to the degree that they can be straightforwardly compared --- the
-distributions in \cref{fig_mode_all_sharp} also show agreement with work by
+distributions in \cref{fig_mode_all} also show agreement with work by
 Anderson et al\cite{anderson_1990} (using AMPTE/CCE), Kokubun et 
 al\cite{kokubun_1989}
 (using ATS6), Liu et al\cite{liu_2009} (using THEMIS), and Motoba at 
@@ -281,7 +291,7 @@ and odd harmonics in the early morning.
 
 Crucially, the present work can offer insight into how previous results fit
 together. Unlike events considered in previous works, those shown in
-\cref{fig_mode_all_sharp} have all been categorized in terms of both
+\cref{fig_mode_all} have all been categorized in terms of both
 polarization and parity. And, crucially, the selection process has not
 introduced a bias with respect to polarization or parity (at least not an
 obvious one). 
@@ -292,8 +302,9 @@ distributions are qualitatively similar, as might be expected if even poloidal
 waves served as a source for even toroidal waves. Even poloidal waves are more
 prevalent, suggesting a typical event duration comparable to the
 poloidal-to-toroidal rotation timescale. And even toroidal events are skewed
-dayward compared to even poloidal events, suggesting that poloidal-to-toroidal
-rotation is inhibited by increased Joule dissipation on the nightside. 
+dayward compared to even poloidal events, consistent with numerical result that
+a significant amount of energy on the nightside is lost to Joule dissipation
+before rotating to the toroidal mode. 
 
 The same can be said to some extent for the odd events in
 \cref{fig_mode_all}, though the trends are less strong. Odd poloidal and
@@ -302,19 +313,27 @@ poloidal events skew nightward, while toroidal events are spread broadly ---
 that is, they are skewed dayward compared to the poloidal events. However, it's
 unclear why odd toroidal events outnumber odd poloidal events to such a degree. 
 
-When the 762 events are broken down by mode in \cref{fig_mode_all}, the
-result is 124 odd poloidal events, 214 even poloidal events, 415 odd toroidal
-events, and 83 even toroidal events --- a total of 836 events. The total is
-greater than 762 because in \about\SI{10}{\percent} of events, the poloidal and
+When the 451 events are broken down by mode in \cref{fig_mode_all}, the
+result is 77 odd poloidal events, 122 even poloidal events, 245 odd toroidal
+events, and 53 even toroidal events --- a total of 497 events. The total is
+greater than 451 because in \about\SI{10}{\percent} of events, the poloidal and
 toroidal channels trigger independently. Such cases are marked as a single
 event in \cref{fig_rate_all_sharp}, but the toroidal and poloidal events are
 both shown in \cref{fig_mode_all}. 
 
 Double-triggering can be taken as a crude proxy for event quality. When the
-channels both trigger independently, the two events almost always (71 of 74
+channels both trigger independently, the two events almost always (44 of 46
 events) exhibit the same parity. This suggests a poloidal wave with suffient
 power, and a sufficient narrow spectral peak, that it can still be seen after
 much of its energy has rotated to the toroidal mode. 
+
+Due to the small sample size of double events (20 odd and 24 even), little
+can be said of their spatial distribution (not shown). They are generally
+consistent with events overall: odd double events fall mostly on the
+morningside and even double events fall mostly near noon. Perhaps more notable
+is their pattern of occurrence. Odd double events rarely occur twice on the
+same date (the 20 events are distributed across 18 different dates) while even
+events often happen on the same date as one another (24 events on 14 dates). 
 
 %\begin{figure}[!htb]
 %  \centering
@@ -331,24 +350,24 @@ much of its energy has rotated to the toroidal mode.
 %  \label{fig_double_rate_sharp}
 %\end{figure}
 
-The spatial distribution of double events is shown in
-\cref{fig_double_rate_sharp}. The left column shows events observed with
-$\DST \geq \SI{-30}{\nT}$, normalized by the amount of usable data at
-$\DST \geq \SI{-30}{\nT}$. The right column shows events at
-$\DST < \SI{-30}{\nT}$, normalized by the amount of data with
-$\DST < \SI{-30}{\nT}$. 
+%The spatial distribution of double events is shown in
+%\cref{fig_double_rate_sharp}. The left column shows events observed with
+%$\DST \geq \SI{-30}{\nT}$, normalized by the amount of usable data at
+%$\DST \geq \SI{-30}{\nT}$. The right column shows events at
+%$\DST < \SI{-30}{\nT}$, normalized by the amount of data with
+%$\DST < \SI{-30}{\nT}$. 
 
-Odd double-triggering events are spread broadly in MLT. They rarely occur twice
-on the same day; the 23 events shown take place over 20 different dates. Odd
-double events occur at similar rates regardless of \DST. 
+%Odd double-triggering events are spread broadly in MLT. They rarely occur twice
+%on the same day; the 23 events shown take place over 20 different dates. Odd
+%double events occur at similar rates regardless of \DST. 
 
-Even-harmonic double-triggering events, on the other hand, are mostly seen near
-noon, and are significantly more common during geomagnetically active times.
-Even events are also more concentrated than odd ones. The 48 even-harmonic
-double-events shown in the bottom row of \cref{fig_double_rate_sharp} are
-spread over 20 days, and 35 of them are spread over just 7 days. This
-clustering --- where the poloidal and toroidal channel both trigger for five to
-ten half-hour events in the same day --- is prevalent regardless of \DST. 
+%Even-harmonic double-triggering events, on the other hand, are mostly seen near
+%noon, and are significantly more common during geomagnetically active times.
+%Even events are also more concentrated than odd ones. The 48 even-harmonic
+%double-events shown in the bottom row of \cref{fig_double_rate_sharp} are
+%spread over 20 days, and 35 of them are spread over just 7 days. This
+%clustering --- where the poloidal and toroidal channel both trigger for five to
+%ten half-hour events in the same day --- is prevalent regardless of \DST. 
 
 %Not only does \cref{fig_mode_all_sharp} show that toroidal events outnumber poloidal events, but it also shows that toroidal events are predominantly odd harmonics --- as opposed to the primarily-even poloidal events. 
 
@@ -390,8 +409,9 @@ ten half-hour events in the same day --- is prevalent regardless of \DST.
 \section{Events by Amplitude}
   \label{sec_amp}
 
-One might reasonable be concerned that the spatial distributions presented in
-\cref{fig_mode_all_sharp} are dominated by these small events, while Pc4 events
+The events shown in \cref{fig_mode_all} span two orders of magnitude in
+amplitude. One might reasonably be concerned that the spatial distributions
+presented in \cref{sec_rate} are dominated by small events, while Pc4 events
 large enough to be noteworthy follow a different distribution entirely. 
 
 \begin{figure}[!htb]
@@ -399,11 +419,10 @@ large enough to be noteworthy follow a different distribution entirely.
   \includegraphics[width=\textwidth]{figures/amp.pdf}
   \caption[Amplitude Distribution of Pc4 Events by Mode]{
     Amplitude distribution is shown for Pc4 events by parity and polarization,
-    based on the peak of the spectrum's Gaussian fit. Odd poloidal events, odd
-    toroidal events, and even toroidal events fall off sharply with increasing
-    amplitude, while the even poloidal events are distributed more broadly ---
-    the mean and median of the even poloidal distribution are twice as large as
-    those of the others. 
+    based on the peak of the spectrum's Gaussian fit. The amplitude
+    distribution of even poloidal events seems to fall off less sharply than
+    that of the other modes --- the median even poloidal event is more than
+    half-again the median overall. 
   }
   \label{fig_amp}
 \end{figure}
@@ -412,7 +431,7 @@ The distribution of event magnitudes is presented in \cref{fig_amp}, graded
 based on the peak of the Gaussian fit of each event's Poynting flux,
 $|\dft{S}\arg{\omega}|$. Mean and median values are listed for each mode. Most
 events are small, with Poynting flux well below \SI{0.1}{\mW/\m\squared} when
-mapped to the ionosphere. Only a handful of events --- 3 out of 762 --- exceed
+mapped to the ionosphere. Only a handful of events --- 3 out of 451 --- exceed
 \SI{1}{\mW/\m\squared}. 
 
 %One such event is shown in \cref{fig_sample_event_strong}. 
@@ -422,26 +441,35 @@ mapped to the ionosphere. Only a handful of events --- 3 out of 762 --- exceed
 Perhaps the most notable feature of \cref{fig_amp} is the relative uniformity
 of the distribution of even poloidal events. If a higher magnitude threshold is
 imposed, as shown in \cref{fig_mode_amp}, the proportion of even poloidal
-events rises. 
+events rises appreciably. 
 
-The spatial bins in \cref{fig_mode_amp} are larger than those in
-\cref{sec_rate}; this change reflects an effort to keep the number of events
-large compared to the number of bins, even when considering relatively small
-subsets of the data. The larger bins --- two hours wide in MLT and divided at
-$L = 5$ radially --- are also used in \cref{sec_f,sec_phase}. All of the
-large-binned bullseye plots also share a common logarithmic color bar. 
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\textwidth]{figures/mode_amp.pdf}
+  \caption[Rate of Pc4 Events by Mode and Amplitude]{
+    The above figure shows the distribution of Pc4 event observations by mode.
+    Event magnitude cutoff is constant across each row. The spatial
+    distribution for
+    each mode does not change significantly as a function of cutoff amplitude.
+    However, when considering only large-amplitude events, even poloidal events
+    become proportionally more common. 
+  }
+  \label{fig_mode_amp}
+\end{figure}
 
 All else being equal, one might expect the amplitude distribution of even
 toroidal events to mimic that of even poloidal events, since poloidal waves
 asymptotically rotate to toroidal waves. However, this does not seem to be the
-case. The mean and median magnitudes are more or less consistent for even
+case. The mean and median magnitudes are more or less consistent across even
 toroidal events, odd toroidal events, and odd poloidal events, while even
-poloidal events are twice as large by those metrics. This would seem to imply
-that large even poloidal modes have disproportionately high modenumbers, and
-thus deliver energy to the toroidal mode less efficiently. This explanation
-is unsatisfying, however; \cref{fig_mode_amp} shows that even poloidal and
-toroidal modes both become more concentrated near noon at high amplitude,
-suggesting a common origin. 
+poloidal events are significantly larger. 
+
+%This would seem to imply
+%that large even poloidal modes have disproportionately high modenumbers, and
+%thus deliver energy to the toroidal mode less efficiently. This explanation
+%is unsatisfying, however; \cref{fig_mode_amp} shows that even poloidal and
+%toroidal modes both become more concentrated near noon at high amplitude,
+%suggesting a common origin. 
 
 %\begin{figure}[!htb]
 %  \centering
@@ -452,20 +480,6 @@ suggesting a common origin.
 %  \label{fig_sample_event_strong}
 %\end{figure}
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=\textwidth]{figures/mode_amp.pdf}
-  \caption[Rate of Pc4 Events by Mode and Amplitude]{
-    The above figure shows the distribution of Pc4 event observations by mode.
-    Event magnitude cutoff is constant down each column, and increases from
-    left to right. Stronger even events appear to become more concentrated on
-    the dayside as the amplitude increases. Even poloidal events also become
-    significantly more numerous relative to the other three modes, from
-    \SI{26}{\percent} at a cutoff of \SI{0.01}{\mW/\m\squared} to
-    \SI{41}{\percent} above \SI{0.1}{\mW/\m\squared}. 
-  }
-  \label{fig_mode_amp}
-\end{figure}
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -485,42 +499,25 @@ This effect was furthermore apparent in the numerical results shown in
 profiles) gave rise to significantly higher eigenfrequencies than those on the
 nightside. 
 
-In \cref{fig_mode_f}, events at \SIrange{11}{17}{\mHz} (center column) do seem
-to be shifted nightward compared to those at \SIrange{7}{11}{\mHz} (left
-column), but the effect is far less pronounced than what is suggested by
+In \cref{fig_mode_f}, events at \SIrange{9}{15}{\mHz} (center row) are shifted
+slightly nightward compared to those at \SIrange{7}{9}{\mHz} (top row), but
+the effect is far less pronounced than what is suggested by
 \cref{sec_day,sec_night}. 
 
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=\textwidth]{figures/mode_f.pdf}
   \caption[Rate of Pc4 Events by Mode and Frequency]{
-    Event distributions above are shown in terms of mode (row) as well as event
-    frequency (column). Mid-frequency Pc4 events are shifted somewhat nightward
+    Event distributions above are shown in terms of mode (column) as well as
+    event frequency (row). Mid-frequency Pc4 events are shifted somewhat
+    nightward
     compared to low-frequency Pc4 events, as might be expected from the
-    dayside's faster \Alfven speed. At the top of the Pc4 band, the
-    distribution of odd toroidal events takes on a decidedly different
-    character; this is likely because these events are third harmonics rather
-    than first harmonics. 
+    dayside's faster \Alfven speed. 
   }
   \label{fig_mode_f}
 \end{figure}
 
 %\todo{We should show the runs driven at $L\sim5$ across the board. Dayside and nightside. That way we can make a fair comparison. }
-
-As might be expected, even events are more prevalent than (mostly fundamental)
-odd events higher in the Pc4 range. Events at \SIrange{7}{11}{\mHz} (left
-column) outnumber those at \SIrange{17}{25}{\mHz} (right column) ten-to-one or
-more for odd events. Among even events, the comparison is more like
-three-to-one. 
-
-The spatial distribution of odd toroidal events above \SI{17}{\mHz} warrants
-specific consideration. Whereas odd toroidal events overall show an
-overwhelming preference for the morning side, those at the top of the Pc4
-frequency band instead appear from noon to dusk. It's possible that this
-distribution is a consequence of the small number of events (25). More likely,
-however, is that these are third-harmonic events, and that their source more
-closely resembles the source for second-harmonic waves than it does first
-harmonics. 
 
 %\todo{Have people looked at third harmonics? }
 
@@ -545,6 +542,9 @@ $L \sim 6$.
   }
   \label{fig_f}
 \end{figure}
+
+As might be expected, \cref{fig_f} also shows even events to exhibit higher
+frequencies overall than odd events. 
 
 %\todo{Maybe put the Gaussian fit back on top of these distributions? The distributions are not particularly Gaussian, but it gives a quantitative estimate of the spread. }
 
@@ -657,9 +657,15 @@ out in phase than the even events. Near the equator, odd modes have an electric
 field antinode and a magnetic field node; per \cref{def_tau}, an odd mode's
 lifetime should be longer than that of an even mode with the same phase. 
 
-Unlike amplitude (\cref{sec_amp}) and frequency (\cref{sec_f}), events of
-different phase do not seem to exhibit different spatial distributions, as
-shown in \cref{fig_mode_phase}. Comparisons are limited by the small event
+Unlike amplitude (\cref{sec_amp}) and frequency (\cref{sec_f}), events
+partitioned by phase do not exhibit appreciably different spatial
+distributions, as
+shown in \cref{fig_mode_phase}. 
+
+
+
+
+Comparisons are limited by the small event
 counts in several of the subplots; however, coarsely speaking, events with
 phases of \SI{75}{\degree} and worse (left column) show spatial distributions
 more or less in proportion with events phased \SI{85}{\degree} or better (right
@@ -685,7 +691,7 @@ does \cref{fig_mode_phase}.
 % -----------------------------------------------------------------------------
 \section{Discussion}
 
-The present chapter gives a survey of \about800 thirty-minute Pc4 events, each
+The present chapter gives a survey of \about500 thirty-minute Pc4 events, each
 characterized in terms of both parity and polarization, and selected in a way
 that does not introduce an apparent bias in either property. No past study has
 so thoroughly disentangled the parity and polarization of these waves.
@@ -710,18 +716,19 @@ events. This is consistent (per \cref{ch_results}) with poloidal events as an
 effective source for (same-parity) toroidal events on the dayside, and a
 less-effective source on the nightside. 
 
-Curiously, only a small minority (\SI{17}{\percent}) of toroidal events are
-found to be odd, while a majority (\SI{63}{\percent}) of poloidal events are
-even. This disparity may offer clues to the source of these waves. 
+As a corrolary, the distribution of odd poloidal events is found to closely
+resemble the distribution of giant pulsations: midnight and morning. This
+(consistent with the numerical results shown in \cref{ch_results}) suggests
+that the distinctive properties attributed to giant pulsations are in fact
+shared by odd poloidal Pc4s overall. 
+
+Curiously, only a small minority (\SI{18}{\percent}) of toroidal events are
+found to be odd, while a majority (\SI{61}{\percent}) of poloidal events are
+even. This disparity may offer clues to the source of these waves, or hint at
+a harmonic dependence in the rate of poloidal-to-toroidal rotation. 
 
 All events are found to follow a similar amplitude distribution, except for
 even poloidal events, which are notably larger. The cause is unclear. 
-
-The \about\SI{6}{\percent} of odd toroidal Pc4s at the top of the frequency
-range (\SIrange{17}{25}{\mHz}) are found to exhibit a qualitatively different
-spatial distribution from the rest. It's likely that these waves are third
-harmonics, and that their excitation mechanism more closely resembles that of
-second harmonics than it does first harmonics. 
 
 Event phase is also considered. Most events of both polarizations are shown to
 have absolute phase in the range \SIrange{80}{100}{\degree}, indicating that
@@ -748,9 +755,6 @@ than that of an even event with the same phase.
 %    }
 %    \label{fig_azm_rate_all}
 %\end{figure}
-
-
-
 
 %\todo{Collections of events at a single ground observatory (near \SI{66}{\degree}) over significant periods of time: }
 
