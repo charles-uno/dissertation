@@ -292,12 +292,25 @@ Where typical values are shown in \cref{tab_tuna_typical}.
   $r_{AZ}$   & \num{1}   & \si{\RE}    & Scale height of the auroral density distribution. \\
 \end{longtable}
 
-The perpendicular component of the electric tensor, \ep, is then given by
-${\ep \equiv \frac{n M}{B_0^2}}$, where $n$ is the number density given in
-\cref{def_density}, $B_0$ is the background magnetic field given in
-\cref{def_b0}, and $M$ is the mean molecular mass, which is large
-(\about\SI{28}{\amu}) at \SI{100}{\km} altitude, then drops quickly (down to
-\SI{1}{\amu} by \about\SI{1000}{\km})\cite{lysak_2013}. 
+The perpendicular component of the electric tensor, \ep, is computed based on
+Kelley's\cite{kelley_1989} tabulated ionospheric values, $\epsilon_K$, which
+are adjusted to take into account the density profile in \cref{def_density}. 
+\begin{align}
+  \ep &= \epsilon_K + \frac{M n}{B_0^2}
+\end{align}
+
+% Note: from bob's email: The 1.88907e8 is the dielectric constant (c2/VA2) for a density of 1 cm-3 and a magnetic field of 1 nT.  eps is first calculated from the ionospheric files, and then the part associated with the plasmasphere and "auroral" densities is added in.
+
+Where $M$ is the mean molecular mass, which is large (\about\SI{28}{\amu}) at
+\SI{100}{\km} altitude, then drops quickly (down to \SI{1}{\amu} by
+\about\SI{1000}{\km})\cite{lysak_2013}. 
+
+%The perpendicular component of the electric tensor, \ep, is then given by
+%${\ep \equiv \frac{n M}{B_0^2}}$, where $n$ is the number density given in
+%\cref{def_density}, $B_0$ is the background magnetic field given in
+%\cref{def_b0}, and $M$ is the mean molecular mass, which is large
+%(\about\SI{28}{\amu}) at \SI{100}{\km} altitude, then drops quickly (down to
+%\SI{1}{\amu} by \about\SI{1000}{\km})\cite{lysak_2013}. 
 
 The \Alfven speed profile is computed from the perpendicular electric constant
 in the usual way, $\va^2 \equiv \frac{1}{\mz \ep}$. This form takes into
