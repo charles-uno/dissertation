@@ -72,7 +72,7 @@ plotter.
 Field line resonance has traditionally been modeled by straightening the field
 lines into a rectangular configuration\cite{dungey_1954,mann_1995}, by
 unrolling the azimuthal coordinate into a cylindrical coordinate
-system\cite{radoski_1974}, or through the use of dipole
+system\cite{radoski_1974}, or through the use of orthonormal dipole
 coordinates\cite{radoski_1967_coords}\footnote{The dipole coordinates \radx,
 \rady, and \radz are sometimes named $\nu$, $\phi$, and $\mu$ respectively.}:
 \begin{align}
@@ -97,8 +97,8 @@ indicate that \xhat is defined by the cross product of \yhat and \zhat.}
 (radially outward at the equator), azimuthal (eastward), and parallel
 (northward at the equator) directions respectively. 
 
-Notably, the dipole coordinates in \cref{radoski_coords} are normal to one
-another. While mathematically convenient, they do not readily accommodate a
+Orthonormal coordinates like those in \cref{radoski_coords} are mathematically
+convenient, but they do not readily accommodate a
 fixed-altitude boundary at the ionosphere, nor do they allow the dipole
 magnetic field to intersect the boundary at an oblique angle, as Earth's field
 does. As a solution, a nonorthogonal set of dipole coordinates was developed by
@@ -179,8 +179,7 @@ which is reserved for current in the present work. }.
 
 Explicit forms of the basis vectors and metric tensor can be found in the
 appendix of Lysak's 2004 paper\cite{lysak_2004}. At present, it's sufficient to
-note the mapping between Lysak's basis vectors and the usual dipole unit
-vectors. 
+note the mapping between the basis vectors and the dipole unit vectors. 
 \begin{align}
   \label{def_xyz_directions}
   \xhat &= \frac{1}{ \sqrt{ g^{11} } } \hat{e}^1 &
@@ -294,7 +293,7 @@ Where typical values are shown in \cref{tab_tuna_typical}.
 
 The perpendicular component of the electric tensor, \ep, is computed based on
 Kelley's\cite{kelley_1989} tabulated ionospheric values, $\epsilon_K$, which
-are adjusted to take into account the density profile in \cref{def_density}. 
+are adjusted to take into account the density profile in \cref{def_density}:
 \begin{align}
   \ep &= \epsilon_K + \frac{M n}{B_0^2}
 \end{align}

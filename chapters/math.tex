@@ -148,7 +148,7 @@ oscillation is also called the Langmuir wave. }: electrons vibrating in
 response to a charge separation along the background magnetic field. 
 
 The plasma oscillation is not specifically relevant to the study of field line
-resonance. The two phenomena are separated by six orders of magnitude in
+resonance, as the two phenomena are separated by six orders of magnitude in
 frequency. The topic is revisited in \cref{ch_inertia} insomuch as it is
 inseparable from the electron inertial effects in \ohmlaw, but it is otherwise
 not relevant to the work at hand.  
@@ -263,8 +263,8 @@ the wave vector.
 However, in the high-conductivity limit, the parenthetical term actually
 dominates the \Alfven term, taking values as large as \about\SI{e6}{\Hz}. Waves
 at such frequencies are beyond the scope of the present work. As a matter of
-interest, however, it bears noting that --- as long as $\nu \ll \SI{e6}{\Hz}$
---- \she reduces to the electron cyclotron frequency, $\frac{eB}{\me}$. 
+interest, however, it bears noting that \she reduces to the electron cyclotron
+frequency, $\frac{eB}{\me}$ --- as long as $\nu \ll \SI{e6}{\Hz}$. 
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -338,9 +338,7 @@ are revisited in \cref{ch_inertia} --- waves propagate at the \Alfven speed.
 This, in combination with the grid configuration, constrains the time step that
 can be used to model them numerically. The time step must be sufficiently small
 that information traveling at the \Alfven speed cannot ``skip over'' entire
-grid cells\footnote{As is the convention, the time step is scaled down from the
-smallest \Alfven zone crossing time by a Courant factor, typically 0.1, meaning
-that it takes at least ten time steps to cross a grid cell. }.
+grid cells.
 
 Second, the results of the present section allow an estimate of the magnitude
 of parallel electric field that might be expected from a field line resonance
@@ -378,7 +376,7 @@ scales with the azimuthal modenumber: $k_y \sim \frac{\azm}{2 \pi r}$.
     and \azm. Regions shown in white are off the color scale --- they have a
     lower bound on the order of \SI{e4}{\mHz} or more. The above \Alfven
     frequency profile is from Kelley\cite{kelley_1989}, for quiet dayside
-    conditions, as discussed in \cref{sec_profile}. 
+    conditions, as discussed in \cref{ch_model}. 
   }
   \label{fig_cutoff}
 \end{figure}
