@@ -280,9 +280,9 @@
       \ifdraft {
         DRAFT VERSION CREATED ON \uppercase\expandafter{\today}\\
       }\else
-        A \ifphd{DISSERTATION}\else{THESIS}\fi\ \\
-        SUBMITTED TO THE FACULTY OF THE GRADUATE SCHOOL \\
-        OF THE UNIVERSITY OF MINNESOTA \\
+        A \ifphd{DISSERTATION}\else{THESIS}\fi\ 
+        SUBMITTED TO \\ THE FACULTY OF THE GRADUATE SCHOOL
+        OF \\ THE UNIVERSITY OF MINNESOTA 
         BY \\
 % probably want to add space.
 % \vskip 36bp minus 36bp
@@ -290,7 +290,7 @@
         \@author\par
         \nobreak
         \vskip 2ex plus 2ex minus 2ex
-        IN PARTIAL FULFILLMENT OF THE REQUIREMENTS \\
+        IN PARTIAL FULFILLMENT OF \\ THE REQUIREMENTS
         FOR THE DEGREE OF\\
         \@degree \\
         \vskip 1ex plus 1ex minus 1ex
