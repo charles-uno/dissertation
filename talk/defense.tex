@@ -300,7 +300,6 @@ IAGA Frequency Bands [Jacobs, 1964]
 \begin{wideitemize}
 \item At high \azm, driving at the outer boundary doesn't work. 
 \item Tuna drives by perturbing the ring current instead. 
-\item Magnitude is from a Fourier transform of the Sym-H storm index. 
 \end{wideitemize}
 
 \vfill
@@ -385,7 +384,7 @@ Magnetic fields are updated using \farlaw:
 
 \vfill
 
-\includegraphics[width=\textwidth, height=1in]{figures/snapshot_smallm.pdf}
+\includegraphics[width=\textwidth]{figures/snapshot_smallm.pdf}
 
 \end{frame}
 
@@ -404,7 +403,7 @@ Magnetic fields are updated using \farlaw:
 
 \vfill
 
-\includegraphics[width=\textwidth, height=1in]{figures/snapshot_bigm.pdf}
+\includegraphics[width=\textwidth]{figures/snapshot_bigm.pdf}
 
 \end{frame}
 
@@ -415,17 +414,22 @@ Magnetic fields are updated using \farlaw:
 \begin{frame}
 \frametitle{Poloidal-to-Toroidal Rotation}
 
-\begin{columns}
-\column{0.33\textwidth}
-\begin{overpic}[width=\textwidth]{figures/mann_1995.png}
- \put (0, 1) {\tiny\textcolor{black}{\;Mann and Wright, 1995}}
-\end{overpic}%
-\column{0.67\textwidth}
 \begin{wideitemize}
 \item Polarization rotates over time from poloidal to toroidal. 
 \item The rotation is slower at large \azm. 
-\item Toroidal FLRs do not rotate back. 
 \end{wideitemize}
+
+\vfill
+
+\begin{columns}
+\column{0.5\textwidth}
+\vfill
+\begin{overpic}[width=\textwidth]{figures/mann_1995.png}
+ \put (0, 1) {\tiny\textcolor{black}{\;Mann and Wright, 1995}}
+\end{overpic}%
+\column{0.5\textwidth}
+\includegraphics[width=\textwidth]{figures/rotate.pdf}
+\vfill
 \end{columns}
 
 \end{frame}
@@ -484,7 +488,7 @@ Magnetic fields are updated using \farlaw:
 
 \vfill
 
-\includegraphics[width=\textwidth]{figures/ground_night.pdf}%
+\includegraphics[width=\textwidth]{figures/ground_4.pdf}%
 
 \end{frame}
 
@@ -607,7 +611,7 @@ Questions from before:
 \item How about even toroidal and even poloidal Pc4s?
 \end{wideitemize}
 \column{0.67\textwidth}
-\includegraphics[width=\textwidth]{figures/mode_all_sharp.pdf}
+\includegraphics[width=\textwidth]{figures/mode_all.pdf}
 \end{columns}
 
 \end{frame}
@@ -727,6 +731,8 @@ Collaborators:
 \begin{frame}
 \frametitle{Estimating Current from Sym-H}
 
+\includegraphics[width=\textwidth]{figures/symh.pdf}
+
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -734,7 +740,9 @@ Collaborators:
 % -----------------------------------------------------------------------------
 
 \begin{frame}
-\frametitle{Dayside Ground Signatures}
+\frametitle{Van Allen Probe Sampling by Dst}
+
+\includegraphics[width=\textwidth]{figures/dst_pos.pdf}
 
 \end{frame}
 
@@ -745,23 +753,11 @@ Collaborators:
 \begin{frame}
 \frametitle{Dawn-Dusk Asymmetry}
 
-\end{frame}
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-
-\begin{frame}
-\frametitle{Pc4 Distribution by Phase}
-
-\end{frame}
-
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-% -----------------------------------------------------------------------------
-
-\begin{frame}
-\frametitle{Pc4 Distribution by Amplitude}
+\begin{center}
+\begin{overpic}[width=0.75\textwidth]{figures/grebowsky_1970.png}
+ \put (0, 1) {\tiny\textcolor{black}{\;Grebowsky, 1970}}
+\end{overpic}%
+\end{center}
 
 \end{frame}
 
